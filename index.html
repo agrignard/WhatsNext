@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Create a time slider</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+<style>
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+</head>
+<body>
+<style>
+.map-overlay {
+font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+position: absolute;
+width: 25%;
+top: 0;
+left: 0;
+padding: 10px;
+}
+ 
+.map-overlay .map-overlay-inner {
+background-color: #fff;
+box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+border-radius: 3px;
+padding: 10px;
+margin-bottom: 10px;
+}
+ 
+.map-overlay h2 {
+line-height: 24px;
+display: block;
+margin: 0 0 10px;
+}
+ 
+.map-overlay .legend .bar {
+height: 10px;
+width: 100%;
+background: linear-gradient(to right, #fca107, #7f3121);
+}
+ 
+.map-overlay input {
+background-color: transparent;
+display: inline-block;
+width: 100%;
+position: relative;
+margin: 0;
+cursor: ew-resize;
+}
+</style>
+ 
+<div id="map"></div>
+ 
+<div class="map-overlay top">
+<div class="map-overlay-inner">
+<h2>Zic in lyon</h2>
+<label id="month"></label>
+<input id="slider" type="range" min="0" max="364" step="1" value="0">
+
+<label for="showAll">All</label>
+<input id="showAll" type="checkbox" value="1" class="filter" checked/>
+</div>
+</div>
+ 
+<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script>
+	// TO MAKE THE MAP APPEAR YOU MUST
+	// ADD YOUR ACCESS TOKEN FROM
+	// https://account.mapbox.com
+	mapboxgl.accessToken = 'pk.eyJ1IjoiYWdyaWduYXJkIiwiYSI6ImNqdWZ6ZjJ5MDBoenczeXBkYWU3bTk5ajYifQ.SXiCzAGs4wbMlw3RHRvxhw';
+const map = new mapboxgl.Map({
+container: 'map',
+// Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+style: 'mapbox://styles/mapbox/light-v11',
+projection: 'winkelTripel',
+center: [4.8292, 45.7465],
+zoom: 12
+});
+ 
+const months = [
+'January',
+'February',
+'March',
+'April',
+'May',
+'June',
+'July',
+'August',
+'September',
+'October',
+'November',
+'December'
+];
+
+var showAllValue=true;
+ 
+function filterBy(dayoftheyear) {   
+if(showAllValue){
+    const filters = ['==', 'dayofyear', dayoftheyear];
+    map.setFilter('event-circles', filters);
+    map.setFilter('event-labels', filters);
+    // Set the label to the month
+    document.getElementById('month').textContent = new Date(Date.now())+ " day:" + dayoftheyear;//
+}else{
+    map.setFilter('event-circles', null);
+    map.setFilter('event-labels', null);
+}    
+}
+
+
+
+var hoveredStateId =  null; 
+map.on('load', () => {
+// Here we're using d3 to help us make the ajax request but you can use
+// Any request method (library or otherwise) you wish.
+d3.json(
+//'./earth.geojson',
+'./lyon_mapzik.geojson',
+//'https://docs.mapbox.com/mapbox-gl-js/assets/significant-earthquakes-2015.geojson',
+jsonCallback
+);
+});
+ 
+function jsonCallback(err, data) {
+if (err) {
+throw err;
+}
+ 
+// Create a month property value based on time
+// used to filter against.
+data.features = data.features.map((d) => {
+d.properties.month = new Date(d.properties.time).getMonth();
+d.properties.day = new Date(d.properties.time).getDay();
+
+const currentDate = new Date(d.properties.time);
+const startDate = new Date(currentDate.getFullYear(),0,1);
+var days = Math.floor((currentDate - startDate) /
+    (24 * 60 * 60 * 1000));
+ 
+var weekNumber = Math.ceil(days / 7);
+d.properties.week = weekNumber;
+// Display the calculated result       
+console.log("Date " + currentDate +
+    " week:   " + weekNumber + ", day number of: " + d.properties.day + ", jour de l'année:  " + ((weekNumber*7) + d.properties.day));
+    d.properties.dayofyear = ((weekNumber*7) + d.properties.day);
+    return d;
+});
+
+
+document.getElementById('showAll').addEventListener('input', (e) => {
+showAllValue= document.getElementById("showAll").checked;
+filterBy(0)
+});
+
+
+var transparency = 0.9;
+var transparencyBig = 0.95;
+ 
+map.addSource('events', {
+'type': 'geojson',
+data: data
+});
+ 
+map.addLayer({
+'id': 'event-circles',
+'type': 'circle',
+'source': 'events',
+'paint': {
+'circle-color': [
+        'match',['get', 'style'],
+        'Rock', ["case",["boolean", ["feature-state", "hover"], false],'rgba(23,128,251,'+ transparencyBig+')','rgba(23,128,251,'+ transparency+')'],
+        'Electro', ["case",["boolean", ["feature-state", "hover"], false],'rgba(40,124,18,'+ transparencyBig+')','rgba(40,124,18,'+ transparency+')'],
+        'Rap', ["case",["boolean", ["feature-state", "hover"], false],'rgba(165,2,33,'+ transparencyBig+')','rgba(165,2,33,'+ transparency+')'],
+        'Chanson Française', ["case",["boolean", ["feature-state", "hover"], false],'rgba(224,147,40,'+ transparencyBig+')','rgba(224,147,40,'+ transparency+')'],
+        'Divers', ["case",["boolean", ["feature-state", "hover"], false],'rgba(230,58,251,'+ transparencyBig+')','rgba(230,58,251,'+ transparency+')'],
+        /* other */ '#ccc'
+        ],
+'circle-stroke-color':[
+    'match',['get', 'style'],
+    'Rock', ["case",["boolean", ["feature-state", "hover"], false],'rgba(23,128,251,'+ transparencyBig+')','rgba(23,128,251,'+ transparency+')'],
+    'Electro', ["case",["boolean", ["feature-state", "hover"], false],'rgba(40,124,18,'+ transparencyBig+')','rgba(40,124,18,'+ transparency+')'],
+    'Rap', ["case",["boolean", ["feature-state", "hover"], false],'rgba(165,2,33,'+ transparencyBig+')','rgba(165,2,33,'+ transparency+')'],
+    'Chanson Française', ["case",["boolean", ["feature-state", "hover"], false],'rgba(224,147,40,'+ transparencyBig+')','rgba(224,147,40,'+ transparency+')'],
+    'Divers', ["case",["boolean", ["feature-state", "hover"], false],'rgba(23,58,251,'+ transparencyBig+')','rgba(23,58,251,'+ transparency+')'],
+    /* other */ '#ccc'
+    ],
+    'circle-stroke-width': ["case",["boolean", ["feature-state", "hover"], false],10.0,2.5],
+    'circle-stroke-opacity':0.5,
+    'circle-radius': [
+    'interpolate',
+    ['linear'],
+    ['get', 'size'],
+    20,
+    20,
+    5000,
+    100
+    ]
+}
+});
+ 
+map.addLayer({
+'id': 'event-labels',
+'type': 'symbol',
+'source': 'events',
+'layout': {
+    "text-field": ['format',['get', 'title'],{ 'font-scale': 0.9 }],
+    "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+    "text-offset": [1.0, 1.0],
+    "text-anchor": "top"
+},
+'paint': {
+'text-color': 'rgba(0,0,0,0.5)'
+}
+});
+ 
+// Set filter to first month of the year
+// 0 = January
+const currentDate = new Date(Date.now());
+const startDate = new Date(currentDate.getFullYear(),0,1);
+var days = Math.floor((currentDate - startDate) /
+    (24 * 60 * 60 * 1000));
+var weekNumber = Math.ceil(days / 7);
+filterBy((weekNumber*7) + startDate.getDay());
+ 
+document.getElementById('slider').addEventListener('input', (e) => {
+const curDay = parseInt(e.target.value, 10);
+filterBy(curDay);
+
+});
+}
+//Create a popup, but don't add it to the map yet.
+var popup = new mapboxgl.Popup({
+closeButton: false,
+closeOnClick: false
+});
+// When a click event occurs on a feature in the places layer, open a popup at the
+// location of the feature, with description HTML from its properties.
+map.on('click', 'event-circles', (e) => {
+// Copy coordinates array.
+const coordinates = e.features[0].geometry.coordinates.slice();
+const description = e.features[0].properties.description;
+var title = e.features[0].properties.title;
+var place = e.features[0].properties.place;
+var style = e.features[0].properties.style;
+var time = e.features[0].properties.time;
+ 
+// Ensure that if the map is zoomed out such that multiple
+// copies of the feature are visible, the popup appears
+// over the copy being pointed to.
+while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+}
+ 
+new mapboxgl.Popup()
+.setLngLat(coordinates)
+.setHTML("<h4>" + title + "</h4><b>Place:</b> "+place+"<br><b>Style:</b> "+style+"<br><b>Time:</b> "+time+ "<br><b>Description:</b> "+description)
+.addTo(map);
+});
+
+map.on('mouseleave', 'event-circles', function() {
+map.getCanvas().style.cursor = '';
+popup.remove();
+});
+
+
+// When the user moves their mouse over the state-fill layer, we'll update the
+// feature state for the feature under the mouse.
+map.on("mousemove", "event-circles", function(e) {  
+if (e.features.length > 0) {  
+if (hoveredStateId) {
+map.setFeatureState({source: 'events', id: hoveredStateId}, { hover: false});
+}
+hoveredStateId = e.features[0].id;
+map.setFeatureState({source: 'events', id: hoveredStateId}, { hover: true});
+}
+});
+ 
+// When the mouse leaves the state-fill layer, update the feature state of the
+// previously hovered feature.
+map.on("mouseleave", "event-circles", function() {
+if (hoveredStateId) {
+map.setFeatureState({source: 'events', id: hoveredStateId}, { hover: false});
+}
+hoveredStateId =  null;
+});
+</script>
+ 
+</body>
+</html>
