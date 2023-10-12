@@ -1,89 +1,345 @@
                 {"type": "FeatureCollection",
-                "features": [{
+                "features": [
+                {
                     "type": "Feature",
-                    "id":1,
+                    "id":6,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.823052236622729,45.741607370368776 ]
+                    },
+                    "properties": {
+                        "title": "H JEUNECRACK",
+                        "size": 500,
+                        "icon": "marker-15",
+                        "place": "Marché Gare",
+                        "style": "Divers",
+                        "time":1697116852000,
+                        "description":"<a href='https://www.infoconcert.com/ticket/concert-h-jeunecrack-lyon/1567691.html' target='blank'title='Opens in a new window'>Here</a>"
+                        
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "id":7,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.831990737455752,45.769899058409194]
+                    },
+                    "properties": {
+                        "title": "BASEMENT DELIGHTS",
+                        "size": 50,
+                        "icon": "marker-15",
+                        "place": "Trokson",
+                        "style": "Divers",
+                        "time":1697221247000,
+                        "description":"<a href='https://www.infoconcert.com/ticket/concert-basement-delights-lyon/1607011.html' target='blank'title='Opens in a new window'>Here</a>"
+                        
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "id":8,
                     "geometry": {
                         "type": "Point",
                         "coordinates": [4.860437279315762,45.78407800891008]
                     },
                     "properties": {
-                        "title": "Dark Smoke Transbo",
-                        "size": 20,
+                        "title": "The Sisters of Mercy",
+                        "size": 50,
                         "icon": "marker-15",
                         "place": "Transbo",
                         "style": "Rock",
-                        "time":1673350420000,
-                        "description":
-                        "<a href='https://citysciencelab.hamburg/' target='blank'title='Opens in a new window'>CityScience Lab</a>"   
+                        "time":1697566847000,
+                        "description":"<a href='https://www.transbordeur.fr/agenda-2023-2024/the-sisters-of-mercy-mar-17-oct-23/' target='blank'title='Opens in a new window'>Here</a>"
+                        
                     }
-                },{
+                },
+                {
                     "type": "Feature",
-                    "id":2,
+                    "id":9,
                     "geometry": {
                         "type": "Point",
-                        "coordinates": [4.8585652187816075,45.78204627015661]
+                        "coordinates": [4.842844935722629,45.79794664338544]
                     },
                     "properties": {
-                        "title": "Dark Smoke 2 Transbo",
+                        "title": "Pete Doherty",
                         "size": 1000,
                         "icon": "marker-15",
-                        "place": "Transbo",
+                        "place": "Radiant",
                         "style": "Rock",
-                        "time":1676028820000,
-                        "description":
-                        "<a href='https://citysciencelab.hamburg/' target='blank'title='Opens in a new window'>CityScience Lab</a>"
+                        "time":1698085247000,
+                        "description":"<a href='https://radiant-bellevue.fr/spectacles/peter-doherty-frederic-lo/' target='blank'title='Opens in a new window'>Here</a>"
+                        
                     }
                 },
-                    {
+                {
                     "type": "Feature",
-                    "id":3,
+                    "id":10,
                     "geometry": {
                         "type": "Point",
-                        "coordinates": [4.828109073002783,45.74710313497637]
+                        "coordinates": [4.815595048673509,45.73670712008004]
                     },
                     "properties": {
-                        "title": "G15",
-                        "size": 100,
+                        "title": "Realo",
+                        "size": 1000,
                         "icon": "marker-15",
-                        "place": "Periscope",
+                        "place": "Le Sucre",
                         "style": "Rap",
-                        "time":1678448020000,
-                        "description":
-                        "<a href='https://www.periscope-lyon.com/agenda-concerts/' target='blank'title='Opens in a new window'>Prog</a>"
+                        "time":1698430847000,
+                        "description":"<a href='https://le-sucre.eu/artiste/realo/' target='blank'title='Opens in a new window'>Here</a>"
+                        
                     }
                 },
-                    {
+                {
                     "type": "Feature",
-                    "id":4,
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [ 4.825850534678832,45.73091899151209]
-                    },
-                    "properties": {
-                        "title": "Tony",
-                        "size": 5000,
-                        "icon": "marker-15",
-                        "place": "Halles Tony Garnier",
-                        "style": "Chanson Française",
-                        "time":1681135013000,
-                        "description":"<a href='https://www.media.mit.edu/projects/city-science-guadalajara/overview/' target='blank'title='Opens in a new window'>CityScienceLab@Guadalajara </a>"
-                    }
-                },{
-                    "type": "Feature",
-                    "id":5,
+                    "id":11,
                     "geometry": {
                         "type": "Point",
                         "coordinates": [4.8307174674132085,45.728490060600784]
                     },
                     "properties": {
-                        "title": "Ninkasi 20's",
-                        "size": 1000,
+                        "title": "Lord Esperanza",
+                        "size": 500,
                         "icon": "marker-15",
                         "place": "Ninkasi",
-                        "style": "Divers",
-                        "time":1683727013000,
-                        "description":"<a href='https://www.media.mit.edu/projects/city-science-lab-shanghai/overview/' target='blank'title='Opens in a new window'>City Science Lab @ Shanghai</a>"
+                        "style": "Rap",
+                        "time":1698517847000,
+                        "description":"<a href='https://www.ninkasi.fr/agenda/lord-esperanza-rap-kao/' target='blank'title='Opens in a new window'>Prog</a>"
                         
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "id":12,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.828109073002783,45.74710313497637]
+                    },
+                    "properties": {
+                        "title": "Ava Mendoza + Farida Amadou",
+                        "size": 100,
+                        "icon": "marker-15",
+                        "place": "Periscope",
+                        "style": "Jazz",
+                        "time":1697567447000,
+                        "description":
+                        "<a href='https://www.periscope-lyon.com/concerts/ava-mendoza-farida-amadou/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "id":13,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.848709922931173,45.759544833737266]
+                    },
+                    "properties": {
+                        "title": "Asaf Avidan",
+                        "size": 100,
+                        "icon": "marker-15",
+                        "place": "Bourse du Travail",
+                        "style": "Chanson Française",
+                        "time":1697653847000,
+                        "description":
+                        "<a href='https://www.bourse-du-travail.com/asaf-avidan-tournee-180462.html' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "id":14,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.879770844386534,45.71371438007269]
+                    },
+                    "properties": {
+                        "title": "Stogie T + Kaynixe",
+                        "size": 50,
+                        "icon": "marker-15",
+                        "place": "Bizarre!",
+                        "style": "Rap",
+                        "time":1697740247000,
+                        "description":
+                        "<a href='https://www.lamachinerie-venissieux.fr/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "id":15,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.8777717104996885,45.78000624295657]
+                    },
+                    "properties": {
+                        "title": "DJ SET  Exodus",
+                        "size": 50,
+                        "icon": "marker-15",
+                        "place": "Toi Toi le Zinc",
+                        "style": "Electro",
+                        "time":1697740247000,
+                        "description":
+                        "<a href='https://www.toitoilezinc.fr/evenement/986700/exodus/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "id":16,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.8370055647040795,45.770079222201296]
+                    },
+                    "properties": {
+                        "title": "Lisa Ducasse",
+                        "size": 50,
+                        "icon": "marker-15",
+                        "place": "A Thou Bout d'Chant",
+                        "style": "Chanson Française",
+                        "time":1697740247000,
+                        "description":
+                        "<a href='https://billetterie.athouboutdchant.com/evenement/19-10-2023-20-30-lisa-ducasse' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "id":17,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.820252559300551,45.751197621612]
+                    },
+                    "properties": {
+                        "title": "Kid Congo & The Pink Monkey Birds + Pervitin",
+                        "size": 50,
+                        "icon": "marker-15",
+                        "place": "Sonic",
+                        "style": "Rock",
+                        "time":1697481047000,
+                        "description":
+                        "<a href='https://sonic-lyon.fr/facebook-event/4528/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "id":18,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.820252559300551,45.751197621612]
+                    },
+                    "properties": {
+                        "title": "Blues Lawyer + Modesto",
+                        "size": 50,
+                        "icon": "marker-15",
+                        "place": "Sonic",
+                        "style": "Rock",
+                        "time":1697567447000,
+                        "description":
+                        "<a href='https://sonic-lyon.fr/facebook-event/blues-lawyer/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "id":19,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.820252559300551,45.751197621612]
+                    },
+                    "properties": {
+                        "title": "point de suture (release party!) + Cyprine",
+                        "size": 50,
+                        "icon": "marker-15",
+                        "place": "Sonic",
+                        "style": "Rock",
+                        "time":1697653847000,
+                        "description":
+                        "<a href='https://sonic-lyon.fr/facebook-event/point-de-suture-release-party-cyprine/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "id":20,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.820252559300551,45.751197621612]
+                    },
+                    "properties": {
+                        "title": "RUE OBERKAMPF + Rank",
+                        "size": 50,
+                        "icon": "marker-15",
+                        "place": "Sonic",
+                        "style": "Rock",
+                        "time":1697740247000,
+                        "description":
+                        "<a href='https://sonic-lyon.fr/facebook-event/rue-oberkampf-rank/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "id":21,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.820252559300551,45.751197621612]
+                    },
+                    "properties": {
+                        "title": "Peter Kernel + Vera Daisies",
+                        "size": 50,
+                        "icon": "marker-15",
+                        "place": "Sonic",
+                        "style": "Rock",
+                        "time":1697826647000,
+                        "description":
+                        "<a href='https://sonic-lyon.fr/facebook-event/peter-kernel/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "id":22,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.820252559300551,45.751197621612]
+                    },
+                    "properties": {
+                        "title": "The Courettes",
+                        "size": 50,
+                        "icon": "marker-15",
+                        "place": "Sonic",
+                        "style": "Rock",
+                        "time":1698258647000,
+                        "description":
+                        "<a href='https://sonic-lyon.fr/facebook-event/the-courettes/' target=   'blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "id":23,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.820252559300551,45.751197621612]
+                    },
+                    "properties": {
+                        "title": "Die Selektion + vipères sucrées salées",
+                        "size": 50,
+                        "icon": "marker-15",
+                        "place": "Sonic",
+                        "style": "Rock",
+                        "time":1698412748000,
+                        "description":
+                        "<a href='https://sonic-lyon.fr/facebook-event/4463/' target=   'blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "id":23,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.820252559300551,45.751197621612]
+                    },
+                    "properties": {
+                        "title": "Sharped Records party",
+                        "size": 50,
+                        "icon": "marker-15",
+                        "place": "Sonic",
+                        "style": "Rock",
+                        "time":1698499265000,
+                        "description":
+                        "<a href='https://sonic-lyon.fr/facebook-event/sharped-records-party/' target=   'blank'title='Opens in a new window'>Prog</a>"
                     }
                 }]
 }
