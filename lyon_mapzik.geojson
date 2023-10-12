@@ -326,7 +326,7 @@
                 },
                 {
                     "type": "Feature",
-                    "id":23,
+                    "id":24,
                     "geometry": {
                         "type": "Point",
                         "coordinates": [4.820252559300551,45.751197621612]
@@ -340,6 +340,60 @@
                         "time":1698499265000,
                         "description":
                         "<a href='https://sonic-lyon.fr/facebook-event/sharped-records-party/' target=   'blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "id":25,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.832352765113537,45.72885417933985]
+                    },
+                    "properties": {
+                        "title": "Pat Kalla & Le Super Mojo",
+                        "size": 50,
+                        "icon": "marker-15",
+                        "place": "Ninkasi Gerland",
+                        "style": "Rock",
+                        "time": 1697648259000,
+                        "description":
+                        "<a href='https://www.ninkasi.fr/agenda/pat-kalla-le-super-mojo/' target=   'blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "id":26,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.830831379154021,45.727084242498776]
+                    },
+                    "properties": {
+                        "title": "L’amuse-bouche",
+                        "size": 50,
+                        "icon": "marker-15",
+                        "place": "Ninkasi Gerland",
+                        "style": "Rock",
+                        "time": 1697734669000,
+                        "description":
+                        "<a href='https://www.ninkasi.fr/agenda/lamuse-bouche-81/' target=   'blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "id":27,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.815144425742872,45.736706046467575]
+                    },
+                    "properties": {
+                        "title": "S. society x Ravoluson x Khidi",
+                        "size": 50,
+                        "icon": "marker-15",
+                        "place": "Le Sucre",
+                        "style": "Electo",
+                        "time": 1697385639000,
+                        "description":
+                        "<a href='https://le-sucre.eu/agenda/s-society-x-ravoluson-3/' target=   'blank'title='Opens in a new window'>Prog</a>"
                     }
                 }]
 }
