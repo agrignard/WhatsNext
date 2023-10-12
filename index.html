@@ -58,13 +58,13 @@ cursor: ew-resize;
 <div class="map-overlay-inner">
 <h2>Lyon Zik Map</h2>
 <label id="month"></label>
-<input id="slider" type="range" min="1" max="7" step="1" >
+<input id="slider" type="range" min="0" max="364" step="1" value="0">
 
 <label for="showAll"><b>Show All Events</b></label>
 <input id="showAll" type="checkbox" value="1" class="filter" unchecked/>
 
 <label for="calendar">Date</label>
-<input id="calendar" type="date" value= "2023-10-12" min="2023-10-12" max="2023-12-31"/>
+<input id="calendar" type="date" value= "2023-10-12" min="2023-10-12" max="2023-10-31"/>
 
 </div>
 </div>
@@ -105,8 +105,7 @@ function filterBy(value,byday) {
 if(!showAllValue){
     var filters;
     if(byday){
-        filters = ['==', 'month',10];
-        filters = ['==', 'day', value];
+        filters = ['==', 'dayofyear', value];
     }
     else{
         filters = [
@@ -167,7 +166,7 @@ console.log("Date " + currentDate +
 
 document.getElementById('showAll').addEventListener('input', (e) => {
 showAllValue= document.getElementById("showAll").checked;
-filterBy(1,true)
+filterBy(0,true)
 });
 
 
@@ -235,20 +234,20 @@ map.addLayer({
  
 // Set filter to first month of the year
 // 0 = January
-const currentDate = new Date(Date.now());
+/*const currentDate = new Date(Date.now());
 const startDate = new Date(currentDate.getFullYear(),0,1);
 var days = Math.floor((currentDate - startDate) /
     (24 * 60 * 60 * 1000));
 var weekNumber = Math.ceil(days / 7);
-//filterBy((weekNumber*7) + startDate.getDay());
-filterBy(startDate.getDay(),true);
+filterBy((weekNumber*7) + startDate.getDay());*/
+filterBy(0,true);
 document.getElementById('slider').addEventListener('input', (e) => {
 const curDay = parseInt(e.target.value, 10);
-console.log("filter by curDay: " + curDay);
 filterBy(curDay,true);
 });
 document.getElementById('calendar').addEventListener('input', (e) => {
 const curDay = parseInt(e.target.value, 10);
+console.log("On veut savoir ce qui se passe la: " + new Date(e.target.value).valueOf());
 filterBy(new Date(e.target.value).valueOf(),false);
 });
 }
