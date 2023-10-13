@@ -223,6 +223,19 @@
                     }
                 },{
                     "type": "Feature",
+                    "id":18,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.848216365673355,45.75959719706098]
+                    },
+                    "properties": {
+                        "title": "Bourse du Travail",
+                        "icon": "marker-15",
+                        "description":"https://www.bourse-du-travail.com/"
+                        
+                    }
+                },{
+                    "type": "Feature",
                     "id":19,
                     "geometry": {
                         "type": "Point",
@@ -414,6 +427,136 @@
                         "title": "La Marquise",
                         "icon": "marker-15",
                         "description":"http://www.marquise.net/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":34,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.840560078185015,45.76184979273652]
+                    },
+                    "properties": {
+                        "title": "La Plateforme",
+                        "icon": "marker-15",
+                        "description":"https://cafe-oz.com/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":35,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.978658041447684,45.76865757266265]
+                    },
+                    "properties": {
+                        "title": "LDLC Arena",
+                        "icon": "marker-15",
+                        "description":"https://www.olvallee.fr/lieux/ldlc-arena/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":36,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.840345436093386,45.76110603973571]
+                    },
+                    "properties": {
+                        "title": "Le Sirius",
+                        "icon": "marker-15",
+                        "description":"https://www.lesirius.com/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":37,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.832137062735327,45.72375112024588]
+                    },
+                    "properties": {
+                        "title": "Matmut Stadium de Gerland",
+                        "icon": "marker-15",
+                        "description":""
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":38,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.908581917764821,45.742338170768804]
+                    },
+                    "properties": {
+                        "title": "Jack Jack MJC Aragon",
+                        "icon": "marker-15",
+                        "description":"https://mjcbron.fr/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":39,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.885933617945258,45.76175040275761]
+                    },
+                    "properties": {
+                        "title": "MJC Bonneterre",
+                        "icon": "marker-15",
+                        "description":"https://www.mjc-villeurbanne.org/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":40,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.819662249985661,45.75874341341396]
+                    },
+                    "properties": {
+                        "title": "Théâtre antique de Fourvière",
+                        "icon": "marker-15",
+                        "description":""
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":41,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.836256972967631,45.76782652695555]
+                    },
+                    "properties": {
+                        "title": "Opéra National de Lyon",
+                        "icon": "marker-15",
+                        "description":"https://www.opera-lyon.com/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":42,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.841314180794806,45.75651519631044]
+                    },
+                    "properties": {
+                        "title": "Palais de la Mutualité",
+                        "icon": "marker-15",
+                        "description":"https://www.lyon.fr/recherche?search_api_fulltext=palais+de+la+mutualite&type=All"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":43,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.814561882601606,45.736761829365655]
+                    },
+                    "properties": {
+                        "title": "Péniche Loupika",
+                        "icon": "marker-15",
+                        "description":""
                         
                     }
                 }]
