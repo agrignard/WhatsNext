@@ -361,10 +361,10 @@ while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
 coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
 }
 const html= "<a href='"+ description +  "' target='blank'title='Opens in a new window'>Here</a>";
-/*new mapboxgl.Popup()
+new mapboxgl.Popup()
 .setLngLat(coordinates)
 .setHTML(html)
-.addTo(map);*/
+.addTo(map);
 });
 
 
