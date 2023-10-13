@@ -23,7 +23,7 @@
                     "id":7,
                     "geometry": {
                         "type": "Point",
-                        "coordinates": [4.831990737455752,45.769899058409194]
+                        "coordinates": [4.831532333405628,45.76973724802351]
                     },
                     "properties": {
                         "title": "BASEMENT DELIGHTS",
@@ -131,7 +131,7 @@
                     "id":13,
                     "geometry": {
                         "type": "Point",
-                        "coordinates": [4.848709922931173,45.759544833737266]
+                        "coordinates": [4.848795754195795,45.75954483138504]
                     },
                     "properties": {
                         "title": "Asaf Avidan",
@@ -484,6 +484,127 @@
                         "time": 1698951600000,
                         "description":
                         "<a href='http://radiant-bellevue.fr/spectacles/renaud/' target=   'blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "id":34,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.852376688478581,45.76183050086076]
+                    },
+                    "properties": {
+                        "title": "BERTRAND BELIN",
+                        "size": 500,
+                        "icon": "marker-15",
+                        "place": "Auditorium",
+                        "style": "Chanson Française",
+                        "time": 1699297200000,
+                        "description":
+                        "<a href='https://www.auditorium-lyon.com/fr/saison-2023-24/musiques-actuelles/bertrand-belin' target=   'blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "id":35,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.852376688478581,45.76183050086076]
+                    },
+                    "properties": {
+                        "title": "NILS FRAHM",
+                        "size": 500,
+                        "icon": "marker-15",
+                        "place": "Auditorium",
+                        "style": "Electro",
+                        "time": 1700247600000,
+                        "description":
+                        "<a href='https://www.auditorium-lyon.com/fr/saison-2023-24/musiques-actuelles/nils-frahm' target=   'blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":36,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.879373354577578,45.71377458937166]
+                    },
+                    "properties": {
+                        "title": "Stogie T + Kaynixe",
+                        "size": 50,
+                        "icon": "marker-15",
+                        "place": "Bizarre!",
+                        "style": "Rap",
+                        "time":1697740247000,
+                        "description":
+                        "<a href='https://www.lamachinerie-venissieux.fr/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":37,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.836544215343914,45.7705358011615]
+                    },
+                    "properties": {
+                        "title": "Lisa Ducasse",
+                        "size": 50,
+                        "icon": "marker-15",
+                        "place": "A Thou Bout d'Chant",
+                        "style": "Chanson Française",
+                        "time":1697740247000,
+                        "description":
+                        "<a href='https://billetterie.athouboutdchant.com/evenement/19-10-2023-20-30-lisa-ducasse' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":38,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.859074327645015,45.67384125935769]
+                    },
+                    "properties": {
+                        "title": "CHASSOL + ALPHA CASSIOPEIAE",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Epicerie Moderne",
+                        "style": "Jazz",
+                        "time":1698343200000,
+                        "description":
+                        "<a href='https://epiceriemoderne.com/agenda/2023-10-26-chassol-x-alpha-cassiopeiae' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":39,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.859074327645015,45.67384125935769]
+                    },
+                    "properties": {
+                        "title": "HÔTEL PARTICULIER",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Epicerie Moderne",
+                        "style": "Jazz",
+                        "time":1698778800000,
+                        "description":
+                        "<a href='https://epiceriemoderne.com/agenda/2023-10-31-residence-hotel-particulier-2023' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":40,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.9173047157514915,45.756822162183944]
+                    },
+                    "properties": {
+                        "title": "BANDIT BANDIT",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Rayonne",
+                        "style": "Electro",
+                        "time":1697824800000,
+                        "description":
+                        "<a href='https://larayonne.org/evenement/tournee-2023-des-inouis/' target='blank'title='Opens in a new window'>Prog</a>"
                     }
                 }]
 }

@@ -223,19 +223,6 @@
                     }
                 },{
                     "type": "Feature",
-                    "id":18,
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [4.848216365673355,45.75959719706098]
-                    },
-                    "properties": {
-                        "title": "Bourse du Travail",
-                        "icon": "marker-15",
-                        "description":"https://www.bourse-du-travail.com/"
-                        
-                    }
-                },{
-                    "type": "Feature",
                     "id":19,
                     "geometry": {
                         "type": "Point",
