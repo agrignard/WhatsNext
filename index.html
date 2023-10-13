@@ -57,14 +57,15 @@ cursor: ew-resize;
 <div class="map-overlay top">
 <div class="map-overlay-inner">
 <h2>Lyon Zik Map</h2>
+
+<label for="calendar">Date</label>
+<input id="calendar" type="date" min="2023-10-12" max="2023-10-31"/>
+
 <label id="month"></label>
-<input id="slider" type="range" min="0" max="364" step="1" value="0">
+<input id="slider" type="range" min="0" max="7" step="1" value="0">
 
 <label for="showAll"><b>Show All Events</b></label>
 <input id="showAll" type="checkbox" value="1" class="filter" unchecked/>
-
-<label for="calendar">Date</label>
-<input id="calendar" type="date" value= "2023-10-12" min="2023-10-12" max="2023-10-31"/>
 
 </div>
 </div>
@@ -100,24 +101,19 @@ const months = [
 ];
 
 var showAllValue=false;
+var currentDate = new Date(Date.now()).valueOf();
  
 function filterBy(value,byday) {   
 if(!showAllValue){
-    var filters;
-    if(byday){
-        filters = ['==', 'dayofyear', value];
-    }
-    else{
-        filters = [
+    var filters = [
     "all",     
     [">=", ['get', 'time'], value],
     ["<=", ['get', 'time'], value+86400000]
     ];
-    }
     map.setFilter('event-circles', filters);
     map.setFilter('event-labels', filters);
     // Set the label to the slider
-    document.getElementById('month').textContent = " day:" + value;//
+    document.getElementById('month').textContent = new Date(value).toDateString();//
 }else{
     map.setFilter('event-circles', null);
     map.setFilter('event-labels', null);
@@ -148,25 +144,7 @@ throw err;
 data.features = data.features.map((d) => {
 d.properties.month = new Date(d.properties.time).getMonth();
 d.properties.day = new Date(d.properties.time).getDay();
-
-const currentDate = new Date(d.properties.time);
-const startDate = new Date(currentDate.getFullYear(),0,1);
-var days = Math.floor((currentDate - startDate) /
-    (24 * 60 * 60 * 1000));
- 
-var weekNumber = Math.ceil(days / 7);
-d.properties.week = weekNumber;
-// Display the calculated result       
-console.log("Date " + currentDate +
-    " week:   " + weekNumber + ", day number of: " + d.properties.day + ", jour de l'année:  " + ((weekNumber*7) + d.properties.day));
-    d.properties.dayofyear = ((weekNumber*7) + d.properties.day);
-    return d;
-});
-
-
-document.getElementById('showAll').addEventListener('input', (e) => {
-showAllValue= document.getElementById("showAll").checked;
-filterBy(0,true)
+return d;
 });
 
 
@@ -231,25 +209,28 @@ map.addLayer({
 'text-color': 'rgba(0,0,0,0.5)'
 }
 });
- 
-// Set filter to first month of the year
-// 0 = January
-/*const currentDate = new Date(Date.now());
-const startDate = new Date(currentDate.getFullYear(),0,1);
-var days = Math.floor((currentDate - startDate) /
-    (24 * 60 * 60 * 1000));
-var weekNumber = Math.ceil(days / 7);
-filterBy((weekNumber*7) + startDate.getDay());*/
-filterBy(0,true);
+filterBy(currentDate,false);
+document.getElementById("calendar").valueAsDate = new Date(Date.now)
+
 document.getElementById('slider').addEventListener('input', (e) => {
-const curDay = parseInt(e.target.value, 10);
-filterBy(curDay,true);
+const sliderValue = parseInt(e.target.value, 10);
+const newDateAsInt = parseInt(currentDate) + parseInt((sliderValue*86400000));
+filterBy(newDateAsInt,false);
 });
+
+
 document.getElementById('calendar').addEventListener('input', (e) => {
-const curDay = parseInt(e.target.value, 10);
-console.log("On veut savoir ce qui se passe la: " + new Date(e.target.value).valueOf());
-filterBy(new Date(e.target.value).valueOf(),false);
+const choosenCalendarDay = e.target.value;
+currentDate =new Date(e.target.value).valueOf();
+document.getElementById('slider').value = 0;
+filterBy(currentDate,false);
 });
+
+document.getElementById('showAll').addEventListener('input', (e) => {
+showAllValue= document.getElementById("showAll").checked;
+filterBy(currentDate,false)
+});
+
 }
 //Create a popup, but don't add it to the map yet.
 var popup = new mapboxgl.Popup({
