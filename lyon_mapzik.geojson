@@ -606,6 +606,261 @@
                         "description":
                         "<a href='https://larayonne.org/evenement/tournee-2023-des-inouis/' target='blank'title='Opens in a new window'>Prog</a>"
                     }
+                },{
+                    "type": "Feature",
+                    "id":41,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.982036878412183,45.765334091684046]
+                    },
+                    "properties": {
+                        "title": "STING",
+                        "size": 1000,
+                        "icon": "marker-15",
+                        "place": "Groupama Stadium",
+                        "style": "Rock",
+                        "time":1702494000000,
+                        "description":
+                        "<a href='https://www.olvallee.fr/evenement/sting' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":42,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.982036878412183,45.765334091684046]
+                    },
+                    "properties": {
+                        "title": "LOMEPAL",
+                        "size": 1000,
+                        "icon": "marker-15",
+                        "place": "Groupama Stadium",
+                        "style": "Rock",
+                        "time":1701457200000,
+                        "description":
+                        "<a href='https://www.olvallee.fr/evenement/lomepal' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":43,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.9267125190686905,45.765862217056274]
+                    },
+                    "properties": {
+                        "title": "GROOVEDGE GLORIA GOLRY",
+                        "size": 100,
+                        "icon": "marker-15",
+                        "place": "Grrrnd Zero - Vaulx-en-Velin",
+                        "style": "Electro",
+                        "time":1702580400000,
+                        "description":
+                        "<a href='https://www.grrrndzero.org/index.php/2481-sam-dim-14-15-oct-23-groovedge-gloria-golry' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":44,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.9267125190686905,45.765862217056274]
+                    },
+                    "properties": {
+                        "title": "Toujours Plus Trans",
+                        "size": 100,
+                        "icon": "marker-15",
+                        "place": "Grrrnd Zero - Vaulx-en-Velin",
+                        "style": "Electro",
+                        "time":1698516000000,
+                        "description":
+                        "<a href='https://www.grrrndzero.org/index.php/2483-sam-28-10-toujours-plus-trans' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":45,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.9267125190686905,45.765862217056274]
+                    },
+                    "properties": {
+                        "title": "ATELIER DES CANULARS",
+                        "size": 100,
+                        "icon": "marker-15",
+                        "place": "Grrrnd Zero - Vaulx-en-Velin",
+                        "style": "Electro",
+                        "time":1699038000000,
+                        "description":
+                        "<a href='https://www.grrrndzero.org/index.php/2482-ven-3-11-soiree-de-soutien-a-l-atelier-des-canulars' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":46,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.831958880964752,45.76568284608088]
+                    },
+                    "properties": {
+                        "title": "Adlane Aliouche Trio",
+                        "size": 100,
+                        "icon": "marker-15",
+                        "place": "Hot Club",
+                        "style": "Jazz",
+                        "time":1697826600000,
+                        "description":
+                        "<a href='https://www.grrrndzero.org/index.php/2482-ven-3-11-soiree-de-soutien-a-l-atelier-des-canulars' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":47,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.831958880964752,45.76568284608088]
+                    },
+                    "properties": {
+                        "title": "Hugo Afettouche & Tetralyre",
+                        "size": 100,
+                        "icon": "marker-15",
+                        "place": "Hot Club",
+                        "style": "Jazz",
+                        "time":1698345000000,
+                        "description":
+                        "<a href='https://www.hotclubjazzlyon.com/evenements/20230803-hugo-afettouche-tetralyre/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":48,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.831958880964752,45.76568284608088]
+                    },
+                    "properties": {
+                        "title": "TJT4 feat. Luna Garcia-Odin",
+                        "size": 100,
+                        "icon": "marker-15",
+                        "place": "Hot Club",
+                        "style": "Jazz",
+                        "time":1699126200000,
+                        "description":
+                        "<a href='https://www.hotclubjazzlyon.com/evenements/20230803-tjt4-feat-luna-garcia-odin/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":49,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.831532333405628,45.76973724802351]
+                    },
+                    "properties": {
+                        "title": "NEVRASKA (Post Math Rock) + MIDLIFE (Art Noise)",
+                        "size": 50,
+                        "icon": "marker-15",
+                        "place": "Trokson",
+                        "style": "Rock",
+                        "time":1699126200000,
+                        "description":
+                        "<a href='https://www.trokson.com/events/nevraska-post-math-rock-midlife-art-noise' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":50,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.831532333405628,45.76973724802351]
+                    },
+                    "properties": {
+                        "title": "PABLO X (Post Punk Psych // FR) + CRAYFISH (Swamp Post Punk // Ain)",
+                        "size": 50,
+                        "icon": "marker-15",
+                        "place": "Trokson",
+                        "style": "Rock",
+                        "time":1697826600000,
+                        "description":
+                        "<a href='https://www.trokson.com/events/pablo-x-post-punk-psych-fr-crayfish-swamp-post-punk-ain' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":51,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.831532333405628,45.76973724802351]
+                    },
+                    "properties": {
+                        "title": "BONGO KIDS (Release Party // Punk Rock) + TOTAL TENIAS (Punk) + RAGE BATARD (Punk Hardcore)",
+                        "size": 50,
+                        "icon": "marker-15",
+                        "place": "Trokson",
+                        "style": "Rock",
+                        "time":1697913000000,
+                        "description":
+                        "<a href='https://www.trokson.com/events/bongo-kids-release-party-punk-rock-total-tenias-punk-rage-batard-punk-hardcore' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":52,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.831532333405628,45.76973724802351]
+                    },
+                    "properties": {
+                        "title": "MARAUDEUR (Post punk // FR/CH/GER) + THEOREME",
+                        "size": 50,
+                        "icon": "marker-15",
+                        "place": "Trokson",
+                        "style": "Rock",
+                        "time":1698258600000,
+                        "description":
+                        "<a href='https://www.trokson.com/events/maraudeur-post-punk-fr-ch-ger-theoreme-no-wave-villeurbanne' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":52,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.831532333405628,45.76973724802351]
+                    },
+                    "properties": {
+                        "title": "MARY BELL (Punk Grunge // FR) + THE SPITTERS (Garage Punk",
+                        "size": 50,
+                        "icon": "marker-15",
+                        "place": "Trokson",
+                        "style": "Rock",
+                        "time":1698431400000,
+                        "description":
+                        "<a href='https://www.trokson.com/events/mary-bell-punk-grunge-fr-the-spitters-garage-punk-toulon' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":53,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.831532333405628,45.76973724802351]
+                    },
+                    "properties": {
+                        "title": "kontexte + quinconce ,",
+                        "size": 50,
+                        "icon": "marker-15",
+                        "place": "Trokson",
+                        "style": "Rock",
+                        "time":1698517800000,
+                        "description":
+                        "<a href='https://www.trokson.com/events/kontexte-no-punk-rotatif-nantes-quinconce-post-dub-nantes' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":54,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.831532333405628,45.76973724802351]
+                    },
+                    "properties": {
+                        "title": "SAMHAIN FESTUS",
+                        "size": 50,
+                        "icon": "marker-15",
+                        "place": "Trokson",
+                        "style": "Rock",
+                        "time":1698780600000,
+                        "description":
+                        "<a href='https://www.trokson.com/events/samhain-festus-dj-set-halloween' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
                 }]
 }
  
