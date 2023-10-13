@@ -59,7 +59,7 @@ cursor: ew-resize;
 <h2>Lyon Zik Map</h2>
 
 <label for="calendar">Date</label>
-<input id="calendar" type="date" min="2023-10-12" max="2023-10-31"/>
+<input id="calendar" type="date" min="2023-10-12" max="2023-12-31"/>
 
 <label id="month"></label>
 <input id="slider" type="range" min="0" max="7" step="1" value="0">
@@ -219,8 +219,8 @@ map.addLayer({
     'interpolate',
     ['linear'],
     ['get', 'size'],
-    20,
-    20,
+    10,
+    10,
     5000,
     100
     ]

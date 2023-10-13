@@ -377,6 +377,114 @@
                         "description":
                         "<a href='https://www.halle-tony-garnier.com/fr/programmation/bigflo-oli' target=   'blank'title='Opens in a new window'>Prog</a>"
                     }
+                },
+                {
+                    "type": "Feature",
+                    "id":28,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.86099519042548 , 45.78404790771527]
+                    },
+                    "properties": {
+                        "title": "LÉON PHAL + LE DÉ + JASUAL CAZZ",
+                        "size": 50,
+                        "icon": "marker-15",
+                        "place": "Transbordeur",
+                        "style": "Jazz",
+                        "time": 1697824800000,
+                        "description":
+                        "<a href='https://www.transbordeur.fr/agenda-2023-2024/un-doua-de-jazz-leon-phal-ven-20-oct-23/' target=   'blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "id":29,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.86099519042548 , 45.78404790771527]
+                    },
+                    "properties": {
+                        "title": "BEKAR",
+                        "size": 50,
+                        "icon": "marker-15",
+                        "place": "Transbordeur",
+                        "style": "Jazz",
+                        "time": 1697911200000,
+                        "description":
+                        "<a href='https://www.transbordeur.fr/agenda-2023-2024/bekar-sam-21-oct-23/' target=   'blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "id":30,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.823288269540693,45.74155495036607]
+                    },
+                    "properties": {
+                        "title": "JARRING FEST",
+                        "size": 50,
+                        "icon": "marker-15",
+                        "place": "Marché Gare",
+                        "style": "Electro",
+                        "time": 1698516000000,
+                        "description":
+                        "<a href='https://www.transbordeur.fr/agenda-2023-2024/bekar-sam-21-oct-23/' target=   'blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "id":31,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.86099519042548 , 45.78404790771527]
+                    },
+                    "properties": {
+                        "title": "JARRING FEST",
+                        "size": 50,
+                        "icon": "marker-15",
+                        "place": "Transbordeur",
+                        "style": "Chanson Française",
+                        "time": 1701889200000,
+                        "description":
+                        "<a href='https://marchegare.fr/agenda/virginie-despentes-casey-beatrice-dalle-zero' target=   'blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "id":32,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.843125590861963,45.79788414153422]
+                    },
+                    "properties": {
+                        "title": "Hervé",
+                        "size": 50,
+                        "icon": "marker-15",
+                        "place": "Le Radiant",
+                        "style": "Chanson Française",
+                        "time": 1697306400000,
+                        "description":
+                        "<a href='http://radiant-bellevue.fr/spectacles/herve/' target=   'blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "id":33,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.843125590861963,45.79788414153422]
+                    },
+                    "properties": {
+                        "title": "Renaud",
+                        "size": 50,
+                        "icon": "marker-15",
+                        "place": "Le Radiant",
+                        "style": "Chanson Française",
+                        "time": 1698951600000,
+                        "description":
+                        "<a href='http://radiant-bellevue.fr/spectacles/renaud/' target=   'blank'title='Opens in a new window'>Prog</a>"
+                    }
                 }]
 }
  
