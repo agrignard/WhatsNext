@@ -50,6 +50,7 @@ position: relative;
 margin: 0;
 cursor: ew-resize;
 }
+
 </style>
  
 <div id="map"></div>
@@ -62,13 +63,11 @@ cursor: ew-resize;
 <input id="calendar" type="date" min="2023-10-12" max="2023-12-31"/>
 
 <label id="month"></label>
-<input id="slider" type="range" min="0" max="30" step="1" value="0">
+<input id="slider" type="range" min="0" max="15" step="1" value="0">
 
 <label for="showAll"><b>Show All Events</b></label>
 <input id="showAll" type="checkbox" value="1" class="filter" unchecked/>
 
-</div>
-</div>
  
 <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script>
@@ -80,7 +79,9 @@ const map = new mapboxgl.Map({
 container: 'map',
 // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
 style: 'mapbox://styles/mapbox/light-v11',
+
 //style: 'mapbox://styles/mapbox/dark-v11',
+//style: 'mapbox://styles/mapbox/navigation-day-v1',
 
 projection: 'winkelTripel',
 center: [4.8292, 45.7465],
@@ -122,8 +123,6 @@ if(!showAllValue){
 }    
 }
 
-
-
 var hoveredStateId =  null; 
 map.on('load', () => {
 // Here we're using d3 to help us make the ajax request but you can use
@@ -144,11 +143,8 @@ d.properties.day = new Date(d.properties.time).getDay();
 return d;
 });
 
-
 var transparency = 0.9;
 var transparencyBig = 0.95;
-
-
 
 map.addSource('places', {
 type: 'geojson',
@@ -244,7 +240,7 @@ map.addLayer({
 }
 });
 filterBy(currentDate,false);
-document.getElementById("calendar").valueAsDate = new Date(Date.now)
+document.getElementById("calendar").valueAsDate = new Date(Date.now);
 
 document.getElementById('slider').addEventListener('input', (e) => {
 const sliderValue = parseInt(e.target.value, 10);
@@ -309,7 +305,7 @@ coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
  
 new mapboxgl.Popup()
 .setLngLat(coordinates)
-.setHTML("<h4>" + title + "</h4><b>Place:</b> "+place+"<br><b>Style:</b> "+style+"<br><b>Time:</b> "+new Date(time)+ "<br><b>Description:</b> "+description)
+.setHTML("<h4>" + title + "</h4><b>Place:</b> "+place+"<br><b>Style:</b> "+style+"<br><b>Time:</b> "+new Date(time).toUTCString()+"+2"+ "<br><b>Description:</b> "+description)
 .addTo(map);
 });
 

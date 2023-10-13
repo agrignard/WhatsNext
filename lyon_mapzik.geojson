@@ -12,7 +12,7 @@
                         "size": 500,
                         "icon": "marker-15",
                         "place": "Marché Gare",
-                        "style": "Divers",
+                        "style": "Rock",
                         "time":1697116852000,
                         "description":"<a href='https://www.infoconcert.com/ticket/concert-h-jeunecrack-lyon/1567691.html' target='blank'title='Opens in a new window'>Here</a>"
                         
@@ -30,7 +30,7 @@
                         "size": 50,
                         "icon": "marker-15",
                         "place": "Trokson",
-                        "style": "Divers",
+                        "style": "Rock",
                         "time":1697221247000,
                         "description":"<a href='https://www.infoconcert.com/ticket/concert-basement-delights-lyon/1607011.html' target='blank'title='Opens in a new window'>Here</a>"
                         
@@ -81,7 +81,7 @@
                     },
                     "properties": {
                         "title": "Realo",
-                        "size": 1000,
+                        "size": 250,
                         "icon": "marker-15",
                         "place": "Le Sucre",
                         "style": "Rap",
@@ -99,7 +99,7 @@
                     },
                     "properties": {
                         "title": "Lord Esperanza",
-                        "size": 500,
+                        "size": 100,
                         "icon": "marker-15",
                         "place": "Ninkasi Gerland",
                         "style": "Rap",
@@ -355,7 +355,7 @@
                         "icon": "marker-15",
                         "place": "Le Sucre",
                         "style": "Electro",
-                        "time": 1697385639000,
+                        "time": 1697394600000,
                         "description":
                         "<a href='https://le-sucre.eu/agenda/s-society-x-ravoluson-3/' target=   'blank'title='Opens in a new window'>Prog</a>"
                     }
@@ -369,7 +369,7 @@
                     },
                     "properties": {
                         "title": "BIGFLO & OLI",
-                        "size": 50,
+                        "size": 1000,
                         "icon": "marker-15",
                         "place": "Halle Tony Garnier",
                         "style": "Rap",
@@ -387,7 +387,7 @@
                     },
                     "properties": {
                         "title": "LÉON PHAL + LE DÉ + JASUAL CAZZ",
-                        "size": 50,
+                        "size": 500,
                         "icon": "marker-15",
                         "place": "Transbordeur",
                         "style": "Jazz",
@@ -706,7 +706,7 @@
                         "style": "Jazz",
                         "time":1697826600000,
                         "description":
-                        "<a href='https://www.grrrndzero.org/index.php/2482-ven-3-11-soiree-de-soutien-a-l-atelier-des-canulars' target='blank'title='Opens in a new window'>Prog</a>"
+                        "<a href='https://www.hotclubjazzlyon.com/evenements/20230719-adlanealiouchetrio/' target='blank'title='Opens in a new window'>Prog</a>"
                     }
                 },{
                     "type": "Feature",
@@ -767,7 +767,7 @@
                         "coordinates": [4.831532333405628,45.76973724802351]
                     },
                     "properties": {
-                        "title": "PABLO X (Post Punk Psych // FR) + CRAYFISH (Swamp Post Punk // Ain)",
+                        "title": "PABLO X (Post Punk Psych // FR) ",
                         "size": 50,
                         "icon": "marker-15",
                         "place": "Trokson",
@@ -784,7 +784,7 @@
                         "coordinates": [4.831532333405628,45.76973724802351]
                     },
                     "properties": {
-                        "title": "BONGO KIDS (Release Party // Punk Rock) + TOTAL TENIAS (Punk) + RAGE BATARD (Punk Hardcore)",
+                        "title": "BONGO KIDS + TOTAL TENIAS (Punk) + RAGE BATARD (Punk Hardcore)",
                         "size": 50,
                         "icon": "marker-15",
                         "place": "Trokson",
@@ -795,7 +795,7 @@
                     }
                 },{
                     "type": "Feature",
-                    "id":52,
+                    "id":56,
                     "geometry": {
                         "type": "Point",
                         "coordinates": [4.831532333405628,45.76973724802351]
@@ -818,7 +818,7 @@
                         "coordinates": [4.831532333405628,45.76973724802351]
                     },
                     "properties": {
-                        "title": "MARY BELL (Punk Grunge // FR) + THE SPITTERS (Garage Punk",
+                        "title": "MARY BELL (Punk Grunge // FR) + THE SPITTERS (Garage Punk)",
                         "size": 50,
                         "icon": "marker-15",
                         "place": "Trokson",
@@ -858,6 +858,23 @@
                         "place": "Trokson",
                         "style": "Rock",
                         "time":1698780600000,
+                        "description":
+                        "<a href='https://www.trokson.com/events/samhain-festus-dj-set-halloween' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":55,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.823288269540693,45.74155495036607]
+                    },
+                    "properties": {
+                        "title": "CYRIOUS & FRIENDS",
+                        "size": 200,
+                        "icon": "marker-15",
+                        "place": "Marché Gare",
+                        "style": "Rock",
+                        "time":1697913000000,
                         "description":
                         "<a href='https://www.trokson.com/events/samhain-festus-dj-set-halloween' target='blank'title='Opens in a new window'>Prog</a>"
                     }
