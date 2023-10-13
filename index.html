@@ -155,7 +155,7 @@ data: './lyon_place.geojson'
 });
  
 map.addLayer({
-'id': 'places-layer',
+'id': 'places-circles',
 'type': 'circle',
 'source': 'places',
 'paint': {
@@ -269,6 +269,24 @@ var popup = new mapboxgl.Popup({
 closeButton: false,
 closeOnClick: false
 });
+
+
+/*map.on('mouseleave', 'event-circles', function() {
+map.getCanvas().style.cursor = '';
+popup.remove();
+});*/
+
+
+// Change the cursor to a pointer when the mouse is over the places layer.
+map.on('mouseenter', 'event-circles', () => {
+map.getCanvas().style.cursor = 'pointer';
+});
+ 
+// Change it back to a pointer when it leaves.
+map.on('mouseleave', 'event-circles', () => {
+map.getCanvas().style.cursor = '';
+});
+
 // When a click event occurs on a feature in the places layer, open a popup at the
 // location of the feature, with description HTML from its properties.
 map.on('click', 'event-circles', (e) => {
@@ -293,10 +311,7 @@ new mapboxgl.Popup()
 .addTo(map);
 });
 
-map.on('mouseleave', 'event-circles', function() {
-map.getCanvas().style.cursor = '';
-popup.remove();
-});
+
 
 
 // When the user moves their mouse over the state-fill layer, we'll update the
@@ -319,6 +334,42 @@ map.setFeatureState({source: 'events', id: hoveredStateId}, { hover: false});
 }
 hoveredStateId =  null;
 });
+
+
+// Change the cursor to a pointer when the mouse is over the places layer.
+map.on('mouseenter', 'places-circles', () => {
+map.getCanvas().style.cursor = 'pointer';
+});
+ 
+// Change it back to a pointer when it leaves.
+map.on('mouseleave', 'places-circles', () => {
+map.getCanvas().style.cursor = '';
+});
+
+// When a click event occurs on a feature in the places layer, open a popup at the
+// location of the feature, with description HTML from its properties.
+map.on('click', 'places-circles', (e) => {
+
+// Copy coordinates array.
+const coordinates = e.features[0].geometry.coordinates.slice();
+const description = e.features[0].properties.description;
+console.log("url de la place" + description)    ;
+
+ 
+// Ensure that if the map is zoomed out such that multiple
+// copies of the feature are visible, the popup appears
+// over the copy being pointed to.
+while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+}
+const html= "<a href='"+ description +  "' target='blank'title='Opens in a new window'>Here</a>";
+/*new mapboxgl.Popup()
+.setLngLat(coordinates)
+.setHTML(html)
+.addTo(map);*/
+});
+
+
 </script>
  
 </body>

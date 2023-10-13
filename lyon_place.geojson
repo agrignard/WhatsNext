@@ -10,7 +10,7 @@
                     "properties": {
                         "title": "Transbordeur",
                         "icon": "marker-15",
-                        "description":"<a href='https://www.transbordeur.fr/accueil/' target='blank'title='Opens in a new window'>Here</a>"
+                        "description":"https://www.transbordeur.fr/accueil/"
                         
                     }
                 },{
@@ -23,7 +23,7 @@
                     "properties": {
                         "title": "Halle Tony Garnier",
                         "icon": "marker-15",
-                        "description":"<a href='https://halle-tony-garnier.com/' target='blank'title='Opens in a new window'>Here</a>"
+                        "description":"https://halle-tony-garnier.com/"
                         
                     }
                 },{
@@ -36,7 +36,7 @@
                     "properties": {
                         "title": "Bourse du Travail Lyon",
                         "icon": "marker-15",
-                        "description":"<a href='https://www.bourse-du-travail.com/' target='blank'title='Opens in a new window'>Here</a>"
+                        "description":"https://www.bourse-du-travail.com/"
                         
                     }
                 },{
@@ -49,7 +49,7 @@
                     "properties": {
                         "title": "Ninkasi Gerland",
                         "icon": "marker-15",
-                        "description":"<a href='https://www.ninkasi.fr/lieux/ninkasi-gerland/' target='blank'title='Opens in a new window'>Here</a>"
+                        "description":"https://www.ninkasi.fr/lieux/ninkasi-gerland/"
                         
                     }
                 },{
@@ -62,7 +62,7 @@
                     "properties": {
                         "title": "Marché Gare",
                         "icon": "marker-15",
-                        "description":"<a href='https://marchegare.fr/' target='blank'title='Opens in a new window'>Here</a>"
+                        "description":"https://marchegare.fr/"
                         
                     }
                 },{
@@ -75,7 +75,7 @@
                     "properties": {
                         "title": "Le Périscope",
                         "icon": "marker-15",
-                        "description":"<a href='https://www.periscope-lyon.com/' target='blank'title='Opens in a new window'>Here</a>"
+                        "description":"https://www.periscope-lyon.com/"
                         
                     }
                 },{
@@ -88,7 +88,7 @@
                     "properties": {
                         "title": "Le Sonic",
                         "icon": "marker-15",
-                        "description":"<a href='https://sonic-lyon.fr/' target='blank'title='Opens in a new window'>Here</a>"
+                        "description":"https://sonic-lyon.fr/"
                         
                     }
                 },{
@@ -101,7 +101,7 @@
                     "properties": {
                         "title": "Le Trokson",
                         "icon": "marker-15",
-                        "description":"<a href='https://www.trokson.com/' target='blank'title='Opens in a new window'>Here</a>"
+                        "description":"https://www.trokson.com/"
                         
                     }
                 },{
@@ -114,7 +114,7 @@
                     "properties": {
                         "title": "Le Sucre",
                         "icon": "marker-15",
-                        "description":"<a href='https://le-sucre.eu/' target='blank'title='Opens in a new window'>Here</a>"
+                        "description":"https://le-sucre.eu/"
                         
                     }
                 },{
@@ -127,7 +127,7 @@
                     "properties": {
                         "title": "Toï Toï Le Zinc",
                         "icon": "marker-15",
-                        "description":"<a href='https://www.toitoilezinc.fr/agenda-salle-de-spectacle/' target='blank'title='Opens in a new window'>Here</a>"
+                        "description":"https://www.toitoilezinc.fr/agenda-salle-de-spectacle/"
                         
                     }
                 },{
@@ -140,7 +140,7 @@
                     "properties": {
                         "title": "Le Radiant",
                         "icon": "marker-15",
-                        "description":"<a href='http://radiant-bellevue.fr/' target='blank'title='Opens in a new window'>Here</a>"
+                        "description":"http://radiant-bellevue.fr/"
                         
                     }
                 }]
