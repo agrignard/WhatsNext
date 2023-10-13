@@ -247,6 +247,188 @@
                         "description":"https://brignais.com/briscope/"
                         
                     }
+                },{
+                    "type": "Feature",
+                    "id":20,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.878566358813159,45.77922504312788]
+                    },
+                    "properties": {
+                        "title": "La Rayonne",
+                        "icon": "marker-15",
+                        "description":"https://larayonne.org/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":21,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.836668566327821,45.76242589307075]
+                    },
+                    "properties": {
+                        "title": "Comédie Odéon",
+                        "icon": "marker-15",
+                        "description":"https://www.comedieodeon.com/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":22,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.814858623384977,45.73833810382409]
+                    },
+                    "properties": {
+                        "title": "Docks Circus",
+                        "icon": "marker-15",
+                        "description":"https://www.dockscircus.fr/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":23,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.858404399962919,45.67369894892874]
+                    },
+                    "properties": {
+                        "title": "Epicerie Moderne",
+                        "icon": "marker-15",
+                        "description":"https://epiceriemoderne.com/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":24,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.919582121982419,45.72743250538055]
+                    },
+                    "properties": {
+                        "title": "Espace Albert Camus - Bron",
+                        "icon": "marker-15",
+                        "description":"https://pole-en-scenes.com/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":25,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.86330530363784,45.77585500283178]
+                    },
+                    "properties": {
+                        "title": "Espace Tonkin",
+                        "icon": "marker-15",
+                        "description":"https://www.espacetonkin.fr/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":26,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.827795820436171,45.771548686174434]
+                    },
+                    "properties": {
+                        "title": "Farmer",
+                        "icon": "marker-15",
+                        "description":""
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":27,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.836937077519969,45.770615465336434]
+                    },
+                    "properties": {
+                        "title": "Groom",
+                        "icon": "marker-15",
+                        "description":"https://www.groomlyon.com/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":28,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.982036878412183,45.765334091684046]
+                    },
+                    "properties": {
+                        "title": "Groupama Stadium",
+                        "icon": "marker-15",
+                        "description":"https://www.olvallee.fr/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":29,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.9267125190686905,45.765862217056274]
+                    },
+                    "properties": {
+                        "title": "Grrrnd Zero - Vaulx-en-Velin",
+                        "icon": "marker-15",
+                        "description":"https://www.grrrndzero.org/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":30,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.837948560264358,45.763011898180885]
+                    },
+                    "properties": {
+                        "title": "Hard Rock Café",
+                        "icon": "marker-15",
+                        "description":"https://www.grrrndzero.org/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":31,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.831958880964752,45.76568284608088]
+                    },
+                    "properties": {
+                        "title": "Hot Club",
+                        "icon": "marker-15",
+                        "description":"https://www.hotclubjazzlyon.com/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":32,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.835775421944657,45.771294137807615]
+                    },
+                    "properties": {
+                        "title": "Kraspek Myzik",
+                        "icon": "marker-15",
+                        "description":"http://kraspekmyzik.com/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":33,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.840057922862742,45.759096281231706]
+                    },
+                    "properties": {
+                        "title": "La Marquise",
+                        "icon": "marker-15",
+                        "description":"http://www.marquise.net/"
+                        
+                    }
                 }]
 }
  
