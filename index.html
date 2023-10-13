@@ -126,17 +126,12 @@ var hoveredStateId =  null;
 map.on('load', () => {
 // Here we're using d3 to help us make the ajax request but you can use
 // Any request method (library or otherwise) you wish.
-d3.json(
-//'./earth.geojson',
-'./lyon_mapzik.geojson',
-//'https://docs.mapbox.com/mapbox-gl-js/assets/significant-earthquakes-2015.geojson',
-jsonCallback
-);
+d3.json('./lyon_mapzik.geojson',jsonCallback);
 });
  
 function jsonCallback(err, data) {
 if (err) {
-throw err;
+  throw err;
 }
  
 // Create a month property value based on time
@@ -150,6 +145,43 @@ return d;
 
 var transparency = 0.9;
 var transparencyBig = 0.95;
+
+
+
+map.addSource('places', {
+type: 'geojson',
+// Use a URL for the value for the `data` property.
+data: './lyon_place.geojson'
+});
+ 
+map.addLayer({
+'id': 'places-layer',
+'type': 'circle',
+'source': 'places',
+'paint': {
+'circle-radius': 4,
+'circle-stroke-width': 2,
+'circle-color': 'black',
+'circle-stroke-color': 'white'
+}
+});
+
+map.addLayer({
+'id': 'palce-labels',
+'type': 'symbol',
+'source': 'places',
+'layout': {
+    "text-field": ['format',['get', 'title'],{ 'font-scale': 0.5 }],
+    "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+    "text-offset": [1.0, 1.0],
+    "text-anchor": "top"
+},
+'paint': {
+'text-color': 'rgba(0,0,0,0.5)'
+}
+});
+
+
  
 map.addSource('events', {
 'type': 'geojson',

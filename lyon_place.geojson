@@ -1,0 +1,148 @@
+                {"type": "FeatureCollection",
+                "features": [
+                {
+                    "type": "Feature",
+                    "id":1,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.86099519042548 , 45.78404790771527]
+                    },
+                    "properties": {
+                        "title": "Transbordeur",
+                        "icon": "marker-15",
+                        "description":"<a href='https://www.transbordeur.fr/accueil/' target='blank'title='Opens in a new window'>Here</a>"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":2,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.826150943299402,45.73090400519471]
+                    },
+                    "properties": {
+                        "title": "Halle Tony Garnier",
+                        "icon": "marker-15",
+                        "description":"<a href='https://halle-tony-garnier.com/' target='blank'title='Opens in a new window'>Here</a>"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":3,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.848795754195795,45.75954483138504]
+                    },
+                    "properties": {
+                        "title": "Bourse du Travail Lyon",
+                        "icon": "marker-15",
+                        "description":"<a href='https://www.bourse-du-travail.com/' target='blank'title='Opens in a new window'>Here</a>"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":4,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.831664946733531,45.728262690091576]
+                    },
+                    "properties": {
+                        "title": "Ninkasi Gerland",
+                        "icon": "marker-15",
+                        "description":"<a href='https://www.ninkasi.fr/lieux/ninkasi-gerland/' target='blank'title='Opens in a new window'>Here</a>"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":5,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.823288269540693,45.74155495036607]
+                    },
+                    "properties": {
+                        "title": "Marché Gare",
+                        "icon": "marker-15",
+                        "description":"<a href='https://marchegare.fr/' target='blank'title='Opens in a new window'>Here</a>"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":6,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.827652324068464,45.74698143235602]
+                    },
+                    "properties": {
+                        "title": "Le Périscope",
+                        "icon": "marker-15",
+                        "description":"<a href='https://www.periscope-lyon.com/' target='blank'title='Opens in a new window'>Here</a>"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":7,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.8200061963556395,45.75104322798962]
+                    },
+                    "properties": {
+                        "title": "Le Sonic",
+                        "icon": "marker-15",
+                        "description":"<a href='https://sonic-lyon.fr/' target='blank'title='Opens in a new window'>Here</a>"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":8,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.831532333405628,45.76973724802351]
+                    },
+                    "properties": {
+                        "title": "Le Trokson",
+                        "icon": "marker-15",
+                        "description":"<a href='https://www.trokson.com/' target='blank'title='Opens in a new window'>Here</a>"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":9,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.815308821695801,45.73661415788746]
+                    },
+                    "properties": {
+                        "title": "Le Sucre",
+                        "icon": "marker-15",
+                        "description":"<a href='https://le-sucre.eu/' target='blank'title='Opens in a new window'>Here</a>"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":10,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.877406759088646,45.77987153345585]
+                    },
+                    "properties": {
+                        "title": "Toï Toï Le Zinc",
+                        "icon": "marker-15",
+                        "description":"<a href='https://www.toitoilezinc.fr/agenda-salle-de-spectacle/' target='blank'title='Opens in a new window'>Here</a>"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":11,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.843125590861963,45.79788414153422]
+                    },
+                    "properties": {
+                        "title": "Le Radiant",
+                        "icon": "marker-15",
+                        "description":"<a href='http://radiant-bellevue.fr/' target='blank'title='Opens in a new window'>Here</a>"
+                        
+                    }
+                }]
+}
+ 

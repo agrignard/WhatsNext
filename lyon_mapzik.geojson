@@ -95,13 +95,13 @@
                     "id":11,
                     "geometry": {
                         "type": "Point",
-                        "coordinates": [4.8307174674132085,45.728490060600784]
+                        "coordinates": [4.831664946733531,45.728262690091576]
                     },
                     "properties": {
                         "title": "Lord Esperanza",
                         "size": 500,
                         "icon": "marker-15",
-                        "place": "Ninkasi",
+                        "place": "Ninkasi Gerland",
                         "style": "Rap",
                         "time":1698517847000,
                         "description":"<a href='https://www.ninkasi.fr/agenda/lord-esperanza-rap-kao/' target='blank'title='Opens in a new window'>Prog</a>"
@@ -113,7 +113,7 @@
                     "id":12,
                     "geometry": {
                         "type": "Point",
-                        "coordinates": [4.828109073002783,45.74710313497637]
+                        "coordinates": [4.827652324068464,45.74698143235602]
                     },
                     "properties": {
                         "title": "Ava Mendoza + Farida Amadou",
@@ -146,24 +146,6 @@
                 },
                 {
                     "type": "Feature",
-                    "id":14,
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [4.879770844386534,45.71371438007269]
-                    },
-                    "properties": {
-                        "title": "Stogie T + Kaynixe",
-                        "size": 50,
-                        "icon": "marker-15",
-                        "place": "Bizarre!",
-                        "style": "Rap",
-                        "time":1697740247000,
-                        "description":
-                        "<a href='https://www.lamachinerie-venissieux.fr/' target='blank'title='Opens in a new window'>Prog</a>"
-                    }
-                },
-                {
-                    "type": "Feature",
                     "id":15,
                     "geometry": {
                         "type": "Point",
@@ -178,24 +160,6 @@
                         "time":1697740247000,
                         "description":
                         "<a href='https://www.toitoilezinc.fr/evenement/986700/exodus/' target='blank'title='Opens in a new window'>Prog</a>"
-                    }
-                },
-                {
-                    "type": "Feature",
-                    "id":16,
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [4.8370055647040795,45.770079222201296]
-                    },
-                    "properties": {
-                        "title": "Lisa Ducasse",
-                        "size": 50,
-                        "icon": "marker-15",
-                        "place": "A Thou Bout d'Chant",
-                        "style": "Chanson Française",
-                        "time":1697740247000,
-                        "description":
-                        "<a href='https://billetterie.athouboutdchant.com/evenement/19-10-2023-20-30-lisa-ducasse' target='blank'title='Opens in a new window'>Prog</a>"
                     }
                 },
                 {
@@ -347,7 +311,7 @@
                     "id":25,
                     "geometry": {
                         "type": "Point",
-                        "coordinates": [4.832352765113537,45.72885417933985]
+                        "coordinates": [4.831664946733531,45.728262690091576]
                     },
                     "properties": {
                         "title": "Pat Kalla & Le Super Mojo",
@@ -365,7 +329,7 @@
                     "id":26,
                     "geometry": {
                         "type": "Point",
-                        "coordinates": [4.830831379154021,45.727084242498776]
+                        "coordinates": [4.831664946733531,45.728262690091576]
                     },
                     "properties": {
                         "title": "L’amuse-bouche",
@@ -394,6 +358,24 @@
                         "time": 1697385639000,
                         "description":
                         "<a href='https://le-sucre.eu/agenda/s-society-x-ravoluson-3/' target=   'blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "id":27,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.826215314516732,45.73086655796328]
+                    },
+                    "properties": {
+                        "title": "BIGFLO & OLI",
+                        "size": 50,
+                        "icon": "marker-15",
+                        "place": "Halle Tony Garnier",
+                        "style": "Rap",
+                        "time": 1698517800000,
+                        "description":
+                        "<a href='https://www.halle-tony-garnier.com/fr/programmation/bigflo-oli' target=   'blank'title='Opens in a new window'>Prog</a>"
                     }
                 }]
 }
