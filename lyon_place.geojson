@@ -460,12 +460,12 @@
                     "id":36,
                     "geometry": {
                         "type": "Point",
-                        "coordinates": [4.840345436093386,45.76110603973571]
+                        "coordinates": [4.847040160142772,45.750819488952686]
                     },
                     "properties": {
-                        "title": "Le Sirius",
+                        "title": "Chromatique",
                         "icon": "marker-15",
-                        "description":"https://www.lesirius.com/"
+                        "description":"https://www.chromatique.art/"
                         
                     }
                 },{
@@ -555,6 +555,123 @@
                     },
                     "properties": {
                         "title": "Péniche Loupika",
+                        "icon": "marker-15",
+                        "description":""
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":44,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.811639102575134,45.771063203788856]
+                    },
+                    "properties": {
+                        "title": "Rock N Eat",
+                        "icon": "marker-15",
+                        "description":"https://www.rockneat.com/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":45,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.840335224579792,45.76111880660408]
+                    },
+                    "properties": {
+                        "title": "Le Sirius",
+                        "icon": "marker-15",
+                        "description":"https://www.lesirius.com/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":46,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.847594718492895,45.755974264407975]
+                    },
+                    "properties": {
+                        "title": "Salle des Rancy",
+                        "icon": "marker-15",
+                        "description":"https://www.salledesrancy.com/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":47,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.825993631964207,45.76109675206448]
+                    },
+                    "properties": {
+                        "title": "Salle Léo Ferré ",
+                        "icon": "marker-15",
+                        "description":"http://www.mjcduvieuxlyon.com/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":48,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.849621760358227,45.76784678862205]
+                    },
+                    "properties": {
+                        "title": "Salle Victor Hugo",
+                        "icon": "marker-15",
+                        "description":""
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":49,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.955766064092964,45.76878299389761]
+                    },
+                    "properties": {
+                        "title": "Le Toboggan",
+                        "icon": "marker-15",
+                        "description":"https://letoboggan.com/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":50,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.944126920392682,45.7667872185702]
+                    },
+                    "properties": {
+                        "title": "Warm audio",
+                        "icon": "marker-15",
+                        "description":"https://warmaudio.fr/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":51,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.83053012536694,45.76973564942163]
+                    },
+                    "properties": {
+                        "title": "La Grooverie",
+                        "icon": "marker-15",
+                        "description":""
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":52,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.840403695587398,45.760588422590004]
+                    },
+                    "properties": {
+                        "title": "La Passagère",
                         "icon": "marker-15",
                         "description":""
                         

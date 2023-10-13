@@ -1,1 +1,162 @@
+
+A Thou Bout d'Chant,4.836544215343914,45.7705358011615,https://athouboutdchant.com/
+Aire Evénementielle - Parc de la Mine - Saint Pierre La Palu (69)
+Ancienne usine Fagor-Brandt,4.840202976719573,45.73125879157448
+Astrée Amphithéâtre,4.870564454581455,45.78366736641631,https://theatre-astree.univ-lyon1.fr/Auditorium,4.852376688478581,45.76183050086076,https://www.auditorium-lyon.com/fr
+
+B
+
+Bar des Capucins,4.832469654580621,45.769066001542285
+Bizarre !,4.879373354577578,45.71377458937166,https://www.lamachinerie-venissieux.fr/
+Bourse du Travail,4.848216365673355,45.75959719706098,https://www.bourse-du-travail.com/
+Briscope,4.760768684656085,45.676394182325275,https://brignais.com/briscope/
+C
+
 C.C. Chaplin - Vaulx en Velin (69)
+C.C.O. - Villeurbanne,4.878566358813159,45.77922504312788,https://larayonne.org/
+Campus de la Doua - Villeurbanne (69)
+CCO La Rayonne - Villeurbanne (69)
+CCVA - Villeurbanne (69)
+Centre Paul Morand - Champagne Au Mont D Or (69)
+Champ de Foire - Colombier Saugnieu (69)
+Chapelle de la trinité - Lyon (69)
+Chromatique,4.847040160142772,45.750819488952686,https://www.chromatique.art/
+Comédie Odéon,4.836668566327821,45.76242589307075,https://www.comedieodeon.com/
+Crypte de Fourvière - Lyon (69)
+D
+
+Docks Circus,4.814858623384977,45.73833810382409,https://www.dockscircus.fr/
+E
+
+Epicerie Moderne,4.858404399962919,45.67369894892874,https://epiceriemoderne.com/
+Escale - St Genis les Ollières (69)
+Espace Albert Camus - Bron,4.919582121982419,45.72743250538055,https://pole-en-scenes.com/
+Espace des Vallons du Lyonnais - Vaugneray (69)
+Espace Elsa Triolet - salle Barbara - Lyon (69)
+Espace jean Gabin - Chaponnay (69)
+Espace Jean Poperen - Meyzieu (69)
+Espace Tonkin,4.86330530363784,45.77585500283178,https://www.espacetonkin.fr/
+Espaced Culturel Eole - Craponne (69)
+Eurexpo - Chassieux (69)
+F
+
+Farmer,4.827795820436171,45.771548686174434,  - Lyon 1er (69)
+G
+
+Groom,4.836937077519969,45.770615465336434,https://www.groomlyon.com/
+Groupama Stadium,4.982036878412183,45.765334091684046,https://www.olvallee.fr/
+Grrrnd Zero - Vaulx-en-Velin,4.9267125190686905,45.765862217056274,https://www.grrrndzero.org/
+Grrrnd Zero Vaise - https://www.grrrndzero.org/
+H
+
+Halle Tony Garnier - Lyon (69)
+Hard Rock Café,4.837948560264358,45.763011898180885,https://www.hardrockcafe.com/location/lyon/#utm_source=Google&utm_medium=Yext&utm_campaign=Listings
+Hot Club,4.831958880964752,45.76568284608088,https://www.hotclubjazzlyon.com/
+J
+
+Jardin des Chartreux - Lyon (69)
+K
+
+Kraspek Myzik,4.835775421944657,45.771294137807615,http://kraspekmyzik.com/
+L
+
+L'Ambuscade,4.835070428743799,45.77161322898046, - Lyon (69)
+L'amphithéatre (Salle 3000) - Lyon (69)
+L'Aqueduc - Dardilly (69)
+L'Intervalle - Vaugneray (69)
+LA Balise 46 - MJC de Villeurbanne - Villeurbanne (69)
+La Grooverie,4.83053012536694,45.76973564942163,
+La Marquise,4.840057922862742,45.759096281231706,http://www.marquise.net/
+La Passagère,4.840403695587398,45.760588422590004
+La Plateforme,4.840560078185015,45.76184979273652,https://cafe-oz.com/
+La Vache Rouge - Vénissieux (69)
+LDLC Arena,4.978658041447684,45.76865757266265,https://www.olvallee.fr/lieux/ldlc-arena/
+Le Concorde - Saint Priest (69)
+Le Périscope - Lyon 2e (69)
+Le Péristyle de l'Opéra - Lyon (69)
+Le Polaris - Corbas (69)
+Le Radiant-Bellevue - Caluire et Cuire (69)
+Le Sémaphore - Irigny (69)
+Le Sirius,4.840345436093386,45.76110603973571,https://www.lesirius.com/
+Le Sonic - Lyon (69)
+Le Sucre / La Sucrière - Lyon (69)
+Le Trockson - Lyon (69)
+Le Trokson - Lyon (69)
+M
+
+Marché Gare - Lyon (69)
+Matmut Stadium de Gerland,4.832137062735327,45.72375112024588, - Lyon (69)
+MJC Aragon / Jack Jack,4.908581917764821,45.742338170768804,https://mjcbron.fr/
+MJC Bonneterre,4.885933617945258,45.76175040275761,https://www.mjc-villeurbanne.org/
+Mob Hotel Lyon Confluence - Lyon 2eme (69)
+Musée des Confluences - Lyon 6e (69)
+Musée Urbain Tony Garnier - Lyon 8eme (69)
+N
+
+Ninkasi Brignais - Brignais (69)
+Ninkasi Champagne - Champagne-au-Mont-d'Or (69)
+Ninkasi Gorge du Loup - Lyon 9e (69)
+Ninkasi Gratte Ciel - Villeurbanne (69)
+Ninkasi Guillotière - Lyon 3e (69)
+Ninkasi Kafe Gerland - Lyon (69)
+Ninkasi Kao - Lyon (69)
+Ninkasi La Soie - Villeurbanne (69)
+Ninkasi OL Vallée - Décines-Charpieu (69)
+Ninkasi Part-Dieu - Lyon 3e (69)
+Ninkasi Saint Paul - Lyon 5e (69)
+Ninkasi Saint Romain en Gal - Saint Romain en Gal (69)
+Ninkasi Tarare - Tarare (69)
+Ninkasi Vaise - Lyon 9e (69)
+O
+
+O Totem Live - Rillieux (69)
+Odéon,4.819662249985661,45.75874341341396, - Lyon 5ème (69)
+Odyssée - Pusignan (69)
+Opéra National de Lyon / L'Underground,4.836256972967631,45.76782652695555,https://www.opera-lyon.com/
+P
+
+Palais de la Mutualité,4.841314180794806,45.75651519631044,https://www.lyon.fr/recherche?search_api_fulltext=palais+de+la+mutualite&type=All
+Parc de L'Autre Soie - Villeurbanne (69)
+Parc du Bois du Baron - St Laurent de Mure (69)
+Parc Jean De La Fontaine - Pierre-Bénite (69)
+Parc Louis Dupic - Vénissieux (69)
+Parc municipal - Jarnioux (69)
+Péniche Loupika,4.814561882601606,45.736761829365655,
+Piano Tiroir - Balaruc les Bains  (69)
+Place du Château - Charnay (69)
+Planète Culture Lyon - Lyon 5e (69)
+Plein Air - Rivolet (69)
+R
+
+Rock N Eat,4.811639102575134,45.771063203788856,https://www.rockneat.com/
+Rock n'Eat - Lyon 9e (69)
+Rock'n'eat - Lyon 9eme (69)
+S
+
+Salle d'animation - Pouilly le Monial (69)
+Salle des Fêtes - L'Arbresle (69)
+Salle des Fêtes du Prado - Bessenay (69)
+Salle des Fêtes Noël Delorme - Mornant (69)
+Salle des Rancy,4.847594718492895,45.755974264407975,https://www.salledesrancy.com/
+Salle des Sports - Fleurie (69)
+Salle du Vourlat - Messimy (69)
+Salle Irène Joliot-Curie - Vénissieux (69)
+Salle Léo Ferré,4.825993631964207,45.76109675206448,http://www.mjcduvieuxlyon.com/
+Salle Léo Ferré MJC du Vieux Lyon (69)
+Salle Molière - Lyon 5ème (69)
+Salle Paul Garcin - Lyon (69)
+Salle Victor Hugo,4.849621760358227,45.76784678862205, - Lyon 6ème (69)
+Sirius Peniche,4.840335224579792,45.76111880660408,https://www.lesirius.com/
+Station Mue - Lyon (69)
+T
+
+Temple du Change - Lyon 5e (69)
+Théâtre antique de Fourvière - Lyon (69)
+Théatre de l'iris - Villeurbanne (69)
+Théâtre la Renaissance - Oullins (69)
+Toboggan,4.955766064092964,45.76878299389761,https://letoboggan.com/
+Toï ToÏ le Zinc - Villeurbanne (69)
+Transbordeur - Lyon - Villeurbanne (69)
+W
+
+Warm Audio,4.944126920392682,45.7667872185702,https://warmaudio.fr/
