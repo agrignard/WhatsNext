@@ -143,6 +143,110 @@
                         "description":"http://radiant-bellevue.fr/"
                         
                     }
+                },{
+                    "type": "Feature",
+                    "id":12,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.836544215343914,45.7705358011615]
+                    },
+                    "properties": {
+                        "title": "A Thou Bout d'Chant",
+                        "icon": "marker-15",
+                        "description":"https://athouboutdchant.com/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":13,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.840202976719573,45.73125879157448]
+                    },
+                    "properties": {
+                        "title": "Ancienne usine Fagor-Brandt",
+                        "icon": "marker-15",
+                        "description":""
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":14,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.870564454581455,45.78366736641631]
+                    },
+                    "properties": {
+                        "title": "Astrée Amphithéâtre",
+                        "icon": "marker-15",
+                        "description":"https://theatre-astree.univ-lyon1.fr/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":15,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.852376688478581,45.76183050086076]
+                    },
+                    "properties": {
+                        "title": "Auditorium",
+                        "icon": "marker-15",
+                        "description":"https://www.auditorium-lyon.com/fr"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":16,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.832469654580621,45.769066001542285]
+                    },
+                    "properties": {
+                        "title": "Bar des Capucins",
+                        "icon": "marker-15",
+                        "description":""
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":17,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.879373354577578,45.71377458937166]
+                    },
+                    "properties": {
+                        "title": "Bizarre !",
+                        "icon": "marker-15",
+                        "description":"https://www.lamachinerie-venissieux.fr/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":18,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.848216365673355,45.75959719706098]
+                    },
+                    "properties": {
+                        "title": "Bourse du Travail",
+                        "icon": "marker-15",
+                        "description":"https://www.bourse-du-travail.com/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":19,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.760768684656085,45.676394182325275]
+                    },
+                    "properties": {
+                        "title": "Briscope",
+                        "icon": "marker-15",
+                        "description":"https://brignais.com/briscope/"
+                        
+                    }
                 }]
 }
  
