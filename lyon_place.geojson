@@ -465,7 +465,7 @@
                     "properties": {
                         "title": "Chromatique",
                         "icon": "marker-15",
-                        "description":"https://www.chromatique.art/"
+                        "description":"https://www.lesirius.com/"
                         
                     }
                 },{
@@ -672,6 +672,110 @@
                     },
                     "properties": {
                         "title": "La Passagère",
+                        "icon": "marker-15",
+                        "description":""
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":53,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.829935621383864,45.76855453010177]
+                    },
+                    "properties": {
+                        "title": "Maison M",
+                        "icon": "marker-15",
+                        "description":"https://mmlyon.com/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":54,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.8314741316218965,45.769498439406306]
+                    },
+                    "properties": {
+                        "title": "Terminal Club",
+                        "icon": "marker-15",
+                        "description":"https://www.terminal-club.com/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":55,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.85806177180337,45.78517456739005]
+                    },
+                    "properties": {
+                        "title": "Salle 3000",
+                        "icon": "marker-15",
+                        "description":"https://www.ccc-lyon.com/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":56,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.837015480468372,45.76539214472852]
+                    },
+                    "properties": {
+                        "title": "Chapelle de la Trinité",
+                        "icon": "marker-15",
+                        "description":"https://www.lesgrandsconcerts.com/concerts"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":57,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.819923386804322,45.73527820052597]
+                    },
+                    "properties": {
+                        "title": "Bellona Club",
+                        "icon": "marker-15",
+                        "description":""
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":58,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.83995960793735,45.75322219394572]
+                    },
+                    "properties": {
+                        "title": "Livestation DIY",
+                        "icon": "marker-15",
+                        "description":"https://livestationdiy.com/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":59,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.840153803366476,45.75963938169328]
+                    },
+                    "properties": {
+                        "title": "Plouf Bateau mousse",
+                        "icon": "marker-15",
+                        "description":""
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":60,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.8363720708467985,45.76056517146233]
+                    },
+                    "properties": {
+                        "title": "L'ambassade",
                         "icon": "marker-15",
                         "description":""
                         

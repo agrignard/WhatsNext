@@ -7,6 +7,7 @@ Astrée Amphithéâtre,4.870564454581455,45.78366736641631,https://theatre-astre
 B
 
 Bar des Capucins,4.832469654580621,45.769066001542285
+Bellona Club,4.819923386804322,45.73527820052597,
 Bizarre !,4.879373354577578,45.71377458937166,https://www.lamachinerie-venissieux.fr/
 Bourse du Travail,4.848216365673355,45.75959719706098,https://www.bourse-du-travail.com/
 Briscope,4.760768684656085,45.676394182325275,https://brignais.com/briscope/
@@ -19,7 +20,7 @@ CCO La Rayonne - Villeurbanne (69)
 CCVA - Villeurbanne (69)
 Centre Paul Morand - Champagne Au Mont D Or (69)
 Champ de Foire - Colombier Saugnieu (69)
-Chapelle de la trinité - Lyon (69)
+Chapelle de la trinité,4.837015480468372,45.76539214472852,https://www.lesgrandsconcerts.com/concerts
 Chromatique,4.847040160142772,45.750819488952686,https://www.chromatique.art/
 Comédie Odéon,4.836668566327821,45.76242589307075,https://www.comedieodeon.com/
 Crypte de Fourvière - Lyon (69)
@@ -60,6 +61,7 @@ K
 Kraspek Myzik,4.835775421944657,45.771294137807615,http://kraspekmyzik.com/
 L
 
+L'ambassade,4.8363720708467985,45.76056517146233,
 L'Ambuscade,4.835070428743799,45.77161322898046, - Lyon (69)
 L'amphithéatre (Salle 3000) - Lyon (69)
 L'Aqueduc - Dardilly (69)
@@ -82,8 +84,10 @@ Le Sonic - Lyon (69)
 Le Sucre / La Sucrière - Lyon (69)
 Le Trockson - Lyon (69)
 Le Trokson - Lyon (69)
+Livestation DIY,4.83995960793735,45.75322219394572,https://livestationdiy.com/
 M
 
+Maison M,4.829935621383864,45.76855453010177,https://mmlyon.com/
 Marché Gare - Lyon (69)
 Matmut Stadium de Gerland,4.832137062735327,45.72375112024588, - Lyon (69)
 MJC Aragon / Jack Jack,4.908581917764821,45.742338170768804,https://mjcbron.fr/
@@ -126,6 +130,7 @@ Piano Tiroir - Balaruc les Bains  (69)
 Place du Château - Charnay (69)
 Planète Culture Lyon - Lyon 5e (69)
 Plein Air - Rivolet (69)
+Plouf Bateau mousse,4.840153803366476,45.75963938169328, 
 R
 
 Rock N Eat,4.811639102575134,45.771063203788856,https://www.rockneat.com/
@@ -133,6 +138,7 @@ Rock n'Eat - Lyon 9e (69)
 Rock'n'eat - Lyon 9eme (69)
 S
 
+Salle 3000,4.85806177180337,45.78517456739005,https://www.ccc-lyon.com/
 Salle d'animation - Pouilly le Monial (69)
 Salle des Fêtes - L'Arbresle (69)
 Salle des Fêtes du Prado - Bessenay (69)
@@ -151,6 +157,7 @@ Station Mue - Lyon (69)
 T
 
 Temple du Change - Lyon 5e (69)
+Terminal Club,4.8314741316218965,45.769498439406306,https://www.terminal-club.com/
 Théâtre antique de Fourvière - Lyon (69)
 Théatre de l'iris - Villeurbanne (69)
 Théâtre la Renaissance - Oullins (69)
