@@ -980,6 +980,363 @@
                         "description":
                         "<a href='https://mediatone.net/evenements/ludwig-von-88-le-reparateur-resto-basket/' target='blank'title='Opens in a new window'>Prog</a>"
                     }
+                },{
+                    "type": "Feature",
+                    "id":63,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.805288231932393,45.77146427487765]
+                    },
+                    "properties": {
+                        "title": "HUMAN JUKEBOX : MISTER MELLOW",
+                        "size": 100,
+                        "icon": "marker-15",
+                        "place": "Ninkasi Gorge du Loup",
+                        "style": "Chanson Française",
+                        "time":1700856000000,
+                        "description":
+                        "<a href='https://www.ninkasi.fr/agenda/human-jukebox-mister-mellow-8/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":64,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.8792028318165785,45.7691706463425]
+                    },
+                    "properties": {
+                        "title": "HUMAN JUKEBOX : LEON DANS TON SALON",
+                        "size": 100,
+                        "icon": "marker-15",
+                        "place": "Ninkasi Gratte Ciel",
+                        "style": "Chanson Française",
+                        "time":1699041600000,
+                        "description":
+                        "<a href='https://www.ninkasi.fr/agenda/human-jukebox-leon-dans-ton-salon-21/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":65,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.8410423842345285,45.756186539778]
+                    },
+                    "properties": {
+                        "title": "HUMAN JUKEBOX : THE FRENCH GOOSE",
+                        "size": 100,
+                        "icon": "marker-15",
+                        "place": "Ninkasi Guillotière",
+                        "style": "Chanson Française",
+                        "time":1699041600000,
+                        "description":
+                        "<a href='https://www.ninkasi.fr/agenda/human-jukebox-the-french-goose-7/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":66,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.919605013198062,45.761002862894913]
+                    },
+                    "properties": {
+                        "title": "HUMAN JUKEBOX : FABIEN BENOIT",
+                        "size": 100,
+                        "icon": "marker-15",
+                        "place": "Ninkasi La Soie",
+                        "style": "Chanson Française",
+                        "time":1697655600000,
+                        "description":
+                        "<a href='https://www.ninkasi.fr/agenda/human-jukebox-fabien-benoit-13/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":67,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.919605013198062,45.761002862894913]
+                    },
+                    "properties": {
+                        "title": "THE DOBEAT’SHOW",
+                        "size": 100,
+                        "icon": "marker-15",
+                        "place": "Ninkasi La Soie",
+                        "style": "Chanson Française",
+                        "time":1698433200000,
+                        "description":
+                        "<a href='https://www.ninkasi.fr/agenda/the-dobeatshow-11/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":68,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.919605013198062,45.761002862894913]
+                    },
+                    "properties": {
+                        "title": "NICHOLAS SUTTON",
+                        "size": 100,
+                        "icon": "marker-15",
+                        "place": "Ninkasi La Soie",
+                        "style": "Rock",
+                        "time":1700251200000,
+                        "description":
+                        "<a href='https://www.ninkasi.fr/agenda/nicholas-sutton-7/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":69,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.980168945083201,45.76728901140007]
+                    },
+                    "properties": {
+                        "title": "HYNSHA",
+                        "size": 100,
+                        "icon": "marker-15",
+                        "place": "Ninkasi OL Vallée",
+                        "style": "Electro",
+                        "time":1697731200000,
+                        "description":
+                        "<a href='https://www.ninkasi.fr/agenda/hynsha-8/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":70,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.980168945083201,45.76728901140007]
+                    },
+                    "properties": {
+                        "title": "HYNSHA",
+                        "size": 100,
+                        "icon": "marker-15",
+                        "place": "Ninkasi OL Vallée",
+                        "style": "Electro",
+                        "time":1698436800000,
+                        "description":
+                        "<a href='https://www.ninkasi.fr/agenda/hynsha-9/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":71,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.980168945083201,45.76728901140007]
+                    },
+                    "properties": {
+                        "title": "JAZZ A OL VALLEE : ROMAIN VAUTHIER TRIO",
+                        "size": 100,
+                        "icon": "marker-15",
+                        "place": "Ninkasi OL Vallée",
+                        "style": "Jazz",
+                        "time":1698598800000,
+                        "description":
+                        "<a href='https://www.ninkasi.fr/agenda/jazz-a-ol-vallee-romain-vauthier-trio/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":72,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.980168945083201,45.76728901140007]
+                    },
+                    "properties": {
+                        "title": "THE PLOOKS",
+                        "size": 100,
+                        "icon": "marker-15",
+                        "place": "Ninkasi OL Vallée",
+                        "style": "Rock",
+                        "time":1699128000000,
+                        "description":
+                        "<a href='https://www.ninkasi.fr/agenda/the-plooks/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":73,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.980168945083201,45.76728901140007]
+                    },
+                    "properties": {
+                        "title": "HUMAN JUKEBOX : FABIEN BENOIT",
+                        "size": 100,
+                        "icon": "marker-15",
+                        "place": "Ninkasi OL Vallée",
+                        "style": "Chanson Française",
+                        "time":1699732800000,
+                        "description":
+                        "<a href='https://www.ninkasi.fr/agenda/human-jukebox-fabien-benoit-14/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":74,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.980168945083201,45.76728901140007]
+                    },
+                    "properties": {
+                        "title": "JAZZ À OL VALLÉE : FRÉDÉRIC ARNOUX TRIO",
+                        "size": 100,
+                        "icon": "marker-15",
+                        "place": "Ninkasi OL Vallée",
+                        "style": "Jazz",
+                        "time":1700413200000,
+                        "description":
+                        "<a href='https://www.ninkasi.fr/agenda/jazz-a-ol-vallee-frederic-arnoux-trio/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":75,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.858261920165393,45.75781579067708]
+                    },
+                    "properties": {
+                        "title": "HUMAN JUKEBOX : THE FRENCH GOOSE",
+                        "size": 100,
+                        "icon": "marker-15",
+                        "place": "Ninkasi Part-Dieu",
+                        "style": "Chanson Française",
+                        "time":1698429600000,
+                        "description":
+                        "<a href='https://www.ninkasi.fr/agenda/human-jukebox-the-french-goose-6/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":76,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.858261920165393,45.75781579067708]
+                    },
+                    "properties": {
+                        "title": "HUMAN JUKEBOX : FABB",
+                        "size": 100,
+                        "icon": "marker-15",
+                        "place": "Ninkasi Part-Dieu",
+                        "style": "Chanson Française",
+                        "time":1699041600000,
+                        "description":
+                        "<a href='https://www.ninkasi.fr/agenda/human-jukebox-fabb-11/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":77,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.858261920165393,45.75781579067708]
+                    },
+                    "properties": {
+                        "title": "OBROVSKY",
+                        "size": 100,
+                        "icon": "marker-15",
+                        "place": "Ninkasi Part-Dieu",
+                        "style": "Chanson Française",
+                        "time":1699646400000,
+                        "description":
+                        "<a href='https://www.ninkasi.fr/agenda/obrovsky/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":78,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.858261920165393,45.75781579067708]
+                    },
+                    "properties": {
+                        "title": "OCTOPUS GARDEN",
+                        "size": 100,
+                        "icon": "marker-15",
+                        "place": "Ninkasi Part-Dieu",
+                        "style": "Rock",
+                        "time":1700251200000,
+                        "description":
+                        "<a href='https://www.ninkasi.fr/agenda/octopus-garden-20/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":79,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.828005683638858,45.76593080133774]
+                    },
+                    "properties": {
+                        "title": "JAZZ À ST PAUL : MARC CABRERA DUO",
+                        "size": 100,
+                        "icon": "marker-15",
+                        "place": "Ninkasi Saint Paul",
+                        "style": "Jazz",
+                        "time":1698433200000,
+                        "description":
+                        "<a href='https://www.ninkasi.fr/agenda/jazz-a-st-paul-marc-cabrera-duo/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":80,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.828005683638858,45.76593080133774]
+                    },
+                    "properties": {
+                        "title": "HUMAN JUKEBOX : MISTER MELLOW",
+                        "size": 100,
+                        "icon": "marker-15",
+                        "place": "Ninkasi Saint Paul",
+                        "style": "Chanson Française",
+                        "time":1698955200000,
+                        "description":
+                        "<a href='https://www.ninkasi.fr/agenda/human-jukebox-mister-mellow-7/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":81,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.828005683638858,45.76593080133774]
+                    },
+                    "properties": {
+                        "title": "JAM SESSION JAZZ · LINKS TRIO",
+                        "size": 100,
+                        "icon": "marker-15",
+                        "place": "Ninkasi Saint Paul",
+                        "style": "Jazz",
+                        "time":1699644600000,
+                        "description":
+                        "<a href='https://www.ninkasi.fr/agenda/jam-session-jazz-%c2%b7-links-trio/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":82,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.812824461129642,45.788306965548486]
+                    },
+                    "properties": {
+                        "title": "STEVE ZISSOU & THE WALLACE",
+                        "size": 100,
+                        "icon": "marker-15",
+                        "place": "Ninkasi Vaise",
+                        "style": "Rock",
+                        "time":1698433200000,
+                        "description":
+                        "<a href='https://www.ninkasi.fr/agenda/steve-zissou-the-wallace/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":83,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.812824461129642,45.788306965548486]
+                    },
+                    "properties": {
+                        "title": "GET THE MUSIC RIGHT",
+                        "size": 100,
+                        "icon": "marker-15",
+                        "place": "Ninkasi Vaise",
+                        "style": "Rock",
+                        "time":1700856000000,
+                        "description":
+                        "<a href='https://www.ninkasi.fr/agenda/get-the-music-right/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
                 }]
 }
  

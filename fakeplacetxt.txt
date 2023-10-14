@@ -44,6 +44,7 @@ F
 Farmer,4.827795820436171,45.771548686174434,  - Lyon 1er (69)
 G
 
+Le G,4.832225171824509,45.76947847077514, 
 Groom,4.836937077519969,45.770615465336434,https://www.groomlyon.com/
 Groupama Stadium,4.982036878412183,45.765334091684046,https://www.olvallee.fr/
 Grrrnd Zero - Vaulx-en-Velin,4.9267125190686905,45.765862217056274,https://www.grrrndzero.org/
@@ -69,8 +70,8 @@ L'Intervalle - Vaugneray (69)
 LA Balise 46 - MJC de Villeurbanne - Villeurbanne (69)
 La Grooverie,4.83053012536694,45.76973564942163,
 La Marquise,4.840057922862742,45.759096281231706,http://www.marquise.net/
-La Passagère,4.840403695587398,45.760588422590004
-La Plateforme,4.840560078185015,45.76184979273652,https://cafe-oz.com/
+La Passagère,4.8402479922165345,45.76059076681801,
+La Plateforme,4.840403461890766,45.76182849637386,https://cafe-oz.com/
 La Vache Rouge - Vénissieux (69)
 LDLC Arena,4.978658041447684,45.76865757266265,https://www.olvallee.fr/lieux/ldlc-arena/
 Le Concorde - Saint Priest (69)
@@ -99,18 +100,18 @@ N
 
 Ninkasi Brignais - Brignais (69)
 Ninkasi Champagne - Champagne-au-Mont-d'Or (69)
-Ninkasi Gorge du Loup - Lyon 9e (69)
-Ninkasi Gratte Ciel - Villeurbanne (69)
-Ninkasi Guillotière - Lyon 3e (69)
+Ninkasi Gorge du Loup,4.805288231932393,45.77146427487765,
+Ninkasi Gratte Ciel,4.8792028318165785,45.7691706463425, - Villeurbanne (69)
+Ninkasi Guillotière,4.8410423842345285,45.756186539778,- Lyon 3e (69)
 Ninkasi Kafe Gerland - Lyon (69)
 Ninkasi Kao - Lyon (69)
-Ninkasi La Soie - Villeurbanne (69)
-Ninkasi OL Vallée - Décines-Charpieu (69)
-Ninkasi Part-Dieu - Lyon 3e (69)
-Ninkasi Saint Paul - Lyon 5e (69)
+Ninkasi La Soie,4.919605013198062,45.76100286289491 - Villeurbanne (69)
+Ninkasi OL Vallée,4.980168945083201,45.76728901140007, - Décines-Charpieu (69)
+Ninkasi Part-Dieu,4.858261920165393,45.75781579067708, - Lyon 3e (69)
+Ninkasi Saint Paul,4.828005683638858,45.76593080133774, - Lyon 5e (69)
 Ninkasi Saint Romain en Gal - Saint Romain en Gal (69)
 Ninkasi Tarare - Tarare (69)
-Ninkasi Vaise - Lyon 9e (69)
+Ninkasi Vaise,4.812824461129642,45.788306965548486, - Lyon 9e (69)
 O
 
 O Totem Live - Rillieux (69)
