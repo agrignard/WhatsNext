@@ -878,6 +878,108 @@
                         "description":
                         "<a href='https://www.trokson.com/events/samhain-festus-dj-set-halloween' target='blank'title='Opens in a new window'>Prog</a>"
                     }
-                }]
+                },{
+                    "type": "Feature",
+                    "id":57,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.826150943299402,45.73090400519471]
+                    },
+                    "properties": {
+                        "title": "M POKORA",
+                        "size": 1000,
+                        "icon": "marker-15",
+                        "place": "Halle Tony Garnier",
+                        "style": "Rap",
+                        "time":1702495800000,
+                        "description":
+                        "<a href='https://www.halle-tony-garnier.com/fr/programmation/m-pokora-2' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":58,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.823288269540693,45.74155495036607]
+                    },
+                    "properties": {
+                        "title": "MELBA + LE NOISEUR",
+                        "size": 200,
+                        "icon": "marker-15",
+                        "place": "Marché Gare",
+                        "style": "Rock",
+                        "time":1697826600000,
+                        "description":
+                        "<a href='https://mediatone.net/evenements/melba-le-noiseur/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":59,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.86099519042548 , 45.78404790771527]
+                    },
+                    "properties": {
+                        "title": "MANDRAGORA + PROPER LANE + UZUL + MÉCOU YENSKI",
+                        "size": 500,
+                        "icon": "marker-15",
+                        "place": "Transbordeur",
+                        "style": "Rock",
+                        "time":1697923800000,
+                        "description":
+                        "<a href='https://mediatone.net/evenements/mandragora-proper-lane-uzul-mecou-yenski/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":60,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.878566358813159,45.77922504312788]
+                    },
+                    "properties": {
+                        "title": "DEBOUT SUR LE ZINC + LA CARAVANE PASSE",
+                        "size": 100,
+                        "icon": "marker-15",
+                        "place": "La Rayonne",
+                        "style": "Chanson Française",
+                        "time":1697308200000,
+                        "description":
+                        "<a href='https://mediatone.net/evenements/debout-sur-le-zinc-la-caravane-passe/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":61,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.823288269540693,45.74155495036607]
+                    },
+                    "properties": {
+                        "title": "ROMANE SANTARELLI + MAUVAIS GARÇON",
+                        "size": 200,
+                        "icon": "marker-15",
+                        "place": "Marché Gare",
+                        "style": "Electro",
+                        "time":1697308200000,
+                        "description":
+                        "<a href='https://mediatone.net/evenements/romane-santarelli-mauvais-garcon/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":62,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.878566358813159,45.77922504312788]
+                    },
+                    "properties": {
+                        "title": "LUDWIG VON 88 + LE RÉPARATEUR + RESTO BASKET",
+                        "size": 100,
+                        "icon": "marker-15",
+                        "place": "La Rayonne",
+                        "style": "Chanson Française",
+                        "time":1700249400000,
+                        "description":
+                        "<a href='https://mediatone.net/evenements/ludwig-von-88-le-reparateur-resto-basket/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },]
 }
  
