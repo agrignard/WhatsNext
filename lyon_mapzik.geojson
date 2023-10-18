@@ -77,7 +77,7 @@
                     "id":10,
                     "geometry": {
                         "type": "Point",
-                        "coordinates": [4.815595048673509,45.73670712008004]
+                        "coordinates": [4.815308821695801,45.73661415788746]
                     },
                     "properties": {
                         "title": "Realo",
@@ -611,13 +611,13 @@
                     "id":41,
                     "geometry": {
                         "type": "Point",
-                        "coordinates": [4.982036878412183,45.765334091684046]
+                        "coordinates": [4.978658041447684,45.76865757266265]
                     },
                     "properties": {
                         "title": "STING",
                         "size": 1000,
                         "icon": "marker-15",
-                        "place": "Groupama Stadium",
+                        "place": "LDLC Arena",
                         "style": "Rock",
                         "time":1702494000000,
                         "description":
@@ -628,13 +628,13 @@
                     "id":42,
                     "geometry": {
                         "type": "Point",
-                        "coordinates": [4.982036878412183,45.765334091684046]
+                        "coordinates": [4.978658041447684,45.76865757266265]
                     },
                     "properties": {
                         "title": "LOMEPAL",
                         "size": 1000,
                         "icon": "marker-15",
-                        "place": "Groupama Stadium",
+                        "place": "LDLC Arena",
                         "style": "Rock",
                         "time":1701457200000,
                         "description":
