@@ -35,7 +35,6 @@ body { margin: 0; padding: 0; }
     <div class="electro">Electro</div>
     <div class="jazz">Jazz</div>
     <div class="rap">Rap</div>
-    <div class="chanson">Chanson</div>
     <div class="divers">Divers</div>
 </div>
 
@@ -88,7 +87,6 @@ const styles = [
 'Electro',
 'Jazz',
 'Rap',
-'Chanson Française',
 'Divers'
 ];
 
@@ -97,14 +95,15 @@ mapStyle.set('Rock', 'rgba(23,128,251,0.5)');
 mapStyle.set('Electro', 'rgba(40,124,18,0.5)');
 mapStyle.set('Jazz', 'rgba(255,255,0,0.5)');
 mapStyle.set('Rap', 'rgba(165,2,33,0.5)');
-mapStyle.set('Chanson Française', 'rgba(224,147,40,0.5)');
-mapStyle.set('Divers', 'rgba(230,58,251,0.5)');
+mapStyle.set('Divers', 'rgba(224,147,40,0.5)');
 
 
 var showAllValue=false;
-var currentDate = new Date(Date.now()).valueOf();
+var currentDate = new Date(Date.now());
+var appDate;
+currentDate.setHours(0,0,0);
  
-function filterBy(value,byday) {   
+function filterBy(value,byday) {  
 if(!showAllValue){
     var filters = [
     "all",     
@@ -116,13 +115,19 @@ if(!showAllValue){
     map.setFilter('event-labels', filters);
     
     // Set the label to the slider
-    document.getElementById('dateSlider').textContent = new Date(value).toDateString();//
+    document.getElementById('dateSlider').textContent = new Date(value).getDate()+ "/" + parseInt(new Date(value).getMonth()+1) + "/" + new Date(value).getFullYear();  ;
 }else{
-    for (let [key, value] of mapStyle)  {
-       console.log("yo set le filter de "  + key);
-        map.setFilter('event-circles', null);
-        map.setFilter('event-labels', null);
-    }
+        var filters = [
+        "all",     
+        [">=", ['get', 'time'], value]
+        ];
+
+        map.setFilter('event-circles', filters);
+        map.setFilter('event-labels', filters);
+        document.getElementById('dateSlider').textContent = new Date(value).getDate()+ "/" + parseInt(new Date(value).getMonth()+1)  + "/" + new Date(value).getFullYear()+ "++";
+        /*map.setFilter('event-circles', null);
+        map.setFilter('event-labels', null);*/
+    
     
 }    
 }
@@ -280,8 +285,7 @@ data: data
         'Electro', ["case",["boolean", ["feature-state", "hover"], false],'rgba(40,124,18,'+ transparencyBig+')','rgba(40,124,18,'+ transparency+')'],
         'Jazz', ["case",["boolean", ["feature-state", "hover"], false],'rgba(255,255,0,'+ transparencyBig+')','rgba(255,255,0,'+ transparency+')'],
         'Rap', ["case",["boolean", ["feature-state", "hover"], false],'rgba(165,2,33,'+ transparencyBig+')','rgba(165,2,33,'+ transparency+')'],
-        'Chanson Française', ["case",["boolean", ["feature-state", "hover"], false],'rgba(224,147,40,'+ transparencyBig+')','rgba(224,147,40,'+ transparency+')'],
-        'Divers', ["case",["boolean", ["feature-state", "hover"], false],'rgba(230,58,251,'+ transparencyBig+')','rgba(230,58,251,'+ transparency+')'],
+        'Divers', ["case",["boolean", ["feature-state", "hover"], false],'rgba(224,147,40,'+ transparencyBig+')','rgba(224,147,40,'+ transparency+')'],
         '#ccc'
         ],
 'circle-stroke-color':[
@@ -290,8 +294,7 @@ data: data
     'Electro', ["case",["boolean", ["feature-state", "hover"], false],'rgba(40,124,18,'+ transparencyBig+')','rgba(40,124,18,'+ transparency+')'],
     'Jazz', ["case",["boolean", ["feature-state", "hover"], false],'rgba(255,255,0,'+ transparencyBig+')','rgba(255,255,0,'+ transparency+')'],
     'Rap', ["case",["boolean", ["feature-state", "hover"], false],'rgba(165,2,33,'+ transparencyBig+')','rgba(165,2,33,'+ transparency+')'],
-    'Chanson Française', ["case",["boolean", ["feature-state", "hover"], false],'rgba(224,147,40,'+ transparencyBig+')','rgba(224,147,40,'+ transparency+')'],
-    'Divers', ["case",["boolean", ["feature-state", "hover"], false],'rgba(230,58,251,'+ transparencyBig+')','rgba(230,58,251,'+ transparency+')'],
+    'Divers', ["case",["boolean", ["feature-state", "hover"], false],'rgba(224,147,40,'+ transparencyBig+')','rgba(224,147,40,'+ transparency+')'],
     '#ccc'
     ],
     'circle-stroke-width': ["case",["boolean", ["feature-state", "hover"], false],10.0,2.5],
@@ -305,7 +308,7 @@ data: data
     'interpolate',
     ['linear'],
     ['get', 'size'],
-    10,
+    100,
     10,
     5000,
     100
@@ -327,26 +330,32 @@ map.addLayer({
 'text-color': 'rgba(0,0,0,0.5)'
 }
 });
-filterBy(currentDate,false);
+filterBy(currentDate.valueOf(),false);
 document.getElementById("calendar").valueAsDate = new Date(Date.now);
 
 document.getElementById('slider').addEventListener('input', (e) => {
 const sliderValue = parseInt(e.target.value, 10);
-const newDateAsInt = parseInt(currentDate) + parseInt((sliderValue*86400000));
+const newDateAsInt = parseInt(currentDate.valueOf()) + parseInt((sliderValue*86400000));
+appDate=newDateAsInt;
 filterBy(newDateAsInt,false);
 });
 
 
 document.getElementById('calendar').addEventListener('input', (e) => {
 const choosenCalendarDay = e.target.value;
-currentDate =new Date(e.target.value).valueOf();
+currentDate =new Date(e.target.value);
 document.getElementById('slider').value = 0;
-filterBy(currentDate,false);
+const newDateAsInt = currentDate;
+appDate=newDateAsInt;
+filterBy(currentDate.valueOf(),false);
 });
 
 document.getElementById('showAll').addEventListener('input', (e) => {
 showAllValue= document.getElementById("showAll").checked;
-filterBy(currentDate,false)
+if(showAllValue){
+//document.getElementById('slider').value = 0;   
+}
+filterBy(currentDate.valueOf(),false)
 });
 
 }
@@ -435,24 +444,22 @@ map.getCanvas().style.cursor = '';
 // When a click event occurs on a feature in the places layer, open a popup at the
 // location of the feature, with description HTML from its properties.
 map.on('click', 'places-circles', (e) => {
+    // Copy coordinates array.
+    const coordinates = e.features[0].geometry.coordinates.slice();
+    const description = e.features[0].properties.description;
+    console.log("url de la place" + description)    ;
+    // Ensure that if the map is zoomed out such that multiple
+    // copies of the feature are visible, the popup appears
+    // over the copy being pointed to.
+    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+    }
 
-// Copy coordinates array.
-const coordinates = e.features[0].geometry.coordinates.slice();
-const description = e.features[0].properties.description;
-console.log("url de la place" + description)    ;
-
- 
-// Ensure that if the map is zoomed out such that multiple
-// copies of the feature are visible, the popup appears
-// over the copy being pointed to.
-while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-}
-const html= "<a href='"+ description +  "' target='blank'title='Opens in a new window'>Here</a>";
-new mapboxgl.Popup()
-.setLngLat(coordinates)
-.setHTML(html)
-.addTo(map);
+    /*const html= "<a href='"+ description +  "' target='blank'title='Opens in a new window'>Here</a>";
+    new mapboxgl.Popup()
+    .setLngLat(coordinates)
+    .setHTML(html)
+    .addTo(map);*/
 });
 
 
