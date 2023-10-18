@@ -149,7 +149,7 @@
                     "id":15,
                     "geometry": {
                         "type": "Point",
-                        "coordinates": [4.8777717104996885,45.78000624295657]
+                        "coordinates": [4.877406759088646,45.77987153345585]
                     },
                     "properties": {
                         "title": "DJ SET  Exodus",
@@ -1744,6 +1744,278 @@
                         "time":1702666800000,
                         "description":
                         "<a href='https://www.facebook.com/events/3649322925297311?locale=fr_FR' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":102,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.848965037873324,45.74091768990373]
+                    },
+                    "properties": {
+                        "title": "UTOPIA #2 : A STRANGE WEDDING B2B LISA MORE / KICK 21 / SUERTE / DISSONNE",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Petit Salon",
+                        "style": "Electro",
+                        "time":1698526800000,
+                        "description":
+                        "<a href='https://yurplan.com/events/Utopia-A-Strange-Wedding-B2-B-Lisa-More-Kick21-Suerte-Dissonne-and-More/111423' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":103,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.848965037873324,45.74091768990373]
+                    },
+                    "properties": {
+                        "title": "THIS IS HOUSE : NATSCH / GREG REO",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Petit Salon",
+                        "style": "Electro",
+                        "time":1698789600000,
+                        "description":
+                        "<a href='https://yurplan.com/events/This-is-House-Natsch-Greg-Reo-and-More/111480' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":104,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.848965037873324,45.74091768990373]
+                    },
+                    "properties": {
+                        "title": "KOLTER / B FROM E / CROWD CONTROL / MAGGY SMISS",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Petit Salon",
+                        "style": "Electro",
+                        "time":1699048800000,
+                        "description":
+                        "<a href='https://yurplan.com/events/Kolter-Crowd-Control-B-from-E-and-More/111424' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":105,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.848965037873324,45.74091768990373]
+                    },
+                    "properties": {
+                        "title": "THIS IS TECHNO : CARHL / MESSALINE",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Petit Salon",
+                        "style": "Electro",
+                        "time":1699135200000,
+                        "description":
+                        "<a href='https://yurplan.com/events/This-is-Techno-Melodic-Carhl-Messaline-and-More/111415' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":106,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.848965037873324,45.74091768990373]
+                    },
+                    "properties": {
+                        "title": "NEO RAVE : INDECORUM / MILA DIETRICH / LUX / CROW",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Petit Salon",
+                        "style": "Electro",
+                        "time":1699653600000,
+                        "description":
+                        "<a href='https://yurplan.com/events/Neo-Rave-Mila-Dietrich-Indecorum-Lux-and-More/111554' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":107,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.848965037873324,45.74091768990373]
+                    },
+                    "properties": {
+                        "title": "LAWAN B2B DAX J",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Petit Salon",
+                        "style": "Electro",
+                        "time":1700258400000,
+                        "description":
+                        "<a href='https://yurplan.com/events/Dax-J-B2-B-Blawan-and-More/111412' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":108,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.848965037873324,45.74091768990373]
+                    },
+                    "properties": {
+                        "title": "THIS IS HOUSE : CROWD CONTROL / MAGGY SMISS",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Petit Salon",
+                        "style": "Electro",
+                        "time":1700344800000,
+                        "description":
+                        "<a href='https://yurplan.com/events/This-is-House-Crowd-Control-Maggy-Smiss-and-More/112092' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":109,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.848965037873324,45.74091768990373]
+                    },
+                    "properties": {
+                        "title": "THIS IS DISCO : VYKTOR NOVA / TERROR MIKE",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Petit Salon",
+                        "style": "Electro",
+                        "time":1700863200000,
+                        "description":
+                        "<a href='https://yurplan.com/events/This-is-Disco-Vyktor-Nova-Terror-Mike/111714' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":110,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.848965037873324,45.74091768990373]
+                    },
+                    "properties": {
+                        "title": "PAULA TEMPLE / TAUCETI / NAV",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Petit Salon",
+                        "style": "Electro",
+                        "time":1700949600000,
+                        "description":
+                        "<a href='https://yurplan.com/events/Paula-Temple-Nav-Tauceti-and-More/112088' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":111,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.848965037873324,45.74091768990373]
+                    },
+                    "properties": {
+                        "title": "GLOWAL / 19:26 / JAS/T / NOMORE",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Petit Salon",
+                        "style": "Electro",
+                        "time":1701468000000,
+                        "description":
+                        "<a href='https://yurplan.com/events/Glowal-19-26-Jas-t-Nomore-and-More/111398' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":112,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.848965037873324,45.74091768990373]
+                    },
+                    "properties": {
+                        "title": "HECTOR OAKS / DJ CHUIMIX / SHAMSIEL",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Petit Salon",
+                        "style": "Electro",
+                        "time":1702072800000,
+                        "description":
+                        "<a href='https://yurplan.com/events/Hector-Oaks-DJ-Chuimix-Shamsiel-and-More/111897' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":113,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.86099519042548 , 45.78404790771527]
+                    },
+                    "properties": {
+                        "title": "LARKIN POE + THE SHEEPDOGS",
+                        "size": 500,
+                        "icon": "marker-15",
+                        "place": "Transbordeur",
+                        "style": "Rock",
+                        "time":1698429600000,
+                        "description":
+                        "<a href='https://www.transbordeur.fr/agenda-2023-2024/larkin-poe-the-sheepdogs-ven-27-oct-23/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":114,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.86099519042548 , 45.78404790771527]
+                    },
+                    "properties": {
+                        "title": "DASCO + DEEPNEUE + FKA.M4A + L'HOMME SEUL + MAÏ-LINH + MADMOIZEL + P ERRINE",
+                        "size": 500,
+                        "icon": "marker-15",
+                        "place": "Transbordeur",
+                        "style": "Electro",
+                        "time":1698526800000,
+                        "description":
+                        "<a href='https://www.transbordeur.fr/agenda-2023-2024/garcon-sauvage-xxl-happy-monster-sam-28-oct-23/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":115,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.86099519042548 , 45.78404790771527]
+                    },
+                    "properties": {
+                        "title": "SUNNY WAR",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Transbordeur",
+                        "style": "Jazz",
+                        "time":1698692400000,
+                        "description":
+                        "<a href='https://www.transbordeur.fr/agenda-2023-2024/sunny-war-lun-30-oct-2023/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":116,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.86099519042548 , 45.78404790771527]
+                    },
+                    "properties": {
+                        "title": "THE MURDER CAPITAL + SOAK",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Transbordeur",
+                        "style": "Rock",
+                        "time":1698775200000,
+                        "description":
+                        "<a href='https://www.transbordeur.fr/agenda-2023-2024/the-murder-capital-mar-31-oct-23/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":117,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.826150943299402,45.73090400519471]
+                    },
+                    "properties": {
+                        "title": "Michel SARDOU",
+                        "size": 1000,
+                        "icon": "marker-15",
+                        "place": "Halle Tony Garnier",
+                        "style": "Rock",
+                        "time":1703012400000,
+                        "description":
+                        "<a href='https://www.halle-tony-garnier.com/fr/programmation/michel-sardou' target='blank'title='Opens in a new window'>Prog</a>"
                     }
                  }]
 }

@@ -77,6 +77,7 @@ LDLC Arena,4.978658041447684,45.76865757266265,https://www.olvallee.fr/lieux/ldl
 Le Concorde - Saint Priest (69)
 Le Périscope - Lyon 2e (69)
 Le Péristyle de l'Opéra - Lyon (69)
+Le Petit Salon,4.848965037873324,45.74091768990373,https://www.lpslyon.fr/
 Le Polaris - Corbas (69)
 Le Radiant-Bellevue - Caluire et Cuire (69)
 Le Sémaphore - Irigny (69)
