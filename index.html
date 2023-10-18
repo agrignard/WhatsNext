@@ -5,6 +5,7 @@
 <title>EVENT FINDER</title>
 <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
 <style>
 body { margin: 0; padding: 0; }
@@ -13,43 +14,7 @@ body { margin: 0; padding: 0; }
 </head>
 <body>
 <style>
-.map-overlay {
-font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-position: absolute;
-width: 25%;
-top: 0;
-left: 0;
-padding: 10px;
-}
- 
-.map-overlay .map-overlay-inner {
-background-color: #fff;
-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-border-radius: 3px;
-padding: 10px;
-margin-bottom: 10px;
-}
- 
-.map-overlay h2 {
-line-height: 24px;
-display: block;
-margin: 0 0 10px;
-}
- 
-.map-overlay .legend .bar {
-height: 10px;
-width: 100%;
-background: linear-gradient(to right, #fca107, #7f3121);
-}
- 
-.map-overlay input {
-background-color: transparent;
-display: inline-block;
-width: 100%;
-position: relative;
-margin: 0;
-cursor: ew-resize;
-}
+
 
 </style>
  
@@ -57,16 +22,29 @@ cursor: ew-resize;
  
 <div class="map-overlay top">
 <div class="map-overlay-inner">
-<h2>EVENT FINDER</h2>
+
 
 <label for="calendar">Date</label>
-<input id="calendar" type="date" min="2023-10-12" max="2023-12-31"/>
+<input id="calendar" type="date" min="2023-10-16" max="2023-12-31"/>
 
-<label id="month"></label>
-<input id="slider" type="range" min="0" max="15" step="1" value="0">
+<label id="dateSlider"></label>
+<input id="slider" type="range" min="0" max="90" step="1" value="0">
+
+<div id="state-legend" class="legend">
+    <div class="rock">Rock</div>
+    <div class="electro">Electro</div>
+    <div class="jazz">Jazz</div>
+    <div class="rap">Rap</div>
+    <div class="chanson">Chanson</div>
+    <div class="divers">Divers</div>
+</div>
 
 <label for="showAll"><b>Show All Events</b></label>
 <input id="showAll" type="checkbox" value="1" class="filter" unchecked/>
+
+<nav id="filter-group" class="filter-group"></nav>
+
+
 
  
 <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
@@ -79,14 +57,15 @@ const map = new mapboxgl.Map({
 container: 'map',
 // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
 style: 'mapbox://styles/mapbox/light-v11',
-
 //style: 'mapbox://styles/mapbox/dark-v11',
-//style: 'mapbox://styles/mapbox/navigation-day-v1',
+
 
 projection: 'winkelTripel',
 center: [4.8292, 45.7465],
 zoom: 12
 });
+
+const filterGroup = document.getElementById('filter-group');
  
 const months = [
 'January',
@@ -103,6 +82,25 @@ const months = [
 'December'
 ];
 
+
+const styles = [
+'Rock',
+'Electro',
+'Jazz',
+'Rap',
+'Chanson Française',
+'Divers'
+];
+
+const mapStyle = new Map();
+mapStyle.set('Rock', 'rgba(23,128,251,0.5)');
+mapStyle.set('Electro', 'rgba(40,124,18,0.5)');
+mapStyle.set('Jazz', 'rgba(255,255,0,0.5)');
+mapStyle.set('Rap', 'rgba(165,2,33,0.5)');
+mapStyle.set('Chanson Française', 'rgba(224,147,40,0.5)');
+mapStyle.set('Divers', 'rgba(230,58,251,0.5)');
+
+
 var showAllValue=false;
 var currentDate = new Date(Date.now()).valueOf();
  
@@ -113,13 +111,19 @@ if(!showAllValue){
     [">=", ['get', 'time'], value],
     ["<=", ['get', 'time'], value+86400000]
     ];
+
     map.setFilter('event-circles', filters);
     map.setFilter('event-labels', filters);
+    
     // Set the label to the slider
-    document.getElementById('month').textContent = new Date(value).toDateString();//
+    document.getElementById('dateSlider').textContent = new Date(value).toDateString();//
 }else{
-    map.setFilter('event-circles', null);
-    map.setFilter('event-labels', null);
+    for (let [key, value] of mapStyle)  {
+       console.log("yo set le filter de "  + key);
+        map.setFilter('event-circles', null);
+        map.setFilter('event-labels', null);
+    }
+    
 }    
 }
 
@@ -146,12 +150,14 @@ return d;
 var transparency = 0.9;
 var transparencyBig = 0.95;
 
+const placesFile= './lyon_place.geojson';
+
 map.addSource('places', {
 type: 'geojson',
 // Use a URL for the value for the `data` property.
-data: './lyon_place.geojson'
+data: placesFile
 });
- 
+
 map.addLayer({
 'id': 'places-circles',
 'type': 'circle',
@@ -185,8 +191,85 @@ map.addSource('events', {
 'type': 'geojson',
 data: data
 });
- 
-map.addLayer({
+
+
+
+/*for (let [key, value] of mapStyle)  {
+    console.log("key"+ key);
+    const layerID = key;
+    if (!map.getLayer(layerID)) {
+        console.log("filter" + layerID);
+        map.addLayer({
+        'id': layerID,
+        'type': 'circle',
+        'source': 'events',
+        'paint': {
+        'circle-color': value,
+        'circle-stroke-color':value,
+        'circle-stroke-width': ["case",["boolean", ["feature-state", "hover"], false],10.0,2.5],
+        'circle-stroke-opacity':[
+        'case',
+        ['boolean', ['feature-state', 'hover'], false],
+        1,
+        0.5
+        ],
+     
+        'circle-radius': [
+            'interpolate',
+            ['linear'],
+            ['get', 'size'],
+            10,
+            10,
+            5000,
+            100
+        ]
+        },
+        'filter': ['==', 'style', layerID]
+        });
+        
+        // Add checkbox and label elements for the layer.
+        const input = document.createElement('input');
+        input.type = 'checkbox';
+        input.id = layerID;
+        input.checked = true;
+        filterGroup.appendChild(input);
+        
+        const label = document.createElement('label');
+        label.setAttribute('for', layerID);
+        label.textContent = key;
+        filterGroup.appendChild(label);
+        
+        // When the checkbox changes, update the visibility of the layer.
+        input.addEventListener('change', (e) => {
+        map.setLayoutProperty(
+        layerID,
+        'visibility',
+        e.target.checked ? 'visible' : 'none'
+        );
+        });
+         // When the user moves their mouse over the state-fill layer, we'll update the
+        // feature state for the feature under the mouse.
+        map.on("mousemove", layerID, function(e) {  
+        if (e.features.length > 0) {  
+        if (hoveredStateId) {
+        map.setFeatureState({source: 'events', id: hoveredStateId}, { hover: false});
+        }
+        hoveredStateId = e.features[0].id;
+        map.setFeatureState({source: 'events', id: hoveredStateId}, { hover: true});
+        }
+        });
+        
+        // When the mouse leaves the state-fill layer, update the feature state of the
+        // previously hovered feature.
+        map.on("mouseleave", layerID, function() {
+        if (hoveredStateId) {
+        map.setFeatureState({source: 'events', id: hoveredStateId}, { hover: false});
+        }
+        hoveredStateId =  null;
+        });
+    }
+}*/
+ map.addLayer({
 'id': 'event-circles',
 'type': 'circle',
 'source': 'events',
@@ -195,24 +278,29 @@ map.addLayer({
         'match',['get', 'style'],
         'Rock', ["case",["boolean", ["feature-state", "hover"], false],'rgba(23,128,251,'+ transparencyBig+')','rgba(23,128,251,'+ transparency+')'],
         'Electro', ["case",["boolean", ["feature-state", "hover"], false],'rgba(40,124,18,'+ transparencyBig+')','rgba(40,124,18,'+ transparency+')'],
-        'Jazz', ["case",["boolean", ["feature-state", "hover"], false],'rgba(23,128,251,'+ transparencyBig+')','rgba(0,0,255,'+ transparency+')'],
+        'Jazz', ["case",["boolean", ["feature-state", "hover"], false],'rgba(255,255,0,'+ transparencyBig+')','rgba(255,255,0,'+ transparency+')'],
         'Rap', ["case",["boolean", ["feature-state", "hover"], false],'rgba(165,2,33,'+ transparencyBig+')','rgba(165,2,33,'+ transparency+')'],
         'Chanson Française', ["case",["boolean", ["feature-state", "hover"], false],'rgba(224,147,40,'+ transparencyBig+')','rgba(224,147,40,'+ transparency+')'],
         'Divers', ["case",["boolean", ["feature-state", "hover"], false],'rgba(230,58,251,'+ transparencyBig+')','rgba(230,58,251,'+ transparency+')'],
-        /* other */ '#ccc'
+        '#ccc'
         ],
 'circle-stroke-color':[
     'match',['get', 'style'],
     'Rock', ["case",["boolean", ["feature-state", "hover"], false],'rgba(23,128,251,'+ transparencyBig+')','rgba(23,128,251,'+ transparency+')'],
     'Electro', ["case",["boolean", ["feature-state", "hover"], false],'rgba(40,124,18,'+ transparencyBig+')','rgba(40,124,18,'+ transparency+')'],
-    'Jazz', ["case",["boolean", ["feature-state", "hover"], false],'rgba(0,0,255,'+ transparencyBig+')','rgba(0,0,255,'+ transparency+')'],
+    'Jazz', ["case",["boolean", ["feature-state", "hover"], false],'rgba(255,255,0,'+ transparencyBig+')','rgba(255,255,0,'+ transparency+')'],
     'Rap', ["case",["boolean", ["feature-state", "hover"], false],'rgba(165,2,33,'+ transparencyBig+')','rgba(165,2,33,'+ transparency+')'],
     'Chanson Française', ["case",["boolean", ["feature-state", "hover"], false],'rgba(224,147,40,'+ transparencyBig+')','rgba(224,147,40,'+ transparency+')'],
-    'Divers', ["case",["boolean", ["feature-state", "hover"], false],'rgba(23,58,251,'+ transparencyBig+')','rgba(23,58,251,'+ transparency+')'],
-    /* other */ '#ccc'
+    'Divers', ["case",["boolean", ["feature-state", "hover"], false],'rgba(230,58,251,'+ transparencyBig+')','rgba(230,58,251,'+ transparency+')'],
+    '#ccc'
     ],
     'circle-stroke-width': ["case",["boolean", ["feature-state", "hover"], false],10.0,2.5],
-    'circle-stroke-opacity':0.5,
+    'circle-stroke-opacity':[
+    'case',
+    ['boolean', ['feature-state', 'hover'], false],
+    1,
+    0.5
+    ],
     'circle-radius': [
     'interpolate',
     ['linear'],
@@ -276,14 +364,14 @@ popup.remove();
 
 
 // Change the cursor to a pointer when the mouse is over the places layer.
-map.on('mouseenter', 'event-circles', () => {
+/*map.on('mouseenter', 'event-circles', () => {
 map.getCanvas().style.cursor = 'pointer';
 });
  
 // Change it back to a pointer when it leaves.
 map.on('mouseleave', 'event-circles', () => {
 map.getCanvas().style.cursor = '';
-});
+});*/
 
 // When a click event occurs on a feature in the places layer, open a popup at the
 // location of the feature, with description HTML from its properties.

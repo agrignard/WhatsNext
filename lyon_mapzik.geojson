@@ -914,6 +914,108 @@
                     }
                 },{
                     "type": "Feature",
+                    "id":581,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.823288269540693,45.74155495036607]
+                    },
+                    "properties": {
+                        "title": "J.E. SUNDE",
+                        "size": 200,
+                        "icon": "marker-15",
+                        "place": "Marché Gare",
+                        "style": "Rock",
+                        "time":1699385408000,
+                        "description":
+                        "<a href='https://marchegare.fr/agenda/je-sunde' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":582,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.823288269540693,45.74155495036607]
+                    },
+                    "properties": {
+                        "title": "PROTOMARTYR",
+                        "size": 200,
+                        "icon": "marker-15",
+                        "place": "Marché Gare",
+                        "style": "Rock",
+                        "time":1699642808000,
+                        "description":
+                        "<a href='https://marchegare.fr/agenda/protomartyr' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":583,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.823288269540693,45.74155495036607]
+                    },
+                    "properties": {
+                        "title": "SOUFFRANCE",
+                        "size": 200,
+                        "icon": "marker-15",
+                        "place": "Marché Gare",
+                        "style": "Rap",
+                        "time":1700161208000,
+                        "description":
+                        "<a href='https://marchegare.fr/agenda/souffrance' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":584,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.823288269540693,45.74155495036607]
+                    },
+                    "properties": {
+                        "title": "OOMPH!",
+                        "size": 200,
+                        "icon": "marker-15",
+                        "place": "Marché Gare",
+                        "style": "Rock",
+                        "time":1700247608000,
+                        "description":
+                        "<a href='https://marchegare.fr/agenda/oomph' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":585,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.823288269540693,45.74155495036607]
+                    },
+                    "properties": {
+                        "title": "BLACK SEA DAHU",
+                        "size": 200,
+                        "icon": "marker-15",
+                        "place": "Marché Gare",
+                        "style": "Rock",
+                        "time":1701198008000,
+                        "description":
+                        "<a href='https://marchegare.fr/agenda/black-sea-dahu' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
+                    "id":586,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.823288269540693,45.74155495036607]
+                    },
+                    "properties": {
+                        "title": "FORUM JAZZ 2023",
+                        "size": 200,
+                        "icon": "marker-15",
+                        "place": "Marché Gare",
+                        "style": "Jazz",
+                        "time":1701370808000,
+                        "description":
+                        "<a href='https://marchegare.fr/agenda/forumjazz-2023' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                },{
+                    "type": "Feature",
                     "id":59,
                     "geometry": {
                         "type": "Point",
@@ -975,7 +1077,7 @@
                         "size": 100,
                         "icon": "marker-15",
                         "place": "La Rayonne",
-                        "style": "Chanson Française",
+                        "style": "Rock",
                         "time":1700249400000,
                         "description":
                         "<a href='https://mediatone.net/evenements/ludwig-von-88-le-reparateur-resto-basket/' target='blank'title='Opens in a new window'>Prog</a>"
