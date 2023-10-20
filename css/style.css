@@ -1,0 +1,175 @@
+.map-overlay {
+    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    position: absolute;
+    width: 100%;
+    bottom:0;
+    }
+     
+    .map-overlay .map-overlay-inner {
+    background-color: #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    padding: 10px;
+    margin-bottom: 10px;
+    }
+     
+    .map-overlay h2 {
+    line-height: 24px;
+
+    margin: 0 0 0px;
+    top:0
+    }
+     
+    .map-overlay .legend .bar {
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #fca107, #7f3121);
+    }
+     
+    .map-overlay input {
+    background-color: transparent;
+    display: inline-block;
+    width: 100%;
+    position: relative;
+    margin: 0;
+    cursor: ew-resize;
+    }
+    
+    .filter-group {
+    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+    border-radius: 3px;
+    width: 120px;
+    color: #fff;
+    }
+     
+    .filter-group input[type='checkbox']:first-child + label {
+    border-radius: 3px 3px 0 0;
+    }
+     
+    .filter-group label:last-child {
+    border-radius: 0 0 3px 3px;
+    border: none;
+    }
+     
+    .filter-group input[type='checkbox'] {
+    display: none;
+    }
+     
+    .filter-group input[type='checkbox'] + label {
+    background-color: #3386c0;
+    display: block;
+    cursor: pointer;
+    padding: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    }
+     
+    .filter-group input[type='checkbox'] + label {
+    background-color: #3386c0;
+    text-transform: capitalize;
+    }
+     
+    .filter-group input[type='checkbox'] + label:hover,
+    .filter-group input[type='checkbox']:checked + label {
+    background-color: #4ea0da;
+    }
+     
+    .filter-group input[type='checkbox']:checked + label:before {
+    content: '✔';
+    margin-right: 5px;
+    }
+    
+    .legend {
+    background-color: #fff;
+    border-radius: 3px;
+    bottom: 0px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.0);
+    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    padding: 0px;
+    position: relative;
+    z-index: 1;
+    }
+     
+    .legend h4 {
+    margin: 0 0 10px;
+    }
+     
+    .legend div span {
+    border-radius: 100%;
+    display: inline-block;
+    height: 10px;
+    margin-right: 5px;
+    width: 10px;
+    }
+
+    .rock {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 50%;
+        font-size: 10px;
+        color: #111;
+        text-align: center;
+        background: rgba(23,128,251,0.5);
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .electro {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 50%;
+        font-size: 10px;
+        color: #111;
+        text-align: center;
+        background: rgba(40,124,18,0.5);
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .jazz {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 50%;
+        font-size: 10px;
+        color: #111;
+        text-align: center;
+        background: rgba(255,255,0,0.5);
+        display: inline-block;
+        margin-right: 10px;
+    }
+    .rap {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 50%;
+        font-size: 10px;
+        color: #111;
+        text-align: center;
+        background: rgba(165,2,33,0.5);
+        display: inline-block;
+        margin-right: 10px;
+    }
+    .divers {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 50%;
+        font-size: 10px;
+        color: #111;
+        text-align: center;
+        background: rgba(224,147,40,0.5);
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .titre{
+     top:0   
+    }
+   

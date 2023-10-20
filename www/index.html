@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>EVENT FINDER</title>
+<title>WHATSNEXT</title>
 <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
@@ -18,13 +18,14 @@ body { margin: 0; padding: 0; }
 
 </style>
  
+
 <div id="map"></div>
  
 <div class="map-overlay top">
 <div class="map-overlay-inner">
 
 
-<label for="calendar">Date</label>
+<label for="calendar"><h2>WHATSNEXT</h2></label>
 <input id="calendar" type="date" min="2023-10-16" max="2023-12-31"/>
 
 <label id="dateSlider"></label>
@@ -38,14 +39,13 @@ body { margin: 0; padding: 0; }
     <div class="divers">Divers</div>
 </div>
 
-<label for="showAll"><b>Show All Events</b></label>
-<input id="showAll" type="checkbox" value="1" class="filter" unchecked/>
 
-<nav id="filter-group" class="filter-group"></nav>
+<!--<label for="showAll"><b>Show All Events</b></label>-->
+<input id="showAll" type="hidden" value="1" class="filter" unchecked/>
 
+</div>
+</div>
 
-
- 
 <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script>
 	// TO MAKE THE MAP APPEAR YOU MUST
@@ -57,11 +57,9 @@ container: 'map',
 // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
 style: 'mapbox://styles/mapbox/light-v11',
 //style: 'mapbox://styles/mapbox/dark-v11',
-
-
 projection: 'globe',
 center: [4.85, 45.7465],
-zoom: 12
+zoom: 11
 });
 
 const filterGroup = document.getElementById('filter-group');
@@ -335,8 +333,10 @@ document.getElementById("calendar").valueAsDate = new Date(Date.now);
 
 document.getElementById('slider').addEventListener('input', (e) => {
 const sliderValue = parseInt(e.target.value, 10);
-const newDateAsInt = parseInt(currentDate.valueOf()) + parseInt((sliderValue*86400000));
+const tmpDate= new Date(currentDate);
+const newDateAsInt = tmpDate.setDate(tmpDate.getDate() + sliderValue).valueOf();
 appDate=newDateAsInt;
+
 filterBy(newDateAsInt,false);
 });
 
@@ -464,6 +464,5 @@ map.on('click', 'places-circles', (e) => {
 
 
 </script>
- 
 </body>
 </html>

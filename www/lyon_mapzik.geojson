@@ -2017,6 +2017,23 @@
                         "description":
                         "<a href='https://www.halle-tony-garnier.com/fr/programmation/michel-sardou' target='blank'title='Opens in a new window'>Prog</a>"
                     }
+                 },{
+                    "type": "Feature",
+                    "id":118,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.877406759088646,45.77987153345585]
+                    },
+                    "properties": {
+                        "title": "Soirée brésilienne - Avec FORRÓFA et DEIXA GINGAR",
+                        "size": 100,
+                        "icon": "marker-15",
+                        "place": "Toi Toi le Zinc",
+                        "style": "Divers",
+                        "time":1697823000000,
+                        "description":
+                        "<a href='https://www.toitoilezinc.fr/evenement/1037086/soiree-bresilienne-avec-forrofa-et-deixa-gingar/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
                  }]
 }
 
