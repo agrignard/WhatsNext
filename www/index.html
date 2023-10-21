@@ -9,42 +9,38 @@
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
 <style>
 body { margin: 0; padding: 0; }
-#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+#map { position:absolute; top:0; bottom:0; width:100%; }
 </style>
 </head>
 <body>
-<style>
 
 
-</style>
- 
 
 <div id="map"></div>
  
 <div class="map-overlay top">
 <div class="map-overlay-inner">
-
-
-<label for="calendar"><h2>WHATSNEXT</h2></label>
+<div style='display:none;'>
+<label for="calendar" ><h2>WHATSNEXT</h2></label>
 <input id="calendar" type="date" min="2023-10-16" max="2023-12-31"/>
-
+</div>
+<h2>WhatsNext</h2>
+<div class="slider">
 <label id="dateSlider"></label>
 <input id="slider" type="range" min="0" max="90" step="1" value="0">
-
-<div id="state-legend" class="legend">
+</div>
+<div id="state-legend" class=".legendoverlay">
     <div class="rock">Rock</div>
     <div class="electro">Electro</div>
     <div class="jazz">Jazz</div>
     <div class="rap">Rap</div>
     <div class="divers">Divers</div>
 </div>
-
+<h1></h1>
 
 <!--<label for="showAll"><b>Show All Events</b></label>-->
 <input id="showAll" type="hidden" value="1" class="filter" unchecked/>
 
-</div>
-</div>
 
 <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script>
@@ -64,29 +60,7 @@ zoom: 11
 
 const filterGroup = document.getElementById('filter-group');
  
-const months = [
-'January',
-'February',
-'March',
-'April',
-'May',
-'June',
-'July',
-'August',
-'September',
-'October',
-'November',
-'December'
-];
 
-
-const styles = [
-'Rock',
-'Electro',
-'Jazz',
-'Rap',
-'Divers'
-];
 
 const mapStyle = new Map();
 mapStyle.set('Rock', 'rgba(23,128,251,0.5)');
@@ -94,6 +68,17 @@ mapStyle.set('Electro', 'rgba(40,124,18,0.5)');
 mapStyle.set('Jazz', 'rgba(255,255,0,0.5)');
 mapStyle.set('Rap', 'rgba(165,2,33,0.5)');
 mapStyle.set('Divers', 'rgba(224,147,40,0.5)');
+
+
+const days = [
+'Sunday',
+'Monday',
+'Tuesday',
+'Wednesday',
+'Thursday',
+'Friday',
+'Saturday'
+];
 
 
 var showAllValue=false;
@@ -113,7 +98,7 @@ if(!showAllValue){
     map.setFilter('event-labels', filters);
     
     // Set the label to the slider
-    document.getElementById('dateSlider').textContent = new Date(value).getDate()+ "/" + parseInt(new Date(value).getMonth()+1) + "/" + new Date(value).getFullYear();  ;
+    document.getElementById('dateSlider').textContent = days[new Date(value).getDay()] + " " + new Date(value).getDate()+ "/" + parseInt(new Date(value).getMonth()+1) + "/" + new Date(value).getFullYear();  ;
 }else{
         var filters = [
         "all",     
@@ -124,9 +109,7 @@ if(!showAllValue){
         map.setFilter('event-labels', filters);
         document.getElementById('dateSlider').textContent = new Date(value).getDate()+ "/" + parseInt(new Date(value).getMonth()+1)  + "/" + new Date(value).getFullYear()+ "++";
         /*map.setFilter('event-circles', null);
-        map.setFilter('event-labels', null);*/
-    
-    
+        map.setFilter('event-labels', null);*/ 
 }    
 }
 
@@ -195,83 +178,6 @@ map.addSource('events', {
 data: data
 });
 
-
-
-/*for (let [key, value] of mapStyle)  {
-    console.log("key"+ key);
-    const layerID = key;
-    if (!map.getLayer(layerID)) {
-        console.log("filter" + layerID);
-        map.addLayer({
-        'id': layerID,
-        'type': 'circle',
-        'source': 'events',
-        'paint': {
-        'circle-color': value,
-        'circle-stroke-color':value,
-        'circle-stroke-width': ["case",["boolean", ["feature-state", "hover"], false],10.0,2.5],
-        'circle-stroke-opacity':[
-        'case',
-        ['boolean', ['feature-state', 'hover'], false],
-        1,
-        0.5
-        ],
-     
-        'circle-radius': [
-            'interpolate',
-            ['linear'],
-            ['get', 'size'],
-            10,
-            10,
-            5000,
-            100
-        ]
-        },
-        'filter': ['==', 'style', layerID]
-        });
-        
-        // Add checkbox and label elements for the layer.
-        const input = document.createElement('input');
-        input.type = 'checkbox';
-        input.id = layerID;
-        input.checked = true;
-        filterGroup.appendChild(input);
-        
-        const label = document.createElement('label');
-        label.setAttribute('for', layerID);
-        label.textContent = key;
-        filterGroup.appendChild(label);
-        
-        // When the checkbox changes, update the visibility of the layer.
-        input.addEventListener('change', (e) => {
-        map.setLayoutProperty(
-        layerID,
-        'visibility',
-        e.target.checked ? 'visible' : 'none'
-        );
-        });
-         // When the user moves their mouse over the state-fill layer, we'll update the
-        // feature state for the feature under the mouse.
-        map.on("mousemove", layerID, function(e) {  
-        if (e.features.length > 0) {  
-        if (hoveredStateId) {
-        map.setFeatureState({source: 'events', id: hoveredStateId}, { hover: false});
-        }
-        hoveredStateId = e.features[0].id;
-        map.setFeatureState({source: 'events', id: hoveredStateId}, { hover: true});
-        }
-        });
-        
-        // When the mouse leaves the state-fill layer, update the feature state of the
-        // previously hovered feature.
-        map.on("mouseleave", layerID, function() {
-        if (hoveredStateId) {
-        map.setFeatureState({source: 'events', id: hoveredStateId}, { hover: false});
-        }
-        hoveredStateId =  null;
-        });
-    }
-}*/
  map.addLayer({
 'id': 'event-circles',
 'type': 'circle',
@@ -402,12 +308,9 @@ coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
  
 new mapboxgl.Popup()
 .setLngLat(coordinates)
-.setHTML("<h4>" + title + "</h4><b>Place:</b> "+place+"<br><b>Style:</b> "+style+"<br><b>Time:</b> "+new Date(time).toUTCString()+"+2"+ "<br><b>Description:</b> "+description)
+.setHTML("<h4>" + title + "</h4><b>Place:</b> "+place+"<br><b>Style:</b> "+style+"<br><b>Time:</b> "+new Date(time) + "<br><b>Description:</b> "+description)
 .addTo(map);
 });
-
-
-
 
 // When the user moves their mouse over the state-fill layer, we'll update the
 // feature state for the feature under the mouse.
@@ -461,8 +364,6 @@ map.on('click', 'places-circles', (e) => {
     .setHTML(html)
     .addTo(map);*/
 });
-
-
 </script>
 </body>
 </html>
