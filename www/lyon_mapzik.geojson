@@ -2578,6 +2578,312 @@
                         "description":
                         "<a href='https://www.transbordeur.fr/agenda-2023-2024/georgio-jeu-07-dec-23/' target='blank'title='Opens in a new window'>Prog</a>"
                     }
+                 },{
+                    "type": "Feature",
+                    "id":151,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.827652324068464,45.74698143235602]
+                    },
+                    "properties": {
+                        "title": "Radio Hito",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Périscope",
+                        "style": "Divers",
+                        "time":1697914800000,
+                        "description":
+                        "<a href='https://www.periscope-lyon.com/en/concerts/radio-hito-solo-2/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":152,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.827652324068464,45.74698143235602]
+                    },
+                    "properties": {
+                        "title": "Kling Extendted",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Périscope",
+                        "style": "Divers",
+                        "time":1698174000000,
+                        "description":
+                        "<a href='https://www.periscope-lyon.com/en/concerts/kling-extendted/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":153,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.827652324068464,45.74698143235602]
+                    },
+                    "properties": {
+                        "title": "Nappy Nina + Stas Thee Boss",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Périscope",
+                        "style": "Rap",
+                        "time":1698433200000,
+                        "description":
+                        "<a href='https://www.periscope-lyon.com/en/concerts/nappy-nina-stas-thee-boss-2/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":154,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.827652324068464,45.74698143235602]
+                    },
+                    "properties": {
+                        "title": "Kaumwald + MTUA + Gil.Barte",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Périscope",
+                        "style": "Divers",
+                        "time":1698782400000,
+                        "description":
+                        "<a href='https://www.periscope-lyon.com/en/concerts/kaumwald-mtua-gil-barte-gauthier-plaetevoet-2/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":155,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.827652324068464,45.74698143235602]
+                    },
+                    "properties": {
+                        "title": "MADMADMAD + Omni Selassi",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Périscope",
+                        "style": "Rock",
+                        "time":1698868800000,
+                        "description":
+                        "<a href='https://www.periscope-lyon.com/en/concerts/madmadmad-omni-selassi-2/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":156,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.827652324068464,45.74698143235602]
+                    },
+                    "properties": {
+                        "title": "Oursin",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Périscope",
+                        "style": "Divers",
+                        "time":1699041600000,
+                        "description":
+                        "<a href='https://www.periscope-lyon.com/en/concerts/oursin-2/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":157,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.827652324068464,45.74698143235602]
+                    },
+                    "properties": {
+                        "title": "Bitchin Bajas",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Périscope",
+                        "style": "Divers",
+                        "time":1699387200000,
+                        "description":
+                        "<a href='https://www.periscope-lyon.com/en/concerts/bitchin-bajas/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":158,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.827652324068464,45.74698143235602]
+                    },
+                    "properties": {
+                        "title": "Elg et La chimie",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Périscope",
+                        "style": "Divers",
+                        "time":1699473600000,
+                        "description":
+                        "<a href='https://www.periscope-lyon.com/en/concerts/elg-et-la-chimie-2/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":159,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.827652324068464,45.74698143235602]
+                    },
+                    "properties": {
+                        "title": "Vincent Courtois, Robin Fincker et Daniel Erdmann",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Périscope",
+                        "style": "Jazz",
+                        "time":1699646400000,
+                        "description":
+                        "<a href='https://www.periscope-lyon.com/en/concerts/vincent-courtois-robin-fincker-et-daniel-erdmann-2/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":160,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.827652324068464,45.74698143235602]
+                    },
+                    "properties": {
+                        "title": "Howlin’ Jaws + Vera Daisiesi",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Périscope",
+                        "style": "Rock",
+                        "time":1699732800000,
+                        "description":
+                        "<a href='https://www.periscope-lyon.com/en/concerts/howlin-jaws-2/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":161,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.827652324068464,45.74698143235602]
+                    },
+                    "properties": {
+                        "title": "SAN Trio",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Périscope",
+                        "style": "Divers",
+                        "time":1700078400000,
+                        "description":
+                        "<a href='https://www.periscope-lyon.com/en/concerts/san-trio/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":162,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.827652324068464,45.74698143235602]
+                    },
+                    "properties": {
+                        "title": "Maciej Obara Quartet",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Périscope",
+                        "style": "Rock",
+                        "time":1700251200000,
+                        "description":
+                        "<a href='https://www.periscope-lyon.com/en/concerts/maciej-obara-quartet-3/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":163,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.827652324068464,45.74698143235602]
+                    },
+                    "properties": {
+                        "title": "ElliAViR",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Périscope",
+                        "style": "Divers",
+                        "time":1700596800000,
+                        "description":
+                        "<a href='https://www.periscope-lyon.com/en/concerts/elliavir-2/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":164,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.827652324068464,45.74698143235602]
+                    },
+                    "properties": {
+                        "title": "Amin Al Aiedy – SHAMS",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Périscope",
+                        "style": "Divers",
+                        "time":1700596800000,
+                        "description":
+                        "<a href='https://www.periscope-lyon.com/en/concerts/amin-al-aiedy-shams-2/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":165,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.827652324068464,45.74698143235602]
+                    },
+                    "properties": {
+                        "title": "Safia Nolin + Claire Days",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Périscope",
+                        "style": "Rock",
+                        "time":1700856000000,
+                        "description":
+                        "<a href='https://www.periscope-lyon.com/en/concerts/safia-nolin-claire-days-2/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":166,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.827652324068464,45.74698143235602]
+                    },
+                    "properties": {
+                        "title": "Henriette Eilersten Trio",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Périscope",
+                        "style": "Jazz",
+                        "time":1700942400000,
+                        "description":
+                        "<a href='https://www.periscope-lyon.com/en/concerts/henriette-eilersten-trio/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":167,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.827652324068464,45.74698143235602]
+                    },
+                    "properties": {
+                        "title": "CHROMB!",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Périscope",
+                        "style": "Rock",
+                        "time":1701201600000,
+                        "description":
+                        "<a href='https://www.periscope-lyon.com/en/concerts/chromb-5/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":168,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.827652324068464,45.74698143235602]
+                    },
+                    "properties": {
+                        "title": "Bestioles Blues Bazar",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Périscope",
+                        "style": "Rock",
+                        "time":1701288000000,
+                        "description":
+                        "<a href='https://www.periscope-lyon.com/en/concerts/howlin-jaws-2/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
                  }]
 }
 
