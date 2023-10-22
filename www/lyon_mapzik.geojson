@@ -171,7 +171,7 @@
                     },
                     "properties": {
                         "title": "Kid Congo & The Pink Monkey Birds + Pervitin",
-                        "size": 50,
+                        "size": 250,
                         "icon": "marker-15",
                         "place": "Sonic",
                         "style": "Rock",
@@ -189,7 +189,7 @@
                     },
                     "properties": {
                         "title": "Blues Lawyer + Modesto",
-                        "size": 50,
+                        "size": 250,
                         "icon": "marker-15",
                         "place": "Sonic",
                         "style": "Rock",
@@ -207,7 +207,7 @@
                     },
                     "properties": {
                         "title": "point de suture (release party!) + Cyprine",
-                        "size": 50,
+                        "size": 250,
                         "icon": "marker-15",
                         "place": "Sonic",
                         "style": "Rock",
@@ -225,7 +225,7 @@
                     },
                     "properties": {
                         "title": "RUE OBERKAMPF + Rank",
-                        "size": 50,
+                        "size": 250,
                         "icon": "marker-15",
                         "place": "Sonic",
                         "style": "Rock",
@@ -243,7 +243,7 @@
                     },
                     "properties": {
                         "title": "Peter Kernel + Vera Daisies",
-                        "size": 50,
+                        "size": 250,
                         "icon": "marker-15",
                         "place": "Sonic",
                         "style": "Rock",
@@ -261,7 +261,7 @@
                     },
                     "properties": {
                         "title": "The Courettes",
-                        "size": 50,
+                        "size": 250,
                         "icon": "marker-15",
                         "place": "Sonic",
                         "style": "Rock",
@@ -279,7 +279,7 @@
                     },
                     "properties": {
                         "title": "Die Selektion + vipères sucrées salées",
-                        "size": 50,
+                        "size": 250,
                         "icon": "marker-15",
                         "place": "Sonic",
                         "style": "Rock",
@@ -297,7 +297,7 @@
                     },
                     "properties": {
                         "title": "Sharped Records party",
-                        "size": 50,
+                        "size": 250,
                         "icon": "marker-15",
                         "place": "Sonic",
                         "style": "Rock",
@@ -423,7 +423,7 @@
                     },
                     "properties": {
                         "title": "JARRING FEST",
-                        "size": 50,
+                        "size": 250,
                         "icon": "marker-15",
                         "place": "Marché Gare",
                         "style": "Electro",
@@ -870,7 +870,7 @@
                     },
                     "properties": {
                         "title": "CYRIOUS & FRIENDS",
-                        "size": 200,
+                        "size": 250,
                         "icon": "marker-15",
                         "place": "Marché Gare",
                         "style": "Rock",
@@ -904,7 +904,7 @@
                     },
                     "properties": {
                         "title": "MELBA + LE NOISEUR",
-                        "size": 200,
+                        "size": 250,
                         "icon": "marker-15",
                         "place": "Marché Gare",
                         "style": "Rock",
@@ -921,7 +921,7 @@
                     },
                     "properties": {
                         "title": "J.E. SUNDE",
-                        "size": 200,
+                        "size": 250,
                         "icon": "marker-15",
                         "place": "Marché Gare",
                         "style": "Rock",
@@ -955,7 +955,7 @@
                     },
                     "properties": {
                         "title": "SOUFFRANCE",
-                        "size": 200,
+                        "size": 250,
                         "icon": "marker-15",
                         "place": "Marché Gare",
                         "style": "Rap",
@@ -972,7 +972,7 @@
                     },
                     "properties": {
                         "title": "OOMPH!",
-                        "size": 200,
+                        "size": 250,
                         "icon": "marker-15",
                         "place": "Marché Gare",
                         "style": "Rock",
@@ -989,7 +989,7 @@
                     },
                     "properties": {
                         "title": "BLACK SEA DAHU",
-                        "size": 200,
+                        "size": 250,
                         "icon": "marker-15",
                         "place": "Marché Gare",
                         "style": "Rock",
@@ -1006,7 +1006,7 @@
                     },
                     "properties": {
                         "title": "FORUM JAZZ 2023",
-                        "size": 200,
+                        "size": 250,
                         "icon": "marker-15",
                         "place": "Marché Gare",
                         "style": "Jazz",
@@ -1057,11 +1057,11 @@
                     },
                     "properties": {
                         "title": "ROMANE SANTARELLI + MAUVAIS GARÇON",
-                        "size": 200,
+                        "size": 250,
                         "icon": "marker-15",
                         "place": "Marché Gare",
                         "style": "Electro",
-                        "time":1697308200000,
+                        "time":1702580400000,
                         "description":
                         "<a href='https://mediatone.net/evenements/romane-santarelli-mauvais-garcon/' target='blank'title='Opens in a new window'>Prog</a>"
                     }
@@ -2883,6 +2883,516 @@
                         "time":1701288000000,
                         "description":
                         "<a href='https://www.periscope-lyon.com/en/concerts/howlin-jaws-2/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":169,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.826150943299402,45.73090400519471]
+                    },
+                    "properties": {
+                        "title": "JAIN",
+                        "size": 1000,
+                        "icon": "marker-15",
+                        "place": "Halle Tony Garnier",
+                        "style": "Rock",
+                        "time":1698429600000,
+                        "description":
+                        "<a href='https://www.halle-tony-garnier.com/fr/programmation/jain' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":170,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.826150943299402,45.73090400519471]
+                    },
+                    "properties": {
+                        "title": "GAZO",
+                        "size": 1000,
+                        "icon": "marker-15",
+                        "place": "Halle Tony Garnier",
+                        "style": "Rap",
+                        "time":1699556400000,
+                        "description":
+                        "<a href='https://www.halle-tony-garnier.com/fr/programmation/gazo' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":171,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.826150943299402,45.73090400519471]
+                    },
+                    "properties": {
+                        "title": "LES COWBOYS FRINGANTS",
+                        "size": 1000,
+                        "icon": "marker-15",
+                        "place": "Halle Tony Garnier",
+                        "style": "Rock",
+                        "time":1699642800000,
+                        "description":
+                        "<a href='https://www.halle-tony-garnier.com/fr/programmation/les-cowboys-fringants' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":172,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.826150943299402,45.73090400519471]
+                    },
+                    "properties": {
+                        "title": "LOMEPAL",
+                        "size": 1000,
+                        "icon": "marker-15",
+                        "place": "Halle Tony Garnier",
+                        "style": "Divers",
+                        "time":1699812000000,
+                        "description":
+                        "<a href='https://www.halle-tony-garnier.com/fr/programmation/lomepal-3' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":173,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.826150943299402,45.73090400519471]
+                    },
+                    "properties": {
+                        "title": "DJADJA & DINAZ",
+                        "size": 1000,
+                        "icon": "marker-15",
+                        "place": "Halle Tony Garnier",
+                        "style": "Divers",
+                        "time":1700852400000,
+                        "description":
+                        "<a href='https://www.halle-tony-garnier.com/fr/programmation/djadja-dinaz' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":174,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.826150943299402,45.73090400519471]
+                    },
+                    "properties": {
+                        "title": "SAEZ",
+                        "size": 1000,
+                        "icon": "marker-15",
+                        "place": "Halle Tony Garnier",
+                        "style": "Rock",
+                        "time":1700938800000,
+                        "description":
+                        "<a href='https://www.halle-tony-garnier.com/fr/programmation/saez' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":175,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.826150943299402,45.73090400519471]
+                    },
+                    "properties": {
+                        "title": "M POKORA",
+                        "size": 1000,
+                        "icon": "marker-15",
+                        "place": "Halle Tony Garnier",
+                        "style": "Divers",
+                        "time":1702407600000,
+                        "description":
+                        "<a href='https://www.halle-tony-garnier.com/fr/programmation/m-pokora' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":176,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.826150943299402,45.73090400519471]
+                    },
+                    "properties": {
+                        "title": "PASCAL OBISPO",
+                        "size": 1000,
+                        "icon": "marker-15",
+                        "place": "Halle Tony Garnier",
+                        "style": "Rock",
+                        "time":1702580400000,
+                        "description":
+                        "<a href='https://www.halle-tony-garnier.com/fr/programmation/pascal-obispo' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":177,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.826150943299402,45.73090400519471]
+                    },
+                    "properties": {
+                        "title": "SOFIANE PAMART",
+                        "size": 1000,
+                        "icon": "marker-15",
+                        "place": "Halle Tony Garnier",
+                        "style": "Divers",
+                        "time":1702666800000,
+                        "description":
+                        "<a href='https://www.halle-tony-garnier.com/fr/programmation/sofiane-pamart' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":178,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.826150943299402,45.73090400519471]
+                    },
+                    "properties": {
+                        "title": "MICHEL SARDOU",
+                        "size": 1000,
+                        "icon": "marker-15",
+                        "place": "Halle Tony Garnier",
+                        "style": "Divers",
+                        "time":1703098800000,
+                        "description":
+                        "<a href='https://www.halle-tony-garnier.com/fr/programmation/michel-sardou-2' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":179,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.826150943299402,45.73090400519471]
+                    },
+                    "properties": {
+                        "title": "I HATE MODELS",
+                        "size": 1000,
+                        "icon": "marker-15",
+                        "place": "Halle Tony Garnier",
+                        "style": "Electro",
+                        "time":1705777200000,
+                        "description":
+                        "<a href='https://www.halle-tony-garnier.com/fr/programmation/i-hate-models' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":180,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.8200061963556395,45.75104322798962]
+                    },
+                    "properties": {
+                        "title": "Das Kinn",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Sonic",
+                        "style": "Rock",
+                        "time":1699124400000,
+                        "description":
+                        "<a href='https://sonic-lyon.fr/facebook-event/das-kinn-premiere-partie/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":181,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.8200061963556395,45.75104322798962]
+                    },
+                    "properties": {
+                        "title": "FACS",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Sonic",
+                        "style": "Rock",
+                        "time":1699383600000,
+                        "description":
+                        "<a href='https://sonic-lyon.fr/facebook-event/facs/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":182,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.8200061963556395,45.75104322798962]
+                    },
+                    "properties": {
+                        "title": "Agent Side Grinder",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Sonic",
+                        "style": "Rock",
+                        "time":1699902000000,
+                        "description":
+                        "<a href='https://sonic-lyon.fr/facebook-event/agent-side-grinder/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":183,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.8200061963556395,45.75104322798962]
+                    },
+                    "properties": {
+                        "title": "Hey colossus",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Sonic",
+                        "style": "Rock",
+                        "time":1699729200000,
+                        "description":
+                        "<a href='https://sonic-lyon.fr/facebook-event/hey-colossus-premiere-partie/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":184,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.8200061963556395,45.75104322798962]
+                    },
+                    "properties": {
+                        "title": "Leo Leonard + Sara Saphir",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Sonic",
+                        "style": "Rock",
+                        "time":1700161200000,
+                        "description":
+                        "<a href='https://sonic-lyon.fr/facebook-event/leo-leonard-sara-saphir/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":185,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.8200061963556395,45.75104322798962]
+                    },
+                    "properties": {
+                        "title": "Holy Wave + TV Sundaze",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Sonic",
+                        "style": "Rock",
+                        "time":1700593200000,
+                        "description":
+                        "<a href='https://sonic-lyon.fr/facebook-event/holy-wave/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":186,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.8200061963556395,45.75104322798962]
+                    },
+                    "properties": {
+                        "title": "Nuovo Testamento",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Sonic",
+                        "style": "Rock",
+                        "time":1701457200000,
+                        "description":
+                        "<a href='https://sonic-lyon.fr/facebook-event/nuovo-testamento/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":187,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.8200061963556395,45.75104322798962]
+                    },
+                    "properties": {
+                        "title": "Hilary Woods + Elisa Flores",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Sonic",
+                        "style": "Rock",
+                        "time":1701802800000,
+                        "description":
+                        "<a href='https://sonic-lyon.fr/facebook-event/hilary-woods-elisa-flores/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":188,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.827652324068464,45.74698143235602]
+                    },
+                    "properties": {
+                        "title": "Kokoko!",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Périscope",
+                        "style": "Divers",
+                        "time":1701806400000,
+                        "description":
+                        "<a href='https://www.periscope-lyon.com/concerts/kokoko/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":189,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.827652324068464,45.74698143235602]
+                    },
+                    "properties": {
+                        "title": "Why Patterns?",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Périscope",
+                        "style": "Divers",
+                        "time":1701892800000,
+                        "description":
+                        "<a href='https://www.periscope-lyon.com/concerts/why-patterns/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":190,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.827652324068464,45.74698143235602]
+                    },
+                    "properties": {
+                        "title": "Colin Stetson X Stian Westerhus – 1017",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Périscope",
+                        "style": "Jazz",
+                        "time":1702584000000,
+                        "description":
+                        "<a href='https://www.periscope-lyon.com/concerts/colin-stetson-x-stian-westerhus-1017/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":191,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.827652324068464,45.74698143235602]
+                    },
+                    "properties": {
+                        "title": "Les Marquises + Agathe Max",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Périscope",
+                        "style": "Divers",
+                        "time":1702670400000,
+                        "description":
+                        "<a href='https://www.periscope-lyon.com/concerts/les-marquises-agathe-max/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":192,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.827652324068464,45.74698143235602]
+                    },
+                    "properties": {
+                        "title": "Ti’Kaniki Kabar Maloya Fet Kaf",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Le Périscope",
+                        "style": "Rock",
+                        "time":1702756800000,
+                        "description":
+                        "<a href='https://www.periscope-lyon.com/concerts/tikaniki-kabar-maloya-fet-kaf/' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":193,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.823288269540693,45.74155495036607]
+                    },
+                    "properties": {
+                        "title": "FORUM JAZZ 2023",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Marché Gare",
+                        "style": "Jazz",
+                        "time":1701450000000,
+                        "description":
+                        "<a href='https://marchegare.fr/agenda/forumjazz-2023' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":194,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.823288269540693,45.74155495036607]
+                    },
+                    "properties": {
+                        "title": "SILLY BOY BLUE",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Marché Gare",
+                        "style": "Rock",
+                        "time":1702666800000,
+                        "description":
+                        "<a href='https://marchegare.fr/agenda/silly-boy-blue' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":195,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.823288269540693,45.74155495036607]
+                    },
+                    "properties": {
+                        "title": "GIANT ROOKS",
+                        "size": 250,
+                        "icon": "marker-15",
+                        "place": "Marché Gare",
+                        "style": "Rock",
+                        "time":1704826800000,
+                        "description":
+                        "<a href='https://marchegare.fr/agenda/giant-rooks' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":196,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.823288269540693,45.74155495036607]
+                    },
+                    "properties": {
+                        "title": "UGO DEL ROSSO",
+                        "size": 100,
+                        "icon": "marker-15",
+                        "place": "Marché Gare",
+                        "style": "Divers",
+                        "time":1700566200000,
+                        "description":
+                        "<a href='https://marchegare.fr/agenda/ugo-del-rosso' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":197,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.823288269540693,45.74155495036607]
+                    },
+                    "properties": {
+                        "title": "MONARK",
+                        "size": 100,
+                        "icon": "marker-15",
+                        "place": "Marché Gare",
+                        "style": "Divers",
+                        "time":1701775800000,
+                        "description":
+                        "<a href='https://marchegare.fr/agenda/monark' target='blank'title='Opens in a new window'>Prog</a>"
+                    }
+                 },{
+                    "type": "Feature",
+                    "id":198,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates":  [4.847594718492895,45.755974264407975]
+                    },
+                    "properties": {
+                        "title": "MARLÈNE LARSEN",
+                        "size": 100,
+                        "icon": "marker-15",
+                        "place": "Salle des Rancy",
+                        "style": "Divers",
+                        "time":1701775800000,
+                        "description":
+                        "<a href='https://marchegare.fr/agenda/marlene-larsen' target='blank'title='Opens in a new window'>Prog</a>"
                     }
                  }]
 }
