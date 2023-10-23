@@ -793,6 +793,110 @@
                         "description":"https://www.lpslyon.fr/"
                         
                     }
+                },{
+                    "type": "Feature",
+                    "id":61,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.805288231932393,45.77146427487765]
+                    },
+                    "properties": {
+                        "title": "Ninkasi Gorge du Loup",
+                        "icon": "marker-15",
+                        "description":"https://www.ninkasi.fr/lieux/ninkasi-gorge-de-loup/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":62,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.8792028318165785,45.7691706463425]
+                    },
+                    "properties": {
+                        "title": "Ninkasi Gratte Ciel",
+                        "icon": "marker-15",
+                        "description":"https://www.ninkasi.fr/lieux/ninkasi-gratte-ciel/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":62,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.8410423842345285,45.756186539778]
+                    },
+                    "properties": {
+                        "title": "Ninkasi Guillotière",
+                        "icon": "marker-15",
+                        "description":"https://www.ninkasi.fr/lieux/ninkasi-guillotiere/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":63,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.919605013198062,45.761002862894913]
+                    },
+                    "properties": {
+                        "title": "Ninkasi La Soie",
+                        "icon": "marker-15",
+                        "description":"https://www.ninkasi.fr/lieux/ninkasi-la-soie/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":64,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.980168945083201,45.76728901140007]
+                    },
+                    "properties": {
+                        "title": "Ninkasi OL Vallée",
+                        "icon": "marker-15",
+                        "description":"https://www.ninkasi.fr/lieux/ninkasi-ol-vallee/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":65,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.858261920165393,45.75781579067708]
+                    },
+                    "properties": {
+                        "title": "Ninkasi Part-Dieu",
+                        "icon": "marker-15",
+                        "description":"https://www.ninkasi.fr/lieux/ninkasi-part-dieu/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":66,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.828005683638858,45.76593080133774]
+                    },
+                    "properties": {
+                        "title": "Ninkasi Saint Paul",
+                        "icon": "marker-15",
+                        "description":"https://www.ninkasi.fr/lieux/ninkasi-saint-paul/"
+                        
+                    }
+                },{
+                    "type": "Feature",
+                    "id":66,
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.812824461129642,45.788306965548486]
+                    },
+                    "properties": {
+                        "title": "Ninkasi Vaise",
+                        "icon": "marker-15",
+                        "description":"https://www.ninkasi.fr/lieux/ninkasi-vaise/"
+                        
+                    }
                 }]
 }
  

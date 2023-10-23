@@ -7,6 +7,7 @@
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
 body { margin: 0; padding: 0; }
 #map { position:absolute; top:0; bottom:0; width:100%; }
@@ -38,8 +39,8 @@ body { margin: 0; padding: 0; }
 </div>
 <h1></h1>
 
-<!--<label for="showAll"><b>Show All Events</b></label>-->
-<input id="showAll" type="hidden" value="1" class="filter" unchecked/>
+<label for="showAll" style="display:none"><b>Show All Events</b></label>
+<input id="showAll" type="checkbox" style="display:none" class="filter" unchecked/>
 
 
 <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
@@ -60,8 +61,6 @@ zoom: 11
 
 const filterGroup = document.getElementById('filter-group');
  
-
-
 const mapStyle = new Map();
 mapStyle.set('Rock', 'rgba(23,128,251,0.5)');
 mapStyle.set('Electro', 'rgba(40,124,18,0.5)');
@@ -80,12 +79,23 @@ const days = [
 'Saturday'
 ];
 
+const placeToCoord = new Map();
+
+
 
 var showAllValue=false;
 var currentDate = new Date(Date.now());
 var appDate;
 currentDate.setHours(0,0,0);
  
+
+if (showAllValue){
+    document.getElementById('showAll').hidden = false;
+}else{
+    document.getElementById('showAll').hidden = true;
+}
+
+
 function filterBy(value,byday) {  
 if(!showAllValue){
     var filters = [
@@ -128,8 +138,9 @@ if (err) {
 // Create a month property value based on time
 // used to filter against.
 data.features = data.features.map((d) => {
-d.properties.month = new Date(d.properties.time).getMonth();
-d.properties.day = new Date(d.properties.time).getDay();
+//Set the geometry according to the place (needs to exists in the place list)
+d.geometry.type = "Point";
+d.geometry.coordinates = placeToCoord.get(d.properties.place);
 return d;
 });
 
@@ -259,7 +270,7 @@ filterBy(currentDate.valueOf(),false);
 document.getElementById('showAll').addEventListener('input', (e) => {
 showAllValue= document.getElementById("showAll").checked;
 if(showAllValue){
-//document.getElementById('slider').value = 0;   
+  document.getElementById('slider').value = 0;   
 }
 filterBy(currentDate.valueOf(),false)
 });
@@ -364,6 +375,75 @@ map.on('click', 'places-circles', (e) => {
     .setHTML(html)
     .addTo(map);*/
 });
+</script>
+<!--<canvas id="chart" width="400" height="100"></canvas>->-->  
+<script>
+
+
+
+
+initPlaceInformation();
+//chartIt()
+
+async function initPlaceInformation(){
+    const xs = [];
+    const ys = [];
+    const response = await fetch('lyon_place.geojson');
+    const data =   await response.json();
+    console.log("Nb Places: " + data.features.length);
+    for (var i = 0; i < data.features.length; i++) {
+        placeToCoord.set(data.features[i].properties.title,data.features[i].geometry.coordinates);
+    }
+}
+
+
+async function getData(){
+    const xs = [];
+    const ys = [];
+    const response = await fetch('fakeplace.csv');
+    const data =   await response.text();
+    console.log(data);
+    const table = data.split('\n').slice(1);
+    console.log(table);
+    table.forEach(row => {
+        const columns = row.split(','); 
+        const name=columns[0];
+        xs.push(name);
+        const place=columns[1];
+        xs.push(place);
+        const time=columns[2];
+        const url=columns[3];
+        console.log(name,place,time,url);
+    })
+    return {xs,ys};
+}
+
+async function chartIt(){
+    const data = await getData();
+    const ctx = document.getElementById('chart');
+    
+    const myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels:data.xs,
+        //labels: ['Rock', 'Electro', 'Jazz', 'Rap', 'Divers'],
+        datasets: [{
+        label: 'Event',
+        data:data.ys,
+        //data: [12, 19, 3, 5, 2],
+        borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+        y: {
+            beginAtZero: true
+        }
+        }
+    }
+    });
+}
+
 </script>
 </body>
 </html>
