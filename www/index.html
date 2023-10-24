@@ -58,7 +58,7 @@ if (darkMode){
     darkstyle= 'mapbox://styles/mapbox/dark-v11';
 }
 
-var devMode = false;
+var devMode = true;
 var showAllValue = devMode ? true : false;
 
 const canvasShowAll = document.getElementById('showAll');
@@ -469,6 +469,7 @@ async function chartIt(){
             }
         }
         });
+        canvas2.style.display = 'block';
         const eventbydateInformation = await getNbEventPerDay(currentDate);
         console.log(eventbydateInformation);
         
@@ -490,7 +491,8 @@ async function chartIt(){
 
 
     }else{
-        canvas.style.display = 'none'; 
+        canvas1.style.display = 'none'; 
+        canvas2.style.display = 'none'; 
     } 
 }
 </script>
