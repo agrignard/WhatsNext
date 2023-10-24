@@ -38,10 +38,11 @@ body { margin: 0; padding: 0; }
 <h1></h1>
 
 <input id="showAll" type="checkbox" name="showAll"/>
+<div id="eventList" width="400" height="100"></div>
 <div>
     <canvas id="chart1" width="400" height="50"></canvas>
     <canvas id="chart2" width="400" height="50"></canvas>
-  </div>
+</div>
 
 
 
@@ -59,10 +60,11 @@ if (darkMode){
 }
 
 var devMode = true;
-var showAllValue = devMode ? true : false;
+var showAllValueDiv = devMode ? true : false;
+var showAllValue = false;
 
 const canvasShowAll = document.getElementById('showAll');
-if (showAllValue){
+if (showAllValueDiv){
     canvasShowAll.style.display = 'block';
     canvasShowAll.checked = false;
 }else{
@@ -234,14 +236,18 @@ map.addLayer({
 filterBy(currentDate.valueOf(),false);
 document.getElementById("calendar").valueAsDate = new Date(Date.now);
 
-document.getElementById('slider').addEventListener('input', (e) => {
+document.getElementById('slider').addEventListener('input', async (e) => {
 const sliderValue = parseInt(e.target.value, 10);
 const tmpDate= new Date(currentDate);
 const newDateAsInt = tmpDate.setDate(tmpDate.getDate() + sliderValue).valueOf();
 appDate=newDateAsInt;
 
 filterBy(newDateAsInt,false);
-getNbEventPerPlace(new Date(appDate));
+//getNbEventPerPlace(new Date(appDate));
+    const canvas = document.getElementById('eventList');
+    var todayInformation;
+    todayInformation = await getTodayEvents(new Date(appDate));
+    canvas.textContent = todayInformation;
 });
 
 
@@ -366,16 +372,13 @@ initPlaceInformation();
 //getEventInformation()
 chartIt();
 
-
 async function initPlaceInformation(){
-    const xs = [];
-    const ys = [];
     const response = await fetch('lyon_place.geojson');
     const data =   await response.json();
-    console.log("Nb Places: " + data.features.length);
     for (var i = 0; i < data.features.length; i++) {
         placeToCoord.set(data.features[i].properties.title,data.features[i].geometry.coordinates);
     }
+    console.log("Total places: " + placeToCoord.size);
 }
 
 async function getNbEventPerPlace(_date){
@@ -404,7 +407,6 @@ async function getNbEventPerDay(_date){
         if(data.features[i].properties.time>_date){
             const tmpDate = new Date(data.features[i].properties.time);
             tmpDate.setHours(4,0,0);
-            console.log("JOUR:" + tmpDate );
             keyEntry = days[tmpDate.getDay()] + " " + tmpDate.getDate() + "/" + (parseInt(tmpDate.getMonth())+1);
                        
             if (nbEventPerDay.has(keyEntry)) {
@@ -438,12 +440,21 @@ async function getTodayEvents(_date){
             } 
         }
     }
-    console.log( todaysEvent);
-    return todaysEvent;
+    //console.log( todaysEvent);
+    let mapString = '';
+
+    for (const [key, value] of todaysEvent) {
+    mapString += "| " + key +" | \n";// + value + "\n";
+    }
+    return mapString;
 }
 
 
 async function chartIt(){
+    const canvas = document.getElementById('eventList');
+    const todayInformation = await getTodayEvents(currentDate);
+    canvas.textContent = todayInformation;
+    canvas.style.display = 'block';
     const canvas1 = document.getElementById('chart1');
     const canvas2 = document.getElementById('chart2');
     const ctx1 = canvas1.getContext('2d');
@@ -471,7 +482,6 @@ async function chartIt(){
         });
         canvas2.style.display = 'block';
         const eventbydateInformation = await getNbEventPerDay(currentDate);
-        console.log(eventbydateInformation);
         
         const myChart2 = new Chart(ctx2, {
         type: 'bar',
