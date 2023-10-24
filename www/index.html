@@ -15,8 +15,6 @@ body { margin: 0; padding: 0; }
 </head>
 <body>
 
-
-
 <div id="map"></div>
  
 <div class="map-overlay top">
@@ -39,8 +37,12 @@ body { margin: 0; padding: 0; }
 </div>
 <h1></h1>
 
-<label for="showAll" style="display:none"><b>Show All Events</b></label>
-<input id="showAll" type="checkbox" style="display:none" class="filter" unchecked/>
+<input id="showAll" type="checkbox" name="showAll"/>
+<div>
+    <canvas id="chart1" width="400" height="50"></canvas>
+    <canvas id="chart2" width="400" height="50"></canvas>
+  </div>
+
 
 
 <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
@@ -48,19 +50,33 @@ body { margin: 0; padding: 0; }
 	// TO MAKE THE MAP APPEAR YOU MUST
 	// ADD YOUR ACCESS TOKEN FROM
 	// https://account.mapbox.com
-	mapboxgl.accessToken = 'pk.eyJ1IjoiYWdyaWduYXJkIiwiYSI6ImNqdWZ6ZjJ5MDBoenczeXBkYWU3bTk5ajYifQ.SXiCzAGs4wbMlw3RHRvxhw';
+mapboxgl.accessToken = 'pk.eyJ1IjoiYWdyaWduYXJkIiwiYSI6ImNqdWZ6ZjJ5MDBoenczeXBkYWU3bTk5ajYifQ.SXiCzAGs4wbMlw3RHRvxhw';
+
+const darkMode=false;
+var darkstyle= 'mapbox://styles/mapbox/light-v11';
+if (darkMode){
+    darkstyle= 'mapbox://styles/mapbox/dark-v11';
+}
+
+var devMode = false;
+var showAllValue = devMode ? true : false;
+
+const canvasShowAll = document.getElementById('showAll');
+if (showAllValue){
+    canvasShowAll.style.display = 'block';
+    canvasShowAll.checked = false;
+}else{
+    canvasShowAll.style.display = 'none';
+}
+
 const map = new mapboxgl.Map({
 container: 'map',
-// Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-style: 'mapbox://styles/mapbox/light-v11',
-//style: 'mapbox://styles/mapbox/dark-v11',
+style: darkstyle,
 projection: 'globe',
 center: [4.85, 45.7465],
 zoom: 11
 });
 
-const filterGroup = document.getElementById('filter-group');
- 
 const mapStyle = new Map();
 mapStyle.set('Rock', 'rgba(23,128,251,0.5)');
 mapStyle.set('Electro', 'rgba(40,124,18,0.5)');
@@ -68,34 +84,16 @@ mapStyle.set('Jazz', 'rgba(255,255,0,0.5)');
 mapStyle.set('Rap', 'rgba(165,2,33,0.5)');
 mapStyle.set('Divers', 'rgba(224,147,40,0.5)');
 
-
-const days = [
-'Sunday',
-'Monday',
-'Tuesday',
-'Wednesday',
-'Thursday',
-'Friday',
-'Saturday'
-];
+const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 
 const placeToCoord = new Map();
+var todaysEvent = new Map();
+var nbActiveEvent;
 
-
-
-var showAllValue=false;
 var currentDate = new Date(Date.now());
+currentDate.setHours(2,0,0);
 var appDate;
-currentDate.setHours(0,0,0);
  
-
-if (showAllValue){
-    document.getElementById('showAll').hidden = false;
-}else{
-    document.getElementById('showAll').hidden = true;
-}
-
-
 function filterBy(value,byday) {  
 if(!showAllValue){
     var filters = [
@@ -103,30 +101,22 @@ if(!showAllValue){
     [">=", ['get', 'time'], value],
     ["<=", ['get', 'time'], value+86400000]
     ];
-
     map.setFilter('event-circles', filters);
     map.setFilter('event-labels', filters);
-    
-    // Set the label to the slider
     document.getElementById('dateSlider').textContent = days[new Date(value).getDay()] + " " + new Date(value).getDate()+ "/" + parseInt(new Date(value).getMonth()+1) + "/" + new Date(value).getFullYear();  ;
 }else{
-        var filters = [
-        "all",     
-        [">=", ['get', 'time'], value]
-        ];
-
-        map.setFilter('event-circles', filters);
-        map.setFilter('event-labels', filters);
-        document.getElementById('dateSlider').textContent = new Date(value).getDate()+ "/" + parseInt(new Date(value).getMonth()+1)  + "/" + new Date(value).getFullYear()+ "++";
-        /*map.setFilter('event-circles', null);
-        map.setFilter('event-labels', null);*/ 
+    var filters = [
+    "all",     
+    [">=", ['get', 'time'], value]
+    ];
+    map.setFilter('event-circles', filters);
+    map.setFilter('event-labels', filters);
+    document.getElementById('dateSlider').textContent = new Date(value).getDate()+ "/" + parseInt(new Date(value).getMonth()+1)  + "/" + new Date(value).getFullYear()+ "++";
 }    
 }
 
 var hoveredStateId =  null; 
 map.on('load', () => {
-// Here we're using d3 to help us make the ajax request but you can use
-// Any request method (library or otherwise) you wish.
 d3.json('./lyon_mapzik.geojson',jsonCallback);
 });
  
@@ -135,24 +125,20 @@ if (err) {
   throw err;
 }
  
-// Create a month property value based on time
-// used to filter against.
+// MATCH Coordinates in link with the place
 data.features = data.features.map((d) => {
-//Set the geometry according to the place (needs to exists in the place list)
-d.geometry.type = "Point";
-d.geometry.coordinates = placeToCoord.get(d.properties.place);
-return d;
+    d.geometry.type = "Point";
+    d.geometry.coordinates = placeToCoord.get(d.properties.place);
+    return d;
 });
 
 var transparency = 0.9;
 var transparencyBig = 0.95;
 
 const placesFile= './lyon_place.geojson';
-
-map.addSource('places', {
-type: 'geojson',
-// Use a URL for the value for the `data` property.
-data: placesFile
+    map.addSource('places', {
+    type: 'geojson',
+    data: placesFile
 });
 
 map.addLayer({
@@ -162,8 +148,8 @@ map.addLayer({
 'paint': {
 'circle-radius': 4,
 'circle-stroke-width': 2,
-'circle-color': 'black',
-'circle-stroke-color': 'white'
+'circle-color': !darkMode ? 'black' : 'rgba(125,125,125,0.5)',
+'circle-stroke-color': !darkMode ? 'white' : 'black'
 }
 });
 
@@ -178,7 +164,7 @@ map.addLayer({
     "text-anchor": "top"
 },
 'paint': {
-'text-color': 'rgba(0,0,0,0.5)'
+'text-color': !darkMode ? 'rgba(0,0,0,0.5)' : 'rgba(125,125,125,0.5)' 
 }
 });
 
@@ -255,6 +241,7 @@ const newDateAsInt = tmpDate.setDate(tmpDate.getDate() + sliderValue).valueOf();
 appDate=newDateAsInt;
 
 filterBy(newDateAsInt,false);
+getNbEventPerPlace(new Date(appDate));
 });
 
 
@@ -375,15 +362,10 @@ map.on('click', 'places-circles', (e) => {
     .setHTML(html)
     .addTo(map);*/
 });
-</script>
-<!--<canvas id="chart" width="400" height="100"></canvas>->-->  
-<script>
-
-
-
-
 initPlaceInformation();
-//chartIt()
+//getEventInformation()
+chartIt();
+
 
 async function initPlaceInformation(){
     const xs = [];
@@ -396,54 +378,121 @@ async function initPlaceInformation(){
     }
 }
 
-
-async function getData(){
-    const xs = [];
-    const ys = [];
-    const response = await fetch('fakeplace.csv');
-    const data =   await response.text();
-    console.log(data);
-    const table = data.split('\n').slice(1);
-    console.log(table);
-    table.forEach(row => {
-        const columns = row.split(','); 
-        const name=columns[0];
-        xs.push(name);
-        const place=columns[1];
-        xs.push(place);
-        const time=columns[2];
-        const url=columns[3];
-        console.log(name,place,time,url);
-    })
-    return {xs,ys};
-}
-
-async function chartIt(){
-    const data = await getData();
-    const ctx = document.getElementById('chart');
-    
-    const myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels:data.xs,
-        //labels: ['Rock', 'Electro', 'Jazz', 'Rap', 'Divers'],
-        datasets: [{
-        label: 'Event',
-        data:data.ys,
-        //data: [12, 19, 3, 5, 2],
-        borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-        y: {
-            beginAtZero: true
-        }
+async function getNbEventPerPlace(_date){
+    const response = await fetch('lyon_mapzik.geojson');
+    const data =   await response.json();
+    const nbEventPerPlace = new Map();
+    nbActiveEvent=0;
+    for (var i = 0; i < data.features.length; i++) {
+        if(data.features[i].properties.time>_date){
+            if (nbEventPerPlace.has(data.features[i].properties.place)) {
+                nbEventPerPlace.set(data.features[i].properties.place, nbEventPerPlace.get(data.features[i].properties.place) + 1);
+            } else {
+                nbEventPerPlace.set(data.features[i].properties.place, 1);
+            }
+            nbActiveEvent = nbActiveEvent+1;
         }
     }
-    });
+    return nbEventPerPlace;
 }
 
+async function getNbEventPerDay(_date){
+    const response = await fetch('lyon_mapzik.geojson');
+    const data =   await response.json();
+    const nbEventPerDay = new Map();
+    for (var i = 0; i < data.features.length; i++) {
+        if(data.features[i].properties.time>_date){
+            const tmpDate = new Date(data.features[i].properties.time);
+            tmpDate.setHours(4,0,0);
+            console.log("JOUR:" + tmpDate );
+            keyEntry = days[tmpDate.getDay()] + " " + tmpDate.getDate() + "/" + (parseInt(tmpDate.getMonth())+1);
+                       
+            if (nbEventPerDay.has(keyEntry)) {
+                nbEventPerDay.set(keyEntry, nbEventPerDay.get(keyEntry) + 1);
+            } else {
+                nbEventPerDay.set(keyEntry, 1);
+            }
+        }
+    }
+    const keysArray = Array.from(nbEventPerDay.keys());
+    keysArray.sort((a, b) => a - b);
+    const sortedMap = new Map();
+
+    for (const key of keysArray) {
+    sortedMap.set(key, nbEventPerDay.get(key));
+    }
+    return sortedMap;
+}
+
+
+async function getTodayEvents(_date){
+    const response = await fetch('lyon_mapzik.geojson');
+    const data =   await response.json();
+    var nbEventToday=0;
+    todaysEvent=new Map();
+    for (var i = 0; i < data.features.length; i++) {
+        if(data.features[i].properties.time>_date){
+            if(data.features[i].properties.time<(_date.getTime() + 86400000)){
+                todaysEvent.set(data.features[i].properties.place,data.features[i].properties.title);
+                nbEventToday= nbEventToday+1;
+            } 
+        }
+    }
+    console.log( todaysEvent);
+    return todaysEvent;
+}
+
+
+async function chartIt(){
+    const canvas1 = document.getElementById('chart1');
+    const canvas2 = document.getElementById('chart2');
+    const ctx1 = canvas1.getContext('2d');
+    const ctx2 = canvas2.getContext('2d');
+    if(devMode){
+        canvas1.style.display = 'block';
+        const eventInformation = await getNbEventPerPlace(currentDate);
+        const myChart = new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            labels:Array.from(eventInformation.keys()),
+            datasets: [{
+            label: 'Number of Event per Places (Places: ' + eventInformation.size + " - Event: " + nbActiveEvent + " )",
+            data:Array.from(eventInformation.values()),
+            borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+            y: {
+                beginAtZero: true
+            }
+            }
+        }
+        });
+        const eventbydateInformation = await getNbEventPerDay(currentDate);
+        console.log(eventbydateInformation);
+        
+        const myChart2 = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels:Array.from(eventbydateInformation.keys()),
+            datasets: [{
+            label: 'Number of Event per Days (Days: ' +eventbydateInformation.size +')',
+            data:Array.from(eventbydateInformation.values()),
+            borderWidth: 1
+            }]
+        },
+        options:  {y: {
+                beginAtZero: true
+            }
+        }
+        });
+
+
+    }else{
+        canvas.style.display = 'none'; 
+    } 
+}
 </script>
 </body>
 </html>
