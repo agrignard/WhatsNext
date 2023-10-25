@@ -31,7 +31,7 @@ body { margin: 0; padding: 0; }
     <div class="rap">Rap</div>
     <div class="divers">Divers</div>
 </div>
-<div id="eventList" width="400" height="100"></div>
+<div id="eventList" class="eventList-div"></div>
 <div class="slider">
 <label id="dateSlider"></label>
 <input id="slider" type="range" min="0" max="90" step="1" value="0">
@@ -90,6 +90,7 @@ mapStyle.set('Divers', 'rgba(224,147,40,0.5)');
 const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 
 const placeToCoord = new Map();
+var places= [];
 var todaysEvent = new Map();
 var nbActiveEvent;
 
@@ -378,6 +379,7 @@ async function initPlaceInformation(){
     const data =   await response.json();
     for (var i = 0; i < data.features.length; i++) {
         placeToCoord.set(data.features[i].properties.title,data.features[i].geometry.coordinates);
+        places.push(data.features[i].properties.title);
     }
     console.log("Total places: " + placeToCoord.size);
 }
@@ -387,6 +389,11 @@ async function getNbEventPerPlace(_date){
     const data =   await response.json();
     const nbEventPerPlace = new Map();
     nbActiveEvent=0;
+    //Initialize the number of event per place to 0
+    for (var j = 0; j < places.length;j++){
+        nbEventPerPlace.set(places[j], 0);
+    }
+    console.log("bon ba y tant d'event potentiel " + nbEventPerPlace.size);
     for (var i = 0; i < data.features.length; i++) {
         if(data.features[i].properties.time>_date){
             if (nbEventPerPlace.has(data.features[i].properties.place)) {
@@ -397,7 +404,13 @@ async function getNbEventPerPlace(_date){
             nbActiveEvent = nbActiveEvent+1;
         }
     }
-    return nbEventPerPlace;
+    function sortMapByValue(map) {
+        const sortedArray = [...map].sort((a, b) => b[1] - a[1]); // Sort by values in ascending order
+        return new Map(sortedArray);
+    }
+    const sortedMap = sortMapByValue(nbEventPerPlace);
+
+    return sortedMap;
 }
 
 async function getNbEventPerDay(_date){

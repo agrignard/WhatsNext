@@ -164,4 +164,13 @@
         display: inline-block;
         margin-left: 30px;
     }
-   
+    
+
+    .eventList-div {
+        width: 100%; /* Fixed width */
+        height: 25px; /* Fixed height */
+        border: 1px; /* Optional border for styling */
+        overflow: hidden; /* Hide overflowing content */
+        white-space: nowrap; /* Prevent text from wrapping */
+        text-overflow: ellipsis; /* Add an ellipsis (...) for long text */
+      }
