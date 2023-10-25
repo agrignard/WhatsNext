@@ -74,7 +74,7 @@ fs.readFile(existingGeoJSONPath, 'utf8', (err, data) => {
         "place": place,
         "style": style,
         "time":time,
-        "description":"<a href='"+url+"' target='blank'title='Opens in a new window'>Prog</a>"
+        "description":url
     },
     };
     existingGeoJSON.features.push(newFeature);

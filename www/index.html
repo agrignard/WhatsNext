@@ -31,6 +31,9 @@ body { margin: 0; padding: 0; }
     <div class="rap">Rap</div>
     <div class="divers">Divers</div>
 </div>
+
+<canvas id="myCircleCanvas"></canvas>
+
 <div id="eventList" class="eventList-div"></div>
 <div class="slider">
 <label id="dateSlider"></label>
@@ -63,6 +66,7 @@ if (darkMode){
 var devMode = true;
 var showAllValueDiv = devMode ? true : false;
 var showAllValue = false;
+updateCircleLegend();
 
 const canvasShowAll = document.getElementById('showAll');
 if (showAllValueDiv){
@@ -117,6 +121,15 @@ if(!showAllValue){
     map.setFilter('event-labels', filters);
     document.getElementById('dateSlider').textContent = new Date(value).getDate()+ "/" + parseInt(new Date(value).getMonth()+1)  + "/" + new Date(value).getFullYear()+ "++";
 }    
+}
+
+function filterByStyle(value) {  
+    var filters = [
+    "all",    
+    ["==", ['get', 'style'], value]
+    ];
+    map.setFilter('event-circles', filters);
+    map.setFilter('event-labels', filters);
 }
 
 var hoveredStateId =  null; 
@@ -246,10 +259,11 @@ appDate=newDateAsInt;
 
 filterBy(newDateAsInt,false);
 //getNbEventPerPlace(new Date(appDate));
-    const canvas = document.getElementById('eventList');
-    var todayInformation;
-    todayInformation = await getTodayEvents(new Date(appDate));
-    canvas.textContent = todayInformation;
+const canvas = document.getElementById('eventList');
+var todayInformation;
+todayInformation = await getTodayEvents(new Date(appDate));
+canvas.textContent = todayInformation;
+updateCircleLegend();
 });
 
 
@@ -311,10 +325,19 @@ var time = e.features[0].properties.time;
 while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
 coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
 }
- 
+var urlString="";
+if(description.length == 1){
+  urlString= "";
+}else{
+  
+  urlString= "<a href="+description+" target=   'blank'title='Opens in a new window'>Prog</a>";
+}
+
+console.log(description);
+//console.log("urlString"+urlString);
 new mapboxgl.Popup()
 .setLngLat(coordinates)
-.setHTML("<h4>" + title + "</h4><b>Place:</b> "+place+"<br><b>Style:</b> "+style+"<br><b>Time:</b> "+new Date(time) + "<br><b>Description:</b> "+"<a href="+description+" target=   'blank'title='Opens in a new window'>Prog</a>")
+.setHTML("<h4>" + title + "</h4><b>Place:</b> "+place+"<br><b>Style:</b> "+style+"<br><b>Time:</b> "+new Date(time) + "<br><b>Description:</b> "+urlString)
 .addTo(map);
 });
 
@@ -373,6 +396,7 @@ map.on('click', 'places-circles', (e) => {
 initPlaceInformation();
 //getEventInformation()
 chartIt();
+
 
 async function initPlaceInformation(){
     const response = await fetch('lyon_place.geojson');
@@ -458,7 +482,7 @@ async function getTodayEvents(_date){
     let mapString = '';
 
     for (const [key, value] of todaysEvent) {
-    mapString += "| " + key +" | \n";// + value + "\n";
+    mapString += " "+ key +" |";// + value + "\n";
     }
     return mapString;
 }
@@ -469,11 +493,13 @@ async function chartIt(){
     const todayInformation = await getTodayEvents(currentDate);
     canvas.textContent = todayInformation;
     canvas.style.display = 'block';
+    const canvas0 = document.getElementById('myCircleCanvas');
     const canvas1 = document.getElementById('chart1');
     const canvas2 = document.getElementById('chart2');
     const ctx1 = canvas1.getContext('2d');
     const ctx2 = canvas2.getContext('2d');
     if(devMode){
+        canvas0.style.display = 'block';
         canvas1.style.display = 'block';
         const eventInformation = await getNbEventPerPlace(currentDate);
         const myChart = new Chart(ctx1, {
@@ -515,9 +541,88 @@ async function chartIt(){
 
 
     }else{
+        canvas0.style.display = 'none'; 
         canvas1.style.display = 'none'; 
         canvas2.style.display = 'none'; 
     } 
+}
+
+async function updateCircleLegend(){
+    // Get the canvas element and its 2d rendering context
+const canvas = document.getElementById('myCircleCanvas');
+const ctx = canvas.getContext('2d');
+
+const circles = [
+  { x: 50, y: 100, radius: 15, value: 'Rock', color: 'rgba(23,128,251,0.5)' },
+  { x: 100, y: 100, radius: 15, value: 'Electro', color: 'rgba(40,124,18,0.5)' },
+  { x: 150, y: 100, radius: 15, value: 'Jazz', color: 'rgba(255,255,0,0.5)' },
+  { x: 200, y: 100, radius: 15, value: 'Rap', color: 'rgba(165,2,33,0.5)' },
+  { x: 250, y: 100, radius: 15, value: 'Divers', color: 'rgba(224,147,40,0.5)' }
+];
+
+let selectedCircle = null;
+
+canvas.addEventListener('click', function (event) {
+  const rect = canvas.getBoundingClientRect();
+  const mouseX = event.clientX - rect.left;
+  const mouseY = event.clientY - rect.top;
+
+  circles.forEach(circle => {
+    const dx = mouseX - circle.x;
+    const dy = mouseY - circle.y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    if (distance <= circle.radius) {
+      // Toggle selection
+      if (selectedCircle === circle) {
+        selectedCircle = null; // Deselect the circle
+      } else {
+        selectedCircle = circle; // Select the circle
+      }
+
+      // Redraw all circles
+      drawCircles();
+    }
+  });
+});
+
+function drawCircles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  circles.forEach(circle => {
+    ctx.beginPath();
+    ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
+
+    // Set the fill color based on the selection
+    if (selectedCircle === null) {
+      // When no circle is selected, retain their original color
+      ctx.fillStyle = circle.color;
+    } else if (selectedCircle === circle) {
+      // The selected circle keeps its original color
+      ctx.fillStyle = circle.color;
+      console.log("ok mec on filtre par " + circle.value);
+      filterByStyle(circle.value);
+    } else {
+      // Non-selected circles are in gray
+      ctx.fillStyle = 'gray';
+    }
+
+    ctx.fill();
+    ctx.strokeStyle = circle.color;
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    ctx.closePath();
+
+    ctx.font = '8px Arial';
+    ctx.fillStyle = "black";
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(circle.value, circle.x, circle.y);
+  });
+}
+
+// Initial drawing of circles
+drawCircles();
 }
 </script>
 </body>
