@@ -24,10 +24,6 @@ body { margin: 0; padding: 0; }
 <input id="calendar" type="date" min="2023-10-16" max="2023-12-31"/>
 </div>
 <h2>WhatsNext</h2>
-<div class="slider">
-<label id="dateSlider"></label>
-<input id="slider" type="range" min="0" max="90" step="1" value="0">
-</div>
 <div id="state-legend" class=".legendoverlay">
     <div class="rock">Rock</div>
     <div class="electro">Electro</div>
@@ -35,10 +31,15 @@ body { margin: 0; padding: 0; }
     <div class="rap">Rap</div>
     <div class="divers">Divers</div>
 </div>
+<div id="eventList" width="400" height="100"></div>
+<div class="slider">
+<label id="dateSlider"></label>
+<input id="slider" type="range" min="0" max="90" step="1" value="0">
+</div>
 <h1></h1>
 
 <input id="showAll" type="checkbox" name="showAll"/>
-<div id="eventList" width="400" height="100"></div>
+
 <div>
     <canvas id="chart1" width="400" height="50"></canvas>
     <canvas id="chart2" width="400" height="50"></canvas>
@@ -119,7 +120,7 @@ if(!showAllValue){
 
 var hoveredStateId =  null; 
 map.on('load', () => {
-d3.json('./lyon_mapzik.geojson',jsonCallback);
+d3.json('./lyon_event.geojson',jsonCallback);
 });
  
 function jsonCallback(err, data) {
@@ -312,7 +313,7 @@ coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
  
 new mapboxgl.Popup()
 .setLngLat(coordinates)
-.setHTML("<h4>" + title + "</h4><b>Place:</b> "+place+"<br><b>Style:</b> "+style+"<br><b>Time:</b> "+new Date(time) + "<br><b>Description:</b> "+description)
+.setHTML("<h4>" + title + "</h4><b>Place:</b> "+place+"<br><b>Style:</b> "+style+"<br><b>Time:</b> "+new Date(time) + "<br><b>Description:</b> "+"<a href="+description+" target=   'blank'title='Opens in a new window'>Prog</a>")
 .addTo(map);
 });
 
@@ -382,7 +383,7 @@ async function initPlaceInformation(){
 }
 
 async function getNbEventPerPlace(_date){
-    const response = await fetch('lyon_mapzik.geojson');
+    const response = await fetch('lyon_event.geojson');
     const data =   await response.json();
     const nbEventPerPlace = new Map();
     nbActiveEvent=0;
@@ -400,7 +401,7 @@ async function getNbEventPerPlace(_date){
 }
 
 async function getNbEventPerDay(_date){
-    const response = await fetch('lyon_mapzik.geojson');
+    const response = await fetch('lyon_event.geojson');
     const data =   await response.json();
     const nbEventPerDay = new Map();
     for (var i = 0; i < data.features.length; i++) {
@@ -428,7 +429,7 @@ async function getNbEventPerDay(_date){
 
 
 async function getTodayEvents(_date){
-    const response = await fetch('lyon_mapzik.geojson');
+    const response = await fetch('lyon_event.geojson');
     const data =   await response.json();
     var nbEventToday=0;
     todaysEvent=new Map();

@@ -14,7 +14,7 @@
         "place": "Marché Gare",
         "style": "Rock",
         "time":1697116852000,
-        "description":"<a href='https://www.infoconcert.com/ticket/concert-h-jeunecrack-lyon/1567691.html' target='blank'title='Opens in a new window'>Here</a>"
+        "description":"https://www.infoconcert.com/ticket/concert-h-jeunecrack-lyon/1567691.html"
         
     }
 },
@@ -32,7 +32,7 @@
         "place": "Le Trokson",
         "style": "Rock",
         "time":1697221247000,
-        "description":"<a href='https://www.infoconcert.com/ticket/concert-basement-delights-lyon/1607011.html' target='blank'title='Opens in a new window'>Here</a>"
+        "description":"https://www.infoconcert.com/ticket/concert-basement-delights-lyon/1607011.html"
         
     }
 },
@@ -50,7 +50,7 @@
         "place": "Transbordeur",
         "style": "Rock",
         "time":1697566847000,
-        "description":"<a href='https://www.transbordeur.fr/agenda-2023-2024/the-sisters-of-mercy-mar-17-oct-23/' target='blank'title='Opens in a new window'>Here</a>"
+        "description":"https://www.transbordeur.fr/agenda-2023-2024/the-sisters-of-mercy-mar-17-oct-23/"
         
     }
 },
@@ -68,7 +68,7 @@
         "place": "Le Radiant",
         "style": "Rock",
         "time":1698085247000,
-        "description":"<a href='https://radiant-bellevue.fr/spectacles/peter-doherty-frederic-lo/' target='blank'title='Opens in a new window'>Here</a>"
+        "description":"https://radiant-bellevue.fr/spectacles/peter-doherty-frederic-lo/"
         
     }
 },
@@ -86,7 +86,7 @@
         "place": "Le Sucre",
         "style": "Rap",
         "time":1698430847000,
-        "description":"<a href='https://le-sucre.eu/artiste/realo/' target='blank'title='Opens in a new window'>Here</a>"
+        "description":"https://le-sucre.eu/artiste/realo/"
         
     }
 },
@@ -104,7 +104,7 @@
         "place": "Ninkasi Gerland",
         "style": "Rap",
         "time":1698517847000,
-        "description":"<a href='https://www.ninkasi.fr/agenda/lord-esperanza-rap-kao/' target='blank'title='Opens in a new window'>Prog</a>"
+        "description":"https://www.ninkasi.fr/agenda/lord-esperanza-rap-kao/"
         
     }
 },
@@ -123,7 +123,7 @@
         "style": "Jazz",
         "time":1697567447000,
         "description":
-        "<a href='https://www.periscope-lyon.com/concerts/ava-mendoza-farida-amadou/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.periscope-lyon.com/concerts/ava-mendoza-farida-amadou/"
     }
 },
 {
@@ -141,7 +141,7 @@
         "style": "Divers",
         "time":1697653847000,
         "description":
-        "<a href='https://www.bourse-du-travail.com/asaf-avidan-tournee-180462.html' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.bourse-du-travail.com/asaf-avidan-tournee-180462.html"
     }
 },
 {
@@ -159,7 +159,7 @@
         "style": "Electro",
         "time":1697740247000,
         "description":
-        "<a href='https://www.toitoilezinc.fr/evenement/986700/exodus/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.toitoilezinc.fr/evenement/986700/exodus/"
     }
 },
 {
@@ -177,7 +177,7 @@
         "style": "Rock",
         "time":1697481047000,
         "description":
-        "<a href='https://sonic-lyon.fr/facebook-event/4528/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://sonic-lyon.fr/facebook-event/4528/"
     }
 },
 {
@@ -195,7 +195,7 @@
         "style": "Rock",
         "time":1697567447000,
         "description":
-        "<a href='https://sonic-lyon.fr/facebook-event/blues-lawyer/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://sonic-lyon.fr/facebook-event/blues-lawyer/"
     }
 },
 {
@@ -213,7 +213,7 @@
         "style": "Rock",
         "time":1697653847000,
         "description":
-        "<a href='https://sonic-lyon.fr/facebook-event/point-de-suture-release-party-cyprine/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://sonic-lyon.fr/facebook-event/point-de-suture-release-party-cyprine/"
     }
 },
 {
@@ -231,7 +231,7 @@
         "style": "Rock",
         "time":1697740247000,
         "description":
-        "<a href='https://sonic-lyon.fr/facebook-event/rue-oberkampf-rank/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://sonic-lyon.fr/facebook-event/rue-oberkampf-rank/"
     }
 },
 {
@@ -249,7 +249,7 @@
         "style": "Rock",
         "time":1697826647000,
         "description":
-        "<a href='https://sonic-lyon.fr/facebook-event/peter-kernel/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://sonic-lyon.fr/facebook-event/peter-kernel/"
     }
 },
 {
@@ -267,7 +267,7 @@
         "style": "Rock",
         "time":1698258647000,
         "description":
-        "<a href='https://sonic-lyon.fr/facebook-event/the-courettes/' target=   'blank'title='Opens in a new window'>Prog</a>"
+        "https://sonic-lyon.fr/facebook-event/the-courettes/"
     }
 },
 {
@@ -285,7 +285,7 @@
         "style": "Rock",
         "time":1698412748000,
         "description":
-        "<a href='https://sonic-lyon.fr/facebook-event/4463/' target=   'blank'title='Opens in a new window'>Prog</a>"
+        "https://sonic-lyon.fr/facebook-event/4463/"
     }
 },
 {
@@ -303,7 +303,7 @@
         "style": "Rock",
         "time":1698499265000,
         "description":
-        "<a href='https://sonic-lyon.fr/facebook-event/sharped-records-party/' target=   'blank'title='Opens in a new window'>Prog</a>"
+        "https://sonic-lyon.fr/facebook-event/sharped-records-party/"
     }
 },
 {
@@ -321,7 +321,7 @@
         "style": "Rock",
         "time": 1697648259000,
         "description":
-        "<a href='https://www.ninkasi.fr/agenda/pat-kalla-le-super-mojo/' target=   'blank'title='Opens in a new window'>Prog</a>"
+        "https://www.ninkasi.fr/agenda/pat-kalla-le-super-mojo/"
     }
 },
 {
@@ -339,7 +339,7 @@
         "style": "Rock",
         "time": 1697734669000,
         "description":
-        "<a href='https://www.ninkasi.fr/agenda/lamuse-bouche-81/' target=   'blank'title='Opens in a new window'>Prog</a>"
+        "https://www.ninkasi.fr/agenda/lamuse-bouche-81/"
     }
 },
 {
@@ -357,7 +357,7 @@
         "style": "Electro",
         "time": 1697394600000,
         "description":
-        "<a href='https://le-sucre.eu/agenda/s-society-x-ravoluson-3/' target=   'blank'title='Opens in a new window'>Prog</a>"
+        "https://le-sucre.eu/agenda/s-society-x-ravoluson-3/"
     }
 },
 {
@@ -375,7 +375,7 @@
         "style": "Rap",
         "time": 1698517800000,
         "description":
-        "<a href='https://www.halle-tony-garnier.com/fr/programmation/bigflo-oli' target=   'blank'title='Opens in a new window'>Prog</a>"
+        "https://www.halle-tony-garnier.com/fr/programmation/bigflo-oli"
     }
 },
 {
@@ -393,7 +393,7 @@
         "style": "Jazz",
         "time": 1697824800000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/un-doua-de-jazz-leon-phal-ven-20-oct-23/' target=   'blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/un-doua-de-jazz-leon-phal-ven-20-oct-23/"
     }
 },
 {
@@ -411,7 +411,7 @@
         "style": "Jazz",
         "time": 1697911200000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/bekar-sam-21-oct-23/' target=   'blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/bekar-sam-21-oct-23/"
     }
 },
 {
@@ -429,7 +429,7 @@
         "style": "Electro",
         "time": 1698516000000,
         "description":
-        "<a href='https://marchegare.fr/agenda/jarring-fest-pass-2-jours' target=   'blank'title='Opens in a new window'>Prog</a>"
+        "https://marchegare.fr/agenda/jarring-fest-pass-2-jours"
     }
 },
 {
@@ -447,7 +447,7 @@
         "style": "Divers",
         "time": 1701889200000,
         "description":
-        "<a href='https://marchegare.fr/agenda/virginie-despentes-casey-beatrice-dalle-zero' target=   'blank'title='Opens in a new window'>Prog</a>"
+        "https://marchegare.fr/agenda/virginie-despentes-casey-beatrice-dalle-zero"
     }
 },
 {
@@ -465,7 +465,7 @@
         "style": "Divers",
         "time": 1697306400000,
         "description":
-        "<a href='http://radiant-bellevue.fr/spectacles/herve/' target=   'blank'title='Opens in a new window'>Prog</a>"
+        "http://radiant-bellevue.fr/spectacles/herve/"
     }
 },
 {
@@ -483,7 +483,7 @@
         "style": "Divers",
         "time": 1698951600000,
         "description":
-        "<a href='http://radiant-bellevue.fr/spectacles/renaud/' target=   'blank'title='Opens in a new window'>Prog</a>"
+        "http://radiant-bellevue.fr/spectacles/renaud/"
     }
 },
 {
@@ -501,7 +501,7 @@
         "style": "Divers",
         "time": 1699297200000,
         "description":
-        "<a href='https://www.auditorium-lyon.com/fr/saison-2023-24/musiques-actuelles/bertrand-belin' target=   'blank'title='Opens in a new window'>Prog</a>"
+        "https://www.auditorium-lyon.com/fr/saison-2023-24/musiques-actuelles/bertrand-belin"
     }
 },
 {
@@ -519,7 +519,7 @@
         "style": "Electro",
         "time": 1700247600000,
         "description":
-        "<a href='https://www.auditorium-lyon.com/fr/saison-2023-24/musiques-actuelles/nils-frahm' target=   'blank'title='Opens in a new window'>Prog</a>"
+        "https://www.auditorium-lyon.com/fr/saison-2023-24/musiques-actuelles/nils-frahm"
     }
 },{
     "type": "Feature",
@@ -536,7 +536,7 @@
         "style": "Rap",
         "time":1697740247000,
         "description":
-        "<a href='https://www.lamachinerie-venissieux.fr/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.lamachinerie-venissieux.fr/"
     }
 },{
     "type": "Feature",
@@ -553,7 +553,7 @@
         "style": "Divers",
         "time":1697740247000,
         "description":
-        "<a href='https://billetterie.athouboutdchant.com/evenement/19-10-2023-20-30-lisa-ducasse' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://billetterie.athouboutdchant.com/evenement/19-10-2023-20-30-lisa-ducasse"
     }
 },{
     "type": "Feature",
@@ -570,7 +570,7 @@
         "style": "Jazz",
         "time":1698343200000,
         "description":
-        "<a href='https://epiceriemoderne.com/agenda/2023-10-26-chassol-x-alpha-cassiopeiae' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://epiceriemoderne.com/agenda/2023-10-26-chassol-x-alpha-cassiopeiae"
     }
 },{
     "type": "Feature",
@@ -587,7 +587,7 @@
         "style": "Jazz",
         "time":1698778800000,
         "description":
-        "<a href='https://epiceriemoderne.com/agenda/2023-10-31-residence-hotel-particulier-2023' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://epiceriemoderne.com/agenda/2023-10-31-residence-hotel-particulier-2023"
     }
 },{
     "type": "Feature",
@@ -604,7 +604,7 @@
         "style": "Electro",
         "time":1697824800000,
         "description":
-        "<a href='https://larayonne.org/evenement/tournee-2023-des-inouis/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://larayonne.org/evenement/tournee-2023-des-inouis/"
     }
 },{
     "type": "Feature",
@@ -621,7 +621,7 @@
         "style": "Rock",
         "time":1702494000000,
         "description":
-        "<a href='https://www.olvallee.fr/evenement/sting' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.olvallee.fr/evenement/sting"
     }
 },{
     "type": "Feature",
@@ -638,7 +638,7 @@
         "style": "Rock",
         "time":1701457200000,
         "description":
-        "<a href='https://www.olvallee.fr/evenement/lomepal' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.olvallee.fr/evenement/lomepal"
     }
 },{
     "type": "Feature",
@@ -655,7 +655,7 @@
         "style": "Electro",
         "time":1702580400000,
         "description":
-        "<a href='https://www.grrrndzero.org/index.php/2481-sam-dim-14-15-oct-23-groovedge-gloria-golry' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.grrrndzero.org/index.php/2481-sam-dim-14-15-oct-23-groovedge-gloria-golry"
     }
 },{
     "type": "Feature",
@@ -672,7 +672,7 @@
         "style": "Electro",
         "time":1698516000000,
         "description":
-        "<a href='https://www.grrrndzero.org/index.php/2483-sam-28-10-toujours-plus-trans' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.grrrndzero.org/index.php/2483-sam-28-10-toujours-plus-trans"
     }
 },{
     "type": "Feature",
@@ -689,7 +689,7 @@
         "style": "Electro",
         "time":1699038000000,
         "description":
-        "<a href='https://www.grrrndzero.org/index.php/2482-ven-3-11-soiree-de-soutien-a-l-atelier-des-canulars' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.grrrndzero.org/index.php/2482-ven-3-11-soiree-de-soutien-a-l-atelier-des-canulars"
     }
 },{
     "type": "Feature",
@@ -706,7 +706,7 @@
         "style": "Jazz",
         "time":1697826600000,
         "description":
-        "<a href='https://www.hotclubjazzlyon.com/evenements/20230719-adlanealiouchetrio/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.hotclubjazzlyon.com/evenements/20230719-adlanealiouchetrio/"
     }
 },{
     "type": "Feature",
@@ -723,7 +723,7 @@
         "style": "Jazz",
         "time":1698345000000,
         "description":
-        "<a href='https://www.hotclubjazzlyon.com/evenements/20230803-hugo-afettouche-tetralyre/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.hotclubjazzlyon.com/evenements/20230803-hugo-afettouche-tetralyre/"
     }
 },{
     "type": "Feature",
@@ -740,7 +740,7 @@
         "style": "Jazz",
         "time":1699126200000,
         "description":
-        "<a href='https://www.hotclubjazzlyon.com/evenements/20230803-tjt4-feat-luna-garcia-odin/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.hotclubjazzlyon.com/evenements/20230803-tjt4-feat-luna-garcia-odin/"
     }
 },{
     "type": "Feature",
@@ -757,7 +757,7 @@
         "style": "Rock",
         "time":1699126200000,
         "description":
-        "<a href='https://www.trokson.com/events/nevraska-post-math-rock-midlife-art-noise' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.trokson.com/events/nevraska-post-math-rock-midlife-art-noise"
     }
 },{
     "type": "Feature",
@@ -774,7 +774,7 @@
         "style": "Rock",
         "time":1697826600000,
         "description":
-        "<a href='https://www.trokson.com/events/pablo-x-post-punk-psych-fr-crayfish-swamp-post-punk-ain' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.trokson.com/events/pablo-x-post-punk-psych-fr-crayfish-swamp-post-punk-ain"
     }
 },{
     "type": "Feature",
@@ -791,7 +791,7 @@
         "style": "Rock",
         "time":1697913000000,
         "description":
-        "<a href='https://www.trokson.com/events/bongo-kids-release-party-punk-rock-total-tenias-punk-rage-batard-punk-hardcore' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.trokson.com/events/bongo-kids-release-party-punk-rock-total-tenias-punk-rage-batard-punk-hardcore"
     }
 },{
     "type": "Feature",
@@ -808,7 +808,7 @@
         "style": "Rock",
         "time":1698258600000,
         "description":
-        "<a href='https://www.trokson.com/events/maraudeur-post-punk-fr-ch-ger-theoreme-no-wave-villeurbanne' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.trokson.com/events/maraudeur-post-punk-fr-ch-ger-theoreme-no-wave-villeurbanne"
     }
 },{
     "type": "Feature",
@@ -825,7 +825,7 @@
         "style": "Rock",
         "time":1698431400000,
         "description":
-        "<a href='https://www.trokson.com/events/mary-bell-punk-grunge-fr-the-spitters-garage-punk-toulon' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.trokson.com/events/mary-bell-punk-grunge-fr-the-spitters-garage-punk-toulon"
     }
 },{
     "type": "Feature",
@@ -835,14 +835,14 @@
         "coordinates": [4.831532333405628,45.76973724802351]
     },
     "properties": {
-        "title": "kontexte + quinconce ,",
+        "title": "kontexte + quinconce",
         "size": 50,
         "icon": "marker-15",
         "place": "Le Trokson",
         "style": "Rock",
         "time":1698517800000,
         "description":
-        "<a href='https://www.trokson.com/events/kontexte-no-punk-rotatif-nantes-quinconce-post-dub-nantes' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.trokson.com/events/kontexte-no-punk-rotatif-nantes-quinconce-post-dub-nantes"
     }
 },{
     "type": "Feature",
@@ -859,7 +859,7 @@
         "style": "Rock",
         "time":1698780600000,
         "description":
-        "<a href='https://www.trokson.com/events/samhain-festus-dj-set-halloween' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.trokson.com/events/samhain-festus-dj-set-halloween"
     }
 },{
     "type": "Feature",
@@ -876,7 +876,7 @@
         "style": "Rock",
         "time":1697913000000,
         "description":
-        "<a href='https://www.trokson.com/events/samhain-festus-dj-set-halloween' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.trokson.com/events/samhain-festus-dj-set-halloween"
     }
 },{
     "type": "Feature",
@@ -893,7 +893,7 @@
         "style": "Rap",
         "time":1702495800000,
         "description":
-        "<a href='https://www.halle-tony-garnier.com/fr/programmation/m-pokora-2' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.halle-tony-garnier.com/fr/programmation/m-pokora-2"
     }
 },{
     "type": "Feature",
@@ -910,7 +910,7 @@
         "style": "Rock",
         "time":1697826600000,
         "description":
-        "<a href='https://mediatone.net/evenements/melba-le-noiseur/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://mediatone.net/evenements/melba-le-noiseur/"
     }
 },{
     "type": "Feature",
@@ -927,7 +927,7 @@
         "style": "Rock",
         "time":1699385408000,
         "description":
-        "<a href='https://marchegare.fr/agenda/je-sunde' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://marchegare.fr/agenda/je-sunde"
     }
 },{
     "type": "Feature",
@@ -944,7 +944,7 @@
         "style": "Rock",
         "time":1699642808000,
         "description":
-        "<a href='https://marchegare.fr/agenda/protomartyr' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://marchegare.fr/agenda/protomartyr"
     }
 },{
     "type": "Feature",
@@ -961,7 +961,7 @@
         "style": "Rap",
         "time":1700161208000,
         "description":
-        "<a href='https://marchegare.fr/agenda/souffrance' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://marchegare.fr/agenda/souffrance"
     }
 },{
     "type": "Feature",
@@ -978,7 +978,7 @@
         "style": "Rock",
         "time":1700247608000,
         "description":
-        "<a href='https://marchegare.fr/agenda/oomph' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://marchegare.fr/agenda/oomph"
     }
 },{
     "type": "Feature",
@@ -995,7 +995,7 @@
         "style": "Rock",
         "time":1701198008000,
         "description":
-        "<a href='https://marchegare.fr/agenda/black-sea-dahu' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://marchegare.fr/agenda/black-sea-dahu"
     }
 },{
     "type": "Feature",
@@ -1012,7 +1012,7 @@
         "style": "Jazz",
         "time":1701370808000,
         "description":
-        "<a href='https://marchegare.fr/agenda/forumjazz-2023' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://marchegare.fr/agenda/forumjazz-2023"
     }
 },{
     "type": "Feature",
@@ -1029,7 +1029,7 @@
         "style": "Rock",
         "time":1697923800000,
         "description":
-        "<a href='https://mediatone.net/evenements/mandragora-proper-lane-uzul-mecou-yenski/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://mediatone.net/evenements/mandragora-proper-lane-uzul-mecou-yenski/"
     }
 },{
     "type": "Feature",
@@ -1046,7 +1046,7 @@
         "style": "Divers",
         "time":1697308200000,
         "description":
-        "<a href='https://mediatone.net/evenements/debout-sur-le-zinc-la-caravane-passe/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://mediatone.net/evenements/debout-sur-le-zinc-la-caravane-passe/"
     }
 },{
     "type": "Feature",
@@ -1063,7 +1063,7 @@
         "style": "Electro",
         "time":1702580400000,
         "description":
-        "<a href='https://mediatone.net/evenements/romane-santarelli-mauvais-garcon/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://mediatone.net/evenements/romane-santarelli-mauvais-garcon/"
     }
 },{
     "type": "Feature",
@@ -1080,7 +1080,7 @@
         "style": "Rock",
         "time":1700249400000,
         "description":
-        "<a href='https://mediatone.net/evenements/ludwig-von-88-le-reparateur-resto-basket/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://mediatone.net/evenements/ludwig-von-88-le-reparateur-resto-basket/"
     }
 },{
     "type": "Feature",
@@ -1097,7 +1097,7 @@
         "style": "Divers",
         "time":1700856000000,
         "description":
-        "<a href='https://www.ninkasi.fr/agenda/human-jukebox-mister-mellow-8/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.ninkasi.fr/agenda/human-jukebox-mister-mellow-8/"
     }
 },{
     "type": "Feature",
@@ -1114,7 +1114,7 @@
         "style": "Divers",
         "time":1699041600000,
         "description":
-        "<a href='https://www.ninkasi.fr/agenda/human-jukebox-leon-dans-ton-salon-21/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.ninkasi.fr/agenda/human-jukebox-leon-dans-ton-salon-21/"
     }
 },{
     "type": "Feature",
@@ -1131,7 +1131,7 @@
         "style": "Divers",
         "time":1699041600000,
         "description":
-        "<a href='https://www.ninkasi.fr/agenda/human-jukebox-the-french-goose-7/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.ninkasi.fr/agenda/human-jukebox-the-french-goose-7/"
     }
 },{
     "type": "Feature",
@@ -1148,7 +1148,7 @@
         "style": "Divers",
         "time":1697655600000,
         "description":
-        "<a href='https://www.ninkasi.fr/agenda/human-jukebox-fabien-benoit-13/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.ninkasi.fr/agenda/human-jukebox-fabien-benoit-13/"
     }
 },{
     "type": "Feature",
@@ -1165,7 +1165,7 @@
         "style": "Divers",
         "time":1698433200000,
         "description":
-        "<a href='https://www.ninkasi.fr/agenda/the-dobeatshow-11/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.ninkasi.fr/agenda/the-dobeatshow-11/"
     }
 },{
     "type": "Feature",
@@ -1182,7 +1182,7 @@
         "style": "Rock",
         "time":1700251200000,
         "description":
-        "<a href='https://www.ninkasi.fr/agenda/nicholas-sutton-7/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.ninkasi.fr/agenda/nicholas-sutton-7/"
     }
 },{
     "type": "Feature",
@@ -1199,7 +1199,7 @@
         "style": "Electro",
         "time":1697731200000,
         "description":
-        "<a href='https://www.ninkasi.fr/agenda/hynsha-8/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.ninkasi.fr/agenda/hynsha-8/"
     }
 },{
     "type": "Feature",
@@ -1216,7 +1216,7 @@
         "style": "Electro",
         "time":1698436800000,
         "description":
-        "<a href='https://www.ninkasi.fr/agenda/hynsha-9/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.ninkasi.fr/agenda/hynsha-9/"
     }
 },{
     "type": "Feature",
@@ -1233,7 +1233,7 @@
         "style": "Jazz",
         "time":1698598800000,
         "description":
-        "<a href='https://www.ninkasi.fr/agenda/jazz-a-ol-vallee-romain-vauthier-trio/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.ninkasi.fr/agenda/jazz-a-ol-vallee-romain-vauthier-trio/"
     }
 },{
     "type": "Feature",
@@ -1250,7 +1250,7 @@
         "style": "Rock",
         "time":1699128000000,
         "description":
-        "<a href='https://www.ninkasi.fr/agenda/the-plooks/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.ninkasi.fr/agenda/the-plooks/"
     }
 },{
     "type": "Feature",
@@ -1267,7 +1267,7 @@
         "style": "Divers",
         "time":1699732800000,
         "description":
-        "<a href='https://www.ninkasi.fr/agenda/human-jukebox-fabien-benoit-14/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.ninkasi.fr/agenda/human-jukebox-fabien-benoit-14/"
     }
 },{
     "type": "Feature",
@@ -1284,7 +1284,7 @@
         "style": "Jazz",
         "time":1700413200000,
         "description":
-        "<a href='https://www.ninkasi.fr/agenda/jazz-a-ol-vallee-frederic-arnoux-trio/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.ninkasi.fr/agenda/jazz-a-ol-vallee-frederic-arnoux-trio/"
     }
 },{
     "type": "Feature",
@@ -1301,7 +1301,7 @@
         "style": "Divers",
         "time":1698429600000,
         "description":
-        "<a href='https://www.ninkasi.fr/agenda/human-jukebox-the-french-goose-6/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.ninkasi.fr/agenda/human-jukebox-the-french-goose-6/"
     }
 },{
     "type": "Feature",
@@ -1318,7 +1318,7 @@
         "style": "Divers",
         "time":1699041600000,
         "description":
-        "<a href='https://www.ninkasi.fr/agenda/human-jukebox-fabb-11/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.ninkasi.fr/agenda/human-jukebox-fabb-11/"
     }
 },{
     "type": "Feature",
@@ -1335,7 +1335,7 @@
         "style": "Divers",
         "time":1699646400000,
         "description":
-        "<a href='https://www.ninkasi.fr/agenda/obrovsky/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.ninkasi.fr/agenda/obrovsky/"
     }
 },{
     "type": "Feature",
@@ -1352,7 +1352,7 @@
         "style": "Rock",
         "time":1700251200000,
         "description":
-        "<a href='https://www.ninkasi.fr/agenda/octopus-garden-20/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.ninkasi.fr/agenda/octopus-garden-20/"
     }
 },{
     "type": "Feature",
@@ -1369,7 +1369,7 @@
         "style": "Jazz",
         "time":1698433200000,
         "description":
-        "<a href='https://www.ninkasi.fr/agenda/jazz-a-st-paul-marc-cabrera-duo/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.ninkasi.fr/agenda/jazz-a-st-paul-marc-cabrera-duo/"
     }
 },{
     "type": "Feature",
@@ -1386,7 +1386,7 @@
         "style": "Divers",
         "time":1698955200000,
         "description":
-        "<a href='https://www.ninkasi.fr/agenda/human-jukebox-mister-mellow-7/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.ninkasi.fr/agenda/human-jukebox-mister-mellow-7/"
     }
 },{
     "type": "Feature",
@@ -1403,7 +1403,7 @@
         "style": "Jazz",
         "time":1699644600000,
         "description":
-        "<a href='https://www.ninkasi.fr/agenda/jam-session-jazz-%c2%b7-links-trio/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.ninkasi.fr/agenda/jam-session-jazz-%c2%b7-links-trio/"
     }
 },{
     "type": "Feature",
@@ -1420,7 +1420,7 @@
         "style": "Rock",
         "time":1698433200000,
         "description":
-        "<a href='https://www.ninkasi.fr/agenda/steve-zissou-the-wallace/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.ninkasi.fr/agenda/steve-zissou-the-wallace/"
     }
 },{
     "type": "Feature",
@@ -1437,7 +1437,7 @@
         "style": "Rock",
         "time":1700856000000,
         "description":
-        "<a href='https://www.ninkasi.fr/agenda/get-the-music-right/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.ninkasi.fr/agenda/get-the-music-right/"
     }
 },{
     "type": "Feature",
@@ -1454,7 +1454,7 @@
         "style": "Rock",
         "time":1697824800000,
         "description":
-        "<a href='https://www.facebook.com/events/1445308672926023?locale=fr_FR' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.facebook.com/events/1445308672926023?locale=fr_FR"
     }
 },{
     "type": "Feature",
@@ -1471,7 +1471,7 @@
         "style": "Rock",
         "time":1697911200000,
         "description":
-        "<a href='https://www.facebook.com/events/1358455638075815?locale=fr_FR'blank'title='Opens in a new window'>Prog</a>"
+        "https://www.facebook.com/events/1358455638075815?locale=fr_FR'blank'title='Opens in a new window'>Prog</a>"
     }
 },{
     "type": "Feature",
@@ -1488,7 +1488,7 @@
         "style": "Rock",
         "time":1698256800000,
         "description":
-        "<a href='https://www.facebook.com/events/1697710757409046?locale=fr_FR' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.facebook.com/events/1697710757409046?locale=fr_FR"
     }
 },{
     "type": "Feature",
@@ -1505,7 +1505,7 @@
         "style": "Rock",
         "time":1698429600000,
         "description":
-        "<a href='https://www.facebook.com/events/146101911892172?locale=fr_FR' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.facebook.com/events/146101911892172?locale=fr_FR"
     }
 },{
     "type": "Feature",
@@ -1522,7 +1522,7 @@
         "style": "Rock",
         "time":1698516000000,
         "description":
-        "<a href='https://www.facebook.com/events/626911132958722?locale=fr_FR' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.facebook.com/events/626911132958722?locale=fr_FR"
     }
 },{
     "type": "Feature",
@@ -1539,7 +1539,7 @@
         "style": "Rock",
         "time":1698951600000,
         "description":
-        "<a href='https://www.facebook.com/events/334923989048519?locale=fr_FR' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.facebook.com/events/334923989048519?locale=fr_FR"
     }
 },{
     "type": "Feature",
@@ -1556,7 +1556,7 @@
         "style": "Rock",
         "time":1699038000000,
         "description":
-        "<a href='https://www.facebook.com/events/530898322557793?locale=fr_FR' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.facebook.com/events/530898322557793?locale=fr_FR"
     }
 },{
     "type": "Feature",
@@ -1573,7 +1573,7 @@
         "style": "Rock",
         "time":1699124400000,
         "description":
-        "<a href='https://www.facebook.com/events/1282312102427763?locale=fr_FR' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.facebook.com/events/1282312102427763?locale=fr_FR"
     }
 },{
     "type": "Feature",
@@ -1590,7 +1590,7 @@
         "style": "Rock",
         "time":1699385400000,
         "description":
-        "<a href='https://www.facebook.com/events/1470500023720691?locale=fr_FR' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.facebook.com/events/1470500023720691?locale=fr_FR"
     }
 },{
     "type": "Feature",
@@ -1607,7 +1607,7 @@
         "style": "Rock",
         "time":1699470000000,
         "description":
-        "<a href='https://www.facebook.com/events/341463765114157?locale=fr_FR' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.facebook.com/events/341463765114157?locale=fr_FR"
     }
 },{
     "type": "Feature",
@@ -1624,7 +1624,7 @@
         "style": "Rock",
         "time":1699556400000,
         "description":
-        "<a href='https://www.facebook.com/events/804317351481628?locale=fr_FR' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.facebook.com/events/804317351481628?locale=fr_FR"
     }
 },{
     "type": "Feature",
@@ -1641,7 +1641,7 @@
         "style": "Rock",
         "time":1700074800000,
         "description":
-        "<a href='https://www.facebook.com/events/296421376060400?locale=fr_FR' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.facebook.com/events/296421376060400?locale=fr_FR"
     }
 },{
     "type": "Feature",
@@ -1658,7 +1658,7 @@
         "style": "Rock",
         "time":1700163000000,
         "description":
-        "<a href='https://www.facebook.com/events/627081855855441?locale=fr_FR' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.facebook.com/events/627081855855441?locale=fr_FR"
     }
 },{
     "type": "Feature",
@@ -1675,7 +1675,7 @@
         "style": "Rock",
         "time":1700247600000,
         "description":
-        "<a href='https://www.facebook.com/events/231941539460726?locale=fr_FR' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.facebook.com/events/231941539460726?locale=fr_FR"
     }
 },{
     "type": "Feature",
@@ -1692,7 +1692,7 @@
         "style": "Rock",
         "time":1700334000000,
         "description":
-        "<a href='https://www.facebook.com/events/3733943386932695?locale=fr_FR' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.facebook.com/events/3733943386932695?locale=fr_FR"
     }
 },{
     "type": "Feature",
@@ -1709,7 +1709,7 @@
         "style": "Rock",
         "time":1700766000000,
         "description":
-        "<a href='https://www.facebook.com/events/154030300980782?locale=fr_FR' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.facebook.com/events/154030300980782?locale=fr_FR"
     }
 },{
     "type": "Feature",
@@ -1726,7 +1726,7 @@
         "style": "Rock",
         "time":1700938800000,
         "description":
-        "<a href='https://www.facebook.com/events/667558878132703?locale=fr_FR' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.facebook.com/events/667558878132703?locale=fr_FR"
     }
 },{
     "type": "Feature",
@@ -1743,7 +1743,7 @@
         "style": "Rock",
         "time":1702666800000,
         "description":
-        "<a href='https://www.facebook.com/events/3649322925297311?locale=fr_FR' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.facebook.com/events/3649322925297311?locale=fr_FR"
     }
  },{
     "type": "Feature",
@@ -1760,7 +1760,7 @@
         "style": "Electro",
         "time":1698526800000,
         "description":
-        "<a href='https://yurplan.com/events/Utopia-A-Strange-Wedding-B2-B-Lisa-More-Kick21-Suerte-Dissonne-and-More/111423' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://yurplan.com/events/Utopia-A-Strange-Wedding-B2-B-Lisa-More-Kick21-Suerte-Dissonne-and-More/111423"
     }
  },{
     "type": "Feature",
@@ -1777,7 +1777,7 @@
         "style": "Electro",
         "time":1698789600000,
         "description":
-        "<a href='https://yurplan.com/events/This-is-House-Natsch-Greg-Reo-and-More/111480' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://yurplan.com/events/This-is-House-Natsch-Greg-Reo-and-More/111480"
     }
  },{
     "type": "Feature",
@@ -1794,7 +1794,7 @@
         "style": "Electro",
         "time":1699048800000,
         "description":
-        "<a href='https://yurplan.com/events/Kolter-Crowd-Control-B-from-E-and-More/111424' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://yurplan.com/events/Kolter-Crowd-Control-B-from-E-and-More/111424"
     }
  },{
     "type": "Feature",
@@ -1811,7 +1811,7 @@
         "style": "Electro",
         "time":1699135200000,
         "description":
-        "<a href='https://yurplan.com/events/This-is-Techno-Melodic-Carhl-Messaline-and-More/111415' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://yurplan.com/events/This-is-Techno-Melodic-Carhl-Messaline-and-More/111415"
     }
  },{
     "type": "Feature",
@@ -1828,7 +1828,7 @@
         "style": "Electro",
         "time":1699653600000,
         "description":
-        "<a href='https://yurplan.com/events/Neo-Rave-Mila-Dietrich-Indecorum-Lux-and-More/111554' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://yurplan.com/events/Neo-Rave-Mila-Dietrich-Indecorum-Lux-and-More/111554"
     }
  },{
     "type": "Feature",
@@ -1845,7 +1845,7 @@
         "style": "Electro",
         "time":1700258400000,
         "description":
-        "<a href='https://yurplan.com/events/Dax-J-B2-B-Blawan-and-More/111412' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://yurplan.com/events/Dax-J-B2-B-Blawan-and-More/111412"
     }
  },{
     "type": "Feature",
@@ -1862,7 +1862,7 @@
         "style": "Electro",
         "time":1700344800000,
         "description":
-        "<a href='https://yurplan.com/events/This-is-House-Crowd-Control-Maggy-Smiss-and-More/112092' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://yurplan.com/events/This-is-House-Crowd-Control-Maggy-Smiss-and-More/112092"
     }
  },{
     "type": "Feature",
@@ -1879,7 +1879,7 @@
         "style": "Electro",
         "time":1700863200000,
         "description":
-        "<a href='https://yurplan.com/events/This-is-Disco-Vyktor-Nova-Terror-Mike/111714' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://yurplan.com/events/This-is-Disco-Vyktor-Nova-Terror-Mike/111714"
     }
  },{
     "type": "Feature",
@@ -1896,7 +1896,7 @@
         "style": "Electro",
         "time":1700949600000,
         "description":
-        "<a href='https://yurplan.com/events/Paula-Temple-Nav-Tauceti-and-More/112088' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://yurplan.com/events/Paula-Temple-Nav-Tauceti-and-More/112088"
     }
  },{
     "type": "Feature",
@@ -1913,7 +1913,7 @@
         "style": "Electro",
         "time":1701468000000,
         "description":
-        "<a href='https://yurplan.com/events/Glowal-19-26-Jas-t-Nomore-and-More/111398' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://yurplan.com/events/Glowal-19-26-Jas-t-Nomore-and-More/111398"
     }
  },{
     "type": "Feature",
@@ -1930,7 +1930,7 @@
         "style": "Electro",
         "time":1702072800000,
         "description":
-        "<a href='https://yurplan.com/events/Hector-Oaks-DJ-Chuimix-Shamsiel-and-More/111897' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://yurplan.com/events/Hector-Oaks-DJ-Chuimix-Shamsiel-and-More/111897"
     }
  },{
     "type": "Feature",
@@ -1947,7 +1947,7 @@
         "style": "Rock",
         "time":1698429600000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/larkin-poe-the-sheepdogs-ven-27-oct-23/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/larkin-poe-the-sheepdogs-ven-27-oct-23/"
     }
  },{
     "type": "Feature",
@@ -1964,7 +1964,7 @@
         "style": "Electro",
         "time":1698526800000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/garcon-sauvage-xxl-happy-monster-sam-28-oct-23/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/garcon-sauvage-xxl-happy-monster-sam-28-oct-23/"
     }
  },{
     "type": "Feature",
@@ -1981,7 +1981,7 @@
         "style": "Jazz",
         "time":1698692400000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/sunny-war-lun-30-oct-2023/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/sunny-war-lun-30-oct-2023/"
     }
  },{
     "type": "Feature",
@@ -1998,7 +1998,7 @@
         "style": "Rock",
         "time":1698775200000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/the-murder-capital-mar-31-oct-23/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/the-murder-capital-mar-31-oct-23/"
     }
  },{
     "type": "Feature",
@@ -2015,7 +2015,7 @@
         "style": "Rock",
         "time":1703012400000,
         "description":
-        "<a href='https://www.halle-tony-garnier.com/fr/programmation/michel-sardou' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.halle-tony-garnier.com/fr/programmation/michel-sardou"
     }
  },{
     "type": "Feature",
@@ -2032,7 +2032,7 @@
         "style": "Divers",
         "time":1697823000000,
         "description":
-        "<a href='https://www.toitoilezinc.fr/evenement/1037086/soiree-bresilienne-avec-forrofa-et-deixa-gingar/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.toitoilezinc.fr/evenement/1037086/soiree-bresilienne-avec-forrofa-et-deixa-gingar/"
     }
  },{
     "type": "Feature",
@@ -2049,7 +2049,7 @@
         "style": "Electro",
         "time":1698703200000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/trym-dj-chuimix-b2b-pascal-mental-nkt-farkas-mar-31-oct-23/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/trym-dj-chuimix-b2b-pascal-mental-nkt-farkas-mar-31-oct-23/"
     }
  },{
     "type": "Feature",
@@ -2066,7 +2066,7 @@
         "style": "Rock",
         "time":1698949800000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/weyes-blood-jeu-02-nov-23/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/weyes-blood-jeu-02-nov-23/"
     }
  },{
     "type": "Feature",
@@ -2083,7 +2083,7 @@
         "style": "Rap",
         "time":1699038000000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/leto-ven-03-nov-23/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/leto-ven-03-nov-23/"
     }
  },{
     "type": "Feature",
@@ -2100,7 +2100,7 @@
         "style": "Electro",
         "time":1699050600000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/dj-heartstring-aisha-faster-horses-ven-03-nov-23/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/dj-heartstring-aisha-faster-horses-ven-03-nov-23/"
     }
  },{
     "type": "Feature",
@@ -2117,7 +2117,7 @@
         "style": "Divers",
         "time":1699380000000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/live-echo-capleton-bono-ben-mar-07-nov-23/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/live-echo-capleton-bono-ben-mar-07-nov-23/"
     }
  },{
     "type": "Feature",
@@ -2134,7 +2134,7 @@
         "style": "Rap",
         "time":1699470000000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/little-big-mer-08-nov-23/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/little-big-mer-08-nov-23/"
     }
  },{
     "type": "Feature",
@@ -2151,7 +2151,7 @@
         "style": "Rock",
         "time":1699556400000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/melissa-laveaux-jeu-09-nov-23/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/melissa-laveaux-jeu-09-nov-23/"
     }
  },{
     "type": "Feature",
@@ -2168,7 +2168,7 @@
         "style": "Rock",
         "time":1699642800000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/flavien-berger-ven-10-nov-23/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/flavien-berger-ven-10-nov-23/"
     }
  },{
     "type": "Feature",
@@ -2185,7 +2185,7 @@
         "style": "Electro",
         "time":1699741800000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/warum-meine-liebe-billx-dimension-bonus-lethyx-nekuia-russian-village-boys-sam-11-nov-23/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/warum-meine-liebe-billx-dimension-bonus-lethyx-nekuia-russian-village-boys-sam-11-nov-23/"
     }
  },{
     "type": "Feature",
@@ -2202,7 +2202,7 @@
         "style": "Rock",
         "time":1699988400000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/timber-timbre-mar-14-nov-23/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/timber-timbre-mar-14-nov-23/"
     }
  },{
     "type": "Feature",
@@ -2219,7 +2219,7 @@
         "style": "Divers",
         "time":1700074800000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/hoshi-mer-15-nov-23/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/hoshi-mer-15-nov-23/"
     }
  },{
     "type": "Feature",
@@ -2236,7 +2236,7 @@
         "style": "Jazz",
         "time":1700161200000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/broken-back-jeu-16-nov-23/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/broken-back-jeu-16-nov-23/"
     }
  },{
     "type": "Feature",
@@ -2253,7 +2253,7 @@
         "style": "Electro",
         "time":1700247600000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/johan-papaconstantino-edouard-bielle-ven-17-nov-23/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/johan-papaconstantino-edouard-bielle-ven-17-nov-23/"
     }
  },{
     "type": "Feature",
@@ -2270,7 +2270,7 @@
         "style": "Divers",
         "time":1700334000000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/broken-back-jeu-16-nov-23/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/broken-back-jeu-16-nov-23/"
     }
  },{
     "type": "Feature",
@@ -2287,7 +2287,7 @@
         "style": "Electro",
         "time":1700852400000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/kid-francescoli-ven-24-nov-23/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/kid-francescoli-ven-24-nov-23/"
     }
  },{
     "type": "Feature",
@@ -2304,7 +2304,7 @@
         "style": "Rock",
         "time":1700938800000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/aa-williams-kalandra-lys-morke-sam-25-nov-23/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/aa-williams-kalandra-lys-morke-sam-25-nov-23/"
     }
  },{
     "type": "Feature",
@@ -2321,7 +2321,7 @@
         "style": "Rock",
         "time":1701198000000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/asgeir-mar-28-nov-23/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/asgeir-mar-28-nov-23/"
     }
  },{
     "type": "Feature",
@@ -2338,7 +2338,7 @@
         "style": "Electro",
         "time":1701284400000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/calling-marian-mer-29-nov-23/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/calling-marian-mer-29-nov-23/"
     }
  },{
     "type": "Feature",
@@ -2355,7 +2355,7 @@
         "style": "Rap",
         "time":1701370800000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/tsew-the-kid-jeu-30-nov-23/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/tsew-the-kid-jeu-30-nov-23/"
     }
  },{
     "type": "Feature",
@@ -2372,7 +2372,7 @@
         "style": "Rock",
         "time":1701457200000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/pierre-de-maere-ven-01-dec-23/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/pierre-de-maere-ven-01-dec-23/"
     }
  },{
     "type": "Feature",
@@ -2389,7 +2389,7 @@
         "style": "Rap",
         "time":1701543600000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/the-strangers-sam-02-dec-23/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/the-strangers-sam-02-dec-23/"
     }
  },{
     "type": "Feature",
@@ -2406,7 +2406,7 @@
         "style": "Rap",
         "time":1701975600000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/georgio-jeu-07-dec-23/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/georgio-jeu-07-dec-23/"
     }
  },{
     "type": "Feature",
@@ -2423,7 +2423,7 @@
         "style": "Electro",
         "time":1702161000000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/la-darude-sam-09-dec-23/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/la-darude-sam-09-dec-23/"
     }
  },{
     "type": "Feature",
@@ -2440,7 +2440,7 @@
         "style": "Electro",
         "time":1702407600000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/aime-simone-mar-12-dec-23/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/aime-simone-mar-12-dec-23/"
     }
  },{
     "type": "Feature",
@@ -2457,7 +2457,7 @@
         "style": "Rap",
         "time":1702494000000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/niska-mer-13-dec-23/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/niska-mer-13-dec-23/"
     }
  },{
     "type": "Feature",
@@ -2474,7 +2474,7 @@
         "style": "Rock",
         "time":1702580400000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/ganache-jeu-14-dec-23/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/ganache-jeu-14-dec-23/"
     }
  },{
     "type": "Feature",
@@ -2491,7 +2491,7 @@
         "style": "Rock",
         "time":1702666800000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/georgio-jeu-07-dec-23/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/georgio-jeu-07-dec-23/"
     }
  },{
     "type": "Feature",
@@ -2508,7 +2508,7 @@
         "style": "Rock",
         "time":1702753200000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/eloi-sam-16-dec-23/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/eloi-sam-16-dec-23/"
     }
  },{
     "type": "Feature",
@@ -2525,7 +2525,7 @@
         "style": "Rap",
         "time":1705086000000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/yuzmv-ven-12-jan-24/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/yuzmv-ven-12-jan-24/"
     }
  },{
     "type": "Feature",
@@ -2542,7 +2542,7 @@
         "style": "Rock",
         "time":1705518000000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/soulwax-mer-17-jan-23/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/soulwax-mer-17-jan-23/"
     }
  },{
     "type": "Feature",
@@ -2559,7 +2559,7 @@
         "style": "Rock",
         "time":1706554800000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/georgio-jeu-07-dec-23/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/georgio-jeu-07-dec-23/"
     }
  },{
     "type": "Feature",
@@ -2576,7 +2576,7 @@
         "style": "Rap",
         "time":1706986800000,
         "description":
-        "<a href='https://www.transbordeur.fr/agenda-2023-2024/georgio-jeu-07-dec-23/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.transbordeur.fr/agenda-2023-2024/georgio-jeu-07-dec-23/"
     }
  },{
     "type": "Feature",
@@ -2593,7 +2593,7 @@
         "style": "Divers",
         "time":1697914800000,
         "description":
-        "<a href='https://www.periscope-lyon.com/en/concerts/radio-hito-solo-2/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.periscope-lyon.com/en/concerts/radio-hito-solo-2/"
     }
  },{
     "type": "Feature",
@@ -2610,7 +2610,7 @@
         "style": "Divers",
         "time":1698174000000,
         "description":
-        "<a href='https://www.periscope-lyon.com/en/concerts/kling-extendted/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.periscope-lyon.com/en/concerts/kling-extendted/"
     }
  },{
     "type": "Feature",
@@ -2627,7 +2627,7 @@
         "style": "Rap",
         "time":1698433200000,
         "description":
-        "<a href='https://www.periscope-lyon.com/en/concerts/nappy-nina-stas-thee-boss-2/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.periscope-lyon.com/en/concerts/nappy-nina-stas-thee-boss-2/"
     }
  },{
     "type": "Feature",
@@ -2644,7 +2644,7 @@
         "style": "Divers",
         "time":1698782400000,
         "description":
-        "<a href='https://www.periscope-lyon.com/en/concerts/kaumwald-mtua-gil-barte-gauthier-plaetevoet-2/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.periscope-lyon.com/en/concerts/kaumwald-mtua-gil-barte-gauthier-plaetevoet-2/"
     }
  },{
     "type": "Feature",
@@ -2661,7 +2661,7 @@
         "style": "Rock",
         "time":1698868800000,
         "description":
-        "<a href='https://www.periscope-lyon.com/en/concerts/madmadmad-omni-selassi-2/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.periscope-lyon.com/en/concerts/madmadmad-omni-selassi-2/"
     }
  },{
     "type": "Feature",
@@ -2678,7 +2678,7 @@
         "style": "Divers",
         "time":1699041600000,
         "description":
-        "<a href='https://www.periscope-lyon.com/en/concerts/oursin-2/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.periscope-lyon.com/en/concerts/oursin-2/"
     }
  },{
     "type": "Feature",
@@ -2695,7 +2695,7 @@
         "style": "Divers",
         "time":1699387200000,
         "description":
-        "<a href='https://www.periscope-lyon.com/en/concerts/bitchin-bajas/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.periscope-lyon.com/en/concerts/bitchin-bajas/"
     }
  },{
     "type": "Feature",
@@ -2712,7 +2712,7 @@
         "style": "Divers",
         "time":1699473600000,
         "description":
-        "<a href='https://www.periscope-lyon.com/en/concerts/elg-et-la-chimie-2/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.periscope-lyon.com/en/concerts/elg-et-la-chimie-2/"
     }
  },{
     "type": "Feature",
@@ -2722,14 +2722,14 @@
         "coordinates":  [4.827652324068464,45.74698143235602]
     },
     "properties": {
-        "title": "Vincent Courtois, Robin Fincker et Daniel Erdmann",
+        "title": "Vincent Courtois Robin Fincker et Daniel Erdmann",
         "size": 250,
         "icon": "marker-15",
         "place": "Le Périscope",
         "style": "Jazz",
         "time":1699646400000,
         "description":
-        "<a href='https://www.periscope-lyon.com/en/concerts/vincent-courtois-robin-fincker-et-daniel-erdmann-2/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.periscope-lyon.com/en/concerts/vincent-courtois-robin-fincker-et-daniel-erdmann-2/"
     }
  },{
     "type": "Feature",
@@ -2746,7 +2746,7 @@
         "style": "Rock",
         "time":1699732800000,
         "description":
-        "<a href='https://www.periscope-lyon.com/en/concerts/howlin-jaws-2/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.periscope-lyon.com/en/concerts/howlin-jaws-2/"
     }
  },{
     "type": "Feature",
@@ -2763,7 +2763,7 @@
         "style": "Divers",
         "time":1700078400000,
         "description":
-        "<a href='https://www.periscope-lyon.com/en/concerts/san-trio/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.periscope-lyon.com/en/concerts/san-trio/"
     }
  },{
     "type": "Feature",
@@ -2780,7 +2780,7 @@
         "style": "Rock",
         "time":1700251200000,
         "description":
-        "<a href='https://www.periscope-lyon.com/en/concerts/maciej-obara-quartet-3/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.periscope-lyon.com/en/concerts/maciej-obara-quartet-3/"
     }
  },{
     "type": "Feature",
@@ -2797,7 +2797,7 @@
         "style": "Divers",
         "time":1700596800000,
         "description":
-        "<a href='https://www.periscope-lyon.com/en/concerts/elliavir-2/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.periscope-lyon.com/en/concerts/elliavir-2/"
     }
  },{
     "type": "Feature",
@@ -2814,7 +2814,7 @@
         "style": "Divers",
         "time":1700596800000,
         "description":
-        "<a href='https://www.periscope-lyon.com/en/concerts/amin-al-aiedy-shams-2/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.periscope-lyon.com/en/concerts/amin-al-aiedy-shams-2/"
     }
  },{
     "type": "Feature",
@@ -2831,7 +2831,7 @@
         "style": "Rock",
         "time":1700856000000,
         "description":
-        "<a href='https://www.periscope-lyon.com/en/concerts/safia-nolin-claire-days-2/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.periscope-lyon.com/en/concerts/safia-nolin-claire-days-2/"
     }
  },{
     "type": "Feature",
@@ -2848,7 +2848,7 @@
         "style": "Jazz",
         "time":1700942400000,
         "description":
-        "<a href='https://www.periscope-lyon.com/en/concerts/henriette-eilersten-trio/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.periscope-lyon.com/en/concerts/henriette-eilersten-trio/"
     }
  },{
     "type": "Feature",
@@ -2865,7 +2865,7 @@
         "style": "Rock",
         "time":1701201600000,
         "description":
-        "<a href='https://www.periscope-lyon.com/en/concerts/chromb-5/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.periscope-lyon.com/en/concerts/chromb-5/"
     }
  },{
     "type": "Feature",
@@ -2882,7 +2882,7 @@
         "style": "Rock",
         "time":1701288000000,
         "description":
-        "<a href='https://www.periscope-lyon.com/en/concerts/howlin-jaws-2/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.periscope-lyon.com/en/concerts/howlin-jaws-2/"
     }
  },{
     "type": "Feature",
@@ -2899,7 +2899,7 @@
         "style": "Rock",
         "time":1698429600000,
         "description":
-        "<a href='https://www.halle-tony-garnier.com/fr/programmation/jain' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.halle-tony-garnier.com/fr/programmation/jain"
     }
  },{
     "type": "Feature",
@@ -2916,7 +2916,7 @@
         "style": "Rap",
         "time":1699556400000,
         "description":
-        "<a href='https://www.halle-tony-garnier.com/fr/programmation/gazo' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.halle-tony-garnier.com/fr/programmation/gazo"
     }
  },{
     "type": "Feature",
@@ -2933,7 +2933,7 @@
         "style": "Rock",
         "time":1699642800000,
         "description":
-        "<a href='https://www.halle-tony-garnier.com/fr/programmation/les-cowboys-fringants' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.halle-tony-garnier.com/fr/programmation/les-cowboys-fringants"
     }
  },{
     "type": "Feature",
@@ -2950,7 +2950,7 @@
         "style": "Divers",
         "time":1699812000000,
         "description":
-        "<a href='https://www.halle-tony-garnier.com/fr/programmation/lomepal-3' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.halle-tony-garnier.com/fr/programmation/lomepal-3"
     }
  },{
     "type": "Feature",
@@ -2967,7 +2967,7 @@
         "style": "Divers",
         "time":1700852400000,
         "description":
-        "<a href='https://www.halle-tony-garnier.com/fr/programmation/djadja-dinaz' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.halle-tony-garnier.com/fr/programmation/djadja-dinaz"
     }
  },{
     "type": "Feature",
@@ -2984,7 +2984,7 @@
         "style": "Rock",
         "time":1700938800000,
         "description":
-        "<a href='https://www.halle-tony-garnier.com/fr/programmation/saez' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.halle-tony-garnier.com/fr/programmation/saez"
     }
  },{
     "type": "Feature",
@@ -3001,7 +3001,7 @@
         "style": "Divers",
         "time":1702407600000,
         "description":
-        "<a href='https://www.halle-tony-garnier.com/fr/programmation/m-pokora' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.halle-tony-garnier.com/fr/programmation/m-pokora"
     }
  },{
     "type": "Feature",
@@ -3018,7 +3018,7 @@
         "style": "Rock",
         "time":1702580400000,
         "description":
-        "<a href='https://www.halle-tony-garnier.com/fr/programmation/pascal-obispo' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.halle-tony-garnier.com/fr/programmation/pascal-obispo"
     }
  },{
     "type": "Feature",
@@ -3035,7 +3035,7 @@
         "style": "Divers",
         "time":1702666800000,
         "description":
-        "<a href='https://www.halle-tony-garnier.com/fr/programmation/sofiane-pamart' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.halle-tony-garnier.com/fr/programmation/sofiane-pamart"
     }
  },{
     "type": "Feature",
@@ -3052,7 +3052,7 @@
         "style": "Divers",
         "time":1703098800000,
         "description":
-        "<a href='https://www.halle-tony-garnier.com/fr/programmation/michel-sardou-2' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.halle-tony-garnier.com/fr/programmation/michel-sardou-2"
     }
  },{
     "type": "Feature",
@@ -3069,7 +3069,7 @@
         "style": "Electro",
         "time":1705777200000,
         "description":
-        "<a href='https://www.halle-tony-garnier.com/fr/programmation/i-hate-models' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.halle-tony-garnier.com/fr/programmation/i-hate-models"
     }
  },{
     "type": "Feature",
@@ -3086,7 +3086,7 @@
         "style": "Rock",
         "time":1699124400000,
         "description":
-        "<a href='https://sonic-lyon.fr/facebook-event/das-kinn-premiere-partie/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://sonic-lyon.fr/facebook-event/das-kinn-premiere-partie/"
     }
  },{
     "type": "Feature",
@@ -3103,7 +3103,7 @@
         "style": "Rock",
         "time":1699383600000,
         "description":
-        "<a href='https://sonic-lyon.fr/facebook-event/facs/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://sonic-lyon.fr/facebook-event/facs/"
     }
  },{
     "type": "Feature",
@@ -3120,7 +3120,7 @@
         "style": "Rock",
         "time":1699902000000,
         "description":
-        "<a href='https://sonic-lyon.fr/facebook-event/agent-side-grinder/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://sonic-lyon.fr/facebook-event/agent-side-grinder/"
     }
  },{
     "type": "Feature",
@@ -3137,7 +3137,7 @@
         "style": "Rock",
         "time":1699729200000,
         "description":
-        "<a href='https://sonic-lyon.fr/facebook-event/hey-colossus-premiere-partie/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://sonic-lyon.fr/facebook-event/hey-colossus-premiere-partie/"
     }
  },{
     "type": "Feature",
@@ -3154,7 +3154,7 @@
         "style": "Rock",
         "time":1700161200000,
         "description":
-        "<a href='https://sonic-lyon.fr/facebook-event/leo-leonard-sara-saphir/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://sonic-lyon.fr/facebook-event/leo-leonard-sara-saphir/"
     }
  },{
     "type": "Feature",
@@ -3171,7 +3171,7 @@
         "style": "Rock",
         "time":1700593200000,
         "description":
-        "<a href='https://sonic-lyon.fr/facebook-event/holy-wave/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://sonic-lyon.fr/facebook-event/holy-wave/"
     }
  },{
     "type": "Feature",
@@ -3188,7 +3188,7 @@
         "style": "Rock",
         "time":1701457200000,
         "description":
-        "<a href='https://sonic-lyon.fr/facebook-event/nuovo-testamento/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://sonic-lyon.fr/facebook-event/nuovo-testamento/"
     }
  },{
     "type": "Feature",
@@ -3205,7 +3205,7 @@
         "style": "Rock",
         "time":1701802800000,
         "description":
-        "<a href='https://sonic-lyon.fr/facebook-event/hilary-woods-elisa-flores/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://sonic-lyon.fr/facebook-event/hilary-woods-elisa-flores/"
     }
  },{
     "type": "Feature",
@@ -3222,7 +3222,7 @@
         "style": "Divers",
         "time":1701806400000,
         "description":
-        "<a href='https://www.periscope-lyon.com/concerts/kokoko/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.periscope-lyon.com/concerts/kokoko/"
     }
  },{
     "type": "Feature",
@@ -3239,7 +3239,7 @@
         "style": "Divers",
         "time":1701892800000,
         "description":
-        "<a href='https://www.periscope-lyon.com/concerts/why-patterns/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.periscope-lyon.com/concerts/why-patterns/"
     }
  },{
     "type": "Feature",
@@ -3256,7 +3256,7 @@
         "style": "Jazz",
         "time":1702584000000,
         "description":
-        "<a href='https://www.periscope-lyon.com/concerts/colin-stetson-x-stian-westerhus-1017/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.periscope-lyon.com/concerts/colin-stetson-x-stian-westerhus-1017/"
     }
  },{
     "type": "Feature",
@@ -3273,7 +3273,7 @@
         "style": "Divers",
         "time":1702670400000,
         "description":
-        "<a href='https://www.periscope-lyon.com/concerts/les-marquises-agathe-max/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.periscope-lyon.com/concerts/les-marquises-agathe-max/"
     }
  },{
     "type": "Feature",
@@ -3290,7 +3290,7 @@
         "style": "Rock",
         "time":1702756800000,
         "description":
-        "<a href='https://www.periscope-lyon.com/concerts/tikaniki-kabar-maloya-fet-kaf/' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://www.periscope-lyon.com/concerts/tikaniki-kabar-maloya-fet-kaf/"
     }
  },{
     "type": "Feature",
@@ -3307,7 +3307,7 @@
         "style": "Jazz",
         "time":1701450000000,
         "description":
-        "<a href='https://marchegare.fr/agenda/forumjazz-2023' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://marchegare.fr/agenda/forumjazz-2023"
     }
  },{
     "type": "Feature",
@@ -3324,7 +3324,7 @@
         "style": "Rock",
         "time":1702666800000,
         "description":
-        "<a href='https://marchegare.fr/agenda/silly-boy-blue' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://marchegare.fr/agenda/silly-boy-blue"
     }
  },{
     "type": "Feature",
@@ -3341,7 +3341,7 @@
         "style": "Rock",
         "time":1704826800000,
         "description":
-        "<a href='https://marchegare.fr/agenda/giant-rooks' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://marchegare.fr/agenda/giant-rooks"
     }
  },{
     "type": "Feature",
@@ -3358,7 +3358,7 @@
         "style": "Divers",
         "time":1700566200000,
         "description":
-        "<a href='https://marchegare.fr/agenda/ugo-del-rosso' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://marchegare.fr/agenda/ugo-del-rosso"
     }
  },{
     "type": "Feature",
@@ -3375,7 +3375,7 @@
         "style": "Divers",
         "time":1701775800000,
         "description":
-        "<a href='https://marchegare.fr/agenda/monark' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://marchegare.fr/agenda/monark"
     }
  },{
     "type": "Feature",
@@ -3392,7 +3392,7 @@
         "style": "Divers",
         "time":1701775800000,
         "description":
-        "<a href='https://marchegare.fr/agenda/marlene-larsen' target='blank'title='Opens in a new window'>Prog</a>"
+        "https://marchegare.fr/agenda/marlene-larsen"
     }
  }]
 }

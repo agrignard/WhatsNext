@@ -15,8 +15,27 @@ fs.readFile(placeGeoJSONPath, 'utf8', (err, data) => {
     }
 });
 
+//printEachEvent();
+//Getting the coordinate of each place 
+function printEachEvent(){
+  const placeGeoJSONPath = 'www/lyon_event.geojson';
+  fs.readFile(placeGeoJSONPath, 'utf8', (err, data) => {
+      if (err) {
+          console.error('Error reading existing GeoJSON:', err);
+          return;
+      }
+      const placeGeoJSONPath = JSON.parse(data);
+      for (var i = 0; i < placeGeoJSONPath.features.length; i++) {
+        console.log(placeGeoJSONPath.features[i].properties.place + "," + placeGeoJSONPath.features[i].properties.title + "," + placeGeoJSONPath.features[i].properties.time + "," + placeGeoJSONPath.features[i].properties.size + "," + placeGeoJSONPath.features[i].properties.style + "," + placeGeoJSONPath.features[i].properties.description); 
+      }
+  });
+}
+ 
+   
+
+
 // Getting the original source file for event
-const existingGeoJSONPath = 'www/lyon_mapzik.geojson';
+const existingGeoJSONPath = 'www/lyon_event_minimal.geojson';
 // Read the existing GeoJSON file
 fs.readFile(existingGeoJSONPath, 'utf8', (err, data) => {
   if (err) {
@@ -27,7 +46,7 @@ fs.readFile(existingGeoJSONPath, 'utf8', (err, data) => {
   // Parse the existing GeoJSON data
   const existingGeoJSON = JSON.parse(data);
 
-  const csvFilePath = 'www/new_event.csv';
+  const csvFilePath = 'www/lyon_event.csv';
   const csvData = fs.readFileSync(csvFilePath, 'utf8');
   const table = csvData.split('\n').slice(1);
 
@@ -64,7 +83,7 @@ fs.readFile(existingGeoJSONPath, 'utf8', (err, data) => {
 
 
   // Define the path to the modified GeoJSON file
-  const modifiedGeoJSONPath = 'www/lyon_mapzik.geojson';
+  const modifiedGeoJSONPath = 'www/lyon_event.geojson';
   // Save the modified GeoJSON to a new file
   fs.writeFile(modifiedGeoJSONPath, JSON.stringify(existingGeoJSON), 'utf8', (err) => {
     if (err) {
