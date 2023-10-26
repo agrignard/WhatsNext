@@ -1,7 +1,7 @@
 # WhatsNext
 
 ## Places 
-```mycity_places.csv ```
+```mycity_events.csv ```
 
 ```
 PLACE,LATITUDE,LONGITUDE,URL
