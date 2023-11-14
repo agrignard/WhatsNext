@@ -1,4 +1,4 @@
-PLACE,TITRE,UNIX,SIZE,GENRE,URL
+PLACE,TITRE,UNIX,SIZE,GENRE,
 Marché Gare,H JEUNECRACK,1697116852000,500,Rock,https://www.infoconcert.com/ticket/concert-h-jeunecrack-lyon/1567691.html
 Le Trokson,BASEMENT DELIGHTS,1697221247000,50,Rock,https://www.infoconcert.com/ticket/concert-basement-delights-lyon/1607011.html
 Transbordeur,The Sisters of Mercy,1697566847000,50,Rock,https://www.transbordeur.fr/agenda-2023-2024/the-sisters-of-mercy-mar-17-oct-23/
@@ -22,7 +22,7 @@ Le Sucre,S. society x Ravoluson x Khidiiiii,1697394600000,50,Electro,https://le-
 Halle Tony Garnier,BIGFLO & OLI,1698517800000,1000,Rap,https://www.halle-tony-garnier.com/fr/programmation/bigflo-oli
 Transbordeur,LÉON PHAL + LE DÉ + JASUAL CAZZ,1697824800000,500,Jazz,https://www.transbordeur.fr/agenda-2023-2024/un-doua-de-jazz-leon-phal-ven-20-oct-23/
 Transbordeur,BEKAR,1697911200000,50,Jazz,https://www.transbordeur.fr/agenda-2023-2024/bekar-sam-21-oct-23/
-Marché Gare,JARRING FEST,1698516000000,250,Electro,https://marchegare.fr/agenda/jarring-fest-pass-2-jours
+Marché Gare,Zero Gr4vity + Lucie ANtunes,1698516000000,250,Electro,https://marchegare.fr/agenda/jarring-fest-pass-2-jours
 Transbordeur,VIRGINIE DESPENTES + CASEY + BÉATRICE DALLE + ZËRO,1701889200000,500,Divers,https://marchegare.fr/agenda/virginie-despentes-casey-beatrice-dalle-zero
 Le Radiant,Hervé,1697306400000,50,Divers,http://radiant-bellevue.fr/spectacles/herve/
 Le Radiant,Renaud,1698951600000,50,Divers,http://radiant-bellevue.fr/spectacles/renaud/
@@ -36,7 +36,7 @@ La Rayonne,BANDIT BANDIT,1697824800000,250,Electro,https://larayonne.org/eveneme
 LDLC Arena,STING,1702494000000,1000,Rock,https://www.olvallee.fr/evenement/sting
 LDLC Arena,LOMEPAL,1701457200000,1000,Rock,https://www.olvallee.fr/evenement/lomepal
 Grrrnd Zero - Vaulx-en-Velin,GROOVEDGE GLORIA GOLRY,1702580400000,100,Electro,https://www.grrrndzero.org/index.php/2481-sam-dim-14-15-oct-23-groovedge-gloria-golry
-Grrrnd Zero - Vaulx-en-Velin,Toujours Plus Trans,1698516000000,100,Electro,https://www.grrrndzero.org/index.php/2483-sam-28-10-toujours-plus-trans
+Grrrnd Zero - Vaulx-en-Velin, Keke & Zawa + ChapoChapo + Eve Magot et TataSoso + Mona Mioca + Edna,1698516000000,100,Electro,https://www.grrrndzero.org/index.php/2483-sam-28-10-toujours-plus-trans
 Grrrnd Zero - Vaulx-en-Velin,ATELIER DES CANULARS,1699038000000,100,Electro,https://www.grrrndzero.org/index.php/2482-ven-3-11-soiree-de-soutien-a-l-atelier-des-canulars
 Hot Club,Adlane Aliouche Trio,1697826600000,100,Jazz,https://www.hotclubjazzlyon.com/evenements/20230719-adlanealiouchetrio/
 Hot Club,Hugo Afettouche & Tetralyre,1698345000000,100,Jazz,https://www.hotclubjazzlyon.com/evenements/20230803-hugo-afettouche-tetralyre/
@@ -269,11 +269,11 @@ Hot Club,Pipon Garcia Trio 2.0 feat. Sir Jean,1701545400000,100,Jazz,https://www
 Hot Club,Jam Jazz - Joachim Expert,1701891000000,100,Jazz,https://www.hotclubjazzlyon.com/evenements/20230803-jam-jazz-joachim-expert-reloaded-trio-2/
 Hot Club,Jam Vocal - Lou Rivaille,1702495800000,100,Jazz,https://www.hotclubjazzlyon.com/evenements/20230803-jam-vocale-lou-rivaille-2/
 Chapelle de la Trinité,Forum Jazz : Amphitryo + Célia Kameni – Méduse,1701286200000,250,Jazz,https://www.hotclubjazzlyon.com/evenements/20230803-trio-jane-cockell-avec-jean-louis-almosnino-et-marcel-bottaro/
-Péniche Loupika,Ali Eren Yüksel,1698339600000,100,Divers,fb
-Péniche Loupika,Analog Catharsis presents Gate 02,1698433200000,100,Electro,fb
-Péniche Loupika,Halloween Loupika,1699210800000,100,Divers,fb
-Péniche Loupika,Xpaola | Time Loop Control | Hadj Y Baba,1699560000000,100,Electro,fb
-Péniche Loupika,Colibri | Delayre | Lwada,1701288000000,100,Electro,fb
+Péniche Loupika,Ali Eren Yüksel,1698339600000,100,Divers,
+Péniche Loupika,Analog Catharsis presents Gate 02,1698433200000,100,Electro,
+Péniche Loupika,Halloween Loupika,1699210800000,100,Divers,
+Péniche Loupika,Xpaola | Time Loop Control | Hadj Y Baba,1699560000000,100,Electro,
+Péniche Loupika,Colibri | Delayre | Lwada,1701288000000,100,Electro,
 Kraspek Myzik,MY NORTH EYE | HANGMOON,1698345000000,100,Rock,https://Kraspekmyzik.com/concert/my-north-eye/
 Kraspek Myzik,EUGENE RIPPER | KAROLINE & THE FREE FOLKS,1699039800000,100,Rock,https://Kraspekmyzik.com/concert/eugene-ripper/
 Kraspek Myzik,SANTA JESSICA | ONZE,1699126200000,100,Rock,https://Kraspekmyzik.com/concert/santa-jessica-onze/
@@ -321,3 +321,28 @@ Rock N Eat,BïtzeBüllet | Highway | Aonaran | Skinx,1700852400000,250,Rock,http
 Rock N Eat,Eve's Bite | Praetor | Revenge | Bel O Kan,1700938800000,250,Rock,https://www.rockneat.com/programmation
 Rock N Eat,DeadlySins | LomoR | Kamikrazy,1701284400000,250,Rock,https://www.rockneat.com/programmation
 Rock N Eat,Skaphos | Decima | Terres Froides,1701370800000,250,Rock,https://www.rockneat.com/programmation
+Toï Toï Le Zinc,INTI DJ Set,1698339600000,100,Divers,https://www.toitoilezinc.fr/evenement/1148254/inti-session/
+Toï Toï Le Zinc,INSEN | Mettani | Nessym,1698431400000,100,Divers,https://www.toitoilezinc.fr/evenement/1067648/mosaique-sonore-insen-mettani-nessym/
+Toï Toï Le Zinc,The Cooper & Forest Pooky Experience | Sweet Vicious,1698517800000,100,Rock,https://www.toitoilezinc.fr/evenement/1103797/the-cooper-forest-pooky-experience-sweet-vicious/
+Toï Toï Le Zinc,Exodus DJ Set,1698953400000,100,Electro,https://www.toitoilezinc.fr/evenement/986707/exodus/
+Toï Toï Le Zinc,Gazzel | Folloï | Mézinc,1699126200000,100,Electro,https://www.toitoilezinc.fr/evenement/1067669/sors-tes-cornes-gazzel-folloi-mezinc/
+Toï Toï Le Zinc,INTI DJ Set,1699552800000,100,Divers,https://www.toitoilezinc.fr/evenement/1148261/inti-session/
+Toï Toï Le Zinc,Bigre ! Big band + Guests,1699644600000,100,Jazz,https://www.toitoilezinc.fr/evenement/1148464/bigre-big-band-guests/
+Toï Toï Le Zinc,Duchesse Von Buffalo DJ Set,1700157600000,100,Electro,https://www.toitoilezinc.fr/evenement/1148520/duchesse-von-buffalo/
+Toï Toï Le Zinc,LGMX | Les Princesses Licornes | Bas-Relief,1700249400000,100,Electro,https://www.toitoilezinc.fr/evenement/1148527/lgmx-les-princesses-licornes-bas-relief/
+Toï Toï Le Zinc,Sabaly | Mad'j | Jahkasa | Sako Wana,1700335800000,100,Divers,https://www.toitoilezinc.fr/evenement/1148548/les-nuits-du-faso-2023-solidaires/
+Toï Toï Le Zinc,Tremplin 24h de l'INSA,1700679600000,100,Rock,https://www.toitoilezinc.fr/evenement/1172909/tremplin-24h-de-linsa/
+Toï Toï Le Zinc,Tremplin 24h de l'INSA,1701889200000,100,Rock,https://www.toitoilezinc.fr/evenement/1172916/tremplin-24h-de-linsa/
+Toï Toï Le Zinc,INTI DJ Set,1700762400000,100,Divers,https://www.toitoilezinc.fr/evenement/1148268/inti-session/
+Toï Toï Le Zinc,Cléo Azzo | Krill,1700854200000,100,Divers,https://www.toitoilezinc.fr/evenement/1148639/sortie-de-bain-o-cleo-azzo-krill/
+Toï Toï Le Zinc,Warrior Kids | Les Mauvais Garçons | Commando,1700940600000,100,Rock,https://www.toitoilezinc.fr/evenement/1067760/microsouillon-5-pas-de-retraite-pour-les-punk-rockers/
+Toï Toï Le Zinc,Ki | Single Ladies | ODC | Surface Tangibl,1701545400000,100,Rock,https://www.toitoilezinc.fr/evenement/1175415/la-police-mutile-linverse-repare/
+Bourse du Travail,Hugues Aufray,1698778800000,500,Divers,https://www.bourse-du-travail.com/hugues-aufray-pour-la-derniere-fois-tournee-180492.html
+Bourse du Travail,Festival Revival Music Tour,1699038000000,500,Divers,https://www.bourse-du-travail.com/festival-revival-music-tour-180828.html
+Bourse du Travail,Garou,1699383600000,500,Divers,https://www.bourse-du-travail.com/garou-tourne-180138.html
+Bourse du Travail,Didier Barbelivien,1699470000000,500,Divers,https://www.bourse-du-travail.com/didier-barbelivien-180149.html
+Bourse du Travail,Louane,1700074800000,500,Divers,https://www.bourse-du-travail.com/louane-le-club-des-sentiments-tournee-180146.html
+Bourse du Travail,Odelaf,1700852400000,500,Divers,https://www.bourse-du-travail.com/oldelaf-le-monde-est-beau-180140.html
+Bourse du Travail,Louis Bertignac,1702666800000,500,Divers,https://www.bourse-du-travail.com/louis-bertignac-tournee-180740.html
+Péniche Loupika,Zanzi + Dürüm Records,1698526800000,100,Electro,
+Ninkasi Gerland,Closing Ninkasi - soirée déstructurée,1699124400000,250,Electro,

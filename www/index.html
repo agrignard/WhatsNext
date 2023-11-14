@@ -62,7 +62,7 @@ if (darkMode){
     darkstyle= 'mapbox://styles/mapbox/dark-v11';
 }
 
-var devMode = true;
+var devMode = false;
 var showAllValueDiv = devMode ? true : false;
 var showAllValue = false;
 updateCircleLegend();
@@ -277,6 +277,20 @@ map.addLayer({
 'text-color': 'rgba(0,0,0,0.5)'
 }
 });
+
+// Add geolocate control to the map.
+map.addControl(
+new mapboxgl.GeolocateControl({
+positionOptions: {
+enableHighAccuracy: true
+},
+// When active the map will receive updates to the device's location as it changes.
+trackUserLocation: true,
+// Draw an arrow next to the location dot to indicate which direction the device is heading.
+showUserHeading: true
+})
+);
+
 appDate=currentDate;
 filterBy(currentDate.valueOf(),false);
 document.getElementById("calendar").valueAsDate = new Date(Date.now);
