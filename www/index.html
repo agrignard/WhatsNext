@@ -62,7 +62,7 @@ if (darkMode){
     darkstyle= 'mapbox://styles/mapbox/dark-v11';
 }
 
-var devMode = false;
+var devMode = true;
 var showAllValueDiv = devMode ? true : false;
 var showAllValue = false;
 updateCircleLegend();
@@ -93,6 +93,7 @@ mapStyle.set('Divers', 'rgba(224,147,40,0.5)');
 const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 
 const placeToCoord = new Map();
+const placeToUrl = new Map();
 var places= [];
 var todaysEvent = new Map();
 var nbActiveEvent;
@@ -258,7 +259,7 @@ data: data
     100,
     10,
     5000,
-    100
+    10
     ]
 }
 });
@@ -329,6 +330,32 @@ filterBy(currentDate.valueOf(),false)
 });
 
 }
+
+// When a click event occurs on a feature in the places layer, open a popup at the
+// location of the feature, with description HTML from its properties.
+map.on('click', 'places-circles', (e) => {
+    // Copy coordinates array.
+    const coordinates = e.features[0].geometry.coordinates.slice();
+    const description = e.features[0].properties.description;
+    const place = e.features[0].properties.title;
+    //console.log("url de " + place + ": " + description)    ;
+    // Ensure that if the map is zoomed out such that multiple
+    // copies of the feature are visible, the popup appears
+    // over the copy being pointed to.
+    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+    }
+    //CANNOT ADD THE POP UP AS BOTH ARE DISPLAYED (PLACE AND EVENT)
+    if (!todaysEvent.has(place)) {
+        const html= "<a href='"+ description +  "' target='blank'title='Opens in a new window'>"+place+"</a>";
+        new mapboxgl.Popup()
+        .setLngLat(coordinates)
+        .setHTML(html)
+        .addTo(map);
+    } 
+    
+});
+
 //Create a popup, but don't add it to the map yet.
 var popup = new mapboxgl.Popup({
 closeButton: false,
@@ -369,19 +396,26 @@ var time = e.features[0].properties.time;
 while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
 coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
 }
-var urlString="";
+var eventURLString="";
 if(description.length == 1){
-  urlString= "";
+  eventURLString= "";
+}else{
+  eventURLString= "<a href="+description+" target=   'blank'title='Opens in a new window'>"+title+"</a>";
+}
+
+var placeURLString="";
+if(description.length == 1){
+    placeURLString= "";
 }else{
   
-  urlString= "<a href="+description+" target=   'blank'title='Opens in a new window'>Prog</a>";
+    placeURLString= "<a href="+placeToUrl.get(place)+" target=   'blank'title='Opens in a new window'>"+place+"</a>";
 }
 
 console.log(description);
 //console.log("urlString"+urlString);
 new mapboxgl.Popup()
 .setLngLat(coordinates)
-.setHTML("<h4>" + title + "</h4><b>Place:</b> "+place+"<br><b>Style:</b> "+style+"<br><b>Time:</b> "+new Date(time) + "<br><b>Description:</b> "+urlString)
+.setHTML("<h4>" + eventURLString + "</h4><b>Place:</b> "+place+"<br><b>Time:</b> "+new Date(time)+"<br><b>Style:</b> "+style)
 .addTo(map);
 });
 
@@ -417,26 +451,7 @@ map.on('mouseleave', 'places-circles', () => {
 map.getCanvas().style.cursor = '';
 });
 
-// When a click event occurs on a feature in the places layer, open a popup at the
-// location of the feature, with description HTML from its properties.
-map.on('click', 'places-circles', (e) => {
-    // Copy coordinates array.
-    const coordinates = e.features[0].geometry.coordinates.slice();
-    const description = e.features[0].properties.description;
-    console.log("url de la place" + description)    ;
-    // Ensure that if the map is zoomed out such that multiple
-    // copies of the feature are visible, the popup appears
-    // over the copy being pointed to.
-    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-    }
 
-    /*const html= "<a href='"+ description +  "' target='blank'title='Opens in a new window'>Here</a>";
-    new mapboxgl.Popup()
-    .setLngLat(coordinates)
-    .setHTML(html)
-    .addTo(map);*/
-});
 initPlaceInformation();
 //getEventInformation()
 chartIt();
@@ -447,6 +462,7 @@ async function initPlaceInformation(){
     const data =   await response.json();
     for (var i = 0; i < data.features.length; i++) {
         placeToCoord.set(data.features[i].properties.title,data.features[i].geometry.coordinates);
+        placeToUrl.set(data.features[i].properties.title,data.features[i].properties.description);
         places.push(data.features[i].properties.title);
     }
     console.log("Total places: " + placeToCoord.size);
