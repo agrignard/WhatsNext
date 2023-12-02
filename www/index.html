@@ -62,7 +62,7 @@ if (darkMode){
     darkstyle= 'mapbox://styles/mapbox/dark-v11';
 }
 
-var devMode = true;
+var devMode = false;
 var showAllValueDiv = devMode ? true : false;
 var showAllValue = false;
 updateCircleLegend();
@@ -158,7 +158,12 @@ if (err) {
 // MATCH Coordinates in link with the place
 data.features = data.features.map((d) => {
     d.geometry.type = "Point";
-    d.geometry.coordinates = placeToCoord.get(d.properties.place);
+    if(placeToCoord.get(d.properties.place) != null){
+        d.geometry.coordinates = placeToCoord.get(d.properties.place);
+    }else{
+        console.log(d.properties.place + " is not defined in places");
+        d.geometry.coordinates = [0,0];
+    }
     d.properties.icon = "music"; 
     return d;
 });
@@ -465,7 +470,7 @@ async function initPlaceInformation(){
         placeToUrl.set(data.features[i].properties.title,data.features[i].properties.description);
         places.push(data.features[i].properties.title);
     }
-    console.log("Total places: " + placeToCoord.size);
+    console.log("Total places imported from lyon_place.geojson: " + placeToCoord.size);
 }
 
 async function getNbEventPerPlace(_date){
