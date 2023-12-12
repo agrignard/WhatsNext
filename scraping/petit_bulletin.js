@@ -1,10 +1,10 @@
 var htmlContent;
 var regex, day, date, eventName,url,nbEvents,salle,style, dateUni;
 var listeSalles = [];
-var out = "PLACE,TITRE,UNIX,SIZE,GENRE,URL";
+var out="";// = "PLACE,TITRE,UNIX,SIZE,GENRE,URL";
 
-var outFile = "regex.csv";
-console.log("\n\n\n********* regex Tranbordeur *********\n\n");
+var outFile = "generated/petit_bulletin_scrapped.csv";
+console.log("\n\n\n********* Petit Bulletin *********\n\n");
 
 var url="https://www.petit-bulletin.fr/lyon/agenda-recherche.html?thema=musique-soirees&quoi=0&ou=0&quand=0&dateprecise=&qui=";
 var mainURL="https://www.petit-bulletin.fr/lyon/agenda-recherche.html?idvillepb=lyon&pageagenda=12&thema=musique-soirees&quoi=0&ou=0&quand=0&dateprecise=&qui=&p=";
@@ -44,11 +44,11 @@ while (i<12){
            // console.log(occurrences);
         
             for (var valeur of occurrences) {
-            console.log('\nEvent:\n');
+            console.log('Event:\n');
             nbEvents = nbEvents+1;
-            //console.log(valeur);
             regex = /(Lundi|Mardi|Mercredi|Jeudi|Vendredi|Samedi|Dimanche|Jusqu'au)/;// a changer au cas ou ce soit le nom d un spectacle
             day = valeur.match(regex);
+
             if (day != null) {
                 day=day[1];
             }else{
@@ -103,7 +103,7 @@ while (i<12){
 
 setTimeout(function() {
     console.log('Total events: ', nbEvents);
-console.log('Liste des salles: ', [...new Set(listeSalles)]);
+//console.log('Liste des salles: ', [...new Set(listeSalles)]);
 const fs = require('fs');
 fs.writeFileSync(outFile, out, 'utf-8', { flag: 'w' });
 }, 2000);

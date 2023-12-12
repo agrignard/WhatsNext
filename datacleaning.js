@@ -2,7 +2,7 @@ const fs = require('fs');
 const placeToCoord = new Map();
 
 convertPlaceCSVtoGeoJson();
-convertEventCSVtoGeoJson()
+convertEventCSVtoGeoJson();
 
 function convertGeoJsontoCSV(){
   console.log("converting geojson place to csv");

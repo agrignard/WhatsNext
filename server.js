@@ -5,4 +5,4 @@ app.use(express.static(__dirname + '/www'));
 const port = process.env.PORT || 3000;
 
 app.listen(port);
-console.log('Starting serve on working at' + port);
+console.log('Starting serve on working at ' + port);
