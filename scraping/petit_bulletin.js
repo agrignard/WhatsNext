@@ -2,8 +2,8 @@ var htmlContent;
 var regex, day, date, eventName,url,nbEvents,salle,style, dateUni;
 var listeSalles = [];
 var out="";// = "PLACE,TITRE,UNIX,SIZE,GENRE,URL";
-
 var outFile = "generated/petit_bulletin_scrapped.csv";
+
 console.log("\n\n\n********* Petit Bulletin *********\n\n");
 
 var url="https://www.petit-bulletin.fr/lyon/agenda-recherche.html?thema=musique-soirees&quoi=0&ou=0&quand=0&dateprecise=&qui=";
@@ -57,6 +57,7 @@ while (i<12){
             regex = /(\d+ (?:janvier|f.vrier|mars|avril|mai|juin|juillet|ao.t|septembre|octobre|novembre|d.cembre) \d*)/;
             date = valeur.match(regex)[1];
             dateUni = date.replace(/ /g,'-').replace('janvier','1').replace(/f.vrier/,'2').replace('mars','3').replace('avril','4').replace('mai','5').replace('juin','6').replace('juillet','7').replace(/ao.t/,'8').replace('septembre','9').replace('octobre','10').replace('novembre','11').replace(/d.cembre/,'12');
+            console.log("dateUni" + dateUni);
             if (dateUni.match(/(\d{4})/) == null){
                 annee = 2023;
             }else{
@@ -64,8 +65,9 @@ while (i<12){
             }
             mois = +dateUni.match(/-(\d+)-/)[1]-1;
             jour = +dateUni.match(/(\d+)-/)[1]+1;
+            console.log("new date ()" + annee  + " " + mois + "  " + jour );
             var maDate = new Date(annee, mois, jour).getTime();
-            //console.log(maDate);
+            console.log(maDate);
             
             regex = /href="([^]*?)"/;
             url = "https://www.petit-bulletin.fr/lyon/"+valeur.match(regex)[1];
@@ -102,10 +104,10 @@ while (i<12){
 }
 
 setTimeout(function() {
-    console.log('Total events: ', nbEvents);
-//console.log('Liste des salles: ', [...new Set(listeSalles)]);
-const fs = require('fs');
-fs.writeFileSync(outFile, out, 'utf-8', { flag: 'w' });
+    console.log('Total events: ', nbEvents, " written in " + outFile);
+    //console.log('Liste des salles: ', [...new Set(listeSalles)]);
+    const fs = require('fs');
+    fs.writeFileSync(outFile, out, 'utf-8', { flag: 'w' });
 }, 2000);
 
 
