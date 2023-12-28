@@ -43,11 +43,12 @@ async function analyseFile(venue) {
   // Simuler une opération asynchrone
   return new Promise((resolve) => {
     setTimeout(() => {
-      console.log("Traitement de l'élément :", venue);
+     // console.log("Traitement de l'élément :", venue);
       // Parcourir chaque objet
 
         // Afficher le numéro de l'objet
-        console.log(`\n******* Venue: ${venue.name}  *******`);
+        console.log();
+        console.log('\x1b[32m%s\x1b[0m', `******* Venue: ${venue.name}  *******`);
         const inputFile = sourcePath+venue.name+".html";
         fs.readFile(inputFile, 'utf8', (erreur, venueContent) => {
           if (erreur) {
@@ -59,12 +60,11 @@ async function analyseFile(venue) {
             const regexDelimiter = new RegExp(venue.eventsDelimiter, 'g');
             const events = venueContent.match(regexDelimiter);
             console.log("total number of events: " + events.length);
-            const regexDate = new RegExp(venue.date);
+            const regexDate = new RegExp(venue.eventDate);
             const regexName = new RegExp(venue.eventName);
             const regexURL = new RegExp(venue.eventURL);
-            console.log(regexName);
             
-            if (!('date' in venue)){
+            if (!('eventDate' in venue) || !('eventName' in venue)){
               console.log('\x1b[33m%s\x1b[0m', 'Pas de regexp défini pour '+venue.name);
 
             }else{
