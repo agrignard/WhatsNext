@@ -12,6 +12,18 @@
 "url": "https://www.transbordeur.fr/agenda/"
 },
 {
+    "name": "Le Petit Bulletin",
+    "url": "https://www.petit-bulletin.fr/lyon/agenda-recherche.html?thema=musique-soirees&quoi=0&ou=0&quand=0&dateprecise=&qui="
+},
+{
+    "name": "Info Concert",
+    "url": "https://www.infoconcert.com/ville/lyon-5131/concerts.html"
+},
+{
+    "name": "Halle Tony Garnier",
+    "url": "https://www.halle-tony-garnier.com/fr/programmation"
+},
+{
     "name": "Marché Gare",
     "url": "https://marchegare.fr/agenda?category=All&page=1"
 },
@@ -22,6 +34,11 @@
 {
     "name": "Ville Morte",
     "url": "https://villemorte.fr/agenda/"
+}
+,
+{
+    "name": "Le Sonic",
+    "url": "https://sonic-lyon.fr/"
 },
 {
     "name": "Le Trokson",
