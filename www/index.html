@@ -14,9 +14,10 @@ body { margin: 0; padding: 0; }
 </style>
 </head>
 <body>
+ 
 
 <div id="map"></div>
- 
+
 <div class="map-overlay top">
 <div class="map-overlay-inner">
 <div style='display:none;'>
@@ -24,13 +25,6 @@ body { margin: 0; padding: 0; }
 <input id="calendar" type="date" min="2023-10-16" max="2023-12-31"/>
 </div>
 <h2>WhatsNext</h2>
-<!--<div id="state-legend" class=".legendoverlay">
-    <div class="rock">Rock</div>
-    <div class="electro">Electro</div>
-    <div class="jazz">Jazz</div>
-    <div class="rap">Rap</div>
-    <div class="divers">Divers</div>
-</div>-->
 <canvas id="myCircleCanvas" height="50"></canvas>
 
 <div id="eventList" class="eventList-div"></div>
@@ -75,13 +69,35 @@ if (showAllValueDiv){
     canvasShowAll.style.display = 'none';
 }
 
+const start = {
+center: [4.85, 45.7465],
+zoom: 1.5,
+pitch: 45,
+bearing: 45
+};
+
+const lyon_start = {
+center: [4.85, 45.7465],
+zoom: 11.5,
+bearing: 0,
+pitch: 0
+};
+
+const end = {
+center: [8.11862, 46.58842],
+zoom: 16,
+bearing: 270,
+pitch: 75
+};
+
 const map = new mapboxgl.Map({
 container: 'map',
 style: darkstyle,
 projection: 'globe',
-center: [4.85, 45.7465],
-zoom: 11
+...start
 });
+
+
 
 const mapStyle = new Map();
 mapStyle.set('Rock', 'rgba(23,128,251,0.5)');
@@ -89,6 +105,7 @@ mapStyle.set('Electro', 'rgba(40,124,18,0.5)');
 mapStyle.set('Jazz', 'rgba(255,255,0,0.5)');
 mapStyle.set('Rap', 'rgba(165,2,33,0.5)');
 mapStyle.set('Divers', 'rgba(224,147,40,0.5)');
+mapStyle.set('Jam', 'rgba(238,130,238,0.5)');
 
 const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 
@@ -148,6 +165,12 @@ function filterByStyle(style,time) {
 var hoveredStateId =  null; 
 map.on('load', () => {
 d3.json('./lyon_event.geojson',jsonCallback);
+    map.flyTo({
+    ...lyon_start, // Fly to the selected target
+    duration: 5000, // Animate over 12 seconds
+    essential: true // This animation is considered essential with
+    //respect to prefers-reduced-motion
+    }); 
 });
  
 function jsonCallback(err, data) {
@@ -239,6 +262,7 @@ data: data
         'Jazz', ["case",["boolean", ["feature-state", "hover"], false],'rgba(255,255,0,'+ transparencyBig+')','rgba(255,255,0,'+ transparency+')'],
         'Rap', ["case",["boolean", ["feature-state", "hover"], false],'rgba(165,2,33,'+ transparencyBig+')','rgba(165,2,33,'+ transparency+')'],
         'Divers', ["case",["boolean", ["feature-state", "hover"], false],'rgba(224,147,40,'+ transparencyBig+')','rgba(224,147,40,'+ transparency+')'],
+        'Jam', ["case",["boolean", ["feature-state", "hover"], false],'rgba(238,130,238,'+ transparencyBig+')','rgba(238,130,238,'+ transparency+')'],
         '#ccc'
         ],
 'circle-stroke-color':[
@@ -248,6 +272,7 @@ data: data
     'Jazz', ["case",["boolean", ["feature-state", "hover"], false],'rgba(255,255,0,'+ transparencyBig+')','rgba(255,255,0,'+ transparency+')'],
     'Rap', ["case",["boolean", ["feature-state", "hover"], false],'rgba(165,2,33,'+ transparencyBig+')','rgba(165,2,33,'+ transparency+')'],
     'Divers', ["case",["boolean", ["feature-state", "hover"], false],'rgba(224,147,40,'+ transparencyBig+')','rgba(224,147,40,'+ transparency+')'],
+    'Jam', ["case",["boolean", ["feature-state", "hover"], false],'rgba(238,130,238,'+ transparencyBig+')','rgba(238,130,238,'+ transparency+')'],
     '#ccc'
     ],
     'circle-stroke-width': ["case",["boolean", ["feature-state", "hover"], false],10.0,2.5],
@@ -268,7 +293,8 @@ data: data
     ]
 }
 });
- 
+
+
 map.addLayer({
 'id': 'event-labels',
 'type': 'symbol',
@@ -387,6 +413,16 @@ map.getCanvas().style.cursor = '';
 // When a click event occurs on a feature in the places layer, open a popup at the
 // location of the feature, with description HTML from its properties.
 map.on('click', 'event-circles', (e) => {
+
+const target = e.features[0].geometry.coordinates;
+end.center = target;
+console.log("yo ca fly to " + target);
+map.flyTo({
+...end, // Fly to the selected target
+duration: 3000, // Animate over 12 seconds
+essential: true // This animation is considered essential with
+//respect to prefers-reduced-motion
+});   
 // Copy coordinates array.
 const coordinates = e.features[0].geometry.coordinates.slice();
 const description = e.features[0].properties.description;
@@ -548,7 +584,7 @@ async function getTodayEvents(_date){
     for (const [key, value] of todaysEvent) {
     mapString += " "+ key +" |";// + value + "\n";
     }
-    return mapString;
+    return "";//mapString;
 }
 
 
@@ -614,11 +650,12 @@ const canvas = document.getElementById('myCircleCanvas');
 const ctx = canvas.getContext('2d');
 
 const circles = [
-  { x: 50, y: 25, radius: 15, value: 'Rock', color: 'rgba(23,128,251,0.5)' },
-  { x: 100, y: 25, radius: 15, value: 'Electro', color: 'rgba(40,124,18,0.5)' },
-  { x: 150, y: 25, radius: 15, value: 'Jazz', color: 'rgba(255,255,0,0.5)' },
-  { x: 200, y: 25, radius: 15, value: 'Rap', color: 'rgba(165,2,33,0.5)' },
-  { x: 250, y: 25, radius: 15, value: 'Divers', color: 'rgba(224,147,40,0.5)' }
+  { x: 25, y: 25, radius: 15, value: 'Rock', color: 'rgba(23,128,251,0.5)' },
+  { x: 75, y: 25, radius: 15, value: 'Electro', color: 'rgba(40,124,18,0.5)' },
+  { x: 125, y: 25, radius: 15, value: 'Jazz', color: 'rgba(255,255,0,0.5)' },
+  { x: 175, y: 25, radius: 15, value: 'Rap', color: 'rgba(165,2,33,0.5)' },
+  { x: 225, y: 25, radius: 15, value: 'Divers', color: 'rgba(224,147,40,0.5)' },
+  { x: 275, y: 25, radius: 15, value: 'Jam', color: 'rgba(238,130,238,0.5)' }
 ];
 
 let selectedCircle = null;

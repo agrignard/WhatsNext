@@ -54,7 +54,6 @@ fetch(url)
       console.log(eventName);
       console.log(url,'\n');
       out = out+"Terminal"+','+eventName+','+date+', 100,'+"Electro"+','+url+'\n';
-          
     }
   })
   .catch(error => {
@@ -67,7 +66,7 @@ fetch(url)
     //console.log('Liste des salles: ', [...new Set(listeSalles)]);
     const fs = require('fs');
     fs.writeFileSync(outFile, out, 'utf-8', { flag: 'w' });
-}, 2000);
+}, 5000);
 
 // Transformer l'URL en chaîne de caractères
 

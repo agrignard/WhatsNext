@@ -35,7 +35,7 @@ async function scrapFiles(venues) {
     await analyseFile(venue);
   }
 
-  console.log("Fin de la boucle.");
+  //console.log("Fin de la boucle.");
 }
 
 
@@ -56,12 +56,39 @@ async function analyseFile(venue) {
           }
           //console.log(venueContent);
           try{
-            regexName = new RegExp(venue.event, 'g');
+            const regexDelimiter = new RegExp(venue.eventsDelimiter, 'g');
+            const events = venueContent.match(regexDelimiter);
+            console.log("total number of events: " + events.length);
+            const regexDate = new RegExp(venue.date);
+            const regexName = new RegExp(venue.eventName);
+            const regexURL = new RegExp(venue.eventURL);
             console.log(regexName);
-            var events = venueContent.match(regexName);
-            console.log("total number of event" + events.length);
+            
+            if (!('date' in venue)){
+              console.log('\x1b[33m%s\x1b[0m', 'Pas de regexp défini pour '+venue.name);
+
+            }else{
+              for (eve of events){
+                const eventDate = eve.match(regexDate)[1];
+                const eventName = eve.match(regexName)[1];
+                console.log(eventDate);
+                console.log(eventName);
+                if ('eventURL' in venue){
+                    const eventURL = eve.match(regexURL)[1];
+                    console.log(eventURL);
+                }
+                console.log();
+              }  
+            }
+
+     
+            
+            
+          //  const regexEventName = new RegExp(venue.eventName);
+          //  const eventName = events.match(regex)[1];
+          //  console.log(eventName);
           }catch(error){
-            console.log("Pas de regex pour "+venue.name);
+            console.log("Pas de regex pour "+venue.name,error);
           }
           console.log("\n\n");
           

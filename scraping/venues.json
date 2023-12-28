@@ -2,10 +2,10 @@
 {
 "name": "terminal",
 "url": "https://www.terminal-club.com/evenements/",
-"event": "<div class=\"tribe-events-pro-photo__event-date-tag tribe-common-g-col\">[^]*?<div class=\"is-divider\" st",
+"eventsDelimiter": "<div class=\"tribe-events-pro-photo__event-date-tag tribe-common-g-col\">[^]*?<div class=\"is-divider\" st",
 "date": "<time class=\"tribe-events-pro-photo__event-date-tag-datetime\" datetime=\"([^]*?)\">",
-"eventurl": "<a href=\"([^]*?)\"",
-"eventName": "<h5[^]*?>([^]*?)<//"
+"eventURL": "<a href=\"([^]*?)\"",
+"eventName": "<h5[^]*?>([^]*?)<"
 },
 {
 "name": "transbordeur",
