@@ -10,5 +10,21 @@
 {
 "name": "transbordeur",
 "url": "https://www.transbordeur.fr/agenda/"
+},
+{
+    "name": "Marché Gare",
+    "url": "https://marchegare.fr/agenda?category=All&page=1"
+},
+{
+    "name": "Le Périscope",
+    "url": "https://www.periscope-lyon.com/en/concerts-agenda/"
+},
+{
+    "name": "Ville Morte",
+    "url": "https://villemorte.fr/agenda/"
+},
+{
+    "name": "Le Trokson",
+    "url": "https://www.trokson.com/shows"
 }
 ]
