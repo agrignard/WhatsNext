@@ -1,0 +1,11 @@
+[
+{
+"name": "terminal",
+"url": "https://www.terminal-club.com/evenements/",
+"event": "/<div class=\"tribe-events-pro-photo__event-date-tag tribe-common-g-col\">[^]*?<div class=\"is-divider\" st/g"
+},
+{
+"name": "transbordeur",
+"url": "https://www.transbordeur.fr/agenda/"
+}
+]
