@@ -1,3 +1,15 @@
- {
-     "JAN": ["janvier","janv."]
+{
+        "JAN": ["janvier","janv."],
+        "FEB": ["février","fevr."],
+        "MAR": ["mars"],
+        "APR": ["avril","avri."],
+        "MAY": ["mai"],
+        "JUN": ["juin"],
+        "JUL": ["juil."],
+        "AUG": ["aout"],
+        "SEP": ["sept."],
+        "OCT": ["octobre"],
+        "NOV": ["novembre"],
+        "DEC": ["decembre","déc."]
 }
+
