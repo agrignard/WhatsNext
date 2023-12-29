@@ -13,7 +13,7 @@
 "eventsDelimiter": "<div class=\"span4 articletype[^]*?class=\"cartoucheEvenement\"",
 "eventDate": "class=\"jourMois\"> <h2> \\w*?\\. ([^]*?) <",
 "eventName": "<h2> <a href=\"[^]*?\"> ([^]*?) <\/a",
-"eventURL": "/<a href=\"([^]*?)\"/;"
+"eventURL": "<a href=\"([^]*?)\""
 },
 {
     "name": "Le Petit Bulletin",

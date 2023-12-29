@@ -43,8 +43,7 @@ async function analyseFile(venue) {
   // Simuler une opération asynchrone
   return new Promise((resolve) => {
     setTimeout(() => {
-     // console.log("Traitement de l'élément :", venue);
-      // Parcourir chaque objet
+        var events,eventDate,eventName;
 
         // Afficher le numéro de l'objet
         console.log();
@@ -57,31 +56,50 @@ async function analyseFile(venue) {
           }
           //console.log(venueContent);
           try{
-            const regexDelimiter = new RegExp(venue.eventsDelimiter, 'g');
-            const events = venueContent.match(regexDelimiter);
-            console.log("total number of events: " + events.length);
+            try{
+              const regexDelimiter = new RegExp(venue.eventsDelimiter, 'g');
+              events = venueContent.match(regexDelimiter);
+              console.log("total number of events: " + events.length);
+            }catch(err){
+              console.log('\x1b[31m%s\x1b[0m', 'Délimiteur mal défini pour '+venue.name);
+            }
+
             const regexDate = new RegExp(venue.eventDate);
             const regexName = new RegExp(venue.eventName);
             const regexURL = new RegExp(venue.eventURL);
+  
+
             
             if (!('eventDate' in venue) || !('eventName' in venue)){
               console.log('\x1b[33m%s\x1b[0m', 'Pas de regexp défini pour '+venue.name);
 
             }else{
               for (eve of events){
-                const eventDate = eve.match(regexDate)[1];
-                const eventName = eve.match(regexName)[1];
+                try{
+                  eventDate = eve.match(regexDate)[1];
+                } catch(err){
+                  console.log('\x1b[31m%s\x1b[0m', 'Erreur regexp sur la date pour '+venue.name);
+                }
+                try{
+                  eventName = eve.match(regexName)[1];
+                }catch(err){
+                  console.log('\x1b[31m%s\x1b[0m', 'Erreur regexp sur le nom de l\'événement pour '+venue.name);
+                }
+                
                 console.log(eventDate);
                 console.log(eventName);
                 if ('eventURL' in venue){
+                  try{
                     const eventURL = eve.match(regexURL)[1];
                     console.log(eventURL);
+                  }catch(err){
+                    console.log('\x1b[33m%s\x1b[0m', 'URL non fonctionnelle pour '+venue.name);
+                  }
+                    
                 }
                 console.log();
               }  
             }
-
-     
             
             
           //  const regexEventName = new RegExp(venue.eventName);
