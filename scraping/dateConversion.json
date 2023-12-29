@@ -1,15 +1,15 @@
 {
-        "JAN": ["janvier","janv."],
-        "FEB": ["février","fevr."],
-        "MAR": ["mars"],
-        "APR": ["avril","avri."],
-        "MAY": ["mai"],
-        "JUN": ["juin"],
-        "JUL": ["juil."],
-        "AUG": ["aout"],
-        "SEP": ["sept."],
-        "OCT": ["octobre"],
-        "NOV": ["novembre"],
-        "DEC": ["decembre","déc."]
+    "01": ["janvier","janv.","Janv."],
+    "02": ["février","fevr.","févr.","Févr."],
+    "03": ["mars","Mars"],
+    "04": ["avril","avri.","Avril"],
+    "05": ["mai","Mai"],
+    "06": ["juin","Juin"],
+    "07": ["juil."],
+    "08": ["aout"],
+    "09": ["sept."],
+    "10": ["octobre"],
+    "11": ["novembre"],
+    "12": ["decembre","décembre","déc."]
 }
 

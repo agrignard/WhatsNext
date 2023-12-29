@@ -5,7 +5,8 @@
 "eventsDelimiter": "<div class=\"tribe-events-pro-photo__event-date-tag tribe-common-g-col\">[^]*?<div class=\"is-divider\" st",
 "eventDate": "<time class=\"tribe-events-pro-photo__event-date-tag-datetime\" datetime=\"([^]*?)\">",
 "eventURL": "<a href=\"([^]*?)\"",
-"eventName": "<h5[^]*?>([^]*?)<"
+"eventName": "<h5[^]*?>([^]*?)<",
+"dateFormat": "yyyy-MM-dd"
 },
 {
 "name": "transbordeur",
@@ -13,7 +14,8 @@
 "eventsDelimiter": "<div class=\"span4 articletype[^]*?class=\"cartoucheEvenement\"",
 "eventDate": "class=\"jourMois\"> <h2> \\w*?\\. ([^]*?) <",
 "eventName": "<h2> <a href=\"[^]*?\"> ([^]*?) <\/a",
-"eventURL": "<a href=\"([^]*?)\""
+"eventURL": "<a href=\"([^]*?)\"",
+"dateFormat": "dd MM yy"
 },
 {
     "name": "Le Petit Bulletin",
@@ -29,7 +31,11 @@
 },
 {
     "name": "Marché Gare",
-    "url": "https://marchegare.fr/agenda?category=All&page=1"
+    "url": "https://marchegare.fr/agenda?category=All&page=1",
+    "eventsDelimiter": "<article class=[^]*?</article>",
+    "eventDate": "data-day=\"(\\d{2})[^]*?short=\"([^]*?)\"[^]*?year=\"([^]*?)\"",
+    "eventName": "<span class=\"leading-none lg:leading-none\">([^]*?)</span(?:[^]*?<div class=[^]*?>([^]*?)</div)?",
+    "dateFormat": "dd-MM-yyyy"
 },
 {
     "name": "Le Périscope",

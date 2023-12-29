@@ -1,11 +1,15 @@
 const fs = require('fs');
+const { parse, isValid } = require('date-fns');
 
 // Chemin vers le fichier à lire
 const filePath = './venues.json';
 const sourcePath = './webSources/';
 
 const dateConversionFile = './dateConversion.json';
+var out="";// = "PLACE,TITRE,UNIX,SIZE,GENRE,URL";
+var outFile = "generated/scrapexResult.csv";
 var months;
+
 
 fs.readFile(dateConversionFile, 'utf8', (erreur, fileContent) => {
   if (erreur) {
@@ -14,7 +18,7 @@ fs.readFile(dateConversionFile, 'utf8', (erreur, fileContent) => {
   }
 
   try {
-      months = JSON.parse(fileContent);   
+      months = JSON.parse(fileContent);  
     } catch (erreur) {
       console.error("Erreur de parsing JSON pour les conversions de dates :", erreur.message);
     }
@@ -46,7 +50,15 @@ fs.readFile(filePath, 'utf8', (erreur, fileContent) => {
       }
    
 
-});
+})
+
+setTimeout(function() {
+  console.log('Scrap fini avec succex !!');
+  fs.writeFileSync(outFile, out, 'utf-8', { flag: 'w' });
+}, 20000);
+
+
+
 
 
 async function scrapFiles(venues) {
@@ -64,7 +76,7 @@ async function analyseFile(venue) {
   // Simuler une opération asynchrone
   return new Promise((resolve) => {
     setTimeout(() => {
-        var events,eventDate,eventName;
+        var events,eventDate,eventName,unixDate,eventURL;
 
         // Afficher le numéro de l'objet
         console.log();
@@ -88,35 +100,63 @@ async function analyseFile(venue) {
             const regexDate = new RegExp(venue.eventDate);
             const regexName = new RegExp(venue.eventName);
             const regexURL = new RegExp(venue.eventURL);
-  
+            const dateFormat = venue.dateFormat;
 
             
-            if (!('eventDate' in venue) || !('eventName' in venue)){
+            if (!('eventDate' in venue) || !('eventName' in venue) || !('dateFormat' in venue)){
               console.log('\x1b[33m%s\x1b[0m', 'Pas de regexp défini pour '+venue.name);
 
             }else{
               for (eve of events){
                 try{
-                  eventDate = eve.match(regexDate)[1];
+                  const res = eve.match(regexDate);
+                  eventDate = "";
+                  for (let i = 1; i <= res.length-1; i++) {
+                    if (i > 1){
+                      eventDate += '-';
+                    }
+                    eventDate += res[i];
+                  }
+                  
+                  
+                  console.log(eventDate);
                 } catch(err){
                   console.log('\x1b[31m%s\x1b[0m', 'Erreur regexp sur la date pour '+venue.name);
                 }
                 try{
-                  eventName = eve.match(regexName)[1];
+                  const res = eve.match(regexName);
+                  eventName = "";
+                  for (let i = 1; i <= res.length-1; i++) {
+                    if (i > 1){
+                      eventName += ',';
+                    }
+                    eventName += res[i];
+                  }
+//                  eventName = eve.match(regexName)[1];
                 }catch(err){
                   console.log('\x1b[31m%s\x1b[0m', 'Erreur regexp sur le nom de l\'événement pour '+venue.name);
                 }
                 eventDate = convertDate(eventDate);
-                console.log(eventDate);
+               // console.log(eventDate);
+                const oldDate = eventDate;
+                eventDate = parse(eventDate, dateFormat, new Date());
+                  if (!isValid(eventDate)){
+                    console.log('\x1b[31m%s\x1b[0m', 'Format de date invalide pour '+venue.name+': '+oldDate);
+                  }else{
+                    unixDate = eventDate.getTime();
+                    console.log(eventDate);
+                    console.log(unixDate);
+                  }
                 console.log(eventName);
                 if ('eventURL' in venue){
                   try{
-                    const eventURL = eve.match(regexURL)[1];
+                    eventURL = eve.match(regexURL)[1];
                     console.log(eventURL);
                   }catch(err){
                     console.log('\x1b[33m%s\x1b[0m', 'URL non fonctionnelle pour '+venue.name);
                   }
-                    
+               //   out = out+venue.name,','+eventName;
+                  out = out+venue.name+','+eventName+','+unixDate+',100,'+eventURL+'\n';
                 }
                 console.log();
               }  
@@ -141,10 +181,11 @@ async function analyseFile(venue) {
 
 
 function convertDate(s) {
+
   for (const key in months) {
-    for (str of months[key]){
-      s = s.replace(str,key);
+     for (const str of months[key]){
+       s = s.replace(str,key);
     }
-    return s;
   }
+  return s;
 }
