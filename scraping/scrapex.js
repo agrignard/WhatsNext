@@ -3,8 +3,29 @@ const fs = require('fs');
 // Chemin vers le fichier à lire
 const filePath = './venues.json';
 const sourcePath = './webSources/';
+
+const dateConversionFile = './dateConversion.json';
+var months;
+
+fs.readFile(dateConversionFile, 'utf8', (erreur, fileContent) => {
+  if (erreur) {
+      console.error("Erreur lors de la lecture du fichier :", erreur);
+      return;
+  }
+
+  try {
+      months = JSON.parse(fileContent);   
+    } catch (erreur) {
+      console.error("Erreur de parsing JSON pour les conversions de dates :", erreur.message);
+    }
+ 
+
+});
+
 var fileContent;
 console.log("\n\n\n\n\n");
+
+
 
 // Lecture du fichier de manière asynchrone
 fs.readFile(filePath, 'utf8', (erreur, fileContent) => {
@@ -29,7 +50,7 @@ fs.readFile(filePath, 'utf8', (erreur, fileContent) => {
 
 
 async function scrapFiles(venues) {
-  const tableau = [1, 2, 3, 4, 5];
+  
 
   for (const venue of venues) {
     await analyseFile(venue);
@@ -85,7 +106,7 @@ async function analyseFile(venue) {
                 }catch(err){
                   console.log('\x1b[31m%s\x1b[0m', 'Erreur regexp sur le nom de l\'événement pour '+venue.name);
                 }
-                
+                eventDate = convertDate(eventDate);
                 console.log(eventDate);
                 console.log(eventName);
                 if ('eventURL' in venue){
@@ -119,3 +140,11 @@ async function analyseFile(venue) {
 
 
 
+function convertDate(s) {
+  for (const key in months) {
+    for (str of months[key]){
+      s = s.replace(str,key);
+    }
+    return s;
+  }
+}
