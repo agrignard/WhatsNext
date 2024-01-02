@@ -6,7 +6,8 @@
 "eventDate": "<time class=\"tribe-events-pro-photo__event-date-tag-datetime\" datetime=\"([^]*?)\">",
 "eventURL": "<a href=\"([^]*?)\"",
 "eventName": "<h5[^]*?>([^]*?)<",
-"dateFormat": "yyyy-MM-dd"
+"dateFormat": "yyyy-MM-dd",
+"baseURL": ""
 },
 {
 "name": "transbordeur",
@@ -15,7 +16,8 @@
 "eventDate": "class=\"jourMois\"> <h2> \\w*?\\. ([^]*?) <",
 "eventName": "<h2> <a href=\"[^]*?\"> ([^]*?) <\/a",
 "eventURL": "<a href=\"([^]*?)\"",
-"dateFormat": "dd MM yy"
+"dateFormat": "dd MM yy",
+"baseURL": "https://www.transbordeur.fr/"
 },
 {
     "name": "Le Petit Bulletin",
@@ -35,7 +37,9 @@
     "eventsDelimiter": "<article class=[^]*?</article>",
     "eventDate": "data-day=\"(\\d{2})[^]*?short=\"([^]*?)\"[^]*?year=\"([^]*?)\"",
     "eventName": "<span class=\"leading-none lg:leading-none\">([^]*?)</span(?:[^]*?<div class=[^]*?>([^]*?)</div)?",
-    "dateFormat": "dd-MM-yyyy"
+    "dateFormat": "dd-MM-yyyy",
+    "eventURL": "href=\"(.*)\"",
+    "baseURL": "https://marchegare.fr"
 },
 {
     "name": "Le Périscope",

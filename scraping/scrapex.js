@@ -2,7 +2,7 @@ const fs = require('fs');
 const { parse, isValid } = require('date-fns');
 
 // Chemin vers le fichier à lire
-const filePath = './venues.json';
+const filePath = './venues-test.json';
 const sourcePath = './webSources/';
 
 const dateConversionFile = './dateConversion.json';
@@ -55,7 +55,7 @@ fs.readFile(filePath, 'utf8', (erreur, fileContent) => {
 setTimeout(function() {
   console.log('Scrap fini avec succex !!');
   fs.writeFileSync(outFile, out, 'utf-8', { flag: 'w' });
-}, 20000);
+}, 2000);
 
 
 
@@ -118,7 +118,6 @@ async function analyseFile(venue) {
                     eventDate += res[i];
                   }
                   
-                  
                   console.log(eventDate);
                 } catch(err){
                   console.log('\x1b[31m%s\x1b[0m', 'Erreur regexp sur la date pour '+venue.name);
@@ -127,11 +126,14 @@ async function analyseFile(venue) {
                   const res = eve.match(regexName);
                   eventName = "";
                   for (let i = 1; i <= res.length-1; i++) {
-                    if (i > 1){
-                      eventName += ',';
+                    if (!(res[i] === undefined)){
+                      if (i > 1){
+                        eventName += ' ';
+                      }
+                      eventName += res[i];
                     }
-                    eventName += res[i];
                   }
+                  eventName = removeBlanks(eventName);
 //                  eventName = eve.match(regexName)[1];
                 }catch(err){
                   console.log('\x1b[31m%s\x1b[0m', 'Erreur regexp sur le nom de l\'événement pour '+venue.name);
@@ -144,13 +146,15 @@ async function analyseFile(venue) {
                     console.log('\x1b[31m%s\x1b[0m', 'Format de date invalide pour '+venue.name+': '+oldDate);
                   }else{
                     unixDate = eventDate.getTime();
-                    console.log(eventDate);
-                    console.log(unixDate);
+                 //   console.log(unixDate);
                   }
                 console.log(eventName);
                 if ('eventURL' in venue){
                   try{
                     eventURL = eve.match(regexURL)[1];
+                    if (!(eventURL === undefined)){
+                      eventURL = venue.baseURL+eventURL;
+                    }
                     console.log(eventURL);
                   }catch(err){
                     console.log('\x1b[33m%s\x1b[0m', 'URL non fonctionnelle pour '+venue.name);
@@ -181,11 +185,16 @@ async function analyseFile(venue) {
 
 
 function convertDate(s) {
-
+  s = s.normalize('NFD').replace(/[\u0300-\u036f]/g, ''); // remove accents
   for (const key in months) {
      for (const str of months[key]){
-       s = s.replace(str,key);
+       s = s.replace(new RegExp(str,'i'),key);
     }
   }
   return s;
+}
+
+
+function removeBlanks(s){
+  return s.replace(/[\n\t]/g, '').replace(/ {2,}/g, ' ').replace(/^ /,'');
 }
