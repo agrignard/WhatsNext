@@ -10,6 +10,7 @@
     "09": ["septembre", "sept."],
     "10": ["octobre","oct."],
     "11": ["novembre","nov."],
-    "12": ["decembre","dec."]
+    "12": ["decembre","dec."],
+    "tonight": ["ce soir","en ce moment"]
 }
 
