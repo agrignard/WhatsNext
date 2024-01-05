@@ -2,7 +2,7 @@
 
 
 ## SCRAPPING
-``` node aspiratorex.js ```
+* ``` node aspiratorex.js ```
 
 Input: ```venues.json```
 ```
@@ -18,6 +18,13 @@ Input: ```venues.json```
 }
 ```
 Output: ```webSources/*```
+
+
+* ```node scrapex.js```
+
+Input: ```venues_test.json```
+
+Output: ```generated/scrapexResult.csv```
 ## Places 
 ```mycity_events.csv ```
 
