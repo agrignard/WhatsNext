@@ -56,6 +56,10 @@ async function scrapFiles(venues) {
     } 
   }
   console.log('Scrapex fini avec succex !!\n\n');
+  setTimeout(function() {
+    console.log('Scrap fini avec succex !!');
+    fs.writeFileSync(outFile, out, 'utf-8', { flag: 'w' });
+  }, 2000);
 }
 
 
@@ -168,8 +172,8 @@ async function analyseFile(venue) {
 
       console.log(eventURL);
 
-  
-      //   out = out+venue.name+','+eventName+','+unixDate+',100,'+eventURL+'\n';
+      eventName= eventName.replace(",","-");
+      out = out+venue.name+','+eventName+','+unixDate+',100,Rock,'+eventURL+'\n';
       console.log();
     }  
     

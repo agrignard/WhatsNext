@@ -4,7 +4,9 @@ const fs = require('fs');
 const filePath = './venues.json';
 const outputPath = './webSources/';
 var fileContent;
-console.log("\n\n\n\n\n");
+console.log("***********************************************************************************");
+console.log("ASPIRATOREX IS SNIFFING SOURCES FILES Ccontained in: " + filePath );
+console.log("***********************************************************************************");
 
 // Lecture du fichier de manière asynchrone
 fs.readFile(filePath, 'utf8', (erreur, fileContent) => {
@@ -41,7 +43,7 @@ fs.readFile(filePath, 'utf8', (erreur, fileContent) => {
                     if (erreur) {
                       console.error("Erreur lors de l'écriture dans le fichier :", erreur);
                     } else {
-                      console.log("Sauvegarde réussie pour : "+venue.name);
+                      console.log("\""+venue.name + "\"" + " has been written in " + outputFile);
                     }
                   });
               

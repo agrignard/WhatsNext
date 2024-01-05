@@ -1,25 +1,25 @@
 [
     {
-    "name": "terminal",
-    "url": "https://www.terminal-club.com/evenements/",
-    "eventsDelimiterTag": " DIV.col-inner",
-    "eventDateTags": [
-        "DIV.event-photo-date:eq(0)",
-        "DIV.no-margin:eq(2)"
-      ],
-    "eventDateRegex": "<time class=\"tribe-events-pro-photo__event-date-tag-datetime\" datetime=\"([^]*?)\">|<h6>([^]*?)</h6",
-    "eventNameTags": ["H5.post-title:eq(0)"],
-    "dateFormat": "dd MM"
+      "name": "Terminal Club",
+      "url": "https://www.terminal-club.com/evenements/",
+      "eventsDelimiterTag": " DIV.col-inner",
+      "eventDateTags": [
+          "DIV.event-photo-date:eq(0)",
+          "DIV.no-margin:eq(2)"
+        ],
+      "eventDateRegex": "<time class=\"tribe-events-pro-photo__event-date-tag-datetime\" datetime=\"([^]*?)\">|<h6>([^]*?)</h6",
+      "eventNameTags": ["H5.post-title:eq(0)"],
+      "dateFormat": "dd MM"
     },
-{
-    "name": "transbordeur",
-    "url": "https://www.transbordeur.fr/agenda/",
-    "eventsDelimiterTag": "DIV.span6.blocText",
-    "eventNameTags": [ "div.header:eq(0) h2:eq(0) a:eq(0)" ],
-    "eventDateTags": [ "SPAN.jourMois:eq(0) H2:eq(0)", "SPAN.news-list-date:eq(0) H2:eq(1)" ],
-    "eventStyleTags": [ "DIV.teaser-text:eq(0) P:eq(0)" ],
-    "dateFormat": "dd MM yy HH:mm",
-    "baseURL": "https://www.transbordeur.fr"
+    {
+      "name": "Transbordeur",
+      "url": "https://www.transbordeur.fr/agenda/",
+      "eventsDelimiterTag": "DIV.span6.blocText",
+      "eventNameTags": [ "div.header:eq(0) h2:eq(0) a:eq(0)" ],
+      "eventDateTags": [ "SPAN.jourMois:eq(0) H2:eq(0)", "SPAN.news-list-date:eq(0) H2:eq(1)" ],
+      "eventStyleTags": [ "DIV.teaser-text:eq(0) P:eq(0)" ],
+      "dateFormat": "dd MM yy HH:mm",
+      "baseURL": "https://www.transbordeur.fr"
     },
     {
         "name": "Marché Gare",
