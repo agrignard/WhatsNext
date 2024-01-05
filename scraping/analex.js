@@ -3,21 +3,20 @@ const fs = require('fs').promises;
 const cheerio = require('cheerio');
 
 // Chemin vers le fichier à lire
-const fileName = 'Marché Gare.html';
-// const fileName = 'terminal.html';
-//const fileName = 'transbordeur.html';
+//const fileName = 'Marché Gare.html';
+const fileName = 'Transbordeur.html';
 const sourcePath = './webSources/';
 
 const extendSelectionToGetURL = true;
 
-var eventNameStrings = ["vernissage","photogr"];
-var eventDateStrings = ["12.","01"];
-var eventStyleStrings = ["exposition"];
-var excludeList =  [];
+// var eventNameStrings = ["vernissage","photogr"];
+// var eventDateStrings = ["12.","01"];
+// var eventStyleStrings = ["exposition"];
+// var excludeList =  [];
 
-// var eventNameStrings = ["dusty"];
-// var eventDateStrings = ["30","déc"];
-// var eventStyleStrings = [];
+var eventNameStrings = ["jasual"];
+var eventDateStrings = ["10 jan"];
+var eventStyleStrings = ["rock"];
 
 // var eventNameStrings = ["allien"];
 // var eventDateStrings = ["06 janv.","23:30"];
@@ -49,7 +48,6 @@ fileContent = fs.readFile(sourcePath+fileName, 'utf8')
     //console.log(stringsToFind);
     //console.log('*:contains("' + stringsToFind.join('"), :contains("') + '")');
     const tagsContainingStrings = $('*:contains("' + stringsToFind.join('"), :contains("') + '")')
-    .filter((_, tag) => tagContainsAllStrings($(tag), stringsToFind))
     .filter((_, tag) => tagContainsAllStrings($(tag), stringsToFind));
 
 
@@ -88,6 +86,7 @@ fileContent = fs.readFile(sourcePath+fileName, 'utf8')
              `<${mainTag.prop('tagName')} class="${$(mainTag).attr('class')}" id="${$(mainTag).attr('id')}">`,'\x1b[0m Contains');
         console.log('\x1b[0m\x1b[32m%s\x1b[0m',removeImageTag(removeBlanks($(mainTag).text())));
     
+   //     console.log($(mainTag).html());
         venueJSON.eventsDelimiterTag=getTagLocalization(mainTag,$,false);
   //      console.log('\x1b[32m%s\x1b[0m', `Tag: <${tag.prop('tagName')} class="${$(tag).attr('class')}" id="${$(tag).attr('id')}">`);
  
@@ -175,7 +174,10 @@ function getTagWithURL(currentTag,$cgp){
 
 
 function getTagLocalization(tag,source,withIndex){
+  //  console.log("fezf");
+    //console.log(source(tag).prop('tagName'));
     if (source(tag).attr('class')){
+      //  console.log("avec class");
         const tagClass = source(tag).attr('class').split(' ')[0];
         let string = source(tag).prop('tagName')+'.'+tagClass;
       //  let string = source(tag).prop('tagName')+'.'+source(tag).attr('class');
@@ -185,6 +187,7 @@ function getTagLocalization(tag,source,withIndex){
         string = string.replace(/ /g,'.');
         return string;
     }else{
+      //  console.log("faefaggg");
         let string = getTagLocalization(tag.parent,source,withIndex);
         string += ' '+source(tag).prop('tagName');
         if (withIndex){

@@ -55,11 +55,9 @@ async function scrapFiles(venues) {
       await analyseFile(venue);
     } 
   }
+  fs.writeFileSync(outFile, out, 'utf-8', { flag: 'w' });
   console.log('Scrapex fini avec succex !!\n\n');
-  setTimeout(function() {
-    console.log('Scrap fini avec succex !!');
-    fs.writeFileSync(outFile, out, 'utf-8', { flag: 'w' });
-  }, 2000);
+  
 }
 
 

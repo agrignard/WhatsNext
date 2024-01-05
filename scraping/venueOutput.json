@@ -1,14 +1,12 @@
 {
-  "eventsDelimiterTag": "ARTICLE.agenda--item-container",
+  "eventsDelimiterTag": "DIV.span6",
   "eventNameTags": [
-    "SPAN.leading-none:eq(1)",
-    "DIV.agenda--subtitle:eq(0)"
+    "DIV.header:eq(0) H2:eq(0) A:eq(0)"
   ],
   "eventDateTags": [
-    "SPAN.evt-date-from-day:eq(0)",
-    "SPAN.evt-date-from-month:eq(0)"
+    "SPAN.jourMois:eq(0) H2:eq(0)"
   ],
   "eventStyleTags": [
-    "SPAN.uppercase:eq(0)"
+    "DIV.teaser-text:eq(0) P:eq(0)"
   ]
 }
