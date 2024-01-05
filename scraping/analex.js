@@ -3,28 +3,28 @@ const fs = require('fs').promises;
 const cheerio = require('cheerio');
 
 // Chemin vers le fichier à lire
-//const fileName = 'Marché Gare.html';
-//const fileName = 'terminal.html';
-const fileName = 'transbordeur.html';
+const fileName = 'Marché Gare.html';
+// const fileName = 'terminal.html';
+//const fileName = 'transbordeur.html';
 const sourcePath = './webSources/';
 
-// const eventNameStrings = ["dusty"];
-// const eventDateStrings = ["30","déc"];
+const extendSelectionToGetURL = true;
 
-// var eventNameStrings = ["Giant","atzur"];
-// var eventDateStrings = ["09.","01"];
-// var eventStyleStrings = ["pop-rock"];
+var eventNameStrings = ["vernissage","photogr"];
+var eventDateStrings = ["12.","01"];
+var eventStyleStrings = ["exposition"];
+var excludeList =  [];
 
 // var eventNameStrings = ["dusty"];
-// var eventDateStrings = ["30", "déc"];
+// var eventDateStrings = ["30","déc"];
 // var eventStyleStrings = [];
 
-var eventNameStrings = ["allien"];
-var eventDateStrings = ["06 janv."];
-var eventStyleStrings = ["techno"];
+// var eventNameStrings = ["allien"];
+// var eventDateStrings = ["06 janv.","23:30"];
+// var eventStyleStrings = ["techno"];
 
 
-const outputFile = "./outTest.html";
+const outputFile = "./venueOutput.json";
 
 
 
@@ -32,70 +32,127 @@ const outputFile = "./outTest.html";
 
 fileContent = fs.readFile(sourcePath+fileName, 'utf8')
 .then((fileContent) =>{
-    console.log('\x1b[36m%s\x1b[0m', `******* Analysing file: ${fileName}  *******`);
+    const venueJSON = {};
+    console.log('\x1b[36m%s\x1b[0m', `\n\n******* Analysing file: ${fileName}  *******\n`);
     // convert everything to lower case
-    eventNameStrings = eventNameStrings.map(string => string.toLowerCase());
-    eventDateStrings = eventDateStrings.map(string => string.toLowerCase());
-    eventStyleStrings = eventStyleStrings.map(string => string.toLowerCase());
+    try{
+        eventNameStrings = eventNameStrings.map(string => string.toLowerCase());
+        eventDateStrings = eventDateStrings.map(string => string.toLowerCase());
+        eventStyleStrings = eventStyleStrings.map(string => string.toLowerCase());
+    }catch(error){
+        console.error('\x1b[31mError while reading the strings to parse: %s\x1b[0m',error);
+    }
+
     const $ = cheerio.load(convertToLowerCase(fileContent));
 
-    let stringsToFind = eventNameStrings.concat(eventDateStrings);
+    let stringsToFind = eventNameStrings.concat(eventDateStrings).concat(eventStyleStrings);
     //console.log(stringsToFind);
     //console.log('*:contains("' + stringsToFind.join('"), :contains("') + '")');
     const tagsContainingStrings = $('*:contains("' + stringsToFind.join('"), :contains("') + '")')
-        .filter((_, tag) => tagContainsAllStrings($(tag), stringsToFind));
+    .filter((_, tag) => tagContainsAllStrings($(tag), stringsToFind))
+    .filter((_, tag) => tagContainsAllStrings($(tag), stringsToFind));
 
 
     
     //Affichez les noms des balises trouvées
     if (tagsContainingStrings.length === 0){
-        console.log('\x1b[31m%s\x1b[0m',"No occurence found.");
+        console.log('\x1b[31m%s\x1b[0m',"Impossible to find a tag that delimits the events.");
     }else{
         // tagsContainingStrings.each((_, tag) => {
         //     console.log('Tag found:', tag.tagName, $(tag).attr('class'),$(tag).text().length);
         // });
     
-        // récupération de la meilleure balise
-       // console.log("\nKeeping the best one:");
-        const tag = tagsContainingStrings.last();
-        console.log("Found ",tagsContainingStrings.length,' tags. Best tag: \x1b[32m',
-             `<${tag.prop('tagName')} class="${$(tag).attr('class')}" id="${$(tag).attr('id')}">`,'\x1b[0m');
-        console.log('Contains the following information:\n');
+        // find a tag containing all the strings
+        var mainTag = tagsContainingStrings.last();
+        var $eventBlock = cheerio.load($(mainTag).html());
+        var hrefs = $eventBlock('a[href]');
+
+        // extend the tag if it does not include any URL link
+        if (extendSelectionToGetURL){
+            try{
+                const mainTagWithURL = getTagWithURL(mainTag,$eventBlock);
+                //mainTag = mainTagWithURL;
+                let $eventBlockURL = cheerio.load($(mainTagWithURL).html());
+                let hrefsURL = $eventBlockURL('a[href]');
+                if (hrefsURL.length > 0){
+                    mainTag = mainTagWithURL;
+                    $eventBlock = $eventBlockURL;
+                    hrefs = $eventBlock('a[href]');
+                }
+            }catch(err){
+                console.log("\x1b[31mError while trying to find embedded URL recursively. Aborting URL search. Try to turn flag \'extendSelectionToGetURL\' to false to prevent recursive search. %s\x1b[0m",err)
+            }
+        }
+       
+        console.log("Found ",tagsContainingStrings.length,' tags. Best tag: \x1b[90m',
+             `<${mainTag.prop('tagName')} class="${$(mainTag).attr('class')}" id="${$(mainTag).attr('id')}">`,'\x1b[0m Contains');
+        console.log('\x1b[0m\x1b[32m%s\x1b[0m',removeImageTag(removeBlanks($(mainTag).text())));
+    
+        venueJSON.eventsDelimiterTag=getTagLocalization(mainTag,$,false);
   //      console.log('\x1b[32m%s\x1b[0m', `Tag: <${tag.prop('tagName')} class="${$(tag).attr('class')}" id="${$(tag).attr('id')}">`);
-        const groupContent = $(tag).html();
-        console.log($(tag).text());
-        console.log();
+ 
+    
         
-     //   console.log(removeBlanks(groupContent));
     //***************************************************************/
-        // recherche des balises pour le nom de l'event
-        const $eventBlock = cheerio.load(groupContent);
+    //***************************************************************/
+      
+    
+    // recherche des balises pour le nom de l'event
+        
 
+        console.log("\nEvent name tags:");
         const eventNameTags = eventNameStrings.map(string => findTag($eventBlock,string));
-        console.log("Event name tags:");
         showTagsDetails(eventNameTags,$eventBlock);
+        venueJSON.eventNameTags = eventNameTags.map(tag => getTagLocalization(tag,$eventBlock,true));
 
+        console.log("\nEvent date tags:");
         const eventDateTags = eventDateStrings.map(string => findTag($eventBlock,string));
-        console.log("Event date tags:");
         showTagsDetails(eventDateTags,$eventBlock);
+        venueJSON.eventDateTags = eventDateTags.map(tag => getTagLocalization(tag,$eventBlock,true));
 
         if (eventStyleStrings.length > 0){
-            console.log("Event style tags:");
-            const eventStyleTags = eventStyleStrings.map(string => findTag($eventBlock,string));
+            console.log("\nEvent style tags:");
+            const eventStyleTags = eventStyleStrings.map(string => findTag($eventBlock,string,true));
             showTagsDetails(eventStyleTags,$eventBlock);
+            venueJSON.eventStyleTags = eventStyleTags.map(tag => getTagLocalization(tag,$eventBlock,true));
+        }
+    
+        // logs depending on if URL has been found.
+        console.log();
+        if (hrefs.length === 1) {
+          console.log('URL found:',$eventBlock(hrefs[0]).attr('href'));
+        }else if (hrefs.length > 1){
+            console.log(hrefs.length,'URLs found. Change index in JSON \"eventURLIndex\" to the most suitable one (default 0).');
+            hrefs.each((index, element) => {
+                const href = $eventBlock(element).attr('href');
+                console.log('\x1b[90mURL (index\x1b[0m',index,'\x1b[90m):\x1b[0m', href);
+            });
+            venueJSON.eventURLIndex = 0;
+        } 
+        else {
+          console.log('\x1b[31mNo url link found.'
+            +(extendSelectionToGetURL?'':'(consider finding URLs recursively using \"extendSelectionToGetURL = true\")')+'\x1b[0m');
+          venueJSON.eventURLIndex = -1;
         }
 
 
-        console.log("\n\n\n");
-        
-      //  fs2.writeFileSync(outputFile, $(tag).html(), 'utf-8', { flag: 'w' });
+        console.log("\n",venueJSON);
+        console.log("\n");
+
+        try{
+            const jsonString = JSON.stringify(venueJSON, null, 2); 
+            fs2.writeFileSync(outputFile, jsonString);
+            console.log('Saved to %s',outputFile);
+        }catch(err){
+            console.log('\x1b[31mError saving to .json: %s\x1b[0m',err);
+        }
     }
     
    
   
 
     
-    console.log("\n\n\n\n\n");
+    console.log("\n\n");
 })
 .catch((erreur ) => {
     console.error("Erreur de traitement du fichier :",fileName, erreur);
@@ -103,12 +160,53 @@ fileContent = fs.readFile(sourcePath+fileName, 'utf8')
 
 //*********************************************** */
 
-function showTagsDetails(tagList,source){
-    tagList.forEach(element => console.log('\x1b[32m', 'Tag: <', element.tagName,
-        '\x1b[32m class=\"',source(element).attr('class'),
-        '\x1b[32m\" id = \"',source(element).attr('id'),
-        '\x1b[32m\"> index: ',source(element).index(),'\x1b[0m ',removeBlanks(source(element).text())));
+function getTagWithURL(currentTag,$cgp){
+    var hrefs = $cgp('a[href]');
+    while ($cgp(currentTag).prop('tagName') && hrefs.length===0) {
+        currentTag = currentTag.parent();
+        if ($cgp(currentTag).prop('tagName')){
+            const gp = currentTag.html();
+            $cgp = cheerio.load(gp);
+            hrefs = $cgp('a[href]');
+        }
+    }
+    return currentTag;
 }
+
+
+function getTagLocalization(tag,source,withIndex){
+    if (source(tag).attr('class')){
+        const tagClass = source(tag).attr('class').split(' ')[0];
+        let string = source(tag).prop('tagName')+'.'+tagClass;
+      //  let string = source(tag).prop('tagName')+'.'+source(tag).attr('class');
+        if (withIndex){
+            string += ':eq('+getMyClasseIndex(tag,source)+')';
+        }
+        string = string.replace(/ /g,'.');
+        return string;
+    }else{
+        let string = getTagLocalization(tag.parent,source,withIndex);
+        string += ' '+source(tag).prop('tagName');
+        if (withIndex){
+            string += ':eq('+source(tag).index()+')';
+        }
+        return string;
+    }
+}
+
+function getMyClasseIndex(tag,source){// get the index of the tag div.class among the same class
+    const tagClass = source(tag).attr('class').split(' ')[0];
+  //  console.log("index "+source(tag).prop('tagName'));
+   // console.log(cl);
+    return source(tag).index(source(tag).prop('tagName')+'.'+tagClass);
+   // return source(tag).index(source(tag).prop('tagName')+'.'+source(tag).attr('class'));
+}
+
+function showTagsDetails(tagList,source){
+    tagList.forEach(element => console.log('\x1b[90mTag: <%s class=%s> (index %s): \x1b[0m%s', 
+        element.tagName,source(element).attr('class'),source(element).index(),removeBlanks(source(element).text())));
+}
+
 
 function tagContainsAllStrings(tag, strings) {
     const tagContent = tag.text();//.toLowerCase(); // Convertir en minuscules
@@ -122,7 +220,7 @@ function findTag(html,string) {
 
 
 function removeBlanks(s){
-    return s.replace(/ {2,}/g, ' ').replace(/\n[ \t\n]*/g, ' ');
+    return s.replace(/ {2,}/g, ' ').replace(/\n[ \t\n]*/g, ' ').replace(/^ /,'');
  //    return s.replace(/[\t]*/g, '').replace(/ {2,}/g, ' ').replace(/^ /,'').replace(/[\n]*/, '\n');
  }
  
@@ -131,132 +229,9 @@ function removeBlanks(s){
      regex = /^[^<]*?<|>([^]*?)<|>[^>]*?$/g;
      return s.replace(regex,match => match.toLowerCase());
  }
+
+ function removeImageTag(s){
+    regex = /<img.*?>/g;
+    return s.replace(regex,'[***IMAGE***]')
+ }
  
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-async function analyseFile(venue) {
-  var events,eventDate,eventName,unixDate,eventURL, venueContent;
-  const inputFile = sourcePath+venue.name+".html";
-  try{
-    venueContent = await fs2.readFile(inputFile, 'utf8');
-  }catch (erreur){
-    console.error("Erreur lors de la lecture du fichier local de :",venue.name, erreur);
-  }
-  console.log();
-  console.log('\x1b[32m%s\x1b[0m', `******* Venue: ${venue.name}  *******`);
-  try{
-    try{
-      if (venue.hasOwnProperty('eventsDelimiter')){
-        const regexDelimiter = new RegExp(venue.eventsDelimiter, 'g');
-        events = venueContent.match(regexDelimiter);
-      }else{
-        const eventAnchor = venue.eventsAnchor;
-        const $ = cheerio.load(venueContent);
-  
-        events = [];
-        $('.'+venue.eventsAnchor).each((index, element) => {
-          let ev = $(element).html();
-          events.push(ev);
-        });
-      }
-
-      console.log("total number of events: " + events.length);       
-    }catch(err){        
-      console.log('\x1b[31m%s\x1b[0m', 'Délimiteur mal défini pour '+venue.name);      
-    }
-
-    const regexDate = new RegExp(venue.eventDate);
-    const regexName = new RegExp(venue.eventName);
-    const regexURL = new RegExp(venue.eventURL);
-    const dateFormat = venue.dateFormat;
-    
-    if (!('eventDate' in venue) || !('eventName' in venue) || !('dateFormat' in venue)){
-      console.log('\x1b[33m%s\x1b[0m', 'Pas de regexp défini pour '+venue.name);      
-    }else{
-      for (eve of events){
-        try{
-          const res = eve.match(regexDate);
-          eventDate = "";
-          for (let i = 1; i <= res.length-1; i++) {
-            if (!(res[i] === undefined)){
-              if (!(eventDate === "")){
-                        eventDate += '-';
-                }
-                      eventDate += res[i];
-            }    
-          }        
-        } catch(err){
-          console.log('\x1b[31m%s\x1b[0m', 'Erreur regexp sur la date pour '+venue.name);
-        }
-        try{
-          const res = eve.match(regexName);
-          eventName = "";
-          for (let i = 1; i <= res.length-1; i++) {
-            if (!(res[i] === undefined)){
-              if (i > 1){
-                eventName += ' ';
-              }
-              eventName += res[i];      
-            }
-          }
-          eventName = removeBlanks(eventName);
-        }catch(err){
-          console.log('\x1b[31m%s\x1b[0m', 'Erreur regexp sur le nom de l\'événement pour '+venue.name);
-        }
-
-        const oldDate = eventDate;
-        console.log(eventDate);
-        eventDate = convertDate(eventDate,dateFormat);
-        if (!isValid(eventDate)){
-          console.log('\x1b[31m%s\x1b[0m', 'Format de date invalide pour '+venue.name+': '+oldDate);
-        }else{
-          unixDate = eventDate.getTime();
-                  //console.log(unixDate);
-        }
-
-
-        console.log(eventName);
-        if ('eventURL' in venue){
-          try{
-            eventURL = eve.match(regexURL)[1];
-            if (!(eventURL === undefined)){
-              eventURL = venue.baseURL+eventURL;
-            }
-            console.log(eventURL);
-          }catch(err){
-            console.log('\x1b[33m%s\x1b[0m', 'URL non fonctionnelle pour '+venue.name);
-          }
-          out = out+venue.name+','+eventName+','+unixDate+',100,'+eventURL+'\n';
-        }
-        console.log();
-      }  
-    }
-  }catch(error){
-    console.log("Pas de regex pour "+venue.name,error);
-  }
-  console.log("\n\n");
-}
-  
-
-
-
-

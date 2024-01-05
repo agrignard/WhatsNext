@@ -2,31 +2,41 @@
     {
     "name": "terminal",
     "url": "https://www.terminal-club.com/evenements/",
-    "eventsAnchor": "col-inner",
-    "eventDate": "<time class=\"tribe-events-pro-photo__event-date-tag-datetime\" datetime=\"([^]*?)\">|<h6>([^]*?)</h6",
-    "eventURL": "<a href=\"([^]*?)\"",
-    "eventName": "<h5[^]*?>([^]*?)<",
-    "dateFormat": "yyyy-MM-dd",
-    "baseURL": ""
+    "eventsDelimiterTag": " DIV.col-inner",
+    "eventDateTags": [
+        "DIV.event-photo-date:eq(0)",
+        "DIV.no-margin:eq(2)"
+      ],
+    "eventDateRegex": "<time class=\"tribe-events-pro-photo__event-date-tag-datetime\" datetime=\"([^]*?)\">|<h6>([^]*?)</h6",
+    "eventNameTags": ["H5.post-title:eq(0)"],
+    "dateFormat": "dd MM"
+    },
+{
+    "name": "transbordeur",
+    "url": "https://www.transbordeur.fr/agenda/",
+    "eventsDelimiterTag": "DIV.span6.blocText",
+    "eventNameTags": [ "div.header:eq(0) h2:eq(0) a:eq(0)" ],
+    "eventDateTags": [ "SPAN.jourMois:eq(0) H2:eq(0)", "SPAN.news-list-date:eq(0) H2:eq(1)" ],
+    "eventStyleTags": [ "DIV.teaser-text:eq(0) P:eq(0)" ],
+    "dateFormat": "dd MM yy HH:mm",
+    "baseURL": "https://www.transbordeur.fr"
     },
     {
-        "name": "transbordeur",
-        "url": "https://www.transbordeur.fr/agenda/",
-        "eventsAnchor": "span4.articletype-1",
-        "eventDate": "class=\"jourMois\"> <h2> \\w*?\\. ([^]*?) <",
-        "eventName": "<h2> <a href=\"[^]*?\"> ([^]*?) <\/a",
-        "eventURL": "<a href=\"([^]*?)\"",
-        "dateFormat": "dd MM yy",
-        "baseURL": "https://www.transbordeur.fr/"
-        },
-{
-    "name": "Marché Gare",
-    "url": "https://marchegare.fr/agenda?category=All&page=1",
-    "eventsAnchor": "views-row",
-    "eventDate": "data-day=\"(\\d{2})[^]*?short=\"([^]*?)\"[^]*?year=\"([^]*?)\"",
-    "eventName": "<span class=\"leading-none lg:leading-none\">([^]*?)</span(?:[^]*?<div class=[^]*?>([^]*?)</div)?",
-    "dateFormat": "dd-MM-yyyy",
-    "eventURL": "href=\"(.*)\"",
-    "baseURL": "https://marchegare.fr"
-}
+        "name": "Marché Gare",
+        "url": "https://marchegare.fr/agenda?category=All&page=1",
+        "eventsDelimiterTag": "ARTICLE.agenda--item-container",
+        "eventNameTags": [
+            "SPAN.leading-none:eq(1)", 
+            "DIV.agenda--subtitle:eq(0)"
+        ],
+        "eventDateTags": [
+          "SPAN.evt-date-from-day:eq(0)",
+          "SPAN.evt-date-from-month:eq(0)"
+        ],
+        "eventStyleTags": [
+          "SPAN.uppercase:eq(0)"
+        ],
+        "dateFormat": "dd. MM",
+        "baseURL": "https://marchegare.fr"
+    }
 ]
