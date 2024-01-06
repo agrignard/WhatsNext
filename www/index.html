@@ -56,7 +56,7 @@ if (darkMode){
     darkstyle= 'mapbox://styles/mapbox/dark-v11';
 }
 
-var devMode = false;
+var devMode = true;
 var showAllValueDiv = devMode ? true : false;
 var showAllValue = false;
 updateCircleLegend();
@@ -509,12 +509,11 @@ async function initPlaceInformation(){
     console.log("Total places imported from lyon_place.geojson: " + placeToCoord.size);
 }
 
-async function getNbEventPerPlace(_date){
+async function getSortedNbEventPerPlaceMap(_date){
     const response = await fetch('lyon_event.geojson');
     const data =   await response.json();
     const nbEventPerPlace = new Map();
     nbActiveEvent=0;
-    //Initialize the number of event per place to 0
     for (var j = 0; j < places.length;j++){
         nbEventPerPlace.set(places[j], 0);
     }
@@ -527,41 +526,59 @@ async function getNbEventPerPlace(_date){
             }
             nbActiveEvent = nbActiveEvent+1;
         }
-    }
+    }    
     function sortMapByValue(map) {
         const sortedArray = [...map].sort((a, b) => b[1] - a[1]); // Sort by values in ascending order
         return new Map(sortedArray);
     }
     const sortedMap = sortMapByValue(nbEventPerPlace);
-
     return sortedMap;
 }
 
-async function getNbEventPerDay(_date){
+async function getSoretdNbEventPerDayMap(_date){
     const response = await fetch('lyon_event.geojson');
     const data =   await response.json();
     const nbEventPerDay = new Map();
     for (var i = 0; i < data.features.length; i++) {
         if(data.features[i].properties.time>_date){
             const tmpDate = new Date(data.features[i].properties.time);
-            tmpDate.setHours(4,0,0);
-            keyEntry = days[tmpDate.getDay()] + " " + tmpDate.getDate() + "/" + (parseInt(tmpDate.getMonth())+1);
-                       
-            if (nbEventPerDay.has(keyEntry)) {
-                nbEventPerDay.set(keyEntry, nbEventPerDay.get(keyEntry) + 1);
+            keyEntry = new Date(data.features[i].properties.time );
+            keyEntry = new Date(keyEntry.setHours(0, 0, 0, 0));           
+            if (nbEventPerDay.has(keyEntry.getTime())) {
+                nbEventPerDay.set(keyEntry.getTime(), nbEventPerDay.get(keyEntry.getTime()) + 1);
             } else {
-                nbEventPerDay.set(keyEntry, 1);
+                nbEventPerDay.set(keyEntry.getTime(), 1);
             }
         }
     }
-    const keysArray = Array.from(nbEventPerDay.keys());
-    keysArray.sort((a, b) => a - b);
-    const sortedMap = new Map();
+    function getDaysInYear(year) {
+        const startDate = new Date(`${year}-01-01`);
+        const endDate = new Date(`${year + 1}-01-01`);
+        const days = [];
 
-    for (const key of keysArray) {
-    sortedMap.set(key, nbEventPerDay.get(key));
+        for (let current = startDate; current < endDate; current.setDate(current.getDate() + 1)) {
+            current = new Date(current.setHours(0, 0, 0, 0));
+            days.push(new Date(current).getTime());
+        }
+
+        return days;
     }
-    return sortedMap;
+    const yearToDisplay = 2024;
+    const allDays = getDaysInYear(yearToDisplay);
+
+    const valuesForDaysUnixTime = new Map();
+    allDays.forEach(day => {
+        const value = nbEventPerDay.get(day);
+        valuesForDaysUnixTime.set(day, value);
+    });
+
+    // Créer une nouvelle Map avec des dates  comme clés
+    let dateMap = new Map();
+    valuesForDaysUnixTime.forEach((value, unixTimestamp) => {
+        const date = new Date(unixTimestamp);
+        dateMap.set(date, value);
+    });
+    return dateMap;
 }
 
 
@@ -599,38 +616,40 @@ async function chartIt(){
     const ctx2 = canvas2.getContext('2d');
     if(devMode){
         canvas1.style.display = 'block';
-        const eventInformation = await getNbEventPerPlace(currentDate);
+        const eventInformation = await getSortedNbEventPerPlaceMap(currentDate);
+        eventInformation.forEach((value, key) => {
+        if (value === 0) {
+            eventInformation.delete(key);
+        }
+        });
         const myChart = new Chart(ctx1, {
         type: 'bar',
         data: {
             labels:Array.from(eventInformation.keys()),
             datasets: [{
-            label: 'Number of Event per Places (Places: ' + eventInformation.size + " - Event: " + nbActiveEvent + " )",
+            label: '(Places: ' + eventInformation.size + " - Event: " + nbActiveEvent + " )",
             data:Array.from(eventInformation.values()),
             borderWidth: 1
             }]
-        },
-        options: {
-            scales: {
-            y: {
-                beginAtZero: true
-            }
-            }
         }
         });
         canvas2.style.display = 'block';
-        const eventbydateInformation = await getNbEventPerDay(currentDate);
-        
+        const eventbydateInformation = await getSoretdNbEventPerDayMap(currentDate);
+        let labels = [...eventbydateInformation.keys()].map(date => {
+            const jour = date.getDate();
+            const mois = date.getMonth() + 1;
+            return `${jour}/${mois}`;
+        });
         const myChart2 = new Chart(ctx2, {
         type: 'bar',
         data: {
-            labels:Array.from(eventbydateInformation.keys()),
-            datasets: [{
-            label: 'Number of Event per Days (Days: ' +eventbydateInformation.size +')',
-            data:Array.from(eventbydateInformation.values()),
+        labels: labels,
+        datasets: [{
+            label: 'Number of Events per day (2024)',
+            data: [...eventbydateInformation.values()],
             borderWidth: 1
-            }]
-        },
+        }]
+    },
         options:  {y: {
                 beginAtZero: true
             }
