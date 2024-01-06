@@ -5,7 +5,7 @@ const cheerio = require('cheerio');
 
 
 // Chemin vers le fichier à lire
-const filePath = './venues-test.json';
+const filePath = './venues.json';
 const sourcePath = './webSources/';
 
 const dateConversionFile = './dateConversion.json';

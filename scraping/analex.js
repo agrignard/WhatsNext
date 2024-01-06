@@ -1,10 +1,10 @@
-const fs2 = require('fs');
-const fs = require('fs').promises;
+//const fs2 = require('fs');
+const fs = require('fs');//.promises;
 const cheerio = require('cheerio');
 const sourcePath = './webSources/';
-const outputFile = "./venues-test.json";
+const venuesListFile = "./venues.json";
 const dateFormatString = "dd-MM-yyyy";
-//const outputJSON =[];
+var venuesListJSON ;
 
 const venueName = 'Le Périscope';
 const fileName = venueName+'.html';
@@ -18,6 +18,9 @@ var eventStrings = {
     eventPlaceStrings: []
 }
 
+console.log('\n\n\x1b[36m%s\x1b[0m', `******* Analysing file: ${fileName}  *******\n`);
+
+
 // aborting process if mandatory strings are not present (safeguard)
 if (!eventStrings.hasOwnProperty('eventNameStrings')){
     console.log('\x1b[31mProperty \'eventNameStrings\' is missing in variable eventStrings. Aborting.\x1b[0m\n');
@@ -28,36 +31,16 @@ if (!eventStrings.hasOwnProperty('eventDateStrings')){
     return;
 }
 
-// var eventNameStrings = ["vernissage","photogr"];
-// var eventDateStrings = ["12.","01"];
-// var eventStyleStrings = ["exposition"];
-// var excludeList =  [];
-
-// var eventNameStrings = ["essor et chute","releas"];
-// var eventDateStrings = ["mercredi 17 janv"];
-// var eventStyleStrings = [];
-// var eventPlaceStrings = [];
-
-// var eventNameStrings = ["jasual"];
-// var eventDateStrings = ["10 janv."];
-// var eventStyleStrings = ["rock"];
 
 
-
-
-
-fileContent = fs.readFile(sourcePath+fileName, 'utf8')
+fileContent = fs.promises.readFile(sourcePath+fileName, 'utf8')
 .then((fileContent) =>{
     const venueJSON = {};
     venueJSON.name = venueName;
     venueJSON.dateFormat = dateFormatString;
-    console.log('\x1b[36m%s\x1b[0m', `\n\n******* Analysing file: ${fileName}  *******\n`);
+
     // convert everything to lower case
     try{
-        // eventNameStrings = eventNameStrings.map(string => string.toLowerCase());
-        // eventDateStrings = eventDateStrings.map(string => string.toLowerCase());
-        // eventStyleStrings = eventStyleStrings.map(string => string.toLowerCase());
-        // eventPlaceStrings = eventPlaceStrings.map(string => string.toLowerCase());
         for (const key in eventStrings){
             eventStrings[key] = eventStrings[key].map(string => string.toLowerCase());
         }
@@ -141,23 +124,38 @@ fileContent = fs.readFile(sourcePath+fileName, 'utf8')
           venueJSON.eventURLIndex = -1;
         }
 
+        // saving to venues JSON and test file
 
-        console.log("\n",venueJSON);
-        console.log("\n");
+        fs.promises.readFile(venuesListFile, 'utf8')
+        .then((JSONFileContent) =>{
+            venuesListJSON = JSON.parse(JSONFileContent);
+            const venueInList = venuesListJSON.find(function(element) {
+                return element.name === venueName;
+            });
+            if(venueInList !== undefined){
+                Object.keys(venueJSON).forEach(key =>venueInList[key] = venueJSON[key]);
+                console.log("\n",venueInList);
+                console.log("\n");
 
-        try{
-           // outputJSON = outputJSON.push(venueJSON);
-            const jsonString = JSON.stringify([venueJSON], null, 2); 
-            fs2.writeFileSync(outputFile, jsonString);
-            console.log('Saved to %s',outputFile);
-        }catch(err){
-            console.log('\x1b[31mError saving to .json: %s\x1b[0m',err);
-        }
+                try{
+                    const jsonString = JSON.stringify(venuesListJSON, null, 2); 
+                    fs.writeFileSync(venuesListFile, jsonString);
+                    console.log('Added to venues in %s',venuesListFile);
+                }catch(err){
+                    console.log('\x1b[31mError saving to .json: \'%s\' %s\x1b[0m',venuesListFile,err);
+                }
+            }
+            
+        }).catch((erreur ) => {
+            console.log('\x1b[36m Warning: cannot open venues JSON file:  \'%s\'. Will not save to venues.\x1b[0m\n',venuesListFile);
+            console.log("\n",venueJSON);
+            console.log("\n");
+        });
+        
+       
+
+       
     }
-    
-   
-  
-
     
     console.log("\n\n");
 })
