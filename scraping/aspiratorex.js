@@ -41,7 +41,9 @@ fs.readFile(filePath, 'utf8', (erreur, fileContent) => {
             })
             .then(htmlContent => {
               if (removeScripts){
-                htmlContent = htmlContent.replace(/<script[^]*?<\/script>/g,'');
+                // clean html content
+                htmlContent = cleanScripts(htmlContent);
+                htmlContent = cleanHtml(htmlContent);
               }
                 const outputFile = outputPath+venue.name+".html";
                 fs.writeFile(outputFile, htmlContent, 'utf8', (erreur) => {
@@ -55,7 +57,7 @@ fs.readFile(filePath, 'utf8', (erreur, fileContent) => {
             })
             .catch(error => {
               // Gérer les erreurs
-              console.error('Erreur lors de la récupération de la page :', venue.name);
+              console.error('\x1b[31mErreur lors de la récupération de la page : %s: \x1b[0m%s', venue.name,error);
             });
             
 
@@ -69,8 +71,19 @@ fs.readFile(filePath, 'utf8', (erreur, fileContent) => {
 });
 
 
+function cleanScripts(htmlContent){
+  res = htmlContent.replace(/<script[^]*?<\/script>/g,'');// remove scripts
+  return res;
+}
 
-//var venues = fileContent.match(regex);
-//console.log("regex :", venues);
+function cleanHtml(content){
+  function removeForbiddenCaracters(string){
+    return string.replace(/[~!@$%^&*()+=,.\/';:?><\[\]\\{}|`#]/g,'');
+  }
 
+  function replaceInTag(match,p,offset,string) {
+    return '<'+p.replace(/"[^"]*"/g,removeForbiddenCaracters)+'>';
+  }
+  return content.replace(/<([^<]*)>/g, replaceInTag);
+}
 

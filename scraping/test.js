@@ -1,49 +1,36 @@
-const cheerio = require('cheerio');
 
-const html = `
-  <div>
-    <p>Paragraphe 1</p>
-    <p>Paragraphe 3</p>
-  </div>
-  <div>
-    <p>Paragraphe 4</p>
-    <p>Paragraphe 5</p>
-    <p>Paragrap
-      <span> 
-        ttzpjopj
-      </span>
-    he 6</p>
-  </div>
-`;
 
-const $ = cheerio.load(html);
+truc = 'texte <div class="premie?re" tata="bt$r]ue"> chose <span class = "t\\\/ot@o">truc </span></div>';
+console.log(clean(truc));
 
-// Sélectionner une balise (par exemple, la deuxième balise <p>)
-const baliseSelectionnee = $('p').eq(4);
-// const baliseSelectionnee2 = $('div:eq(1) p:eq(0)');
-// console.log($(baliseSelectionnee2).text());
-// const indiceH2Recherchee = baliseSelectionnee.index('p');
-// console.log("ind ",indiceH2Recherchee);
-// console.log("contenu ",baliseSelectionnee);
 
-// Récupérer toutes les balises qui ont la même balise parente que la balise sélectionnée
-//const balisesSoeurs = baliseSelectionnee.siblings('p');
-const balisesP = baliseSelectionnee.parent();
-const balisesSoeurs = balisesP.children();
-console.log(balisesP.html());
-const $2 = cheerio.load(balisesP.html());
-console.log('html 111',baliseSelectionnee.text());
-const truc =  $2(`p:contains('${baliseSelectionnee.text()}')`).last();
-const indiceH2Recherchee = $2(truc).index('p');
-console.log("contenu ",$2(truc).text());
-console.log("ind ",indiceH2Recherchee);
+// let inputString = 'ils sont tous "grands" et "bleus" tour "rp"';
+// let regex = /"([^"]*)"/g;
 
-// const ind = baliseSelectionnee.index(balisesSoeurs);
-// console.log(ind);
-//balisesSoeurs.each(el => console.log($(el)//.text()));
+// let matches = inputString.match(regex);
 
-// Afficher le texte de chaque balise soeur
-// balisesSoeurs.each(function() {
-//   console.log($(this).text());
-//   console.log(this === baliseSelectionnee);
-// });
+// console.log(matches);
+
+function cleanScripts(htmlContent){
+  res = htmlContent.replace(/<script[^]*?<\/script>/g,'');// remove scripts
+  return res;
+}
+
+
+function clean(content){
+  function removeForbiddenCaracters(string){
+    return string.replace(/[~!@$%^&*()+=,.\/';:?><\[\]\\{}|`#]/g,'');
+  }
+
+  function replaceInTag(match,p,offset,string) {
+    return '<'+p.replace(/"[^"]*"/g,removeForbiddenCaracters)+'>';
+  }
+  return content.replace(/<([^<]*)>/g, replaceInTag);
+}
+
+
+// let inputString = 'Date: 2022-12-28';
+// let regex = /(\d{4})-(\d{2})-(\d{2})/;
+// let replacedString = inputString.replace(regex, '$3/$2/$1');
+
+// console.log(replacedString);

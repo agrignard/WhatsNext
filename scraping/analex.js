@@ -1,9 +1,8 @@
-//const fs2 = require('fs');
-const fs = require('fs');//.promises;
+const fs = require('fs');
 const cheerio = require('cheerio');
 const sourcePath = './webSources/';
 const venuesListFile = "./venues.json";
-const dateFormatString = "dd-MM-yyyy";
+const defaultDateFormatString = "dd-MM-yyyy";
 var venuesListJSON ;
 
 const venueName = 'Le Périscope';
@@ -12,11 +11,18 @@ const fileName = venueName+'.html';
 const extendSelectionToGetURL = true;
 
 var eventStrings = {
-    eventNameStrings: ["esSor et chute","releas"], // this property must exist
-    eventDateStrings: ["mercredi 17 janv"], // this property must exist
+    eventNameStrings: ["bridge"], // this property must exist
+    eventDateStrings: ["16 janv"], // this property must exist
     eventStyleStrings: [],
     eventPlaceStrings: []
 }
+
+// var eventStrings = {
+//     eventNameStrings: ["soulwax"], // this property must exist
+//     eventDateStrings: ["17 jan","19:00"], // this property must exist
+//     eventStyleStrings: ["rock"],
+//     eventPlaceStrings: []
+// }
 
 console.log('\n\n\x1b[36m%s\x1b[0m', `******* Analysing file: ${fileName}  *******\n`);
 
@@ -37,8 +43,7 @@ fileContent = fs.promises.readFile(sourcePath+fileName, 'utf8')
 .then((fileContent) =>{
     const venueJSON = {};
     venueJSON.name = venueName;
-    venueJSON.dateFormat = dateFormatString;
-
+    
     // convert everything to lower case
     try{
         for (const key in eventStrings){
@@ -134,6 +139,9 @@ fileContent = fs.promises.readFile(sourcePath+fileName, 'utf8')
             });
             if(venueInList !== undefined){
                 Object.keys(venueJSON).forEach(key =>venueInList[key] = venueJSON[key]);
+                if (!venueInList.hasOwnProperty('dateFormat')){
+                    venueInList.dateFormat = defaultDateFormatString;
+                }
                 console.log("\n",venueInList);
                 console.log("\n");
 
@@ -147,7 +155,7 @@ fileContent = fs.promises.readFile(sourcePath+fileName, 'utf8')
             }
             
         }).catch((erreur ) => {
-            console.log('\x1b[36m Warning: cannot open venues JSON file:  \'%s\'. Will not save to venues.\x1b[0m\n',venuesListFile);
+            console.log('\x1b[36m Warning: cannot open venues JSON file:  \'%s\'. Will not save to venues.\x1b[0m%s\n',venuesListFile,err);
             console.log("\n",venueJSON);
             console.log("\n");
         });
@@ -195,7 +203,7 @@ function getTagWithURL(currentTag,$cgp){
 function getTagLocalization(tag,source,isDelimiter){
     try{
         if (source(tag).attr('class')){
-            const tagClass = source(tag).attr('class').split(' ')[0];
+            const tagClass = source(tag).attr('class');//.split(' ')[0];
             let string = source(tag).prop('tagName')+'.'+tagClass;
             if (!isDelimiter){// if delimiter, no index should be stored since many blocks should match (one per event)
                 string += ':eq('+getMyIndex(tag,source)+')';
@@ -218,7 +226,8 @@ function getTagLocalization(tag,source,isDelimiter){
 function getMyIndex(tag,source){// get the index of the tag div.class among the same type and same class
     let indexation = source(tag).prop('tagName');
     if (source(tag).attr('class')){
-        indexation += '.'+source(tag).attr('class').split(' ')[0];
+    //    indexation += '.'+source(tag).attr('class');//.split(' ')[0];
+        indexation += '.'+source(tag).attr('class').replace(/ /g,'.');//.split(' ')[0];
     }
     parentTag = source(tag).parent();
     const $parentHtml = cheerio.load(parentTag.html());

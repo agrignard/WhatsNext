@@ -4,11 +4,11 @@
     "url": "https://www.terminal-club.com/evenements/",
     "eventsDelimiterTag": "DIV.col-inner",
     "eventNameTags": [
-      "H5.post-title:eq(0)"
+      "H5.post-title.is-large.uppercase:eq(0)"
     ],
     "eventDateTags": [
-      "DIV.event-photo-date:eq(0)",
-      "DIV.no-margin:eq(2)"
+      "DIV.event-photo-date.no-margin.no-padding:eq(0)",
+      "DIV.no-margin.no-padding:eq(2)"
     ],
     "dateFormat": "dd MM"
   },
@@ -18,7 +18,7 @@
     "baseURL": "https://www.transbordeur.fr",
     "eventsDelimiterTag": "DIV.span6.blocText",
     "eventNameTags": [
-      "div.header:eq(0) h2:eq(0) a:eq(0)"
+      "DIV.header:eq(0) H2:eq(0) A:eq(0)"
     ],
     "eventDateTags": [
       "SPAN.jourMois:eq(0) H2:eq(0)",
@@ -32,11 +32,10 @@
   {
     "name": "Le Périscope",
     "url": "https://www.periscope-lyon.com/concerts/",
-    "eventsDelimiterTag": "DIV.smallcontent",
-    "dateFormat": "dd MM",
+    "eventsDelimiterTag": "DIV.smallcontent.uk-width-1-4m.uk-grid-margin",
+    "dateFormat": "dd-MM-yyyy",
     "eventNameTags": [
-      "DIV.scct:eq(0) H3:eq(0) SPAN:eq(0)",
-      "H4.textsubtitle:eq(0)"
+      "DIV.scct:eq(0) H3:eq(0) SPAN:eq(0)"
     ],
     "eventDateTags": [
       "DIV.scc:eq(0) H5:eq(0)"
