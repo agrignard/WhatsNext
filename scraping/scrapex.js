@@ -7,7 +7,7 @@ import * as cheerio from 'cheerio';
 const filePath = './venues.json';
 const sourcePath = './webSources/';
 
-const dateConversionFile = './dateConversion.json';
+const dateConversionFile = './import/dateConversion.json';
 var out="";// = "PLACE,TITRE,UNIX,SIZE,GENRE,URL";
 var outFile = "generated/scrapexResult.csv";
 var dateConversionPatterns;
@@ -48,7 +48,6 @@ fs.promises.readFile(dateConversionFile, 'utf8')
   });
 
 async function scrapFiles(venues) {
-//  await Promise.all(venues.map(analyseFile));
   for (const venue of venues) {
     let err = false;
     if (!(venue.hasOwnProperty('eventsDelimiterTag') || venue.hasOwnProperty('eventsDelimiterRegex'))){

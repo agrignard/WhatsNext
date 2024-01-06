@@ -4,6 +4,7 @@ import * as cheerio from 'cheerio';
 const sourcePath = './webSources/';
 const venuesListFile = "./venues.json";
 const defaultDateFormatString = "dd-MM-yyyy";
+const dateConversionFile = './import/dateConversion.json';
 var venuesListJSON ;
 
 const venueName = 'Le Périscope';
@@ -42,7 +43,7 @@ processFile();
 
 
 async function processFile(){
-    var fileContent, JSONFileContent, venuesListJSON;
+    var fileContent, JSONFileContent, venuesListJSON, dateConversionPatterns;
 
     // load the different files
     try{
@@ -51,13 +52,16 @@ async function processFile(){
         console.error("Erreur de traitement du fichier :",fileName, err);
     }
     try{
-        JSONFileContent = await fs.promises.readFile(venuesListFile, 'utf8');
-        venuesListJSON = await JSON.parse(JSONFileContent);
+        venuesListJSON = await JSON.parse(await fs.promises.readFile(venuesListFile, 'utf8'));
     }catch(err){
         console.log('\x1b[36m Warning: cannot open venues JSON file:  \'%s\'. Will not save to venues.\x1b[0m%s\n',venuesListFile,err);
-        console.log("\n",venueJSON);
-        console.log("\n");
     }
+    try{
+        dateConversionPatterns = await JSON.parse(await fs.promises.readFile(dateConversionFile, 'utf8'));
+    }catch(err){
+        console.log('\x1b[36m Warning: cannot open date conversion file JSON file:  \'%s\'. Will not save to venues.\x1b[0m%s\n',dateConversionFile,err);
+    }
+    
 
 
     const venueJSON = {};
@@ -149,6 +153,7 @@ async function processFile(){
 
         // formatting the dates
         let dates = getAllDates(venueJSON.eventsDelimiterTag,venueJSON['eventDateTags'],$);
+        dates = dates.map(element => convertDate(element,dateConversionPatterns));
         console.log(dates);
 
         // saving to venues JSON and test file
