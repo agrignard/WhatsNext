@@ -308,7 +308,7 @@ function removeBlanks(s){
                 let ev = $eve(dateTags[i]).text();
                 string += ev+' ';
             }
-            dates = dates.push(string);
+            dates.push(string);
         });
 
     }catch(err){
