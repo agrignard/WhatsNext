@@ -1,10 +1,10 @@
 {
   "eventsDelimiterTag": "DIV.smallcontent",
-  "eventNameTags": [
+  "eventNameStrings": [
     "DIV.scct:eq(0) H3:eq(0) SPAN:eq(0)",
     "H4.textsubtitle:eq(0)"
   ],
-  "eventDateTags": [
+  "eventDateStrings": [
     "DIV.scc:eq(0) H5:eq(0)"
   ]
 }

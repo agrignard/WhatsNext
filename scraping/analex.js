@@ -1,33 +1,45 @@
 const fs2 = require('fs');
 const fs = require('fs').promises;
 const cheerio = require('cheerio');
-
-// Chemin vers le fichier à lire
-//const fileName = 'Marché Gare.html';
-const fileName = 'Le Périscope.html';
-// const fileName = 'Transbordeur.html';
-//const fileName = 'Test.html';
 const sourcePath = './webSources/';
+const outputFile = "./venueOutput.json";
+
+
+const venueName = 'Le Périscope';
+const fileName = venueName+'.html';
 
 const extendSelectionToGetURL = true;
+
+var eventStrings = {
+    eventNameStrings: ["esSor et chute","releas"], // this property must exist
+    eventDateStrings: ["mercredi 17 janv"], // this property must exist
+    eventStyleStrings: [],
+    eventPlaceStrings: []
+}
+
+// aborting process if mandatory strings are not present (safeguard)
+if (!eventStrings.hasOwnProperty('eventNameStrings')){
+    console.log('\x1b[31mProperty \'eventNameStrings\' is missing in variable eventStrings. Aborting.\x1b[0m\n');
+    return;
+}
+if (!eventStrings.hasOwnProperty('eventDateStrings')){
+    console.log('\x1b[31mProperty \'eventDateStrings\' is missing in variable eventStrings. Aborting.\x1b[0m\n');
+    return;
+}
 
 // var eventNameStrings = ["vernissage","photogr"];
 // var eventDateStrings = ["12.","01"];
 // var eventStyleStrings = ["exposition"];
 // var excludeList =  [];
 
-var eventNameStrings = ["essor et chute","releas"];
-var eventDateStrings = ["mercredi 17 janv"];
-var eventStyleStrings = [];
- var eventPlaceStrings = [];
+// var eventNameStrings = ["essor et chute","releas"];
+// var eventDateStrings = ["mercredi 17 janv"];
+// var eventStyleStrings = [];
+// var eventPlaceStrings = [];
 
 // var eventNameStrings = ["jasual"];
 // var eventDateStrings = ["10 janv."];
 // var eventStyleStrings = ["rock"];
-
-
-const outputFile = "./venueOutput.json";
-
 
 
 
@@ -39,24 +51,26 @@ fileContent = fs.readFile(sourcePath+fileName, 'utf8')
     console.log('\x1b[36m%s\x1b[0m', `\n\n******* Analysing file: ${fileName}  *******\n`);
     // convert everything to lower case
     try{
-        eventNameStrings = eventNameStrings.map(string => string.toLowerCase());
-        eventDateStrings = eventDateStrings.map(string => string.toLowerCase());
-        eventStyleStrings = eventStyleStrings.map(string => string.toLowerCase());
-        eventPlaceStrings = eventPlaceStrings.map(string => string.toLowerCase());
+        // eventNameStrings = eventNameStrings.map(string => string.toLowerCase());
+        // eventDateStrings = eventDateStrings.map(string => string.toLowerCase());
+        // eventStyleStrings = eventStyleStrings.map(string => string.toLowerCase());
+        // eventPlaceStrings = eventPlaceStrings.map(string => string.toLowerCase());
+        for (const key in eventStrings){
+            eventStrings[key] = eventStrings[key].map(string => string.toLowerCase());
+        }
+        
     }catch(error){
         console.error('\x1b[31mError while reading the strings to parse: %s\x1b[0m',error);
     }
 
     const $ = cheerio.load(convertToLowerCase(fileContent));
 
-    let stringsToFind = eventNameStrings.concat(eventDateStrings).concat(eventStyleStrings).concat(eventPlaceStrings);
-    //console.log(stringsToFind);
-    //console.log('*:contains("' + stringsToFind.join('"), :contains("') + '")');
+    let stringsToFind = [].concat(...Object.values(eventStrings));
+
     const tagsContainingStrings = $('*:contains("' + stringsToFind.join('"), :contains("') + '")')
     .filter((_, tag) => tagContainsAllStrings($(tag), stringsToFind));
 
 
-    
     //Affichez les noms des balises trouvées
     if (tagsContainingStrings.length === 0){
         console.log('\x1b[31m%s\x1b[0m',"Impossible to find a tag that delimits the events.");
@@ -74,15 +88,14 @@ fileContent = fs.readFile(sourcePath+fileName, 'utf8')
         if (extendSelectionToGetURL){
             try{
                 const mainTagWithURL = getTagWithURL(mainTag,$eventBlock);
-                //mainTag = mainTagWithURL;
                 let $eventBlockURL = cheerio.load($(mainTagWithURL).html());
                 let hrefsURL = $eventBlockURL('a[href]');
                 if (hrefsURL.length > 0){
-                 //   console.log("Extending the tags");
-                 //   console.log($(mainTagWithURL).prop('tagName'),$(mainTagWithURL).attr('class'));
                     mainTag = mainTagWithURL;
                     $eventBlock = $eventBlockURL;
                     hrefs = $eventBlock('a[href]');
+                } else{
+                    console.log("\x1b[33mWarning, no URL found. Keeping the most inner block.\x1b[0m.");
                 }
             }catch(err){
                 console.log("\x1b[31mError while trying to find embedded URL recursively. Aborting URL search. Try to turn flag \'extendSelectionToGetURL\' to false to prevent recursive search. %s\x1b[0m",err)
@@ -93,46 +106,19 @@ fileContent = fs.readFile(sourcePath+fileName, 'utf8')
              `<${mainTag.prop('tagName')} class="${$(mainTag).attr('class')}" id="${$(mainTag).attr('id')}">`,'\x1b[0m Contains');
         console.log('\x1b[0m\x1b[32m%s\x1b[0m',removeImageTag(removeBlanks($(mainTag).text())));
     
-   //     console.log($(mainTag).html());
+        // console.log($(mainTag).html());
         venueJSON.eventsDelimiterTag=getTagLocalization(mainTag,$,true);
-  //      console.log('\x1b[32m%s\x1b[0m', `Tag: <${tag.prop('tagName')} class="${$(tag).attr('class')}" id="${$(tag).attr('id')}">`);
+        // console.log('\x1b[32m%s\x1b[0m', `Tag: <${tag.prop('tagName')} class="${$(tag).attr('class')}" id="${$(tag).attr('id')}">`);
  
     
         
-    //***************************************************************/
-    //***************************************************************/
-      
-    
-    // recherche des balises pour le nom de l'event
+        //***************************************************************/
+        //***************************************************************/
+
+        // find and display tag for each string to find
         
-
-        console.log("\nEvent name tags:");
-        const eventNameTags = eventNameStrings.map(string => findTag($eventBlock,string));
-        showTagsDetails(eventNameTags,$eventBlock);
-        venueJSON.eventNameTags = eventNameTags.map(tag => getTagLocalization(tag,$eventBlock,false));
-      //  venueJSON.eventNameTags = eventNameTags.map(tag => getTagLocalization(tag,cheerio.load($(tag).html()),false));
-
-        console.log("\nEvent date tags:");
-        const eventDateTags = eventDateStrings.map(string => findTag($eventBlock,string));
-        showTagsDetails(eventDateTags,$eventBlock);
-        venueJSON.eventDateTags = eventDateTags.map(tag => getTagLocalization(tag,$eventBlock,false));
-    //     let ev = $eventBlock('DIV.scc:eq(0) H5:eq(0)').text();
-    //    console.log("tag "+ev);
-
-
-        if (eventStyleStrings.length > 0){
-            console.log("\nEvent style tags:");
-            const eventStyleTags = eventStyleStrings.map(string => findTag($eventBlock,string));
-            showTagsDetails(eventStyleTags,$eventBlock);
-            venueJSON.eventStyleTags = eventStyleTags.map(tag => getTagLocalization(tag,$eventBlock,false));
-        }
-
-        if (eventPlaceStrings.length > 0){
-            console.log("\nEvent style tags:");
-            const eventPlaceTags = eventPlaceStrings.map(string => findTag($eventBlock,string));
-            showTagsDetails(eventPlaceTags,$eventBlock);
-            venueJSON.eventPlaceTags = eventPlaceTags.map(tag => getTagLocalization(tag,$eventBlock,false));
-        }
+        Object.keys(eventStrings).filter(element => eventStrings[element].length > 0)
+            .forEach(key =>venueJSON[key] = getTagsForKey(eventStrings,key,$eventBlock));
     
         // logs depending on if URL has been found.
         console.log();
@@ -175,7 +161,19 @@ fileContent = fs.readFile(sourcePath+fileName, 'utf8')
     console.error("Erreur de traitement du fichier :",fileName, erreur);
 });
 
-//*********************************************** 
+
+
+
+
+
+
+
+
+
+
+//************************************************/
+//               Auxiliary functions             //
+//************************************************/
 
 function getTagWithURL(currentTag,$cgp){
     var hrefs = $cgp('a[href]');
@@ -222,13 +220,9 @@ function getMyIndex(tag,source){// get the index of the tag div.class among the 
     }
     parentTag = source(tag).parent();
     const $parentHtml = cheerio.load(parentTag.html());
-    const truc =  $parentHtml(indexation+`:contains('${source(tag).text()}')`).last();
-    console.log('Tag:',source(tag).prop('tagName'),' indexation: ',indexation);
-    const index = $parentHtml(truc).index(indexation);
-return index;
-   // console.log("indexation: "+indexation+'\n')
-    //const tagClass = source(tag).attr('class').split(' ')[0];
-   // return source(tag).index(indexation);
+    const tagsFromParent =  $parentHtml(indexation+`:contains('${source(tag).text()}')`).last();
+    const index = $parentHtml(tagsFromParent).index(indexation);
+    return index;
 }
 
 
@@ -264,5 +258,14 @@ function removeBlanks(s){
  function removeImageTag(s){
     regex = /<img.*?>/g;
     return s.replace(regex,'[***IMAGE***]');
+ }
+
+
+ function getTagsForKey(object,key,cheerioSource){
+    string = key.match(/event([^]*)String/);
+    console.log('\nEvent '+string[1]+' tags:');
+    const tagList = object[key].map(string => findTag(cheerioSource,string));
+    showTagsDetails(tagList,cheerioSource);
+    return tagList.map(tag => getTagLocalization(tag,cheerioSource,false));
  }
  
