@@ -1,5 +1,6 @@
-const fs = require('fs');
-const cheerio = require('cheerio');
+import { createDate, convertDate} from './import/dateUtilities.mjs';
+import * as fs from 'fs';
+import * as cheerio from 'cheerio';
 const sourcePath = './webSources/';
 const venuesListFile = "./venues.json";
 const defaultDateFormatString = "dd-MM-yyyy";
@@ -30,17 +31,35 @@ console.log('\n\n\x1b[36m%s\x1b[0m', `******* Analysing file: ${fileName}  *****
 // aborting process if mandatory strings are not present (safeguard)
 if (!eventStrings.hasOwnProperty('eventNameStrings')){
     console.log('\x1b[31mProperty \'eventNameStrings\' is missing in variable eventStrings. Aborting.\x1b[0m\n');
-    return;
+    throw new Error('Execution stopped due to a condition.')
 }
 if (!eventStrings.hasOwnProperty('eventDateStrings')){
     console.log('\x1b[31mProperty \'eventDateStrings\' is missing in variable eventStrings. Aborting.\x1b[0m\n');
-    return;
+    throw new Error('Execution stopped due to a condition.')
 }
 
+processFile();
 
 
-fileContent = fs.promises.readFile(sourcePath+fileName, 'utf8')
-.then((fileContent) =>{
+async function processFile(){
+    var fileContent, JSONFileContent, venuesListJSON;
+
+    // load the different files
+    try{
+        fileContent = await fs.promises.readFile(sourcePath+fileName, 'utf8');
+    }catch(err) {
+        console.error("Erreur de traitement du fichier :",fileName, err);
+    }
+    try{
+        JSONFileContent = await fs.promises.readFile(venuesListFile, 'utf8');
+        venuesListJSON = await JSON.parse(JSONFileContent);
+    }catch(err){
+        console.log('\x1b[36m Warning: cannot open venues JSON file:  \'%s\'. Will not save to venues.\x1b[0m%s\n',venuesListFile,err);
+        console.log("\n",venueJSON);
+        console.log("\n");
+    }
+
+
     const venueJSON = {};
     venueJSON.name = venueName;
     
@@ -53,7 +72,6 @@ fileContent = fs.promises.readFile(sourcePath+fileName, 'utf8')
     }catch(error){
         console.error('\x1b[31mError while reading the strings to parse: %s\x1b[0m',error);
     }
-
     const $ = cheerio.load(convertToLowerCase(fileContent));
 
     let stringsToFind = [].concat(...Object.values(eventStrings));
@@ -129,36 +147,33 @@ fileContent = fs.promises.readFile(sourcePath+fileName, 'utf8')
           venueJSON.eventURLIndex = -1;
         }
 
+        // formatting the dates
+        let dates = getAllDates(venueJSON.eventsDelimiterTag,venueJSON['eventDateTags'],$);
+        console.log(dates);
+
         // saving to venues JSON and test file
 
-        fs.promises.readFile(venuesListFile, 'utf8')
-        .then((JSONFileContent) =>{
-            venuesListJSON = JSON.parse(JSONFileContent);
-            const venueInList = venuesListJSON.find(function(element) {
-                return element.name === venueName;
-            });
-            if(venueInList !== undefined){
-                Object.keys(venueJSON).forEach(key =>venueInList[key] = venueJSON[key]);
-                if (!venueInList.hasOwnProperty('dateFormat')){
-                    venueInList.dateFormat = defaultDateFormatString;
-                }
-                console.log("\n",venueInList);
-                console.log("\n");
-
-                try{
-                    const jsonString = JSON.stringify(venuesListJSON, null, 2); 
-                    fs.writeFileSync(venuesListFile, jsonString);
-                    console.log('Added to venues in %s',venuesListFile);
-                }catch(err){
-                    console.log('\x1b[31mError saving to .json: \'%s\' %s\x1b[0m',venuesListFile,err);
-                }
-            }
-            
-        }).catch((erreur ) => {
-            console.log('\x1b[36m Warning: cannot open venues JSON file:  \'%s\'. Will not save to venues.\x1b[0m%s\n',venuesListFile,err);
-            console.log("\n",venueJSON);
-            console.log("\n");
+        const venueInList = venuesListJSON.find(function(element) {
+            return element.name === venueName;
         });
+        if(venueInList !== undefined){
+            Object.keys(venueJSON).forEach(key =>venueInList[key] = venueJSON[key]);
+            if (!venueInList.hasOwnProperty('dateFormat')){
+                venueInList.dateFormat = defaultDateFormatString;
+            }
+            console.log("\n",venueInList);
+            console.log("\n");
+
+            try{
+                const jsonString = JSON.stringify(venuesListJSON, null, 2); 
+                fs.writeFileSync(venuesListFile, jsonString);
+                console.log('Added to venues in %s',venuesListFile);
+            }catch(err){
+                console.log('\x1b[31mError saving to .json: \'%s\' %s\x1b[0m',venuesListFile,err);
+            }
+        }
+            
+       
         
        
 
@@ -166,10 +181,7 @@ fileContent = fs.promises.readFile(sourcePath+fileName, 'utf8')
     }
     
     console.log("\n\n");
-})
-.catch((erreur ) => {
-    console.error("Erreur de traitement du fichier :",fileName, erreur);
-});
+}
 
 
 
@@ -229,7 +241,7 @@ function getMyIndex(tag,source){// get the index of the tag div.class among the 
     //    indexation += '.'+source(tag).attr('class');//.split(' ')[0];
         indexation += '.'+source(tag).attr('class').replace(/ /g,'.');//.split(' ')[0];
     }
-    parentTag = source(tag).parent();
+    const parentTag = source(tag).parent();
     const $parentHtml = cheerio.load(parentTag.html());
     const tagsFromParent =  $parentHtml(indexation+`:contains('${source(tag).text()}')`).last();
     const index = $parentHtml(tagsFromParent).index(indexation);
@@ -262,21 +274,45 @@ function removeBlanks(s){
  
  
  function convertToLowerCase(s){
-     regex = /^[^<]*?<|>([^]*?)<|>[^>]*?$/g;
+     const regex = /^[^<]*?<|>([^]*?)<|>[^>]*?$/g;
      return s.replace(regex,match => match.toLowerCase());
  }
 
  function removeImageTag(s){
-    regex = /<img.*?>/g;
+    const regex = /<img.*?>/g;
     return s.replace(regex,'[***IMAGE***]');
  }
 
 
  function getTagsForKey(object,key,cheerioSource){
-    string = key.match(/event([^]*)String/);
+    const string = key.match(/event([^]*)String/);
     console.log('\nEvent '+string[1]+' tags:');
     const tagList = object[key].map(string => findTag(cheerioSource,string));
     showTagsDetails(tagList,cheerioSource);
     return tagList.map(tag => getTagLocalization(tag,cheerioSource,false));
  }
  
+
+ function getAllDates(mainTag,dateTags,source){
+    let events = [];
+    let dates = [];
+    source(mainTag).each((index, element) => {
+        let ev = source(element).html();
+        events.push(ev);
+    });
+    try{
+        events.forEach(event =>{
+            const $eve = cheerio.load(event);
+            let string = "";
+            for (let i = 0; i <= dateTags.length-1; i++) {
+                let ev = $eve(dateTags[i]).text();
+                string += ev+' ';
+            }
+            dates = dates.push(string);
+        });
+
+    }catch(err){
+        console.log('\x1b[31m%s\x1b[0m%s', 'Error extracting the dates:',err);
+    }
+    return dates;
+ }

@@ -1,8 +1,7 @@
-const fs = require('fs');
-const fs2 = require('fs').promises;
-const { parse, isValid } = require('date-fns');
-const cheerio = require('cheerio');
-
+import { createDate, convertDate} from './import/dateUtilities.mjs';
+import * as fs from 'fs';
+import { parse, isValid }  from 'date-fns';
+import * as cheerio from 'cheerio';
 
 // Chemin vers le fichier à lire
 const filePath = './venues.json';
@@ -11,16 +10,16 @@ const sourcePath = './webSources/';
 const dateConversionFile = './dateConversion.json';
 var out="";// = "PLACE,TITRE,UNIX,SIZE,GENRE,URL";
 var outFile = "generated/scrapexResult.csv";
-var months;
+var dateConversionPatterns;
 
-fs2.readFile(dateConversionFile, 'utf8')
+fs.promises.readFile(dateConversionFile, 'utf8')
   .then((fileContent) =>{
     try {
-      months = JSON.parse(fileContent); 
+      dateConversionPatterns = JSON.parse(fileContent); 
     } catch (erreur) {
       console.error("Erreur de parsing JSON pour les conversions de dates :", erreur.message);
     }
-    fs2.readFile(filePath, 'utf8')
+    fs.promises.readFile(filePath, 'utf8')
     .then((fileContent) =>{
       try {
         // Parser le texte JSON
@@ -76,12 +75,12 @@ async function scrapFiles(venues) {
 
 async function analyseFile(venue) {
   var events,eventDate,eventName,eventStyle,unixDate,eventURL, venueContent;
-  var $;
+  var $, $eventBlock;
   const inputFile = sourcePath+venue.name+".html";
 
   // parsing the events blocks
   try{
-    venueContent = await fs2.readFile(inputFile, 'utf8');
+    venueContent = await fs.promises.readFile(inputFile, 'utf8');
     $ = cheerio.load(venueContent);
   }catch (erreur){
     console.error("Erreur lors de la lecture du fichier local de :",venue.name, erreur);
@@ -109,7 +108,7 @@ async function analyseFile(venue) {
   try{
     const dateFormat = venue.dateFormat;
 
-    for (eve of events){
+    for (var eve of events){
       $eventBlock = cheerio.load(eve);
       
       // auxiliary function to extract data
@@ -150,10 +149,10 @@ async function analyseFile(venue) {
       }
 
       // change the date format to Unix time
-      const formatedEventDate = createDate(eventDate,dateFormat);
+      const formatedEventDate = createDate(eventDate,dateFormat,dateConversionPatterns);
       if (!isValid(formatedEventDate)){
         console.log('\x1b[31mFormat de date invalide pour %s. Reçu \"%s\", converti en \"%s\" (attendu \"%s\")\x1b[0m', 
-          venue.name,eventDate,convertDate(eventDate),dateFormat);
+          venue.name,eventDate,convertDate(eventDate,dateConversionPatterns),dateFormat);
               // console.log('\x1b[31m%s\x1b[0m', 'Format de date invalide pour '+venue.name+
               // ': reçu \"'+eventDate+'\", transformé en \"',convertDate(eventDate),'\" au lieu de '+dateFormat+'.');
         unixDate = new Date().getTime(); // en cas d'erreur, ajoute la date d'aujourd'hui
@@ -200,40 +199,9 @@ async function analyseFile(venue) {
 //********************************************/
 
 
-function convertDate(s){
-  s = s.normalize('NFD').replace(/[\u0300-\u036f]/g, ''); // remove accents
- 
-  for (const key in months) {
-    function replacer(match, p1, p2,p3, offset, string) {
-      return ' '+key+' ';
-    }
-    for (const str of months[key]){
-       s = s.replace(new RegExp("([^a-zA-Z.]|^)("+str+")([^a-zA-Z.]|$)",'i'),replacer);
-    }
-  }  
-  return removeBlanks(s);
-}
-
-
-function createDate(s,dateFormat) {
-  s = convertDate(s);
-  if (s.includes('tonight')){
-    return new Date();
-  }else{
-    let date = parse(s, dateFormat, new Date());
-    if (date < new Date()){// add one year if the date is past. Useful when the year is not in the data
-      date.setFullYear(date.getFullYear() + 1);
-    }
-    return date;
-  }
-}
-
-
 function removeBlanks(s){
-  return s.replace(/[\n\t]/g, '').replace(/ {2,}/g, ' ').replace(/^ /,'').replace(/ $/,'');
+  return s.replace(/[\n\t]/g, ' ').replace(/ {2,}/g, ' ').replace(/^ /,'').replace(/ $/,'');
 }
-
-
 
 function showDate(date){
   const day = date.getDate();

@@ -1,6 +1,6 @@
 
 
-truc = 'texte <div class="premie?re" tata="bt$r]ue"> chose <span class = "t\\\/ot@o">truc </span></div>';
+var truc = 'texte <div href="http://www.yahoo.fr" "prout" class ="premie?re" tata= "bt$r]-ue"> chose <span class = "t\\\/ot@o"> truc </span></div>';
 console.log(clean(truc));
 
 
@@ -18,19 +18,17 @@ function cleanScripts(htmlContent){
 
 
 function clean(content){
-  function removeForbiddenCaracters(string){
-    return string.replace(/[~!@$%^&*()+=,.\/';:?><\[\]\\{}|`#]/g,'');
+  function removeForbiddenCaracters(match,p,offset,string){
+    return p.replace(/[~!@$%^&*()+=\-,.\/';:?><\[\]\\{}|`#]/g,'');
   }
 
-  function replaceInTag(match,p,offset,string) {
-    return '<'+p.replace(/"[^"]*"/g,removeForbiddenCaracters)+'>';
+  function replaceClass(p) {
+    return '<'+p.replace(/(?<!href=[^"]*)("[^"]*")/g,removeForbiddenCaracters)+'>';
   }
-  return content.replace(/<([^<]*)>/g, replaceInTag);
+  function findClasses(match,p,offset,string) {
+    return '<'+p.replace(/([^"]*)("[^"]*")/g,replaceClass)+'>';
+  }
+
+  return content.replace(/<([^<]*)>/g, findClasses);
 }
 
-
-// let inputString = 'Date: 2022-12-28';
-// let regex = /(\d{4})-(\d{2})-(\d{2})/;
-// let replacedString = inputString.replace(regex, '$3/$2/$1');
-
-// console.log(replacedString);

@@ -1,4 +1,4 @@
-const fs = require('fs');
+import * as fs from 'fs';
 
 const removeScripts = true;
 
@@ -71,19 +71,22 @@ fs.readFile(filePath, 'utf8', (erreur, fileContent) => {
 });
 
 
-function cleanScripts(htmlContent){
-  res = htmlContent.replace(/<script[^]*?<\/script>/g,'');// remove scripts
-  return res;
+function cleanScripts(content){
+  return content.replace(/<script[^]*?<\/script>/g,'');// remove scripts
 }
 
 function cleanHtml(content){
-  function removeForbiddenCaracters(string){
-    return string.replace(/[~!@$%^&*()+=,.\/';:?><\[\]\\{}|`#]/g,'');
+  function removeForbiddenCaracters(match,p,offset,string){// remove the forbidden caracters
+    return p.replace(/[~!@$%^&*()+=\-,.\/';:?><\[\]\\{}|`#]/g,'');
   }
 
-  function replaceInTag(match,p,offset,string) {
-    return '<'+p.replace(/"[^"]*"/g,removeForbiddenCaracters)+'>';
+  function replaceClass(p) {//find the classes that are URLs (not href) and apply removeForbiddenCaracters
+    return '<'+p.replace(/(?<!href=[^"]*)("[^"]*")/g,removeForbiddenCaracters)+'>';
   }
-  return content.replace(/<([^<]*)>/g, replaceInTag);
+
+  function findClasses(match,p,offset,string) {
+    return '<'+p.replace(/([^"]*)("[^"]*")/g,replaceClass)+'>';// find the classes within the tags and apply replaceClass
+  }
+
+  return content.replace(/<([^<]*)>/g, findClasses); // find the tag contents and apply findClasses
 }
-

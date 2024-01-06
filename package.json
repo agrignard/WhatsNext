@@ -9,5 +9,6 @@
     "fs": "^0.0.1-security",
     "node-fetch": "^3.3.2"
   },
+  "type": "module",
   "start": "node server.js"
 }
