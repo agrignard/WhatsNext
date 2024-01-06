@@ -1,12 +1,11 @@
 {
-  "eventsDelimiterTag": "DIV.span6",
+  "eventsDelimiterTag": "DIV.event_details",
   "eventNameTags": [
-    "DIV.header:eq(0) H2:eq(0) A:eq(0)"
+    "DIV.event_title:eq(0)"
   ],
   "eventDateTags": [
-    "SPAN.jourMois:eq(0) H2:eq(0)"
+    "SPAN.month:eq(0)",
+    "SPAN.date:eq(0)"
   ],
-  "eventStyleTags": [
-    "DIV.teaser-text:eq(0) P:eq(0)"
-  ]
+  "eventURLIndex": 0
 }

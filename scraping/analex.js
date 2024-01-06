@@ -4,7 +4,7 @@ const cheerio = require('cheerio');
 
 // Chemin vers le fichier à lire
 //const fileName = 'Marché Gare.html';
-const fileName = 'Transbordeur.html';
+const fileName = 'Le Sonic.html';
 const sourcePath = './webSources/';
 
 const extendSelectionToGetURL = true;
@@ -14,9 +14,10 @@ const extendSelectionToGetURL = true;
 // var eventStyleStrings = ["exposition"];
 // var excludeList =  [];
 
-var eventNameStrings = ["jasual"];
-var eventDateStrings = ["10 jan"];
-var eventStyleStrings = ["rock"];
+var eventNameStrings = ["feet"];
+var eventDateStrings = ["jan", "31"];
+var eventStyleStrings = [];
+var eventPlaceStrings = [];
 
 // var eventNameStrings = ["allien"];
 // var eventDateStrings = ["06 janv.","23:30"];
@@ -38,13 +39,14 @@ fileContent = fs.readFile(sourcePath+fileName, 'utf8')
         eventNameStrings = eventNameStrings.map(string => string.toLowerCase());
         eventDateStrings = eventDateStrings.map(string => string.toLowerCase());
         eventStyleStrings = eventStyleStrings.map(string => string.toLowerCase());
+        eventPlaceStrings = eventPlaceStrings.map(string => string.toLowerCase());
     }catch(error){
         console.error('\x1b[31mError while reading the strings to parse: %s\x1b[0m',error);
     }
 
     const $ = cheerio.load(convertToLowerCase(fileContent));
 
-    let stringsToFind = eventNameStrings.concat(eventDateStrings).concat(eventStyleStrings);
+    let stringsToFind = eventNameStrings.concat(eventDateStrings).concat(eventStyleStrings).concat(eventPlaceStrings);
     //console.log(stringsToFind);
     //console.log('*:contains("' + stringsToFind.join('"), :contains("') + '")');
     const tagsContainingStrings = $('*:contains("' + stringsToFind.join('"), :contains("') + '")')
@@ -73,6 +75,8 @@ fileContent = fs.readFile(sourcePath+fileName, 'utf8')
                 let $eventBlockURL = cheerio.load($(mainTagWithURL).html());
                 let hrefsURL = $eventBlockURL('a[href]');
                 if (hrefsURL.length > 0){
+                 //   console.log("Extending the tags");
+                 //   console.log($(mainTagWithURL).prop('tagName'),$(mainTagWithURL).attr('class'));
                     mainTag = mainTagWithURL;
                     $eventBlock = $eventBlockURL;
                     hrefs = $eventBlock('a[href]');
@@ -114,6 +118,13 @@ fileContent = fs.readFile(sourcePath+fileName, 'utf8')
             const eventStyleTags = eventStyleStrings.map(string => findTag($eventBlock,string,true));
             showTagsDetails(eventStyleTags,$eventBlock);
             venueJSON.eventStyleTags = eventStyleTags.map(tag => getTagLocalization(tag,$eventBlock,true));
+        }
+
+        if (eventPlaceStrings.length > 0){
+            console.log("\nEvent style tags:");
+            const eventPlaceTags = eventPlaceStrings.map(string => findTag($eventBlock,string,true));
+            showTagsDetails(eventPlaceTags,$eventBlock);
+            venueJSON.eventPlaceTags = eventPlaceTags.map(tag => getTagLocalization(tag,$eventBlock,true));
         }
     
         // logs depending on if URL has been found.
@@ -157,12 +168,12 @@ fileContent = fs.readFile(sourcePath+fileName, 'utf8')
     console.error("Erreur de traitement du fichier :",fileName, erreur);
 });
 
-//*********************************************** */
+//*********************************************** 
 
 function getTagWithURL(currentTag,$cgp){
     var hrefs = $cgp('a[href]');
     while ($cgp(currentTag).prop('tagName') && hrefs.length===0) {
-        currentTag = currentTag.parent();
+        currentTag = $cgp(currentTag).parent();
         if ($cgp(currentTag).prop('tagName')){
             const gp = currentTag.html();
             $cgp = cheerio.load(gp);
@@ -174,27 +185,37 @@ function getTagWithURL(currentTag,$cgp){
 
 
 function getTagLocalization(tag,source,withIndex){
-  //  console.log("fezf");
-    //console.log(source(tag).prop('tagName'));
+    try{
+   // console.log("start");
+ //   console.log(source(tag).prop('tagName'));
     if (source(tag).attr('class')){
-      //  console.log("avec class");
-        const tagClass = source(tag).attr('class').split(' ')[0];
-        let string = source(tag).prop('tagName')+'.'+tagClass;
-      //  let string = source(tag).prop('tagName')+'.'+source(tag).attr('class');
-        if (withIndex){
-            string += ':eq('+getMyClasseIndex(tag,source)+')';
-        }
-        string = string.replace(/ /g,'.');
-        return string;
-    }else{
-      //  console.log("faefaggg");
-        let string = getTagLocalization(tag.parent,source,withIndex);
-        string += ' '+source(tag).prop('tagName');
-        if (withIndex){
-            string += ':eq('+source(tag).index()+')';
-        }
-        return string;
+        //  console.log("avec class");
+          const tagClass = source(tag).attr('class').split(' ')[0];
+          let string = source(tag).prop('tagName')+'.'+tagClass;
+        //  let string = source(tag).prop('tagName')+'.'+source(tag).attr('class');
+          if (withIndex){
+              string += ':eq('+getMyClasseIndex(tag,source)+')';
+          }
+          string = string.replace(/ /g,'.');
+          return string;
+      }else{
+          //console.log("sans classe");
+          const truc = source(tag).parent();
+       //   console.log(source(truc).prop('tagName'));
+   //       console.log(source(tag.parent).prop('tagName'));
+          let string = getTagLocalization(truc,source,withIndex);
+          string += ' '+source(tag).prop('tagName');
+       //let string = "caca";
+          if (withIndex){
+              string += ':eq('+source(tag).index()+')';
+          }
+          return string;
+      }
+    }catch(err){
+        console.log("\x1b[31mErreur de localisation de la balise: %s\x1b[0m",err);
+    //    console.log(source(tag).html());
     }
+
 }
 
 function getMyClasseIndex(tag,source){// get the index of the tag div.class among the same class
