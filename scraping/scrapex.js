@@ -61,7 +61,7 @@ async function scrapFiles(venues) {
       err = true;
     }
     if (!(venue.hasOwnProperty('eventDateTags') || venue.hasOwnProperty('eventDateRegex'))){
-      console.log('\x1b[31m%s\x1b[0m', 'Aucun délimiteur de nom d\'événement défini pour '+venue.name);
+      console.log('\x1b[31m%s\x1b[0m', 'Aucun délimiteur de date d\'événement défini pour '+venue.name);
       err = true;
     }
     if (!err){

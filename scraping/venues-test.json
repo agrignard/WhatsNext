@@ -1,48 +1,14 @@
 [
-    {
-      "name": "Terminal Club",
-      "url": "https://www.terminal-club.com/evenements/",
-      "eventsDelimiterTag": "DIV.col-inner",
-        "eventNameTags": [
-        "H5.post-title:eq(0)"
-        ],
-        "eventDateTags": [
-            "DIV.event-photo-date:eq(0)",
-        "DIV.no-margin:eq(2)"
-        ],
-      "dateFormat": "dd MM"
-    },
-    {
-        "name": "Transbordeur",
-        "url": "https://www.transbordeur.fr/agenda/", 
-        "baseURL":"https://www.transbordeur.fr",
-        "eventsDelimiterTag": "DIV.span6.blocText",
-        "eventNameTags": [ "div.header:eq(0) h2:eq(0) a:eq(0)" ],
-        "eventDateTags": [ "SPAN.jourMois:eq(0) H2:eq(0)", "SPAN.news-list-date:eq(0) H2:eq(1)" ],
-        "eventStyleTags": [ "DIV.teaser-text:eq(0) P:eq(0)" ],
-        "dateFormat": "dd MM yy HH:mm"
-    },
-    {
-        "name": "Ville Morte",
-        "url": "https://villemorte.fr/agenda/",
-        "eventsDelimiterTag": "H3.tribe-events-month-event-title",
-        "eventNameTags": [
-          "A.url:eq(0)"
-        ],
-        "eventDateTags": [],
-        "dateFormat": "dd MM"
-    },
-    {
-        "name": "Le Périscope",
-        "url": "https://www.periscope-lyon.com/concerts/",
-        "eventsDelimiterTag": "DIV.smallcontent",
-        "eventNameTags": [
-          "DIV.scct:eq(0) H3:eq(0) SPAN:eq(0)",
-          "H4.textsubtitle:eq(0)"
-        ],
-        "eventDateTags": [
-          "DIV.scc:eq(0) H5:eq(0)"
-        ],
-        "dateFormat": "dd MM"
-    }
+  {
+    "name": "Le Périscope",
+    "dateFormat": "dd-MM-yyyy",
+    "eventsDelimiterTag": "DIV.smallcontent",
+    "eventNameTags": [
+      "DIV.scct:eq(0) H3:eq(0) SPAN:eq(0)",
+      "H4.textsubtitle:eq(0)"
+    ],
+    "eventDateTags": [
+      "DIV.scc:eq(0) H5:eq(0)"
+    ]
+  }
 ]

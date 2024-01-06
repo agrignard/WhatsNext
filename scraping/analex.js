@@ -2,8 +2,9 @@ const fs2 = require('fs');
 const fs = require('fs').promises;
 const cheerio = require('cheerio');
 const sourcePath = './webSources/';
-const outputFile = "./venueOutput.json";
-
+const outputFile = "./venues-test.json";
+const dateFormatString = "dd-MM-yyyy";
+//const outputJSON =[];
 
 const venueName = 'Le Périscope';
 const fileName = venueName+'.html';
@@ -48,6 +49,8 @@ if (!eventStrings.hasOwnProperty('eventDateStrings')){
 fileContent = fs.readFile(sourcePath+fileName, 'utf8')
 .then((fileContent) =>{
     const venueJSON = {};
+    venueJSON.name = venueName;
+    venueJSON.dateFormat = dateFormatString;
     console.log('\x1b[36m%s\x1b[0m', `\n\n******* Analysing file: ${fileName}  *******\n`);
     // convert everything to lower case
     try{
@@ -118,7 +121,7 @@ fileContent = fs.readFile(sourcePath+fileName, 'utf8')
         // find and display tag for each string to find
         
         Object.keys(eventStrings).filter(element => eventStrings[element].length > 0)
-            .forEach(key =>venueJSON[key] = getTagsForKey(eventStrings,key,$eventBlock));
+            .forEach(key =>venueJSON[key.replace(/String/,'Tag')] = getTagsForKey(eventStrings,key,$eventBlock));
     
         // logs depending on if URL has been found.
         console.log();
@@ -143,7 +146,8 @@ fileContent = fs.readFile(sourcePath+fileName, 'utf8')
         console.log("\n");
 
         try{
-            const jsonString = JSON.stringify(venueJSON, null, 2); 
+           // outputJSON = outputJSON.push(venueJSON);
+            const jsonString = JSON.stringify([venueJSON], null, 2); 
             fs2.writeFileSync(outputFile, jsonString);
             console.log('Saved to %s',outputFile);
         }catch(err){
