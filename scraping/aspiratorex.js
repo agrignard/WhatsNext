@@ -1,5 +1,7 @@
 const fs = require('fs');
 
+const removeScripts = true;
+
 // Chemin vers le fichier à lire
 const filePath = './venues.json';
 const outputPath = './webSources/';
@@ -38,6 +40,9 @@ fs.readFile(filePath, 'utf8', (erreur, fileContent) => {
               return response.text();
             })
             .then(htmlContent => {
+              if (removeScripts){
+                htmlContent = htmlContent.replace(/<script[^]*?<\/script>/g,'');
+              }
                 const outputFile = outputPath+venue.name+".html";
                 fs.writeFile(outputFile, htmlContent, 'utf8', (erreur) => {
                     if (erreur) {

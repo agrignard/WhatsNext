@@ -4,7 +4,7 @@ const cheerio = require('cheerio');
 
 // Chemin vers le fichier à lire
 //const fileName = 'Marché Gare.html';
-const fileName = 'Le Sonic.html';
+const fileName = 'Le Trokson.html';
 const sourcePath = './webSources/';
 
 const extendSelectionToGetURL = true;
@@ -14,8 +14,8 @@ const extendSelectionToGetURL = true;
 // var eventStyleStrings = ["exposition"];
 // var excludeList =  [];
 
-var eventNameStrings = ["feet"];
-var eventDateStrings = ["jan", "31"];
+var eventNameStrings = ["mycia"];
+var eventDateStrings = ["07 déc"];
 var eventStyleStrings = [];
 var eventPlaceStrings = [];
 

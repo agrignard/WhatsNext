@@ -1,11 +1,9 @@
 {
-  "eventsDelimiterTag": "DIV.event_details",
+  "eventsDelimiterTag": "DIV.Rz7J9y",
   "eventNameTags": [
-    "DIV.event_title:eq(0)"
+    "A.DjQEyU:eq(0)"
   ],
   "eventDateTags": [
-    "SPAN.month:eq(0)",
-    "SPAN.date:eq(0)"
-  ],
-  "eventURLIndex": 0
+    "DIV.I_kVM1:eq(0)"
+  ]
 }
