@@ -1,24 +1,84 @@
+
 [
-{
-    "name": "Terminal Club",
-    "url": "https://www.terminal-club.com/evenements/",
-    "eventsDelimiterRegex": "<div class=\"tribe-events-pro-photo__event-date-tag tribe-common-g-col\">[^]*?<div class=\"is-divider\" st",
-    "eventDate": "<time class=\"tribe-events-pro-photo__event-date-tag-datetime\" datetime=\"([^]*?)\">",
-    "eventURL": "<a href=\"([^]*?)\"",
-    "eventName": "<h5[^]*?>([^]*?)<",
-    "dateFormat": "yyyy-MM-dd",
-    "baseURL": ""
-},
-{
-    "name": "Transbordeur",
-    "url": "https://www.transbordeur.fr/agenda/",
-    "eventsDelimiterRegex": "<div class=\"span4 articletype[^]*?class=\"cartoucheEvenement\"",
-    "eventDate": "class=\"jourMois\"> <h2> \\w*?\\. ([^]*?) <",
-    "eventName": "<h2> <a href=\"[^]*?\"> ([^]*?) <\/a",
-    "eventURL": "<a href=\"([^]*?)\"",
-    "dateFormat": "dd MM yy",
-    "baseURL": "https://www.transbordeur.fr/"
-},
+    {
+      "name": "Terminal Club",
+      "url": "https://www.terminal-club.com/evenements/",
+      "eventsDelimiterTag": "DIV.col-inner",
+        "eventNameTags": [
+        "H5.post-title:eq(0)"
+        ],
+        "eventDateTags": [
+            "DIV.event-photo-date:eq(0)",
+        "DIV.no-margin:eq(2)"
+        ],
+      "dateFormat": "dd MM"
+    },
+    {
+        "name": "Transbordeur",
+        "url": "https://www.transbordeur.fr/agenda/", 
+        "baseURL":"https://www.transbordeur.fr",
+        "eventsDelimiterTag": "DIV.span6.blocText",
+        "eventNameTags": [ "div.header:eq(0) h2:eq(0) a:eq(0)" ],
+        "eventDateTags": [ "SPAN.jourMois:eq(0) H2:eq(0)", "SPAN.news-list-date:eq(0) H2:eq(1)" ],
+        "eventStyleTags": [ "DIV.teaser-text:eq(0) P:eq(0)" ],
+        "dateFormat": "dd MM yy HH:mm"
+    },
+    {
+        "name": "Le Périscope",
+        "url": "https://www.periscope-lyon.com/en/concerts-agenda/",
+        "eventsDelimiterTag": "DIV.smallcontent DIV",
+        "eventNameTags": [
+          "DIV.scct:eq(0) H3:eq(0) SPAN:eq(0)"
+        ],
+        "eventDateTags": [
+          "DIV.scc:eq(0) H5:eq(1)"
+        ],
+        "dateFormat": "dd MM yy HH:mm"
+    },
+    {
+        "name": "Test",
+        "url": "https://www.periscope-lyon.com/en/concerts-agenda/",
+        "eventsDelimiterTag": "DIV.smallcontent",
+        "eventNameTags": [
+          "DIV.scct:eq(0) H3:eq(0) SPAN:eq(0)"
+        ],
+        "eventDateTags": [
+          "DIV.scc:eq(0) H5:eq(0)"
+        ],
+        "dateFormat": "dd MM"
+    },
+    {
+        "name": "Ville Morte",
+        "url": "https://villemorte.fr/agenda/",
+        "eventsDelimiterTag": "H3.tribe-events-month-event-title",
+        "eventNameTags": [
+          "A.url:eq(0)"
+        ],
+        "eventDateTags": [],
+        "dateFormat": "dd MM"
+    },
+    {
+        "name": "Le Trokson",
+        "url": "https://www.trokson.com/shows",
+        "eventsDelimiterTag": "DIV.j2Owzh",
+        "eventNameTags": [
+          "A.DjQEyU:eq(0)"
+        ],
+        "eventDateTags": [
+          "DIV.I_kVM1:eq(0)"
+        ],
+        "dateFormat": "dd MM"
+    },
+    {
+        "name": "Le Sonic",
+        "url": "https://sonic-lyon.fr/",
+        "dateFormat": "MM dd",  
+        "eventsDelimiterTag": "DIV.event_details",
+        "eventNameTags": ["DIV.event_title:eq(0)"],
+        "eventDateTags": ["SPAN.month:eq(0)","SPAN.date:eq(0)"],
+        "eventURLIndex": 0,
+        "defaultStyle": "Rock"
+    },
 {
     "name": "Le Petit Bulletin",
     "url": "https://www.petit-bulletin.fr/lyon/agenda-recherche.html?thema=musique-soirees&quoi=0&ou=0&quand=0&dateprecise=&qui="
@@ -40,22 +100,5 @@
     "dateFormat": "dd-MM-yyyy",
     "eventURL": "href=\"(.*)\"",
     "baseURL": "https://marchegare.fr"
-},
-{
-    "name": "Le Périscope",
-    "url": "https://www.periscope-lyon.com/en/concerts-agenda/"
-},
-{
-    "name": "Ville Morte",
-    "url": "https://villemorte.fr/agenda/"
-}
-,
-{
-    "name": "Le Sonic",
-    "url": "https://sonic-lyon.fr/"
-},
-{
-    "name": "Le Trokson",
-    "url": "https://www.trokson.com/shows"
 }
 ]

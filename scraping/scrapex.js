@@ -55,9 +55,8 @@ async function scrapFiles(venues) {
       await analyseFile(venue);
     } 
   }
-  fs.writeFileSync(outFile, out, 'utf-8', { flag: 'w' });
   console.log('Scrapex fini avec succex !!\n\n');
-  
+    fs.writeFileSync(outFile, out, 'utf-8', { flag: 'w' });
 }
 
 
@@ -131,6 +130,7 @@ async function analyseFile(venue) {
 
       // **** event data extraction ****//
   
+      //console.log($eventBlock).text();
       eventDate = getText(venue.eventDateTags,venue.eventDateRegex);
       eventName = getText(venue.eventNameTags,venue.eventNameRegex);
       if (venue.hasOwnProperty('eventStyleTags') || venue.hasOwnProperty('eventStyleRegex')){
