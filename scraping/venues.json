@@ -25,7 +25,7 @@
     },
     {
         "name": "Le Périscope",
-        "url": "https://www.periscope-lyon.com/en/concerts-agenda/",
+        "url": "https://www.periscope-lyon.com/concerts/",
         "eventsDelimiterTag": "DIV.smallcontent DIV",
         "eventNameTags": [
           "DIV.scct:eq(0) H3:eq(0) SPAN:eq(0)"

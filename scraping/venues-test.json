@@ -23,30 +23,6 @@
         "dateFormat": "dd MM yy HH:mm"
     },
     {
-        "name": "Le Périscope",
-        "url": "https://www.periscope-lyon.com/en/concerts-agenda/",
-        "eventsDelimiterTag": "DIV.smallcontent DIV",
-        "eventNameTags": [
-          "DIV.scct:eq(0) H3:eq(0) SPAN:eq(0)"
-        ],
-        "eventDateTags": [
-          "DIV.scc:eq(0) H5:eq(1)"
-        ],
-        "dateFormat": "dd MM yy HH:mm"
-    },
-    {
-        "name": "Test",
-        "url": "https://www.periscope-lyon.com/en/concerts-agenda/",
-        "eventsDelimiterTag": "DIV.smallcontent",
-        "eventNameTags": [
-          "DIV.scct:eq(0) H3:eq(0) SPAN:eq(0)"
-        ],
-        "eventDateTags": [
-          "DIV.scc:eq(0) H5:eq(0)"
-        ],
-        "dateFormat": "dd MM"
-    },
-    {
         "name": "Ville Morte",
         "url": "https://villemorte.fr/agenda/",
         "eventsDelimiterTag": "H3.tribe-events-month-event-title",
@@ -57,25 +33,16 @@
         "dateFormat": "dd MM"
     },
     {
-        "name": "Le Trokson",
-        "url": "https://www.trokson.com/shows",
-        "eventsDelimiterTag": "DIV.Rz7J9y",
+        "name": "Le Périscope",
+        "url": "https://www.periscope-lyon.com/concerts/",
+        "eventsDelimiterTag": "DIV.smallcontent",
         "eventNameTags": [
-          "A.DjQEyU:eq(0)"
+          "DIV.scct:eq(0) H3:eq(0) SPAN:eq(0)",
+          "H4.textsubtitle:eq(0)"
         ],
         "eventDateTags": [
-          "DIV.I_kVM1:eq(0)"
+          "DIV.scc:eq(0) H5:eq(0)"
         ],
         "dateFormat": "dd MM"
-    },
-    {
-        "name": "Le Sonic",
-        "url": "https://sonic-lyon.fr/",
-        "dateFormat": "MM dd",  
-        "eventsDelimiterTag": "DIV.event_details",
-        "eventNameTags": ["DIV.event_title:eq(0)"],
-        "eventDateTags": ["SPAN.month:eq(0)","SPAN.date:eq(0)"],
-        "eventURLIndex": 0,
-        "defaultStyle": "Rock"
     }
 ]

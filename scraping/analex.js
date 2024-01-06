@@ -4,7 +4,9 @@ const cheerio = require('cheerio');
 
 // Chemin vers le fichier à lire
 //const fileName = 'Marché Gare.html';
-const fileName = 'Le Trokson.html';
+const fileName = 'Le Périscope.html';
+// const fileName = 'Transbordeur.html';
+//const fileName = 'Test.html';
 const sourcePath = './webSources/';
 
 const extendSelectionToGetURL = true;
@@ -14,17 +16,18 @@ const extendSelectionToGetURL = true;
 // var eventStyleStrings = ["exposition"];
 // var excludeList =  [];
 
-var eventNameStrings = ["mycia"];
-var eventDateStrings = ["07 déc"];
+var eventNameStrings = ["essor et chute","releas"];
+var eventDateStrings = ["mercredi 17 janv"];
 var eventStyleStrings = [];
-var eventPlaceStrings = [];
+ var eventPlaceStrings = [];
 
-// var eventNameStrings = ["allien"];
-// var eventDateStrings = ["06 janv.","23:30"];
-// var eventStyleStrings = ["techno"];
+// var eventNameStrings = ["jasual"];
+// var eventDateStrings = ["10 janv."];
+// var eventStyleStrings = ["rock"];
 
 
 const outputFile = "./venueOutput.json";
+
 
 
 
@@ -91,7 +94,7 @@ fileContent = fs.readFile(sourcePath+fileName, 'utf8')
         console.log('\x1b[0m\x1b[32m%s\x1b[0m',removeImageTag(removeBlanks($(mainTag).text())));
     
    //     console.log($(mainTag).html());
-        venueJSON.eventsDelimiterTag=getTagLocalization(mainTag,$,false);
+        venueJSON.eventsDelimiterTag=getTagLocalization(mainTag,$,true);
   //      console.log('\x1b[32m%s\x1b[0m', `Tag: <${tag.prop('tagName')} class="${$(tag).attr('class')}" id="${$(tag).attr('id')}">`);
  
     
@@ -106,25 +109,29 @@ fileContent = fs.readFile(sourcePath+fileName, 'utf8')
         console.log("\nEvent name tags:");
         const eventNameTags = eventNameStrings.map(string => findTag($eventBlock,string));
         showTagsDetails(eventNameTags,$eventBlock);
-        venueJSON.eventNameTags = eventNameTags.map(tag => getTagLocalization(tag,$eventBlock,true));
+        venueJSON.eventNameTags = eventNameTags.map(tag => getTagLocalization(tag,$eventBlock,false));
+      //  venueJSON.eventNameTags = eventNameTags.map(tag => getTagLocalization(tag,cheerio.load($(tag).html()),false));
 
         console.log("\nEvent date tags:");
         const eventDateTags = eventDateStrings.map(string => findTag($eventBlock,string));
         showTagsDetails(eventDateTags,$eventBlock);
-        venueJSON.eventDateTags = eventDateTags.map(tag => getTagLocalization(tag,$eventBlock,true));
+        venueJSON.eventDateTags = eventDateTags.map(tag => getTagLocalization(tag,$eventBlock,false));
+    //     let ev = $eventBlock('DIV.scc:eq(0) H5:eq(0)').text();
+    //    console.log("tag "+ev);
+
 
         if (eventStyleStrings.length > 0){
             console.log("\nEvent style tags:");
-            const eventStyleTags = eventStyleStrings.map(string => findTag($eventBlock,string,true));
+            const eventStyleTags = eventStyleStrings.map(string => findTag($eventBlock,string));
             showTagsDetails(eventStyleTags,$eventBlock);
-            venueJSON.eventStyleTags = eventStyleTags.map(tag => getTagLocalization(tag,$eventBlock,true));
+            venueJSON.eventStyleTags = eventStyleTags.map(tag => getTagLocalization(tag,$eventBlock,false));
         }
 
         if (eventPlaceStrings.length > 0){
             console.log("\nEvent style tags:");
-            const eventPlaceTags = eventPlaceStrings.map(string => findTag($eventBlock,string,true));
+            const eventPlaceTags = eventPlaceStrings.map(string => findTag($eventBlock,string));
             showTagsDetails(eventPlaceTags,$eventBlock);
-            venueJSON.eventPlaceTags = eventPlaceTags.map(tag => getTagLocalization(tag,$eventBlock,true));
+            venueJSON.eventPlaceTags = eventPlaceTags.map(tag => getTagLocalization(tag,$eventBlock,false));
         }
     
         // logs depending on if URL has been found.
@@ -172,7 +179,8 @@ fileContent = fs.readFile(sourcePath+fileName, 'utf8')
 
 function getTagWithURL(currentTag,$cgp){
     var hrefs = $cgp('a[href]');
-    while ($cgp(currentTag).prop('tagName') && hrefs.length===0) {
+    // while the tag: has a name, has no url or has no class. Take the most inner tag with a class and an URL
+    while ($cgp(currentTag).prop('tagName') && (hrefs.length===0 || !$cgp(currentTag).attr('class'))) {
         currentTag = $cgp(currentTag).parent();
         if ($cgp(currentTag).prop('tagName')){
             const gp = currentTag.html();
@@ -184,33 +192,22 @@ function getTagWithURL(currentTag,$cgp){
 }
 
 
-function getTagLocalization(tag,source,withIndex){
+function getTagLocalization(tag,source,isDelimiter){
     try{
-   // console.log("start");
- //   console.log(source(tag).prop('tagName'));
-    if (source(tag).attr('class')){
-        //  console.log("avec class");
-          const tagClass = source(tag).attr('class').split(' ')[0];
-          let string = source(tag).prop('tagName')+'.'+tagClass;
-        //  let string = source(tag).prop('tagName')+'.'+source(tag).attr('class');
-          if (withIndex){
-              string += ':eq('+getMyClasseIndex(tag,source)+')';
-          }
-          string = string.replace(/ /g,'.');
-          return string;
-      }else{
-          //console.log("sans classe");
-          const truc = source(tag).parent();
-       //   console.log(source(truc).prop('tagName'));
-   //       console.log(source(tag.parent).prop('tagName'));
-          let string = getTagLocalization(truc,source,withIndex);
-          string += ' '+source(tag).prop('tagName');
-       //let string = "caca";
-          if (withIndex){
-              string += ':eq('+source(tag).index()+')';
-          }
-          return string;
-      }
+        if (source(tag).attr('class')){
+            const tagClass = source(tag).attr('class').split(' ')[0];
+            let string = source(tag).prop('tagName')+'.'+tagClass;
+            if (!isDelimiter){// if delimiter, no index should be stored since many blocks should match (one per event)
+                string += ':eq('+getMyIndex(tag,source)+')';
+            }
+            string = string.replace(/ /g,'.');
+            return string;
+        }else{// if no class is found, recursively search for parents until a class is found.
+            const index = getMyIndex(tag,source);
+            let string = getTagLocalization(source(tag).parent(),source,isDelimiter);
+            string += ' '+source(tag).prop('tagName') + ':eq('+index+')';
+            return string;
+        }
     }catch(err){
         console.log("\x1b[31mErreur de localisation de la balise: %s\x1b[0m",err);
     //    console.log(source(tag).html());
@@ -218,17 +215,27 @@ function getTagLocalization(tag,source,withIndex){
 
 }
 
-function getMyClasseIndex(tag,source){// get the index of the tag div.class among the same class
-    const tagClass = source(tag).attr('class').split(' ')[0];
-  //  console.log("index "+source(tag).prop('tagName'));
-   // console.log(cl);
-    return source(tag).index(source(tag).prop('tagName')+'.'+tagClass);
-   // return source(tag).index(source(tag).prop('tagName')+'.'+source(tag).attr('class'));
+function getMyIndex(tag,source){// get the index of the tag div.class among the same type and same class
+    let indexation = source(tag).prop('tagName');
+    if (source(tag).attr('class')){
+        indexation += '.'+source(tag).attr('class').split(' ')[0];
+    }
+    parentTag = source(tag).parent();
+    const $parentHtml = cheerio.load(parentTag.html());
+    const truc =  $parentHtml(indexation+`:contains('${source(tag).text()}')`).last();
+    console.log('Tag:',source(tag).prop('tagName'),' indexation: ',indexation);
+    const index = $parentHtml(truc).index(indexation);
+return index;
+   // console.log("indexation: "+indexation+'\n')
+    //const tagClass = source(tag).attr('class').split(' ')[0];
+   // return source(tag).index(indexation);
 }
+
+
 
 function showTagsDetails(tagList,source){
     tagList.forEach(element => console.log('\x1b[90mTag: <%s class=%s> (index %s): \x1b[0m%s', 
-        element.tagName,source(element).attr('class'),source(element).index(),removeBlanks(source(element).text())));
+        element.tagName,source(element).attr('class'),getMyIndex(element,source),removeBlanks(source(element).text())));
 }
 
 
@@ -256,6 +263,6 @@ function removeBlanks(s){
 
  function removeImageTag(s){
     regex = /<img.*?>/g;
-    return s.replace(regex,'[***IMAGE***]')
+    return s.replace(regex,'[***IMAGE***]');
  }
  

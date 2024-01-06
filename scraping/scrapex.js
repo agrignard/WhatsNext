@@ -3,6 +3,7 @@ const fs2 = require('fs').promises;
 const { parse, isValid } = require('date-fns');
 const cheerio = require('cheerio');
 
+
 // Chemin vers le fichier à lire
 const filePath = './venues-test.json';
 const sourcePath = './webSources/';
@@ -23,13 +24,25 @@ fs2.readFile(dateConversionFile, 'utf8')
     .then((fileContent) =>{
       try {
         // Parser le texte JSON
-        const venues = JSON.parse(fileContent);
-        scrapFiles(venues);
+        var venues = JSON.parse(fileContent);
+
+        const fileToScrap = process.argv[2];
+        if (fileToScrap){
+          if (venues.some(element => element.name === fileToScrap)){
+            console.log('\x1b[32m%s\x1b[0m', `Traitement uniquement du fichier ${fileToScrap}.html`);
+            venues = venues.filter(element => element.name === fileToScrap);
+            scrapFiles(venues);
+          }else{
+            console.log('\x1b[31mFichier \x1b[0m%s.html\x1b[31m non trouvé. Fin du scrapping.\x1b[0m\n', fileToScrap);
+          }
+        }else{
+          scrapFiles(venues);
+        }
+        
       } catch (erreur) {
         console.error('\x1b[31mErreur lors de la lecture du fichier JSON :%s. %s\x1b[0m', filePath,erreur.message);
       }
     })
-    console.log("\n\n");
   })
   .catch((erreur ) => {
     console.error("Erreur lors de la lecture des fichiers de configuration :", erreur);
@@ -94,7 +107,6 @@ async function analyseFile(venue) {
 
   // parsing each event
   try{
-    const regexURL = new RegExp(venue.eventURL);
     const dateFormat = venue.dateFormat;
 
     for (eve of events){

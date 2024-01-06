@@ -1,9 +1,10 @@
 {
-  "eventsDelimiterTag": "DIV.Rz7J9y",
+  "eventsDelimiterTag": "DIV.smallcontent",
   "eventNameTags": [
-    "A.DjQEyU:eq(0)"
+    "DIV.scct:eq(0) H3:eq(0) SPAN:eq(0)",
+    "H4.textsubtitle:eq(0)"
   ],
   "eventDateTags": [
-    "DIV.I_kVM1:eq(0)"
+    "DIV.scc:eq(0) H5:eq(0)"
   ]
 }
