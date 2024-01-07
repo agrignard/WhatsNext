@@ -1,6 +1,7 @@
 
 
 var truc = 'texte <div href="http://www.yahoo.fr" src="http://truc.png" "prout" class ="premie?re" tata= "bt$r]-ue"> chose <span class = "t\\\/ot@o"> truc </span></div>';
+truc = "<div class=\"smallcontent uk-width-1-4@m uk-grid-margin\"><div></div>";
 console.log(clean(truc));
 
 
@@ -17,18 +18,19 @@ function cleanScripts(htmlContent){
 }
 
 
-function clean(content){
+function clean(content){  
   function removeForbiddenCaracters(match,p,offset,string){
-    return p.replace(/[~!@$%^&*()+=\-,>.<\/';:?\[\]\\{}|`#]/g,'');
+    return p.replace(/[~!$%@^&*()+=\-,>.<\/';:?\[\]\\{}|`#]/g,'');
   }
 
   function replaceClass(p) {
-    return p.replace(/(?<![href|src]=[^"]*)("[^"]*")/g,removeForbiddenCaracters);
+    return p.replace(/(?<!(?:href|src)=[^"]*)("[^"]*")/g,removeForbiddenCaracters);
   }
   function findClasses(match,p,offset,string) {
+   console.log('\n'+p);
     return '<'+p.replace(/([^"]*)("[^"]*")/g,replaceClass)+'>';
   }
-
+ // console.log(content.match(/<([^<>]*)>/g));
   return content.replace(/<([^<>]*)>/g, findClasses);
 }
 

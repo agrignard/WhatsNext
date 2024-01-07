@@ -81,12 +81,11 @@ function cleanHtml(content){
   }
 
   function replaceClass(p) {//find the classes that are URLs (not href) and apply removeForbiddenCaracters
-    return p.replace(/(?<![href|src]=[^"]*)("[^"]*")/g,removeForbiddenCaracters);
+    return p.replace(/(?<!(?:href|src)=[^"]*)("[^"]*")/g,removeForbiddenCaracters);
   }
 
   function findClasses(match,p,offset,string) {
     return '<'+p.replace(/([^"]*)("[^"]*")/g,replaceClass)+'>';// find the classes within the tags and apply replaceClass
   }
-
   return content.replace(/<([^<>]*)>/g, findClasses); // find the tag contents and apply findClasses
 }

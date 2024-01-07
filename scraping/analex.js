@@ -153,6 +153,7 @@ async function processFile(){
 
         // formatting the dates
         let dates = getAllDates(venueJSON.eventsDelimiterTag,venueJSON['eventDateTags'],$);
+        console.log(dates);
         dates = dates.map(element => convertDate(element,dateConversionPatterns));
         console.log(dates);
 
@@ -273,7 +274,9 @@ function findTag(html,string) {
 
 
 function removeBlanks(s){
-    return s.replace(/ {2,}/g, ' ').replace(/\n[ \t\n]*/g, ' ').replace(/^ /,'');
+    return s;
+//    return s.replace(/[\n\t]/g, ' ').replace(/ {2,}/g, ' ').replace(/^ /,'').replace(/ $/,'');
+//    return s.replace(/ {2,}/g, ' ').replace(/\n[ \t\n]*/g, ' ').replace(/^ /,'');
  //    return s.replace(/[\t]*/g, '').replace(/ {2,}/g, ' ').replace(/^ /,'').replace(/[\n]*/, '\n');
  }
  
@@ -305,6 +308,7 @@ function removeBlanks(s){
         let ev = source(element).html();
         events.push(ev);
     });
+    console.log(events.length);
     try{
         events.forEach(event =>{
             const $eve = cheerio.load(event);
