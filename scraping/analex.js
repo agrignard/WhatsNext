@@ -247,15 +247,24 @@ function getTagLocalization(tag,source,isDelimiter){
             string = string.replace(/ /g,'.');
             return string;
         }else{// if no class is found, recursively search for parents until a class is found.
-            if (source(tag).parent().prop('tagName')=='BODY'){
-                 const index =  source(tag).index();
-                 return source(tag).prop('tagName') + ':eq('+index+')';
-            }else{
-                const index = getMyIndex(tag,source);
-                let string = getTagLocalization(source(tag).parent(),source,isDelimiter);
-                string += ' '+source(tag).prop('tagName') + ':eq('+index+')';
-                return string;
-            }
+            let string;
+            const index =  getMyIndex(tag,source);
+            if (source(tag).parent().prop('tagName')=='BODY'){       
+                string = '';
+           }else{
+                string = getTagLocalization(source(tag).parent(),source,isDelimiter)+' ';
+           }
+            string += ' '+source(tag).prop('tagName') + ':eq('+index+')';
+            return string;
+            // if (source(tag).parent().prop('tagName')=='BODY'){
+            //      const index =  getMyIndex(tag,source);
+            //      return source(tag).prop('tagName') + ':eq('+index+')';
+            // }else{
+            //     const index = getMyIndex(tag,source);
+            //     let string = getTagLocalization(source(tag).parent(),source,isDelimiter);
+            //     string += ' '+source(tag).prop('tagName') + ':eq('+index+')';
+            //     return string;
+            // }
         }
     }catch(err){
         console.log("\x1b[31mErreur de localisation de la balise: %s\x1b[0m",err);
@@ -273,10 +282,13 @@ function getMyIndex(tag,source){// get the index of the tag div.class among the 
     }
     const parentTag = source(tag).parent();
     if (parentTag.prop('tagName')=='BODY'){// top level, no parent to find index from
-        index =  source(tag).index();
+        index =  source(tag).index(source(tag).prop('tagName'));
+        console.log(index);
+        console.log(parentTag.html());
     }else{
         const $parentHtml = cheerio.load(parentTag.html());
         const tagsFromParent =  $parentHtml(indexation+`:contains('${source(tag).text()}')`).last();
+        
         index = $parentHtml(tagsFromParent).index(indexation);
     }
     return index;
