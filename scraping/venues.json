@@ -2,15 +2,15 @@
   {
     "name": "Terminal Club",
     "url": "https://www.terminal-club.com/evenements/",
-    "eventsDelimiterTag": "DIV.col-inner",
+    "eventsDelimiterTag": "DIV.colinner",
     "eventNameTags": [
-      "H5.post-title.is-large.uppercase:eq(0)"
+      "H5.posttitle.islarge.uppercase:eq(0)"
     ],
     "eventDateTags": [
-      "DIV.event-photo-date.no-margin.no-padding:eq(0)",
-      "DIV.no-margin.no-padding:eq(2)"
+      "DIV.eventphotodate.nomargin.nopadding:eq(0)",
+      "DIV.nomargin.nopadding:eq(2)"
     ],
-    "dateFormat": "dd MM"
+    "dateFormat": "dd-MM"
   },
   {
     "name": "Transbordeur",
@@ -22,18 +22,18 @@
     ],
     "eventDateTags": [
       "SPAN.jourMois:eq(0) H2:eq(0)",
-      "SPAN.news-list-date:eq(0) H2:eq(1)"
+      "SPAN.newslistdate:eq(0) H2:eq(1)"
     ],
     "eventStyleTags": [
-      "DIV.teaser-text:eq(0) P:eq(0)"
+      "DIV.teasertext:eq(0) P:eq(0)"
     ],
-    "dateFormat": "dd MM yy HH:mm"
+    "dateFormat": "dd-MM-yy-HH:mm"
   },
   {
     "name": "Le Périscope",
     "url": "https://www.periscope-lyon.com/concerts/",
     "eventsDelimiterTag": "DIV.smallcontent.ukwidth14m.ukgridmargin",
-    "dateFormat": "dd-MM-yyyy",
+    "dateFormat": "dd-MM",
     "eventNameTags": [
       "DIV.scct:eq(0) H3:eq(0) SPAN:eq(0)"
     ],
@@ -66,26 +66,27 @@
   {
     "name": "Le Trokson",
     "url": "https://www.trokson.com/shows",
-    "eventsDelimiterTag": "DIV.j2Owzh",
+    "eventsDelimiterTag": "DIV.Rz7J9y",
     "eventNameTags": [
       "A.DjQEyU:eq(0)"
     ],
     "eventDateTags": [
       "DIV.I_kVM1:eq(0)"
     ],
-    "dateFormat": "dd MM"
+    "dateFormat": "dd-MM-yyyy-HH:mm",
+    "eventURLIndex": 0
   },
   {
     "name": "Le Sonic",
     "url": "https://sonic-lyon.fr/",
-    "dateFormat": "MM dd",
+    "dateFormat": "dd-MM",
     "eventsDelimiterTag": "DIV.event_details",
     "eventNameTags": [
       "DIV.event_title:eq(0)"
     ],
     "eventDateTags": [
-      "SPAN.month:eq(0)",
-      "SPAN.date:eq(0)"
+      "SPAN.date:eq(0)",
+      "SPAN.month:eq(0)"
     ],
     "eventURLIndex": 0,
     "defaultStyle": "Rock"
@@ -108,8 +109,20 @@
     "eventsDelimiterRegex": "<article class=[^]*?</article>",
     "eventDate": "data-day=\"(\\d{2})[^]*?short=\"([^]*?)\"[^]*?year=\"([^]*?)\"",
     "eventName": "<span class=\"leading-none lg:leading-none\">([^]*?)</span(?:[^]*?<div class=[^]*?>([^]*?)</div)?",
-    "dateFormat": "dd-MM-yyyy",
+    "dateFormat": "dd-MM",
     "eventURL": "href=\"(.*)\"",
-    "baseURL": "https://marchegare.fr"
+    "baseURL": "https://marchegare.fr",
+    "eventsDelimiterTag": "ARTICLE.agendaitemcontainer",
+    "eventNameTags": [
+      "SPAN.leadingnone.lgleadingnone:eq(0)",
+      "DIV.agendasubtitle.text2xl.lgtext3xl.fontdisplay.uppercase..mt1:eq(-1)"
+    ],
+    "eventDateTags": [
+      "SPAN.evtdatefromday.evtdateday:eq(0)",
+      "SPAN.evtdatefrommonth.evtdatemonth:eq(0)"
+    ],
+    "eventStyleTags": [
+      "SPAN.uppercase.fontdisplay.textxl.lgtext2xl.nounderline.mx1..leadingnone.lgleadingnone:eq(-1)"
+    ]
   }
 ]

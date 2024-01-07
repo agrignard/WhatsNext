@@ -1,30 +1,30 @@
-import { createDate, convertDate} from './import/dateUtilities.mjs';
+import { createDate, numberOfInvalidDates, getCommonDateFormats, convertDate} from './import/dateUtilities.mjs';
+//import { isValid }  from 'date-fns';
 import * as fs from 'fs';
 import * as cheerio from 'cheerio';
 const sourcePath = './webSources/';
 const venuesListFile = "./venues.json";
-const defaultDateFormatString = "dd-MM-yyyy";
 const dateConversionFile = './import/dateConversion.json';
 var venuesListJSON ;
 
-const venueName = 'Le Périscope';
+const venueName = 'Marché Gare';
 const fileName = venueName+'.html';
 
 const extendSelectionToGetURL = true;
 
-var eventStrings = {
-    eventNameStrings: ["bridge"], // this property must exist
-    eventDateStrings: ["16 janv"], // this property must exist
-    eventStyleStrings: [],
-    eventPlaceStrings: []
-}
-
 // var eventStrings = {
-//     eventNameStrings: ["soulwax"], // this property must exist
-//     eventDateStrings: ["17 jan","19:00"], // this property must exist
-//     eventStyleStrings: ["rock"],
+//     eventNameStrings: ["okto"], // this property must exist
+//     eventDateStrings: ["18", "jan"], // this property must exist
+//     eventStyleStrings: [],
 //     eventPlaceStrings: []
 // }
+
+var eventStrings = {
+    eventNameStrings: ["wailing","adieu"], // this property must exist
+    eventDateStrings: ["13","01"], // this property must exist
+    eventStyleStrings: ["reggae"],
+    eventPlaceStrings: []
+}
 
 console.log('\n\n\x1b[36m%s\x1b[0m', `******* Analysing file: ${fileName}  *******\n`);
 
@@ -62,10 +62,11 @@ async function processFile(){
         console.log('\x1b[36m Warning: cannot open date conversion file JSON file:  \'%s\'. Will not save to venues.\x1b[0m%s\n',dateConversionFile,err);
     }
     
-
-
     const venueJSON = {};
     venueJSON.name = venueName;
+    const venueInList = venuesListJSON.find(function(element) {
+        return element.name === venueName;
+    });
     
     // convert everything to lower case
     try{
@@ -132,6 +133,8 @@ async function processFile(){
         
         Object.keys(eventStrings).filter(element => eventStrings[element].length > 0)
             .forEach(key =>venueJSON[key.replace(/String/,'Tag')] = getTagsForKey(eventStrings,key,$eventBlock));
+        // remove doubles
+        Object.keys(venueJSON).forEach(key => {venueJSON[key] = removeDoubles(venueJSON[key]);});
     
         // logs depending on if URL has been found.
         console.log();
@@ -151,22 +154,28 @@ async function processFile(){
           venueJSON.eventURLIndex = -1;
         }
 
-        // formatting the dates
         let dates = getAllDates(venueJSON.eventsDelimiterTag,venueJSON['eventDateTags'],$);
-        console.log(dates);
-        dates = dates.map(element => convertDate(element,dateConversionPatterns));
-        console.log(dates);
+        //console.log(dates);
+        var bestDateFormat = (venueInList.hasOwnProperty('dateFormat'))?venueInList.dateFormat:"dd-MM-yyyy";
+      
+        var bestScore = numberOfInvalidDates(dates.map(element => createDate(element,bestDateFormat,dateConversionPatterns)));
+        let dateFormatList = getCommonDateFormats();
+        dateFormatList.forEach(format => {
+            const formattedDateList = dates.map(element => createDate(element,format,dateConversionPatterns));
+           // console.log(format+' => '+numberOfInvalidDates(formattedDateList)+' '+convertDate(dates[2],dateConversionPatterns));
+            if (numberOfInvalidDates(formattedDateList) < bestScore){
+                bestDateFormat = format;
+                bestScore = numberOfInvalidDates(formattedDateList);
+            }
+        });
+        console.log("\nBest date format: \x1b[36m\"%s\"\x1b[0m (%s/%s invalid dates)",bestDateFormat,bestScore,dates.length);
+        venueJSON.dateFormat = bestDateFormat;
+        
 
         // saving to venues JSON and test file
 
-        const venueInList = venuesListJSON.find(function(element) {
-            return element.name === venueName;
-        });
         if(venueInList !== undefined){
             Object.keys(venueJSON).forEach(key =>venueInList[key] = venueJSON[key]);
-            if (!venueInList.hasOwnProperty('dateFormat')){
-                venueInList.dateFormat = defaultDateFormatString;
-            }
             console.log("\n",venueInList);
             console.log("\n");
 
@@ -178,11 +187,6 @@ async function processFile(){
                 console.log('\x1b[31mError saving to .json: \'%s\' %s\x1b[0m',venuesListFile,err);
             }
         }
-            
-       
-        
-       
-
        
     }
     
@@ -274,8 +278,7 @@ function findTag(html,string) {
 
 
 function removeBlanks(s){
-    return s;
-//    return s.replace(/[\n\t]/g, ' ').replace(/ {2,}/g, ' ').replace(/^ /,'').replace(/ $/,'');
+    return s.replace(/[\n\t]/g, ' ').replace(/ {2,}/g, ' ').replace(/^ /,'').replace(/ $/,'');
 //    return s.replace(/ {2,}/g, ' ').replace(/\n[ \t\n]*/g, ' ').replace(/^ /,'');
  //    return s.replace(/[\t]*/g, '').replace(/ {2,}/g, ' ').replace(/^ /,'').replace(/[\n]*/, '\n');
  }
@@ -308,7 +311,6 @@ function removeBlanks(s){
         let ev = source(element).html();
         events.push(ev);
     });
-    console.log(events.length);
     try{
         events.forEach(event =>{
             const $eve = cheerio.load(event);
@@ -325,3 +327,18 @@ function removeBlanks(s){
     }
     return dates;
  }
+
+
+ function removeDoubles(list) {
+   if (Array.isArray(list)){
+    const res = [];
+    list.forEach((element) => {
+        if (res.indexOf(element) === -1) {
+            res.push(element);
+        }
+      });
+    return res;
+   }else{
+    return list;
+   }
+  }
