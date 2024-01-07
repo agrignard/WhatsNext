@@ -93,7 +93,19 @@
   },
   {
     "name": "Le Petit Bulletin",
-    "url": "https://www.petit-bulletin.fr/lyon/agenda-recherche.html?thema=musique-soirees&quoi=0&ou=0&quand=0&dateprecise=&qui="
+    "url": "https://www.petit-bulletin.fr/lyon/agenda-recherche.html?thema=musique-soirees&quoi=0&ou=0&quand=0&dateprecise=&qui=",
+    "eventsDelimiterTag": "A.term7",
+    "eventNameTags": [
+      "H2:eq(0)"
+    ],
+    "eventDateTags": [
+      "P:eq(2)"
+    ],
+    "eventStyleTags": [
+      "P:eq(2)"
+    ],
+    "eventURLIndex": 0,
+    "dateFormat": "dd-MM-yyyy"
   },
   {
     "name": "Info Concert",
@@ -124,5 +136,9 @@
     "eventStyleTags": [
       "SPAN.uppercase.fontdisplay.textxl.lgtext2xl.nounderline.mx1..leadingnone.lgleadingnone:eq(-1)"
     ]
+  },
+  {
+    "name": "Nuits Sonores",
+    "url": "https://nuits-sonores.com/programmation/"
   }
 ]

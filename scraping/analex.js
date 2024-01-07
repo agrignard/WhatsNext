@@ -7,7 +7,7 @@ const venuesListFile = "./venues.json";
 const dateConversionFile = './import/dateConversion.json';
 var venuesListJSON ;
 
-const venueName = 'Marché Gare';
+const venueName = 'Le Petit Bulletin';
 const fileName = venueName+'.html';
 
 const extendSelectionToGetURL = true;
@@ -20,9 +20,9 @@ const extendSelectionToGetURL = true;
 // }
 
 var eventStrings = {
-    eventNameStrings: ["wailing","adieu"], // this property must exist
-    eventDateStrings: ["13","01"], // this property must exist
-    eventStyleStrings: ["reggae"],
+    eventNameStrings: ["kilda"], // this property must exist
+    eventDateStrings: ["7","janvier"], // this property must exist
+    eventStyleStrings: ["underground"],
     eventPlaceStrings: []
 }
 
@@ -32,11 +32,11 @@ console.log('\n\n\x1b[36m%s\x1b[0m', `******* Analysing file: ${fileName}  *****
 // aborting process if mandatory strings are not present (safeguard)
 if (!eventStrings.hasOwnProperty('eventNameStrings')){
     console.log('\x1b[31mProperty \'eventNameStrings\' is missing in variable eventStrings. Aborting.\x1b[0m\n');
-    throw new Error('Execution stopped due to a condition.')
+    throw new Error('Aborting.')
 }
 if (!eventStrings.hasOwnProperty('eventDateStrings')){
     console.log('\x1b[31mProperty \'eventDateStrings\' is missing in variable eventStrings. Aborting.\x1b[0m\n');
-    throw new Error('Execution stopped due to a condition.')
+    throw new Error('Aborting.')
 }
 
 processFile();
@@ -46,10 +46,12 @@ async function processFile(){
     var fileContent, JSONFileContent, venuesListJSON, dateConversionPatterns;
 
     // load the different files
+    
     try{
         fileContent = await fs.promises.readFile(sourcePath+fileName, 'utf8');
     }catch(err) {
-        console.error("Erreur de traitement du fichier :",fileName, err);
+        console.error("\x1b[31m Cannot open file :%s\x1b[0m\n%s",fileName);
+        throw err;
     }
     try{
         venuesListJSON = await JSON.parse(await fs.promises.readFile(venuesListFile, 'utf8'));
@@ -101,13 +103,12 @@ async function processFile(){
         // extend the tag if it does not include any URL link
         if (extendSelectionToGetURL){
             try{
-                const mainTagWithURL = getTagWithURL(mainTag,$eventBlock);
+                let mainTagWithURL;
+                [mainTagWithURL, hrefs] = getTagWithURL(mainTag,$eventBlock,stringsToFind);
                 let $eventBlockURL = cheerio.load($(mainTagWithURL).html());
-                let hrefsURL = $eventBlockURL('a[href]');
-                if (hrefsURL.length > 0){
+                if (hrefs.length > 0){
                     mainTag = mainTagWithURL;
                     $eventBlock = $eventBlockURL;
-                    hrefs = $eventBlock('a[href]');
                 } else{
                     console.log("\x1b[33mWarning, no URL found. Keeping the most inner block.\x1b[0m.");
                 }
@@ -171,6 +172,7 @@ async function processFile(){
         console.log("\nBest date format: \x1b[36m\"%s\"\x1b[0m (%s/%s invalid dates)",bestDateFormat,bestScore,dates.length);
         venueJSON.dateFormat = bestDateFormat;
         
+        console.log('Found %s events.',dates.length);
 
         // saving to venues JSON and test file
 
@@ -207,10 +209,18 @@ async function processFile(){
 //               Auxiliary functions             //
 //************************************************/
 
-function getTagWithURL(currentTag,$cgp){
+function getTagWithURL(currentTag,$cgp,stringsToFind){
     var hrefs = $cgp('a[href]');
+    if ($cgp(currentTag).prop('tagName')=='A'){
+        const $cgparent = cheerio.load($cgp(currentTag).parent().html());  
+        var tmp = $cgparent('a').filter((_, tag) => tagContainsAllStrings($cgparent(tag), stringsToFind));
+        tmp.first().nextAll().remove();
+        tmp.first().prevAll().remove(); 
+        hrefs = $cgparent('a[href]');
+    }
     // while the tag: has a name, has no url or has no class. Take the most inner tag with a class and an URL
     while ($cgp(currentTag).prop('tagName') && (hrefs.length===0 || !$cgp(currentTag).attr('class'))) {
+        console.log("deeper");
         currentTag = $cgp(currentTag).parent();
         if ($cgp(currentTag).prop('tagName')){
             const gp = currentTag.html();
@@ -218,12 +228,16 @@ function getTagWithURL(currentTag,$cgp){
             hrefs = $cgp('a[href]');
         }
     }
-    return currentTag;
+    return [currentTag, hrefs];
 }
 
 
 function getTagLocalization(tag,source,isDelimiter){
     try{
+        if (source(tag).prop('tagName')=='BODY'){// if we are already at top level... may happen ?
+            return '';
+        }
+       // console.log('tag name: ',source(tag).prop('tagName'));
         if (source(tag).attr('class')){
             const tagClass = source(tag).attr('class');//.split(' ')[0];
             let string = source(tag).prop('tagName')+'.'+tagClass;
@@ -233,10 +247,15 @@ function getTagLocalization(tag,source,isDelimiter){
             string = string.replace(/ /g,'.');
             return string;
         }else{// if no class is found, recursively search for parents until a class is found.
-            const index = getMyIndex(tag,source);
-            let string = getTagLocalization(source(tag).parent(),source,isDelimiter);
-            string += ' '+source(tag).prop('tagName') + ':eq('+index+')';
-            return string;
+            if (source(tag).parent().prop('tagName')=='BODY'){
+                 const index =  source(tag).index();
+                 return source(tag).prop('tagName') + ':eq('+index+')';
+            }else{
+                const index = getMyIndex(tag,source);
+                let string = getTagLocalization(source(tag).parent(),source,isDelimiter);
+                string += ' '+source(tag).prop('tagName') + ':eq('+index+')';
+                return string;
+            }
         }
     }catch(err){
         console.log("\x1b[31mErreur de localisation de la balise: %s\x1b[0m",err);
@@ -247,14 +266,19 @@ function getTagLocalization(tag,source,isDelimiter){
 
 function getMyIndex(tag,source){// get the index of the tag div.class among the same type and same class
     let indexation = source(tag).prop('tagName');
+    let index;
     if (source(tag).attr('class')){
     //    indexation += '.'+source(tag).attr('class');//.split(' ')[0];
         indexation += '.'+source(tag).attr('class').replace(/ /g,'.');//.split(' ')[0];
     }
     const parentTag = source(tag).parent();
-    const $parentHtml = cheerio.load(parentTag.html());
-    const tagsFromParent =  $parentHtml(indexation+`:contains('${source(tag).text()}')`).last();
-    const index = $parentHtml(tagsFromParent).index(indexation);
+    if (parentTag.prop('tagName')=='BODY'){// top level, no parent to find index from
+        index =  source(tag).index();
+    }else{
+        const $parentHtml = cheerio.load(parentTag.html());
+        const tagsFromParent =  $parentHtml(indexation+`:contains('${source(tag).text()}')`).last();
+        index = $parentHtml(tagsFromParent).index(indexation);
+    }
     return index;
 }
 

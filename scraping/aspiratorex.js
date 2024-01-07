@@ -10,6 +10,13 @@ console.log("*******************************************************************
 console.log("ASPIRATOREX IS SNIFFING SOURCES FILES Ccontained in: " + filePath );
 console.log("***********************************************************************************");
 
+
+// const url = new URL('https://www.example.com/path/to/page.html');
+// const baseURL = `${url.protocol}//${url.hostname}${url.port ? `:${url.port}` : ''}`;
+
+// console.log('Base URL:', baseURL);
+
+
 // Lecture du fichier de manière asynchrone
 fs.readFile(filePath, 'utf8', (erreur, fileContent) => {
     if (erreur) {
