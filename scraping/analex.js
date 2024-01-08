@@ -5,70 +5,86 @@ import * as cheerio from 'cheerio';
 const sourcePath = './webSources/';
 const venuesListFile = "./venues.json";
 const dateConversionFile = './import/dateConversion.json';
-var venuesListJSON ;
+const stringsToFindFile = "./venuesScrapInfo.json";
+var venuesListJSON,eventStrings ;
 
-const venueName = 'Le Petit Bulletin';
+const venueToAnalyse = process.argv[2];// argument to load default strings to parse
+
+var venueName = 'Le Petit Bulletin';
 const fileName = venueName+'.html';
 
 const extendSelectionToGetURL = true;
 
-// var eventStrings = {
-//     eventNameStrings: ["okto"], // this property must exist
-//     eventDateStrings: ["18", "jan"], // this property must exist
-//     eventStyleStrings: [],
-//     eventPlaceStrings: []
-// }
-
-var eventStrings = {
-    eventNameStrings: ["punxa"], // this property must exist
-    eventDateStrings: ["13","janvier"], // this property must exist
-    eventStyleStrings: ["rock"],
-    eventPlaceStrings: ["Kraspek Myzik"]
+var eventStrings = {// is overriden later if an argument is passed to the script
+    // eventNameStrings: ["punxa"], // this property must exist
+    // eventDateStrings: ["13","janvier"], // this property must exist
+    // eventStyleStrings: ["rock"],
+    // eventPlaceStrings: ["Kraspek Myzik"]
 }
+
 
 console.log('\n\n\x1b[36m%s\x1b[0m', `******* Analysing file: ${fileName}  *******\n`);
 
-
-// aborting process if mandatory strings are not present (safeguard)
-if (!eventStrings.hasOwnProperty('eventNameStrings')){
-    console.log('\x1b[31mProperty \'eventNameStrings\' is missing in variable eventStrings. Aborting.\x1b[0m\n');
-    throw new Error('Aborting.')
-}
-if (!eventStrings.hasOwnProperty('eventDateStrings')){
-    console.log('\x1b[31mProperty \'eventDateStrings\' is missing in variable eventStrings. Aborting.\x1b[0m\n');
-    throw new Error('Aborting.')
-}
 
 processFile();
 
 
 async function processFile(){
-    var fileContent, JSONFileContent, venuesListJSON, dateConversionPatterns;
+    var fileContent, JSONFileContent, venuesListJSON, dateConversionPatterns, venueJSON;
 
     // load the different files
     
     try{
         fileContent = await fs.promises.readFile(sourcePath+fileName, 'utf8');
     }catch(err) {
-        console.error("\x1b[31m Cannot open file :%s\x1b[0m\n%s",fileName);
+        console.error("\x1b[31mCannot open file :%s\x1b[0m\n%s",fileName);
         throw err;
-    }
-    try{
-        venuesListJSON = await JSON.parse(await fs.promises.readFile(venuesListFile, 'utf8'));
-    }catch(err){
-        console.log('\x1b[36m Warning: cannot open venues JSON file:  \'%s\'. Will not save to venues.\x1b[0m%s\n',venuesListFile,err);
     }
     try{
         dateConversionPatterns = await JSON.parse(await fs.promises.readFile(dateConversionFile, 'utf8'));
     }catch(err){
-        console.log('\x1b[36m Warning: cannot open date conversion file JSON file:  \'%s\'. Will not save to venues.\x1b[0m%s\n',dateConversionFile,err);
+        console.log('\x1b[36mWarning: cannot open date conversion file JSON file:  \'%s\'. Will not save to venues.\x1b[0m%s\n',dateConversionFile,err);
+    }
+    if (venueToAnalyse){
+        try{
+            let scrapInfo = await JSON.parse(await fs.promises.readFile(stringsToFindFile, 'utf8'));
+            try{
+                eventStrings = scrapInfo[venueToAnalyse].mainPage;
+                venueName = venueToAnalyse;
+            }catch(err) {
+                console.error("\x1b[31m  Cannot find venue \x1b[0m\'%s\'\x1b[31m in file :%s\x1b[0m\n",venueToAnalyse,stringsToFindFile);
+                throw err;
+            }
+        }catch(err) {
+            console.error("\x1b[31mError loading scrap info file: \'%s\'\x1b[0m\n. Aborting process",stringsToFindFile);
+            throw err;
+        }
+    }
+    try{
+        venuesListJSON = await JSON.parse(await fs.promises.readFile(venuesListFile, 'utf8'));
+        venueJSON = venuesListJSON.find(function(element) {
+            return element.name === venueName;
+        });
+        console.log(venueJSON);
+        if (!venueJSON){
+            console.error("\x1b[31mError venue info. Venue \'%s\' not found in %s\x1b[0m.\n Aborting process",venueName,venuesListFile);
+            throw err;
+        }
+    }catch(err){
+        console.log('\x1b[36mWarning: cannot open venues JSON file:  \'%s\'. Will not save to venues.\x1b[0m%s\n',venuesListFile,err);
+    }
+    // aborting process if mandatory strings are not present (safeguard)
+    if (!eventStrings.hasOwnProperty('eventNameStrings')){
+        console.log('\x1b[31mProperty \'eventNameStrings\' is missing in variable eventStrings. Aborting.\x1b[0m\n');
+        throw new Error('Aborting.')
+    }
+    if (!eventStrings.hasOwnProperty('eventDateStrings')){
+        console.log('\x1b[31mProperty \'eventDateStrings\' is missing in variable eventStrings. Aborting.\x1b[0m\n');
+        throw new Error('Aborting.')
     }
     
-    const venueJSON = {};
-    venueJSON.name = venueName;
-    const venueInList = venuesListJSON.find(function(element) {
-        return element.name === venueName;
-    });
+   
+    venueJSON.scrap = {};
     
     // convert everything to lower case
     try{
@@ -132,9 +148,9 @@ async function processFile(){
         // find and display tag for each string to find
         
         Object.keys(eventStrings).filter(element => eventStrings[element].length > 0)
-            .forEach(key =>venueJSON[key.replace(/String/,'Tag')] = getTagsForKey(eventStrings,key,$eventBlock));
+            .forEach(key =>venueJSON.scrap[key.replace(/String/,'Tag')] = getTagsForKey(eventStrings,key,$eventBlock));
         // remove doubles
-        Object.keys(venueJSON).forEach(key => {venueJSON[key] = removeDoubles(venueJSON[key]);});
+        Object.keys(venueJSON.scrap).forEach(key => {venueJSON.scrap[key] = removeDoubles(venueJSON.scrap[key]);});
     
         // logs depending on if URL has been found.
         console.log();
@@ -155,9 +171,9 @@ async function processFile(){
           venueJSON.eventURLIndex = -1;
         }
 
-        let dates = getAllDates(venueJSON.eventsDelimiterTag,venueJSON['eventDateTags'],$);
+        let dates = getAllDates(venueJSON.eventsDelimiterTag,venueJSON.scrap['eventDateTags'],$);
         //console.log(dates);
-        var bestDateFormat = (venueInList.hasOwnProperty('dateFormat'))?venueInList.dateFormat:"dd-MM-yyyy";
+        var bestDateFormat = (venueJSON.hasOwnProperty('dateFormat'))?venueJSON.dateFormat:"dd-MM-yyyy";
       
         var bestScore = numberOfInvalidDates(dates.map(element => createDate(element,bestDateFormat,dateConversionPatterns)));
         let dateFormatList = getCommonDateFormats();
@@ -176,9 +192,9 @@ async function processFile(){
 
         // saving to venues JSON and test file
 
-        if(venueInList !== undefined){
-            Object.keys(venueJSON).forEach(key =>venueInList[key] = venueJSON[key]);
-            console.log("\n",venueInList);
+     //   if(venueInList !== undefined){
+      //      Object.keys(venueJSON).forEach(key =>venueInList[key] = venueJSON[key]);
+            console.log("\n",venueJSON);
             console.log("\n");
 
             try{
@@ -188,7 +204,7 @@ async function processFile(){
             }catch(err){
                 console.log('\x1b[31mError saving to .json: \'%s\' %s\x1b[0m',venuesListFile,err);
             }
-        }
+   //     }
        
     }
     

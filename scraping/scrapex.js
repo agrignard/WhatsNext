@@ -54,11 +54,11 @@ async function scrapFiles(venues) {
       console.log('\x1b[31m%s\x1b[0m', 'Aucun délimiteur de bloc d\'événement défini pour '+venue.name);
       err = true;
     }
-    if (!(venue.hasOwnProperty('eventNameTags') || venue.hasOwnProperty('eventNameRegex'))){
+    if (!(venue.scrap.hasOwnProperty('eventNameTags') || venue.scrap.hasOwnProperty('eventNameRegex'))){
       console.log('\x1b[31m%s\x1b[0m', 'Aucun délimiteur de nom d\'événement défini pour '+venue.name);
       err = true;
     }
-    if (!(venue.hasOwnProperty('eventDateTags') || venue.hasOwnProperty('eventDateRegex'))){
+    if (!(venue.scrap.hasOwnProperty('eventDateTags') || venue.scrap.hasOwnProperty('eventDateRegex'))){
       console.log('\x1b[31m%s\x1b[0m', 'Aucun délimiteur de date d\'événement défini pour '+venue.name);
       err = true;
     }
@@ -141,10 +141,10 @@ async function analyseFile(venue) {
       // **** event data extraction ****//
   
       //console.log($eventBlock).text();
-      eventDate = getText(venue.eventDateTags,venue.eventDateRegex);
-      eventName = getText(venue.eventNameTags,venue.eventNameRegex);
+      eventDate = getText(venue.scrap.eventDateTags,venue.scrap.eventDateRegex);
+      eventName = getText(venue.scrap.eventNameTags,venue.scrap.eventNameRegex);
       if (venue.hasOwnProperty('eventStyleTags') || venue.hasOwnProperty('eventStyleRegex')){
-        eventStyle = getText(venue.eventStyleTags,venue.eventStyleRegex);
+        eventStyle = getText(venue.scrap.eventStyleTags,venue.scrap.eventStyleRegex);
       }
 
       // change the date format to Unix time

@@ -1,0 +1,13 @@
+{
+    "Terminal Club":{
+    },
+    "Le Petit Bulletin":{
+        "mainPage":{
+            "eventNameStrings": ["punxa"],
+            "eventDateStrings": ["13","janvier"],
+            "eventStyleStrings": ["rock"],
+            "eventPlaceStrings": ["Kraspek Myzik"]
+        }
+    }
+  
+}
