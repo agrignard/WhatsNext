@@ -3,11 +3,11 @@ import * as fs from 'fs';
 const removeScripts = true;
 
 // Chemin vers le fichier à lire
-const filePath = './venues.json';
+const venuesListFile = './venues.json';
 const outputPath = './webSources/';
 var fileContent;
 console.log("***********************************************************************************");
-console.log("ASPIRATOREX IS SNIFFING SOURCES FILES Ccontained in: " + filePath );
+console.log("ASPIRATOREX IS SNIFFING SOURCES FILES Ccontained in: " + venuesListFile );
 console.log("***********************************************************************************");
 
 
@@ -18,7 +18,7 @@ console.log("*******************************************************************
 
 
 // Lecture du fichier de manière asynchrone
-fs.readFile(filePath, 'utf8', (erreur, fileContent) => {
+fs.readFile(venuesListFile, 'utf8', (erreur, fileContent) => {
     if (erreur) {
         console.error("Erreur lors de la lecture du fichier :", erreur);
         return;
@@ -50,17 +50,23 @@ fs.readFile(filePath, 'utf8', (erreur, fileContent) => {
               if (removeScripts){
                 // clean html content
                 htmlContent = cleanScripts(htmlContent);
+                htmlContent = removeBRTags(htmlContent);
                 htmlContent = cleanHtml(htmlContent);
               }
-                const outputFile = outputPath+venue.name+".html";
-                fs.writeFile(outputFile, htmlContent, 'utf8', (erreur) => {
-                    if (erreur) {
-                      console.error("Erreur lors de l'écriture dans le fichier :", erreur);
-                    } else {
-                      console.log("\""+venue.name + "\"" + " has been written in " + outputFile);
-                    }
-                  });
-              
+              const outputFile = outputPath+venue.name+".html";
+              fs.writeFile(outputFile, htmlContent, 'utf8', (erreur) => {
+                  if (erreur) {
+                    console.error("Erreur lors de l'écriture dans le fichier :", erreur);
+                  } else {
+                    console.log("\""+venue.name + "\"" + " has been written in " + outputFile);
+                  }
+                });
+              // extract baseURL and add it to JSON
+              const url = new URL(venue.url);
+              const baseURL = `${url.protocol}//${url.hostname}${url.port ? `:${url.port}` : ''}`;
+              venue.baseURL = baseURL;
+              const jsonString = JSON.stringify(venues, null, 2); 
+              fs.writeFileSync(venuesListFile, jsonString);
             })
             .catch(error => {
               // Gérer les erreurs
@@ -82,6 +88,10 @@ function cleanScripts(content){
   return content.replace(/<script[^]*?<\/script>/g,'');// remove scripts
 }
 
+function removeBRTags(content){
+  return content.replace(/<br>([^]*?)</gi, (_,p) => '<p class="addedTag">'+p+'<');// remove scripts
+}
+
 function cleanHtml(content){
   function removeForbiddenCaracters(match,p,offset,string){// remove the forbidden caracters
     return p.replace(/[~!@$%^&*()+=\-,.\/';:?><\[\]\\{}|`#]/g,'');
@@ -96,3 +106,4 @@ function cleanHtml(content){
   }
   return content.replace(/<([^<>]*)>/g, findClasses); // find the tag contents and apply findClasses
 }
+

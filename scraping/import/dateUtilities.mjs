@@ -31,6 +31,7 @@ export function createDate(s,dateFormat,dateConversionPatterns) {
 
 export function convertDate(s,dateConversionPatterns){
   s = s.normalize('NFD').replace(/[\u0300-\u036f]/g, ''); // remove accents
+  s = s.replace(/[^\x00-\x7F]/g,'');
  
   for (const key in dateConversionPatterns) {
     function replacer(match, p1, p2,p3, offset, string) {
@@ -39,6 +40,10 @@ export function convertDate(s,dateConversionPatterns){
     for (const str of dateConversionPatterns[key]){
        s = s.replace(new RegExp("([^a-zA-Z.]|^)("+str+")([^a-zA-Z.]|$)",'i'),replacer);
     }
+     //removing words with 2 or more letters
+    // console.log('\navant:'+s);
+    //s = s.replace(/\b[^0-9]{2,}\b/g,' ');
+       //  console.log('après:'+s);
   }  
   return to2digits(unifyCharacters(s));
 }
@@ -56,7 +61,9 @@ function yearIsValid(yyyy){// test if a year too old (older than one year), or a
 }
 
 function unifyCharacters(s){
-  return s.replace(/[\n\t\/\-,;.]/g,' ').replace(/ {2,}/g,' ').replace(/^ /,'').replace(/ $/,'').replace(/ /g,'-').replace('h',':');
+  let string = s.replace(/[\n\t\/\-,;.]/g,' ').replace(/ {2,}/g,' ').replace(/^ /,'').replace(/ $/,'').replace(/ /g,'-');
+  string = string.replace('h',':').replace(/: /g,':00').replace(/:$/g,':00');//format to correct time
+  return string;
 }
 
 

@@ -169,10 +169,18 @@ async function analyseFile(venue) {
         if (venue.hasOwnProperty('eventeventURLIndex') && venue.eventeventURLIndex === -1){
           eventURL ='No url link.';
         }else{
-          const tagsWithHref = $eventBlock('a[href]');
           const index = venue.hasOwnProperty('eventeventURLIndex')?venue.eventeventURLIndex:0;
-          eventURL = (venue.hasOwnProperty('baseURL')?venue.baseURL:'')
-            +$eventBlock(tagsWithHref[index]).attr('href');// add the base URL if provided
+          if (index == 0){// the URL is in A href
+            eventURL = (venue.hasOwnProperty('baseURL')?venue.baseURL:'')
+              +$(venue.eventsDelimiterTag).attr('href');
+          }else{// URL is in inner tags
+            // if ($(venue.eventsDelimiterTag).prop('tagName')=='A'){// index should be lowered because first href is in main tag <a href=>
+              index = index - 1;
+            // }
+            const tagsWithHref = $eventBlock('a[href]');
+            eventURL = (venue.hasOwnProperty('baseURL')?venue.baseURL:'')
+              +$eventBlock(tagsWithHref[index]).attr('href');// add the base URL if provided
+          }
         }
       }catch(err){
         console.log("\x1b[31mErreur lors de la récupération de l\'URL.\x1b[0m",err);

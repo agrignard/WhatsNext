@@ -20,10 +20,10 @@ const extendSelectionToGetURL = true;
 // }
 
 var eventStrings = {
-    eventNameStrings: ["kilda"], // this property must exist
-    eventDateStrings: ["7","janvier"], // this property must exist
-    eventStyleStrings: ["underground"],
-    eventPlaceStrings: []
+    eventNameStrings: ["punxa"], // this property must exist
+    eventDateStrings: ["13","janvier"], // this property must exist
+    eventStyleStrings: ["rock"],
+    eventPlaceStrings: ["Kraspek Myzik"]
 }
 
 console.log('\n\n\x1b[36m%s\x1b[0m', `******* Analysing file: ${fileName}  *******\n`);
@@ -125,7 +125,6 @@ async function processFile(){
         venueJSON.eventsDelimiterTag=getTagLocalization(mainTag,$,true);
         // console.log('\x1b[32m%s\x1b[0m', `Tag: <${tag.prop('tagName')} class="${$(tag).attr('class')}" id="${$(tag).attr('id')}">`);
  
-    
         
         //***************************************************************/
         //***************************************************************/
@@ -139,15 +138,16 @@ async function processFile(){
     
         // logs depending on if URL has been found.
         console.log();
+        console.log("nb urls",hrefs.length);
         if (hrefs.length === 1) {
           console.log('URL found:',$eventBlock(hrefs[0]).attr('href'));
         }else if (hrefs.length > 1){
             console.log(hrefs.length,'URLs found. Change index in JSON \"eventURLIndex\" to the most suitable one (default 0).');
             hrefs.each((index, element) => {
                 const href = $eventBlock(element).attr('href');
-                console.log('\x1b[90mURL (index\x1b[0m',index,'\x1b[90m):\x1b[0m', href);
+                console.log('\x1b[90mURL (index\x1b[0m',index+1,'\x1b[90m):\x1b[0m', href);//index+1 car 0 est réservé au maintTag de type <a=href>
             });
-            venueJSON.eventURLIndex = 0;
+            venueJSON.eventURLIndex = 1;
         } 
         else {
           console.log('\x1b[31mNo url link found.'
@@ -256,15 +256,6 @@ function getTagLocalization(tag,source,isDelimiter){
            }
             string += ' '+source(tag).prop('tagName') + ':eq('+index+')';
             return string;
-            // if (source(tag).parent().prop('tagName')=='BODY'){
-            //      const index =  getMyIndex(tag,source);
-            //      return source(tag).prop('tagName') + ':eq('+index+')';
-            // }else{
-            //     const index = getMyIndex(tag,source);
-            //     let string = getTagLocalization(source(tag).parent(),source,isDelimiter);
-            //     string += ' '+source(tag).prop('tagName') + ':eq('+index+')';
-            //     return string;
-            // }
         }
     }catch(err){
         console.log("\x1b[31mErreur de localisation de la balise: %s\x1b[0m",err);
@@ -283,8 +274,6 @@ function getMyIndex(tag,source){// get the index of the tag div.class among the 
     const parentTag = source(tag).parent();
     if (parentTag.prop('tagName')=='BODY'){// top level, no parent to find index from
         index =  source(tag).index(source(tag).prop('tagName'));
-        console.log(index);
-        console.log(parentTag.html());
     }else{
         const $parentHtml = cheerio.load(parentTag.html());
         const tagsFromParent =  $parentHtml(indexation+`:contains('${source(tag).text()}')`).last();

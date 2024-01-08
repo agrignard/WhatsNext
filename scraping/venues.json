@@ -10,7 +10,8 @@
       "DIV.eventphotodate.nomargin.nopadding:eq(0)",
       "DIV.nomargin.nopadding:eq(2)"
     ],
-    "dateFormat": "dd-MM"
+    "dateFormat": "dd-MM",
+    "baseURL": "https://www.terminal-club.com"
   },
   {
     "name": "Transbordeur",
@@ -39,7 +40,8 @@
     ],
     "eventDateTags": [
       "DIV.scc:eq(0) H5:eq(0)"
-    ]
+    ],
+    "baseURL": "https://www.periscope-lyon.com"
   },
   {
     "name": "Test",
@@ -51,7 +53,8 @@
     "eventDateTags": [
       "DIV.scc:eq(0) H5:eq(0)"
     ],
-    "dateFormat": "dd MM"
+    "dateFormat": "dd MM",
+    "baseURL": "https://www.periscope-lyon.com"
   },
   {
     "name": "Ville Morte",
@@ -61,7 +64,8 @@
       "A.url:eq(0)"
     ],
     "eventDateTags": [],
-    "dateFormat": "dd MM"
+    "dateFormat": "dd MM",
+    "baseURL": "https://villemorte.fr"
   },
   {
     "name": "Le Trokson",
@@ -74,7 +78,8 @@
       "DIV.I_kVM1:eq(0)"
     ],
     "dateFormat": "dd-MM-yyyy-HH:mm",
-    "eventURLIndex": 0
+    "eventURLIndex": 0,
+    "baseURL": "https://www.trokson.com"
   },
   {
     "name": "Le Sonic",
@@ -89,7 +94,8 @@
       "SPAN.month:eq(0)"
     ],
     "eventURLIndex": 0,
-    "defaultStyle": "Rock"
+    "defaultStyle": "Rock",
+    "baseURL": "https://sonic-lyon.fr"
   },
   {
     "name": "Le Petit Bulletin",
@@ -102,18 +108,23 @@
       " P:eq(1)"
     ],
     "eventStyleTags": [
-      " P:eq(1)"
+      " P:eq(0)"
     ],
-    "eventURLIndex": 0,
-    "dateFormat": "dd-MM-yyyy"
+    "dateFormat": "dd-MM-yyyy-HH:mm",
+    "baseURL": "https://www.petit-bulletin.fr",
+    "eventPlaceTags": [
+      "P.addedTag:eq(2)"
+    ]
   },
   {
     "name": "Info Concert",
-    "url": "https://www.infoconcert.com/ville/lyon-5131/concerts.html"
+    "url": "https://www.infoconcert.com/ville/lyon-5131/concerts.html",
+    "baseURL": "https://www.infoconcert.com"
   },
   {
     "name": "Halle Tony Garnier",
-    "url": "https://www.halle-tony-garnier.com/fr/programmation"
+    "url": "https://www.halle-tony-garnier.com/fr/programmation",
+    "baseURL": "https://www.halle-tony-garnier.com"
   },
   {
     "name": "Marché Gare",
