@@ -24,7 +24,7 @@ fs.promises.readFile(dateConversionFile, 'utf8')
       try {
         // Parser le texte JSON
         var venues = JSON.parse(fileContent);
-
+        
         const fileToScrap = process.argv[2];
         if (fileToScrap){
           if (venues.some(element => element.name === fileToScrap)){
@@ -115,6 +115,8 @@ async function analyseFile(venue) {
         let string = "";
         if (!(tagList === undefined)){
           try{
+            // console.log("tagList: ",tagList);
+            // console.log('block ',$eventBlock(tagList[0]).text());
             for (let i = 0; i <= tagList.length-1; i++) {
               let ev = $eventBlock(tagList[i]).text();
               string += ev+' ';
@@ -143,6 +145,8 @@ async function analyseFile(venue) {
       //console.log($eventBlock).text();
       eventDate = getText(venue.scrap.eventDateTags,venue.scrap.eventDateRegex);
       eventName = getText(venue.scrap.eventNameTags,venue.scrap.eventNameRegex);
+console.log('***********test *************');
+
       if (venue.hasOwnProperty('eventStyleTags') || venue.hasOwnProperty('eventStyleRegex')){
         eventStyle = getText(venue.scrap.eventStyleTags,venue.scrap.eventStyleRegex);
       }
@@ -164,22 +168,26 @@ async function analyseFile(venue) {
         console.log('Style: ',eventStyle);
       }
 
-      // extract URL
+      //extract URL
       try{
-        if (venue.hasOwnProperty('eventeventURLIndex') && venue.eventeventURLIndex === -1){
+        if (venue.hasOwnProperty('eventeventURLIndex') && venue.eventURLIndex === -1){
           eventURL ='No url link.';
         }else{
-          const index = venue.hasOwnProperty('eventeventURLIndex')?venue.eventeventURLIndex:0;
+          console.log("là");
+          var index = venue.hasOwnProperty('eventURLIndex')?venue.eventURLIndex:0;
           if (index == 0){// the URL is in A href
-            eventURL = (venue.hasOwnProperty('baseURL')?venue.baseURL:'')
-              +$(venue.eventsDelimiterTag).attr('href');
+            eventURL = makeURL(venue.baseURL,$(venue.eventsDelimiterTag).attr('href'));
+            // eventURL = (venue.hasOwnProperty('baseURL')?venue.baseURL:'')
+            //   +$(venue.eventsDelimiterTag).attr('href');
           }else{// URL is in inner tags
             // if ($(venue.eventsDelimiterTag).prop('tagName')=='A'){// index should be lowered because first href is in main tag <a href=>
               index = index - 1;
             // }
+            console.log("ici");
             const tagsWithHref = $eventBlock('a[href]');
-            eventURL = (venue.hasOwnProperty('baseURL')?venue.baseURL:'')
-              +$eventBlock(tagsWithHref[index]).attr('href');// add the base URL if provided
+            eventURL = makeURL(venue.baseURL,$eventBlock(tagsWithHref[index]).attr('href'));
+              //venue.hasOwnProperty('baseURL')?venue.baseURL:'')
+             // +$eventBlock(tagsWithHref[index]).attr('href');// add the base URL if provided
           }
         }
       }catch(err){
@@ -218,4 +226,12 @@ function showDate(date){
   const minutes = date.getMinutes();
   const string = day+'/'+month+'/'+year+' (time: '+hour+':'+minutes+')';
   return string;
+}
+
+function makeURL(baseURL, URL){
+  if (URL.startsWith(baseURL)){
+    return URL;
+  }else{
+    return baseURL+URL;
+  }
 }

@@ -98,6 +98,8 @@ async function processFile(){
         console.log('\x1b[31mProperty \'eventDateStrings\' is missing in variable eventStrings. Aborting.\x1b[0m\n');
         throw new Error('Aborting.')
     }
+    
+    console.log(eventStrings);
    
     venueJSON.scrap = {};
     
@@ -165,15 +167,11 @@ async function processFile(){
         Object.keys(eventStrings.mainPage).filter(element => eventStrings.mainPage[element].length > 0)
             .forEach(key =>venueJSON.scrap[key.replace(/String/,'Tag')] = getTagsForKey(eventStrings.mainPage,key,$eventBlock));
         // remove doubles
+        console.log(venueJSON);
         Object.keys(venueJSON.scrap).forEach(key => {venueJSON.scrap[key] = removeDoubles(venueJSON.scrap[key]);});
     
         // logs depending on if URL has been found.
         console.log();
-        if ($(mainTag).prop('tagName')=='A'){
-            venueJSON.eventURLIndex = 0;
-        }else{
-            venueJSON.eventURLIndex = 1;
-        }
         if (hrefs.length === 1) {
           console.log('URL found:',$eventBlock(hrefs[0]).attr('href'));
         }else if (hrefs.length > 1){
@@ -182,7 +180,7 @@ async function processFile(){
                 const href = $eventBlock(element).attr('href');
                 console.log('\x1b[90mURL (index\x1b[0m',index+1,'\x1b[90m):\x1b[0m', href);//index+1 car 0 est réservé au maintTag de type <a=href>
             });
-            
+            venueJSON.eventURLIndex = 1;
         } 
         else {
           console.log('\x1b[31mNo url link found.'
@@ -300,6 +298,7 @@ function getTagLocalization(tag,source,isDelimiter){
 
 function getMyIndex(tag,source){// get the index of the tag div.class among the same type and same class
     let indexation = source(tag).prop('tagName');
+    console.log(indexation);
     let tagIndex;
     if (source(tag).attr('class')){
     //    indexation += '.'+source(tag).attr('class');//.split(' ')[0];
@@ -307,12 +306,18 @@ function getMyIndex(tag,source){// get the index of the tag div.class among the 
     }
     const parentTag = source(tag).parent();
     if (parentTag.prop('tagName')=='BODY'){// top level, no parent to find index from
-        tagIndex =  source(tag).index(indexation);
+        console.log("rate");
+        tagIndex =  source(tag).index(source(tag).prop('tagName'));
     }else{
+        console.log("essai");
         const $parentHtml = cheerio.load(parentTag.html());
         const tagsFromParent =  $parentHtml(indexation+`:contains('${source(tag).text()}')`).last();
+        console.log('parent ',tagsFromParent.prop('tagName'));
+       //console.log($parentHtml(tagsFromParent).html());
         tagIndex = $parentHtml(tagsFromParent).index(indexation);
     }
+console.log(indexation);
+    console.log(tagIndex);
     return tagIndex;
 }
 

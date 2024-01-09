@@ -1,5 +1,9 @@
 {
     "Terminal Club":{
+        "mainPage":{
+            "eventNameStrings": ["okto"],
+            "eventDateStrings": "18 jan"
+        }
     },
     "Le Petit Bulletin":{
         "mainPage":{
@@ -7,6 +11,13 @@
             "eventDateStrings": ["13","janvier"],
             "eventStyleStrings": ["rock"],
             "eventPlaceStrings": ["Kraspek Myzik"]
+        }
+    },
+    "Transbordeur":{
+        "mainPage":{
+            "eventNameStrings": ["azyr"],
+            "eventDateStrings": ["03", "fév"],
+            "eventStyleStrings": ["techno"]
         }
     }
   

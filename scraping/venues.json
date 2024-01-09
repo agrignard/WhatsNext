@@ -4,14 +4,36 @@
     "url": "https://www.terminal-club.com/evenements/",
     "eventsDelimiterTag": "DIV.colinner",
     "dateFormat": "dd-MM",
-    "baseURL": "https://www.terminal-club.com"
+    "baseURL": "https://www.terminal-club.com",
+    "scrap": {
+      "eventNameTags": [
+        "H5.posttitle.islarge.uppercase:eq(0)"
+      ],
+      "eventDateTags": [
+        "DIV.eventphotodate.nomargin.nopadding:eq(0)",
+        "DIV.nomargin.nopadding:eq(2)"
+      ]
+    },
+    "eventURLIndex": 1
   },
   {
     "name": "Transbordeur",
     "url": "https://www.transbordeur.fr/agenda/",
     "baseURL": "https://www.transbordeur.fr",
     "eventsDelimiterTag": "DIV.span6.blocText",
-    "dateFormat": "dd-MM-yy-HH:mm"
+    "dateFormat": "dd-MM-yy",
+    "scrap": {
+      "eventNameTags": [
+        "DIV.header:eq(0)  H2:eq(0)  A:eq(0)"
+      ],
+      "eventDateTags": [
+        "SPAN.jourMois:eq(0)  H2:eq(0)"
+      ],
+      "eventStyleTags": [
+        "DIV.teasertext:eq(0)  P:eq(0)"
+      ]
+    },
+    "eventURLIndex": 1
   },
   {
     "name": "Le Périscope",
