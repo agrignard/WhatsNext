@@ -52,6 +52,7 @@ fs.readFile(venuesListFile, 'utf8', (erreur, fileContent) => {
                 htmlContent = cleanScripts(htmlContent);
                 htmlContent = removeBRTags(htmlContent);
                 htmlContent = cleanHtml(htmlContent);
+          //      htmlContent = removeImages(htmlContent);
               }
               const outputFile = outputPath+venue.name+".html";
               fs.writeFile(outputFile, htmlContent, 'utf8', (erreur) => {
@@ -79,18 +80,22 @@ fs.readFile(venuesListFile, 'utf8', (erreur, fileContent) => {
       } catch (erreur) {
         console.error("Erreur de parsing JSON :", erreur.message);
       }
-   
-
 });
 
 
 function cleanScripts(content){
-  return content.replace(/<script[^]*?<\/script>/g,'');// remove scripts
+  let res = content.replace(/<script[^]*?<\/script>/g,'');// remove scripts
+  res = content.replace(/<noscript[^]*?<\/noscript>/g,'');// remove scripts
+  return res;
 }
 
 function removeBRTags(content){
   return content.replace(/<br>([^]*?)</gi, (_,p) => '<p class="addedTag">'+p+'<');// remove scripts
 }
+
+// function removeImages(content){
+//   content.replace(/<[ ]*img[^]*?>/g,'[IMAGE]');
+// }
 
 function cleanHtml(content){
   function removeForbiddenCaracters(match,p,offset,string){// remove the forbidden caracters

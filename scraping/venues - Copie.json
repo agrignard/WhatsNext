@@ -1,5 +1,34 @@
 [
   {
+    "name": "Nuits Sonores",
+    "url": "https://nuits-sonores.com/programmation/"
+  },
+  {
+    "name": "Info Concert",
+    "url": "https://www.infoconcert.com/ville/lyon-5131/concerts.html",
+    "baseURL": "https://www.infoconcert.com"
+  },
+  {
+    "name": "Halle Tony Garnier",
+    "url": "https://www.halle-tony-garnier.com/fr/programmation",
+    "baseURL": "https://www.halle-tony-garnier.com"
+  },
+  {
+    "name": "Le Trokson",
+    "url": "https://www.trokson.com/shows",
+    "eventsDelimiterTag": "DIV.Rz7J9y",
+    "dateFormat": "dd-MM-yyyy-HH:mm",
+    "eventURLIndex": 0,
+    "baseURL": "https://www.trokson.com"
+  },
+  {
+    "name": "Ville Morte",
+    "url": "https://villemorte.fr/agenda/",
+    "eventsDelimiterTag": "H3.tribe-events-month-event-title",
+    "dateFormat": "dd MM",
+    "baseURL": "https://villemorte.fr"
+  },
+  {
     "name": "Terminal Club",
     "url": "https://www.terminal-club.com/evenements/",
     "eventsDelimiterTag": "DIV.colinner",

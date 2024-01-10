@@ -7,11 +7,11 @@
     "baseURL": "https://www.terminal-club.com",
     "scrap": {
       "eventNameTags": [
-        "H5.posttitle.islarge.uppercase:eq(0)"
+        " A.plain:eq(0)  DIV.box.boxoverlay.dark.boxtextbottom.boxblogpost.hashover:eq(0)  DIV.boxtext.textcenter.issmall:eq(0)  DIV.boxtextinner.blogpostinner:eq(0)  H5.posttitle.islarge.uppercase:eq(0)"
       ],
       "eventDateTags": [
-        "DIV.eventphotodate.nomargin.nopadding:eq(0)",
-        "DIV.nomargin.nopadding:eq(2)"
+        " DIV.tribeeventsprophoto__eventdatetag.tribecommongcol:eq(0)  TIME.tribeeventsprophoto__eventdatetagdatetime:eq(0)  DIV.eventphotodate.nomargin.nopadding:eq(0)",
+        " DIV.tribeeventsprophoto__eventdatetag.tribecommongcol:eq(0)  TIME.tribeeventsprophoto__eventdatetagdatetime:eq(0)  DIV.nomargin.nopadding:eq(2)"
       ]
     },
     "eventURLIndex": 1
@@ -40,38 +40,35 @@
     "url": "https://www.periscope-lyon.com/concerts/",
     "eventsDelimiterTag": "DIV.smallcontent.ukwidth14m.ukgridmargin",
     "dateFormat": "dd-MM",
-    "baseURL": "https://www.periscope-lyon.com"
-  },
-  {
-    "name": "Test",
-    "url": "https://www.periscope-lyon.com/en/concerts-agenda/",
-    "eventsDelimiterTag": "DIV.smallcontent",
-    "dateFormat": "dd MM",
-    "baseURL": "https://www.periscope-lyon.com"
-  },
-  {
-    "name": "Ville Morte",
-    "url": "https://villemorte.fr/agenda/",
-    "eventsDelimiterTag": "H3.tribe-events-month-event-title",
-    "dateFormat": "dd MM",
-    "baseURL": "https://villemorte.fr"
-  },
-  {
-    "name": "Le Trokson",
-    "url": "https://www.trokson.com/shows",
-    "eventsDelimiterTag": "DIV.Rz7J9y",
-    "dateFormat": "dd-MM-yyyy-HH:mm",
-    "eventURLIndex": 0,
-    "baseURL": "https://www.trokson.com"
+    "baseURL": "https://www.periscope-lyon.com",
+    "scrap": {
+      "eventNameTags": [
+        "DIV.scct:eq(0)  H3:eq(0)  SPAN:eq(0)",
+        "H4.textsubtitle:eq(0)"
+      ],
+      "eventDateTags": [
+        "DIV.scc:eq(0)  H5:eq(0)"
+      ]
+    },
+    "eventURLIndex": 1
   },
   {
     "name": "Le Sonic",
     "url": "https://sonic-lyon.fr/",
-    "dateFormat": "dd-MM",
+    "dateFormat": "MM-dd",
     "eventsDelimiterTag": "DIV.event_details",
-    "eventURLIndex": 0,
+    "eventURLIndex": 1,
     "defaultStyle": "Rock",
-    "baseURL": "https://sonic-lyon.fr"
+    "baseURL": "https://sonic-lyon.fr",
+    "scrap": {
+      "eventNameTags": [
+        " DIV.event_desc:eq(0)  A:eq(1)  DIV.event_title:eq(0)"
+      ],
+      "eventDateTags": [
+        " A:eq(0)  DIV.event_date:eq(0)  SPAN.month:eq(0)",
+        " A:eq(0)  DIV.event_date:eq(0)  SPAN.date:eq(0)"
+      ]
+    }
   },
   {
     "name": "Le Petit Bulletin",
@@ -90,33 +87,30 @@
         " P:eq(0)"
       ],
       "eventPlaceTags": [
-        "P.addedTag:eq(2)"
+        " P.addedTag:eq(0)"
       ]
-    }
-  },
-  {
-    "name": "Info Concert",
-    "url": "https://www.infoconcert.com/ville/lyon-5131/concerts.html",
-    "baseURL": "https://www.infoconcert.com"
-  },
-  {
-    "name": "Halle Tony Garnier",
-    "url": "https://www.halle-tony-garnier.com/fr/programmation",
-    "baseURL": "https://www.halle-tony-garnier.com"
+    },
+    "eventURLIndex": 0
   },
   {
     "name": "Marché Gare",
     "url": "https://marchegare.fr/agenda?category=All&page=1",
-    "eventsDelimiterRegex": "<article class=[^]*?</article>",
-    "eventDate": "data-day=\"(\\d{2})[^]*?short=\"([^]*?)\"[^]*?year=\"([^]*?)\"",
-    "eventName": "<span class=\"leading-none lg:leading-none\">([^]*?)</span(?:[^]*?<div class=[^]*?>([^]*?)</div)?",
     "dateFormat": "dd-MM",
-    "eventURL": "href=\"(.*)\"",
     "baseURL": "https://marchegare.fr",
+    "scrap": {
+      "eventNameTags": [
+        " A.agendaitem.nounderline.group:eq(0)  DIV.agendaiteminner.mb12:eq(0)  DIV.relative:eq(0)  DIV.agendaitemtext.transition:eq(0)  DIV.agendatitle.headingsfontweight.uppercase.fontdisplay.fontbold.text3xl.mdtext4xl.xltext5xl.leadingnone.lgleadingnone:eq(0)  SPAN.leadingnone.lgleadingnone:eq(0)"
+      ],
+      "eventDateTags": [
+        " A.agendaitem.nounderline.group:eq(0)  DIV.agendaiteminner.mb12:eq(0)  DIV.agendaitemdate.transition.flex.text2xl.lgtext3xl.pb2:eq(0)  DIV.fontdisplay.fontbold.uppercase.inlineflex.flexwrap.evtdate.agendaevtdate:eq(0)  SPAN.evtdateitem.evtdatefrom:eq(0)  SPAN.evtdatefromdayname.evtdatedayname:eq(0)",
+        " A.agendaitem.nounderline.group:eq(0)  DIV.agendaiteminner.mb12:eq(0)  DIV.agendaitemdate.transition.flex.text2xl.lgtext3xl.pb2:eq(0)  DIV.fontdisplay.fontbold.uppercase.inlineflex.flexwrap.evtdate.agendaevtdate:eq(0)  SPAN.evtdateitem.evtdatefrom:eq(0)  SPAN.evtdatefromday.evtdateday:eq(0)",
+        " A.agendaitem.nounderline.group:eq(0)  DIV.agendaiteminner.mb12:eq(0)  DIV.agendaitemdate.transition.flex.text2xl.lgtext3xl.pb2:eq(0)  DIV.fontdisplay.fontbold.uppercase.inlineflex.flexwrap.evtdate.agendaevtdate:eq(0)  SPAN.evtdateitem.evtdatefrom:eq(0)  SPAN.evtdatefrommonth.evtdatemonth:eq(0)"
+      ],
+      "eventStyleTags": [
+        " A.agendaitem.nounderline.group:eq(0)  DIV.agendaiteminner.mb12:eq(0)  DIV.relative:eq(0)  DIV.agendaitemtext.transition:eq(0)  DIV.flex.mb1.textxl.lgtext2xl.leadingnone.lgleadingnone.justifyend.ml6:eq(0)  DIV.agendataxocontainer.inlineflex.flexwrap.justifyend.textsm.mx1.agendaevtcategories:eq(0)  SPAN.uppercase.fontdisplay.textxl.lgtext2xl.nounderline.mx1.leadingnone.lgleadingnone:eq(0)"
+      ]
+    },
+    "eventURLIndex": 1,
     "eventsDelimiterTag": "ARTICLE.agendaitemcontainer"
-  },
-  {
-    "name": "Nuits Sonores",
-    "url": "https://nuits-sonores.com/programmation/"
   }
 ]

@@ -1,7 +1,5 @@
 // Texte d'exemple
-let texte = "Ceci est une phrase de démonstration";
+let texte = "Ceci est une phrase <img etzmif>  <truc pofj> de démonstration";
 
 // Découper la chaîne de caractères à chaque espace
-let listeMots = texte.split(/\s+/);
-
-console.log("Liste des mots :", listeMots);
+console.log(texte.replace(/<[ ]*img[^]*?>/g,'TTTT'));

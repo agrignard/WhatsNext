@@ -271,41 +271,84 @@ function getTagLocalization(tag,source,isDelimiter){
         if (source(tag).prop('tagName')=='BODY'){// if we are already at top level... may happen ?
             return '';
         }
-       // console.log('tag name: ',source(tag).prop('tagName'));
-        if (source(tag).attr('class')){
-            const tagClass = source(tag).attr('class');//.split(' ')[0];
-            let string = source(tag).prop('tagName')+'.'+tagClass;
-            if (!isDelimiter){// if delimiter, no index should be stored since many blocks should match (one per event)
-                string += ':eq('+getMyIndex(tag,source)+')';
-            }
-            string = string.replace(/ /g,'.');
-            return string;
-        }else{// if no class is found, recursively search for parents until a class is found.
-            let string;
-            const index =  getMyIndex(tag,source);
-            if (source(tag).parent().prop('tagName')=='BODY'){       
-                string = '';
-           }else{
-                string = getTagLocalization(source(tag).parent(),source,isDelimiter)+' ';
-           }
-            string += ' '+source(tag).prop('tagName') + ':eq('+index+')';
-            return string;
+        let string;
+        if (isDelimiter){
+            return source(tag).prop('tagName')+'.'+source(tag).attr('class');
         }
+        if (source(tag).parent().prop('tagName')=='BODY'){       
+            string = '';
+        }else{
+            string = getTagLocalization(source(tag).parent(),source,false)+' ';
+        }
+        string += ' '+source(tag).prop('tagName');
+        if (source(tag).attr('class')){
+            let tagClass = source(tag).attr('class');//.split(' ')[0];
+            tagClass = tagClass.replace(/[ ]*$/g,'').replace(/[ ]{1,}/g,'.');
+            string += '.'+tagClass;
+        }
+      //  if (!isDelimiter){
+            const index =  getMyIndex(tag,source);
+            string +=  ':eq('+index+')';
+      //  }
+        return string;
+
+    //    // console.log('tag name: ',source(tag).prop('tagName'));
+    //     if (source(tag).attr('class')){
+    //         const tagClass = source(tag).attr('class');//.split(' ')[0];
+    //         let string = source(tag).prop('tagName')+'.'+tagClass;
+    //         if (!isDelimiter){// if delimiter, no index should be stored since many blocks should match (one per event)
+    //             string += ':eq('+getMyIndex(tag,source)+')';
+    //         }
+    //         string = string.replace(/ /g,'.');
+    //         return string;
+    //     }else{// if no class is found, recursively search for parents until a class is found.
+    
+    //     }
     }catch(err){
         console.log("\x1b[31mErreur de localisation de la balise: %s\x1b[0m",err);
-    //    console.log(source(tag).html());
     }
-
 }
+
+// function getTagLocalization(tag,source,isDelimiter){
+//     try{
+//         if (source(tag).prop('tagName')=='BODY'){// if we are already at top level... may happen ?
+//             return '';
+//         }
+//        // console.log('tag name: ',source(tag).prop('tagName'));
+//         if (source(tag).attr('class')){
+//             const tagClass = source(tag).attr('class');//.split(' ')[0];
+//             let string = source(tag).prop('tagName')+'.'+tagClass;
+//             if (!isDelimiter){// if delimiter, no index should be stored since many blocks should match (one per event)
+//                 string += ':eq('+getMyIndex(tag,source)+')';
+//             }
+//             string = string.replace(/ /g,'.');
+//             return string;
+//         }else{// if no class is found, recursively search for parents until a class is found.
+//             let string;
+//             const index =  getMyIndex(tag,source);
+//             if (source(tag).parent().prop('tagName')=='BODY'){       
+//                 string = '';
+//            }else{
+//                 string = getTagLocalization(source(tag).parent(),source,isDelimiter)+' ';
+//            }
+//             string += ' '+source(tag).prop('tagName') + ':eq('+index+')';
+//             return string;
+//         }
+//     }catch(err){
+//         console.log("\x1b[31mErreur de localisation de la balise: %s\x1b[0m",err);
+//     }
+// }
 
 function getMyIndex(tag,source){// get the index of the tag div.class among the same type and same class
     let indexation = source(tag).prop('tagName');
+    // console.log(indexation);
     let tagIndex;
     if (source(tag).attr('class')){
     //    indexation += '.'+source(tag).attr('class');//.split(' ')[0];
-        indexation += '.'+source(tag).attr('class').replace(/ /g,'.');//.split(' ')[0];
+        indexation += '.'+source(tag).attr('class').replace(/[ ]*$/g,'').replace(/[ ]{1,}/g,'.');//.split(' ')[0];
     }
     const parentTag = source(tag).parent();
+    //console.log(indexation);
     if (parentTag.prop('tagName')=='BODY'){// top level, no parent to find index from
         tagIndex =  source(tag).index(indexation);
     }else{
@@ -313,6 +356,12 @@ function getMyIndex(tag,source){// get the index of the tag div.class among the 
         const tagsFromParent =  $parentHtml(indexation+`:contains('${source(tag).text()}')`).last();
         tagIndex = $parentHtml(tagsFromParent).index(indexation);
     }
+    // console.log(indexation);
+    // console.log(tagIndex);
+    // if(indexation === 'SONIC-THEME'){
+    //     console.log(source(tag).text());
+    // }
+    // console.log();
     return tagIndex;
 }
 

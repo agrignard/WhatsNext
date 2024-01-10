@@ -73,7 +73,9 @@ async function scrapFiles(venues) {
 
 
 async function analyseFile(venue) {
-  var events,eventDate,eventName,eventStyle,unixDate,eventURL, venueContent;
+  //var events,eventInfo,eventDate,eventName,eventStyle,unixDate,eventURL, venueContent;
+  var events,eventInfo,eventStyle,unixDate,eventURL, venueContent;
+  eventInfo = {}; 
   var $, $eventBlock;
   const inputFile = sourcePath+venue.name+".html";
 
@@ -84,8 +86,7 @@ async function analyseFile(venue) {
   }catch (erreur){
     console.error("Erreur lors de la lecture du fichier local de :",venue.name, erreur);
   }
-  console.log();
-  console.log('\x1b[32m%s\x1b[0m', `******* Venue: ${venue.name}  *******`);
+  console.log('\n\x1b[32m%s\x1b[0m', `******* Venue: ${venue.name}  *******`);
   try{
     if (venue.hasOwnProperty('eventsDelimiterTag')){
       events = [];
@@ -110,52 +111,23 @@ async function analyseFile(venue) {
     for (var eve of events){
       $eventBlock = cheerio.load(eve);
       
-      // auxiliary function to extract data
-      function getText(tagList,regex){
-        let string = "";
-        if (!(tagList === undefined)){
-          try{
-            // console.log("tagList: ",tagList);
-            // console.log('block ',$eventBlock(tagList[0]).text());
-            for (let i = 0; i <= tagList.length-1; i++) {
-              let ev = $eventBlock(tagList[i]).text();
-              string += ev+' ';
-            }
-          }catch(err){
-            console.log('\x1b[31m%s\x1b[0m', 'Erreur d\'extraction à partir des balises',tagList,' pour '+venue.name);
-          }
-        }else{
-          try{
-            const res = eve.match(new RegExp(regex));
-            for (let i = 1; i <= res.length-1; i++) {
-              if (!(res[i] === undefined)){
-                string += res[i]+' ';      
-              }
-            }
-          }catch(err){
-            console.log('\x1b[31m%s\x1b[0m', 'Erreur d\'extraction regexp',regex,' sur pour '+venue.name);
-          }
-        } 
-        return removeBlanks(string);
-      }
-      // end of auxiliary function
-
       // **** event data extraction ****//
   
       //console.log($eventBlock).text();
-      eventDate = getText(venue.scrap.eventDateTags,venue.scrap.eventDateRegex);
-      eventName = getText(venue.scrap.eventNameTags,venue.scrap.eventNameRegex);
-console.log('***********test *************');
 
-      if (venue.hasOwnProperty('eventStyleTags') || venue.hasOwnProperty('eventStyleRegex')){
-        eventStyle = getText(venue.scrap.eventStyleTags,venue.scrap.eventStyleRegex);
-      }
+      // eventInfo.eventDate = getText("eventDateTags",venue,$eventBlock);
+      // eventInfo.eventName = getText("eventNameTags",venue,$eventBlock);
+      Object.keys(venue.scrap).forEach(key => eventInfo[key.replace('Tags','')] = getText(key,venue,$eventBlock));
+
+      // if (venue.hasOwnProperty('eventStyleTags') || venue.hasOwnProperty('eventStyleRegex')){
+      //   eventInfo.eventStyle = getText(venue.scrap.eventStyleTags,venue.scrap.eventStyleRegex,venue,source);
+      // }
 
       // change the date format to Unix time
-      const formatedEventDate = createDate(eventDate,dateFormat,dateConversionPatterns);
+      const formatedEventDate = createDate(eventInfo.eventDate,dateFormat,dateConversionPatterns);
       if (!isValid(formatedEventDate)){
         console.log('\x1b[31mFormat de date invalide pour %s. Reçu \"%s\", converti en \"%s\" (attendu \"%s\")\x1b[0m', 
-          venue.name,eventDate,convertDate(eventDate,dateConversionPatterns),dateFormat);
+          venue.name,eventInfo.eventDate,convertDate(eventInfo.eventDate,dateConversionPatterns),dateFormat);
               // console.log('\x1b[31m%s\x1b[0m', 'Format de date invalide pour '+venue.name+
               // ': reçu \"'+eventDate+'\", transformé en \"',convertDate(eventDate),'\" au lieu de '+dateFormat+'.');
         unixDate = new Date().getTime(); // en cas d'erreur, ajoute la date d'aujourd'hui
@@ -163,9 +135,9 @@ console.log('***********test *************');
         unixDate = formatedEventDate.getTime();
         console.log(showDate(formatedEventDate));
       }
-      console.log(eventName);
-      if (eventStyle){
-        console.log('Style: ',eventStyle);
+      console.log(eventInfo.eventName);
+      if (eventInfo.eventStyle){
+        console.log('Style: ',eventInfo.eventStyle);
       }
 
       //extract URL
@@ -173,7 +145,6 @@ console.log('***********test *************');
         if (venue.hasOwnProperty('eventeventURLIndex') && venue.eventURLIndex === -1){
           eventURL ='No url link.';
         }else{
-          console.log("là");
           var index = venue.hasOwnProperty('eventURLIndex')?venue.eventURLIndex:0;
           if (index == 0){// the URL is in A href
             eventURL = makeURL(venue.baseURL,$(venue.eventsDelimiterTag).attr('href'));
@@ -183,7 +154,6 @@ console.log('***********test *************');
             // if ($(venue.eventsDelimiterTag).prop('tagName')=='A'){// index should be lowered because first href is in main tag <a href=>
               index = index - 1;
             // }
-            console.log("ici");
             const tagsWithHref = $eventBlock('a[href]');
             eventURL = makeURL(venue.baseURL,$eventBlock(tagsWithHref[index]).attr('href'));
               //venue.hasOwnProperty('baseURL')?venue.baseURL:'')
@@ -195,9 +165,7 @@ console.log('***********test *************');
       }
 
       console.log(eventURL);
-
-      eventName= eventName.replace(",","-");
-      out = out+venue.name+','+eventName+','+unixDate+',100,Rock,'+eventURL+'\n';
+      out = out+''+(eventInfo.hasOwnProperty('eventPlace')?eventInfo.eventPlace:venue.name)+';'+eventInfo.eventName+';'+unixDate+';100;Rock;'+eventURL+'\n';
       console.log();
     }  
     
@@ -212,6 +180,27 @@ console.log('***********test *************');
 //********************************************/
 //***            aux functions             ***/
 //********************************************/
+
+
+     // auxiliary function to extract data
+     function getText(tagName,venue,source){
+      let string = "";
+     // console.log(tagName);
+      const tagList = venue.scrap[tagName];
+     // console.log(tagList);
+      try{
+        for (let i = 0; i <= tagList.length-1; i++) {
+          let ev = source(tagList[i]).text();
+          string += ev+' ';
+        }
+      }catch(err){
+        console.log('\x1b[31m%s\x1b[0m', 'Erreur d\'extraction à partir des balises',tagList,' pour '+venue.name);
+      }
+      return removeBlanks(string);
+    }
+    // end of auxiliary function
+
+
 
 
 function removeBlanks(s){

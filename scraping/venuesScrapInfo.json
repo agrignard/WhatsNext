@@ -10,15 +10,39 @@
             "eventNameStrings": ["punxa"],
             "eventDateStrings": ["13","janvier"],
             "eventStyleStrings": ["rock"],
-            "eventPlaceStrings": ["Kraspek Myzik"]
+            "eventPlaceStrings": ["Kraspek"]
         }
     },
     "Transbordeur":{
         "mainPage":{
             "eventNameStrings": ["azyr"],
-            "eventDateStrings": ["03", "fév"],
+            "eventDateStrings": ["03 fév"],
             "eventStyleStrings": ["techno"]
         }
+    },
+    "Le Périscope":{
+        "mainPage":{
+            "eventNameStrings": ["essor","release"],
+            "eventDateStrings": ["17 janv"]
+        }
+    },
+    "Le Sonic":{
+        "mainPage":{
+            "eventNameStrings": ["feet"],
+            "eventDateStrings": "jan 31"
+        }
+    },
+    "Marché Gare":{
+        "mainPage":{
+            "eventNameStrings": ["mars red"],
+            "eventDateStrings": "mer 07 02",
+            "eventStyleStrings": ["metal"]
+        }
+    },
+    "Le Trokson":{
+        "mainPage":{
+            "eventNameStrings": ["mars red","order"],
+            "eventDateStrings": "mer 07 02"
+        }
     }
-  
 }
