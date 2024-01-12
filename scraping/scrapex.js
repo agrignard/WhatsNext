@@ -11,6 +11,7 @@ const dateConversionFile = './import/dateConversion.json';
 var out="";// = "PLACE,TITRE,UNIX,SIZE,GENRE,URL";
 var outFile = "generated/scrapexResult.csv";
 var dateConversionPatterns;
+const globalDefaultStyle = '';
 
 fs.promises.readFile(dateConversionFile, 'utf8')
   .then((fileContent) =>{
@@ -116,10 +117,15 @@ async function analyseFile(venue) {
     for (var eve of events){
       $eventBlock = cheerio.load(eve);
       
+      // changing to default style if no style
+        
+      eventInfo.eventStyle = venue.hasOwnProperty('defaultStyle')?venue.defaultStyle:globalDefaultStyle;
+
       // **** event data extraction ****//
 
       Object.keys(venue.scrap).forEach(key => eventInfo[key.replace('Tags','')] = getText(key,venue,$eventBlock));
 
+    
 
       // change the date format to Unix time
       const formatedEventDate = createDate(eventInfo.eventDate,dateFormat,dateConversionPatterns);
@@ -131,9 +137,12 @@ async function analyseFile(venue) {
         unixDate = formatedEventDate.getTime();
         console.log(showDate(formatedEventDate));
       }
+
+      // display
+
       console.log(eventInfo.eventName);
-      Object.keys(venue.scrap).forEach(key => {
-        if (key !== 'eventNameTags' && key !== 'eventDateTags'){
+      Object.keys(eventInfo).forEach(key => {
+        if (key !== 'eventName' && key !== 'eventDate'){
           console.log(eventInfo[key.replace('Tags','')]);
         }
       });
@@ -167,7 +176,8 @@ async function analyseFile(venue) {
       }
 
       console.log(eventURL);
-      out = out+''+(eventInfo.hasOwnProperty('eventPlace')?eventInfo.eventPlace:venue.name)+';'+eventInfo.eventName+';'+unixDate+';100;Rock;'+eventURL+'\n';
+      out = out+''+(eventInfo.hasOwnProperty('eventPlace')?eventInfo.eventPlace:venue.name)+';'
+            +eventInfo.eventName+';'+unixDate+';100;'+eventInfo.eventStyle+';'+eventURL+'\n';
       console.log();
     }  
     

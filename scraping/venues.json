@@ -16,7 +16,8 @@
         " DIV.tribeeventsprophoto__eventdatetag.tribecommongcol:eq(0)  TIME.tribeeventsprophoto__eventdatetagdatetime:eq(0)  DIV.nomargin.nopadding:eq(2)"
       ]
     },
-    "eventURLIndex": 1
+    "eventURLIndex": 1,
+    "defaultStyle": "techno"
   },
   {
     "name": "Transbordeur",
