@@ -83,7 +83,7 @@
     "name": "Le Petit Bulletin",
     "city": "Lyon",
     "country": "France",
-    "url": "hhttps://www.petit-bulletin.fr/lyon/agenda-recherche.html?idvillepb=lyon&pageagenda=12&thema=musique-soirees&quoi=0&ou=0&quand=0&dateprecise=&qui=&p=1",
+    "url": "https://www.petit-bulletin.fr/lyon/agenda-recherche.html?idvillepb=lyon&pageagenda=12&thema=musique-soirees&quoi=0&ou=0&quand=0&dateprecise=&qui=&p=",
     "eventsDelimiterTag": "A.term7",
     "dateFormat": "dd-MM-yyyy-HH:mm",
     "baseURL": "https://www.petit-bulletin.fr",
@@ -101,7 +101,11 @@
         " P.addedTag:eq(0)"
       ]
     },
-    "pagesRange":[1,20],
+    "multiPages": {
+      "startPage": 1,
+      "nbPages": 40,
+      "increment": 1
+    },
     "eventURLIndex": 0
   },
   {

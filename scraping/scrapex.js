@@ -29,7 +29,7 @@ fs.promises.readFile(dateConversionFile, 'utf8')
         const fileToScrap = process.argv[2];
         if (fileToScrap){
           if (venues.some(element => element.name === fileToScrap)){
-            console.log('\x1b[32m%s\x1b[0m', `Traitement uniquement du fichier ${fileToScrap}.html`);
+            console.log('\x1b[32m%s\x1b[0m', `Traitement uniquement de \'${fileToScrap}\'`);
             venues = venues.filter(element => element.name === fileToScrap);
             scrapFiles(venues);
           }else{
@@ -83,106 +83,105 @@ async function analyseFile(venue) {
   var events,eventInfo,eventStyle,unixDate,eventURL, venueContent;
   eventInfo = {}; 
   var $, $eventBlock;
-  const inputFile = sourcePath+venue.country+'/'+venue.city+'/'+venue.name+'/'+venue.name+".html";
-
-  // parsing the events blocks
-  try{
-    venueContent = await fs.promises.readFile(inputFile, 'utf8');
-    $ = cheerio.load(venueContent);
-  }catch (erreur){
-    console.error("Erreur lors de la lecture du fichier local de :",venue.name, erreur);
+  var inputFileList = [];
+  const venueSourcePath = sourcePath+venue.country+'/'+venue.city+'/'+venue.name+'/';
+  
+  if (venue.hasOwnProperty('multiPages')){
+    for(let i=0;i<venue.multiPages.nbPages;i++){
+      inputFileList.push(venueSourcePath+venue.name+i+".html");
+    }
+  }else{
+    inputFileList = [venueSourcePath+venue.name+".html"];
   }
-  console.log('\n\x1b[32m%s\x1b[0m', `******* Venue: ${venue.name}  *******`);
-  try{
-    if (venue.hasOwnProperty('eventsDelimiterTag')){
-      events = [];
-      $(venue.eventsDelimiterTag).each((index, element) => {
-        let ev = $(element).html();
-        events.push(ev);
-      });
-    }else{
-      const regexDelimiter = new RegExp(venue.eventsDelimiterRegex, 'g');
-      events = venueContent.match(regexDelimiter);
+  console.log('\n\x1b[32m%s\x1b[0m', `******* Venue: ${venue.name}  (${inputFileList.length} pages) *******`);
+  //const inputFile = sourcePath+venue.country+'/'+venue.city+'/'+venue.name+'/'+venue.name+".html";
+  for (let currentPage=0;currentPage<inputFileList.length;currentPage++){
+    const inputFile = inputFileList[currentPage];
+   // parsing the events blocks
+    try{
+      venueContent = await fs.promises.readFile(inputFile, 'utf8');
+      $ = cheerio.load(venueContent);
+    }catch (erreur){
+      console.error("Erreur lors de la lecture du fichier local:",inputFile, erreur);
+    }
+    try{
+      if (venue.hasOwnProperty('eventsDelimiterTag')){
+        events = [];
+        $(venue.eventsDelimiterTag).each((index, element) => {
+          let ev = $(element).html();
+          events.push(ev);
+        });
+      }else{
+        const regexDelimiter = new RegExp(venue.eventsDelimiterRegex, 'g');
+        events = venueContent.match(regexDelimiter);
+      }
+
+      console.log("total number of events: " + events.length);       
+    }catch(err){        
+      console.log('\x1b[31m%s\x1b[0m', 'Délimiteur mal défini pour '+venue.name);      
     }
 
-    console.log("total number of events: " + events.length);       
-  }catch(err){        
-    console.log('\x1b[31m%s\x1b[0m', 'Délimiteur mal défini pour '+venue.name);      
-  }
+    // parsing each event
+    try{
+      const dateFormat = venue.dateFormat;
 
-  // parsing each event
-  try{
-    const dateFormat = venue.dateFormat;
-
-    for (var eve of events){
-      $eventBlock = cheerio.load(eve);
-      
-      // changing to default style if no style
+      for (var eve of events){
+        $eventBlock = cheerio.load(eve);
         
-      eventInfo.eventStyle = venue.hasOwnProperty('defaultStyle')?venue.defaultStyle:globalDefaultStyle;
+        // changing to default style if no style
+          
+        eventInfo.eventStyle = venue.hasOwnProperty('defaultStyle')?venue.defaultStyle:globalDefaultStyle;
 
-      // **** event data extraction ****//
+        // **** event data extraction ****//
 
-      Object.keys(venue.scrap).forEach(key => eventInfo[key.replace('Tags','')] = getText(key,venue,$eventBlock));
+        Object.keys(venue.scrap).forEach(key => eventInfo[key.replace('Tags','')] = getText(key,venue,$eventBlock));
 
-    
-
-      // change the date format to Unix time
-      const formatedEventDate = createDate(eventInfo.eventDate,dateFormat,dateConversionPatterns);
-      if (!isValid(formatedEventDate)){
-        console.log('\x1b[31mFormat de date invalide pour %s. Reçu \"%s\", converti en \"%s\" (attendu \"%s\")\x1b[0m', 
-          venue.name,eventInfo.eventDate,convertDate(eventInfo.eventDate,dateConversionPatterns),dateFormat);
-         unixDate = new Date().getTime(); // en cas d'erreur, ajoute la date d'aujourd'hui
-      }else{
-        unixDate = formatedEventDate.getTime();
-        console.log(showDate(formatedEventDate));
-      }
-
-      // display
-
-      console.log(eventInfo.eventName);
-      Object.keys(eventInfo).forEach(key => {
-        if (key !== 'eventName' && key !== 'eventDate'){
-          console.log(eventInfo[key.replace('Tags','')]);
-        }
-      });
-
-      // if (eventInfo.eventStyle){
-      //   console.log('Style: ',eventInfo.eventStyle);
-      // }
-
-      //extract URL
-      try{
-        if (venue.hasOwnProperty('eventeventURLIndex') && venue.eventURLIndex === -1){
-          eventURL ='No url link.';
+        // change the date format to Unix time
+        const formatedEventDate = createDate(eventInfo.eventDate,dateFormat,dateConversionPatterns);
+        if (!isValid(formatedEventDate)){
+          console.log('\x1b[31mFormat de date invalide pour %s. Reçu \"%s\", converti en \"%s\" (attendu \"%s\")\x1b[0m', 
+            venue.name,eventInfo.eventDate,convertDate(eventInfo.eventDate,dateConversionPatterns),dateFormat);
+          unixDate = new Date().getTime(); // en cas d'erreur, ajoute la date d'aujourd'hui
         }else{
-          var index = venue.hasOwnProperty('eventURLIndex')?venue.eventURLIndex:0;
-          if (index == 0){// the URL is in A href
-            eventURL = makeURL(venue.baseURL,$(venue.eventsDelimiterTag).attr('href'));
-            // eventURL = (venue.hasOwnProperty('baseURL')?venue.baseURL:'')
-            //   +$(venue.eventsDelimiterTag).attr('href');
-          }else{// URL is in inner tags
-            // if ($(venue.eventsDelimiterTag).prop('tagName')=='A'){// index should be lowered because first href is in main tag <a href=>
-              index = index - 1;
-            // }
-            const tagsWithHref = $eventBlock('a[href]');
-            eventURL = makeURL(venue.baseURL,$eventBlock(tagsWithHref[index]).attr('href'));
-              //venue.hasOwnProperty('baseURL')?venue.baseURL:'')
-             // +$eventBlock(tagsWithHref[index]).attr('href');// add the base URL if provided
-          }
+          unixDate = formatedEventDate.getTime();
+          console.log(showDate(formatedEventDate));
         }
-      }catch(err){
-        console.log("\x1b[31mErreur lors de la récupération de l\'URL.\x1b[0m",err);
-      }
 
-      console.log(eventURL);
-      out = out+''+(eventInfo.hasOwnProperty('eventPlace')?eventInfo.eventPlace:venue.name)+';'
-            +eventInfo.eventName+';'+unixDate+';100;'+eventInfo.eventStyle+';'+eventURL+'\n';
-      console.log();
-    }  
-    
-  }catch(error){
-    console.log("Erreur générale pour "+venue.name,error);
+        // display
+        console.log(eventInfo.eventName);
+        Object.keys(eventInfo).forEach(key => {
+          if (key !== 'eventName' && key !== 'eventDate'){
+            console.log(eventInfo[key.replace('Tags','')]);
+          }
+        });
+
+        //extract URL
+        try{
+          if (venue.hasOwnProperty('eventeventURLIndex') && venue.eventURLIndex === -1){
+            eventURL ='No url link.';
+          }else{
+            var index = venue.hasOwnProperty('eventURLIndex')?venue.eventURLIndex:0;
+            if (index == 0){// the URL is in A href
+              eventURL = makeURL(venue.baseURL,$(venue.eventsDelimiterTag).attr('href'));
+            }else{// URL is in inner tags
+                index = index - 1;
+              const tagsWithHref = $eventBlock('a[href]');
+              eventURL = makeURL(venue.baseURL,$eventBlock(tagsWithHref[index]).attr('href'));
+            }
+          }
+        }catch(err){
+          console.log("\x1b[31mErreur lors de la récupération de l\'URL.\x1b[0m",err);
+        }
+
+        console.log(eventURL);
+        out = out+''+(eventInfo.hasOwnProperty('eventPlace')?eventInfo.eventPlace:venue.name)+';'
+              +eventInfo.eventName+';'+unixDate+';100;'+eventInfo.eventStyle+';'+eventURL+'\n';
+        console.log();
+      }  
+      
+    }catch(error){
+      console.log("Erreur générale pour "+venue.name,error);
+    }
   }
   console.log("\n\n");
 }

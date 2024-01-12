@@ -70,7 +70,7 @@ async function processFile(){
     }catch(err){
         console.log('\x1b[36mWarning: cannot open venues JSON file:  \'%s\'. Will not save to venues.\x1b[0m%s\n',venuesListFile,err);
     }
-    const fileName = venueName+'.html';
+    const fileName = venueName+(venueJSON.hasOwnProperty('multiPages')?'0':'')+'.html';
 
     // load date conversion pattern
     try{
