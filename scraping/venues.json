@@ -1,6 +1,8 @@
 [
   {
     "name": "Terminal Club",
+    "city": "Lyon",
+    "country": "France",
     "url": "https://www.terminal-club.com/evenements/",
     "eventsDelimiterTag": "DIV.colinner",
     "dateFormat": "dd-MM",
@@ -18,42 +20,48 @@
   },
   {
     "name": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
     "url": "https://www.transbordeur.fr/agenda/",
     "baseURL": "https://www.transbordeur.fr",
     "eventsDelimiterTag": "DIV.span6.blocText",
     "dateFormat": "dd-MM-yy",
     "scrap": {
       "eventNameTags": [
-        "DIV.header:eq(0)  H2:eq(0)  A:eq(0)"
+        " DIV.header:eq(0)  H2:eq(0)  A:eq(0)"
       ],
       "eventDateTags": [
-        "SPAN.jourMois:eq(0)  H2:eq(0)"
+        " DIV.date:eq(0)  SPAN.newslistdate:eq(0)  SPAN.jourMois:eq(0)  H2:eq(0)"
       ],
       "eventStyleTags": [
-        "DIV.teasertext:eq(0)  P:eq(0)"
+        " DIV.teasertext:eq(0)  P:eq(0)"
       ]
     },
     "eventURLIndex": 1
   },
   {
     "name": "Le Périscope",
+    "city": "Lyon",
+    "country": "France",
     "url": "https://www.periscope-lyon.com/concerts/",
     "eventsDelimiterTag": "DIV.smallcontent.ukwidth14m.ukgridmargin",
     "dateFormat": "dd-MM",
     "baseURL": "https://www.periscope-lyon.com",
     "scrap": {
       "eventNameTags": [
-        "DIV.scct:eq(0)  H3:eq(0)  SPAN:eq(0)",
-        "H4.textsubtitle:eq(0)"
+        " DIV:eq(0)  A:eq(0)  DIV.scc:eq(0)  DIV.scct:eq(0)  H3:eq(0)  SPAN:eq(0)",
+        " DIV:eq(0)  A:eq(0)  DIV.scc:eq(0)  DIV.scct:eq(0)  H4.textsubtitle:eq(0)"
       ],
       "eventDateTags": [
-        "DIV.scc:eq(0)  H5:eq(0)"
+        " DIV:eq(0)  A:eq(0)  DIV.scc:eq(0)  H5:eq(0)"
       ]
     },
     "eventURLIndex": 1
   },
   {
     "name": "Le Sonic",
+    "city": "Lyon",
+    "country": "France",
     "url": "https://sonic-lyon.fr/",
     "dateFormat": "MM-dd",
     "eventsDelimiterTag": "DIV.event_details",
@@ -72,7 +80,9 @@
   },
   {
     "name": "Le Petit Bulletin",
-    "url": "https://www.petit-bulletin.fr/lyon/agenda-recherche.html?thema=musique-soirees&quoi=0&ou=0&quand=0&dateprecise=&qui=",
+    "city": "Lyon",
+    "country": "France",
+    "url": "hhttps://www.petit-bulletin.fr/lyon/agenda-recherche.html?idvillepb=lyon&pageagenda=12&thema=musique-soirees&quoi=0&ou=0&quand=0&dateprecise=&qui=&p=1",
     "eventsDelimiterTag": "A.term7",
     "dateFormat": "dd-MM-yyyy-HH:mm",
     "baseURL": "https://www.petit-bulletin.fr",
@@ -90,27 +100,67 @@
         " P.addedTag:eq(0)"
       ]
     },
+    "pagesRange":[1,20],
     "eventURLIndex": 0
   },
   {
     "name": "Marché Gare",
+    "city": "Lyon",
+    "country": "France",
     "url": "https://marchegare.fr/agenda?category=All&page=1",
     "dateFormat": "dd-MM",
     "baseURL": "https://marchegare.fr",
     "scrap": {
       "eventNameTags": [
-        " A.agendaitem.nounderline.group:eq(0)  DIV.agendaiteminner.mb12:eq(0)  DIV.relative:eq(0)  DIV.agendaitemtext.transition:eq(0)  DIV.agendatitle.headingsfontweight.uppercase.fontdisplay.fontbold.text3xl.mdtext4xl.xltext5xl.leadingnone.lgleadingnone:eq(0)  SPAN.leadingnone.lgleadingnone:eq(0)"
+        " DIV.agendaiteminner.mb12:eq(0)  DIV.relative:eq(0)  DIV.agendaitemtext.transition:eq(0)  DIV.agendatitle.headingsfontweight.uppercase.fontdisplay.fontbold.text3xl.mdtext4xl.xltext5xl.leadingnone.lgleadingnone:eq(0)  SPAN.leadingnone.lgleadingnone:eq(0)"
       ],
       "eventDateTags": [
-        " A.agendaitem.nounderline.group:eq(0)  DIV.agendaiteminner.mb12:eq(0)  DIV.agendaitemdate.transition.flex.text2xl.lgtext3xl.pb2:eq(0)  DIV.fontdisplay.fontbold.uppercase.inlineflex.flexwrap.evtdate.agendaevtdate:eq(0)  SPAN.evtdateitem.evtdatefrom:eq(0)  SPAN.evtdatefromdayname.evtdatedayname:eq(0)",
-        " A.agendaitem.nounderline.group:eq(0)  DIV.agendaiteminner.mb12:eq(0)  DIV.agendaitemdate.transition.flex.text2xl.lgtext3xl.pb2:eq(0)  DIV.fontdisplay.fontbold.uppercase.inlineflex.flexwrap.evtdate.agendaevtdate:eq(0)  SPAN.evtdateitem.evtdatefrom:eq(0)  SPAN.evtdatefromday.evtdateday:eq(0)",
-        " A.agendaitem.nounderline.group:eq(0)  DIV.agendaiteminner.mb12:eq(0)  DIV.agendaitemdate.transition.flex.text2xl.lgtext3xl.pb2:eq(0)  DIV.fontdisplay.fontbold.uppercase.inlineflex.flexwrap.evtdate.agendaevtdate:eq(0)  SPAN.evtdateitem.evtdatefrom:eq(0)  SPAN.evtdatefrommonth.evtdatemonth:eq(0)"
+        " DIV.agendaiteminner.mb12:eq(0)  DIV.agendaitemdate.transition.flex.text2xl.lgtext3xl.pb2:eq(0)  DIV.fontdisplay.fontbold.uppercase.inlineflex.flexwrap.evtdate.agendaevtdate:eq(0)  SPAN.evtdateitem.evtdatefrom:eq(0)  SPAN.evtdatefromdayname.evtdatedayname:eq(0)",
+        " DIV.agendaiteminner.mb12:eq(0)  DIV.agendaitemdate.transition.flex.text2xl.lgtext3xl.pb2:eq(0)  DIV.fontdisplay.fontbold.uppercase.inlineflex.flexwrap.evtdate.agendaevtdate:eq(0)  SPAN.evtdateitem.evtdatefrom:eq(0)  SPAN.evtdatefromday.evtdateday:eq(0)",
+        " DIV.agendaiteminner.mb12:eq(0)  DIV.agendaitemdate.transition.flex.text2xl.lgtext3xl.pb2:eq(0)  DIV.fontdisplay.fontbold.uppercase.inlineflex.flexwrap.evtdate.agendaevtdate:eq(0)  SPAN.evtdateitem.evtdatefrom:eq(0)  SPAN.evtdatefrommonth.evtdatemonth:eq(0)"
       ],
       "eventStyleTags": [
-        " A.agendaitem.nounderline.group:eq(0)  DIV.agendaiteminner.mb12:eq(0)  DIV.relative:eq(0)  DIV.agendaitemtext.transition:eq(0)  DIV.flex.mb1.textxl.lgtext2xl.leadingnone.lgleadingnone.justifyend.ml6:eq(0)  DIV.agendataxocontainer.inlineflex.flexwrap.justifyend.textsm.mx1.agendaevtcategories:eq(0)  SPAN.uppercase.fontdisplay.textxl.lgtext2xl.nounderline.mx1.leadingnone.lgleadingnone:eq(0)"
+        " DIV.agendaiteminner.mb12:eq(0)  DIV.relative:eq(0)  DIV.agendaitemtext.transition:eq(0)  DIV.flex.mb1.textxl.lgtext2xl.leadingnone.lgleadingnone.justifyend.ml6:eq(0)  DIV.agendataxocontainer.inlineflex.flexwrap.justifyend.textsm.mx1.agendaevtcategories:eq(0)  SPAN.uppercase.fontdisplay.textxl.lgtext2xl.nounderline.mx1.leadingnone.lgleadingnone:eq(0)"
       ]
     },
+    "eventURLIndex": 0,
+    "eventsDelimiterTag": "A.agendaitem.nounderline.group"
+  },
+  {
+    "name": "Halle Tony Garnier",
+    "city": "Lyon",
+    "country": "France",
+    "url": "https://www.halle-tony-garnier.com/fr/programmation",
+    "baseURL": "https://www.halle-tony-garnier.com",
+    "scrap": {
+      "eventNameTags": [
+        " DIV.blocsquare__infos:eq(0)  DIV.blocsquare__title:eq(0)"
+      ],
+      "eventDateTags": [
+        " DIV.blocsquare__infos:eq(0)  DIV.blocsquare__date:eq(0)"
+      ]
+    },
+    "eventsDelimiterTag": "A.blocsquare.types.type_concert",
+    "eventURLIndex": 0,
+    "dateFormat": "dd-MM-yy"
+  },
+  {
+    "name": "Le Trokson",
+    "city": "Lyon",
+    "country": "France",
+    "url": "https://www.trokson.com/shows",
+    "baseURL": "https://www.trokson.com",
+    "scrap": {
+      "eventNameTags": [
+        " DIV.Rz7J9y:eq(0)  DIV.yuONQy:eq(0)  A.DjQEyU:eq(0)"
+      ],
+      "eventDateTags": [
+        " DIV.Rz7J9y:eq(0)  DIV.XQpnAl.HqEbWK:eq(0)  DIV.LQpUqV.AinsX6.wu0Sg9:eq(0)  DIV.v2vbgt:eq(0)"
+      ]
+    },
+    "eventsDelimiterTag": "DIV.j2Owzh.Wprg5l",
     "eventURLIndex": 1,
-    "eventsDelimiterTag": "ARTICLE.agendaitemcontainer"
+    "dateFormat": "dd-MM",
+    "delimiterAddLevels": 1
   }
 ]

@@ -33,6 +33,7 @@ fs.promises.readFile(dateConversionFile, 'utf8')
             scrapFiles(venues);
           }else{
             console.log('\x1b[31mFichier \x1b[0m%s.html\x1b[31m non trouvé. Fin du scrapping.\x1b[0m\n', fileToScrap);
+            return;
           }
         }else{
           scrapFiles(venues);
@@ -40,11 +41,13 @@ fs.promises.readFile(dateConversionFile, 'utf8')
         
       } catch (erreur) {
         console.error('\x1b[31mErreur lors de la lecture du fichier JSON :%s. %s\x1b[0m', filePath,erreur.message);
+        throw new Error('JSON Error');
       }
     })
   })
   .catch((erreur ) => {
     console.error("Erreur lors de la lecture des fichiers de configuration :", erreur);
+    throw new Error('readFile Error');
   });
 
 async function scrapFiles(venues) {
@@ -54,17 +57,19 @@ async function scrapFiles(venues) {
       console.log('\x1b[31m%s\x1b[0m', 'Aucun délimiteur de bloc d\'événement défini pour '+venue.name);
       err = true;
     }
-    if (!(venue.scrap.hasOwnProperty('eventNameTags') || venue.scrap.hasOwnProperty('eventNameRegex'))){
+    if (!venue.hasOwnProperty('scrap') || !(venue.scrap.hasOwnProperty('eventNameTags') || venue.scrap.hasOwnProperty('eventNameRegex'))){
       console.log('\x1b[31m%s\x1b[0m', 'Aucun délimiteur de nom d\'événement défini pour '+venue.name);
       err = true;
     }
-    if (!(venue.scrap.hasOwnProperty('eventDateTags') || venue.scrap.hasOwnProperty('eventDateRegex'))){
+    if (!venue.hasOwnProperty('scrap') || !(venue.scrap.hasOwnProperty('eventDateTags') || venue.scrap.hasOwnProperty('eventDateRegex'))){
       console.log('\x1b[31m%s\x1b[0m', 'Aucun délimiteur de date d\'événement défini pour '+venue.name);
       err = true;
     }
     if (!err){
       await analyseFile(venue);
-    } 
+    } else{
+      console.log('\x1b[31mEntrée %s non traitée.\x1b[0m', venue.name);
+    }
   }
   console.log('Scrapex fini avec succex !!\n\n');
     fs.writeFileSync(outFile, out, 'utf-8', { flag: 'w' });
@@ -77,7 +82,7 @@ async function analyseFile(venue) {
   var events,eventInfo,eventStyle,unixDate,eventURL, venueContent;
   eventInfo = {}; 
   var $, $eventBlock;
-  const inputFile = sourcePath+venue.name+".html";
+  const inputFile = sourcePath+venue.country+'/'+venue.city+'/'+venue.name+'/'+venue.name+".html";
 
   // parsing the events blocks
   try{
@@ -112,33 +117,30 @@ async function analyseFile(venue) {
       $eventBlock = cheerio.load(eve);
       
       // **** event data extraction ****//
-  
-      //console.log($eventBlock).text();
 
-      // eventInfo.eventDate = getText("eventDateTags",venue,$eventBlock);
-      // eventInfo.eventName = getText("eventNameTags",venue,$eventBlock);
       Object.keys(venue.scrap).forEach(key => eventInfo[key.replace('Tags','')] = getText(key,venue,$eventBlock));
 
-      // if (venue.hasOwnProperty('eventStyleTags') || venue.hasOwnProperty('eventStyleRegex')){
-      //   eventInfo.eventStyle = getText(venue.scrap.eventStyleTags,venue.scrap.eventStyleRegex,venue,source);
-      // }
 
       // change the date format to Unix time
       const formatedEventDate = createDate(eventInfo.eventDate,dateFormat,dateConversionPatterns);
       if (!isValid(formatedEventDate)){
         console.log('\x1b[31mFormat de date invalide pour %s. Reçu \"%s\", converti en \"%s\" (attendu \"%s\")\x1b[0m', 
           venue.name,eventInfo.eventDate,convertDate(eventInfo.eventDate,dateConversionPatterns),dateFormat);
-              // console.log('\x1b[31m%s\x1b[0m', 'Format de date invalide pour '+venue.name+
-              // ': reçu \"'+eventDate+'\", transformé en \"',convertDate(eventDate),'\" au lieu de '+dateFormat+'.');
-        unixDate = new Date().getTime(); // en cas d'erreur, ajoute la date d'aujourd'hui
+         unixDate = new Date().getTime(); // en cas d'erreur, ajoute la date d'aujourd'hui
       }else{
         unixDate = formatedEventDate.getTime();
         console.log(showDate(formatedEventDate));
       }
       console.log(eventInfo.eventName);
-      if (eventInfo.eventStyle){
-        console.log('Style: ',eventInfo.eventStyle);
-      }
+      Object.keys(venue.scrap).forEach(key => {
+        if (key !== 'eventNameTags' && key !== 'eventDateTags'){
+          console.log(eventInfo[key.replace('Tags','')]);
+        }
+      });
+
+      // if (eventInfo.eventStyle){
+      //   console.log('Style: ',eventInfo.eventStyle);
+      // }
 
       //extract URL
       try{

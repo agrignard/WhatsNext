@@ -54,20 +54,43 @@ fs.readFile(venuesListFile, 'utf8', (erreur, fileContent) => {
                 htmlContent = cleanHtml(htmlContent);
           //      htmlContent = removeImages(htmlContent);
               }
-              const outputFile = outputPath+venue.name+".html";
-              fs.writeFile(outputFile, htmlContent, 'utf8', (erreur) => {
-                  if (erreur) {
-                    console.error("Erreur lors de l'écriture dans le fichier :", erreur);
-                  } else {
-                    console.log("\""+venue.name + "\"" + " has been written in " + outputFile);
+              if (!venue.hasOwnProperty('country') || !venue.hasOwnProperty('city')){
+                console.log('\x1b[31mErreur: le lieu \x1b[0m%s\x1b[31m n\'a pas de pays et/ou de ville définis',venue.name);
+              }else{
+                const countryPath = (venue.hasOwnProperty('country')?venue.country:'undefined country');
+                const cityPath = (venue.hasOwnProperty('city')?venue.city:'undefined city');
+                if (!fs.existsSync(outputPath+countryPath)){
+                    console.log('\x1b[31mErreur: le pays \x1b[0m%s\x1b[31m n\'est pas défini. Vérifiez si l\'orthographe est correcte. Si oui, créez un répertoire dans \x1b[0m%s',countryPath,outputPath);
+                }else{
+                  if (!fs.existsSync(outputPath+countryPath+'/'+cityPath)){
+                    console.log('\x1b[31mErreur: la ville \x1b[0m%s\x1b[31m n\'est pas définie pour le pays %s. Vérifiez si l\'orthographe est correcte. Si oui, créez un répertoire dans \x1b[0m%s',cityPath,countryPath,outputPath+countryPath);
+                  }else{
+                    let path = outputPath+countryPath+'/'+cityPath+'/'+venue.name+'/';
+                    if (!fs.existsSync(path)){
+                      fs.mkdirSync(path);
+                    }
+                    // if (venue.hasOwnProperty('pagesRange')){
+
+                    // }else{
+                      const outputFile = path+venue.name+".html";
+                      fs.writeFile(outputFile, htmlContent, 'utf8', (erreur) => {
+                          if (erreur) {
+                            console.error("Erreur lors de l'écriture dans le fichier :", erreur);
+                          } else {
+                            console.log("\""+venue.name + "\"" + " has been written in " + outputFile);
+                          }
+                        });
+                    // }
+
+                    // extract baseURL and add it to JSON
+                    const url = new URL(venue.url);
+                    const baseURL = `${url.protocol}//${url.hostname}${url.port ? `:${url.port}` : ''}`;
+                    venue.baseURL = baseURL;
+                    const jsonString = JSON.stringify(venues, null, 2); 
+                    fs.writeFileSync(venuesListFile, jsonString);
                   }
-                });
-              // extract baseURL and add it to JSON
-              const url = new URL(venue.url);
-              const baseURL = `${url.protocol}//${url.hostname}${url.port ? `:${url.port}` : ''}`;
-              venue.baseURL = baseURL;
-              const jsonString = JSON.stringify(venues, null, 2); 
-              fs.writeFileSync(venuesListFile, jsonString);
+                }
+              }   
             })
             .catch(error => {
               // Gérer les erreurs
@@ -85,7 +108,7 @@ fs.readFile(venuesListFile, 'utf8', (erreur, fileContent) => {
 
 function cleanScripts(content){
   let res = content.replace(/<script[^]*?<\/script>/g,'');// remove scripts
-  res = content.replace(/<noscript[^]*?<\/noscript>/g,'');// remove scripts
+  res = res.replace(/<noscript[^]*?<\/noscript>/g,'');// remove scripts
   return res;
 }
 

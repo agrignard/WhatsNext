@@ -2,7 +2,7 @@ import { createDate, numberOfInvalidDates, getCommonDateFormats, convertDate} fr
 //import { isValid }  from 'date-fns';
 import * as fs from 'fs';
 import * as cheerio from 'cheerio';
-const sourcePath = './webSources/';
+var sourcePath = './webSources/';
 const venuesListFile = "./venues.json";
 const dateConversionFile = './import/dateConversion.json';
 const stringsToFindFile = "./venuesScrapInfo.json";
@@ -21,8 +21,6 @@ var eventStrings = {// is overriden later if an argument is passed to the script
     // eventPlaceStrings: ["Kraspek Myzik"]
     //}
 }
-
-
 
 
 processFile();
@@ -49,8 +47,8 @@ async function processFile(){
             throw err;
         }
     }
-    const fileName = venueName+'.html';
-    console.log('\n\n\x1b[36m%s\x1b[0m', `******* Analysing file: ${fileName}  *******\n`);
+   
+    console.log('\n\n\x1b[36m%s\x1b[0m', `******* Analysing venue: venueName  *******\n`);
     Object.keys(eventStrings.mainPage)
     .forEach(key =>{
         if(typeof eventStrings.mainPage[key] === "string"){
@@ -68,10 +66,11 @@ async function processFile(){
             console.error("\x1b[31mError venue info. Venue \'%s\' not found in %s\x1b[0m.\n Aborting process",venueName,venuesListFile);
             throw err;
         }
+        sourcePath += venueJSON.country+'/'+venueJSON.city+'/'+venueName+'/';
     }catch(err){
         console.log('\x1b[36mWarning: cannot open venues JSON file:  \'%s\'. Will not save to venues.\x1b[0m%s\n',venuesListFile,err);
     }
-
+    const fileName = venueName+'.html';
 
     // load date conversion pattern
     try{
@@ -127,10 +126,20 @@ async function processFile(){
         // });
     
         // find a tag containing all the strings
+        for (let i = 0; i <= tagsContainingStrings.length-1; i++){
+            let t = $(tagsContainingStrings[i]);
+            let str = t.prop('tagName');
+            if (t.attr('class')){
+                str += ' class='+t.attr('class');
+            }
+        }
+        console.log();
+
         var mainTag = tagsContainingStrings.last();
         var $eventBlock = cheerio.load($(mainTag).html());
         var hrefs = $eventBlock('a[href]');
 
+      
         // extend the tag if it does not include any URL link
         if (extendSelectionToGetURL){
             try{
@@ -147,13 +156,25 @@ async function processFile(){
                 console.log("\x1b[31mError while trying to find embedded URL recursively. Aborting URL search. Try to turn flag \'extendSelectionToGetURL\' to false to prevent recursive search. %s\x1b[0m",err)
             }
         }
-       
+        // adding levels to the main tag
+        if (venueJSON.hasOwnProperty('delimiterAddLevels')){
+            console.log('\x1b[36mAdding '+venueJSON.delimiterAddLevels+' parent levels to the delimiter tag.\x1b[0m');
+            for(let i=0;i<venueJSON.delimiterAddLevels;i++){
+                mainTag = $eventBlock(mainTag).parent();
+                $eventBlock = cheerio.load(mainTag.html());
+                hrefs = $eventBlock('a[href]');
+            }
+        }
+
+
         console.log("Found ",tagsContainingStrings.length,' tags. Best tag: \x1b[90m',
              `<${mainTag.prop('tagName')} class="${$(mainTag).attr('class')}" id="${$(mainTag).attr('id')}">`,'\x1b[0m Contains');
         console.log('\x1b[0m\x1b[32m%s\x1b[0m',removeImageTag(removeBlanks($(mainTag).text())));
     
         // console.log($(mainTag).html());
+        
         venueJSON.eventsDelimiterTag=getTagLocalization(mainTag,$,true);
+        //console.log('maintTag: ',$(venueJSON.eventsDelimiterTag).prop('tagName'));
         // console.log('\x1b[32m%s\x1b[0m', `Tag: <${tag.prop('tagName')} class="${$(tag).attr('class')}" id="${$(tag).attr('id')}">`);
  
         
@@ -245,6 +266,7 @@ async function processFile(){
 //************************************************/
 
 function getTagWithURL(currentTag,$cgp,stringsToFind){
+   // displayTag(currentTag,$cgp);
     var hrefs = $cgp('a[href]');
     if ($cgp(currentTag).prop('tagName')=='A'){
         const $cgparent = cheerio.load($cgp(currentTag).parent().html());  
@@ -254,12 +276,12 @@ function getTagWithURL(currentTag,$cgp,stringsToFind){
         hrefs = $cgparent('a[href]');
     }
     // while the tag: has a name, has no url or has no class. Take the most inner tag with a class and an URL
-    while ($cgp(currentTag).prop('tagName') && (hrefs.length===0 || !$cgp(currentTag).attr('class'))) {
+    if ($cgp(currentTag).prop('tagName') && (hrefs.length===0 || !$cgp(currentTag).attr('class'))) {
         currentTag = $cgp(currentTag).parent();
         if ($cgp(currentTag).prop('tagName')){
             const gp = currentTag.html();
             $cgp = cheerio.load(gp);
-            hrefs = $cgp('a[href]');
+            [currentTag,hrefs] = getTagWithURL(currentTag,$cgp,stringsToFind);
         }
     }
     return [currentTag, hrefs];
@@ -271,9 +293,14 @@ function getTagLocalization(tag,source,isDelimiter){
         if (source(tag).prop('tagName')=='BODY'){// if we are already at top level... may happen ?
             return '';
         }
+        let tagClass = '';
         let string;
+        if (source(tag).attr('class')){
+            tagClass = '.'+source(tag).attr('class');//.split(' ')[0];
+            tagClass = tagClass.replace(/[ ]*$/g,'').replace(/[ ]{1,}/g,'.');
+        }
         if (isDelimiter){
-            return source(tag).prop('tagName')+'.'+source(tag).attr('class');
+            return source(tag).prop('tagName')+tagClass;
         }
         if (source(tag).parent().prop('tagName')=='BODY'){       
             string = '';
@@ -281,14 +308,12 @@ function getTagLocalization(tag,source,isDelimiter){
             string = getTagLocalization(source(tag).parent(),source,false)+' ';
         }
         string += ' '+source(tag).prop('tagName');
-        if (source(tag).attr('class')){
-            let tagClass = source(tag).attr('class');//.split(' ')[0];
-            tagClass = tagClass.replace(/[ ]*$/g,'').replace(/[ ]{1,}/g,'.');
-            string += '.'+tagClass;
-        }
+       // if (source(tag).attr('class')){
+        string += tagClass;
+     //   }
       //  if (!isDelimiter){
-            const index =  getMyIndex(tag,source);
-            string +=  ':eq('+index+')';
+        const index =  getMyIndex(tag,source);
+        string +=  ':eq('+index+')';
       //  }
         return string;
 
@@ -341,14 +366,12 @@ function getTagLocalization(tag,source,isDelimiter){
 
 function getMyIndex(tag,source){// get the index of the tag div.class among the same type and same class
     let indexation = source(tag).prop('tagName');
-    // console.log(indexation);
     let tagIndex;
     if (source(tag).attr('class')){
     //    indexation += '.'+source(tag).attr('class');//.split(' ')[0];
         indexation += '.'+source(tag).attr('class').replace(/[ ]*$/g,'').replace(/[ ]{1,}/g,'.');//.split(' ')[0];
     }
     const parentTag = source(tag).parent();
-    //console.log(indexation);
     if (parentTag.prop('tagName')=='BODY'){// top level, no parent to find index from
         tagIndex =  source(tag).index(indexation);
     }else{
@@ -356,12 +379,6 @@ function getMyIndex(tag,source){// get the index of the tag div.class among the 
         const tagsFromParent =  $parentHtml(indexation+`:contains('${source(tag).text()}')`).last();
         tagIndex = $parentHtml(tagsFromParent).index(indexation);
     }
-    // console.log(indexation);
-    // console.log(tagIndex);
-    // if(indexation === 'SONIC-THEME'){
-    //     console.log(source(tag).text());
-    // }
-    // console.log();
     return tagIndex;
 }
 
@@ -448,4 +465,14 @@ function removeBlanks(s){
    }else{
     return list;
    }
+  }
+
+
+
+  function displayTag(tag,$cgp){
+    let str = $cgp(tag).prop('tagName');
+    if ($cgp(tag).attr('class')){
+        str += ' class: '+$cgp(tag).attr('class');
+    }
+    console.log('Tag name: ',str);
   }

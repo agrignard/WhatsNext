@@ -41,8 +41,14 @@
     },
     "Le Trokson":{
         "mainPage":{
-            "eventNameStrings": ["mars red","order"],
-            "eventDateStrings": "mer 07 02"
+            "eventNameStrings": ["tornado"],
+            "eventDateStrings": ["sam. 20 janv."]
+        }
+    },
+    "Halle Tony Garnier":{
+        "mainPage":{
+            "eventNameStrings": ["I hate Models"],
+            "eventDateStrings": ["20.01.24"]
         }
     }
 }
