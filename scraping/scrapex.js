@@ -80,9 +80,6 @@ async function scrapFiles(venues) {
 
 async function analyseFile(venue) {
   //var events,eventInfo,eventDate,eventName,eventStyle,unixDate,eventURL, venueContent;
-  var events,eventInfo,eventStyle,unixDate,eventURL, venueContent;
-  eventInfo = {}; 
-  var $, $eventBlock;
   var inputFileList = [];
   const venueSourcePath = sourcePath+venue.country+'/'+venue.city+'/'+venue.name+'/';
   
@@ -96,6 +93,9 @@ async function analyseFile(venue) {
   console.log('\n\x1b[32m%s\x1b[0m', `******* Venue: ${venue.name}  (${inputFileList.length} pages) *******`);
   //const inputFile = sourcePath+venue.country+'/'+venue.city+'/'+venue.name+'/'+venue.name+".html";
   for (let currentPage=0;currentPage<inputFileList.length;currentPage++){
+    var events,eventInfo,unixDate,eventURL, venueContent;
+    eventInfo = {}; 
+    var $, $eventBlock;
     const inputFile = inputFileList[currentPage];
    // parsing the events blocks
     try{
@@ -126,6 +126,7 @@ async function analyseFile(venue) {
       const dateFormat = venue.dateFormat;
 
       for (var eve of events){
+        let eventLog = '';
         $eventBlock = cheerio.load(eve);
         
         // changing to default style if no style
@@ -139,19 +140,19 @@ async function analyseFile(venue) {
         // change the date format to Unix time
         const formatedEventDate = createDate(eventInfo.eventDate,dateFormat,dateConversionPatterns);
         if (!isValid(formatedEventDate)){
-          console.log('\x1b[31mFormat de date invalide pour %s. Reçu \"%s\", converti en \"%s\" (attendu \"%s\")\x1b[0m', 
+          eventLog += ('\x1b[31mFormat de date invalide pour %s. Reçu \"%s\", converti en \"%s\" (attendu \"%s\")\x1b[0m\n', 
             venue.name,eventInfo.eventDate,convertDate(eventInfo.eventDate,dateConversionPatterns),dateFormat);
           unixDate = new Date().getTime(); // en cas d'erreur, ajoute la date d'aujourd'hui
         }else{
           unixDate = formatedEventDate.getTime();
-          console.log(showDate(formatedEventDate));
+          eventLog += showDate(formatedEventDate)+'\n';
         }
 
         // display
-        console.log(eventInfo.eventName);
+        eventLog += (eventInfo.eventName)+'\n';
         Object.keys(eventInfo).forEach(key => {
           if (key !== 'eventName' && key !== 'eventDate'){
-            console.log(eventInfo[key.replace('Tags','')]);
+            eventLog += (eventInfo[key.replace('Tags','')])+'\n';
           }
         });
 
@@ -173,10 +174,10 @@ async function analyseFile(venue) {
           console.log("\x1b[31mErreur lors de la récupération de l\'URL.\x1b[0m",err);
         }
 
-        console.log(eventURL);
+        eventLog += (eventURL)+'\n';
         out = out+''+(eventInfo.hasOwnProperty('eventPlace')?eventInfo.eventPlace:venue.name)+';'
               +eventInfo.eventName+';'+unixDate+';100;'+eventInfo.eventStyle+';'+eventURL+'\n';
-        console.log();
+        console.log(eventLog);
       }  
       
     }catch(error){
