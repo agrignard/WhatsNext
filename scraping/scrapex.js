@@ -212,7 +212,7 @@ async function analyseFile(venue) {
      // console.log(tagList);
       try{
         for (let i = 0; i <= tagList.length-1; i++) {
-          let ev = source(tagList[i]).text();
+          let ev = tagList[i]===''?source.text():source(tagList[i]).text();
           string += ev+' ';
         }
       }catch(err){

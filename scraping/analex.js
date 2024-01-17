@@ -169,9 +169,9 @@ async function processFile(){
             }
         }
 
-
-        console.log("Found ",tagsContainingStrings.length,' tags. Best tag: \x1b[90m',
-             `<${mainTag.prop('tagName')} class="${$(mainTag).attr('class')}" id="${$(mainTag).attr('id')}">`,'\x1b[0m Contains');
+        const mainTagString = '<'+mainTag.prop('tagName')
+            +" class="+$(mainTag).attr('class')+(mainTag.hasOwnProperty('id')?$(mainTag).attr('id'):'')+'>';
+        console.log('Found %s tags. Best tag \x1b[90m%s\x1b[0m contains:', tagsContainingStrings.length,mainTagString);
         console.log('\x1b[0m\x1b[32m%s\x1b[0m',removeImageTag(removeBlanks($(mainTag).text())));
     
 
@@ -187,6 +187,7 @@ async function processFile(){
         Object.keys(eventStrings.mainPage).filter(element => eventStrings.mainPage[element].length > 0)
             .forEach(key =>venueJSON.scrap[key.replace(/String/,'Tag')] = getTagsForKey(eventStrings.mainPage,key,$eventBlock));
         // remove doubles
+        
         Object.keys(venueJSON.scrap).forEach(key => {venueJSON.scrap[key] = removeDoubles(venueJSON.scrap[key]);});
     
         // logs depending on if URL has been found.
@@ -292,7 +293,7 @@ function getTagWithURL(currentTag,$cgp,stringsToFind){
 function getTagLocalization(tag,source,isDelimiter){
     try{
        //console.log(source.html());
-        if (source(tag).prop('tagName')=='BODY'){// if we are already at top level... may happen ?
+        if (source(tag).prop('tagName')=='BODY' ||source(tag).prop('tagName')=='HEAD'){// if we are already at top level... may happen ?
             return '';
         }
         let tagClass = '';
@@ -315,39 +316,12 @@ function getTagLocalization(tag,source,isDelimiter){
         string +=  ':eq('+index+')';
         return string;
     }catch(err){
-        console.log("\x1b[31mErreur de localisation de la balise: %s\x1b[0m",err);
+      //  console.log("\x1b[31mErreur de localisation de la balise: %s\x1b[0m:",source(tag).prop('tagName'));
+        console.log("\x1b[31mErreur de localisation de la balise: %s\x1b[0m: %s",source(tag).prop('tagName'),err);
     }
 }
 
-// function getTagLocalization(tag,source,isDelimiter){
-//     try{
-//         if (source(tag).prop('tagName')=='BODY'){// if we are already at top level... may happen ?
-//             return '';
-//         }
-//        // console.log('tag name: ',source(tag).prop('tagName'));
-//         if (source(tag).attr('class')){
-//             const tagClass = source(tag).attr('class');//.split(' ')[0];
-//             let string = source(tag).prop('tagName')+'.'+tagClass;
-//             if (!isDelimiter){// if delimiter, no index should be stored since many blocks should match (one per event)
-//                 string += ':eq('+getMyIndex(tag,source)+')';
-//             }
-//             string = string.replace(/ /g,'.');
-//             return string;
-//         }else{// if no class is found, recursively search for parents until a class is found.
-//             let string;
-//             const index =  getMyIndex(tag,source);
-//             if (source(tag).parent().prop('tagName')=='BODY'){       
-//                 string = '';
-//            }else{
-//                 string = getTagLocalization(source(tag).parent(),source,isDelimiter)+' ';
-//            }
-//             string += ' '+source(tag).prop('tagName') + ':eq('+index+')';
-//             return string;
-//         }
-//     }catch(err){
-//         console.log("\x1b[31mErreur de localisation de la balise: %s\x1b[0m",err);
-//     }
-// }
+
 
 function getMyIndex(tag,source){// get the index of the tag div.class among the same type and same class
     let indexation = source(tag).prop('tagName');
@@ -430,7 +404,7 @@ function removeBlanks(s){
     const string = key.match(/event([^]*)String/);
     console.log('\n\x1b[31mEvent '+string[1]+' tags:\x1b[0m');
     const tagList = object[key].map(string2 => findTag(cheerioSource,string2));
-    //tagList.forEach(truc => console.log('full ',displayFullTag(truc,cheerioSource)));
+    //console.log("tagList: ",tagList.map(el => cheerioSource(el).prop('tagName')));
     showTagsDetails(tagList,cheerioSource);
     return tagList.map(tag => getTagLocalization(tag,cheerioSource,false));
  }

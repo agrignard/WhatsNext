@@ -50,5 +50,13 @@
             "eventNameStrings": ["I hate Models"],
             "eventDateStrings": ["20.01.24"]
         }
+    },
+    "Ville Morte":{
+        "mainPage":{
+            "eventNameStrings": ["furax"],
+            "eventDateStrings": [""]
+        },
+        "eventPage":{
+        }
     }
 }

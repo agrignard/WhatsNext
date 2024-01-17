@@ -9,14 +9,6 @@
     "baseURL": "https://www.infoconcert.com"
   },
   {
-    "name": "Le Trokson",
-    "url": "https://www.trokson.com/shows",
-    "eventsDelimiterTag": "DIV.Rz7J9y",
-    "dateFormat": "dd-MM-yyyy-HH:mm",
-    "eventURLIndex": 0,
-    "baseURL": "https://www.trokson.com"
-  },
-  {
     "name": "Ville Morte",
     "url": "https://villemorte.fr/agenda/",
     "eventsDelimiterTag": "H3.tribe-events-month-event-title",

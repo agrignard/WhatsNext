@@ -166,5 +166,23 @@
     "eventURLIndex": 1,
     "dateFormat": "dd-MM",
     "delimiterAddLevels": 1
+  },
+  {
+    "name": "Ville Morte",
+    "city": "Lyon",
+    "country": "France",
+    "url": "https://villemorte.fr/agenda/2024-01/",
+    "eventsDelimiterTag": "A.url",
+    "dateFormat": "dd MM",
+    "baseURL": "https://villemorte.fr",
+    "scrap": {
+      "eventNameTags": [
+        ""
+      ],
+      "eventDateTags": [
+        ""
+      ]
+    },
+    "eventURLIndex": 0
   }
 ]
