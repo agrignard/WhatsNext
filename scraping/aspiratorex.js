@@ -68,6 +68,8 @@ fs.readFile(venuesListFile, 'utf8', (erreur, fileContent) => {
                   htmlContent = cleanScripts(htmlContent);
                   htmlContent = removeBRTags(htmlContent);
                   htmlContent = cleanHtml(htmlContent);
+                  htmlContent = removeForms(htmlContent);
+                  htmlContent = fixTags(htmlContent);
             //      htmlContent = removeImages(htmlContent);
                 }
                 if (!venue.hasOwnProperty('country') || !venue.hasOwnProperty('city')){
@@ -86,7 +88,7 @@ fs.readFile(venuesListFile, 'utf8', (erreur, fileContent) => {
                         fs.mkdirSync(path);
                       }
                       let outputFile;
-                      if (URLlist.length === 0){
+                      if (!venue.hasOwnProperty('multiPages')){
                         outputFile = path+venue.name+".html";
                       }else{
                         outputFile = path+venue.name+currentPage+".html";
@@ -132,6 +134,17 @@ function cleanScripts(content){
 
 function removeBRTags(content){
   return content.replace(/<br>([^]*?)</gi, (_,p) => '<p class="addedTag">'+p+'<');// remove scripts
+}
+
+function removeForms(content){
+  let res = content.replace(/<form[^]*?<\/form>/g,'');// remove scripts
+  res = res.replace(/<style[^]*?<\/style>/g,'');
+  return res;
+}
+
+function fixTags(content){// pour l'instant, ne fixe que les balises 'a' mal fermées
+  const regex = /(<a class[ ]*=[ ]*"[^]*?")(?![^]*?<\/a>)?([^]*?)(?=\1)/g;
+  return content.replace(regex,(p,p1,p2) => p1+p2+'<\/a>');
 }
 
 // function removeImages(content){

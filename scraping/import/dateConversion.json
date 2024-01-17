@@ -1,16 +1,16 @@
 {
     "01": ["jan","janvier","janv.","janv"],
-    "02": ["fev","fevrier","fevr.","fevr"],
+    "02": ["fev","fevrier","fevr.","fevr","fvrier"],
     "03": ["mar","mars"],
     "04": ["avr","avril","avri.","avri"],
     "05": ["mai"],
     "06": ["juin","jui"],
     "07": ["jul","juillet","juil.","juil"],
-    "08": ["aou","aout"],
+    "08": ["aou","aout","aot"],
     "09": ["sep","septembre", "sept.", "sept"],
     "10": ["oct","octobre","oct.","octo"],
     "11": ["nov","novembre","nov.","nove"],
-    "12": ["dec","decembre","dec.","dece"],
+    "12": ["dec","decembre","dec.","dece","dcembre"],
     "tonight": ["ce soir","en ce moment"],
     "": ["lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche","lun.","mar.","mer.","jeu.","ven.","sam.","dim."]
 }

@@ -2,6 +2,8 @@ import { createDate, numberOfInvalidDates, getCommonDateFormats, convertDate} fr
 //import { isValid }  from 'date-fns';
 import * as fs from 'fs';
 import * as cheerio from 'cheerio';
+import {parseDocument} from 'htmlparser2';
+
 var sourcePath = './webSources/';
 const venuesListFile = "./venues.json";
 const dateConversionFile = './import/dateConversion.json';
@@ -48,7 +50,7 @@ async function processFile(){
         }
     }
    
-    console.log('\n\n\x1b[36m%s\x1b[0m', `******* Analysing venue: venueName  *******\n`);
+    console.log('\n\n\x1b[36m%s\x1b[0m', `******* Analysing venue: ${venueName}  *******\n`);
     Object.keys(eventStrings.mainPage)
     .forEach(key =>{
         if(typeof eventStrings.mainPage[key] === "string"){
@@ -109,7 +111,8 @@ async function processFile(){
     }catch(error){
         console.error('\x1b[31mError while reading the strings to parse: %s\x1b[0m',error);
     }
-    const $ = cheerio.load(convertToLowerCase(fileContent));
+    const parsedHtml = parseDocument(convertToLowerCase(fileContent));
+    const $ = cheerio.load(parsedHtml);
 
     let stringsToFind = [].concat(...Object.values(eventStrings.mainPage));
 
@@ -171,12 +174,10 @@ async function processFile(){
              `<${mainTag.prop('tagName')} class="${$(mainTag).attr('class')}" id="${$(mainTag).attr('id')}">`,'\x1b[0m Contains');
         console.log('\x1b[0m\x1b[32m%s\x1b[0m',removeImageTag(removeBlanks($(mainTag).text())));
     
-        // console.log($(mainTag).html());
+
         
         venueJSON.eventsDelimiterTag=getTagLocalization(mainTag,$,true);
-        //console.log('maintTag: ',$(venueJSON.eventsDelimiterTag).prop('tagName'));
-        // console.log('\x1b[32m%s\x1b[0m', `Tag: <${tag.prop('tagName')} class="${$(tag).attr('class')}" id="${$(tag).attr('id')}">`);
- 
+  
         
         //***************************************************************/
         //***************************************************************/
@@ -290,6 +291,7 @@ function getTagWithURL(currentTag,$cgp,stringsToFind){
 
 function getTagLocalization(tag,source,isDelimiter){
     try{
+       //console.log(source.html());
         if (source(tag).prop('tagName')=='BODY'){// if we are already at top level... may happen ?
             return '';
         }
@@ -302,33 +304,16 @@ function getTagLocalization(tag,source,isDelimiter){
         if (isDelimiter){
             return source(tag).prop('tagName')+tagClass;
         }
-        if (source(tag).parent().prop('tagName')=='BODY'){       
+        if (source(tag).parent().prop('tagName')=='BODY'){    
             string = '';
         }else{
             string = getTagLocalization(source(tag).parent(),source,false)+' ';
         }
         string += ' '+source(tag).prop('tagName');
-       // if (source(tag).attr('class')){
         string += tagClass;
-     //   }
-      //  if (!isDelimiter){
         const index =  getMyIndex(tag,source);
         string +=  ':eq('+index+')';
-      //  }
         return string;
-
-    //    // console.log('tag name: ',source(tag).prop('tagName'));
-    //     if (source(tag).attr('class')){
-    //         const tagClass = source(tag).attr('class');//.split(' ')[0];
-    //         let string = source(tag).prop('tagName')+'.'+tagClass;
-    //         if (!isDelimiter){// if delimiter, no index should be stored since many blocks should match (one per event)
-    //             string += ':eq('+getMyIndex(tag,source)+')';
-    //         }
-    //         string = string.replace(/ /g,'.');
-    //         return string;
-    //     }else{// if no class is found, recursively search for parents until a class is found.
-    
-    //     }
     }catch(err){
         console.log("\x1b[31mErreur de localisation de la balise: %s\x1b[0m",err);
     }
@@ -396,7 +381,29 @@ function tagContainsAllStrings(tag, strings) {
 }
 
 function findTag(html,string) {
-    const tag = html(`*:contains('${string}')`).last();
+  //  const tag = html(`*:contains('${string}')`).last();
+    const candidates = html(`*:contains('${string}')`);
+    let tag;
+    if (candidates.length === 0){
+        return null;
+    }
+    // if (candidates.length === 1){
+    //     return candidates.first();
+    // }
+    let i = 0;
+    while(i<candidates.length-1 && html(candidates[i]).is(html(candidates[i+1]).parent())){
+        i++;
+    }
+    return candidates[i];
+    // for (let i=0;i<candidates.length-1;i++){
+    //     console.log('i=',i);
+    //     // console.log(getTagLocalization(html(candidates[i]),html,false));
+    //     // console.log(html(candidates[i]).prop('tagName'));  
+    //     // console.log(html(candidates[i+1]).parent().prop('tagName'));  
+    //     console.log(html(candidates[i]).is(html(candidates[i+1]).parent()));
+    // }
+    
+//    candidates.forEach(el => console.log(html(el).prop('tagName')));
     return tag.length > 0 ? tag.get(0) : null;
 }
 
@@ -421,8 +428,9 @@ function removeBlanks(s){
 
  function getTagsForKey(object,key,cheerioSource){
     const string = key.match(/event([^]*)String/);
-    console.log('\nEvent '+string[1]+' tags:');
-    const tagList = object[key].map(string => findTag(cheerioSource,string));
+    console.log('\n\x1b[31mEvent '+string[1]+' tags:\x1b[0m');
+    const tagList = object[key].map(string2 => findTag(cheerioSource,string2));
+    //tagList.forEach(truc => console.log('full ',displayFullTag(truc,cheerioSource)));
     showTagsDetails(tagList,cheerioSource);
     return tagList.map(tag => getTagLocalization(tag,cheerioSource,false));
  }
@@ -475,4 +483,18 @@ function removeBlanks(s){
         str += ' class: '+$cgp(tag).attr('class');
     }
     console.log('Tag name: ',str);
+  }
+
+  function displayFullTag(tag,$cgp){
+    let str ='';
+    let par = $cgp(tag).parent();
+    if (par.prop('tagName') !== 'BODY'){
+        str += displayFullTag(par,cheerio.load(par.html()))+' ';
+        str +=' ';
+    }
+    str += $cgp(tag).prop('tagName');
+    if ($cgp(tag).attr('class')){
+        str += ' class: '+$cgp(tag).attr('class');
+    }
+    return(str);
   }

@@ -71,11 +71,11 @@
     "baseURL": "https://sonic-lyon.fr",
     "scrap": {
       "eventNameTags": [
-        " DIV.event_desc:eq(0)  A:eq(1)  DIV.event_title:eq(0)"
+        " DIV.event_desc:eq(0)  A:eq(0)  DIV.event_title:eq(0)"
       ],
       "eventDateTags": [
-        " A:eq(0)  DIV.event_date:eq(0)  SPAN.month:eq(0)",
-        " A:eq(0)  DIV.event_date:eq(0)  SPAN.date:eq(0)"
+        " DIV.event_date:eq(0)  SPAN.month:eq(0)",
+        " DIV.event_date:eq(0)  SPAN.date:eq(0)"
       ]
     }
   },
@@ -103,8 +103,7 @@
     },
     "multiPages": {
       "startPage": 1,
-      "nbPages": 40,
-      "increment": 1
+      "nbPages": 25
     },
     "eventURLIndex": 0
   },
