@@ -1,8 +1,12 @@
 {
     "Terminal Club":{
         "mainPage":{
-            "eventNameStrings": ["okto"],
-            "eventDateStrings": "18 jan"
+            "eventNameStrings": ["nashton"],
+            "eventDateStrings": "8 fév"
+        },
+        "linkedPage":{
+            "eventNameStrings": ["nashton"],
+            "eventDateStrings": "08.02.24"
         }
     },
     "Le Petit Bulletin":{
@@ -22,8 +26,8 @@
     },
     "Le Périscope":{
         "mainPage":{
-            "eventNameStrings": ["essor","release"],
-            "eventDateStrings": ["17 janv"]
+            "eventNameStrings": ["canari","partenariat"],
+            "eventDateStrings": ["27 janv"]
         }
     },
     "Le Sonic":{

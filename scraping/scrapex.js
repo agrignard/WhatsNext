@@ -3,6 +3,8 @@ import * as fs from 'fs';
 import { parse, isValid }  from 'date-fns';
 import * as cheerio from 'cheerio';
 import {parseDocument} from 'htmlparser2';
+import {makeURL} from './import/stringUtilities.mjs';
+
 
 // Chemin vers le fichier à lire
 const filePath = './venues.json';
@@ -239,10 +241,3 @@ function showDate(date){
   return string;
 }
 
-function makeURL(baseURL, URL){
-  if (URL.startsWith(baseURL)){
-    return URL;
-  }else{
-    return baseURL+URL;
-  }
-}

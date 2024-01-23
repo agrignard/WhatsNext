@@ -1,4 +1,18 @@
 import { parse, isValid }  from 'date-fns';
+import * as fs from 'fs';
+
+const dateConversionFile = './import/dateConversion.json';
+
+
+// date conversion
+export async function getConversionPatterns(){
+  try{
+      return await JSON.parse(await fs.promises.readFile(dateConversionFile, 'utf8'));
+  }catch(err){
+      console.log('\x1b[36mWarning: cannot open date conversion file JSON file:  \'%s\'. Will not save to venues.\x1b[0m%s\n',dateConversionFile,err);
+  }
+}
+
 
 export function getCommonDateFormats(){
   const date = ["dd-MM","MM-dd",

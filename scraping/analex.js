@@ -1,14 +1,12 @@
-import { createDate, numberOfInvalidDates, getCommonDateFormats, convertDate} from './import/dateUtilities.mjs';
-//import { isValid }  from 'date-fns';
+import { createDate, numberOfInvalidDates, getCommonDateFormats, getConversionPatterns} from './import/dateUtilities.mjs';
+import {removeDoubles, convertToLowerCase, removeBlanks} from './import/stringUtilities.mjs';
+import {loadVenueScrapInfofromFile, loadVenueJSON,loadVenuesJSONFile,venuesListJSONFile} from './import/fileUtilities.mjs';
+
 import * as fs from 'fs';
 import * as cheerio from 'cheerio';
 import {parseDocument} from 'htmlparser2';
 
 var sourcePath = './webSources/';
-const venuesListFile = "./venues.json";
-const dateConversionFile = './import/dateConversion.json';
-const stringsToFindFile = "./venuesScrapInfo.json";
-var venuesListJSON,eventStrings ;
 
 const venueToAnalyse = process.argv[2];// argument to load default strings to parse
 const extendSelectionToGetURL = true;
@@ -29,25 +27,13 @@ processFile();
 
 
 async function processFile(){
-    var fileContent, JSONFileContent, venuesListJSON, dateConversionPatterns, venueJSON;
-
-    // load the different files
-    
+    var fileContent, linkedFileContent, venuesListJSON, dateConversionPatterns, venueJSON;
+    let eventStrings;
+   
     // set the venue to analyze
     if (venueToAnalyse){
-        try{
-            let scrapInfo = await JSON.parse(await fs.promises.readFile(stringsToFindFile, 'utf8'));
-            try{
-                eventStrings = scrapInfo[venueToAnalyse];
-                venueName = venueToAnalyse;
-            }catch(err) {
-                console.error("\x1b[31m  Cannot find venue \x1b[0m\'%s\'\x1b[31m in file :%s\x1b[0m\n",venueToAnalyse,stringsToFindFile);
-                throw err;
-            }
-        }catch(err) {
-            console.error("\x1b[31mError loading scrap info file: \'%s\'\x1b[0m\n. Aborting process",stringsToFindFile);
-            throw err;
-        }
+        eventStrings = await loadVenueScrapInfofromFile(venueToAnalyse);
+        venueName = venueToAnalyse;
     }
    
     console.log('\n\n\x1b[36m%s\x1b[0m', `******* Analysing venue: ${venueName}  *******\n`);
@@ -58,38 +44,43 @@ async function processFile(){
         }
     });
 
-    // load JSON data for the venue
-    try{
-        venuesListJSON = await JSON.parse(await fs.promises.readFile(venuesListFile, 'utf8'));
-        venueJSON = venuesListJSON.find(function(element) {
-            return element.name === venueName;
+    if (eventStrings.hasOwnProperty('linkedPage')){
+        Object.keys(eventStrings.linkedPage)
+        .forEach(key =>{
+            if(typeof eventStrings.linkedPage[key] === "string"){
+                eventStrings.linkedPage[key] = eventStrings.linkedPage[key].split(/\s+/);
+            }
         });
-        if (!venueJSON){
-            console.error("\x1b[31mError venue info. Venue \'%s\' not found in %s\x1b[0m.\n Aborting process",venueName,venuesListFile);
-            throw err;
-        }
-        sourcePath += venueJSON.country+'/'+venueJSON.city+'/'+venueName+'/';
-    }catch(err){
-        console.log('\x1b[36mWarning: cannot open venues JSON file:  \'%s\'. Will not save to venues.\x1b[0m%s\n',venuesListFile,err);
     }
+   
+    // load JSON data for the venue
+    venuesListJSON = await loadVenuesJSONFile();
+    venueJSON =  loadVenueJSON(venueName,venuesListJSON);
+    sourcePath += venueJSON.country+'/'+venueJSON.city+'/'+venueName+'/';
     const fileName = venueName+(venueJSON.hasOwnProperty('multiPages')?'0':'')+'.html';
 
     // load date conversion pattern
-    try{
-        dateConversionPatterns = await JSON.parse(await fs.promises.readFile(dateConversionFile, 'utf8'));
-    }catch(err){
-        console.log('\x1b[36mWarning: cannot open date conversion file JSON file:  \'%s\'. Will not save to venues.\x1b[0m%s\n',dateConversionFile,err);
-    }
-   
+    dateConversionPatterns = await getConversionPatterns();
 
-    
+    // load main page
     try{
         fileContent = await fs.promises.readFile(sourcePath+fileName, 'utf8');
     }catch(err) {
-        console.error("\x1b[31mCannot open file :%s\x1b[0m\n%s",fileName);
+        console.error("\x1b[31mCannot open file :%s\x1b[0m\n%s",fileName,err);
         throw err;
     }
 
+    // load linked page
+    if (eventStrings.linkedPage){
+        console.log("loading linked pages.");
+        try{
+            linkedFileContent = await JSON.parse(await fs.promises.readFile(sourcePath+'linkedPages.json', 'utf8'));
+        }catch(err) {
+            console.error("\x1b[31mCannot open linked pages :%s\x1b[0m\n");
+            throw err;
+        }
+    }
+   
     // aborting process if mandatory strings are not present (safeguard)
     if (!eventStrings.mainPage.hasOwnProperty('eventNameStrings' || eventStrings.mainPage.eventNameStrings.length === 0)){
         console.log('\x1b[31mProperty \'eventNameStrings\' is missing in variable eventStrings. Aborting.\x1b[0m\n');
@@ -122,7 +113,8 @@ async function processFile(){
 
     //Affichez les noms des balises trouvées
     if (tagsContainingStrings.length === 0){
-        console.log('\x1b[31m%s\x1b[0m',"Impossible to find a tag that delimits the events. Aborting process.");
+        console.log('\x1b[31mCan\'t find a tag that delimits the events, aborting process. Is event passed ? (event date: %s)\x1b[0m',
+            eventStrings.mainPage.eventDateStrings.join());
     }else{
         // tagsContainingStrings.each((_, tag) => {
         //     console.log('Tag found:', tag.tagName, $(tag).attr('class'),$(tag).text().length);
@@ -189,7 +181,7 @@ async function processFile(){
         // remove doubles
         
         Object.keys(venueJSON.scrap).forEach(key => {venueJSON.scrap[key] = removeDoubles(venueJSON.scrap[key]);});
-    
+
         // logs depending on if URL has been found.
         console.log();
         if ($(mainTag).prop('tagName')=='A'){
@@ -197,8 +189,13 @@ async function processFile(){
         }else{
             venueJSON.eventURLIndex = 1;
         }
+        let linkedPage;
         if (hrefs.length === 1) {
-          console.log('URL found:',$eventBlock(hrefs[0]).attr('href'));
+            let linkURL = $eventBlock(hrefs[0]).attr('href');
+            console.log('URL found:',linkURL);
+            if (eventStrings.hasOwnProperty('linkedPage')){
+                linkedPage = linkedFileContent[linkURL];
+            }
         }else if (hrefs.length > 1){
             console.log('Found %s URLs. Change index in JSON \"eventURLIndex\" to the most suitable one (default 0).', hrefs.length);
             hrefs.each((index, element) => {
@@ -213,6 +210,16 @@ async function processFile(){
           venueJSON.eventURLIndex = -1;
         }
 
+        // find strings in linked pages
+        
+        if (linkedPage){
+            console.log('loading linked page');
+            const parsedLinkedPage = parseDocument(convertToLowerCase(linkedPage));
+            const $linked = cheerio.load(parsedLinkedPage);
+            Object.keys(eventStrings.linkedPage).filter(element => eventStrings.linkedPage[element].length > 0)
+            .forEach(key =>venueJSON.linkedPage[key.replace(/String/,'Tag')] = getTagsForKey(eventStrings.linkedPage,key,$linked));
+        }
+
         let dates = getAllDates(venueJSON.eventsDelimiterTag,venueJSON.scrap['eventDateTags'],$);
  
         var bestDateFormat = (venueJSON.hasOwnProperty('dateFormat'))?venueJSON.dateFormat:"dd-MM-yyyy";
@@ -221,7 +228,6 @@ async function processFile(){
         let dateFormatList = getCommonDateFormats();
         dateFormatList.forEach(format => {
             const formattedDateList = dates.map(element => createDate(element,format,dateConversionPatterns));
-           // console.log(format+' => '+numberOfInvalidDates(formattedDateList)+' '+convertDate(dates[2],dateConversionPatterns));
             if (numberOfInvalidDates(formattedDateList) < bestScore){
                 bestDateFormat = format;
                 bestScore = numberOfInvalidDates(formattedDateList);
@@ -234,19 +240,17 @@ async function processFile(){
 
         // saving to venues JSON and test file
 
-     //   if(venueInList !== undefined){
-      //      Object.keys(venueJSON).forEach(key =>venueInList[key] = venueJSON[key]);
-            console.log("\n",venueJSON);
-            console.log("\n");
+        console.log("\n",venueJSON);
+        console.log("\n");
 
-            try{
-                const jsonString = JSON.stringify(venuesListJSON, null, 2); 
-                fs.writeFileSync(venuesListFile, jsonString);
-                console.log('Added to venues in %s',venuesListFile);
-            }catch(err){
-                console.log('\x1b[31mError saving to .json: \'%s\' %s\x1b[0m',venuesListFile,err);
-            }
-   //     }
+        try{
+            const jsonString = JSON.stringify(venuesListJSON, null, 2); 
+            fs.writeFileSync(venuesListJSONFile, jsonString);
+            console.log('Added to venues in %s',venuesListJSONFile);
+        }catch(err){
+            console.log('\x1b[31mError saving to .json: \'%s\' %s\x1b[0m',venuesListJSONFile,err);
+        }
+
        
     }
     
@@ -355,15 +359,15 @@ function tagContainsAllStrings(tag, strings) {
 }
 
 function findTag(html,string) {
+   // console.log('ess',string);
+   // console.log(html.html());
   //  const tag = html(`*:contains('${string}')`).last();
     const candidates = html(`*:contains('${string}')`);
     let tag;
     if (candidates.length === 0){
+        console.log('truc');
         return null;
     }
-    // if (candidates.length === 1){
-    //     return candidates.first();
-    // }
     let i = 0;
     while(i<candidates.length-1 && html(candidates[i]).is(html(candidates[i+1]).parent())){
         i++;
@@ -382,17 +386,10 @@ function findTag(html,string) {
 }
 
 
-function removeBlanks(s){
-    return s.replace(/[\n\t]/g, ' ').replace(/ {2,}/g, ' ').replace(/^ /,'').replace(/ $/,'');
-//    return s.replace(/ {2,}/g, ' ').replace(/\n[ \t\n]*/g, ' ').replace(/^ /,'');
- //    return s.replace(/[\t]*/g, '').replace(/ {2,}/g, ' ').replace(/^ /,'').replace(/[\n]*/, '\n');
- }
+
  
  
- function convertToLowerCase(s){
-     const regex = /^[^<]*?<|>([^]*?)<|>[^>]*?$/g;
-     return s.replace(regex,match => match.toLowerCase());
- }
+
 
  function removeImageTag(s){
     const regex = /<img.*?>/g;
@@ -402,8 +399,10 @@ function removeBlanks(s){
 
  function getTagsForKey(object,key,cheerioSource){
     const string = key.match(/event([^]*)String/);
-    console.log('\n\x1b[31mEvent '+string[1]+' tags:\x1b[0m');
+    console.log('\n\x1b[36mEvent '+string[1]+' tags:\x1b[0m');
+    console.log(object[key]);
     const tagList = object[key].map(string2 => findTag(cheerioSource,string2));
+    //console.log(cheerioSource.html());
     //console.log("tagList: ",tagList.map(el => cheerioSource(el).prop('tagName')));
     showTagsDetails(tagList,cheerioSource);
     return tagList.map(tag => getTagLocalization(tag,cheerioSource,false));
@@ -435,40 +434,28 @@ function removeBlanks(s){
  }
 
 
- function removeDoubles(list) {
-   if (Array.isArray(list)){
-    const res = [];
-    list.forEach((element) => {
-        if (res.indexOf(element) === -1) {
-            res.push(element);
-        }
-      });
-    return res;
-   }else{
-    return list;
-   }
-  }
 
 
 
-  function displayTag(tag,$cgp){
-    let str = $cgp(tag).prop('tagName');
-    if ($cgp(tag).attr('class')){
-        str += ' class: '+$cgp(tag).attr('class');
-    }
-    console.log('Tag name: ',str);
-  }
 
-  function displayFullTag(tag,$cgp){
-    let str ='';
-    let par = $cgp(tag).parent();
-    if (par.prop('tagName') !== 'BODY'){
-        str += displayFullTag(par,cheerio.load(par.html()))+' ';
-        str +=' ';
-    }
-    str += $cgp(tag).prop('tagName');
-    if ($cgp(tag).attr('class')){
-        str += ' class: '+$cgp(tag).attr('class');
-    }
-    return(str);
-  }
+//   function displayTag(tag,$cgp){
+//     let str = $cgp(tag).prop('tagName');
+//     if ($cgp(tag).attr('class')){
+//         str += ' class: '+$cgp(tag).attr('class');
+//     }
+//     console.log('Tag name: ',str);
+//   }
+
+//   function displayFullTag(tag,$cgp){
+//     let str ='';
+//     let par = $cgp(tag).parent();
+//     if (par.prop('tagName') !== 'BODY'){
+//         str += displayFullTag(par,cheerio.load(par.html()))+' ';
+//         str +=' ';
+//     }
+//     str += $cgp(tag).prop('tagName');
+//     if ($cgp(tag).attr('class')){
+//         str += ' class: '+$cgp(tag).attr('class');
+//     }
+//     return(str);
+//   }
