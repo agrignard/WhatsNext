@@ -109,7 +109,7 @@ async function downloadVenue(venue,path){
     // }
     
 
-//    linkList = getLinks(htmlContent);
+
     let outputFile;
     if (!venue.hasOwnProperty('multiPages')){
       outputFile = path+venue.name+".html";
@@ -141,7 +141,7 @@ async function downloadVenue(venue,path){
       }catch(err){
         console.log("\x1b[36mErreur de réseau, impossible de récupérer la dépendance pour \'%s\'\x1b[0m: %s",venue.name,err);
       }
-      hrefList = hrefList.map(el => convertToLowerCase(el));
+    //  hrefList = hrefList.map(el => convertToLowerCase(el));
       let hrefJSON = {};
       hrefList.forEach((href,index) =>hrefJSON[href]=hrefContents[index]);
 
@@ -168,7 +168,7 @@ function getLinksFromPage(page,delimiter,index){
   const $ = cheerio.load(page);
   let res = [];
   if (index == 0){// the URL is in A href 
-    $('a.' + delimiter).each(function () {
+    $(delimiter).each(function () {
       const href = $(this).attr('href');
       res.push(href);
     });
@@ -195,7 +195,7 @@ async function fetchLink(page,venue){
   try{
     const response = await fetch(page);
     const content = await response.text();
-    //return cleanPage(content);
+   // return removeBlanks(cleanPage(content));
     return extractBody(removeBlanks(cleanPage(content)));
   }catch(err){
     console.log("\x1b[36mErreur de réseau, impossible de récupérer la dépendance \'%s\'\x1b[0m: %s",venue.name,err);

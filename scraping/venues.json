@@ -6,6 +6,17 @@
     "url": "https://www.terminal-club.com/evenements/",
     "eventsDelimiterTag": "DIV.colinner",
     "dateFormat": "dd-MM",
+    "eventURLIndex": 1,
+    "defaultStyle": "techno",
+    "baseURL": "https://www.terminal-club.com",
+    "linkedPage": {
+      "eventNameTags": [
+        " DIV:eq(0)  MAIN:eq(0)  DIV.contentarea.pagewrapper:eq(0)  DIV.row.rowmain:eq(0)  DIV.large12.col:eq(0)  DIV.colinner:eq(0)  SECTION:eq(0)  DIV.row:eq(0)  DIV.large4.medium4.col.coldivided:eq(0)  DIV.portfoliosummary.entrysummary.stickysidebar:eq(0)  H1.sectiontitle.titreeventsingle:eq(0)"
+      ],
+      "eventDateTags": [
+        " DIV:eq(0)  MAIN:eq(0)  DIV.contentarea.pagewrapper:eq(0)  DIV.row.rowmain:eq(0)  DIV.large12.col:eq(0)  DIV.colinner:eq(0)  SECTION:eq(0)  DIV.row:eq(0)  DIV.large4.medium4.col.coldivided:eq(0)  DIV.portfoliosummary.entrysummary.stickysidebar:eq(0)  DIV.row:eq(0)  DIV.col.small5:eq(0)"
+      ]
+    },
     "scrap": {
       "eventNameTags": [
         " A.plain:eq(0)  DIV.box.boxoverlay.dark.boxtextbottom.boxblogpost.hashover:eq(0)  DIV.boxtext.textcenter.issmall:eq(0)  DIV.boxtextinner.blogpostinner:eq(0)  H5.posttitle.islarge.uppercase:eq(0)"
@@ -15,17 +26,7 @@
         " DIV.tribeeventsprophoto__eventdatetag.tribecommongcol:eq(0)  TIME.tribeeventsprophoto__eventdatetagdatetime:eq(0)  DIV.nomargin.nopadding:eq(2)"
       ]
     },
-    "linkedPage": {
-      "eventNameTags": [
-        "  TITLE:eq(0)"
-      ],
-      "eventDateTags": [
-        " DIV:eq(0)  MAIN:eq(-1)  DIV.contentarea.pagewrapper:eq(-1)  DIV.row.rowmain:eq(-1)  DIV.large12.col:eq(-1)  DIV.colinner:eq(-1)  SECTION:eq(-1)  DIV.row:eq(-1)  DIV.large4.medium4.col.coldivided:eq(0)  DIV.portfoliosummary.entrysummary.stickysidebar:eq(0)  DIV.row:eq(0)  DIV.col.small5:eq(0)"
-      ]
-    },
-    "eventURLIndex": 1,
-    "defaultStyle": "techno",
-    "baseURL": "https://www.terminal-club.com"
+    "linkedPageDateFormat": "dd-MM-yy"
   },
   {
     "name": "Transbordeur",
@@ -191,6 +192,15 @@
         ""
       ]
     },
-    "eventURLIndex": 0
+    "eventURLIndex": 0,
+    "linkedPage": {
+      "eventNameTags": [
+        " DIV:eq(8)  MAIN.tribeeventspgtemplate:eq(0)  DIV.tribenojs:eq(0)  DIV.tribeeventssingle:eq(0)  H1.tribeeventssingleeventtitle:eq(0)"
+      ],
+      "eventDateTags": [
+        " DIV:eq(8)  MAIN.tribeeventspgtemplate:eq(0)  DIV.tribenojs:eq(0)  DIV.tribeeventssingle:eq(0)  DIV.tribeeventsschedule.tribeclearfix:eq(0)  H2:eq(0)  SPAN.tribeeventdatestart:eq(0)"
+      ]
+    },
+    "linkedPageDateFormat": "dd-MM-HH:mm"
   }
 ]

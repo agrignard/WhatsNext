@@ -1,9 +1,10 @@
-import { createDate, convertDate} from './import/dateUtilities.mjs';
+import { createDate, convertDate, showDate} from './import/dateUtilities.mjs';
 import * as fs from 'fs';
 import { parse, isValid }  from 'date-fns';
 import * as cheerio from 'cheerio';
 import {parseDocument} from 'htmlparser2';
 import {makeURL} from './import/stringUtilities.mjs';
+import {loadLinkedPages} from './import/fileUtilities.mjs';
 
 
 // Chemin vers le fichier à lire
@@ -82,10 +83,13 @@ async function scrapFiles(venues) {
 
 
 async function analyseFile(venue) {
+  let linkedFileContent;
   //var events,eventInfo,eventDate,eventName,eventStyle,unixDate,eventURL, venueContent;
-  var inputFileList = [];
+  let inputFileList = [];
   const venueSourcePath = sourcePath+venue.country+'/'+venue.city+'/'+venue.name+'/';
-  
+  if (venue.hasOwnProperty('linkedPage')){
+    linkedFileContent = await loadLinkedPages(venueSourcePath);
+  }
   if (venue.hasOwnProperty('multiPages')){
     for(let i=0;i<venue.multiPages.nbPages;i++){
       inputFileList.push(venueSourcePath+venue.name+i+".html");
@@ -132,11 +136,9 @@ async function analyseFile(venue) {
 
     // parsing each event
     try{
-      const dateFormat = venue.dateFormat;
+      let dateFormat = venue.dateFormat;
 
-      //for (var eve of events){   
       events.forEach((eve,eveIndex) =>{
-       // let eventLog = '';
         $eventBlock = cheerio.load(eve);
         
         // changing to default style if no style
@@ -145,27 +147,8 @@ async function analyseFile(venue) {
 
         // **** event data extraction ****//
 
-        Object.keys(venue.scrap).forEach(key => eventInfo[key.replace('Tags','')] = getText(key,venue,$eventBlock));
+        Object.keys(venue.scrap).forEach(key => eventInfo[key.replace('Tags','')] = getText(key,venue.scrap,$eventBlock));
 
-        // change the date format to Unix time
-        const formatedEventDate = createDate(eventInfo.eventDate,dateFormat,dateConversionPatterns);
-        if (!isValid(formatedEventDate)){
-          console.log('\x1b[31mFormat de date invalide pour %s. Reçu \"%s\", converti en \"%s\" (attendu \"%s\")\x1b[0m', 
-            venue.name,eventInfo.eventDate,convertDate(eventInfo.eventDate,dateConversionPatterns),dateFormat);
-          unixDate = new Date().getTime(); // en cas d'erreur, ajoute la date d'aujourd'hui
-        }else{
-          unixDate = formatedEventDate.getTime();
-          console.log(showDate(formatedEventDate));
-        }
-
-        // display
-        console.log((eventInfo.eventName));
-        Object.keys(eventInfo).forEach(key => {
-          if (key !== 'eventName' && key !== 'eventDate'){
-            console.log(key.replace('event',''),': ',eventInfo[key.replace('Tags','')]);
-       //     console.log((key.replace('event',''),': ',eventInfo[key.replace('Tags','')]));
-          }
-        });
 
         //extract URL
         try{
@@ -184,6 +167,41 @@ async function analyseFile(venue) {
         }catch(err){
           console.log("\x1b[31mErreur lors de la récupération de l\'URL.\x1b[0m",err);
         }
+
+        if (linkedFileContent){
+          if (venue.linkedPage.hasOwnProperty('eventDateTags')){
+            dateFormat = venue.linkedPageDateFormat;
+          }
+          try{
+            const $linkedBlock = cheerio.load(linkedFileContent[eventURL]);
+            Object.keys(venue.linkedPage).forEach(key => eventInfo[key.replace('Tags','')] = getText(key,venue.linkedPage,$linkedBlock));  
+          }catch{
+            console.log('\x1b[31mImpossible de lire la page liée pour l\'événement \'%s\'. Erreur lors du téléchargement ?\x1b[31m', eventInfo.eventName);
+          }
+        }
+
+        //*** logs  ***//
+
+      //  console.log(eventInfo);
+
+        // change the date format to Unix time
+        const formatedEventDate = createDate(eventInfo.eventDate,dateFormat,dateConversionPatterns);
+        if (!isValid(formatedEventDate)){
+          console.log('\x1b[31mFormat de date invalide pour %s. Reçu \"%s\", converti en \"%s\" (attendu \"%s\")\x1b[0m', 
+            venue.name,eventInfo.eventDate,convertDate(eventInfo.eventDate,dateConversionPatterns),dateFormat);
+          unixDate = new Date().getTime(); // en cas d'erreur, ajoute la date d'aujourd'hui
+        }else{
+          unixDate = formatedEventDate.getTime();
+          console.log(showDate(formatedEventDate));
+        }
+
+        // display
+        console.log((eventInfo.eventName));
+        Object.keys(eventInfo).forEach(key => {
+          if (key !== 'eventName' && key !== 'eventDate'){
+            console.log(key.replace('event',''),': ',eventInfo[key.replace('Tags','')]);
+          }
+        });
 
         console.log((eventURL)+'\n');
         out = out+''+(eventInfo.hasOwnProperty('eventPlace')?eventInfo.eventPlace:venue.name)+';'
@@ -207,10 +225,10 @@ async function analyseFile(venue) {
 
 
      // auxiliary function to extract data
-     function getText(tagName,venue,source){
+     function getText(tagName,JSONblock,source){
       let string = "";
      // console.log(tagName);
-      const tagList = venue.scrap[tagName];
+      const tagList = JSONblock[tagName];
      // console.log(tagList);
       try{
         for (let i = 0; i <= tagList.length-1; i++) {
@@ -218,7 +236,7 @@ async function analyseFile(venue) {
           string += ev+' ';
         }
       }catch(err){
-        console.log('\x1b[31m%s\x1b[0m', 'Erreur d\'extraction à partir des balises',tagList,' pour '+venue.name);
+        console.log('\x1b[31m%s\x1b[0m', 'Erreur d\'extraction à partir des balises.',tagList);
       }
       return removeBlanks(string);
     }
@@ -231,13 +249,5 @@ function removeBlanks(s){
   return s.replace(/[\n\t]/g, ' ').replace(/ {2,}/g, ' ').replace(/^ /,'').replace(/ $/,'');
 }
 
-function showDate(date){
-  const day = date.getDate();
-  const month = date.getMonth() + 1; 
-  const year = date.getFullYear();
-  const hour = date.getHours();
-  const minutes = date.getMinutes();
-  const string = day+'/'+month+'/'+year+' (time: '+hour+':'+minutes+')';
-  return string;
-}
+
 

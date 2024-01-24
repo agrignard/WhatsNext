@@ -12,6 +12,8 @@
     "11": ["nov","novembre","nov.","nove"],
     "12": ["dec","decembre","dec.","dece","dcembre"],
     "tonight": ["ce soir","en ce moment"],
-    "": ["lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche","lun.","mar.","mer.","jeu.","ven.","sam.","dim."]
+    "": ["lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche",
+            "lun.","mar.","mer.","jeu.","ven.","sam.","dim.",
+            "lun","mar","mer","jeu","ven","sam","dim"]
 }
 

@@ -60,7 +60,9 @@
             "eventNameStrings": ["furax"],
             "eventDateStrings": [""]
         },
-        "eventPage":{
+        "linkedPage":{
+            "eventNameStrings": ["furax"],
+            "eventDateStrings": ["12 janvier"]
         }
     }
 }

@@ -1,6 +1,6 @@
 import { createDate, numberOfInvalidDates, getCommonDateFormats, getConversionPatterns} from './import/dateUtilities.mjs';
 import {removeDoubles, convertToLowerCase, removeBlanks} from './import/stringUtilities.mjs';
-import {loadVenueScrapInfofromFile, loadVenueJSON,loadVenuesJSONFile,venuesListJSONFile} from './import/fileUtilities.mjs';
+import {loadVenueScrapInfofromFile, loadVenueJSON,loadVenuesJSONFile,venuesListJSONFile,loadLinkedPages} from './import/fileUtilities.mjs';
 
 import * as fs from 'fs';
 import * as cheerio from 'cheerio';
@@ -27,7 +27,7 @@ processFile();
 
 
 async function processFile(){
-    var fileContent, linkedFileContent, venuesListJSON, dateConversionPatterns, venueJSON;
+    var fileContent, linkedFileContent, venuesListJSON, venueJSON;
     let eventStrings;
    
     // set the venue to analyze
@@ -60,7 +60,7 @@ async function processFile(){
     const fileName = venueName+(venueJSON.hasOwnProperty('multiPages')?'0':'')+'.html';
 
     // load date conversion pattern
-    dateConversionPatterns = await getConversionPatterns();
+    const dateConversionPatterns = await getConversionPatterns();
 
     // load main page
     try{
@@ -71,14 +71,8 @@ async function processFile(){
     }
 
     // load linked page
-    if (eventStrings.linkedPage){
-        console.log("loading linked pages.");
-        try{
-            linkedFileContent = await JSON.parse(await fs.promises.readFile(sourcePath+'linkedPages.json', 'utf8'));
-        }catch(err) {
-            console.error("\x1b[31mCannot open linked pages :%s\x1b[0m\n");
-            throw err;
-        }
+    if (eventStrings.linkedPage && fs.existsSync(sourcePath+'linkedPages.json')){
+        linkedFileContent = await loadLinkedPages(sourcePath);
     }
    
     // aborting process if mandatory strings are not present (safeguard)
@@ -90,8 +84,6 @@ async function processFile(){
         console.log('\x1b[31mProperty \'eventDateStrings\' is missing in variable eventStrings. Aborting.\x1b[0m\n');
         throw new Error('Aborting.')
     }
-   
-    venueJSON.scrap = {};
     
     // convert everything to lower case
     try{
@@ -116,10 +108,6 @@ async function processFile(){
         console.log('\x1b[31mCan\'t find a tag that delimits the events, aborting process. Is event passed ? (event date: %s)\x1b[0m',
             eventStrings.mainPage.eventDateStrings.join());
     }else{
-        // tagsContainingStrings.each((_, tag) => {
-        //     console.log('Tag found:', tag.tagName, $(tag).attr('class'),$(tag).text().length);
-        // });
-    
         // find a tag containing all the strings
         for (let i = 0; i <= tagsContainingStrings.length-1; i++){
             let t = $(tagsContainingStrings[i]);
@@ -166,77 +154,61 @@ async function processFile(){
         console.log('Found %s tags. Best tag \x1b[90m%s\x1b[0m contains:', tagsContainingStrings.length,mainTagString);
         console.log('\x1b[0m\x1b[32m%s\x1b[0m',removeImageTag(removeBlanks($(mainTag).text())));
     
-
-        
-        venueJSON.eventsDelimiterTag=getTagLocalization(mainTag,$,true);
+        venueJSON.eventsDelimiterTag=getTagLocalization(mainTag,$,true,stringsToFind);
   
         
         //***************************************************************/
         //***************************************************************/
 
         // find and display tag for each string to find
-        
-        Object.keys(eventStrings.mainPage).filter(element => eventStrings.mainPage[element].length > 0)
-            .forEach(key =>venueJSON.scrap[key.replace(/String/,'Tag')] = getTagsForKey(eventStrings.mainPage,key,$eventBlock));
-        // remove doubles
-        
-        Object.keys(venueJSON.scrap).forEach(key => {venueJSON.scrap[key] = removeDoubles(venueJSON.scrap[key]);});
-
+        venueJSON.scrap = addJSONBlock(eventStrings.mainPage,$eventBlock);
+     
         // logs depending on if URL has been found.
         console.log();
-        if ($(mainTag).prop('tagName')=='A'){
-            venueJSON.eventURLIndex = 0;
-        }else{
-            venueJSON.eventURLIndex = 1;
-        }
-        let linkedPage;
+        venueJSON.eventURLIndex = getURLIndex(venueJSON,hrefs.length,$(mainTag));
         if (hrefs.length === 1) {
-            let linkURL = $eventBlock(hrefs[0]).attr('href');
-            console.log('URL found:',linkURL);
-            if (eventStrings.hasOwnProperty('linkedPage')){
-                linkedPage = linkedFileContent[linkURL];
-            }
-        }else if (hrefs.length > 1){
-            console.log('Found %s URLs. Change index in JSON \"eventURLIndex\" to the most suitable one (default 0).', hrefs.length);
+            console.log('URL found:',$eventBlock(hrefs[0]).attr('href'));
+        } else if (hrefs.length > 1){
+            console.log('Found %s URLs. Change index in JSON \"eventURLIndex\" to the most suitable one (current index: %s).', hrefs.length, venueJSON.eventURLIndex);
             hrefs.each((index, element) => {
                 const href = $eventBlock(element).attr('href');
                 console.log('\x1b[90mURL (index\x1b[0m',index+1,'\x1b[90m):\x1b[0m', href);//index+1 car 0 est réservé au maintTag de type <a=href>
-            });
-            
-        } 
-        else {
+            });   
+        } else {
           console.log('\x1b[31mNo url link found.'
             +(extendSelectionToGetURL?'':'(consider finding URLs recursively using \"extendSelectionToGetURL = true\")')+'\x1b[0m');
-          venueJSON.eventURLIndex = -1;
         }
 
-        // find strings in linked pages
-        
-        if (linkedPage){
-            console.log('loading linked page');
-            const parsedLinkedPage = parseDocument(convertToLowerCase(linkedPage));
-            const $linked = cheerio.load(parsedLinkedPage);
-            Object.keys(eventStrings.linkedPage).filter(element => eventStrings.linkedPage[element].length > 0)
-            .forEach(key =>venueJSON.linkedPage[key.replace(/String/,'Tag')] = getTagsForKey(eventStrings.linkedPage,key,$linked));
-        }
+        // find most appropriate date format
 
         let dates = getAllDates(venueJSON.eventsDelimiterTag,venueJSON.scrap['eventDateTags'],$);
- 
-        var bestDateFormat = (venueJSON.hasOwnProperty('dateFormat'))?venueJSON.dateFormat:"dd-MM-yyyy";
+        venueJSON.dateFormat = getBestDateFormat(dates,venueJSON, dateConversionPatterns);
       
-        var bestScore = numberOfInvalidDates(dates.map(element => createDate(element,bestDateFormat,dateConversionPatterns)));
-        let dateFormatList = getCommonDateFormats();
-        dateFormatList.forEach(format => {
-            const formattedDateList = dates.map(element => createDate(element,format,dateConversionPatterns));
-            if (numberOfInvalidDates(formattedDateList) < bestScore){
-                bestDateFormat = format;
-                bestScore = numberOfInvalidDates(formattedDateList);
+        // find strings in linked pages
+
+        if (eventStrings.hasOwnProperty('linkedPage')){
+            if (linkedFileContent){
+                let i = ($(mainTag).prop('tagName')=='A')?venueJSON.eventURLIndex:(venueJSON.eventURLIndex-1);
+                let linkURL = $eventBlock(hrefs[i]).attr('href');
+                let linkedPage = linkedFileContent[linkURL];
+                if (linkedPage){
+                    console.log('\nloading linked page');
+                    const parsedLinkedPage = parseDocument(convertToLowerCase('<html><head></head>'+linkedPage+'</html>'));
+                    const $linked = cheerio.load(parsedLinkedPage);
+                //    console.log($linked.html());
+                    venueJSON.linkedPage = addJSONBlock(eventStrings.linkedPage,$linked);
+                    let dates = getAllDates("BODY",venueJSON.linkedPage['eventDateTags'],$linked);
+                    venueJSON.linkedPageDateFormat = getBestDateFormat(dates,venueJSON.linkedPage, dateConversionPatterns);
+                }else{
+                    console.log('\x1b[31mError getting data from linked pages. Run again \x1b[0maspiratorex.js\x1b[31m ?.\x1b[0m\n');
+                }
+            }else{
+                venueJSON.linkedPage ={};// create an entry in venues.json to tell aspiratorex to get linked pages
+                console.log('\x1b[31m\nLinked pages have not been downloaded yet. Run again \x1b[0maspiratorex.js\x1b[31m to get them.\x1b[0m\n');
             }
-        });
-        console.log("\nFound %s events. Best date format: \x1b[36m\"%s\"\x1b[0m (%s/%s invalid dates)",dates.length,bestDateFormat,bestScore,dates.length);
-        venueJSON.dateFormat = bestDateFormat;
-        
-        
+        }
+
+
 
         // saving to venues JSON and test file
 
@@ -276,7 +248,7 @@ function getTagWithURL(currentTag,$cgp,stringsToFind){
     var hrefs = $cgp('a[href]');
     if ($cgp(currentTag).prop('tagName')=='A'){
         const $cgparent = cheerio.load($cgp(currentTag).parent().html());  
-        var tmp = $cgparent('a').filter((_, tag) => tagContainsAllStrings($cgparent(tag), stringsToFind));
+        let tmp = $cgparent('a').filter((_, tag) => tagContainsAllStrings($cgparent(tag), stringsToFind));
         tmp.first().nextAll().remove();
         tmp.first().prevAll().remove(); 
         hrefs = $cgparent('a[href]');
@@ -294,7 +266,7 @@ function getTagWithURL(currentTag,$cgp,stringsToFind){
 }
 
 
-function getTagLocalization(tag,source,isDelimiter){
+function getTagLocalization(tag,source,isDelimiter,stringsToFind){
     try{
        //console.log(source.html());
         if (source(tag).prop('tagName')=='BODY' ||source(tag).prop('tagName')=='HEAD'){// if we are already at top level... may happen ?
@@ -312,26 +284,25 @@ function getTagLocalization(tag,source,isDelimiter){
         if (source(tag).parent().prop('tagName')=='BODY'){    
             string = '';
         }else{
-            string = getTagLocalization(source(tag).parent(),source,false)+' ';
+            string = getTagLocalization(source(tag).parent(),source,false,stringsToFind)+' ';
         }
         string += ' '+source(tag).prop('tagName');
         string += tagClass;
-        const index =  getMyIndex(tag,source);
+        const index =  getMyIndex(tag,source,stringsToFind);
+        //console.log(source(tag).prop('tagName'),tagClass,index,'\n');
         string +=  ':eq('+index+')';
         return string;
     }catch(err){
-      //  console.log("\x1b[31mErreur de localisation de la balise: %s\x1b[0m:",source(tag).prop('tagName'));
-        console.log("\x1b[31mErreur de localisation de la balise: %s\x1b[0m: %s",source(tag).prop('tagName'),err);
+      console.log("\x1b[31mErreur de localisation de la balise: %s\x1b[0m: %s",source(tag).prop('tagName'),err);
+      throw err;
     }
 }
 
 
-
-function getMyIndex(tag,source){// get the index of the tag div.class among the same type and same class
+function getMyIndex(tag,source,stringsToFind){// get the index of the tag div.class among the same type and same class
     let indexation = source(tag).prop('tagName');
     let tagIndex;
     if (source(tag).attr('class')){
-    //    indexation += '.'+source(tag).attr('class');//.split(' ')[0];
         indexation += '.'+source(tag).attr('class').replace(/[ ]*$/g,'').replace(/[ ]{1,}/g,'.');//.split(' ')[0];
     }
     const parentTag = source(tag).parent();
@@ -339,7 +310,8 @@ function getMyIndex(tag,source){// get the index of the tag div.class among the 
         tagIndex =  source(tag).index(indexation);
     }else{
         const $parentHtml = cheerio.load(parentTag.html());
-        const tagsFromParent =  $parentHtml(indexation+`:contains('${source(tag).text()}')`).last();
+        const str = ':contains("' + stringsToFind.join('"), :contains("') + '")';
+        const tagsFromParent =  $parentHtml(indexation+str).first();
         tagIndex = $parentHtml(tagsFromParent).index(indexation);
     }
     return tagIndex;
@@ -347,9 +319,10 @@ function getMyIndex(tag,source){// get the index of the tag div.class among the 
 
 
 
-function showTagsDetails(tagList,source){
-    tagList.forEach(element => console.log('\x1b[90mTag: <%s class=%s> (index %s): \x1b[0m%s', 
-        element.tagName,source(element).attr('class'),getMyIndex(element,source),removeBlanks(source(element).text())));
+
+function showTagsDetails(tagList,source,stringsToFind){
+    tagList.forEach((element,i) => console.log('\x1b[90mTag: <%s class=%s> (index %s): \x1b[0m%s', 
+        element.tagName,source(element).attr('class'),getMyIndex(element,source,[stringsToFind[i]]),removeBlanks(source(element).text())));
 }
 
 
@@ -400,12 +373,9 @@ function findTag(html,string) {
  function getTagsForKey(object,key,cheerioSource){
     const string = key.match(/event([^]*)String/);
     console.log('\n\x1b[36mEvent '+string[1]+' tags:\x1b[0m');
-    console.log(object[key]);
     const tagList = object[key].map(string2 => findTag(cheerioSource,string2));
-    //console.log(cheerioSource.html());
-    //console.log("tagList: ",tagList.map(el => cheerioSource(el).prop('tagName')));
-    showTagsDetails(tagList,cheerioSource);
-    return tagList.map(tag => getTagLocalization(tag,cheerioSource,false));
+    showTagsDetails(tagList,cheerioSource,object[key]);
+    return tagList.map((tag,index) => getTagLocalization(tag,cheerioSource,false,[object[key][index]]));
  }
  
 
@@ -421,7 +391,7 @@ function findTag(html,string) {
             const $eve = cheerio.load(event);
             let string = "";
             for (let i = 0; i <= dateTags.length-1; i++) {
-                let ev = $eve(dateTags[i]).text();
+                let ev = $eve(dateTags[i]).text();                
                 string += ev+' ';
             }
             dates.push(string);
@@ -434,28 +404,51 @@ function findTag(html,string) {
  }
 
 
+function getURLIndex(venueJSON,nbHrefs,source){
+    let maxIndex = (source.prop('tagName')=='A')?(nbHrefs-1):nbHrefs; // index span is [1,nbHrefs] if main tag is not A, and [0,nbHrefs-1]
+    let minIndex = (source.prop('tagName')=='A')?0:1;
+    if (nbHrefs == 0){// no url found, returns -1
+        return -1;
+    }    
+    if (nbHrefs == 1
+        || !venueJSON.hasOwnProperty('eventURLIndex') 
+        || (venueJSON.eventURLIndex > maxIndex)
+        || (venue.JSON.eventURLIndex < minIndex)){
+        // if only one url, or no index set previously, or index is not in the right range, returns default index
+        if (source.prop('tagName')=='A'){
+            return 0;
+        }else{
+            return 1;
+        }
+    }else{//more than one reference, verifies is the index is still valid
+        return venueJSON.eventURLIndex; // return previous value of the index
+    }   
+}
+
+
+function addJSONBlock(scrapSource,source){
+    let res =  {};
+    Object.keys(scrapSource).filter(element => scrapSource[element].length > 0)
+        .forEach(key =>res[key.replace(/String/,'Tag')] = getTagsForKey(scrapSource,key,source));
+    // remove doubles 
+    Object.keys(res).forEach(key => {res[key] = removeDoubles(res[key]);});
+    return res;
+}
 
 
 
-
-//   function displayTag(tag,$cgp){
-//     let str = $cgp(tag).prop('tagName');
-//     if ($cgp(tag).attr('class')){
-//         str += ' class: '+$cgp(tag).attr('class');
-//     }
-//     console.log('Tag name: ',str);
-//   }
-
-//   function displayFullTag(tag,$cgp){
-//     let str ='';
-//     let par = $cgp(tag).parent();
-//     if (par.prop('tagName') !== 'BODY'){
-//         str += displayFullTag(par,cheerio.load(par.html()))+' ';
-//         str +=' ';
-//     }
-//     str += $cgp(tag).prop('tagName');
-//     if ($cgp(tag).attr('class')){
-//         str += ' class: '+$cgp(tag).attr('class');
-//     }
-//     return(str);
-//   }
+function getBestDateFormat(dates, JSON, dateConversionPatterns){
+   // console.log(dates);
+    let bestDateFormat = (JSON.hasOwnProperty('dateFormat'))?JSON.dateFormat:"dd-MM-yyyy";
+    let bestScore = numberOfInvalidDates(dates.map(element => createDate(element,bestDateFormat,dateConversionPatterns)));
+    const dateFormatList = getCommonDateFormats();
+    dateFormatList.forEach(format => {
+        const formattedDateList = dates.map(element => createDate(element,format,dateConversionPatterns));
+        if (numberOfInvalidDates(formattedDateList) < bestScore){
+            bestDateFormat = format;
+            bestScore = numberOfInvalidDates(formattedDateList);
+        }
+    });
+    console.log("\nFound %s events. Best date format: \x1b[36m\"%s\"\x1b[0m (%s/%s invalid dates)",dates.length,bestDateFormat,bestScore,dates.length);
+    return bestDateFormat;
+}

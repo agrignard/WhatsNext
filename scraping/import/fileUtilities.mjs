@@ -4,6 +4,16 @@ const scrapInfoFile = "./venuesScrapInfo.json"; // path should start from the di
 export const venuesListJSONFile = "./venues.json";
 
 
+// load linked files
+export async function loadLinkedPages(sourcePath){
+    try{
+        return JSON.parse(await fs.promises.readFile(sourcePath+'linkedPages.json', 'utf8'));
+    }catch(err) {
+        console.error("\x1b[31mError while retrieving linked pages: %s\x1b[0m\n",sourcePath+'linkedPages.json');
+        throw err;
+    }
+}
+
 // load scrap info file
 async function loadScrapInfoFile(){
     try{

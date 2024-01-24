@@ -3,6 +3,16 @@ import * as fs from 'fs';
 
 const dateConversionFile = './import/dateConversion.json';
 
+export function showDate(date){
+  const day = to2digits(String(date.getDate()));
+  const month = to2digits(String(date.getMonth() + 1)); 
+  const year = date.getFullYear();
+  const hour = to2digits(String(date.getHours()));
+  const minutes = to2digits(String(date.getMinutes()));
+  const string = day+'/'+month+'/'+year+' (time: '+hour+':'+minutes+')';
+  return string;
+}
+
 
 // date conversion
 export async function getConversionPatterns(){
@@ -45,20 +55,25 @@ export function createDate(s,dateFormat,dateConversionPatterns) {
 
 export function convertDate(s,dateConversionPatterns){
   s = s.normalize('NFD').replace(/[\u0300-\u036f]/g, ''); // remove accents
-  s = s.replace(/[^\x00-\x7F]/g,'');
+  s = s.replace(/[^\x00-\x7F]/g,''); //remove non standard caracters => to be improved
  
   for (const key in dateConversionPatterns) {
-    function replacer(match, p1, p2,p3, offset, string) {
+    function replacer(match, p1, p2, p3, offset, string) {
       return ' '+key+' ';
     }
     for (const str of dateConversionPatterns[key]){
        s = s.replace(new RegExp("([^a-zA-Z.]|^)("+str+")([^a-zA-Z.]|$)",'i'),replacer);
     }
-     //removing words with 2 or more letters
-    // console.log('\navant:'+s);
-    //s = s.replace(/\b[^0-9]{2,}\b/g,' ');
-       //  console.log('après:'+s);
   }  
+     //  //removing words with 2 or more letters
+    // // console.log('\navant:'+s);
+    // s = s.replace(/\b[^0-9]{2,}\b/g,' ');
+    //    //  console.log('après:'+s);
+    
+    //removing all words with 2 that are not 'h'
+   //  console.log('\navant:'+s);
+    s = s.replace(/\b[^0-9]{2,}\b/g,' ');
+      //  console.log('après:'+s);
   return to2digits(unifyCharacters(s));
 }
 
@@ -84,3 +99,4 @@ function unifyCharacters(s){
 function to2digits(dateString){
   return dateString.replace(/(?<!\d)\d(?!\d)/g,p=>'0'+p);
 }
+

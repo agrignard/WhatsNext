@@ -36,7 +36,7 @@ export function removeImages(content){
 }
 
 export function extractBody(content){
-  return content.match(/<body[^]*?>([^]*?)<\/body/)[1];
+  return content.match(/<body[^]*?>[^]*?<\/body>/)[0];
 }
 
 export function cleanPage(content){
