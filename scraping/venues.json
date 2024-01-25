@@ -35,7 +35,7 @@
     "dateFormat": "dd-MM",
     "eventURLIndex": 1,
     "defaultStyle": "Electro",
-    "baseURL": "https://www.terminal-club.com",
+    "baseURL": "https://www.terminal-club.com/evenements/",
     "linkedPage": {
       "eventNameTags": [
         "H1.sectiontitle.titreeventsingle:eq(0)"
@@ -140,7 +140,7 @@
     },
     "multiPages": {
       "startPage": 1,
-      "nbPages": 10
+      "nbPages": 3
     },
     "eventURLIndex": 0
   },
@@ -213,7 +213,7 @@
     "url": "https://villemorte.fr/agenda/",
     "eventsDelimiterTag": "A.url",
     "dateFormat": "dd MM",
-    "baseURL": "https://villemorte.fr",
+    "baseURL": "https://villemorte.fr/agenda/",
     "scrap": {
       "eventNameTags": [
         ""

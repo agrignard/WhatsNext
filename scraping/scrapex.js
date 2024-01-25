@@ -8,7 +8,6 @@ import {loadLinkedPages,loadVenuesJSONFile,loadUnlistedVenues} from './import/fi
 
 
 // Chemin vers le fichier à lire
-const filePath = './venues.json';
 const sourcePath = './webSources/';
 
 var out="";// = "PLACE,TITRE,UNIX,SIZE,GENRE,URL";
@@ -19,7 +18,6 @@ const globalDefaultStyle = '';
 const dateConversionPatterns = await getConversionPatterns();
 let venues = await loadVenuesJSONFile();
 const venueNamesList = venues.map(el => el.name).concat(await loadUnlistedVenues());
-console.log(venueNamesList);
     
 const fileToScrap = process.argv[2];
 if (fileToScrap){
@@ -82,9 +80,8 @@ async function analyseFile(venue) {
   } catch (err) {
     console.error('\x1b[31mError reading html files in directory \'%s\'.\x1b[0m Error: %s',venueSourcePath, err);
   }
-console.log('liste',inputFileList);
 
-  console.log('\n\x1b[32m%s\x1b[0m', `******* Venue: ${venue.name}  (${inputFileList.length} pages) *******`);
+  console.log('\n\x1b[32m%s\x1b[0m', `******* Venue: ${venue.name}  (${inputFileList.length} page(s)) *******`);
   let nbEvents = 0;
   for (let currentPage=0;currentPage<inputFileList.length;currentPage++){
     nbEvents += await analysePage(venue,inputFileList[currentPage]);
@@ -227,7 +224,8 @@ console.log('liste',inputFileList);
       }catch(err){
         console.log('\x1b[31m%s\x1b[0m', 'Erreur d\'extraction à partir des balises.\x1b[0m',tagList);
       }
-      return tagName === 'eventPlaceTags'?fixString(removeBlanks(string),venueNamesList):removeBlanks(string);
+      return removeBlanks(string);
+      //return tagName === 'eventPlaceTags'?fixString(removeBlanks(string),venueNamesList):removeBlanks(string);
     }
     // end of auxiliary function
 

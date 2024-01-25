@@ -4,6 +4,27 @@ const scrapInfoFile = "./venuesScrapInfo.json"; // path should start from the di
 export const venuesListJSONFile = "./venues.json";
 const unlistedVenuesFile = "./unlistedVenues.json";
 
+// fetch url and fix the coding
+export async function fetchAndRecode(url){
+    try{
+        const response = await fetch(url);
+        const encoding = response.headers.get('content-type').split('charset=')[1];
+        if (encoding === 'utf-8'){
+            return await response.text();
+        }else{
+            try{
+                const decoder = new TextDecoder(encoding);
+                return  response.arrayBuffer().then(buffer => decoder.decode(buffer));
+            }catch(err){
+                console.log('Decoding problem while processing %s. Error: %s',url,err);
+                throw err;
+            }
+        }
+    }catch(error){
+        throw error;
+    }
+}
+
 export async function loadUnlistedVenues(){
     try{
         return JSON.parse(await fs.promises.readFile(unlistedVenuesFile, 'utf8'));

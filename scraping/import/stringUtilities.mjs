@@ -22,13 +22,23 @@ export function removeDoubles(list) {
     }
 }
 
+function isAbsoluteURL(url) {
+  try {
+    new URL(url);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
 export function makeURL(baseURL, URL){
     const bu = baseURL.endsWith('/')?baseURL.slice(0,-1):baseURL;
     const url = URL.startsWith('/')?URL.slice(1):URL;
-    if (URL.startsWith(bu) || URL.startsWith('http')){
-      return URL;
+    //   if (URL.startsWith(bu) || URL.startsWith('http')){
+    if (isAbsoluteURL(url)){
+      return url;
     }else{
-      return baseURL+'/'+URL;
+      return bu+'/'+url;
     }
 }
 

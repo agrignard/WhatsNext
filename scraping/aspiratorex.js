@@ -1,13 +1,13 @@
 import * as fs from 'fs';
 import {removeDoubles, makeURL, cleanPage, removeBlanks,extractBody} from './import/stringUtilities.mjs';
-import {loadVenuesJSONFile,venuesListJSONFile,loadLinkedPages} from './import/fileUtilities.mjs';
+import {loadVenuesJSONFile,venuesListJSONFile,loadLinkedPages,fetchAndRecode} from './import/fileUtilities.mjs';
 import * as cheerio from 'cheerio';
 
 // Chemin vers le fichier à lire
 const outputPath = './webSources/';
-const nbFetchTries = 1;
+const nbFetchTries = 2;
 
-var fileContent,venues;
+var venues;
 
 const venueToDownload = process.argv[2];
 if (venueToDownload && typeof venueToDownload !== "string"){
@@ -31,31 +31,34 @@ venues.filter(obj => !venueToDownload || obj.name === venueToDownload).forEach((
   console.log(`Venue ${index + 1}: \x1b[36m${venue.name} (${venue.city}, ${venue.country})\x1b[0m (${venue.url})`);
 
   // extract baseURL and add it to JSON
-  const url = new URL(venue.url);
-  //const baseURL = `${url.protocol}//${url.hostname}${url.port ? `:${url.port}` : ''}`;
-  venue.baseURL = url.origin + url.pathname.replace(/\/[^\/]+$/, '/');
- 
-  if (!venue.hasOwnProperty('country') || !venue.hasOwnProperty('city')){
-    console.log('\x1b[31mErreur: le lieu \x1b[0m%s\x1b[31m n\'a pas de pays et/ou de ville définis',venue.name);
-  }else{
-    const countryPath = venue.country;
-    const cityPath = venue.city;
-    if (!fs.existsSync(outputPath+countryPath)){
-        console.log('\x1b[31mErreur: le pays \x1b[0m%s\x1b[31m n\'est pas défini. Vérifiez si l\'orthographe est correcte. Si oui, créez un répertoire dans \x1b[0m%s',countryPath,outputPath);
+  try{
+    const url = new URL(venue.url);
+    //const baseURL = `${url.protocol}//${url.hostname}${url.port ? `:${url.port}` : ''}`;
+    venue.baseURL = url.origin + url.pathname.replace(/\/[^\/]+$/, '/');
+    if (!venue.hasOwnProperty('country') || !venue.hasOwnProperty('city')){
+      console.log('\x1b[31mError: venue \x1b[0m%s\x1b[31m has no country and/or city defined.',venue.name);
     }else{
-      if (!fs.existsSync(outputPath+countryPath+'/'+cityPath)){
-        console.log('\x1b[31mErreur: la ville \x1b[0m%s\x1b[31m n\'est pas définie pour le pays %s. Vérifiez si l\'orthographe est correcte. Si oui, créez un répertoire dans \x1b[0m%s',cityPath,countryPath,outputPath+countryPath);
+      const countryPath = venue.country;
+      const cityPath = venue.city;
+      if (!fs.existsSync(outputPath+countryPath)){
+          console.log('\x1b[31mError: Country \x1b[0m%s\x1b[31m doesn\'t exist. If orthograph is correct, create a new directory in \x1b[0m%s.',countryPath,outputPath);
       }else{
-        let path = outputPath+countryPath+'/'+cityPath+'/'+venue.name+'/';
-        if (!fs.existsSync(path)){
-          fs.mkdirSync(path);
+        if (!fs.existsSync(outputPath+countryPath+'/'+cityPath)){
+          console.log('\x1b[31mError: City \x1b[0m%s\x1b[31m does not exist in %s. If orthographe is correct, create a new directory in \x1b[0m%s',cityPath,countryPath,outputPath+countryPath);
+        }else{
+          let path = outputPath+countryPath+'/'+cityPath+'/'+venue.name+'/';
+          if (!fs.existsSync(path)){
+            fs.mkdirSync(path);
+          }
+          erasePreviousHtmlFiles(path)
+          .then(() => {downloadVenue(venue,path);})
         }
-        erasePreviousHtmlFiles(path)
-        .then(() => {downloadVenue(venue,path);})
       }
     }
+    console.log(); 
+  }catch(err){
+    console.log('\x1b[31mCannot read URL for %s.x1b[0m', venue.name);
   }
-  console.log(); 
 });
 
 // save base URL to JSON file
@@ -90,14 +93,15 @@ async function downloadVenue(venue,path){
   }
 
   async function getPage(page,pageIndex){
-    let response;
+    let htmlContent;
     try{
-      response = await fetch(page);
+      htmlContent = cleanPage(await fetchAndRecode(page));
+     // response = await fetch(page);
     }catch(err){
-      console.log("\x1b[31mErreur de réseau, impossible de récupérer la page \'%s\'\x1b[0m: %s",venue.name,err);
+      console.log("\x1b[31mNetwork error, cannot download \'%s\'\x1b[0m.%s",page);
       throw err;
     }
-    const htmlContent = cleanPage(await response.text());
+    //const htmlContent = cleanPage(await response.text());
 
     let outputFile;
     if (!venue.hasOwnProperty('multiPages')){
@@ -107,7 +111,7 @@ async function downloadVenue(venue,path){
     }
     fs.writeFile(outputFile, htmlContent, 'utf8', (erreur) => {
       if (erreur) {
-        console.error("\x1b[31mErreur lors de l'écriture dans le fichier \'%s\'\x1b[0m: %s",venue.name+'.html', erreur);
+        console.error("\x1b[31mCannot write local file for \'%s\'\x1b[0m: %s",venue.name+'.html', erreur);
       } else {
         console.log("\'"+venue.name + "\'" + " file downloaded to " + outputFile);
       }
@@ -123,7 +127,7 @@ async function downloadVenue(venue,path){
     // if event tags are defined and contain URLs, download the URLs. Otherwise, ask to run an analyze 
     if (venue.hasOwnProperty('eventsDelimiterTag') && venue.hasOwnProperty('eventURLIndex') && venue.eventURLIndex !== -1){
       // get the list of URLs to download
-      var index = venue.hasOwnProperty('eventURLIndex')?venue.eventURLIndex:0;
+      let index = venue.hasOwnProperty('eventURLIndex')?venue.eventURLIndex:0;
       let hrefList = pageList.map((page)=>getLinksFromPage(page,venue.eventsDelimiterTag,index)).flat();
       hrefList = removeDoubles(hrefList);
       hrefList = hrefList.map((el) => makeURL(venue.baseURL,el));
@@ -143,7 +147,7 @@ async function downloadVenue(venue,path){
       try{
         hrefContents = (await Promise.all(linksToDownload.map(el => fetchLink(el,venue))));
       }catch(err){
-        console.log("\x1b[36mErreur de réseau, impossible de récupérer la dépendance pour \'%s\'\x1b[0m: %s",venue.name,err);
+        console.log("\x1b[36mNetwork error, cannot load linked page for \'%s\'\x1b[0m: %s",venue.name,err);
       }
       linksToDownload.forEach((href,index) =>hrefJSON[href]=hrefContents[index]);
 
@@ -151,25 +155,19 @@ async function downloadVenue(venue,path){
         const jsonString = JSON.stringify(hrefJSON, null, 2); 
         fs.writeFileSync(path+'linkedPages.json', jsonString);
 
-        const nombreUndefined = hrefContents.reduce((acc, valeur) => {
+        const failedDownloads = hrefContents.reduce((acc, valeur) => {
           return acc + (valeur === undefined ? 1 : 0);
         }, 0);
-        console.log('undefined:',nombreUndefined);
-        const nombreNull = hrefContents.reduce((acc, valeur) => {
-          return acc + (valeur === null ? 1 : 0);
-        }, 0);
-        console.log('null:',nombreNull);
  
         // test if all downloads are successful
-        if (Object.keys(hrefJSON).length === hrefList.length){
-          console.log('All linked pages successfully downloaded and saved for %s.',venue.name);
-          console.log('to do: ',hrefList.length,'done: ',Object.keys(hrefJSON).length);
+        if (failedDownloads === 0){
+          console.log('All linked pages successfully downloaded and saved for %s.',venue.name);;
         }else{
           console.log('to do: ',hrefList.length,'done: ',Object.keys(hrefJSON).length);
-          console.log('\x1b[36mVenue: %s: \x1b[0m%s/%s\x1b[36m links downloaded. Run aspiratorex again to load remaining links.\x1b[0m',venue.name,Object.keys(hrefJSON).length, hrefList.length);
+          console.log('\x1b[31mVenue: %s: \x1b[0m%s/%s\x1b[31m links downloaded. \x1b[36mRun aspiratorex again\x1b[31m to load remaining links.\x1b[0m',venue.name,hrefList.length-failedDownloads, hrefList.length);
         }
       }catch(err){
-          console.log('\x1b[31mImpossible de sauvegarder les liens dans\'linkedPages.json\' %s\x1b[0m',err);
+          console.log('\x1b[31mCannot save links to file \'linkedPages.json\' %s\x1b[0m',err);
       }
     }else{
       console.log('\x1b[31mTrying to download linked pages for \x1b[0m\'%s\'\x1b[31m, but no URL delimiter found. Run analex.js to set locate URL tag, then run again aspiratorex.js.\x1b[0m',venue.name)
@@ -217,41 +215,30 @@ async function fetchLink(page,venue){
     const content = await fetchWithRetry(page, nbFetchTries, 2000);
     return extractBody(removeBlanks(cleanPage(content)));
   }catch(err){
-    console.log("\x1b[36mErreur de réseau, impossible de récupérer la dépendance \'%s\'.\x1b[0m (Erreur: %s)",page,err.name);
+    console.log("\x1b[31mNetwork error, cannot download \'%s\'.\x1b[0m",page);
   }
 }
 
 function fetchWithRetry(page, tries, timeOut) {
-  return fetch(page)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Echec du téléchargement');
-      }
-      // if (response.text().includes('Pig Boy')){
-      //   throw "erreur pourrie";
-      // }
-      return response.text();
-    })
+  // return fetch(page)
+  //   .then(response => {
+  //     if (!response.ok) {
+  //       throw new Error('Download failed.');
+  //     }
+  //     return response.text();
+  //   })
+  return fetchAndRecode(page)
     .catch(error => {
-      if (tries > 0){
-        console.log('Echec du téléchargement (%s). Essai dans %ss.',page,timeOut/1000);
-        return new Promise(resolve => setTimeout(resolve, 5000))
+      if (tries > 1){
+        console.log('Download failed (%s). Trying again in %ss (%s %s left).',page,timeOut/1000,tries-1,tries ===2?'attempt':attempts);
+        return new Promise(resolve => setTimeout(resolve, timeOut))
           .then(() => fetchWithRetry(page,tries-1,timeOut));
       }else{
-        console.log('Echec du téléchargement (%s). Abandon (trop de tentatives).',page);
+        console.log('Download failed (%s). Aborting (too many tries).',page);
         throw error;
       }
     });
 }
-
-// function getLinks(htmlContent){
-//   const linksRegex = /<a[^]*?href\s*?=\s*?\"[^\"]*\"/g;
-//   var res = htmlContent.match(linksRegex).map(el => el.match(/href\s*?=\s*?\"([^\"]*)\"/)[1]);
-//   res = res.filter(el => !el.includes('mailto:'));
-//   return res;
-// };
-
-
 
 
 
@@ -260,7 +247,7 @@ async function erasePreviousHtmlFiles(path){
 
   fs.readdir(path, (err, files) => {
     if (err) {
-      console.error('Erreur lors de la lecture du répertoire:', err);
+      console.error('\x1b[31mCannot open directory.\x1b[0m', err);
       return;
     }
     files.filter(fileName => fileName.endsWith('.html'))
@@ -269,7 +256,7 @@ async function erasePreviousHtmlFiles(path){
    //   console.log("suppression fichier "+fileToErase);
       fs.unlink(fileToErase, err => {
         if (err) {
-          console.error(`Erreur lors de la suppression du fichier ${file}:`, err);
+          console.error(`\x1b[31mCannot remove file  \x1b[0m${file}\x1b[31m:\x1b[0m`, err);
         }
       });
     });
