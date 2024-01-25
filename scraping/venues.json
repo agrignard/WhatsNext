@@ -1,5 +1,32 @@
 [
   {
+    "name": "Le Petit Salon",
+    "city": "Lyon",
+    "country": "France",
+    "url": "https://www.lpslyon.fr/evenements-le-petit-salon/",
+    "baseURL": "https://www.lpslyon.fr",
+    "eventsDelimiterTag": "DIV.events__item.item.colmd4.offsetxl1",
+    "scrap": {
+      "eventNameTags": [
+        "H2.item__title:eq(0)"
+      ],
+      "eventDateTags": [
+        "SPAN:eq(1)"
+      ],
+      "eventStyleTags": [
+        "DIV.item__text:eq(0)"
+      ]
+    },
+    "eventURLIndex": 1,
+    "dateFormat": "dd-MM",
+    "linkedPage": {
+      "eventDateTags": [
+        "B:eq(0)"
+      ]
+    },
+    "linkedPageDateFormat": "dd-MM-yyyy-HH:mm"
+  },
+  {
     "name": "Terminal Club",
     "city": "Lyon",
     "country": "France",
@@ -216,6 +243,9 @@
       ],
       "eventPlaceTags": [
         "DD.author.fn.org:eq(0)"
+      ],
+      "eventURLTags": [
+        "DD.tribeeventseventurl:eq(0)  A:eq(0)"
       ]
     },
     "linkedPageDateFormat": "dd-MM-HH:mm"
