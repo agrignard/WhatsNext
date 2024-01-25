@@ -1,13 +1,19 @@
+/**************************************/
+/*          aspiratorex.js            */
+/**************************************/
+// download files and save them to local directory, including linkedPages if indicated
+
+
 import * as fs from 'fs';
 import {removeDoubles, makeURL, cleanPage, removeBlanks,extractBody} from './import/stringUtilities.mjs';
 import {loadVenuesJSONFile,venuesListJSONFile,loadLinkedPages,fetchAndRecode} from './import/fileUtilities.mjs';
 import * as cheerio from 'cheerio';
 
-// Chemin vers le fichier à lire
-const outputPath = './webSources/';
-const nbFetchTries = 2;
 
-var venues;
+const outputPath = './webSources/';
+const nbFetchTries = 2; // number of tries in case of internet connection time outs
+
+let venues;
 
 const venueToDownload = process.argv[2];
 if (venueToDownload && typeof venueToDownload !== "string"){
@@ -74,7 +80,7 @@ fs.writeFileSync(venuesListJSONFile, jsonString);// écrit à la fin. Problème 
 /******************************/
 
 async function downloadVenue(venue,path){
-  var URLlist = [];
+  let URLlist = [];
   if (venue.hasOwnProperty('multiPages')){
     if (venue.multiPages.hasOwnProperty('startPage') && venue.multiPages.hasOwnProperty('nbPages')){
       let increment = (venue.multiPages.hasOwnProperty('increment'))?venue.multiPages.increment:1;

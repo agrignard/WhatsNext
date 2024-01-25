@@ -1,3 +1,8 @@
+/**************************************/
+/*    utilities to deal with dates    */
+/**************************************/
+
+
 import { parse, isValid }  from 'date-fns';
 import * as fs from 'fs';
 
@@ -14,7 +19,7 @@ export function showDate(date){
 }
 
 
-// date conversion
+// load date conversion patterns
 export async function getConversionPatterns(){
   try{
       return await JSON.parse(await fs.promises.readFile(dateConversionFile, 'utf8'));
@@ -23,7 +28,7 @@ export async function getConversionPatterns(){
   }
 }
 
-
+// get common date formats
 export function getCommonDateFormats(){
   const date = ["dd-MM","MM-dd",
                 "dd-MM-yy","dd-yy-MM","MM-dd-yy","MM-yy-dd","yy-MM-dd","yy-dd-MM",
@@ -39,6 +44,7 @@ export function getCommonDateFormats(){
   return dateList;
 }
 
+// create a date object from a string
 export function createDate(s,dateFormat,dateConversionPatterns) {
   s = convertDate(s,dateConversionPatterns);
   //console.log(s);
@@ -53,6 +59,7 @@ export function createDate(s,dateFormat,dateConversionPatterns) {
   }
 }
 
+// clean the date (remove unwanted characters)
 export function convertDate(s,dateConversionPatterns){
   s = s.normalize('NFD').replace(/[\u0300-\u036f]/g, ''); // remove accents
   s = s.replace(/[^\x00-\x7F]/g,''); //remove non standard caracters => to be improved
@@ -82,20 +89,22 @@ export function numberOfInvalidDates(dateList){
   return dateList.filter(element => (!isValid(element) || !yearIsValid(element.getFullYear()))).length; 
 }
 
-function yearIsValid(yyyy){// test if a year too old (older than one year), or a year too far ahead (in more than 2 years)
+// test if a year too old (older than one year), or a year too far ahead (in more than 2 years)
+function yearIsValid(yyyy){
   let yearBefore = 1;
   let yearAfter = 2;
   let currentYear = new Date().getFullYear();
   return (yyyy >= currentYear  -yearBefore || yyyy >currentYear + yearAfter);
 }
 
+// clean the date string by removing unwanted characters
 function unifyCharacters(s){
   let string = s.replace(/[\n\t\/\-,;.]/g,' ').replace(/ {2,}/g,' ').replace(/^ /,'').replace(/ $/,'').replace(/ /g,'-');
   string = string.replace('h',':').replace(/: /g,':00').replace(/:$/g,':00');//format to correct time
   return string;
 }
 
-
+// convert 1 digit elements (day, month) to 2 digits 
 function to2digits(dateString){
   return dateString.replace(/(?<!\d)\d(?!\d)/g,p=>'0'+p);
 }

@@ -1,19 +1,24 @@
+/**************************************/
+/*  utilities to deal with the files  */
+/**************************************/
+
+
 import * as fs from 'fs';
 
 const scrapInfoFile = "./venuesScrapInfo.json"; // path should start from the directory of the calling script
 export const venuesListJSONFile = "./venues.json";
 const unlistedVenuesFile = "./unlistedVenues.json";
 
-// fetch url and fix the coding
+// fetch url and fix the coding when it is not in UTF-8
 export async function fetchAndRecode(url){
     try{
         const response = await fetch(url);
-        const encoding = response.headers.get('content-type').split('charset=')[1];
+        const encoding = response.headers.get('content-type').split('charset=')[1]; // identify the page encoding
         if (encoding === 'utf-8'){
             return await response.text();
         }else{
             try{
-                const decoder = new TextDecoder(encoding);
+                const decoder = new TextDecoder(encoding); // convert to plain text (UTF-8 ?)
                 return  response.arrayBuffer().then(buffer => decoder.decode(buffer));
             }catch(err){
                 console.log('Decoding problem while processing %s. Error: %s',url,err);
@@ -25,16 +30,17 @@ export async function fetchAndRecode(url){
     }
 }
 
-export async function loadUnlistedVenues(){
-    try{
-        return JSON.parse(await fs.promises.readFile(unlistedVenuesFile, 'utf8'));
-    }catch(err) {
-        console.error("\x1b[31mError while loading unlisted venues.\x1b[0m\n");
-        throw err;
-    }
-}
+// not useful anymore. To be removed
+// async function loadUnlistedVenues(){
+//     try{
+//         return JSON.parse(await fs.promises.readFile(unlistedVenuesFile, 'utf8'));
+//     }catch(err) {
+//         console.error("\x1b[31mError while loading unlisted venues.\x1b[0m\n");
+//         throw err;
+//     }
+// }
 
-// load linked files
+// load linked files (subpages with more details about the event)
 export async function loadLinkedPages(sourcePath){
     try{
         return JSON.parse(await fs.promises.readFile(sourcePath+'linkedPages.json', 'utf8'));
@@ -44,7 +50,7 @@ export async function loadLinkedPages(sourcePath){
     }
 }
 
-// load scrap info file
+// load file that contains scrap info 'venuesScrapInfo.json'
 async function loadScrapInfoFile(){
     try{
         return JSON.parse(await fs.promises.readFile(scrapInfoFile, 'utf8'));
@@ -54,6 +60,7 @@ async function loadScrapInfoFile(){
     }
 }
 
+// load file that contains scrap info 'venuesScrapInfo.json', and return scrap info only for venue venueName
 export async function loadVenueScrapInfofromFile(venueName){
     let scrapInfo = await loadScrapInfoFile();
     try{
@@ -64,8 +71,7 @@ export async function loadVenueScrapInfofromFile(venueName){
     }
 }
 
-// load venue JSON
-
+// load venue JSON 'venues.json'
 export async function loadVenuesJSONFile(){
     try{
         return await JSON.parse(await fs.promises.readFile(venuesListJSONFile, 'utf8'));
@@ -75,6 +81,7 @@ export async function loadVenuesJSONFile(){
     }
 }
 
+// load a JSON containing info and return the info only for venue venueName
 export function loadVenueJSON(venueName,venuesListJSON){
     const venueJSON = venuesListJSON.find(function(element) {
         return element.name === venueName;

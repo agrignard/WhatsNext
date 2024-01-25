@@ -3,21 +3,21 @@ import * as fs from 'fs';
 import { parse, isValid }  from 'date-fns';
 import * as cheerio from 'cheerio';
 import {parseDocument} from 'htmlparser2';
-import {makeURL,fixString} from './import/stringUtilities.mjs';
-import {loadLinkedPages,loadVenuesJSONFile,loadUnlistedVenues} from './import/fileUtilities.mjs';
+import {makeURL} from './import/stringUtilities.mjs';
+import {loadLinkedPages,loadVenuesJSONFile} from './import/fileUtilities.mjs';
 
 
 // Chemin vers le fichier à lire
 const sourcePath = './webSources/';
 
 var out="";// = "PLACE,TITRE,UNIX,SIZE,GENRE,URL";
-var outFile = "generated/scrapexResult.csv";
+const outFile = "generated/scrapexResult.csv";
 const globalDefaultStyle = '';
 
 
 const dateConversionPatterns = await getConversionPatterns();
 let venues = await loadVenuesJSONFile();
-const venueNamesList = venues.map(el => el.name).concat(await loadUnlistedVenues());
+//const venueNamesList = venues.map(el => el.name);
     
 const fileToScrap = process.argv[2];
 if (fileToScrap){
