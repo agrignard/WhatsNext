@@ -1,683 +1,476 @@
-PLACE,TITRE,UNIX,SIZE,GENRE,URL
-Marché Gare,H JEUNECRACK,1697116852000,500,Rock,https://www.infoconcert.com/ticket/concert-h-jeunecrack-lyon/1567691.html
-Le Trokson,BASEMENT DELIGHTS,1697221247000,50,Rock,https://www.infoconcert.com/ticket/concert-basement-delights-lyon/1607011.html
-Transbordeur,The Sisters of Mercy,1697566847000,50,Rock,https://www.transbordeur.fr/agenda-2023-2024/the-sisters-of-mercy-mar-17-oct-23/
-Le Radiant,Pete Doherty,1698085247000,1000,Rock,https://radiant-bellevue.fr/spectacles/peter-doherty-frederic-lo/
-Le Sucre,Realo,1698430847000,250,Rap,https://le-sucre.eu/artiste/realo/
-Ninkasi Gerland,Lord Esperanza,1698517847000,100,Rap,https://www.ninkasi.fr/agenda/lord-esperanza-rap-kao/
-Le Périscope,Ava Mendoza + Farida Amadou,1697567447000,100,Jazz,https://www.periscope-lyon.com/concerts/ava-mendoza-farida-amadou/
-Bourse du Travail,Asaf Avidan,1697653847000,100,Divers,https://www.bourse-du-travail.com/asaf-avidan-tournee-180462.html
-Toï Toï Le Zinc,DJ SET  Exodus,1697740247000,50,Electro,https://www.toitoilezinc.fr/evenement/986700/exodus/
-Le Sonic,Kid Congo & The Pink Monkey Birds + Pervitin,1697481047000,250,Rock,https://sonic-lyon.fr/facebook-event/4528/
-Le Sonic,Blues Lawyer + Modesto,1697567447000,250,Rock,https://sonic-lyon.fr/facebook-event/blues-lawyer/
-Le Sonic,point de suture (release party!) + Cyprine,1697653847000,250,Rock,https://sonic-lyon.fr/facebook-event/point-de-suture-release-party-cyprine/
-Le Sonic,RUE OBERKAMPF + Rank,1697740247000,250,Rock,https://sonic-lyon.fr/facebook-event/rue-oberkampf-rank/
-Le Sonic,Peter Kernel + Vera Daisies,1697826647000,250,Rock,https://sonic-lyon.fr/facebook-event/peter-kernel/
-Le Sonic,The Courettes,1698258647000,250,Rock,https://sonic-lyon.fr/facebook-event/the-courettes/
-Le Sonic,Die Selektion + vipères sucrées salées,1698412748000,250,Rock,https://sonic-lyon.fr/facebook-event/4463/
-Le Sonic,Sharped Records party,1698499265000,250,Rock,https://sonic-lyon.fr/facebook-event/sharped-records-party/
-Ninkasi Gerland,Pat Kalla & Le Super Mojo,1697648259000,50,Rock,https://www.ninkasi.fr/agenda/pat-kalla-le-super-mojo/
-Ninkasi Gerland,L’amuse-bouche,1697734669000,50,Rock,https://www.ninkasi.fr/agenda/lamuse-bouche-81/
-Le Sucre,S. society x Ravoluson x Khidiiiii,1697394600000,50,Electro,https://le-sucre.eu/agenda/s-society-x-ravoluson-3/
-Halle Tony Garnier,BIGFLO & OLI,1698517800000,1000,Rap,https://www.halle-tony-garnier.com/fr/programmation/bigflo-oli
-Transbordeur,LÉON PHAL + LE DÉ + JASUAL CAZZ,1697824800000,500,Jazz,https://www.transbordeur.fr/agenda-2023-2024/un-doua-de-jazz-leon-phal-ven-20-oct-23/
-Transbordeur,BEKAR,1697911200000,50,Jazz,https://www.transbordeur.fr/agenda-2023-2024/bekar-sam-21-oct-23/
-Marché Gare,Zero Gr4vity + Lucie ANtunes,1698516000000,250,Electro,https://marchegare.fr/agenda/jarring-fest-pass-2-jours
-Transbordeur,VIRGINIE DESPENTES + CASEY + BÉATRICE DALLE + ZËRO,1701889200000,500,Divers,https://marchegare.fr/agenda/virginie-despentes-casey-beatrice-dalle-zero
-Le Radiant,Hervé,1697306400000,50,Divers,http://radiant-bellevue.fr/spectacles/herve/
-Le Radiant,Renaud,1698951600000,50,Divers,http://radiant-bellevue.fr/spectacles/renaud/
-Auditorium,BERTRAND BELIN,1699297200000,500,Divers,https://www.auditorium-lyon.com/fr/saison-2023-24/musiques-actuelles/bertrand-belin
-Auditorium,NILS FRAHM,1700247600000,500,Electro,https://www.auditorium-lyon.com/fr/saison-2023-24/musiques-actuelles/nils-frahm
-Bizarre !,Stogie T + Kaynixe,1697740247000,50,Rap,https://www.lamachinerie-venissieux.fr/
-A Thou Bout d'Chant,Lisa Ducasse,1697740247000,50,Divers,https://billetterie.athouboutdchant.com/evenement/19-10-2023-20-30-lisa-ducasse
-Epicerie Moderne,CHASSOL + ALPHA CASSIOPEIAE,1698343200000,250,Jazz,https://epiceriemoderne.com/agenda/2023-10-26-chassol-x-alpha-cassiopeiae
-Epicerie Moderne,HÔTEL PARTICULIER,1698778800000,250,Jazz,https://epiceriemoderne.com/agenda/2023-10-31-residence-hotel-particulier-2023
-La Rayonne,BANDIT BANDIT,1697824800000,250,Electro,https://larayonne.org/evenement/tournee-2023-des-inouis/
-LDLC Arena,STING,1702494000000,1000,Rock,https://www.olvallee.fr/evenement/sting
-LDLC Arena,LOMEPAL,1701457200000,1000,Rock,https://www.olvallee.fr/evenement/lomepal
-Grrrnd Zero - Vaulx-en-Velin,GROOVEDGE GLORIA GOLRY,1702580400000,100,Electro,https://www.grrrndzero.org/index.php/2481-sam-dim-14-15-oct-23-groovedge-gloria-golry
-Grrrnd Zero - Vaulx-en-Velin,Keke & Zawa + ChapoChapo + Eve Magot et TataSoso + Mona Mioca + Edna,1698516000000,100,Electro,https://www.grrrndzero.org/index.php/2483-sam-28-10-toujours-plus-trans
-Grrrnd Zero - Vaulx-en-Velin,ATELIER DES CANULARS,1699038000000,100,Electro,https://www.grrrndzero.org/index.php/2482-ven-3-11-soiree-de-soutien-a-l-atelier-des-canulars
-Hot Club,Adlane Aliouche Trio,1697826600000,100,Jazz,https://www.hotclubjazzlyon.com/evenements/20230719-adlanealiouchetrio/
-Hot Club,Hugo Afettouche & Tetralyre,1698345000000,100,Jazz,https://www.hotclubjazzlyon.com/evenements/20230803-hugo-afettouche-tetralyre/
-Hot Club,TJT4 feat. Luna Garcia-Odin,1699126200000,100,Jazz,https://www.hotclubjazzlyon.com/evenements/20230803-tjt4-feat-luna-garcia-odin/
-Le Trokson,NEVRASKA (Post Math Rock) + MIDLIFE (Art Noise),1699126200000,50,Rock,https://www.trokson.com/events/nevraska-post-math-rock-midlife-art-noise
-Le Trokson,PABLO X (Post Punk Psych // FR),1697826600000,50,Rock,https://www.trokson.com/events/pablo-x-post-punk-psych-fr-crayfish-swamp-post-punk-ain
-Le Trokson,BONGO KIDS + TOTAL TENIAS + RAGE BATARD,1697913000000,50,Rock,https://www.trokson.com/events/bongo-kids-release-party-punk-rock-total-tenias-punk-rage-batard-punk-hardcore
-Le Trokson,MARAUDEUR + THEOREME,1698258600000,50,Rock,https://www.trokson.com/events/maraudeur-post-punk-fr-ch-ger-theoreme-no-wave-villeurbanne
-Le Trokson,MARY BELL + THE SPITTERS,1698431400000,50,Rock,https://www.trokson.com/events/mary-bell-punk-grunge-fr-the-spitters-garage-punk-toulon
-Le Trokson,kontexte + quinconce,1698517800000,50,Rock,https://www.trokson.com/events/kontexte-no-punk-rotatif-nantes-quinconce-post-dub-nantes
-Le Trokson,SAMHAIN FESTUS,1698780600000,50,Rock,https://www.trokson.com/events/samhain-festus-dj-set-halloween
-Marché Gare,CYRIOUS & FRIENDS,1697913000000,250,Rock,https://www.trokson.com/events/samhain-festus-dj-set-halloween
-Halle Tony Garnier,M POKORA,1702495800000,1000,Rap,https://www.halle-tony-garnier.com/fr/programmation/m-pokora-2
-Marché Gare,MELBA + LE NOISEUR,1697826600000,250,Rock,https://mediatone.net/evenements/melba-le-noiseur/
-Marché Gare,J.E. SUNDE,1699385408000,250,Rock,https://marchegare.fr/agenda/je-sunde
-Marché Gare,PROTOMARTYR,1699642808000,200,Rock,https://marchegare.fr/agenda/protomartyr
-Marché Gare,SOUFFRANCE,1700161208000,250,Rap,https://marchegare.fr/agenda/souffrance
-Marché Gare,OOMPH!,1700247608000,250,Rock,https://marchegare.fr/agenda/oomph
-Marché Gare,BLACK SEA DAHU,1701198008000,250,Rock,https://marchegare.fr/agenda/black-sea-dahu
-Marché Gare,FORUM JAZZ 2023,1701370808000,250,Jazz,https://marchegare.fr/agenda/forumjazz-2023
-Transbordeur,MANDRAGORA + PROPER LANE + UZUL + MÉCOU YENSKI,1697923800000,500,Rock,https://mediatone.net/evenements/mandragora-proper-lane-uzul-mecou-yenski/
-La Rayonne,DEBOUT SUR LE ZINC + LA CARAVANE PASSE,1697308200000,100,Divers,https://mediatone.net/evenements/debout-sur-le-zinc-la-caravane-passe/
-Marché Gare,ROMANE SANTARELLI + MAUVAIS GARÇON,1702580400000,250,Electro,https://mediatone.net/evenements/romane-santarelli-mauvais-garcon/
-La Rayonne,Ludwig Von 88 + Le Réparateur + Resto Basket,1700249400000,100,Rock,https://mediatone.net/evenements/ludwig-von-88-le-reparateur-resto-basket/
-Ninkasi Gorge du Loup,MISTER MELLOW,1700856000000,100,Divers,https://www.ninkasi.fr/agenda/human-jukebox-mister-mellow-8/
-Ninkasi Gratte Ciel,Léon dans ton salon,1699041600000,100,Divers,https://www.ninkasi.fr/agenda/human-jukebox-leon-dans-ton-salon-21/
-Ninkasi Guillotière,The French Groose,1699041600000,100,Divers,https://www.ninkasi.fr/agenda/human-jukebox-the-french-goose-7/
-Ninkasi La Soie,FABIEN BENOIT,1697655600000,100,Divers,https://www.ninkasi.fr/agenda/human-jukebox-fabien-benoit-13/
-Ninkasi La Soie,THE DOBEAT’SHOW,1698433200000,100,Divers,https://www.ninkasi.fr/agenda/the-dobeatshow-11/
-Ninkasi La Soie,NICHOLAS SUTTON,1700251200000,100,Rock,https://www.ninkasi.fr/agenda/nicholas-sutton-7/
-Ninkasi OL Vallée,HYNSHA,1697731200000,100,Electro,https://www.ninkasi.fr/agenda/hynsha-8/
-Ninkasi OL Vallée,HYNSHA,1698436800000,100,Electro,https://www.ninkasi.fr/agenda/hynsha-9/
-Ninkasi OL Vallée,JAZZ A OL VALLEE : ROMAIN VAUTHIER TRIO,1698598800000,100,Jazz,https://www.ninkasi.fr/agenda/jazz-a-ol-vallee-romain-vauthier-trio/
-Ninkasi OL Vallée,THE PLOOKS,1699128000000,100,Rock,https://www.ninkasi.fr/agenda/the-plooks/
-Ninkasi OL Vallée,HUMAN JUKEBOX : FABIEN BENOIT,1699732800000,100,Divers,https://www.ninkasi.fr/agenda/human-jukebox-fabien-benoit-14/
-Ninkasi OL Vallée,JAZZ À OL VALLÉE : FRÉDÉRIC ARNOUX TRIO,1700413200000,100,Jazz,https://www.ninkasi.fr/agenda/jazz-a-ol-vallee-frederic-arnoux-trio/
-Ninkasi Part-Dieu,The French Groose,1698429600000,100,Divers,https://www.ninkasi.fr/agenda/human-jukebox-the-french-goose-6/
-Ninkasi Part-Dieu,FABB,1699041600000,100,Divers,https://www.ninkasi.fr/agenda/human-jukebox-fabb-11/
-Ninkasi Part-Dieu,OBROVSKY,1699646400000,100,Divers,https://www.ninkasi.fr/agenda/obrovsky/
-Ninkasi Part-Dieu,OCTOPUS GARDEN,1700251200000,100,Rock,https://www.ninkasi.fr/agenda/octopus-garden-20/
-Ninkasi Saint Paul,JAZZ À ST PAUL : MARC CABRERA DUO,1698433200000,100,Jazz,https://www.ninkasi.fr/agenda/jazz-a-st-paul-marc-cabrera-duo/
-Ninkasi Saint Paul,MISTER MELLOW,1698955200000,100,Divers,https://www.ninkasi.fr/agenda/human-jukebox-mister-mellow-7/
-Ninkasi Saint Paul,JAM SESSION JAZZ · LINKS TRIO,1699644600000,100,Jazz,https://www.ninkasi.fr/agenda/jam-session-jazz-%c2%b7-links-trio/
-Ninkasi Vaise,STEVE ZISSOU & THE WALLACE,1698433200000,100,Rock,https://www.ninkasi.fr/agenda/steve-zissou-the-wallace/
-Ninkasi Vaise,GET THE MUSIC RIGHT,1700856000000,100,Rock,https://www.ninkasi.fr/agenda/get-the-music-right/
-Farmer,MARTYR WHORE ✚ THE MIDNIGHT COMPUTERS,1697824800000,100,Rock,https://www.facebook.com/events/1445308672926023?locale=fr_FR
-Farmer,STONE FROM THE SKY + COULD SEED + BAGGARHÜM,1697911200000,100,Rock,https://www.facebook.com/events/1358455638075815?locale=fr_FR
-Farmer,ADA ODA ✚ CHACAL,1698256800000,100,Rock,https://www.facebook.com/events/1697710757409046?locale=fr_FR
-Farmer,CRAWFORD + FACE 2 FAKE,1698429600000,100,Rock,https://www.facebook.com/events/146101911892172?locale=fr_FR
-Farmer,Vipères Sucrées Salées + Folloï + Sour Tones,1698516000000,100,Rock,https://www.facebook.com/events/626911132958722?locale=fr_FR
-Farmer,LISATYD + MAVEN HILL + Trigger King,1698951600000,100,Rock,https://www.facebook.com/events/334923989048519?locale=fr_FR
-Farmer,YOUFF + ASSASSIN'S TEAPOT,1699038000000,100,Rock,https://www.facebook.com/events/530898322557793?locale=fr_FR
-Farmer,PENNY WAS RIGHT + NICK HEYWOOD,1699124400000,100,Rock,https://www.facebook.com/events/1282312102427763?locale=fr_FR
-Farmer,Poly-Math + Inner Landscape,1699385400000,100,Rock,https://www.facebook.com/events/1470500023720691?locale=fr_FR
-Farmer,DEAD CHIC + FOGG,1699470000000,100,Rock,https://www.facebook.com/events/341463765114157?locale=fr_FR
-Farmer,NĒDL + DELIRIUM,1699556400000,100,Rock,https://www.facebook.com/events/804317351481628?locale=fr_FR
-Farmer,PHOENICIAN DRIVE ✚ MIDLIFE,1700074800000,100,Rock,https://www.facebook.com/events/296421376060400?locale=fr_FR
-Farmer,Spurv + Still Waters Run Deep,1700163000000,100,Rock,https://www.facebook.com/events/627081855855441?locale=fr_FR
-Farmer,RORCAL + STORIES BONES TELL,1700247600000,100,Rock,https://www.facebook.com/events/231941539460726?locale=fr_FR
-Farmer,DJIIN + BEYOND BIZARRE,1700334000000,100,Rock,https://www.facebook.com/events/3733943386932695?locale=fr_FR
-Farmer,LEFT SHORE ✚ WASHER,1700766000000,100,Rock,https://www.facebook.com/events/154030300980782?locale=fr_FR
-Farmer,RVG ✚ MARLÈNE LARSEN,1700938800000,100,Rock,https://www.facebook.com/events/667558878132703?locale=fr_FR
-Farmer,GIÖBIA + FLYING DISK + Guest,1702666800000,100,Rock,https://www.facebook.com/events/3649322925297311?locale=fr_FR
-Le Petit Salon,UTOPIA #2 : A STRANGE WEDDING B2B LISA MORE / KICK 21 / SUERTE / DISSONNE,1698526800000,250,Electro,https://yurplan.com/events/Utopia-A-Strange-Wedding-B2-B-Lisa-More-Kick21-Suerte-Dissonne-and-More/111423
-Le Petit Salon,THIS IS HOUSE : NATSCH / GREG REO,1698789600000,250,Electro,https://yurplan.com/events/This-is-House-Natsch-Greg-Reo-and-More/111480
-Le Petit Salon,KOLTER / B FROM E / CROWD CONTROL / MAGGY SMISS,1699048800000,250,Electro,https://yurplan.com/events/Kolter-Crowd-Control-B-from-E-and-More/111424
-Le Petit Salon,THIS IS TECHNO : CARHL / MESSALINE,1699135200000,250,Electro,https://yurplan.com/events/This-is-Techno-Melodic-Carhl-Messaline-and-More/111415
-Le Petit Salon,NEO RAVE : INDECORUM / MILA DIETRICH / LUX / CROW,1699653600000,250,Electro,https://yurplan.com/events/Neo-Rave-Mila-Dietrich-Indecorum-Lux-and-More/111554
-Le Petit Salon,LAWAN B2B DAX J,1700258400000,250,Electro,https://yurplan.com/events/Dax-J-B2-B-Blawan-and-More/111412
-Le Petit Salon,THIS IS HOUSE : CROWD CONTROL / MAGGY SMISS,1700344800000,250,Electro,https://yurplan.com/events/This-is-House-Crowd-Control-Maggy-Smiss-and-More/112092
-Le Petit Salon,THIS IS DISCO : VYKTOR NOVA / TERROR MIKE,1700863200000,250,Electro,https://yurplan.com/events/This-is-Disco-Vyktor-Nova-Terror-Mike/111714
-Le Petit Salon,PAULA TEMPLE / TAUCETI / NAV,1700949600000,250,Electro,https://yurplan.com/events/Paula-Temple-Nav-Tauceti-and-More/112088
-Le Petit Salon,GLOWAL / 19:26 / JAS/T / NOMORE,1701468000000,250,Electro,https://yurplan.com/events/Glowal-19-26-Jas-t-Nomore-and-More/111398
-Le Petit Salon,HECTOR OAKS / DJ CHUIMIX / SHAMSIEL,1702072800000,250,Electro,https://yurplan.com/events/Hector-Oaks-DJ-Chuimix-Shamsiel-and-More/111897
-Transbordeur,LARKIN POE + THE SHEEPDOGS,1698429600000,500,Rock,https://www.transbordeur.fr/agenda-2023-2024/larkin-poe-the-sheepdogs-ven-27-oct-23/
-Transbordeur,DASCO + DEEPNEUE + FKA.M4A + L'HOMME SEUL + MAÏ-LINH + MADMOIZEL + P ERRINE,1698526800000,500,Electro,https://www.transbordeur.fr/agenda-2023-2024/garcon-sauvage-xxl-happy-monster-sam-28-oct-23/
-Transbordeur,SUNNY WAR,1698692400000,250,Jazz,https://www.transbordeur.fr/agenda-2023-2024/sunny-war-lun-30-oct-2023/
-Transbordeur,THE MURDER CAPITAL + SOAK,1698775200000,250,Rock,https://www.transbordeur.fr/agenda-2023-2024/the-murder-capital-mar-31-oct-23/
-Halle Tony Garnier,Michel SARDOU,1703012400000,1000,Rock,https://www.halle-tony-garnier.com/fr/programmation/michel-sardou
-Toï Toï Le Zinc,Soirée brésilienne - Avec FORRÓFA et DEIXA GINGAR,1697823000000,100,Divers,https://www.toitoilezinc.fr/evenement/1037086/soiree-bresilienne-avec-forrofa-et-deixa-gingar/
-Transbordeur,TRYM | DJ CHUIMIX B2B PASCAL MENTAL | NKT | FARKAS,1698703200000,500,Electro,https://www.transbordeur.fr/agenda-2023-2024/trym-dj-chuimix-b2b-pascal-mental-nkt-farkas-mar-31-oct-23/
-Transbordeur,WEYES BLOOD,1698949800000,500,Rock,https://www.transbordeur.fr/agenda-2023-2024/weyes-blood-jeu-02-nov-23/
-Transbordeur,LETO,1699038000000,500,Rap,https://www.transbordeur.fr/agenda-2023-2024/leto-ven-03-nov-23/
-Transbordeur,DJ HEARTSTRING | AISHA | FASTER HORSES,1699050600000,250,Electro,https://www.transbordeur.fr/agenda-2023-2024/dj-heartstring-aisha-faster-horses-ven-03-nov-23/
-Transbordeur,CAPLETON & THE PROPHECY BAND | BONO BEN,1699380000000,250,Divers,https://www.transbordeur.fr/agenda-2023-2024/live-echo-capleton-bono-ben-mar-07-nov-23/
-Transbordeur,LITTLE BIG,1699470000000,500,Rap,https://www.transbordeur.fr/agenda-2023-2024/little-big-mer-08-nov-23/
-Transbordeur,MÉLISSA LAVEAUX | DOWDELIN,1699556400000,500,Rock,https://www.transbordeur.fr/agenda-2023-2024/melissa-laveaux-jeu-09-nov-23/
-Transbordeur,FLAVIEN BERGER | HANAA OUASSIM,1699642800000,500,Rock,https://www.transbordeur.fr/agenda-2023-2024/flavien-berger-ven-10-nov-23/
-Transbordeur,BILLX | DIMENSION BONUS | LETHYX NEKUIA | RUSSIAN VILLAGE BOYS,1699741800000,500,Electro,https://www.transbordeur.fr/agenda-2023-2024/warum-meine-liebe-billx-dimension-bonus-lethyx-nekuia-russian-village-boys-sam-11-nov-23/
-Transbordeur,TIMBER TIMBRE,1699988400000,500,Rock,https://www.transbordeur.fr/agenda-2023-2024/timber-timbre-mar-14-nov-23/
-Transbordeur,HOSHI | LAURIE DARMON,1700074800000,500,Divers,https://www.transbordeur.fr/agenda-2023-2024/hoshi-mer-15-nov-23/
-Transbordeur,BROKEN BACK,1700161200000,250,Jazz,https://www.transbordeur.fr/agenda-2023-2024/broken-back-jeu-16-nov-23/
-Transbordeur,JOHAN PAPACONSTANTINO | EDOUARD BIELLE,1700247600000,500,Electro,https://www.transbordeur.fr/agenda-2023-2024/johan-papaconstantino-edouard-bielle-ven-17-nov-23/
-Transbordeur,DEVENDRA BANHART | JOHN MOODS,1700334000000,500,Divers,https://www.transbordeur.fr/agenda-2023-2024/broken-back-jeu-16-nov-23/
-Transbordeur,KID FRANCESCOLI,1700852400000,500,Electro,https://www.transbordeur.fr/agenda-2023-2024/kid-francescoli-ven-24-nov-23/
-Transbordeur,A.A. WILLIAMS | KALANDRA | LYS MORKE,1700938800000,250,Rock,https://www.transbordeur.fr/agenda-2023-2024/aa-williams-kalandra-lys-morke-sam-25-nov-23/
-Transbordeur,ÁSGEIR,1701198000000,250,Rock,https://www.transbordeur.fr/agenda-2023-2024/asgeir-mar-28-nov-23/
-Transbordeur,CALLING MARIAN,1701284400000,250,Electro,https://www.transbordeur.fr/agenda-2023-2024/calling-marian-mer-29-nov-23/
-Transbordeur,TSEW THE KID,1701370800000,500,Rap,https://www.transbordeur.fr/agenda-2023-2024/tsew-the-kid-jeu-30-nov-23/
-Transbordeur,PIERRE DE MAERE | MIKI,1701457200000,500,Rock,https://www.transbordeur.fr/agenda-2023-2024/pierre-de-maere-ven-01-dec-23/
-Transbordeur,THE STRANGERS | SELIL,1701543600000,250,Rap,https://www.transbordeur.fr/agenda-2023-2024/the-strangers-sam-02-dec-23/
-Transbordeur,GEORGIO | AUPINARD,1701975600000,500,Rap,https://www.transbordeur.fr/agenda-2023-2024/georgio-jeu-07-dec-23/
-Transbordeur,LA DARUDE,1702161000000,500,Electro,https://www.transbordeur.fr/agenda-2023-2024/la-darude-sam-09-dec-23/
-Transbordeur,AIME SIMONE,1702407600000,500,Electro,https://www.transbordeur.fr/agenda-2023-2024/aime-simone-mar-12-dec-23/
-Transbordeur,NISKA,1702494000000,500,Rap,https://www.transbordeur.fr/agenda-2023-2024/niska-mer-13-dec-23/
-Transbordeur,GANACHE,1702580400000,500,Rock,https://www.transbordeur.fr/agenda-2023-2024/ganache-jeu-14-dec-23/
-Transbordeur,TALISCO,1702666800000,250,Rock,https://www.transbordeur.fr/agenda-2023-2024/georgio-jeu-07-dec-23/
-Transbordeur,ELOI,1702753200000,250,Rock,https://www.transbordeur.fr/agenda-2023-2024/eloi-sam-16-dec-23/
-Transbordeur,YUZMV,1705086000000,500,Rap,https://www.transbordeur.fr/agenda-2023-2024/yuzmv-ven-12-jan-24/
-Transbordeur,SOULWAX,1705518000000,500,Rock,https://www.transbordeur.fr/agenda-2023-2024/soulwax-mer-17-jan-23/
-Transbordeur,EAGLE-EYE CHERRY,1706554800000,250,Rock,https://www.transbordeur.fr/agenda-2023-2024/georgio-jeu-07-dec-23/
-Transbordeur,SWING,1706986800000,250,Rap,https://www.transbordeur.fr/agenda-2023-2024/georgio-jeu-07-dec-23/
-Le Périscope,Radio Hito,1697914800000,250,Divers,https://www.periscope-lyon.com/en/concerts/radio-hito-solo-2/
-Le Périscope,Kling Extendted,1698174000000,250,Divers,https://www.periscope-lyon.com/en/concerts/kling-extendted/
-Le Périscope,Nappy Nina | Stas Thee Boss,1698433200000,250,Rap,https://www.periscope-lyon.com/en/concerts/nappy-nina-stas-thee-boss-2/
-Le Périscope,Kaumwald | MTUA | Gil.Barte,1698782400000,250,Divers,https://www.periscope-lyon.com/en/concerts/kaumwald-mtua-gil-barte-gauthier-plaetevoet-2/
-Le Périscope,MADMADMAD | Omni Selassi,1698868800000,250,Rock,https://www.periscope-lyon.com/en/concerts/madmadmad-omni-selassi-2/
-Le Périscope,Oursin,1699041600000,250,Divers,https://www.periscope-lyon.com/en/concerts/oursin-2/
-Le Périscope,Bitchin Bajas,1699387200000,250,Divers,https://www.periscope-lyon.com/en/concerts/bitchin-bajas/
-Le Périscope,Elg et La chimie,1699473600000,250,Divers,https://www.periscope-lyon.com/en/concerts/elg-et-la-chimie-2/
-Le Périscope,Vincent Courtois Robin Fincker et Daniel Erdmann,1699646400000,250,Jazz,https://www.periscope-lyon.com/en/concerts/vincent-courtois-robin-fincker-et-daniel-erdmann-2/
-Le Périscope,Howlin’ Jaws | Vera Daisiesi,1699732800000,250,Rock,https://www.periscope-lyon.com/en/concerts/howlin-jaws-2/
-Le Périscope,SAN Trio,1700078400000,250,Divers,https://www.periscope-lyon.com/en/concerts/san-trio/
-Le Périscope,Maciej Obara Quartet,1700251200000,250,Rock,https://www.periscope-lyon.com/en/concerts/maciej-obara-quartet-3/
-Le Périscope,ElliAViR,1700596800000,250,Divers,https://www.periscope-lyon.com/en/concerts/elliavir-2/
-Le Périscope,Amin Al Aiedy – SHAMS,1700596800000,250,Divers,https://www.periscope-lyon.com/en/concerts/amin-al-aiedy-shams-2/
-Le Périscope,Safia Nolin | Claire Days,1700856000000,250,Rock,https://www.periscope-lyon.com/en/concerts/safia-nolin-claire-days-2/
-Le Périscope,Henriette Eilersten Trio,1700942400000,250,Jazz,https://www.periscope-lyon.com/en/concerts/henriette-eilersten-trio/
-Le Périscope,CHROMB!,1701201600000,250,Rock,https://www.periscope-lyon.com/en/concerts/chromb-5/
-Le Périscope,Bestioles Blues Bazar,1701288000000,250,Rock,https://www.periscope-lyon.com/en/concerts/howlin-jaws-2/
-Halle Tony Garnier,JAIN,1698429600000,1000,Rock,https://www.halle-tony-garnier.com/fr/programmation/jain
-Halle Tony Garnier,GAZO,1699556400000,1000,Rap,https://www.halle-tony-garnier.com/fr/programmation/gazo
-Halle Tony Garnier,LES COWBOYS FRINGANTS,1699642800000,1000,Rock,https://www.halle-tony-garnier.com/fr/programmation/les-cowboys-fringants
-Halle Tony Garnier,LOMEPAL,1699812000000,1000,Divers,https://www.halle-tony-garnier.com/fr/programmation/lomepal-3
-Halle Tony Garnier,DJADJA & DINAZ,1700852400000,1000,Divers,https://www.halle-tony-garnier.com/fr/programmation/djadja-dinaz
-Halle Tony Garnier,SAEZ,1700938800000,1000,Rock,https://www.halle-tony-garnier.com/fr/programmation/saez
-Halle Tony Garnier,M POKORA,1702407600000,1000,Divers,https://www.halle-tony-garnier.com/fr/programmation/m-pokora
-Halle Tony Garnier,PASCAL OBISPO,1702580400000,1000,Rock,https://www.halle-tony-garnier.com/fr/programmation/pascal-obispo
-Halle Tony Garnier,SOFIANE PAMART,1702666800000,1000,Divers,https://www.halle-tony-garnier.com/fr/programmation/sofiane-pamart
-Halle Tony Garnier,MICHEL SARDOU,1703098800000,1000,Divers,https://www.halle-tony-garnier.com/fr/programmation/michel-sardou-2
-Halle Tony Garnier,I HATE MODELS,1705777200000,1000,Electro,https://www.halle-tony-garnier.com/fr/programmation/i-hate-models
-Le Sonic,Das Kinn,1699124400000,250,Rock,https://sonic-lyon.fr/facebook-event/das-kinn-premiere-partie/
-Le Sonic,FACS,1699383600000,250,Rock,https://sonic-lyon.fr/facebook-event/facs/
-Le Sonic,Agent Side Grinder,1699902000000,250,Rock,https://sonic-lyon.fr/facebook-event/agent-side-grinder/
-Le Sonic,Hey colossus,1699729200000,250,Rock,https://sonic-lyon.fr/facebook-event/hey-colossus-premiere-partie/
-Le Sonic,Leo Leonard | Sara Saphir,1700161200000,250,Rock,https://sonic-lyon.fr/facebook-event/leo-leonard-sara-saphir/
-Le Sonic,Holy Wave | TV Sundaze,1700593200000,250,Rock,https://sonic-lyon.fr/facebook-event/holy-wave/
-Le Sonic,Nuovo Testamento,1701457200000,250,Rock,https://sonic-lyon.fr/facebook-event/nuovo-testamento/
-Le Sonic,Hilary Woods | Elisa Flores,1701802800000,250,Rock,https://sonic-lyon.fr/facebook-event/hilary-woods-elisa-flores/
-Le Périscope,Kokoko!,1701806400000,250,Divers,https://www.periscope-lyon.com/concerts/kokoko/
-Le Périscope,Why Patterns?,1701892800000,250,Divers,https://www.periscope-lyon.com/concerts/why-patterns/
-Le Périscope,Colin Stetson X Stian Westerhus – 1017,1702584000000,250,Jazz,https://www.periscope-lyon.com/concerts/colin-stetson-x-stian-westerhus-1017/
-Le Périscope,Les Marquises | Agathe Max,1702670400000,250,Divers,https://www.periscope-lyon.com/concerts/les-marquises-agathe-max/
-Le Périscope,Ti’Kaniki Kabar Maloya Fet Kaf,1702756800000,250,Rock,https://www.periscope-lyon.com/concerts/tikaniki-kabar-maloya-fet-kaf/
-Marché Gare,FORUM JAZZ 2023,1701450000000,250,Jazz,https://marchegare.fr/agenda/forumjazz-2023
-Marché Gare,SILLY BOY BLUE,1702666800000,250,Rock,https://marchegare.fr/agenda/silly-boy-blue
-Marché Gare,GIANT ROOKS,1704826800000,250,Rock,https://marchegare.fr/agenda/giant-rooks
-Marché Gare,UGO DEL ROSSO,1700566200000,100,Divers,https://marchegare.fr/agenda/ugo-del-rosso
-Marché Gare,MONARK,1701775800000,100,Divers,https://marchegare.fr/agenda/monark
-Salle des Rancy,MARLÈNE LARSEN,1701775800000,100,Divers,https://marchegare.fr/agenda/marlene-larsen
-Le Radiant,RIVAL SONS,1698256800000,500,Rock,
-Le Radiant,RENAUD,1698953400000,500,Divers,
-Le Radiant,RENAUD,1699039800000,500,Divers,
-Le Radiant,GRUPO COMPAY SEGUNDO,1699299000000,500,Divers,
-Le Radiant,MARCUS MILLER,1699383600000,500,Jazz,
-Le Radiant,RODRIGO Y GABRIELA,1699729200000,500,Divers,
-Le Radiant,LE MONDE MERVEILLEUX DE MIYAZAKI,1699801200000,500,Divers,
-Le Radiant,BEN L'ONCLE SOUL,1700593200000,500,Rap,
-Le Radiant,NEJ',1700679600000,500,Divers,
-Le Radiant,IZÏA,1701284400000,500,Rock,
-Le Radiant,ADE,1701975600000,500,Divers,
-Le Radiant,YSE + THX4CRYING,1702323000000,500,Divers,
-Le Radiant,GABI HARTMANN,1702753200000,500,Divers,
-Le Radiant,ALBIN DE LA SIMONE,1703014200000,500,Divers,
-Le Radiant,SARA SAPHIR + ADELE ET ROBIN,1704742200000,500,Divers,
-Le Sucre,Vladimir Dubyshkin,1698440400000,250,Electro,https://le-sucre.eu/agenda/mini-club-25/
-Le Sucre,Jennifer Loveless,1698526800000,250,Electro,https://le-sucre.eu/agenda/16087/
-Le Sucre,S.society x Bassiani,1698598800000,250,Electro,https://le-sucre.eu/agenda/s-society-x-bassiani-10-years/
-Le Sucre,Magic Mardi,1698775200000,250,Divers,https://le-sucre.eu/agenda/magic-mardi-29/
-Le Sucre,Happy Nex Tears | Breakintherave,1699048800000,250,Electro,https://le-sucre.eu/agenda/mini-club-x-minimaxxx/
-Le Sucre,Red Axes,1699135200000,250,Electro,https://le-sucre.eu/agenda/red-axes-live-one-more-city/
-Le Sucre,Vel | Sugar | Schacke | Mohajer,1699203600000,250,Electro,https://le-sucre.eu/agenda/s-society-55/
-Le Sucre,Magic Mardi,1699380000000,250,Divers,https://le-sucre.eu/agenda/magic-mardi-30/
-Le Sucre,Moteka | Electric Rescue,1699653600000,250,Electro,https://le-sucre.eu/agenda/mini-club-x-skryptom/
-Le Sucre,Kozy | DMS | Yourgoldenboyy,1699740000000,250,Rap,https://le-sucre.eu/agenda/artjacking-club-5/
-Le Sucre,Desire | Mac Decols | Hyperaktivist,1699808400000,250,Electro,https://le-sucre.eu/agenda/s-society-54/
-Le Sucre,Magic Mardi : le dernier,1699984800000,250,Divers,https://le-sucre.eu/agenda/super-magic-mardi-secret-guest/
-Le Sucre,Lola Haro | Sansibar,1700258400000,250,Electro,https://le-sucre.eu/agenda/le-sucre-10-ans-curated-by-marcel-dettmann-3/
-Le Sucre,Gesloten Cirkel | Marcel Dettmann | Ogazon,1700344800000,250,Electro,https://le-sucre.eu/agenda/le-sucre-10-ans-curated-by-marcel-dettmann-2/
-Le Sucre,Marcel Dettmann + CEM,1700413200000,250,Electro,https://le-sucre.eu/agenda/10-ans-week-end-curated-by-marcel-dettmann/
-Le Sucre,Skin On Skin + Bernadette,1700863200000,250,Electro,https://le-sucre.eu/agenda/mini-club-24/
-Le Sucre,Teki Latex takeover,1700949600000,250,Electro,https://le-sucre.eu/agenda/teki-latex-takeover/
-Le Sucre,LB aka LABAT + HAAi,1701018000000,250,Electro,https://le-sucre.eu/agenda/s-society-52/
-Le Sucre,Shygirl,1702143000000,250,Rap,https://le-sucre.eu/agenda/concert/
-Grrrnd Zero - Vaulx-en-Velin,L'atelier des Canulars,1699038000000,250,Rock,https://www.grrrndzero.org/index.php/2482-ven-3-11-soiree-de-soutien-a-l-atelier-des-canulars
-Grrrnd Zero - Vaulx-en-Velin,Ecoutes Périphériques Festival,1699120800000,250,Electro,https://www.grrrndzero.org/index.php/2487-sam-dim-4-et-5-11-ecoutes-peripheriques-petit-multidifest-de-musiques
-Grrrnd Zero - Vaulx-en-Velin,Ecoutes Périphériques Festival,1699189200000,250,Electro,https://www.grrrndzero.org/index.php/2487-sam-dim-4-et-5-11-ecoutes-peripheriques-petit-multidifest-de-musiques
-Grrrnd Zero - Vaulx-en-Velin,Soirée du Fouvement,1699639200000,250,Divers,https://www.grrrndzero.org/index.php/2488-ven-09-11-une-soiree-du-fouvement
-Grrrnd Zero - Vaulx-en-Velin,Moineau Ecarlate | Manuel Duval | Garbage Pail Kids |Csocso | Ublo,1699812000000,250,Divers,https://www.grrrndzero.org/
-Grrrnd Zero - Vaulx-en-Velin,Pronostic Vital | Theoreme | Osilsi,1700157600000,250,Divers,https://www.grrrndzero.org/
-Grrrnd Zero - Vaulx-en-Velin,Chaton Volant | Horizon 2020,1700244000000,250,Divers,https://www.grrrndzero.org/
-Grrrnd Zero - Vaulx-en-Velin,LYL Radio carte blanche,1700330400000,250,Divers,https://www.grrrndzero.org/
-Grrrnd Zero - Vaulx-en-Velin,LESS,1700589600000,250,Divers,https://www.grrrndzero.org/
-Grrrnd Zero - Vaulx-en-Velin,Lola et Nouy | Louis de DATA | Adel Faure | Juj,1700848800000,250,Divers,https://www.grrrndzero.org/
-Grrrnd Zero - Vaulx-en-Velin,Point de suture | Eyes and Legs | Elisa Flores | Dolores | Donny Vegas,1700935200000,250,Divers,https://www.grrrndzero.org/
-Hot Club,Jam Groove - Va BB Fusion,1698253200000,100,Jazz,https://www.hotclubjazzlyon.com/evenements/20230731-jam-groove-funk-fiction/
-Hot Club,Hugo Afettouche - Tetralyre,1698341400000,100,Jazz,https://www.hotclubjazzlyon.com/evenements/20230803-hugo-afettouche-tetralyre/
-Hot Club,Bulb,1698427800000,100,Jazz,https://www.hotclubjazzlyon.com/evenements/20230803-bulb/
-Hot Club,Captain Flapscat,1698517800000,100,Jazz,https://www.hotclubjazzlyon.com/evenements/20230803-jam-new-orleans-captain-flapscat-2/
-Hot Club,Jam Jazz - Joachim Expert,1698867000000,100,Jazz,https://www.hotclubjazzlyon.com/evenements/20230803-jam-jazz-joachim-expert-reloaded-trio-3/
-Hot Club,François Gallix - Benoit Thévenot,1698953400000,100,Jazz,https://www.hotclubjazzlyon.com/evenements/20230803-duo-francois-gallix-et-benoit-thevenot-hommage-a-michel-graillier/
-Hot Club,Piano Night : Alfio Origlio - Fabrice Tarel,1699039800000,100,Jazz,https://www.hotclubjazzlyon.com/evenements/20230803-piano-night-alfio-origlio-fabrice-tarel-etienne-deconfin/
-Hot Club,TJT4 feat. Luna Garcia-Odin,1699126200000,100,Jazz,https://www.hotclubjazzlyon.com/evenements/20230803-tjt4-feat-luna-garcia-odin/
-Hot Club,Jam Vocale - Adèle Bracco & Co,1699471800000,100,Jazz,https://www.hotclubjazzlyon.com/evenements/20230731-jam-vocale-adele-bracco-and-co/
-Hot Club,Pierre Achache & Cédric Granelle,1699558200000,100,Jazz,https://www.hotclubjazzlyon.com/evenements/20230731-victoria-alexanyan-quintet/
-Hot Club,Les Frères Fau,1699644600000,100,Jazz,https://www.hotclubjazzlyon.com/evenements/20230803-les-freres-fau-2/
-Hot Club,Zaza Desiderio Trio,1699731000000,100,Jazz,https://www.hotclubjazzlyon.com/evenements/20230803-zaza-desiderio-trio/
-Hot Club,Simon Goubert - Ablaye Cissoko,1699817400000,100,Jazz,https://www.hotclubjazzlyon.com/evenements/20230803-african-jazz-roots/
-Hot Club,Jam New Orleans - Captain Flapscat,1700076600000,100,Jazz,https://www.hotclubjazzlyon.com/evenements/20230803-jam-new-orleans-captain-flapscat/
-Hot Club,Vincent Périer - Julien Bertrand Quintet,1700163000000,100,Jazz,https://www.hotclubjazzlyon.com/evenements/20230803-vincent-perier-et-julien-bertrand-quintet/
-Hot Club,One for Sarah Vaughan,1700249400000,100,Jazz,https://www.hotclubjazzlyon.com/evenements/20230803-one-for-sarah-vaughan/
-Hot Club,DUO Olivier Ker Ourio & Manuel Rocheman,1700335800000,100,Jazz,https://www.hotclubjazzlyon.com/evenements/20230803-duo-olivier-ker-ourio-manuel-rocheman/
-Hot Club,Jam Groove - Lapili Session,1700681400000,100,Jazz,https://www.hotclubjazzlyon.com/evenements/20230731-jam-groove-fun-fiction-2/
-Hot Club,Romain Pilon - Jeff Denson Trio,1700767800000,100,Jazz,https://www.hotclubjazzlyon.com/evenements/20230803-romain-pilon-jeff-denson-trio/
-Hot Club,Noé Sécula Quartet,1700767800000,100,Jazz,https://www.hotclubjazzlyon.com/evenements/20230803-noe-secula-quartet/
-Hot Club,Camille Thouvenot Trio + Guest,1700940600000,100,Jazz,https://www.hotclubjazzlyon.com/evenements/20230803-camille-thouvenot-trio-guest/
-Hot Club,Pierrick Menuau 4tet,1701372600000,100,Jazz,https://www.hotclubjazzlyon.com/evenements/20230803-pierrick-menuau-4tet/
-Hot Club,Pierre de Bethmann - Nelson Veras Trio,1701459000000,100,Jazz,https://www.hotclubjazzlyon.com/evenements/20230803-pierre-de-bethmann-trio-2/
-Hot Club,Pipon Garcia Trio 2.0 feat. Sir Jean,1701545400000,100,Jazz,https://www.hotclubjazzlyon.com/evenements/20230803-pipon-garcia-trio-2-0-feat-sire-jean/
-Hot Club,Jam Jazz - Joachim Expert,1701891000000,100,Jazz,https://www.hotclubjazzlyon.com/evenements/20230803-jam-jazz-joachim-expert-reloaded-trio-2/
-Hot Club,Jam Vocal - Lou Rivaille,1702495800000,100,Jazz,https://www.hotclubjazzlyon.com/evenements/20230803-jam-vocale-lou-rivaille-2/
-Chapelle de la Trinité,Forum Jazz : Amphitryo + Célia Kameni – Méduse,1701286200000,250,Jazz,https://www.hotclubjazzlyon.com/evenements/20230803-trio-jane-cockell-avec-jean-louis-almosnino-et-marcel-bottaro/
-Péniche Loupika,Ali Eren Yüksel,1698339600000,100,Divers,
-Péniche Loupika,Analog Catharsis presents Gate 02,1698433200000,100,Electro,
-Péniche Loupika,Halloween Loupika,1699210800000,100,Divers,
-Péniche Loupika,Xpaola | Time Loop Control | Hadj Y Baba,1699560000000,100,Electro,
-Péniche Loupika,Colibri | Delayre | Lwada,1701288000000,100,Electro,
-Kraspek Myzik,MY NORTH EYE | HANGMOON,1698345000000,100,Rock,https://Kraspekmyzik.com/concert/my-north-eye/
-Kraspek Myzik,EUGENE RIPPER | KAROLINE & THE FREE FOLKS,1699039800000,100,Rock,https://Kraspekmyzik.com/concert/eugene-ripper/
-Kraspek Myzik,SANTA JESSICA | ONZE,1699126200000,100,Rock,https://Kraspekmyzik.com/concert/santa-jessica-onze/
-Kraspek Myzik,PANIC MONSTER | HEAVY KEVY | JOSEPH MERRICK,1699471800000,100,Rock,https://Kraspekmyzik.com/concert/panic-monster-heavy-kevy-joseph-merrick/
-Kraspek Myzik,JEFF MAILFERT,1699558200000,100,Divers,https://Kraspekmyzik.com/concert/jeff-mailfert/
-Kraspek Myzik,NADEJDA | ALIASING PHRASE,1699644600000,100,Rock,https://Kraspekmyzik.com/concert/nadejda/
-Groom,GREG S & ONIGIRI RECORDS,1698440400000,100,Divers,https://www.groomlyon.com/agenda/die-in-the-disco-w-greg-s-onigiri-records/
-Groom,Big love party : DUSTY NATION,1698528600000,100,Divers,https://www.groomlyon.com/agenda/big-love-party-dusty-nation/
-Groom,GROOM’S MADNESS LAB,1698771600000,100,Divers,https://www.groomlyon.com/agenda/halloween-night-grooms-madness-lab/
-Groom,Pierre Electrique | Pico | Leon,1698962400000,100,Divers,https://www.groomlyon.com/agenda/%f0%9d%90%94%f0%9d%90%a7%f0%9d%90%a4%f0%9d%90%a7%e2%8a%9a%f0%9d%90%b0%f0%9d%90%a7-%f0%9d%90%92%f0%9d%90%a1%f0%9d%90%a8%f0%9d%90%b0%f0%9d%90%9c%f0%9d%90%9a%f0%9d%90%ac%f0%9d%90%9e-%e2%8a%9a/
-Groom,All night long w/ SCHNAUTZI,1699050600000,100,Divers,https://www.groomlyon.com/agenda/all-night-long-schnautzi/
-Groom,Radiant Act invite EVA MAY,1699137000000,100,Divers,https://www.groomlyon.com/agenda/all-night-long-radiant-act-invite-eva-may/
-Groom,MANTA | OWEN LE GUEN,1699556400000,100,Rock,https://www.groomlyon.com/agenda/manta-%e2%80%a2-release-party-quicksand/
-La Rayonne,Favé + Danyl,1698253200000,250,Rap,https://larayonne.org/evenement/fave/
-La Rayonne,Resolve | Atlantis Chronicles | Dukkha,1698426000000,250,Rock,https://larayonne.org/evenement/resolve-atlantis-chronicles-dukkha/
-La Rayonne,Angel Karel | Blaspheme | Paralich | Soraä,1698525000000,250,Electro,https://larayonne.org/evenement/nogender-origins-requiem/
-La Rayonne,Benjamin Epps,1699124400000,250,Rap,https://larayonne.org/evenement/benjamin-epps/
-La Rayonne,The Dead Daisies | Spike,1699380000000,250,Rock,https://larayonne.org/evenement/the-dead-daisies-spike/
-La Rayonne,Rakoon | Hermit,1699642800000,250,Divers,https://larayonne.org/evenement/rakoon-hermit/
-La Rayonne,Jacidorex | FLKN | Encoded Data,1699740000000,250,Electro,https://larayonne.org/evenement/encore-x-unfaced-jacidorex-flkn-encoded-data/
-La Rayonne,Against The Current | LØLØ | Call Me Amour,1699812000000,250,Rock,https://larayonne.org/evenement/against-the-current/
-La Rayonne,Malevolence | Sylosis | Guilt Trip | Justice For The Damned,1700328600000,250,Rock,https://larayonne.org/evenement/malevolence-sylosis-guilt-trip-justice-for-the-damned/
-La Rayonne,VAV,1700758800000,250,Divers,https://larayonne.org/evenement/vav/
-La Rayonne,Médine | Demi Portion | Sidi Wacho | KLM | Kaynixe,1701367200000,250,Rap,https://larayonne.org/evenement/lyon-antifa-fest-10-ans/
-La Rayonne,Winnterzuko,1701457200000,250,Rap,https://larayonne.org/evenement/winnterzuko/
-La Rayonne,Belphegor | Arkona | Atrocity | Confess,1701797400000,250,Rock,https://larayonne.org/evenement/belphegor-arkona-atrocity-confess/
-Salle des Rancy,Slogan,1699644600000,100,Divers,https://www.salledesrancy.com/slogan/
-Salle des Rancy,Claude Lemesle,1700852400000,100,Divers,https://www.salledesrancy.com/claude-lemesle/
-Salle des Rancy,Delacourt | Sara Saphir,1701459000000,100,Divers,https://www.salledesrancy.com/delacourt-lundi-matin/
-Rock N Eat,Octavus Lupus | Gonezilla | Talvienkeli,1698341400000,250,Rock,https://www.rockneat.com/programmation
-Rock N Eat,DIVINE SHADE | OG•EZ•OR,1698429600000,250,Rock,https://www.rockneat.com/programmation
-Rock N Eat,ANIMALIZE | FURIES,1698516000000,250,Rock,https://www.rockneat.com/programmation
-Rock N Eat,Clan of Xymox | Nairod Yarg,1698606000000,250,Rock,https://www.rockneat.com/programmation
-Rock N Eat,CANNIBAL MOSQUITOS | TERREUR TWIST,1698951600000,250,Rock,https://www.rockneat.com/programmation
-Rock N Eat,The Roadies of the D. | One Hot Minute,1699038000000,250,Rock,https://www.rockneat.com/programmation
-Rock N Eat,DEATHAWAITS | WARCALL,1699124400000,250,Rock,https://www.rockneat.com/programmation
-Rock N Eat,IN OTHER CLIMES | EIGHT SINS | FIRST TRY,1699556400000,250,Rock,https://www.rockneat.com/programmation
-Rock N Eat,Censor Dodge | Bloody Flow | Labyrinth of Spirit,1699642800000,250,Rock,https://www.rockneat.com/programmation
-Rock N Eat,Sad But True | Now or Never,1699729200000,250,Rock,https://www.rockneat.com/programmation
-Rock N Eat,Wegferend | Solventis,1699988400000,250,Rock,https://www.rockneat.com/programmation
-Rock N Eat,Moho & Vivi jouent TRUST,1700074800000,250,Rock,https://www.rockneat.com/programmation
-Rock N Eat,DEATHSTARS | PRIEST | LIV SIN,1700679600000,250,Rock,https://www.rockneat.com/programmation
-Rock N Eat,HYPE LIGHTS | HEADKEYZ | FOGG,1700766000000,250,Rock,https://www.rockneat.com/programmation
-Rock N Eat,BïtzeBüllet | Highway | Aonaran | Skinx,1700852400000,250,Rock,https://www.rockneat.com/programmation
-Rock N Eat,Eve's Bite | Praetor | Revenge | Bel O Kan,1700938800000,250,Rock,https://www.rockneat.com/programmation
-Rock N Eat,DeadlySins | LomoR | Kamikrazy,1701284400000,250,Rock,https://www.rockneat.com/programmation
-Rock N Eat,Skaphos | Decima | Terres Froides,1701370800000,250,Rock,https://www.rockneat.com/programmation
-Toï Toï Le Zinc,INTI DJ Set,1698339600000,100,Divers,https://www.toitoilezinc.fr/evenement/1148254/inti-session/
-Toï Toï Le Zinc,INSEN | Mettani | Nessym,1698431400000,100,Divers,https://www.toitoilezinc.fr/evenement/1067648/mosaique-sonore-insen-mettani-nessym/
-Toï Toï Le Zinc,The Cooper & Forest Pooky Experience | Sweet Vicious,1698517800000,100,Rock,https://www.toitoilezinc.fr/evenement/1103797/the-cooper-forest-pooky-experience-sweet-vicious/
-Toï Toï Le Zinc,Exodus DJ Set,1698953400000,100,Electro,https://www.toitoilezinc.fr/evenement/986707/exodus/
-Toï Toï Le Zinc,Gazzel | Folloï | Mézinc,1699126200000,100,Electro,https://www.toitoilezinc.fr/evenement/1067669/sors-tes-cornes-gazzel-folloi-mezinc/
-Toï Toï Le Zinc,INTI DJ Set,1699552800000,100,Divers,https://www.toitoilezinc.fr/evenement/1148261/inti-session/
-Toï Toï Le Zinc,Bigre ! Big band + Guests,1699644600000,100,Jazz,https://www.toitoilezinc.fr/evenement/1148464/bigre-big-band-guests/
-Toï Toï Le Zinc,Duchesse Von Buffalo DJ Set,1700157600000,100,Electro,https://www.toitoilezinc.fr/evenement/1148520/duchesse-von-buffalo/
-Toï Toï Le Zinc,LGMX | Les Princesses Licornes | Bas-Relief,1700249400000,100,Electro,https://www.toitoilezinc.fr/evenement/1148527/lgmx-les-princesses-licornes-bas-relief/
-Toï Toï Le Zinc,Sabaly | Mad'j | Jahkasa | Sako Wana,1700335800000,100,Divers,https://www.toitoilezinc.fr/evenement/1148548/les-nuits-du-faso-2023-solidaires/
-Toï Toï Le Zinc,Tremplin 24h de l'INSA,1700679600000,100,Rock,https://www.toitoilezinc.fr/evenement/1172909/tremplin-24h-de-linsa/
-Toï Toï Le Zinc,Tremplin 24h de l'INSA,1701889200000,100,Rock,https://www.toitoilezinc.fr/evenement/1172916/tremplin-24h-de-linsa/
-Toï Toï Le Zinc,INTI DJ Set,1700762400000,100,Divers,https://www.toitoilezinc.fr/evenement/1148268/inti-session/
-Toï Toï Le Zinc,Cléo Azzo | Krill,1700854200000,100,Divers,https://www.toitoilezinc.fr/evenement/1148639/sortie-de-bain-o-cleo-azzo-krill/
-Toï Toï Le Zinc,Warrior Kids | Les Mauvais Garçons | Commando,1700940600000,100,Rock,https://www.toitoilezinc.fr/evenement/1067760/microsouillon-5-pas-de-retraite-pour-les-punk-rockers/
-Toï Toï Le Zinc,Ki | Single Ladies | ODC | Surface Tangibl,1701545400000,100,Rock,https://www.toitoilezinc.fr/evenement/1175415/la-police-mutile-linverse-repare/
-Bourse du Travail,Hugues Aufray,1698778800000,500,Divers,https://www.bourse-du-travail.com/hugues-aufray-pour-la-derniere-fois-tournee-180492.html
-Bourse du Travail,Festival Revival Music Tour,1699038000000,500,Divers,https://www.bourse-du-travail.com/festival-revival-music-tour-180828.html
-Bourse du Travail,Garou,1699383600000,500,Divers,https://www.bourse-du-travail.com/garou-tourne-180138.html
-Bourse du Travail,Didier Barbelivien,1699470000000,500,Divers,https://www.bourse-du-travail.com/didier-barbelivien-180149.html
-Bourse du Travail,Louane,1700074800000,500,Divers,https://www.bourse-du-travail.com/louane-le-club-des-sentiments-tournee-180146.html
-Bourse du Travail,Odelaf,1700852400000,500,Divers,https://www.bourse-du-travail.com/oldelaf-le-monde-est-beau-180140.html
-Bourse du Travail,Louis Bertignac,1702666800000,500,Divers,https://www.bourse-du-travail.com/louis-bertignac-tournee-180740.html
-Péniche Loupika,Zanzi + Dürüm Records,1698526800000,100,Electro,
-Ninkasi Gerland,Closing Ninkasi - soirée déstructurée,1699124400000,250,Electro,
-Rock N Eat,Modesto | The Segments,1701889200000,100,Rock,https://www.rockneat.com/programmation
-Rock N Eat,Babylon Pression | Boulons & Crew | Marla Singer,1702062000000,100,Rock,https://www.rockneat.com/programmation
-Rock N Eat,Tentation Meurtrières | Cabaret Fantôme | Crazy Night Killers,1702148400000,100,Rock,https://www.rockneat.com/programmation
-Rock N Eat,Blooming Discord | Giant Fragments | Mokery,1702666800000,100,Rock,https://www.rockneat.com/programmation
-Rock N Eat,ARCANE | KANABAE,1703185200000,100,Rock,https://www.rockneat.com/programmation
-Rock N Eat,ON-OFF ( tribute à Dire Straits ),1703271600000,100,Rock,https://www.rockneat.com/programmation
-Rock N Eat,The Road Crew (tribute Motörhead),1703790000000,100,Rock,https://www.rockneat.com/programmation
-Rock N Eat,Soledad | Synesthèse | Sleeping Fall,1703876400000,100,Rock,https://www.rockneat.com/programmation
-Farmer,TWO TRAINS LEFT | LIFEBOATS,1701453600000,100,Rock,https://www.facebook.com/events/2330666327117845
-Farmer,THE ABYSS TOLD ME | SYNESTHESE,1701543600000,100,Rock,https://www.facebook.com/events/7124565697608334
-Farmer,LORD FRIDAY THE 13TH + GADGET,1701975600000,100,Rock,https://www.facebook.com/events/864744818304843
-Farmer,THE PLOOKS | LEO BENMASS,1702580400000,100,Rock,https://www.facebook.com/events/350459860823391
-Farmer,GIÖBIA | FLYING DISK | CUSHDRIVE,1702666800000,100,Rock,https://www.facebook.com/events/3649322925297311
-Le Trokson,GŪTARA KYŌ | DESTROY ALL GONDOLAS,1701288000000,100,Rock,https://www.trokson.com/events/gutara-kyo-trash-punk-garage-japon-destroy-all-gondolas-black-surf-garage-it
-Le Trokson,BASIC PARTNER | WASHER,1701374400000,100,Rock,https://www.trokson.com/events/basic-partner-krautpunk-nantes-washer-indie-rock-lyon
-Opéra National de Lyon,Asynchrone plays Ryuichi Sakamoto,1701284400000,100,Divers,https://www.opera-lyon.com/fr/programmation/saison-2023-2024/opera-underground/asynchrone-plays-ryuichi-sakamoto-avec-le-quatuor-una-corda
-Bizarre !,SOKUU | EL BOBBY,1701370800000,100,Rap,https://bizarre-venissieux.fr/actualites/est-sokuu
-Farmer,LORE | JEANNE | RUSTED,1701372600000,100,Rock,
-Opéra National de Lyon,SANDRA NKAKÉ,1701457200000,100,Rock,https://www.opera-lyon.com/fr/programmation/saison-2023-2024/opera-underground/sandra-nkake
-La Rayonne,WINNTERZUKO,1701457200000,100,Rap,https://larayonne.org/evenement/winnterzuko/
-Toï Toï Le Zinc,LIVITY REGGAE BASH,1701457200000,100,Divers,https://www.toitoilezinc.fr/evenement/1173763/livity-reggae-bash/
-Le Trokson,GJ 106 DJ Set,1701457200000,100,Divers,
-Salle des Rancy,Delacourt + Sara Saphyr,1701459000000,100,Divers,https://www.salledesrancy.com/delacourt-sara-saphir/
-A Thou Bout d'Chant,CHIPO | YANKA,1701459000000,100,Rap,https://billetterie.athouboutdchant.com/evenement/01-12-2023-20-30-chipo-yanka
-Grrrnd Zero - Vaulx-en-Velin,ECHOPLAIN + TOMBOUCTOU + DORDOGNE,1701543600000,100,Rock,https://www.grrrndzero.org/
-Epicerie Moderne,TIF,1701545400000,100,Rap,https://epiceriemoderne.com/agenda/2023-12-02-tif-x-rifa
-Le Trokson,NORTH BY NORTH + GET BUCKETS,1701545400000,100,Rock,
-A Thou Bout d'Chant,NAWEL DOMBROWSKY + MEG,1701545400000,100,Divers,https://billetterie.athouboutdchant.com/evenement/02-12-2023-20-30-nawel-dombrowsky
-Salle des Rancy,DÉJEUNER CONCERT – MARLENE LARSEN,1701603000000,100,Divers,https://www.salledesrancy.com/culture/les-dejeuners-concert/
-Le Trokson,FIN DEL MUNDO | FUTURE DOGS,1701891000000,100,Rock,
-Le Trokson,MYCIAA | SCHLEU,1701977400000,100,Electro,
-Le Périscope,ELVIN BRANDHI | JOHANN MAZÉ ET BERTRAND FRAYSSE,1701972000000,100,Divers,https://www.periscope-lyon.com/concerts/johann-maze-bertrand-fraysse/
-Grrrnd Zero - Vaulx-en-Velin,MESA OF THE LOST WOMEN | GOLEM MÉCANIQUE | SOMATICAE | ÚJ BÁLA | MANOIR MOLLE,1702060200000,100,Divers,https://www.grrrndzero.org/
-La Rayonne,SOLEIL NOIR (DOOZ KAWA | SWIFT GUAD | DAVODKA),1702062000000,100,Rap,https://larayonne.org/evenement/soleil-noir-dooz-kawa-swift-guad-davodka/
-Toï Toï Le Zinc,CEFEDEM,1702062000000,100,Rap,https://www.toitoilezinc.fr/evenement/1198123/les-batifoles-au-toi-toi-le-zinc/
-Le Sonic,BENZII & OTER | EMMA,1702063800000,100,Divers,
-Le Périscope,NI | SADDAM WEBCAM,1702152000000,100,Divers,https://www.periscope-lyon.com/concerts/ni-saddam-webcam/
-Le G,Minds Feeling,1702670400000,100,Divers,
-Le Toboggan,Thomas FERSEN,1706211000000,100,Divers,https://letoboggan.com/spectacles/thomas_fersen-3359/
-Le Toboggan,Drums Brothers,1706383800000,100,Divers,https://letoboggan.com/spectacles/drum_brothers-3361/
-Le Toboggan,Maëlle,1707420600000,100,Divers,https://letoboggan.com/spectacles/ma_euml_lle-3365/
-Le Toboggan,Orchestre Symphonique RHAA,1707667200000,100,Divers,https://letoboggan.com/spectacles/orchestre_symphonique_rh_ocirc_ne_alpes_auvergne-3366/
-LDLC Arena,Calogero,1705518000000,100,Rock,https://www.olvallee.fr/evenement/calogero/
-LDLC Arena,Shaka Ponk,1706900400000,100,Rock,https://www.olvallee.fr/evenement/shaka-ponk-lyon-2024/
-LDLC Arena,Shaka Ponk,1706986800000,100,Rock,https://www.olvallee.fr/evenement/shaka-ponk-lyon-2024/
-LDLC Arena,Michel SARDOU,1707332400000,100,Divers,https://www.olvallee.fr/evenement/michel-sardou-lyon-2024-2/
-LDLC Arena,Hoshi,1710093600000,100,Divers,https://www.olvallee.fr/evenement/hoshi-lyon-2024/
-LDLC Arena,Grand Corps Malade,1710961200000,100,Divers,https://www.olvallee.fr/evenement/grand-corps-malade-lyon-2024/
-Warm audio,DROPDEAD CHAOS | PERSEIDE | LAST ADDICTION,1702578600000,100,Rock,https://www.facebook.com/events/661252982654430?locale=fr_FR
-Warm audio,Grade 2 | The Mogs,1706119200000,100,Rock,https://www.facebook.com/events/651005893593901?locale=fr_FR
-Warm audio,8°6 Crew | Claimed Choice,1706985000000,100,Rock,https://www.facebook.com/events/825719986223955?locale=fr_FR
-La Rayonne,Belphegor | Arkona | Atrocity | Monastery,1701797400000,100,Rock,https://larayonne.org/evenement/belphegor-arkona/
-La Rayonne,Eargasm God | Character 1 | Grand V,1702677600000,100,Electro,https://larayonne.org/evenement/2359-euronight-club-1512/
-La Rayonne,The Fat Bastard Gang Band | Mahom | Mystically | Debout Simama !,1702753200000,100,Divers,https://larayonne.org/evenement/collect-party/
-La Rayonne,Furax Barbarossa | DJ Maltfunk,1705086000000,100,Rock,https://larayonne.org/evenement/furax-barbarossa-dj-maltfunk/
-La Rayonne,Abbath | Toxic Holocaust | Hellripper,1705600800000,100,Rock,https://larayonne.org/evenement/abbath-toxic-holocaust-hellripper/
-La Rayonne,TesseracT | Unprocessed | The Callous Daoboys,1705687200000,100,Rock,https://larayonne.org/evenement/tessereact-unprocessed-the-callous-daoboys/
-La Rayonne,HK & Awa Ly,1706211000000,100,Divers,https://larayonne.org/evenement/hk-awa-ly/
-La Rayonne,Soom T & The Stone Monks | Fatbabs + Yor,1706293800000,100,Divers,https://larayonne.org/evenement/soom-t-the-stone-monks/
-La Rayonne,The Foxy Ladies | Tagada Jones | Opium du peuple,1706378400000,100,Rock,https://larayonne.org/evenement/wild-or-nothing-fest/
-Transbordeur,Aime Simone,1702422000000,100,Electro,https://www.petit-bulletin.fr/lyon/agenda-300354-aime-simone.html
-Halle Tony Garnier,M. Pokora,1702422000000,100,Rock,https://www.petit-bulletin.fr/lyon/agenda-179534-m-pokora.html
-Halle Tony Garnier,Pascal Obispo,1702594800000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-251960-pascal-obispo.html
-Opéra National de Lyon,Plug Trio,1702594800000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-306128-plug-trio.html
-A Thou Bout d'Chant,Lily Luca,1702594800000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-252439-lily-luca.html
-Auditorium,Maria Joao Pires,1702594800000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-306549-maria-joao-pires.html
-Marché Gare,Romane Santarelli + Mauvais Garçon,1702594800000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-306798-romane-santarelli-mauvais-garcon.html
-Le Périscope,1017 : Colin Stetson X Stian Westerhus,1702594800000,100,Jazz,https://www.petit-bulletin.fr/lyon/agenda-306827-1017-colin-stetson-x-stian-westerhus.html
-Le Trokson,Sovox + Mary Killjoy,1702594800000,100,Rock,https://www.petit-bulletin.fr/lyon/agenda-308094-sovox-mary-killjoy.html
-Halle Tony Garnier,Sofiane Pamart,1702681200000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-287502-sofiane-pamart.html
-Bourse du Travail,The Analogues,1702681200000,100,Rock,https://www.petit-bulletin.fr/lyon/agenda-303324-the-analogues.html
-Marché Gare,Silly Boy Blue,1702681200000,100,Rock,https://www.petit-bulletin.fr/lyon/agenda-281359-silly-boy-blue.html
-Bizarre !,Davodka + Fraid,1702681200000,100,Rap,https://www.petit-bulletin.fr/lyon/agenda-306260-davodka-fraid.html
-A Thou Bout d'Chant,Léman + Lupo,1702681200000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-306275-leman-lupo.html
-Jack Jack MJC Aragon,Tiékaniki + Beyond the rock,1702681200000,100,Rock,https://www.petit-bulletin.fr/lyon/agenda-306499-ti-kaniki-beyond-the-rock.html
-Auditorium,Thomas Ospital et Pierre Thibout,1702681200000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-306550-thomas-ospital-et-pierre-thibout.html
-Halle Tony Garnier,I Gotta Feeling,1727560800000,100,Rock,https://www.petit-bulletin.fr/lyon/agenda-308140-i-gotta-feeling.html
-Salle 3000,Les Choristes,1729461600000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-308185-les-choristes.html
-LDLC Arena,Julien Doré,1741993200000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-282531-julien-dore.html
-LDLC Arena,Shaka Ponk,1675378800000,100,Rock,https://www.petit-bulletin.fr/lyon/agenda-85886-shaka-ponk.html
-LDLC Arena,Michel Sardou,1707346800000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-227289-michel-sardou.html
-Marché Gare,Lankum,1707951600000,100,Rock,https://www.petit-bulletin.fr/lyon/agenda-306800-lankum.html
-Halle Tony Garnier,L'héritage Goldman,1709506800000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-292458-l-heritage-goldman.html
-Salle 3000,So Floyd,1709852400000,100,Rock,https://www.petit-bulletin.fr/lyon/agenda-308002-so-floyd.html
-Salle 3000,Gospel Pour 100 Voix,1709938800000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-299526-gospel-pour-100-voix.html
-Salle 3000,Kodo,1710025200000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-286183-kodo.html
-Salle 3000,Kyo,1710111600000,100,Rock,https://www.petit-bulletin.fr/lyon/agenda-300588-kyo.html
-LDLC Arena,Grand Corps Malade,1710975600000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-302131-grand-corps-malade.html
-Halle Tony Garnier,PLK,1711839600000,100,Rap,https://www.petit-bulletin.fr/lyon/agenda-308013-plk.html
-Halle Tony Garnier,Zola,1712440800000,100,Rap,https://www.petit-bulletin.fr/lyon/agenda-266563-zola.html
-Transbordeur,Les Trois Accords,1712786400000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-307909-les-trois-accords.html
-Halle Tony Garnier,PLK,1712872800000,100,Rap,https://www.petit-bulletin.fr/lyon/agenda-308013-plk.html
-Halle Tony Garnier,Michel Sardou,1703026800000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-227289-michel-sardou.html
-Opéra National de Lyon,La Maitrise chante Noel,1703113200000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-306109-la-maitrise-chante-noel.html
-Auditorium,Noel baroque,1703199600000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-306553-noel-baroque.html
-Le Trokson,Lula Borgia,1703199600000,100,Electro,https://www.petit-bulletin.fr/lyon/agenda-308097-lula-borgia.html
-Halle Tony Garnier,Disney 100 ans,1703286000000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-297804-disney-100-ans.html
-Le Trokson,Missing Figures + Youth,1703286000000,100,Rock,https://www.petit-bulletin.fr/lyon/agenda-308098-missing-figures-youth.html
-Bourse du Travail,Grease Is The Word,1703804400000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-300056-grease-is-the-word.html
-Opéra National de Lyon,Concert du Réveillon,1704063600000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-306110-concert-du-reveillon.html
-Opéra National de Lyon,Elias,1702854000000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-306099-elias.html
-Auditorium,Hollywood : l'age d'or,1703890800000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-306554-hollywood-l-age-d-or.html
-Halle Tony Garnier,Harry Potter et le Prisonnier d'Azkaban,1704495600000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-299532-harry-potter-et-le-prisonnier-d-azkaban.html
-Transbordeur,Yuzmv,1705100400000,100,Rap,https://www.petit-bulletin.fr/lyon/agenda-301587-yuzmv.html
-Opéra National de Lyon,Le Tombeau de Couperin + Romeo et Juliette,1705186800000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-306105-le-tombeau-de-couperin-poeme-pour-violon-et-orchestre-op-25-romeo-et-juliette.html
-Salle 3000,One night of Queen,1705273200000,100,Rock,https://www.petit-bulletin.fr/lyon/agenda-299525-one-night-of-queen.html
-LDLC Arena,Calogero,1705532400000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-304065-calogero.html
-A Thou Bout d'Chant,Le Seigneur des Anneaux le hobbit et les anneaux de pouvoir,1705878000000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-300062-le-seigneur-des-anneaux-le-hobbit-et-les-anneaux-de-pouvoir.html
-A Thou Bout d'Chant,Mégaphone Tour : Couturier Jaco et Petite Gueule,1706223600000,100,Rock,https://www.petit-bulletin.fr/lyon/agenda-308125-megaphone-tour-couturier-jaco-et-petite-gueule.html
-Transbordeur,Talisco,1702681200000,100,Rock,https://www.petit-bulletin.fr/lyon/agenda-268704-talisco.html
-Marché Gare,Silly Boy Blue,1702681200000,100,Rock,https://www.petit-bulletin.fr/lyon/agenda-306799-silly-boy-blue.html
-Jack Jack MJC Aragon,Sugar & Tiger + Darwells + Manakin,1702767600000,100,Rock,https://www.petit-bulletin.fr/lyon/agenda-306496-sugar-tiger-darwells-manakin.html
-Auditorium,Casse-Noisette,1702767600000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-306552-casse-noisette.html
-Le Sucre,Varnish La Piscine,1702767600000,100,Rap,https://www.petit-bulletin.fr/lyon/agenda-306914-varnish-la-piscine.html
-Le Trokson,Mata Hari + Seb Radix,1702767600000,100,Rock,https://www.petit-bulletin.fr/lyon/agenda-308096-mata-hari-seb-radix.html
-Le Radiant,Albin de la Simone,1703026800000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-150242-albin-de-la-simone.html
-Salle 3000,Veronic Dicaire,1713045600000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-203720-veronic-dicaire.html
-Halle Tony Garnier,Patrick Fiori,1713045600000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-245887-patrick-fiori.html
-LDLC Arena,Stars 80 Encore !,1713045600000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-305623-stars-80-encore.html
-LDLC Arena,Slimane,1713132000000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-302132-slimane.html
-Salle 3000,Manga Symphonic Odyssey,1713996000000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-304787-manga-symphonic-odyssey.html
-Transbordeur,FFF,1713996000000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-308160-fff.html
-LDLC Arena,Etienne Daho,1715724000000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-308199-etienne-daho.html
-LDLC Arena,Patrick Bruel,1717711200000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-280443-patrick-bruel.html
-LDLC Arena,Slimane,1726956000000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-302132-slimane.html
-Bourse du Travail,Naufragé de l'ile des reves,1701558000000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-304086-naufrage-de-l-ile-des-reves.html
-Opéra National de Lyon,Sandra Nkaké,1701471600000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-306127-sandra-nkake.html
-A Thou Bout d'Chant,Nawel Dombrowsky,1701558000000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-297561-nawel-dombrowsky.html
-Jack Jack MJC Aragon,Steve Waring,1701558000000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-306495-steve-waring.html
-Auditorium,Stravinsky,1701558000000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-306545-stravinsky.html
-Transbordeur,The Strangers,1701558000000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-306640-the-strangers.html
-Epicerie Moderne,Tif,1701558000000,100,Rap,https://www.petit-bulletin.fr/lyon/agenda-306783-tif.html
-Hot Club,Lilis Bakers,1701558000000,100,Jazz,https://www.petit-bulletin.fr/lyon/agenda-306948-lili-s-bakers.html
-La Grooverie,Frédéric Arnoux Trio,1701558000000,100,Jazz,https://www.petit-bulletin.fr/lyon/agenda-306949-frederic-arnoux-trio.html
-Le Trokson,North by North + Get Buckets,1701558000000,100,Rock,https://www.petit-bulletin.fr/lyon/agenda-308090-north-by-north-get-buckets.html
-Auditorium,Adriana Lecouvreur,1701644400000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-306103-adriana-lecouvreur.html
-Epicerie Moderne,Kokoko!,1701817200000,100,Electro,https://www.petit-bulletin.fr/lyon/agenda-229789-kokoko.html
-Bourse du Travail,Riopy,1701903600000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-298588-riopy.html
-A Thou Bout d'Chant,Kenzi dans la nuit,1701903600000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-306274-kenzi-dans-la-nuit.html
-Le Périscope,Why Patterns?,1701903600000,100,Electro,https://www.petit-bulletin.fr/lyon/agenda-306826-why-patterns.html
-Le Trokson,Fin del Mundo + Future Dogs,1701903600000,100,Rock,https://www.petit-bulletin.fr/lyon/agenda-308091-fin-del-mundo-future-dogs.html
-Transbordeur,Georgio,1701990000000,100,Rap,https://www.petit-bulletin.fr/lyon/agenda-252620-georgio.html
-Epicerie Moderne,Girls in Hawaii,1701990000000,100,Rock,https://www.petit-bulletin.fr/lyon/agenda-256181-girls-in-hawaii.html
-Le Trokson,Myciaa + Schleu,1701990000000,100,Rock,https://www.petit-bulletin.fr/lyon/agenda-308092-myciaa-schleu.html
-Auditorium,L'étrange Noel de Monsieur Jack,1702162800000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-306546-l-etrange-noel-de-monsieur-jack.html
-Le Trokson,Adrien Durand,1702162800000,100,Electro,https://www.petit-bulletin.fr/lyon/agenda-308093-adrien-durand.html
-Salle 3000,Le Sortilège des Neiges,1702249200000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-283815-le-sortilege-des-neiges.html
-Salle 3000,Bonnie Tyler,1702335600000,100,Rock,https://www.petit-bulletin.fr/lyon/agenda-292468-bonnie-tyler.html
-Auditorium,Mariza,1702335600000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-306547-mariza.html
-Parc des Oiseaux,The Rabeats,1725055200000,100,Rock,https://www.petit-bulletin.fr/lyon/agenda-154185-the-rabeats.html
-Parc des Oiseaux,Sofiane Pamart,1725141600000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-287502-sofiane-pamart.html
-Parc des Oiseaux,Olivia Ruiz + Cali,1725228000000,100,Rock,https://www.petit-bulletin.fr/lyon/agenda-308126-olivia-ruiz-cali.html
-Parc des Oiseaux,Patrick Fiori,1725487200000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-245887-patrick-fiori.html
-Parc des Oiseaux,Pascal Obispo,1725573600000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-251960-pascal-obispo.html
-Parc des Oiseaux,Francis Cabrel,1725660000000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-282488-francis-cabrel.html
-Parc des Oiseaux,Patrick Bruel,1726005600000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-280443-patrick-bruel.html
-Parc des Oiseaux,Eddy de Pretto,1726264800000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-282503-eddy-de-pretto.html
-Double Mixte,Born To Rave,1706396400000,100,Electro,https://www.petit-bulletin.fr/lyon/agenda-297801-born-to-rave.html
-La Balise 46 - MJC Villeurbanne,Lila's project,1707951600000,100,Jazz,https://www.petit-bulletin.fr/lyon/agenda-307817-lila-s-project.html
-La Balise 46 - MJC Villeurbanne,Thomas Pitiot,1708124400000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-308194-thomas-pitiot.html
-La Balise 46 - MJC Villeurbanne,La Nuit du Slam,1710630000000,100,Rap,https://www.petit-bulletin.fr/lyon/agenda-272924-la-nuit-du-slam.html
-L'InterValle,Thomas Fersen,1705705200000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-262687-thomas-fersen.html
-Aux Bons sauvages,Inspiration Gnawa,1702681200000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-308120-inspiration-gnawa.html
-La Triperie,Hello Darkness + Mood's Trip,1702681200000,100,Rock,https://www.petit-bulletin.fr/lyon/agenda-308171-hello-darkness-mood-s-trip.html
-El Bar Debourg,Karaogay de Noel,1702681200000,100,Electro,https://www.petit-bulletin.fr/lyon/agenda-308179-karaogay-de-noel.html
-Théatre de l'Elysée,Patrick Jasse,1702767600000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-305579-patrick-jasse.html
-Grand Temple de Lyon,Noel napolitain,1702767600000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-306151-noel-napolitain.html
-Bar des Capucins,Degrees,1702767600000,100,Rock,https://www.petit-bulletin.fr/lyon/agenda-304880-degrees.html
-Polaris,Le Grand 8,1702854000000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-306380-le-grand-8.html
-Basilique de Saint-Martin-d'Ainay,Tous à la musique,1702854000000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-308190-tous-a-la-musique.html
-Totem live,Agua Viva + La Roda d'la Guill,1702767600000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-308107-agua-viva-la-roda-d-la-guill.html
-Totem live,Pogo Car Crash Control + Antenn.e,1701558000000,100,Rock,https://www.petit-bulletin.fr/lyon/agenda-306338-pogo-car-crash-control-antenn-e.html
-Musée des Confluences,Yessa Karapetian Quintet,1701558000000,100,Jazz,https://www.petit-bulletin.fr/lyon/agenda-306951-yessai-karapetian-quintet.html
-Carrefour des Cultures Africaines,Africatho,1701558000000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-307462-africatho.html
-Campus Saint-Paul,Concert à la bougie,1702076400000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-308110-concert-a-la-bougie.html
-Aux Bons sauvages,Atango & Ben M,1702076400000,100,Jazz,https://www.petit-bulletin.fr/lyon/agenda-308122-atango-ben-m.html
-Temple Bancel,El Amor Brujo,1702249200000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-308139-el-amor-brujo.html
-Sound factory,If Santa Claus Was A DJ,1702249200000,100,Electro,https://www.petit-bulletin.fr/lyon/agenda-308184-if-santa-claus-was-a-dj.html
-L'InterValle,Fatoumata Diawara,1707519600000,100,Divers,https://www.petit-bulletin.fr/lyon/agenda-263451-fatoumata-diawara.html
-Transbordeur,NISKA,1678662000000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/niska-mer-13-dec-23/
-Transbordeur,GANACHE + LES ONDES CREUSES,1678748400000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/ganache-jeu-14-dec-23/
-Transbordeur,TALISCO,1678834800000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/talisco-ven-15-dec-23/
-Transbordeur,ELOI + ZISSOU,1678921200000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/eloi-sam-16-dec-23/
-Transbordeur,KI/KI + DJ PHYSICAL + JKS + MATRAKK,1678921200000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/kiki-dj-physical-jks-matrakk-sam-16-dec-23/
-Transbordeur,ELLEN ALLIEN + DORUKSEN,1707174000000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/2359-birthday-ellen-allien-doruksen-sam-06-jan-24/
-Transbordeur,111 + JASUAL CAZZ,1707519600000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/ninkasi-musik-lab-111-jasual-cazz-mer-10-jan-24/
-Transbordeur,YUZMV,1707692400000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/yuzmv-ven-12-jan-24/
-Transbordeur,ØTTA + BOURS?,1707778800000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/oetta-bours-sam-13-jan-24/
-Transbordeur,SOULWAX,1708124400000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/soulwax-mer-17-jan-23/
-Transbordeur,WORAKLS ORCHESTRA,1708383600000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/worakls-orchestra-1-sam-20-jan-24/
-Transbordeur,WORAKLS ORCHESTRA,1708383600000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/worakls-orchestra-sam-20-jan-24/
-Transbordeur,EZ! #90 : BURR OAK + EFFIN + ROI* + ...,1708902000000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/ez-90-burr-oak-effin-roi-cereale-ven-26-jan-24/
-Transbordeur,BOMEL,1708988400000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/bomel-sam-27-jan-24/
-Transbordeur,LILY VS FRANCE,1709074800000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/lily-vs-france-dim-28-jan-24/
-Transbordeur,EAGLE-EYE CHERRY,1709161200000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/eagle-eye-cherry-lun-29-jan-24/
-Transbordeur,SWING,1709420400000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/swing-sam-03-fev-24/
-Transbordeur,AZYR B2B LESSS + FRANCK + LUCIA LU + ...,1709420400000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/encore-x-teletech-azyr-b2b-lessss-franck-lucia-lu-narciss-dj-g2g-laze-encoded-data-xia-sam-03-fev-24/
-Transbordeur,SLOWDIVE + PALE BLUE EYES,1709506800000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/slowdive-dim-04-fev-24/
-Transbordeur,GUY2BEZBAR,1709852400000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/guy2bezbar-jeu-08-fev-24/
-Transbordeur,KCIDY + THE RODEO,1709938800000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/kcidy-the-rodeo-ven-09-fev-24/
-Transbordeur,ANSBRO + KØ:LAB + ISTIGKEIT,1709938800000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/ansbro-koelab-istigkeit-ven-09-fev-24/
-Transbordeur,APASHE,1710025200000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/apashe-sam-10-fev-24/
-Transbordeur,AYRON JONES + AMONGST LIARS,1710284400000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/ayron-jones-mar-13-fev-24/
-Transbordeur,ZKR,1710370800000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/zkr-mer-14-fev-24/
-Transbordeur,MOLÉCULE,1710457200000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/molecule-jeu-15-fev-24/
-Transbordeur,ROUNHAA,1710543600000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/rounhaa-ven-16-fev-24/
-Transbordeur,CHASE AND STATUS + ELISA DO BRASIL + FLORE,1710630000000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/chase-and-status-elisa-do-brasil-flore-sam-17-fev-24/
-Transbordeur,VIPÈRES SUCRÉES SALÉES + ANTENN.E,1710975600000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/ninkasi-musik-lab-viperes-sucrees-salees-antenne-mer-21-fev-24/
-Transbordeur,LEWIS OFMAN + SOFIE ROYER,1711148400000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/lewis-ofman-ven-23-fev-24/
-Transbordeur,NEW MODEL ARMY,1711922400000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/new-model-army-ven-01-mars-24/
-Transbordeur,DIONYSOS,1712354400000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/dionysos-mer-06-mars-24/
-Transbordeur,ROMÉO ELVIS,1712440800000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/romeo-elvis-jeu-07-mars-24/
-Transbordeur,MC SOLAAR,1713132000000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/mc-solaar-ven-15-mars-24/
-Transbordeur,LALA &amp;CE,1713564000000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/lala-ce-mer-20-mars-24/
-Transbordeur,MADAME ARTHUR,1713736800000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/madame-arthur-ven-22-mars-24/
-Transbordeur,SHAKE SHAKE GO,1713909600000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/shake-shake-go-dim-24-mars-24/
-Transbordeur,LES TAMBOURS DU BRONX + KLONE +...,1714428000000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/les-tambours-du-bronx-klone-nanowar-of-steel-psykup-sam-30-mars-24/
-Transbordeur,LILY VS QUÉBEC,1714514400000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/lily-vs-quebec-dim-31-mars-24/
-Transbordeur,LUTHER,1714773600000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/luther-jeu-04-avr-24/
-Transbordeur,KEEN'V,1714860000000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/keenv-ven-05-avr-24/
-Transbordeur,LES 3 ACCORDS,1715292000000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/les-3-accords-mer-10-avr-24/
-Transbordeur,YARD ACT,1715464800000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/yard-act-ven-12-avr-24/
-Transbordeur,ZOUFRIS MARACAS + MAGGY BOLLE,1715983200000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/zoufris-maracas-maggy-bolle-jeu-18-avr-24/
-Transbordeur,KALASH CRIMINEL,1716069600000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/kalash-criminel-ven-19-avr-24/
-Transbordeur,JOE BEL,1716156000000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/joe-bel-sam-20-avr-24/
-Transbordeur,FFF,1716501600000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/fff-mer-24-avr-24/
-Transbordeur,CHINESE MAN + DUBANKO,1716588000000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/chinese-man-dubanko-jeu-25-avr-24/
-Transbordeur,DECLAN MCKENNA,1716933600000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/declan-mckenna-lun-29-avr-24/
-Transbordeur,MOJI X SBOY,1717279200000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/moji-x-sboy-jeu-02-mai-24/
-Transbordeur,LES FATALS PICARDS,1720303200000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/les-fatals-picards-ven-07-juin-24/
-Tram33, Jam Session, 1702407600000, 100 ,Jam, 
-Tram33, Jam Session, 1703012400000, 100 ,Jam, 
-Vélcroc, Jam Session, 1702580400000, 100,Jam, https://velcroc.com/,
-Vélcroc, Jam Session, 1703185200000, 100,Jam, https://velcroc.com/,
-Le Sucre, Laurent Garnier, 1702832400000, 100,Electro,https://le-sucre.eu/agenda/cloture-des-10-ans-la-sucriere/
-Transbordeur,ELLEN ALLIEN + DORUKSEN + JIBIS,1704580200000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/2359-birthday-ellen-allien-doruksen-sam-06-jan-24/
-Transbordeur,111 + JASUAL CAZZ,1704909600000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/ninkasi-musik-lab-111-jasual-cazz-mer-10-jan-24/
-Transbordeur,YUZMV,1705082400000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/yuzmv-ven-12-jan-24/
-Transbordeur,ØTTA + BOURS?,1705185000000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/oetta-bours-sam-13-jan-24/
-Transbordeur,SOULWAX,1705514400000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/soulwax-mer-17-jan-23/
-Transbordeur,WORAKLS ORCHESTRA,1705770000000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/worakls-orchestra-1-sam-20-jan-24/
-Transbordeur,WORAKLS ORCHESTRA,1705784400000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/worakls-orchestra-sam-20-jan-24/
-Transbordeur,EZ! #90 : BURR OAK + EFFIN + ROI* + ...,1706308200000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/ez-90-burr-oak-effin-roi-cereale-ven-26-jan-24/
-Transbordeur,BOMEL,1706378400000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/bomel-sam-27-jan-24/
-Transbordeur,YOUNG VETERAN SOUND SYSTEM + YOUNG WARRIOR +...,1706394600000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/dub-echo-42-young-veteran-sound-system-young-warrior-demkaz-pilah-dj-kunta-sam-27-jan-24/
-Transbordeur,LILY VS FRANCE,1706457600000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/lily-vs-france-dim-28-jan-24/
-Transbordeur,EAGLE-EYE CHERRY,1706551200000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/eagle-eye-cherry-lun-29-jan-24/
-Transbordeur,SANTA KAHENA + NATHALIE FROEHLICH + PANTEROS666 +...,1706913000000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/santa-kahena-nathalie-froehlich-panteros666-ven-02-fev-24/
-Transbordeur,SWING,1706983200000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/swing-sam-03-fev-24/
-Transbordeur,AZYR B2B LESSSS + FRANCK + LUCIA LU +...,1706999400000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/encore-x-teletech-azyr-b2b-lessss-franck-lucia-lu-narciss-dj-g2g-laze-encoded-data-xia-sam-03-fev-24/
-Transbordeur,SLOWDIVE + PALE BLUE EYES,1707069600000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/slowdive-pale-blue-eyes-dim-04-fev-24/
-Transbordeur,GUY2BEZBAR,1707415200000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/guy2bezbar-jeu-08-fev-24/
-Transbordeur,KCIDY + THE RODEO,1707501600000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/kcidy-the-rodeo-ven-09-fev-24/
-Transbordeur,ANSBRO + KØ:LAB + ISTIGKEIT,1707517800000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/ansbro-koelab-istigkeit-ven-09-fev-24/
-Transbordeur,APASHE,1707588000000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/apashe-sam-10-fev-24/
-Transbordeur,AYRON JONES + AMONGST LIARS,1707847200000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/ayron-jones-mar-13-fev-24/
-Transbordeur,ZKR,1707933600000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/zkr-mer-14-fev-24/
-Transbordeur,MOLÉCULE,1708020000000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/molecule-jeu-15-fev-24/
-Transbordeur,ROUNHAA,1708106400000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/rounhaa-ven-16-fev-24/
-Transbordeur,CHASE AND STATUS + ELISA DO BRASIL + FLORE,1708209000000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/chase-and-status-elisa-do-brasil-flore-sam-17-fev-24/
-Transbordeur,VIPÈRES SUCRÉES SALÉES + ANTENN.E,1708538400000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/ninkasi-musik-lab-viperes-sucrees-salees-antenne-mer-21-fev-24/
-Transbordeur,LEWIS OFMAN + SOFIE ROYER,1708711200000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/lewis-ofman-ven-23-fev-24/
-Transbordeur,NEW MODEL ARMY,1709316000000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/new-model-army-ven-01-mars-24/
-Transbordeur,DIONYSOS,1709748000000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/dionysos-mer-06-mars-24/
-Transbordeur,ROMÉO ELVIS,1709834400000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/romeo-elvis-jeu-07-mars-24/
-Transbordeur,MC SOLAAR,1710525600000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/mc-solaar-ven-15-mars-24/
-Transbordeur,CHIEN NOIR,1710612000000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/les-chants-de-mars-chien-noir-sam-16-mars-24/
-Transbordeur,LALA &CE,1710957600000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/lala-ce-mer-20-mars-24/
-Transbordeur,KERCHAK,1711044000000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/kerchak-jeu-21-mars-24/
-Transbordeur,MADAME ARTHUR,1711130400000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/madame-arthur-ven-22-mars-24/
-Transbordeur,SOCIAL DANCE + SOLANN + CYRIOUS + MELBA,1711216800000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/les-chants-de-mars-social-dance-solann-cyrious-melba-sam-23-mars-24/
-Transbordeur,SHAKE SHAKE GO,1711299600000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/shake-shake-go-dim-24-mars-24/
-Transbordeur,PAT KALLA & LE SUPER MOJO + GUTS,1711738800000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/guts-pat-kalla-le-super-mojo-ven-29-mars-24/
-Transbordeur,LES TAMBOURS DU BRONX + KLONE +...,1711818000000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/les-tambours-du-bronx-klone-nanowar-of-steel-psykup-sam-30-mars-24/
-Transbordeur,LILY VS QUÉBEC,1711897200000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/lily-vs-quebec-dim-31-mars-24/
-Transbordeur,LUTHER,1712250000000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/luther-jeu-04-avr-24/
-Transbordeur,KEEN'V,1712336400000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/keenv-ven-05-avr-24/
-Transbordeur,LES 3 ACCORDS,1712768400000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/les-3-accords-mer-10-avr-24/
-Transbordeur,YARD ACT,1712941200000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/yard-act-ven-12-avr-24/
-Transbordeur,TIP STEVENS,1713373200000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/tip-stevens-mer-17-avr-24/
-Transbordeur,ZOUFRIS MARACAS + MAGGY BOLLE,1713459600000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/zoufris-maracas-maggy-bolle-jeu-18-avr-24/
-Transbordeur,KALASH CRIMINEL,1713546000000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/kalash-criminel-ven-19-avr-24/
-Transbordeur,JOE BEL,1713632400000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/joe-bel-sam-20-avr-24/
-Transbordeur,FFF,1713978000000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/fff-mer-24-avr-24/
-Transbordeur,CHINESE MAN + DUBANKO,1714064400000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/chinese-man-dubanko-jeu-25-avr-24/
-Transbordeur,LA YEGROS + PAMBELÉ + LUIZA,1714150800000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/la-yegros-pambele-luiza-ven-26-avr-24/
-Transbordeur,DECLAN MCKENNA,1714410000000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/declan-mckenna-lun-29-avr-24/
-Transbordeur,MOJI X SBOY,1714669200000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/moji-x-sboy-jeu-02-mai-24/
-Transbordeur,ELOI,1715878800000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/eloi-jeu-16-mai-24/
-Transbordeur,DENA MWANA,1716570000000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/dena-mwana-ven-24-mai-24/
-Transbordeur,HANG MASSIVE,1716742800000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/hang-massive-dim-26-mai-24/
-Transbordeur,OSEES,1717347600000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/osees-dim-02-juin-24/
-Transbordeur,LES FATALS PICARDS,1717779600000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/les-fatals-picards-ven-07-juin-24/
-Transbordeur,STEEL PANTHER,1719853200000,100,Rock,https://www.transbordeur.fr/agenda-2023-2024/steel-panther-lun-01-juil-24/
-Marché Gare,VERNISSAGE DE L’EXPO PHOTO DE LA REVUE CHABE ! Lyon par ses photographes,1705014000000,100,Rock,https://marchegare.fr/agenda/vernissage-de-lexpo-photo-de-la-revue-chabe
-Marché Gare,WAILING TREES "Concert d'adieu",1705100400000,100,Rock,https://marchegare.fr/agenda/wailing-trees
-Marché Gare,Electro Concert du Labo,1705532400000,100,Rock,https://marchegare.fr/agenda/arkange-leonore
-Marché Gare,CLÉMENTINE WECK EN DÉJEUNER-CONCERT à laMJC du Vieux-Lyon,1705964400000,100,Rock,https://marchegare.fr/agenda/clementine-weck
-Marché Gare,Chanson Les Déjeuners-Concerts du Labo,1705964400000,100,Rock,https://marchegare.fr/agenda/milena-0
-Marché Gare,Atelier "Diffuser sa musique sur les plateformes de streaming" Atelier Avant-Scène,1705964400000,100,Rock,https://marchegare.fr/agenda/atelier-diffuser-sa-musique-sur-les-plateformes-de-streaming
-Marché Gare,CINÉ BOOK CLUB : MALA NOCHE Avec l'auteur Robin Josserand,1705964400000,100,Rock,https://marchegare.fr/agenda/cine-book-club-mala-noche
-Marché Gare,Auditions Régionales,1706655600000,100,Rock,https://marchegare.fr/agenda/les-inouis-du-printemps-de-bourges-0
-Marché Gare,Auditions Régionales,1706742000000,100,Rock,https://marchegare.fr/agenda/les-inouis-du-printemps-de-bourges
-Marché Gare,Psyché + COSSE + OCCULT HAND ORDER,1707260400000,100,Rock,https://marchegare.fr/agenda/mars-red-sky
-Marché Gare,Urban Pop,1707433200000,100,Rock,https://marchegare.fr/agenda/kalika
-Marché Gare,Rock + MIDLIFE,1707778800000,100,Rock,https://marchegare.fr/agenda/ditz
-Marché Gare,Folk + EMMANUELLE PARRENIN,1707865200000,100,Rock,https://marchegare.fr/agenda/lankum
-Marché Gare,CELESTE + BÅKÜ,1708642800000,100,Rock,https://marchegare.fr/agenda/celeste
-Marché Gare,Soul JEY KHEMEYA + JAY BRUSH,1709247600000,100,Rock,https://marchegare.fr/agenda/ninkasi-musik-lab
-Marché Gare,ROSHI,1709766000000,100,Rock,https://marchegare.fr/agenda/roshi
-Marché Gare,Pop Release Party,1709852400000,100,Rock,https://marchegare.fr/agenda/groumpf
-Marché Gare,Reggae,1710457200000,100,Rock,https://marchegare.fr/agenda/fefe
-Marché Gare,Urban Pop,1711148400000,100,Rock,https://marchegare.fr/agenda/ben-plg
-Marché Gare,Noise,1711407600000,100,Rock,https://marchegare.fr/agenda/hint
-Marché Gare,Pop,1712095200000,100,Rock,https://marchegare.fr/agenda/sauvan
-Marché Gare,YUSTON XIII,1712181600000,100,Rock,https://marchegare.fr/agenda/yuston-xiii
-Marché Gare,Rock A l'Epicerie Moderne,1712268000000,100,Rock,https://marchegare.fr/agenda/slift
-Marché Gare,Indie Pop Release Party,1712786400000,100,Rock,https://marchegare.fr/agenda/oscar-les-vacances
-Marché Gare,JOANNA,1712872800000,100,Rock,https://marchegare.fr/agenda/joanna
-Marché Gare,BRUIT NOIR + PELOUSE,1713218400000,100,Rock,https://marchegare.fr/agenda/bruit-noir
-Marché Gare,SELUG & $ENAR,1715896800000,100,Rock,https://marchegare.fr/agenda/selug-enar
-Le Trokson,TOUS EN TONG DJ CREW,1704567600000,100,Rock,https://villemorte.fr/agenda/tous-en-tong-dj-crew/
-Rock N Eat,PRAŸ + A BETTER TOMORROW + QOYA,1704567600000,100,Rock,https://villemorte.fr/agenda/pray-a-better-tomorrow-qoya/
-Grrrnd Zero - Vaulx-en-Velin,LA RUCHE + ÉPÉPÉ + DELEUZE 909 + ORCHESTRALHEAT,1704567600000,100,Rock,https://villemorte.fr/agenda/la-ruche-epepe-deleuze-909-orchestralheat/
-Toï Toï Le Zinc,DJ SET INTI + OPEN MIKE RAP,1704996000000,100,Rap,https://villemorte.fr/agenda/dj-set-inti-open-mike-rap/
-Rock N Eat,PLOOKS + COLORKODE + LEON BENMASS TRIO,1704996000000,100,Rock,https://villemorte.fr/agenda/plooks-colorkode-leon-benmass-trio/
-Jack Jack MJC Aragon,OTTIS COEUR + SEND ME LOVE LETTERS,1704996000000,100,Rock,https://villemorte.fr/agenda/ottis-coeur-send-me-love-letters/
-Toï Toï Le Zinc,DAMAGE + EYES AND LEGS + SURFACE TANGIBL,1704996000000,100,Rock,https://villemorte.fr/agenda/damage-eyes-and-legs-surface-tangibl/
-Le Trokson,PETER PARKER’S BONES + MANGO LOCO,1704996000000,100,Rock,https://villemorte.fr/agenda/peter-parkers-bones-mango-loco/
-Kraspek Myzik,PLUG & PLAY #13: CARTE BLANCHE À CAVALE,1704996000000,100,Divers,https://villemorte.fr/agenda/plug-play-13-carte-blanche-a-cavale/
-Rock N Eat,SHOTGUN LOGIC + HEART ATTACK GENOCIDE + SUPERSHOTGUN,1705168800000,100,Rock,https://villemorte.fr/agenda/shotgun-logic-heart-attack-genocide-supershotgun/
-Grrrnd Zero - Vaulx-en-Velin,AUTOREVERSE + NAIIMA MARÉ + SURPRISE,1705168800000,100,Divers,https://villemorte.fr/agenda/autoreverse-naiima-mare-surprise/
-Le Trokson,DEAD MYTH + DELEUZE 909,1705168800000,100,Rock,https://villemorte.fr/agenda/dead-myth-deleuze-909/
-Kraspek Myzik,PLUG & PLAY #13: PUNXA + FRANÇOIS VIROT,1705168800000,100,Divers,https://villemorte.fr/agenda/plug-play-13-punxa-francois-virot/
-La Rayonne,VCL + INSANE TEKNOLOGY + NESH MAYDAY + EKINOKX + SIX OU SEPT + NÉO-DYME,1705183200000,100,Divers,https://villemorte.fr/agenda/vcl-insane-teknology-nesh-mayday-ekinokx-six-ou-sept-neo-dyme/
+PLACE;TITRE;UNIX;SIZE;GENRE;URL
+Terminal Club;;1706190956304;100;Electro;https://www.terminal-club.com/evenement-multiple/mois/?shortcode=b6439857
+Terminal Club;Ephemere : Outkest, Seid, Märzhase, Nero Lione;1737759600000;100;Electro;https://www.terminal-club.com/evenement/ephemere-outkest-seid-marzhase-nero-lione/
+Terminal Club;Métanoïa : Dissonne, Mhoax, Jo Kovaa, Quazar;1706223600000;100;Electro;https://www.terminal-club.com/evenement/metanoia-dissonne-mhoax-jo-kovaa-quazar/
+Terminal Club;Unusual Records : A.mo, Sklaer, Möhne, Amour Noir;1706310000000;100;Electro;https://www.terminal-club.com/evenement/unusual-records-a-mo-sklaer-mohne-amour-noir/
+Terminal Club;Analog Catharsis : Full Crew;1706742000000;100;Electro;https://www.terminal-club.com/evenement/analog-catharsis-full-crew/
+Terminal Club;Criminal Justice Act : Carin Kelly, Axonberg, Nadia Fuchsia;1706828400000;100;Electro;https://www.terminal-club.com/evenement/criminal-justice-act-carin-kelly-axonberg-nadia-fuchsia/
+Terminal Club;Happiness Therapy : Braga Circuit, Crowd Control;1706914800000;100;Electro;https://www.terminal-club.com/evenement/happiness-therapy-braga-circuit-crowd-control/
+Terminal Club;Nashton Records : DJ Contest, Haeminum, Prollepse;1707346800000;100;Electro;https://www.terminal-club.com/evenement/nashton-records-tba/
+Terminal Club;Euronight Club : Dj Salle Défaite, Jeff Bisous, Dax vender;1707433200000;100;Electro;https://www.terminal-club.com/evenement/euronight-club-dj-salle-defaite-jeff-bisous-dax-vender/
+Terminal Club;Corymb : Flxir, Maïa Neel, Brum, Max Duret;1707951600000;100;Electro;https://www.terminal-club.com/evenement/corymb-flxir-maia-neel-brum-max-duret/
+Terminal Club;Hidden Garden : Shamsiel, Cocox, Messina, One4T;1708556400000;100;Electro;https://www.terminal-club.com/evenement/hidden-garden-shamsiel-cocox-messina-one4t/
+Terminal Club;R.U.N : No Human Code, Altinbas, Zimer;1708642800000;100;Electro;https://www.terminal-club.com/evenement/r-u-n-no-human-code-altinbas-zimer/
+Transbordeur;EZ! #90 : BURR OAK + EFFIN + ROI* + ...;1706223600000;100;Electro;https://www.transbordeur.fr//agenda-2023-2024/ez-90-burr-oak-effin-roi-cereale-ven-26-jan-24/
+Transbordeur;BOMEL;1706310000000;100;Electro;https://www.transbordeur.fr//agenda-2023-2024/bomel-sam-27-jan-24/
+Transbordeur;YOUNG VETERAN SOUND SYSTEM + YOUNG WARRIOR +...;1706310000000;100;Electro;https://www.transbordeur.fr//agenda-2023-2024/dub-echo-42-young-veteran-sound-system-young-warrior-demkaz-pilah-dj-kunta-sam-27-jan-24/
+Transbordeur;LILY VS FRANCE;1706396400000;100;Divers;https://www.transbordeur.fr//agenda-2023-2024/lily-vs-france-dim-28-jan-24/
+Transbordeur;EAGLE-EYE CHERRY;1706482800000;100;Rock;https://www.transbordeur.fr//agenda-2023-2024/eagle-eye-cherry-lun-29-jan-24/
+Transbordeur;SANTA KAHENA + NATHALIE FROEHLICH + PANTEROS666 +...;1706828400000;100;Rap;https://www.transbordeur.fr//agenda-2023-2024/santa-kahena-nathalie-froehlich-panteros666-ven-02-fev-24/
+Transbordeur;SWING;1706914800000;100;Rap;https://www.transbordeur.fr//agenda-2023-2024/swing-sam-03-fev-24/
+Transbordeur;AZYR B2B LESSSS + FRANCK + LUCIA LU +...;1706914800000;100;Electro;https://www.transbordeur.fr//agenda-2023-2024/encore-x-teletech-azyr-b2b-lessss-franck-lucia-lu-narciss-dj-g2g-laze-encoded-data-xia-sam-03-fev-24/
+Transbordeur;SLOWDIVE + PALE BLUE EYES;1707001200000;100;Rock;https://www.transbordeur.fr//agenda-2023-2024/slowdive-pale-blue-eyes-dim-04-fev-24/
+Transbordeur;GUY2BEZBAR;1707346800000;100;Rap;https://www.transbordeur.fr//agenda-2023-2024/guy2bezbar-jeu-08-fev-24/
+Transbordeur;KCIDY + THE RODEO;1707433200000;100;Rock;https://www.transbordeur.fr//agenda-2023-2024/kcidy-the-rodeo-ven-09-fev-24/
+Transbordeur;ANSBRO + KØ:LAB + ISTIGKEIT;1707433200000;100;Electro;https://www.transbordeur.fr//agenda-2023-2024/ansbro-koelab-istigkeit-ven-09-fev-24/
+Transbordeur;APASHE;1707519600000;100;Electro;https://www.transbordeur.fr//agenda-2023-2024/apashe-sam-10-fev-24/
+Transbordeur;AYRON JONES + AMONGST LIARS;1707778800000;100;Rock;https://www.transbordeur.fr//agenda-2023-2024/ayron-jones-mar-13-fev-24/
+Transbordeur;ZKR;1707865200000;100;Rap;https://www.transbordeur.fr//agenda-2023-2024/zkr-mer-14-fev-24/
+Transbordeur;MOLÉCULE;1707951600000;100;Electro;https://www.transbordeur.fr//agenda-2023-2024/molecule-jeu-15-fev-24/
+Transbordeur;ROUNHAA;1708038000000;100;Rap;https://www.transbordeur.fr//agenda-2023-2024/rounhaa-ven-16-fev-24/
+Transbordeur;CHASE AND STATUS + ELISA DO BRASIL + FLORE;1708124400000;100;Electro;https://www.transbordeur.fr//agenda-2023-2024/chase-and-status-elisa-do-brasil-flore-sam-17-fev-24/
+Transbordeur;VIPÈRES SUCRÉES SALÉES + ANTENN.E;1708470000000;100;Rock;https://www.transbordeur.fr//agenda-2023-2024/ninkasi-musik-lab-viperes-sucrees-salees-antenne-mer-21-fev-24/
+Transbordeur;LEWIS OFMAN + SOFIE ROYER;1708642800000;100;Electro;https://www.transbordeur.fr//agenda-2023-2024/lewis-ofman-ven-23-fev-24/
+Transbordeur;NEW MODEL ARMY;1709247600000;100;Rock;https://www.transbordeur.fr//agenda-2023-2024/new-model-army-ven-01-mars-24/
+Transbordeur;MATHAME;1709334000000;100;Electro;https://www.transbordeur.fr//agenda-2023-2024/mathame-sam-02-mars-24/
+Transbordeur;DIONYSOS;1709679600000;100;Rock;https://www.transbordeur.fr//agenda-2023-2024/dionysos-mer-06-mars-24/
+Transbordeur;ROMÉO ELVIS;1709766000000;100;Rap;https://www.transbordeur.fr//agenda-2023-2024/romeo-elvis-jeu-07-mars-24/
+Transbordeur;MC SOLAAR;1710457200000;100;Rap;https://www.transbordeur.fr//agenda-2023-2024/mc-solaar-ven-15-mars-24/
+Transbordeur;CHIEN NOIR;1710543600000;100;Divers;https://www.transbordeur.fr//agenda-2023-2024/les-chants-de-mars-chien-noir-sam-16-mars-24/
+Transbordeur;GARÇON SAUVAGE XXL : FANTASTIC TWINS + DOPPELGANG +...;1710543600000;100;Electro;https://www.transbordeur.fr//agenda-2023-2024/garcon-sauvage-xxl-fantastic-twins-doppelgang-anodine-sam-16-mars-24/
+Transbordeur;LALA &CE;1710889200000;100;Rap;https://www.transbordeur.fr//agenda-2023-2024/lala-ce-mer-20-mars-24/
+Transbordeur;KERCHAK;1710975600000;100;Rap;https://www.transbordeur.fr//agenda-2023-2024/kerchak-jeu-21-mars-24/
+Transbordeur;MADAME ARTHUR;1711062000000;100;CABARET QUEER;https://www.transbordeur.fr//agenda-2023-2024/madame-arthur-ven-22-mars-24/
+Transbordeur;SOCIAL DANCE + SOLANN + CYRIOUS + MELBA;1711148400000;100;POP / CHANSON;https://www.transbordeur.fr//agenda-2023-2024/les-chants-de-mars-social-dance-solann-cyrious-melba-sam-23-mars-24/
+Transbordeur;SHAKE SHAKE GO;1711234800000;100;INDIE POP;https://www.transbordeur.fr//agenda-2023-2024/shake-shake-go-dim-24-mars-24/
+Transbordeur;PAT KALLA & LE SUPER MOJO + GUTS;1711666800000;100;SONO MONDIALE;https://www.transbordeur.fr//agenda-2023-2024/guts-pat-kalla-le-super-mojo-ven-29-mars-24/
+Transbordeur;LES TAMBOURS DU BRONX + KLONE +...;1711753200000;100;SHOW PERCUSSIF / METAL;https://www.transbordeur.fr//agenda-2023-2024/les-tambours-du-bronx-klone-nanowar-of-steel-psykup-sam-30-mars-24/
+Transbordeur;LILY VS QUÉBEC;1711839600000;100;IMPROVISATION THÉÂTRALE;https://www.transbordeur.fr//agenda-2023-2024/lily-vs-quebec-dim-31-mars-24/
+Transbordeur;LUTHER;1712181600000;100;Rap;https://www.transbordeur.fr//agenda-2023-2024/luther-jeu-04-avr-24/
+Transbordeur;KEEN'V;1712268000000;100;CHANSON;https://www.transbordeur.fr//agenda-2023-2024/keenv-ven-05-avr-24/
+Transbordeur;LES 3 ACCORDS;1712700000000;100;POP Rock;https://www.transbordeur.fr//agenda-2023-2024/les-3-accords-mer-10-avr-24/
+Transbordeur;YARD ACT;1712872800000;100;POST PUNK;https://www.transbordeur.fr//agenda-2023-2024/yard-act-ven-12-avr-24/
+Transbordeur;TIP STEVENS;1713304800000;100;Electro;https://www.transbordeur.fr//agenda-2023-2024/tip-stevens-mer-17-avr-24/
+Transbordeur;ZOUFRIS MARACAS + MAGGY BOLLE;1713391200000;100;CHANSON;https://www.transbordeur.fr//agenda-2023-2024/zoufris-maracas-maggy-bolle-jeu-18-avr-24/
+Transbordeur;KALASH CRIMINEL;1713477600000;100;Rap;https://www.transbordeur.fr//agenda-2023-2024/kalash-criminel-ven-19-avr-24/
+Transbordeur;JOE BEL;1713564000000;100;POP FOLK;https://www.transbordeur.fr//agenda-2023-2024/joe-bel-sam-20-avr-24/
+Transbordeur;FFF;1713909600000;100;Rock;https://www.transbordeur.fr//agenda-2023-2024/fff-mer-24-avr-24/
+Transbordeur;CHINESE MAN + DUBANKO;1713996000000;100;Electro;https://www.transbordeur.fr//agenda-2023-2024/chinese-man-dubanko-jeu-25-avr-24/
+Transbordeur;LA YEGROS + PAMBELÉ + LUIZA;1714082400000;100;Rock;https://www.transbordeur.fr//agenda-2023-2024/la-yegros-pambele-luiza-ven-26-avr-24/
+Transbordeur;[NO GENDER] X NAKT : PARFAIT + BLASPHÈME +...;1714168800000;100;Electro;https://www.transbordeur.fr//agenda-2023-2024/no-gender-x-nakt-parfait-blaspheme-angel-karel-sam-27-avr-24/
+Transbordeur;DECLAN MCKENNA;1714341600000;100;Rock;https://www.transbordeur.fr//agenda-2023-2024/declan-mckenna-lun-29-avr-24/
+Transbordeur;MOJI X SBOY;1714600800000;100;Rap;https://www.transbordeur.fr//agenda-2023-2024/moji-x-sboy-jeu-02-mai-24/
+Transbordeur;ELOI;1715810400000;100;Rock;https://www.transbordeur.fr//agenda-2023-2024/eloi-jeu-16-mai-24/
+Transbordeur;DENA MWANA;1716501600000;100;RockL;https://www.transbordeur.fr//agenda-2023-2024/dena-mwana-ven-24-mai-24/
+Transbordeur;HANG MASSIVE;1716674400000;100;Electro;https://www.transbordeur.fr//agenda-2023-2024/hang-massive-dim-26-mai-24/
+Transbordeur;CHELSEA WOLFE + KAELAN MIKLA;1716933600000;100;Rock;https://www.transbordeur.fr//agenda-2023-2024/chelsea-wolfe-kaelan-mikla-mer-29-mai-24/
+Transbordeur;OSEES;1717279200000;100;Rock;https://www.transbordeur.fr//agenda-2023-2024/osees-dim-02-juin-24/
+Transbordeur;GUY2BEZBAR;1717624800000;100;Rap;https://www.transbordeur.fr//agenda-2023-2024/guy2bezbar-jeu-06-juin-24/
+Transbordeur;LES FATALS PICARDS;1717711200000;100;Rock;https://www.transbordeur.fr//agenda-2023-2024/les-fatals-picards-ven-07-juin-24/
+Transbordeur;STEEL PANTHER;1719784800000;100;Rock;https://www.transbordeur.fr//agenda-2023-2024/steel-panther-lun-01-juil-24/
+Le Périscope;Duo Tiggarna Festival Les Baroquades;1737586800000;100;Jazz;https://www.periscope-lyon.com/concerts/duo-tiggarna/
+Le Périscope;Abacaxi;1737673200000;100;Jazz;https://www.periscope-lyon.com/concerts/abacaxi/
+Le Périscope;Hommage à Frank Zappa En partenariat avec le Conservatoire de Lyon;1737759600000;100;Jazz;https://www.periscope-lyon.com/concerts/hommage-a-franck-zappa/
+Le Périscope;Labyrinthe d’une ligne Release Party - Label ARFI;1706223600000;100;Jazz;https://www.periscope-lyon.com/concerts/labyrinthe-dune-ligne-chant-general/
+Le Périscope;Canari Gros Calibre En partenariat avec l'Assurance Fun;1706310000000;100;Jazz;https://www.periscope-lyon.com/concerts/canari-gros-calibre-chloe-eclipse/
+Le Périscope;Salgar I'm free : concert gratuit;1706569200000;100;Jazz;https://www.periscope-lyon.com/concerts/salgar-eraslan-duo/
+Le Périscope;Zangbeto Quintet;1706655600000;100;Jazz;https://www.periscope-lyon.com/concerts/zangbeto-quintet-2/
+Le Périscope;Marc Copland;1706828400000;100;Jazz;https://www.periscope-lyon.com/concerts/marc-copland-daniel-schlappi-duo/
+Le Périscope;Pixvae En partenariat avec la Compagnie 4000;1706914800000;100;Jazz;https://www.periscope-lyon.com/concerts/pixvae-4/
+Le Périscope;Match;1707001200000;100;Jazz;https://www.periscope-lyon.com/concerts/match-retour-big-band-de-louest-vs-dim-dam-doum-big-band/
+Le Périscope;Derya Yıldırım;1707260400000;100;Jazz;https://www.periscope-lyon.com/concerts/derya-yildirim-grup-simsek/
+Le Périscope;Jozef Dumoulin;1707346800000;100;Jazz;https://www.periscope-lyon.com/concerts/jozef-dumoulin/
+Le Périscope;Watchdog Release Party;1707433200000;100;Jazz;https://www.periscope-lyon.com/concerts/watchdog/
+Le Périscope;Mats Gustafsson;1707865200000;100;Jazz;https://www.periscope-lyon.com/concerts/mats-olof-gustafsson-erwan-keravec-luft/
+Le Périscope;Andrés Prado Latin Trio En partenariat avec Le Collectif Cimarrones;1707951600000;100;Jazz;https://www.periscope-lyon.com/concerts/andres-prado-trio/
+Le Périscope;C_C I'm free : concert gratuit;1708383600000;100;Jazz;https://www.periscope-lyon.com/concerts/c_c-2/
+Le Périscope;Omertà;1708470000000;100;Jazz;https://www.periscope-lyon.com/concerts/omerta/
+Le Périscope;POP CLUB;1708729200000;100;Jazz;https://www.periscope-lyon.com/concerts/pop-club-nick-wheeldon-romano-bianchi-wendy-martinez/
+Le Périscope;Louis Sclavis;1708988400000;100;Jazz;https://www.periscope-lyon.com/concerts/trio-vercors-louis-sclavis-richard-bonnet-et-adrien-chennebault/
+Le Périscope;Lumina Jeune public • 11H;1708988400000;100;Jazz;https://www.periscope-lyon.com/concerts/lumina/
+Le Périscope;Lumina Jeune public • 14H;1708988400000;100;Jazz;https://www.periscope-lyon.com/concerts/lumina-3/
+Le Périscope;Steve Gunn;1709247600000;100;Jazz;https://www.periscope-lyon.com/concerts/steve-gunn-david-moore/
+Le Périscope;Vica Pacheco I'm free : concert gratuit;1709679600000;100;Jazz;https://www.periscope-lyon.com/concerts/vica-pacheco/
+Le Périscope;Jasual Cazz Release Party;1709852400000;100;Jazz;https://www.periscope-lyon.com/concerts/jasual-cazz-4/
+Le Périscope;Ensemble Nist;1710457200000;100;Jazz;https://www.periscope-lyon.com/concerts/ensemble-nist-nah/
+Le Périscope;Récif Jazz Festival Du 26 au 30 Mars;1711407600000;100;Jazz;https://www.periscope-lyon.com/concerts/recif-jazz-festival/
+Le Sonic;Donjon & DragOut;1706223601000;100;Rock;https://sonic-lyon.fr/facebook-event/donjon-dragout/
+Le Sonic;Dlina Volny + Jennifer Touch;1706569200000;100;Rock;https://sonic-lyon.fr/facebook-event/dlina-volny/
+Le Sonic;Feet + Barrio Colette;1706655600000;100;Rock;https://sonic-lyon.fr/facebook-event/feet-barrio-colette/
+Le Sonic;Sa-Roc + Starrlight + Kaynixe;1707260400000;100;Rock;https://sonic-lyon.fr/facebook-event/4635/
+Le Sonic;ALINE + MONDE;1707346800000;100;Rock;https://sonic-lyon.fr/facebook-event/aline/
+Le Sonic;Hayden Pedigo + EPÉPÉ;1707865200000;100;Rock;https://sonic-lyon.fr/facebook-event/hayden-pedigo-premiere-partie/
+Le Sonic;Buzz Kull + Spike Hellis;1707951600000;100;Rock;https://sonic-lyon.fr/facebook-event/buzz-kull-spike-hellis/
+Le Sonic;Gum takes tooth + Lost in material;1708383600000;100;Rock;https://sonic-lyon.fr/facebook-event/gum-takes-tooth-lost-in-material/
+Le Sonic;Mary Lattimore;1708729200000;100;Rock;https://sonic-lyon.fr/facebook-event/mary-lattimore/
+Le Sonic;HAMMERSHØI + GERARD JUGNO 106;1710543600000;100;Rock;https://sonic-lyon.fr/facebook-event/hammershoi-gerard-jugno-106/
+Le Sonic;Aidan Baker + Yoke;1710889200000;100;Rock;https://sonic-lyon.fr/facebook-event/aidan-baker-yoke/
+Le Sonic;Melenas + Pop Crimes;1711666800000;100;Rock;https://sonic-lyon.fr/facebook-event/melenas-premiere-partie/
+Kraspek Myzik;Oasis Boom + Gintsugi;1737660600000;100;Rock;https://www.petit-bulletin.fr/lyon/agenda-308591-oasis-boom-gintsugi.html
+Théâtre Théo Argence;L'Odyssée musicale du cerveau;1737658800000;100;Classique & Lyrique;https://www.petit-bulletin.fr/lyon/agenda-308502-l-odyssee-musicale-du-cerveau.html
+Le Périscope;Duo Tiggarna;1737662400000;100;Jazz;https://www.petit-bulletin.fr/lyon/agenda-308316-duo-tiggarna.html
+Théâtre de la Renaissance;Maram;1737658800000;100;Divers;https://www.petit-bulletin.fr/lyon/agenda-308310-maram.html
+Bourse du Travail;Hugues Aufray;1737658800000;100;Divers;https://www.petit-bulletin.fr/lyon/agenda-306874-hugues-aufray.html
+Le Sucre;Bagarre;1737653400000;100;Electro;https://www.petit-bulletin.fr/lyon/agenda-308834-bagarre.html
+Marché Gare;Clémentine Weck;1737631800000;100;Rock;https://www.petit-bulletin.fr/lyon/agenda-308872-clementine-weck.html
+Marché Gare;Milena;1737631800000;100;Divers;https://www.petit-bulletin.fr/lyon/agenda-302366-milena.html
+Kraspek Myzik;Opaleene + Caïman;1737747000000;100;Rock;https://www.petit-bulletin.fr/lyon/agenda-308592-opaleene-caiman.html
+Warmaudio;Grade 2 + The mogs;1737741600000;100;Rock;https://www.petit-bulletin.fr/lyon/agenda-308540-grade-2-the-mogs.html
+Le Périscope;Abacaxi;1737748800000;100;Rock;https://www.petit-bulletin.fr/lyon/agenda-308317-abacaxi.html
+La Commune;Sampling Is Beautiful;1737745200000;100;Jazz;https://www.petit-bulletin.fr/lyon/agenda-298940-sampling-is-beautiful.html
+Hot Club;Jam Swing - Héliodore Perrot Trio;1737747000000;100;Jazz / Swing;https://www.petit-bulletin.fr/lyon/agenda-308740-jam-swing-heliodore-perrot-trio.html
+La Clef de Voûte;Jam du mercredi;1737747000000;100;Jazz;https://www.petit-bulletin.fr/lyon/agenda-308764-jam-du-mercredi.html
+Grrrnd Zero;Tongue Depressor + Turner Williams Jr.;1737745200000;100;Rock;https://www.petit-bulletin.fr/lyon/agenda-308774-tongue-depressor-turner-williams-jr.html
+Rock N Eat;Moonball + Civs + Afterglow;1737743400000;100;Rock;https://www.petit-bulletin.fr/lyon/agenda-308785-moonball-civs-afterglow.html
+La Rayonne;MCND;1737738000000;100;Rock;https://www.petit-bulletin.fr/lyon/agenda-308839-mcnd.html
+Warmaudio;Grade 2 + The Mogs;1737741600000;100;Rock;https://www.petit-bulletin.fr/lyon/agenda-308891-grade-2-the-mogs.html
+La Marquise;Mokado;1737745200000;100;Electro;https://www.petit-bulletin.fr/lyon/agenda-289010-mokado.html
+Kraspek Myzik;X-stick meets Sir Jean + Algo Prime + Selekta Kabok;1706211000000;100;Rock;https://www.petit-bulletin.fr/lyon/agenda-308593-x-stick-meets-sir-jean-algo-prime-selekta-kabok.html
+Théâtre Théo Argence;Raphaele Lannadere;1706207400000;100;Classique & Lyrique;https://www.petit-bulletin.fr/lyon/agenda-289594-raphaele-lannadere.html
+Le Toboggan;Thomas Fersen;1706211000000;100;Divers;https://www.petit-bulletin.fr/lyon/agenda-262687-thomas-fersen.html
+A Thou Bout d'Chant;Mégaphone Tour : Couturier, Jaco et Petite Gueule;1706209200000;100;Rock;https://www.petit-bulletin.fr/lyon/agenda-308125-megaphone-tour-couturier-jaco-et-petite-gueule.html
+Hot Club;Dig Dug Dug;1706211000000;100;Jazz;https://www.petit-bulletin.fr/lyon/agenda-308741-dig-dug-dug.html
+La Clef de Voûte;Next generation;1706211000000;100;Jazz;https://www.petit-bulletin.fr/lyon/agenda-308769-next-generation.html
+Rock N Eat;Amon Sethis + Fortunato + Salomé;1706205600000;100;Rock;https://www.petit-bulletin.fr/lyon/agenda-308784-amon-sethis-fortunato-salome.html
+La Rayonne;Hk + Awa Ly;1706211000000;100;Divers;https://www.petit-bulletin.fr/lyon/agenda-308840-hk-awa-ly.html
+Conservatoire de Lyon - CRR;Hommage à Zappa;1706212800000;100;Rock;https://www.petit-bulletin.fr/lyon/agenda-308930-hommage-a-zappa.html
+Le Périscope;Hommage à Zappa;1706212800000;100;Rock;https://www.petit-bulletin.fr/lyon/agenda-308930-hommage-a-zappa.html
+Toï Toï Le Zinc;Fool & The Zooz + SLMVX + Tav;1706205600000;100;Electro;https://www.petit-bulletin.fr/lyon/agenda-308997-fool-the-zooz-slmvx-tav.html
+Un air de Janis;Dixits;1706297400000;100;Rock;https://www.petit-bulletin.fr/lyon/agenda-308538-dixits.html
+Chapelle de la Trinité;Les grandes dames du Jazz;1706295600000;100;Jazz;https://www.petit-bulletin.fr/lyon/agenda-308512-les-grandes-dames-du-jazz.html
+Le Périscope;ARFI;1706299200000;100;Jazz;https://www.petit-bulletin.fr/lyon/agenda-297006-arfi.html
+Le Trokson;Le Chiffre Organ-Ization + The Inner Beats;1706298300000;100;Rock;https://www.petit-bulletin.fr/lyon/agenda-308298-le-chiffre-organ-ization-the-inner-beats.html
+Rock N Eat;Poésie Zéro + Ta Gueule;1706295600000;100;Rock;https://www.petit-bulletin.fr/lyon/agenda-308594-poesie-zero-ta-gueule.html
+Aux Echappées Belles;Les émissaires;1706295600000;100;Classique & Lyrique;https://www.petit-bulletin.fr/lyon/agenda-308642-les-emissaires.html
+Musée des Confluences;Urtyn duu, le chant long des steppes;1706295600000;100;Divers;https://www.petit-bulletin.fr/lyon/agenda-308715-urtyn-duu-le-chant-long-des-steppes.html
+Hot Club;David Bressat trio;1706297400000;100;Jazz;https://www.petit-bulletin.fr/lyon/agenda-204326-david-bressat-trio.html
+La Clef de Voûte;Hervé Salamone;1706297400000;100;Jazz;https://www.petit-bulletin.fr/lyon/agenda-308762-herve-salamone.html
+Grrrnd Zero;Soirée rap par Dérapages;1706295600000;100;Rap;https://www.petit-bulletin.fr/lyon/agenda-308775-soiree-rap-par-derapages.html
+Le Petit Salon;Infected Mushroom + Lethyx Nekuia;1706308200000;100;Electro;https://www.petit-bulletin.fr/lyon/agenda-308811-infected-mushroom-lethyx-nekuia.html
+Le Sucre;Ben Sims + Wild Aspect;1706306400000;100;Electro;https://www.petit-bulletin.fr/lyon/agenda-308822-ben-sims-wild-aspect.html
+La Rayonne;Soom T & The Stone Monks + Fatbabs + Yor;1706293800000;100;Reggae;https://www.petit-bulletin.fr/lyon/agenda-308841-soom-t-the-stone-monks-fatbabs-yor.html
+Epicerie Moderne;Ishkero + Léon Phal;1706297400000;100;Jazz;https://www.petit-bulletin.fr/lyon/agenda-308862-ishkero-leon-phal.html
+Transbordeur;Burr Oak + Effin + Roi* + Cereale;1706295600000;100;Electro;https://www.petit-bulletin.fr/lyon/agenda-308923-burr-oak-effin-roi-cereale.html
+Conservatoire de Lyon - CRR;La nuit des conservatoires;1706190956846;100;Classique & Lyrique;https://www.petit-bulletin.fr/lyon/agenda-308929-la-nuit-des-conservatoires.html
+Jack Jack MJC Aragon;Le courage;1706301000000;100;Classique & Lyrique / Concert litt�raire;https://www.petit-bulletin.fr/lyon/agenda-308973-le-courage.html
+Toï Toï Le Zinc;Uriel + Supermegasupercoolrevolution + Comet Velvet;1706297400000;100;Rock;https://www.petit-bulletin.fr/lyon/agenda-308998-uriel-supermegasupercoolrevolution-comet-velvet.html
+Eglise Saint-Luc;Ensemble Spirito;1706383800000;100;Classique & Lyrique;https://www.petit-bulletin.fr/lyon/agenda-271243-ensemble-spirito.html
+Le Périscope;Canari Gros Calibre + Chloé Eclipse;1706385600000;100;Rock
+;https://www.petit-bulletin.fr/lyon/agenda-308318-canari-gros-calibre-chloe-eclipse.html
+Le Trokson;Good Timin' Men;1706382000000;100;Electro;https://www.petit-bulletin.fr/lyon/agenda-308299-good-timin-men.html
+Double Mixte;Born To Rave;1706389200000;100;Electro;https://www.petit-bulletin.fr/lyon/agenda-297801-born-to-rave.html
+Aux Echappées Belles;Qu'à danser chacun s'apprète;1706382000000;100;Classique & Lyrique;https://www.petit-bulletin.fr/lyon/agenda-308643-qu-a-danser-chacun-s-apprete.html
+La Rayonne;The Foxy Ladies + Tagada Jones + Opium du peuple + Myciaa;1706378400000;100;Rock;https://www.petit-bulletin.fr/lyon/agenda-308716-the-foxy-ladies-tagada-jones-opium-du-peuple-myciaa.html
+Hot Club;New Fly;1706383800000;100;Jazz;https://www.petit-bulletin.fr/lyon/agenda-282990-new-fly.html
+La Clef de Voûte;Cléobule Perrot;1706383800000;100;Jazz;https://www.petit-bulletin.fr/lyon/agenda-308770-cleobule-perrot.html
+Le Petit Salon;Vitess, Wooka + Crowd Control + Maggy Smiss;1706394600000;100;Electro;https://www.petit-bulletin.fr/lyon/agenda-308812-vitess-wooka-crowd-control-maggy-smiss.html
+Le Sucre;Tushen Raé + Chloé + Cracki Soundsystem;1706392800000;100;Electro;https://www.petit-bulletin.fr/lyon/agenda-308823-tushen-rai-chloe-cracki-soundsystem.html
+Transbordeur;Bomel;1706382000000;100;Electro;https://www.petit-bulletin.fr/lyon/agenda-308924-bomel.html
+Transbordeur;Young Warrior + Young Veteran Sound System + Demkaz + Pilah + DJ Kunta;1706394600000;100;Rock;https://www.petit-bulletin.fr/lyon/agenda-308925-young-warrior-young-veteran-sound-system-demkaz-pilah-dj-kunta.html
+Carib'Food;Yeahman'C;1706385600000;100;Reggae;https://www.petit-bulletin.fr/lyon/agenda-308962-yeahman-c.html
+Toï Toï Le Zinc;Amin & Luna + Iles;1706383800000;100;Rock;https://www.petit-bulletin.fr/lyon/agenda-308999-amin-luna-iles.html
+Aux Echappées Belles;Qu'à danser chacun s'apprète;1706457600000;100;Classique & Lyrique;https://www.petit-bulletin.fr/lyon/agenda-308643-qu-a-danser-chacun-s-apprete.html
+La Clef de Voûte;Camille Wolfrom;1706466600000;100;Jazz;https://www.petit-bulletin.fr/lyon/agenda-308771-camille-wolfrom.html
+Rock N Eat;Restraining Order + Magnitude + Mss Frnce + Viceprez;1706466600000;100;Rock;https://www.petit-bulletin.fr/lyon/agenda-308786-restraining-order-magnitude-mss-frnce-viceprez.html
+Le Sucre;Julian Muller + Chl�r + Vanille;1706461200000;100;Electro;https://www.petit-bulletin.fr/lyon/agenda-308824-julian-muller-chlar-vanille.html
+Basilique de Saint-Martin-d'Ainay;Grand concert des solistes;1706190956867;100;Classique & Lyrique;https://www.petit-bulletin.fr/lyon/agenda-308888-grand-concert-des-solistes.html
+CNSMD;David Fray;1706454000000;100;Classique & Lyrique;https://www.petit-bulletin.fr/lyon/agenda-308956-david-fray.html
+Transbordeur;Eagle-Eye Cherry;1706554800000;100;Rock;https://www.petit-bulletin.fr/lyon/agenda-246328-eagle-eye-cherry.html
+Le Périscope;Salgar & Eraslan Duo;1706637600000;100;Jazz;https://www.petit-bulletin.fr/lyon/agenda-308319-salgar-eraslan-duo.html
+Le Sonic;Dlina Volny + Jennifer Touch;1706641200000;100;Rock;https://www.petit-bulletin.fr/lyon/agenda-308250-dlina-volny-jennifer-touch.html
+Radiant-Bellevue;Corps � C�urs;1706641200000;100;Divers;https://www.petit-bulletin.fr/lyon/agenda-308650-corps-a-c-urs.html
+Le Sonic;Feet + Barrio Colette;1706727600000;100;Rock;https://www.petit-bulletin.fr/lyon/agenda-308567-feet-barrio-colette.html
+Le Périscope;Zangbeto Quintet;1706731200000;100;Jazz;https://www.petit-bulletin.fr/lyon/agenda-303709-zangbeto-quintet.html
+Le Trokson;Control Voltage;1706730300000;100;Electro;https://www.petit-bulletin.fr/lyon/agenda-306365-control-voltage.html
+Hot Club;Jam Brasil - Zaza Desiderio;1706729400000;100;Jazz;https://www.petit-bulletin.fr/lyon/agenda-308742-jam-brasil-zaza-desiderio.html
+Rock N Eat;Samiam + Go Public;1706725800000;100;Rock;https://www.petit-bulletin.fr/lyon/agenda-308787-samiam-go-public.html
+Marché Gare;Akira & Le Sabbat + Arkange + Cindy Pocch + Foncedalle;1706724000000;100;Rock;https://www.petit-bulletin.fr/lyon/agenda-309028-akira-le-sabbat-arkange-cindy-pocch-foncedalle.html
+L'Aqueduc;Souad Massi;1706815800000;100;Rock;https://www.petit-bulletin.fr/lyon/agenda-308208-souad-massi.html
+Hot Club;Invitation Quartet;1706815800000;100;Jazz;https://www.petit-bulletin.fr/lyon/agenda-258165-invitation-quartet.html
+Marché Gare;Irnini Mons + Jasual Cazz + Ronnie + Ugo del Rosso;1706810400000;100;Rock;https://www.petit-bulletin.fr/lyon/agenda-309027-irnini-mons-jasual-cazz-ronnie-ugo-del-rosso.html
+L'Aqueduc;Clio + Aliocha Schneider;1706902200000;100;Divers;https://www.petit-bulletin.fr/lyon/agenda-308209-clio-aliocha-schneider.html
+Maison du Peuple Pierre Bénite;Daniel Auteuil;1706900400000;100;Divers;https://www.petit-bulletin.fr/lyon/agenda-281408-daniel-auteuil.html
+Le Périscope;Marc Copland + Daniel Schléppi duo;1706904000000;100;Jazz;https://www.petit-bulletin.fr/lyon/agenda-308595-marc-copland-daniel-schlappi-duo.html
+Transbordeur;Santa Kahena + Nathalie Froelich + Panteros666 + Ghetto Bird + Heidi Prairie + Emma;1706913000000;100;Electro;https://www.petit-bulletin.fr/lyon/agenda-308607-santa-kahena-nathalie-froelich-panteros666-ghetto-bird-heidi-prairie-emma.html
+Hot Club;Felipe Silva Mena Trio;1706902200000;100;Jazz;https://www.petit-bulletin.fr/lyon/agenda-289155-felipe-silva-mena-trio.html
+Grrrnd Zero;Guttersnipe + Gésir;1706900400000;100;Rock;https://www.petit-bulletin.fr/lyon/agenda-308776-guttersnipe-gesir.html
+Rock N Eat;Rock Brigade + Shout at the devil;1706900400000;100;Rock;https://www.petit-bulletin.fr/lyon/agenda-308788-rock-brigade-shout-at-the-devil.html
+Le Petit Salon;Henri Bergmann + Beswerda + Nomore + Catiba;1706913000000;100;Electro;https://www.petit-bulletin.fr/lyon/agenda-308813-henri-bergmann-beswerda-nomore-catiba.html
+Le Sucre;Batu + Mush;1706911200000;100;Electro;https://www.petit-bulletin.fr/lyon/agenda-308825-batu-mush.html
+Toï Toï Le Zinc;Colectivo Caliente y El Elegante + DJ Michel Platine y sorpresas;1706902200000;100;Jazz;https://www.petit-bulletin.fr/lyon/agenda-309012-colectivo-caliente-y-el-elegante-dj-michel-platine-y-sorpresas.html
+Auditorium de Lyon;City Life;1706900400000;100;Classique & Lyrique;https://www.petit-bulletin.fr/lyon/agenda-309029-city-life.html
+Eglise du Saint-Nom de Jésus;Harmonies persanes;1706900400000;100;Classique & Lyrique;https://www.petit-bulletin.fr/lyon/agenda-309035-harmonies-persanes.html
+Warmaudio;8�6 Crew + Claimed Choice;1706985000000;100;Rock;https://www.petit-bulletin.fr/lyon/agenda-308547-8-6-crew-claimed-choice.html
+Eglise Sainte-Elisabeth;Stabat Mater de Dvorak;1706979600000;100;Classique & Lyrique;https://www.petit-bulletin.fr/lyon/agenda-308536-stabat-mater-de-dvorak.html
+Les Enfants du Tarmac;Ernesto Sanchez;1706985000000;100;Classique & Lyrique;https://www.petit-bulletin.fr/lyon/agenda-165311-ernesto-sanchez.html
+LDLC Arena;Shaka Ponk;-62038152561000;100;Rock;https://www.petit-bulletin.fr/lyon/agenda-85886-shaka-ponk.html
+L'Aqueduc;Voyou + David Walters;1706988600000;100;Rock;https://www.petit-bulletin.fr/lyon/agenda-308210-voyou-david-walters.html
+Le Périscope;Pixvae;1706990400000;100;Jazz;https://www.petit-bulletin.fr/lyon/agenda-300878-pixvae.html
+Transbordeur;Swing;1706986800000;100;Rap;https://www.petit-bulletin.fr/lyon/agenda-308608-swing.html
+Marché Gare;MILENA;1737586800000;100;Déjeuner-Concert;https://marchegare.fr//agenda/milena-0
+Marché Gare;CLÉMENTINE WECK;1737586800000;100;Déjeuner-Concert;https://marchegare.fr//agenda/clementine-weck
+Marché Gare;Atelier "Diffuser sa musique sur les plateformes de streaming";1737586800000;100;Rencontres Pros;https://marchegare.fr//agenda/atelier-diffuser-sa-musique-sur-les-plateformes-de-streaming
+Marché Gare;CINÉ BOOK CLUB : MALA NOCHE;1737586800000;100;Projection;https://marchegare.fr//agenda/cine-book-club-mala-noche
+Marché Gare;Les iNOUïS du Printemps de Bourges;1706655600000;100;Rock;https://marchegare.fr//agenda/les-inouis-du-printemps-de-bourges-0
+Marché Gare;Les iNOUïS du Printemps de Bourges;1706742000000;100;Rock;https://marchegare.fr//agenda/les-inouis-du-printemps-de-bourges
+Marché Gare;Les États généraux de la presse indépendante;1707174000000;100;Divers;https://marchegare.fr//agenda/les-etats-generaux-de-la-presse-independante
+Marché Gare;MARS RED SKY;1707260400000;100;Metal;https://marchegare.fr//agenda/mars-red-sky
+Marché Gare;KALIKA;1707433200000;100;Electro;https://marchegare.fr//agenda/kalika
+Marché Gare;DITZ;1707778800000;100;Electro;https://marchegare.fr//agenda/ditz
+Marché Gare;LANKUM;1707865200000;100;Drone;https://marchegare.fr//agenda/lankum
+Marché Gare;CELESTE;1708642800000;100;Metal;https://marchegare.fr//agenda/celeste
+Marché Gare;NINKASI MUSIK LAB;1709247600000;100;Indie Pop;https://marchegare.fr//agenda/ninkasi-musik-lab
+Marché Gare;ROSHI;1709766000000;100;Rap / Hip-Hop;https://marchegare.fr//agenda/roshi
+Marché Gare;GROUMPF;1709852400000;100;Electro;https://marchegare.fr//agenda/groumpf
+Marché Gare;FÉFÉ;1710457200000;100;Rap / Hip-Hop;https://marchegare.fr//agenda/fefe
+Marché Gare;BEN PLG;1711148400000;100;Rap / Hip-Hop;https://marchegare.fr//agenda/ben-plg
+Marché Gare;HINT;1711407600000;100;Musique Expé.;https://marchegare.fr//agenda/hint
+Marché Gare;SAUVAN;1712095200000;100;Divers;https://marchegare.fr//agenda/sauvan
+Marché Gare;YUSTON XIII;1712181600000;100;Rap / Hip-Hop;https://marchegare.fr//agenda/yuston-xiii
+Marché Gare;SLIFT + KARKARA;1712268000000;100;Psyché;https://marchegare.fr//agenda/slift
+Marché Gare;OSCAR LES VACANCES;1712786400000;100;Divers;https://marchegare.fr//agenda/oscar-les-vacances
+Marché Gare;JOANNA;1712872800000;100;Urban Pop;https://marchegare.fr//agenda/joanna
+Marché Gare;BRUIT NOIR;1713218400000;100;Inclassable;https://marchegare.fr//agenda/bruit-noir
+Marché Gare;JOHNNY MAFIA;1714082400000;100;Punk-Rock;https://marchegare.fr//agenda/johnny-mafia
+Marché Gare;SELUG & $ENAR;1715896800000;100;Rap / Hip-Hop;https://marchegare.fr//agenda/selug-enar
+Marché Gare;JOHNNIE CARWASH;1716415200000;100;Indie Rock;https://marchegare.fr//agenda/johnnie-carwash
+Halle Tony Garnier;FREEZE CORLEONE;1708196400000;100;Rock;https://www.halle-tony-garnier.com/fr/programmation/freeze-corleone
+Halle Tony Garnier;NEJ;1709233200000;100;;https://www.halle-tony-garnier.com/fr/programmation/nej
+Halle Tony Garnier;STAR ACADEMY;1710529200000;100;;https://www.halle-tony-garnier.com/fr/programmation/star-academy
+Halle Tony Garnier;JOHNNY SYMPHONIQUE TOUR;1711134000000;100;;https://www.halle-tony-garnier.com/fr/programmation/johnny-symphonique-tour
+Halle Tony Garnier;JAMES BLUNT;1711566000000;100;;https://www.halle-tony-garnier.com/fr/programmation/james-blunt
+Halle Tony Garnier;NINHO;1711652400000;100;;https://www.halle-tony-garnier.com/fr/programmation/ninho-2
+Halle Tony Garnier;NINHO;1711738800000;100;;https://www.halle-tony-garnier.com/fr/programmation/ninho
+Halle Tony Garnier;PLK;1711825200000;100;;https://www.halle-tony-garnier.com/fr/programmation/plk
+Halle Tony Garnier;JUDAS PRIEST;1712340000000;100;;https://www.halle-tony-garnier.com/fr/programmation/judas-priest
+Halle Tony Garnier;ZOLA;1712426400000;100;;https://www.halle-tony-garnier.com/fr/programmation/zola
+Halle Tony Garnier;PLK;1712858400000;100;;https://www.halle-tony-garnier.com/fr/programmation/plk-2
+Halle Tony Garnier;PATRICK FIORI;1713031200000;100;;https://www.halle-tony-garnier.com/fr/programmation/patrick-fiori
+Halle Tony Garnier;STAR ACADEMY;1714759200000;100;;https://www.halle-tony-garnier.com/fr/programmation/star-academy-2
+Halle Tony Garnier;THE WORLD OF HANS ZIMMER;1714845600000;100;;https://www.halle-tony-garnier.com/fr/programmation/the-world-of-hans-zimmer
+Halle Tony Garnier;LES COWBOYS FRINGANTS - ANNULE;1718733600000;100;;https://www.halle-tony-garnier.com/fr/programmation/les-cowboys-fringants-annule
+Halle Tony Garnier;FESTIVAL SLAM DUNK;1719061200000;100;;https://www.halle-tony-garnier.com/fr/programmation/festival-slam-dunk
+Halle Tony Garnier;I GOTTA FEELING - LE CONCERT;1727546400000;100;;https://www.halle-tony-garnier.com/fr/programmation/i-gotta-feeling-le-concert
+Halle Tony Garnier;SHAKA PONK;1729792800000;100;;https://www.halle-tony-garnier.com/fr/programmation/shaka-ponk
+Halle Tony Garnier;LUIDJI;1731783600000;100;;https://www.halle-tony-garnier.com/fr/programmation/luidji
+Halle Tony Garnier;EDDY DE PRETTO;1732388400000;100;;https://www.halle-tony-garnier.com/fr/programmation/eddy-de-pretto
+Halle Tony Garnier;LOUANE;1746900000000;100;;https://www.halle-tony-garnier.com/fr/programmation/louane
+Le Trokson;POST-TRAUMATIC HOLIDAYS BLINDTEST EXTRAVAGANZA ! (TREVOR REVEUR // Blind Test);1737759600000;100;Rock;https://www.trokson.com/events/post-traumatic-holidays-blindtest-extravaganza-trevor-reveur-blind-test
+Le Trokson;LE CHIFFRE ORGAN-IZATION (Rock Soundtrack // FR) + THE INNER BEATS (Garage Soul // Lyon);1706223600000;100;Rock;https://www.trokson.com/events/le-chiffre-organ-ization-rock-soundtrack-fr-the-inner-beats-garage-soul-lyon
+Le Trokson;THE GOOD TIMIN' MEN (DJ Set);1706310000000;100;Rock;https://www.trokson.com/events/the-good-timin-men-dj-set
+Le Trokson;EL TORNADO (DJ Set);1737327600000;100;Rock;https://www.trokson.com/events/el-tornado-dj-set
+Le Trokson;Phab 45 / Dj Set;1737241200000;100;Rock;https://www.trokson.com/events/phab-45-dj-set
+Le Trokson;FESTIVAL PLUG & PLAY 13e ÉDITION : THE TIGRE | BITTER [ TROKSON ];1737154800000;100;Rock;https://www.trokson.com/events/festival-plug-play-13e-edition-the-tigre-bitter-trokson
+Le Trokson;GRAVEKVLT (Evil Speed Metal Punk // Nantes) + TRAQUENARD (Punk Thrash Blackmetal // Lille);1737068400000;100;Rock;https://www.trokson.com/events/gravekvlt-evil-speed-metal-punk-nantes-traquenard-punk-thrash-blackmetal-lille
+Le Trokson;BIDULEMAN vs MANDIBULE (Cosmic Catch Core // Mâcon) + DELEUZE 909 (Krautpunk // Lyon);1736722800000;100;Rock;https://www.trokson.com/events/biduleman-vs-mandibule-cosmic-catch-core-macon-deleuze-909-krautpunk-lyon
+Le Trokson;PETER PARKER'S BONES (Blues Punk // FR) + MANGO LOGO (Alt Rock // Lyon);1736636400000;100;Rock;https://www.trokson.com/events/peter-parkers-bones-blues-punk-fr-mango-logo-alt-rock-lyon
+Le Trokson;TOUS EN TONG DJ CREW;1736118000000;100;Rock;https://www.trokson.com/events/tous-en-tong-dj-crew
+Le Trokson;ACID GRAS (Garage Punk // Paris) + TUNNEL BITCH (No Wave/Antifolk // Lyon);1736031600000;100;Rock;https://www.trokson.com/events/acid-gras-garage-punk-paris-tunnel-bitch-no-wave-antifolk-lyon
+Le Trokson;FRAU NANA (Dj Set);1734735600000;100;Rock;https://www.trokson.com/events/frau-nana-dj-set
+Le Trokson;MATA HARI (Post Synthpunk // FR)+ SEB RADIX (Local Hero);1734303600000;100;Rock;https://www.trokson.com/events/mata-hari-post-synthpunk-fr-seb-radix-local-hero
+Le Trokson;THE X-MESS BLINDTEST EXTRAVAGANZA ! (TREVOR REVEUR // Blind Test);1734217200000;100;Rock;https://www.trokson.com/events/the-x-mess-blindtest-extravaganza-trevor-reveur-blind-test
+Le Trokson;SOvOX (Garage Punk // Marseille) + MARY KILLJOY (Grunge // Lyon);1734130800000;100;Rock;https://www.trokson.com/events/sovox-garage-punk-marseille-mary-killjoy-grunge-lyon
+Le Trokson;𝙖 𝘾𝙊𝙇𝘿 𝙒𝘼𝙑𝙀 𝙚𝙫𝙚𝙣𝙞𝙣𝙜 with ADRIEN DURAND and BLACKTHREAD;1733698800000;100;Rock;https://www.trokson.com/events/with-adrien-durand-and-blackthread
+Le Trokson;MYCIAA (Punk Electro-Hardcore // FR) + SCHLEU (Xtrem Noise Punk // Lyon);1733526000000;100;Rock;https://www.trokson.com/events/myciaa-punk-electro-hardcore-fr-schleu-xtrem-noise-punk-lyon
+Le Trokson;FIN DEL MUNDO (Indie Rock // Argentine) + FUTURE DOGS (Garage Pop // Valence);1733439600000;100;Rock;https://www.trokson.com/events/fin-del-mundo-indie-rock-argentine-future-dogs-garage-pop-valence
+Le Trokson;Bleakness + Contractions;1735932600000;100;Rock;https://villemorte.fr/agenda/bleakness-contractions/
+BosKop;VHS Chaos Theory: Chapitre II;1736101800000;100;projection;https://villemorte.fr/agenda/vhs-chaos-theory-chapitre-ii/
+Le Trokson;Acid Gras + Tunnel Bitch;1736105400000;100;Rock;https://villemorte.fr/agenda/acid-gras-tunnel-bitch/
+Le Trokson;Tous en Tong Dj Crew;1736190000000;100;Electro;https://villemorte.fr/agenda/tous-en-tong-dj-crew/
+Rock N Eat;Praÿ + A Better Tomorrow + QOYA;1736190000000;100;Rock;https://villemorte.fr/agenda/pray-a-better-tomorrow-qoya/
+Grrrnd Zero;La Ruche + Épépé + Deleuze 909 + Orchestralheat;1736190000000;100;Rock;https://villemorte.fr/agenda/la-ruche-epepe-deleuze-909-orchestralheat/
+Marché Gare;Giant Rooks;1736449200000;100;Rock;https://villemorte.fr/agenda/giant-rooks/
+Grrrnd Zero;Bistro Zéro: Festival du film court francophone de Vaulx-en-Velin;1736528400000;100;bouffe;https://villemorte.fr/agenda/bistro-zero-festival-du-film-court-francophone-de-vaulx-en-velin/
+Toï Toï le Zinc;Dj set INTI + Open Mike Rap;1736618400000;100;;https://villemorte.fr/agenda/dj-set-inti-open-mike-rap/
+Rock N Eat;Plooks + Colorkode + Leon Benmass Trio;1736620200000;100;Rock;https://villemorte.fr/agenda/plooks-colorkode-leon-benmass-trio/
+BosKop;Vernissage: perception visuel, identité, altérité, expérimentation;1736620200000;100;exposition;https://villemorte.fr/agenda/vernissage-perception-visuel-identite-alterite-experimentation/
+Le Trokson;ANNULE / Pantalon + Big Bag Bug;1736623800000;100;Rock;https://villemorte.fr/agenda/pantalon-big-bag-bug/
+Jack Jack MJC Aragon;Ottis coeur + Send me love letters;1736704800000;100;Rock;https://villemorte.fr/agenda/ottis-coeur-send-me-love-letters/
+Grrrnd Zero;Azul – Approche-toi de mon cœur #2;1736704800000;100;;https://villemorte.fr/agenda/azul-approche-toi-de-mon-coeur-2/
+Toï Toï le Zinc;Damage + Eyes and Legs + Surface Tangibl;1736708400000;100;Rock;https://villemorte.fr/agenda/damage-eyes-and-legs-surface-tangibl/
+Le Périscope;After Geography;1736708400000;100;Rock;https://villemorte.fr/agenda/after-geography-2/
+La Rayonne;Furax Barbarossa + DJ Maltfunk;1736708400000;100;Rock;https://villemorte.fr/agenda/furax-barbarossa-dj-maltfunk/
+Rock N Eat;Shotgun Logic + Heart Attack Genocide + Supershotgun;1736791200000;100;Rock;https://villemorte.fr/agenda/shotgun-logic-heart-attack-genocide-supershotgun/
+Cefedem;G.W. Sok + HAAAH + Paleocène + Folloï;1736791200000;100;bouffe;https://villemorte.fr/agenda/g-w-sok-hah-paleocene-folloi/
+Marché Gare;Wailing Trees;1736794800000;100;Rock;https://villemorte.fr/agenda/wailing-trees/
+Le Sonic;Bisous Mamie + Cleseph + Donny Vegas;1736794800000;100;Rock;https://villemorte.fr/agenda/bisous-mamie-cleseph-donny-vegas/
+Les Clameurs;Soirée de soutien à l’Observatoire International des Prisons;1736794800000;100;bouffe;https://villemorte.fr/agenda/soiree-de-soutien-a-lobservatoire-international-des-prisons/
+Le Périscope;The Bridge #2.8;1737054000000;100;Rock;https://villemorte.fr/agenda/the-bridge-2-8/
+Kraspek Myzik;Plug & Play #13: Cabaret Genèse;1737055800000;100;spectacle;https://villemorte.fr/agenda/plug-play-13-cabaret-genese/
+Kraspek Myzik;Plug & Play #13: Carte Blanche au collectif Fils de Pentes;1737142200000;100;Rock;https://villemorte.fr/agenda/plug-play-13-carte-blanche-au-collectif-fils-de-pentes/
+Le Trokson;Gravekvlt + Traquenard;1737142200000;100;Rock;https://villemorte.fr/agenda/gravekvlt-traquenard/
+Toï Toï le Zinc;Dj Duchesse Von Buffalo;1737223200000;100;;https://villemorte.fr/agenda/dj-duchesse-von-buffalo/
+La Rayonne;Abbath + Toxic Holocaust + Hellripper;1737223200000;100;Rock;https://villemorte.fr/agenda/abbath-toxic-holocaust-hellripper/
+Les Clameurs;René Danger + 144midi;1737226800000;100;Rock;https://villemorte.fr/agenda/rene-danger-144midi/
+Grrrnd Zero;Barrage + Deletär + Fumist;1737226800000;100;Rock;https://villemorte.fr/agenda/barrage-deletar-fumist/
+Le Trokson;Plug & Play #13: The Tigre + Bitter;1737228600000;100;Rock;https://villemorte.fr/agenda/the-tigre-bitter/
+Monopole et Salle de Bains;Next One Is Real;1737306000000;100;;https://villemorte.fr/agenda/next-one-is-real/
+La Rayonne;TesseracT + Unprocessed + The Callous Daoboys;1737309600000;100;Rock;https://villemorte.fr/agenda/tesseract-unprocessed-the-callous-daoboys/
+Warmaudio;Punks against Putinism: Iron Deficiency + No More Waiting + Changes;1737311400000;100;Rock;https://villemorte.fr/agenda/punks-against-putinism-iron-deficiency-no-more-waiting-changes/
+BosKop;VHS CHAOS THEORY : Chapitre II;1737311400000;100;projection;https://villemorte.fr/agenda/vhs-chaos-theory-chapitre-ii-2/
+Le Périscope;Faune;1737313200000;100;Rock;https://villemorte.fr/agenda/faune/
+La Salle de Bains;Next One is Real;1737379800000;100;;https://villemorte.fr/agenda/next-one-is-real-2/
+Toï Toï le Zinc;Forro Em Lyon;1737399600000;100;;https://villemorte.fr/agenda/forro-em-lyon/
+Le Périscope;Leoni Leoni + Le Diable Dégoûtant;1737399600000;100;Rock;https://villemorte.fr/agenda/leoni-leoni-le-diable-degoutant/
+Le Trokson;El Tornado;1737399600000;100;Electro;https://villemorte.fr/agenda/el-tornado-2/
+Le Sonic;Plug & Play #13: Eustache McQueer + Foutues pour Foutues + Claustinto + Calvaire;1737401400000;100;Rock;https://villemorte.fr/agenda/plug-play-13-eustache-mcqueer-foutues-pour-foutues-claustinto-calvaire/
+Le Périscope;Duo Tiggarna;1737658800000;100;Rock;https://villemorte.fr/agenda/duo-tiggarna/
+Kraspek Myzik;Plug & Play #13: Gintsugi + Oasis Boom;1737660600000;100;Rock;https://villemorte.fr/agenda/plug-play-13-gintsugi-oasis-boom/
+Warmaudio;Grade 2 + The Mogs;1737741600000;100;Rock;https://villemorte.fr/agenda/grade-2-the-mogs/
+Le Périscope;Abacaxi;1737745200000;100;Rock;https://villemorte.fr/agenda/abacaxi/
+Grrrnd Zero;Tongue Depressor + Turner Williams Jr.;1737745200000;100;Rock;https://villemorte.fr/agenda/tongue-depressor-turner-williams-jr/
+Kraspek Myzik;Plug & Play #13: Opaleene + CAÏMAN;1737747000000;100;Rock;https://villemorte.fr/agenda/plug-play-13-opaleene-caiman/
+BosKop;« Notre écoumène » : Atelier d’imagination positive avec l’autrice Li-Cam;1706202000000;100;atelier;https://villemorte.fr/agenda/notre-ecoumene-atelier-dimagination-positive-avec-lautrice-li-cam/
+L’Amicale Du Futur;Mantis Major;1706202000000;100;Electro;https://villemorte.fr/agenda/mantis-major/
+Toï Toï Le Zinc;Dj laure lynne & Milan;1706205600000;100;;https://villemorte.fr/agenda/dj-laure-lynne-milan/
+Rock N Eat;Amon Sethis + Fortunato + Salomé;1706205600000;100;Rock;https://villemorte.fr/agenda/amon-sethis-fortunato-salome/
+Le Trokson;Post-Traumatic Holidays Blindtest Extravaganza !;1706209200000;100;Divers;https://villemorte.fr/agenda/post-traumatic-holidays-blindtest-extravaganza/
+Jack Jack MJC Aragon;Le Courage – Cie Petits Papiers;1706252400000;100;Rock;https://villemorte.fr/agenda/le-courage-cie-petits-papiers/
+IAC;Tarek Ataoui avec Jérôme Bertholon, Nolwenn Guéhenneux, Johann Phillipe et Yui Sakagoshi;1706288400000;100;bal folk;https://villemorte.fr/agenda/tarek-ataoui-avec-jerome-bertholon-nolwenn-guehenneux-johann-phillipe-et-yui-sakagoshi/
+La Rayonne;Soom T & The Stone Monks + Fatbabs + Yor;1706293800000;100;Rock;https://villemorte.fr/agenda/soom-t-the-stone-monks-fatbabs-yor/
+Grrrnd Zero;Drama Doll + Bouki + Err Walou + DJ Set;1706293800000;100;Electro;https://villemorte.fr/agenda/drama-doll-bouki-err-walou-dj-set/
+Théâtre de l’Elysée;Suturé.es;1706293800000;100;théâtre;https://villemorte.fr/agenda/suture-es/
+L’Amicale Du Futur;Soirée Chants Populaires Kurdes – Halk türkülerini söyluyor – Gel stranên xwe dibêjin;1706374800000;100;chorale;https://villemorte.fr/agenda/soiree-chants-populaires-kurdes-halk-turkulerini-soyluyor-gel-stranen-xwe-dibejin/
+La Rayonne;Wild or Nothing Fest : The Foxy Ladies + Tagada Jones + Opium du Peuple + Myciaa;1706378400000;100;Rock;https://villemorte.fr/agenda/wild-or-nothing-fest-the-foxy-ladies-tagada-jones-opium-du-peuple-myciaa/
+Le Périscope;Canari Gros Calibre + Chloé Eclipse;1706382000000;100;Rock;https://villemorte.fr/agenda/canari-gros-calibre-chloe-eclipse/
+Le Trokson;Good Timin’ Men;1706382000000;100;Electro;https://villemorte.fr/agenda/good-timin-men-2/
+Toï Toï Le Zinc;Voyage musical de l’orient vers TamazƔa;1706383800000;100;;https://villemorte.fr/agenda/voyage-musical-de-lorient-vers-tamaz%c9%a3a/
+La Rayonne;Vinyl Pop-Up Market;1706432400000;100;Marché;https://villemorte.fr/agenda/vinyl-pop-up-market/
+Rock N Eat;Restraining Order + Magnitude + Mss Frnce + Viceprez;1706464800000;100;Rock;https://villemorte.fr/agenda/restraining-order-magnitude-mss-frnce-viceprez/
+Le Périscope;Salgar & Eraslan Duo;1706637600000;100;Rock;https://villemorte.fr/agenda/salgar-eraslan-duo-2/
+Le Sonic;Dlina Volny + Jennifer Touch;1706641200000;100;Rock;https://villemorte.fr/agenda/dlina-volny-jennifer-touch/
+Rock N Eat;Samiam + Go Public!;1706724000000;100;Rock;https://villemorte.fr/agenda/samiam-1ere-partie/
+Le Périscope;Zangbeto Quintet;1706727600000;100;Rock;https://villemorte.fr/agenda/zangbeto-quintet/
+Le Sonic;Feet + Barrio Colette;1706727600000;100;Rock;https://villemorte.fr/agenda/feet-barrio-colette/
+Le Trokson;Control Voltage;1706729400000;100;Rock;https://villemorte.fr/agenda/control-voltage-7/
+La Boulangerie du Prado;Les fugitifs;1706814000000;100;théâtre;https://villemorte.fr/agenda/les-fugitifs-2/
+L’Amicale Du Futur;Soirée de soutien pour le Jusqu’ici;1706896800000;100;bouffe;https://villemorte.fr/agenda/soiree-de-soutien-pour-le-jusquici/
+Grrrnd Zero;Guttersnipe + Gésir + Maléore;1706900400000;100;Rock;https://villemorte.fr/agenda/guttersnipe-gesir-maleore/
+Les Grandes Voisines;Odessey & Oracle;1706900400000;100;Rock;https://villemorte.fr/agenda/odyssey-and-oracle/
+Le Périscope;Marc Copland & Daniel Schläppi duo;1706900400000;100;Rock;https://villemorte.fr/agenda/marc-copland-daniel-schlappi-duo/
+Le Trokson;Basement Delights;1706900400000;100;Electro;https://villemorte.fr/agenda/basement-delights-2/
+Jack Jack;Festival l’Avalanche;1706981400000;100;festival;https://villemorte.fr/agenda/festival-lavalanche/
+Épicerie Moderne;Au Détour d’une Baïne;1706985000000;100;exposition;https://villemorte.fr/agenda/au-detour-dune-baine/
+Warmaudio;8°6 Crew + Claimed Choice;1706985000000;100;Rock;https://villemorte.fr/agenda/86-crew-claimed-choice/
+Grrrnd Zero;GCR K7 Release Party;1706986800000;100;sortie d'album;https://villemorte.fr/agenda/gcr-k7-release-party/
+Club Transbo;Swing;1706986800000;100;Rock;https://villemorte.fr/agenda/swing/
+Le Périscope;Match-retour : Big Band de l’Ouest vs Dim Dam Domb’ Big Band;1707058800000;100;Rock;https://villemorte.fr/agenda/match-retour-big-band-de-louest-vs-dim-dam-domb-big-band/
+Le Périscope;Salgar & Eraslan Duo;1706637600000;100;Rock;https://villemorte.fr/agenda/salgar-eraslan-duo-2/
+Le Sonic;Dlina Volny + Jennifer Touch;1706641200000;100;Rock;https://villemorte.fr/agenda/dlina-volny-jennifer-touch/
+Rock N Eat;Samiam + Go Public!;1706724000000;100;Rock;https://villemorte.fr/agenda/samiam-1ere-partie/
+Le Périscope;Zangbeto Quintet;1706727600000;100;Rock;https://villemorte.fr/agenda/zangbeto-quintet/
+Le Sonic;Feet + Barrio Colette;1706727600000;100;Rock;https://villemorte.fr/agenda/feet-barrio-colette/
+Le Trokson;Control Voltage;1706729400000;100;Rock;https://villemorte.fr/agenda/control-voltage-7/
+La Boulangerie du Prado;Les fugitifs;1706814000000;100;théâtre;https://villemorte.fr/agenda/les-fugitifs-2/
+L’Amicale Du Futur;Soirée de soutien pour le Jusqu’ici;1706896800000;100;bouffe;https://villemorte.fr/agenda/soiree-de-soutien-pour-le-jusquici/
+Grrrnd Zero;Guttersnipe + Gésir + Maléore;1706900400000;100;Rock;https://villemorte.fr/agenda/guttersnipe-gesir-maleore/
+Les Grandes Voisines;Odessey & Oracle;1706900400000;100;Rock;https://villemorte.fr/agenda/odyssey-and-oracle/
+Le Périscope;Marc Copland & Daniel Schläppi duo;1706900400000;100;Rock;https://villemorte.fr/agenda/marc-copland-daniel-schlappi-duo/
+Le Trokson;Basement Delights;1706900400000;100;Electro;https://villemorte.fr/agenda/basement-delights-2/
+Jack Jack MJC Aragon;Festival l’Avalanche;1706981400000;100;festival;https://villemorte.fr/agenda/festival-lavalanche/
+Épicerie Moderne;Au Détour d’une Baïne;1706985000000;100;exposition;https://villemorte.fr/agenda/au-detour-dune-baine/
+Warmaudio;8°6 Crew + Claimed Choice;1706985000000;100;Rock;https://villemorte.fr/agenda/86-crew-claimed-choice/
+Grrrnd Zero;GCR K7 Release Party;1706986800000;100;sortie d'album;https://villemorte.fr/agenda/gcr-k7-release-party/
+Club Transbo;Swing;1706986800000;100;Rock;https://villemorte.fr/agenda/swing/
+Le Périscope;Match-retour : Big Band de l’Ouest vs Dim Dam Domb’ Big Band;1707058800000;100;Rock;https://villemorte.fr/agenda/match-retour-big-band-de-louest-vs-dim-dam-domb-big-band/
+Grrrnd Zero;Abstract Concrete + RE : SSAK + Pili Coït;1707161400000;100;;https://villemorte.fr/agenda/abstract-concrete-re-ssak-pili-coit/
+Théâtre de l’Elysée;La Barbe;1707244200000;100;théâtre;https://villemorte.fr/agenda/la-barbe/
+Les Clameurs;Stand-up politique;1707246000000;100;stand-up;https://villemorte.fr/agenda/stand-up-politique/
+Marché Gare;Mars Red Sky + Cosse + Occult Hand Order;1707332400000;100;Rock;https://villemorte.fr/agenda/mars-red-sky-cosse-occult-hand-order/
+Le Sonic;Sa-Roc + Starrlight + Kaynixe;1707332400000;100;Electro;https://villemorte.fr/agenda/sa-roc-starrlight-kaynixe/
+Le Périscope;Derya Yıldırım & Grup Şimşek;1707336000000;100;Rock;https://villemorte.fr/agenda/derya-yildirim-grup-simsek-4/
+Grrrnd Zero;Bistro-ciné: Une île et une nuit;1707411600000;100;bouffe;https://villemorte.fr/agenda/bistro-cine-une-ile-et-une-nuit/
+Rita-Plage;Karaoké live;1707415200000;100;bouffe;https://villemorte.fr/agenda/karaoke-live/
+Le Sonic;Aline + mOnde;1707418800000;100;Rock;https://villemorte.fr/agenda/aline-monde/
+Transbordeur;Guy2Bezbar;1707418800000;100;Rock;https://villemorte.fr/agenda/guy2bezbar/
+Le Périscope;Jozef Dumoulin;1707418800000;100;Rock;https://villemorte.fr/agenda/jozef-dumoulin/
+Marché Gare;Kalika;1707505200000;100;Rock;https://villemorte.fr/agenda/kalika/
+La Rayonne;Kik;1707505200000;100;Rock;https://villemorte.fr/agenda/kik/
+Le Périscope;Watchdog;1707505200000;100;Rock;https://villemorte.fr/agenda/watchdog/
+La Boulangerie du Prado;Zween;1707505200000;100;Rock;https://villemorte.fr/agenda/zween/
+Rock N Eat;Hysteria + Ohio Slamboys + South of Hell;1707505200000;100;Rock;https://villemorte.fr/agenda/hysteria-ohio-slamboys-south-of-hell/
+Grrrnd Zero;Will Guthrie & Container + Pêche Plate + Irwin Barbé + TBA;1707588000000;100;bal folk;https://villemorte.fr/agenda/will-guthrie-container-peche-plate/
+Toï Toï Le Zinc;Clafoutis Party – Praline Session;1707589800000;100;;https://villemorte.fr/agenda/clafoutis-party-praline-session/
+Le Sucre;Clark;1707591600000;100;Rock;https://villemorte.fr/agenda/clark/
+Le Sucre;Adèle Castillon;1707591600000;100;Rock;https://villemorte.fr/agenda/adele-castillon/
+La Marquise;Jey Brownie;1707591600000;100;Rock;https://villemorte.fr/agenda/jey-brownie/
+L’Atelier des Canulars;Goûter Phonique: Arsenne Arthur;1707667200000;100;Rock;https://villemorte.fr/agenda/gouter-phonique-arsenne-arthur/
+Théâtre de l’Elysée;L’homme est une fleur;1707849000000;100;théâtre;https://villemorte.fr/agenda/lhomme-est-une-fleur/
+Marché Gare;Ditz + Midlife;1707850800000;100;Rock;https://villemorte.fr/agenda/ditz-midlife/
+Grrrnd Zero;Mary Ocher + Nmt + Andrew Dymond & Dean Spacer;1707850800000;100;Rock;https://villemorte.fr/agenda/mary-ocher-nmt-andrew-dymond-dean-spacer/
+Bizarre;Bama + I$aia + Frelonz;1707917400000;100;Rock;https://villemorte.fr/agenda/bama-iaia-frelonz/
+Friche Lamartine;Expo de couloirs #5: Damien Saillard + Omar Toujid + Jérémie Garcia;1707930000000;100;exposition;https://villemorte.fr/agenda/expo-de-couloirs-5/
+Rock N Eat;Deadfuck + Pulsating Cerebral Slime + Festering Process;1707933600000;100;Rock;https://villemorte.fr/agenda/deadfuck-pulsating-cerebral-slime-festering-process/
+La Marquise;Michelle & les Garçons;1707937200000;100;Rock;https://villemorte.fr/agenda/michelle-les-garcons/
+Le Sonic;Hayden Pedigo + Épépé;1707937200000;100;Rock;https://villemorte.fr/agenda/hayden-pedigo-epepe/
+Jack Jack MJC Aragon;Roots & Drive + Banjo Riders;1708020000000;100;Rock;https://villemorte.fr/agenda/roots-drive-banjo-riders/
+Transbordeur;Molécule;1708023600000;100;Rock;https://villemorte.fr/agenda/molecule/
+Le Sonic;Buzz Kull + Spike Hellis;1708023600000;100;Rock;https://villemorte.fr/agenda/buzz-kull-spike-hellis/
+Le Périscope;Andrés Prado Latin Trio;1708023600000;100;Rock;https://villemorte.fr/agenda/andres-prado-latin-trio/
+La Boulangerie du Prado;Comment j’ai radouci mon harissa;1708023600000;100;conférence;https://villemorte.fr/agenda/comment-jai-radouci-mon-harissa/
+La Rayonne;La Colonie de Vacances;1708110000000;100;Rock;https://villemorte.fr/agenda/la-colonie-de-vacances-2/
+Les Grandes Voisines;Les Femmes de la maison – théâtre féministe;1708110000000;100;théâtre;https://villemorte.fr/agenda/les-femmes-de-la-maison-theatre-feministe/
+La Boulangerie du Prado;Impro Space Gones;1708110000000;100;théâtre;https://villemorte.fr/agenda/impro-space-gones/
+Rita-Plage;Bilqîs + HZN;1708110000000;100;bouffe;https://villemorte.fr/agenda/bilqis-hzn/
+Les Clameurs;Chien Pourri + Christiansuicide;1708110000000;100;Rock;https://villemorte.fr/agenda/chien-pourri-christiansuicide/
+Bar des Capucins;Filature + Faux Départ + Arsenic Milkshake;1708196400000;100;Rock;https://villemorte.fr/agenda/filature-faux-depart-arsenic-milkshake/
+La Boulangerie du Prado;Collectif Bosphore;1708196400000;100;Rock;https://villemorte.fr/agenda/collectif-bosphore/
+Toï Toï Le Zinc;Citron sucré + LBD;1708198200000;100;;https://villemorte.fr/agenda/citron-sucre-lbd/
+Le Trokson;Chicken Diamond + Madfield;1708198200000;100;Rock;https://villemorte.fr/agenda/chicken-diamond-madfield/
+Grrrnd Zero;Nuit Cyberpunk #3.2;1708200000000;100;Electro;https://villemorte.fr/agenda/nuit-cyberpunk-3-2/
+Les Grandes Voisines;Sahra Halgan Trio;1708273800000;100;Rock;https://villemorte.fr/agenda/sahra-halgan-trio/
+Rock N Eat;Persefone + Hypno5e + Stellar Circuits + Lampr3a;1708277400000;100;Rock;https://villemorte.fr/agenda/persefone-hypno5e-stellar-circuits-lampr3a/
+Warmaudio;Malignant Methods + Final Form + Bloodfury + Dominate;1708365600000;100;Rock;https://villemorte.fr/agenda/malignant-methods-final-form-bloodfury-dominate/
+Le Périscope;C_C;1708452000000;100;Rock;https://villemorte.fr/agenda/c_c/
+Le Sonic;Gum takes tooth + Lost in material;1708455600000;100;Rock;https://villemorte.fr/agenda/gum-takes-tooth-lost-in-material/
+Le Périscope;Omertà;1708542000000;100;Rock;https://villemorte.fr/agenda/omerta-2/
+Théâtre de l’Elysée;Pig Boy;1708626600000;100;théâtre;https://villemorte.fr/agenda/pig-boy/
+Le Sonic;Raskolnikov + Tisiphone;1708628400000;100;Rock;https://villemorte.fr/agenda/raskolnikov-tisiphone/
+Le Trokson;Trevor Reveur – Blind-test;1708628400000;100;Divers;https://villemorte.fr/agenda/trevor-reveur-blind-test/
+La Boulangerie du Prado;Scène ouverte & bal folk;1708628400000;100;Rock;https://villemorte.fr/agenda/scene-ouverte-bal-folk/
+Épicerie Moderne;Alexandra Stréliski;1708630200000;100;Rock;https://villemorte.fr/agenda/alexandra-streliski/
+Le Sucre;Bagarre;1708714800000;100;Rock;https://villemorte.fr/agenda/bagarre/
+La Boulangerie du Prado;Lug Trio;1708714800000;100;Rock;https://villemorte.fr/agenda/lug-trio/
+Grrrnd Zero;Cocanha + Cantenac Dagar + Manic Maya;1708714800000;100;Rock;https://villemorte.fr/agenda/cocanha-cantenac-dagar-manic-maya/
+Marché Gare;Celeste + Båkü;1708714800000;100;Rock;https://villemorte.fr/agenda/celeste-baku/
+Rita-Plage;Stand up – Shneck up;1708714800000;100;stand-up;https://villemorte.fr/agenda/stand-up-shneck-up/
+Le Sonic;Mary Lattimore + première partie;1708801200000;100;Rock;https://villemorte.fr/agenda/mary-lattimore-premiere-partie/
+La Marquise;Zinée;1708801200000;100;Rock;https://villemorte.fr/agenda/zinee/
+Le Périscope;Nick Wheeldon + Romano Bianchi + Wendy Martinez;1708801200000;100;Rock;https://villemorte.fr/agenda/nick-wheeldon-romano-bianchi-wendy-martinez/
+La Boulangerie du Prado;Impro Fusion;1708801200000;100;théâtre;https://villemorte.fr/agenda/impro-fusion-2/
+Rita-Plage;Cabaret Amarante;1708801200000;100;spectacle;https://villemorte.fr/agenda/cabaret-amarante/
+Le Périscope;Louis Sclavis, Richard Bonnet et Adrien Chennebault;1709060400000;100;Rock;https://villemorte.fr/agenda/louis-sclavis-richard-bonnet-et-adrien-chennebault/
+Le Trokson;Delacave + Averse;1709062200000;100;Rock;https://villemorte.fr/agenda/delacave-averse/
+Le Sonic;Yeahrs + Anotyne;1709146800000;100;Rock;https://villemorte.fr/agenda/yeahrs-anotyne/
+Le Trokson;Tournée Générale: Hassan K + Edi Pou;1709148600000;100;Rock;https://villemorte.fr/agenda/tournee-generale-hassan-k-edi-pou/
+La Rayonne;RSKO;1709233200000;100;Rock;https://villemorte.fr/agenda/rsko/
+La Boulangerie du Prado;Gadget;1709233200000;100;Rock;https://villemorte.fr/agenda/gadget/
+Rock N Eat;Rocking Owl + Serious Gap + Mess Out;1709233200000;100;Rock;https://villemorte.fr/agenda/rocking-owl-serious-gap-mess-out/
+Groom;Olga Bost;1709233200000;100;Rock;https://villemorte.fr/agenda/olga-bost/
+Les Clameurs;Tournée générale: Adiciatz;1709233200000;100;Rock;https://villemorte.fr/agenda/tournee-generale-adiciatz/
+Le Périscope;Louis Sclavis, Richard Bonnet et Adrien Chennebault;1709060400000;100;Rock;https://villemorte.fr/agenda/louis-sclavis-richard-bonnet-et-adrien-chennebault/
+Le Trokson;Delacave + Averse;1709062200000;100;Rock;https://villemorte.fr/agenda/delacave-averse/
+Le Sonic;Yeahrs + Anotyne;1709146800000;100;Rock;https://villemorte.fr/agenda/yeahrs-anotyne/
+Le Trokson;Tournée Générale: Hassan K + Edi Pou;1709148600000;100;Rock;https://villemorte.fr/agenda/tournee-generale-hassan-k-edi-pou/
+La Rayonne;RSKO;1709233200000;100;Rock;https://villemorte.fr/agenda/rsko/
+La Boulangerie du Prado;Gadget;1709233200000;100;Rock;https://villemorte.fr/agenda/gadget/
+Rock N Eat;Rocking Owl + Serious Gap + Mess Out;1709233200000;100;Rock;https://villemorte.fr/agenda/rocking-owl-serious-gap-mess-out/
+Groom;Olga Bost;1709233200000;100;Rock;https://villemorte.fr/agenda/olga-bost/
+Les Clameurs;Tournée générale: Adiciatz;1709233200000;100;Rock;https://villemorte.fr/agenda/tournee-generale-adiciatz/
+Groom;Magnetic Spacemen + Weird Omen + Beach Moonsters + DJ;1709751600000;100;Electro;https://villemorte.fr/agenda/magnetic-spacemen-weird-omen-beach-moonsters-dj/
+La Rayonne;Nuit Incolore;1709838000000;100;Rock;https://villemorte.fr/agenda/nuit-incolore/
+Rock N Eat;Varsovie + De Marbre + Sunday Panic;1709838000000;100;Rock;https://villemorte.fr/agenda/varsovie-de-marbre-sunday-panic/
+Épicerie Moderne;Grandbrothers;1709839800000;100;Rock;https://villemorte.fr/agenda/grandbrothers/
+Le Périscope;Jasual Cazz;1709924400000;100;Rock;https://villemorte.fr/agenda/jasual-cazz-2/
+La Rayonne;Lescop;1710010800000;100;Rock;https://villemorte.fr/agenda/lescop/
+Le Sonic;La Peau Douce + TNHCH // Next One Is Real;1710010800000;100;;https://villemorte.fr/agenda/la-peau-douce-tnhch-next-one-is-real/
+Épicerie Moderne;Delgres;1710012600000;100;Rock;https://villemorte.fr/agenda/delgres/
+Le Sonic;Hammershøi + Gerard Jugno 106;1710615600000;100;Rock;https://villemorte.fr/agenda/hammershoi-gerard-jugno-106/
+Le Sonic;Aidan Baker + Yoke;1710961200000;100;Rock;https://villemorte.fr/agenda/aidan-baker-yoke/
+Épicerie Moderne;Clara Ysé + Barkanan;1711049400000;100;Rock;https://villemorte.fr/agenda/clara-yse-barkanan/
+Épicerie Moderne;Isaac Delusion;1711222200000;100;Rock;https://villemorte.fr/agenda/isaac-delusion/
+Le Sonic;Melenas + première partie;1711738800000;100;Rock;https://villemorte.fr/agenda/melenas-premiere-partie/
+Le Sonic;Melenas + Pop Crimes;1711738800000;100;Rock;https://villemorte.fr/agenda/melenas-pop-crimes/
+Épicerie Moderne;Whispering Sons;1711740600000;100;Rock;https://villemorte.fr/agenda/whispering-sons/
+Le Sonic;Patriarchy + première partie;1713204000000;100;Rock;https://villemorte.fr/agenda/patriarchy-premiere-partie/
+Le Sonic;Topographies + première partie;1714845600000;100;Rock;https://villemorte.fr/agenda/topographies-premiere-partie/

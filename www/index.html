@@ -56,7 +56,7 @@ if (darkMode){
     darkstyle= 'mapbox://styles/mapbox/dark-v11';
 }
 
-var devMode = true;
+var devMode = false;
 var showAllValueDiv = devMode ? true : false;
 var showAllValue = false;
 updateCircleLegend();
@@ -416,13 +416,13 @@ map.on('click', 'event-circles', (e) => {
 
 const target = e.features[0].geometry.coordinates;
 end.center = target;
-console.log("yo ca fly to " + target);
-map.flyTo({
+
+/*map.flyTo({
 ...end, // Fly to the selected target
 duration: 3000, // Animate over 12 seconds
 essential: true // This animation is considered essential with
 //respect to prefers-reduced-motion
-});   
+});  */ 
 // Copy coordinates array.
 const coordinates = e.features[0].geometry.coordinates.slice();
 const description = e.features[0].properties.description;
