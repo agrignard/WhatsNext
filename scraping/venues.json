@@ -34,7 +34,7 @@
     "eventsDelimiterTag": "DIV.colinner",
     "dateFormat": "dd-MM",
     "eventURLIndex": 1,
-    "defaultStyle": "techno",
+    "defaultStyle": "Electro",
     "baseURL": "https://www.terminal-club.com",
     "linkedPage": {
       "eventNameTags": [
@@ -83,6 +83,7 @@
     "url": "https://www.periscope-lyon.com/concerts/",
     "eventsDelimiterTag": "DIV.smallcontent.ukwidth14m.ukgridmargin",
     "dateFormat": "dd-MM",
+    "defaultStyle": "Jazz",
     "baseURL": "https://www.periscope-lyon.com",
     "scrap": {
       "eventNameTags": [
@@ -190,6 +191,7 @@
     "city": "Lyon",
     "country": "France",
     "url": "https://www.trokson.com/shows",
+    "defaultStyle": "Rock",
     "baseURL": "https://www.trokson.com",
     "scrap": {
       "eventNameTags": [

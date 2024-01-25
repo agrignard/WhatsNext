@@ -1,4 +1,5 @@
-const fs = require('fs');
+import * as fs from 'fs';
+
 const placeToCoord = new Map();
 
 convertPlaceCSVtoGeoJson();
@@ -32,6 +33,7 @@ function convertGeoJsontoCSV(){
   
 }
 
+
 function convertPlaceCSVtoGeoJson(){
   // Getting the original source file for event
   const existingGeoJSONPath = 'www/template/place_minimal.geojson';
@@ -53,7 +55,6 @@ function convertPlaceCSVtoGeoJson(){
     const csvFilePath = 'www/lyon_place.csv';
     const csvData = fs.readFileSync(csvFilePath, 'utf8');
     const table = csvData.split('\n').slice(1);
-
     table.forEach(row => {
       const columns = row.split(','); 
       const place=columns[0];
@@ -111,6 +112,7 @@ function printEachEvent(){
   
 function convertEventCSVtoGeoJson(){
   // Getting the original source file for event
+  console.log("convertPlaceCSVtoGeoJson");
   const existingGeoJSONPath = 'www/template/event_minimal.geojson';
   // Read the existing GeoJSON file
   fs.readFile(existingGeoJSONPath, 'utf8', (err, data) => {
@@ -127,7 +129,7 @@ function convertEventCSVtoGeoJson(){
     const table = csvData.split('\n').slice(1);
 
     table.forEach(row => {
-      const columns = row.split(','); 
+      const columns = row.split(';'); 
       const place=columns[0];
       const title=columns[1];
       const time=parseInt(columns[2]);
