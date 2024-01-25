@@ -32,8 +32,8 @@ venues.filter(obj => !venueToDownload || obj.name === venueToDownload).forEach((
 
   // extract baseURL and add it to JSON
   const url = new URL(venue.url);
-  const baseURL = `${url.protocol}//${url.hostname}${url.port ? `:${url.port}` : ''}`;
-  venue.baseURL = baseURL;
+  //const baseURL = `${url.protocol}//${url.hostname}${url.port ? `:${url.port}` : ''}`;
+  venue.baseURL = url.origin + url.pathname.replace(/\/[^\/]+$/, '/');
  
   if (!venue.hasOwnProperty('country') || !venue.hasOwnProperty('city')){
     console.log('\x1b[31mErreur: le lieu \x1b[0m%s\x1b[31m n\'a pas de pays et/ou de ville définis',venue.name);

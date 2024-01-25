@@ -1,22 +1,9 @@
-import * as fs from 'fs';
+const url = 'https://www.truc.com/Rep/page.html';
 
-const texte = '<body tru>A poil</body>fkmo <a class="toto"> de caractères.';
-const regex = /<a[^]*?href\s*?=\s*?\"([^\"]*)\"/g;
+// Créer un objet URL
+const objetURL = new URL(url);
 
-const res = texte.match(/<body[^]*?>([^]*?)<\/body/)[1];
+// Obtenir le chemin (pathname) sans le nom du fichier
+const cheminSansPage = objetURL.origin + objetURL.pathname.replace(/\/[^\/]+$/, '/');
 
-console.log(res);
-
-
-// Utiliser une expression régulière pour récupérer le texte qui ne contient pas "can"
-//const regex = /^(?!.*can).*$/s;
-
-
-
-
-// if (resultat) {
-//   const texteSansCan = resultat[0];
-//   console.log(texteSansCan);
-// } else {
-//   console.log("Aucune correspondance trouvée.");
-// }
+console.log('Chemin sans la page :', cheminSansPage);
