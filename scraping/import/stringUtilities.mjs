@@ -1,3 +1,13 @@
+
+// if a string has a non standard character, look in a candidate list if there is a corresponding match
+
+export function fixString(string,replacementList){
+  const regexString = string.replace(/[^\x00-\x7F]/g,'.');
+  const regex = new RegExp(regexString);
+  const candidateList = replacementList.filter(el => el.match(regex));
+  return (candidateList.length > 0)?candidateList[0]:string;
+}
+
 export function removeDoubles(list) {
     if (Array.isArray(list)){
      const res = [];

@@ -11,9 +11,9 @@
     },
     "Le Petit Bulletin":{
         "mainPage":{
-            "eventNameStrings": ["esmo"],
-            "eventDateStrings": ["17 janvier"],
-            "eventStyleStrings": ["rap"],
+            "eventNameStrings": ["Gintsugi"],
+            "eventDateStrings": ["23 janvier"],
+            "eventStyleStrings": ["rock"],
             "eventPlaceStrings": ["Kraspek"]
         }
     },
@@ -51,18 +51,20 @@
     },
     "Halle Tony Garnier":{
         "mainPage":{
-            "eventNameStrings": ["I hate Models"],
-            "eventDateStrings": ["20.01.24"]
+            "eventNameStrings": ["STAR ACADEMY"],
+            "eventDateStrings": ["15.03.24","20h00"]
         }
     },
     "Ville Morte":{
         "mainPage":{
-            "eventNameStrings": ["furax"],
+            "eventNameStrings": ["vinyl"],
             "eventDateStrings": [""]
         },
         "linkedPage":{
-            "eventNameStrings": ["furax"],
-            "eventDateStrings": ["12 janvier"]
+            "eventNameStrings": ["vinyl"],
+            "eventDateStrings": ["28 janvier"],
+            "eventStyleStrings": ["marché"],
+            "eventPlaceStrings": ["cco la rayonne"]
         }
     }
 }

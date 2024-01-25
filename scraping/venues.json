@@ -11,19 +11,19 @@
     "baseURL": "https://www.terminal-club.com",
     "linkedPage": {
       "eventNameTags": [
-        " DIV:eq(0)  MAIN:eq(0)  DIV.contentarea.pagewrapper:eq(0)  DIV.row.rowmain:eq(0)  DIV.large12.col:eq(0)  DIV.colinner:eq(0)  SECTION:eq(0)  DIV.row:eq(0)  DIV.large4.medium4.col.coldivided:eq(0)  DIV.portfoliosummary.entrysummary.stickysidebar:eq(0)  H1.sectiontitle.titreeventsingle:eq(0)"
+        "H1.sectiontitle.titreeventsingle:eq(0)"
       ],
       "eventDateTags": [
-        " DIV:eq(0)  MAIN:eq(0)  DIV.contentarea.pagewrapper:eq(0)  DIV.row.rowmain:eq(0)  DIV.large12.col:eq(0)  DIV.colinner:eq(0)  SECTION:eq(0)  DIV.row:eq(0)  DIV.large4.medium4.col.coldivided:eq(0)  DIV.portfoliosummary.entrysummary.stickysidebar:eq(0)  DIV.row:eq(0)  DIV.col.small5:eq(0)"
+        "DIV.col.small5:eq(0)"
       ]
     },
     "scrap": {
       "eventNameTags": [
-        " A.plain:eq(0)  DIV.box.boxoverlay.dark.boxtextbottom.boxblogpost.hashover:eq(0)  DIV.boxtext.textcenter.issmall:eq(0)  DIV.boxtextinner.blogpostinner:eq(0)  H5.posttitle.islarge.uppercase:eq(0)"
+        "H5.posttitle.islarge.uppercase:eq(0)"
       ],
       "eventDateTags": [
-        " DIV.tribeeventsprophoto__eventdatetag.tribecommongcol:eq(0)  TIME.tribeeventsprophoto__eventdatetagdatetime:eq(0)  DIV.eventphotodate.nomargin.nopadding:eq(0)",
-        " DIV.tribeeventsprophoto__eventdatetag.tribecommongcol:eq(0)  TIME.tribeeventsprophoto__eventdatetagdatetime:eq(0)  DIV.nomargin.nopadding:eq(2)"
+        "DIV.eventphotodate.nomargin.nopadding:eq(0)",
+        "DIV.nomargin.nopadding:eq(2)"
       ]
     },
     "linkedPageDateFormat": "dd-MM-yy"
@@ -38,13 +38,13 @@
     "dateFormat": "dd-MM-yy",
     "scrap": {
       "eventNameTags": [
-        " DIV.header:eq(0)  H2:eq(0)  A:eq(0)"
+        "A:eq(0)"
       ],
       "eventDateTags": [
-        " DIV.date:eq(0)  SPAN.newslistdate:eq(0)  SPAN.jourMois:eq(0)  H2:eq(0)"
+        "H2:eq(0)"
       ],
       "eventStyleTags": [
-        " DIV.teasertext:eq(0)  P:eq(0)"
+        "P:eq(0)"
       ]
     },
     "eventURLIndex": 1
@@ -59,11 +59,11 @@
     "baseURL": "https://www.periscope-lyon.com",
     "scrap": {
       "eventNameTags": [
-        " DIV:eq(0)  A:eq(0)  DIV.scc:eq(0)  DIV.scct:eq(0)  H3:eq(0)  SPAN:eq(0)",
-        " DIV:eq(0)  A:eq(0)  DIV.scc:eq(0)  DIV.scct:eq(0)  H4.textsubtitle:eq(0)"
+        "SPAN:eq(0)",
+        "H4.textsubtitle:eq(0)"
       ],
       "eventDateTags": [
-        " DIV:eq(0)  A:eq(0)  DIV.scc:eq(0)  H5:eq(0)"
+        "H5:eq(0)"
       ]
     },
     "eventURLIndex": 1
@@ -80,11 +80,11 @@
     "baseURL": "https://sonic-lyon.fr",
     "scrap": {
       "eventNameTags": [
-        " DIV.event_desc:eq(0)  A:eq(0)  DIV.event_title:eq(0)"
+        "DIV.event_title:eq(0)"
       ],
       "eventDateTags": [
-        " DIV.event_date:eq(0)  SPAN.month:eq(0)",
-        " DIV.event_date:eq(0)  SPAN.date:eq(0)"
+        "SPAN.month:eq(0)",
+        "SPAN.date:eq(0)"
       ]
     }
   },
@@ -98,21 +98,21 @@
     "baseURL": "https://www.petit-bulletin.fr",
     "scrap": {
       "eventNameTags": [
-        " H2:eq(0)"
+        "H2:eq(0)"
       ],
       "eventDateTags": [
-        " P:eq(1)"
+        "P:eq(1)"
       ],
       "eventStyleTags": [
-        " P:eq(0)"
+        "P:eq(0)"
       ],
       "eventPlaceTags": [
-        " P.addedTag:eq(0)"
+        "P.addedTag:eq(0)"
       ]
     },
     "multiPages": {
       "startPage": 1,
-      "nbPages": 5
+      "nbPages": 10
     },
     "eventURLIndex": 0
   },
@@ -125,15 +125,15 @@
     "baseURL": "https://marchegare.fr",
     "scrap": {
       "eventNameTags": [
-        " DIV.agendaiteminner.mb12:eq(0)  DIV.relative:eq(0)  DIV.agendaitemtext.transition:eq(0)  DIV.agendatitle.headingsfontweight.uppercase.fontdisplay.fontbold.text3xl.mdtext4xl.xltext5xl.leadingnone.lgleadingnone:eq(0)  SPAN.leadingnone.lgleadingnone:eq(0)"
+        "DIV.agendatitle.headingsfontweight.uppercase.fontdisplay.fontbold.text3xl.mdtext4xl.xltext5xl.leadingnone.lgleadingnone:eq(0)  SPAN.leadingnone.lgleadingnone:eq(0)"
       ],
       "eventDateTags": [
-        " DIV.agendaiteminner.mb12:eq(0)  DIV.agendaitemdate.transition.flex.text2xl.lgtext3xl.pb2:eq(0)  DIV.fontdisplay.fontbold.uppercase.inlineflex.flexwrap.evtdate.agendaevtdate:eq(0)  SPAN.evtdateitem.evtdatefrom:eq(0)  SPAN.evtdatefromdayname.evtdatedayname:eq(0)",
-        " DIV.agendaiteminner.mb12:eq(0)  DIV.agendaitemdate.transition.flex.text2xl.lgtext3xl.pb2:eq(0)  DIV.fontdisplay.fontbold.uppercase.inlineflex.flexwrap.evtdate.agendaevtdate:eq(0)  SPAN.evtdateitem.evtdatefrom:eq(0)  SPAN.evtdatefromday.evtdateday:eq(0)",
-        " DIV.agendaiteminner.mb12:eq(0)  DIV.agendaitemdate.transition.flex.text2xl.lgtext3xl.pb2:eq(0)  DIV.fontdisplay.fontbold.uppercase.inlineflex.flexwrap.evtdate.agendaevtdate:eq(0)  SPAN.evtdateitem.evtdatefrom:eq(0)  SPAN.evtdatefrommonth.evtdatemonth:eq(0)"
+        "SPAN.evtdatefromdayname.evtdatedayname:eq(0)",
+        "SPAN.evtdatefromday.evtdateday:eq(0)",
+        "SPAN.evtdatefrommonth.evtdatemonth:eq(0)"
       ],
       "eventStyleTags": [
-        " DIV.agendaiteminner.mb12:eq(0)  DIV.relative:eq(0)  DIV.agendaitemtext.transition:eq(0)  DIV.flex.mb1.textxl.lgtext2xl.leadingnone.lgleadingnone.justifyend.ml6:eq(0)  DIV.agendataxocontainer.inlineflex.flexwrap.justifyend.textsm.mx1.agendaevtcategories:eq(0)  SPAN.uppercase.fontdisplay.textxl.lgtext2xl.nounderline.mx1.leadingnone.lgleadingnone:eq(0)"
+        "SPAN.uppercase.fontdisplay.textxl.lgtext2xl.nounderline.mx1.leadingnone.lgleadingnone:eq(0)"
       ]
     },
     "eventURLIndex": 0,
@@ -147,15 +147,16 @@
     "baseURL": "https://www.halle-tony-garnier.com",
     "scrap": {
       "eventNameTags": [
-        " DIV.blocsquare__infos:eq(0)  DIV.blocsquare__title:eq(0)"
+        "DIV.blocsquare__title:eq(0)"
       ],
       "eventDateTags": [
-        " DIV.blocsquare__infos:eq(0)  DIV.blocsquare__date:eq(0)"
+        "DIV.blocsquare__date:eq(0)",
+        "DIV.blocsquare__heure:eq(0)"
       ]
     },
     "eventsDelimiterTag": "A.blocsquare.types.type_concert",
     "eventURLIndex": 0,
-    "dateFormat": "dd-MM-yy"
+    "dateFormat": "dd-MM-yy-HH:mm"
   },
   {
     "name": "Le Trokson",
@@ -165,10 +166,10 @@
     "baseURL": "https://www.trokson.com",
     "scrap": {
       "eventNameTags": [
-        " DIV.Rz7J9y:eq(0)  DIV.yuONQy:eq(0)  A.DjQEyU:eq(0)"
+        "A.DjQEyU:eq(0)"
       ],
       "eventDateTags": [
-        " DIV.Rz7J9y:eq(0)  DIV.XQpnAl.HqEbWK:eq(0)  DIV.LQpUqV.AinsX6.wu0Sg9:eq(0)  DIV.v2vbgt:eq(0)"
+        "DIV.v2vbgt:eq(0)"
       ]
     },
     "eventsDelimiterTag": "DIV.j2Owzh.Wprg5l",
@@ -180,7 +181,7 @@
     "name": "Ville Morte",
     "city": "Lyon",
     "country": "France",
-    "url": "https://villemorte.fr/agenda/2024-01/",
+    "url": "https://villemorte.fr/agenda/",
     "eventsDelimiterTag": "A.url",
     "dateFormat": "dd MM",
     "baseURL": "https://villemorte.fr",
@@ -192,13 +193,27 @@
         ""
       ]
     },
+    "multiPages": {
+      "pageList": [
+        "2024-01/",
+        "2024-02",
+        "2024-03",
+        "2024-04"
+      ]
+    },
     "eventURLIndex": 0,
     "linkedPage": {
       "eventNameTags": [
-        " DIV:eq(8)  MAIN.tribeeventspgtemplate:eq(0)  DIV.tribenojs:eq(0)  DIV.tribeeventssingle:eq(0)  H1.tribeeventssingleeventtitle:eq(0)"
+        "H1.tribeeventssingleeventtitle:eq(0)"
       ],
       "eventDateTags": [
-        " DIV:eq(8)  MAIN.tribeeventspgtemplate:eq(0)  DIV.tribenojs:eq(0)  DIV.tribeeventssingle:eq(0)  DIV.tribeeventsschedule.tribeclearfix:eq(0)  H2:eq(0)  SPAN.tribeeventdatestart:eq(0)"
+        "SPAN.tribeeventdatestart:eq(0)"
+      ],
+      "eventStyleTags": [
+        "DD.tribeeventseventcategories:eq(0)  A:eq(0)"
+      ],
+      "eventPlaceTags": [
+        "DD.author.fn.org:eq(0)"
       ]
     },
     "linkedPageDateFormat": "dd-MM-HH:mm"

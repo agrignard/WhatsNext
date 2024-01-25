@@ -36,7 +36,7 @@ async function processFile(){
         venueName = venueToAnalyse;
     }
    
-    console.log('\n\n\x1b[36m%s\x1b[0m', `******* Analysing venue: ${venueName}  *******\n`);
+    console.log('\n\n\x1b[36m%s\x1b[0m', `******* Analyzing venue: ${venueName}  *******`);
     Object.keys(eventStrings.mainPage)
     .forEach(key =>{
         if(typeof eventStrings.mainPage[key] === "string"){
@@ -90,6 +90,9 @@ async function processFile(){
         for (const key in eventStrings.mainPage){
             eventStrings.mainPage[key] = eventStrings.mainPage[key].map(string => string.toLowerCase());
         }
+        for (const key in eventStrings.linkedPage){
+            eventStrings.linkedPage[key] = eventStrings.linkedPage[key].map(string => string.toLowerCase());
+        }
         
     }catch(error){
         console.error('\x1b[31mError while reading the strings to parse: %s\x1b[0m',error);
@@ -105,7 +108,7 @@ async function processFile(){
 
     //Affichez les noms des balises trouvées
     if (tagsContainingStrings.length === 0){
-        console.log('\x1b[31mCan\'t find a tag that delimits the events, aborting process. Is event passed ? (event date: %s)\x1b[0m',
+        console.log('\x1b[31mCan\'t find a tag that delimits the events, aborting process. Is event too old ? (event date: \x1b[0m%s\x1b[31m)\x1b[0m',
             eventStrings.mainPage.eventDateStrings.join());
     }else{
         // find a tag containing all the strings
@@ -151,14 +154,16 @@ async function processFile(){
 
         const mainTagString = '<'+mainTag.prop('tagName')
             +" class="+$(mainTag).attr('class')+(mainTag.hasOwnProperty('id')?$(mainTag).attr('id'):'')+'>';
-        console.log('Found %s tags. Best tag \x1b[90m%s\x1b[0m contains:', tagsContainingStrings.length,mainTagString);
-        console.log('\x1b[0m\x1b[32m%s\x1b[0m',removeImageTag(removeBlanks($(mainTag).text())));
+        console.log('Found %s tags. Best tag \x1b[90m%s\x1b[0m contains: \x1b[32m%s\x1b[0m\n', 
+            tagsContainingStrings.length,mainTagString,removeImageTag(removeBlanks($(mainTag).text())));
     
         venueJSON.eventsDelimiterTag=getTagLocalization(mainTag,$,true,stringsToFind);
   
         
         //***************************************************************/
         //***************************************************************/
+
+        console.log('*** main page tags ***');
 
         // find and display tag for each string to find
         venueJSON.scrap = addJSONBlock(eventStrings.mainPage,$eventBlock);
@@ -175,7 +180,7 @@ async function processFile(){
                 console.log('\x1b[90mURL (index\x1b[0m',index+1,'\x1b[90m):\x1b[0m', href);//index+1 car 0 est réservé au maintTag de type <a=href>
             });   
         } else {
-          console.log('\x1b[31mNo url link found.'
+          console.log('\x1b[31mNo url link found.\x1b[0m'
             +(extendSelectionToGetURL?'':'(consider finding URLs recursively using \"extendSelectionToGetURL = true\")')+'\x1b[0m');
         }
 
@@ -192,12 +197,13 @@ async function processFile(){
                 let linkURL = $eventBlock(hrefs[i]).attr('href');
                 let linkedPage = linkedFileContent[linkURL];
                 if (linkedPage){
-                    console.log('\nloading linked page');
+                    console.log('\n*** linked page tags ***');
                     const parsedLinkedPage = parseDocument(convertToLowerCase('<html><head></head>'+linkedPage+'</html>'));
                     const $linked = cheerio.load(parsedLinkedPage);
                 //    console.log($linked.html());
                     venueJSON.linkedPage = addJSONBlock(eventStrings.linkedPage,$linked);
                     let dates = getAllDates("BODY",venueJSON.linkedPage['eventDateTags'],$linked);
+                    console.log(dates);
                     venueJSON.linkedPageDateFormat = getBestDateFormat(dates,venueJSON.linkedPage, dateConversionPatterns);
                 }else{
                     console.log('\x1b[31mError getting data from linked pages. Run again \x1b[0maspiratorex.js\x1b[31m ?.\x1b[0m\n');
@@ -265,8 +271,26 @@ function getTagWithURL(currentTag,$cgp,stringsToFind){
     return [currentTag, hrefs];
 }
 
+function reduceTag(string,source){// reduce the tag list to keep it compact and avoid errors
+    const refText = source(string).text();
+    const stringList = string.split(' ');
+    let reducedString = stringList.pop();
+    while(source(reducedString).text() !== refText){
+        reducedString = stringList.pop()+' '+reducedString;
+        if (stringList.length<0){
+            console.log('Error, while loop should have ended before.');
+            break;
+        }
+    }
+    // console.log(source(reducedString).text());
+    // console.log(reducedString);
+    return reducedString;
+}
 
 function getTagLocalization(tag,source,isDelimiter,stringsToFind){
+    if (tag == null){
+        return null;
+    }
     try{
        //console.log(source.html());
         if (source(tag).prop('tagName')=='BODY' ||source(tag).prop('tagName')=='HEAD'){// if we are already at top level... may happen ?
@@ -321,8 +345,16 @@ function getMyIndex(tag,source,stringsToFind){// get the index of the tag div.cl
 
 
 function showTagsDetails(tagList,source,stringsToFind){
-    tagList.forEach((element,i) => console.log('\x1b[90mTag: <%s class=%s> (index %s): \x1b[0m%s', 
-        element.tagName,source(element).attr('class'),getMyIndex(element,source,[stringsToFind[i]]),removeBlanks(source(element).text())));
+    tagList.forEach((element,i) => {
+        if (element == null){
+            console.log('\x1b[31mNo Tag Found matching string \x1b[0m\'%s\'\x1b[31m.\x1b[0m', stringsToFind[i]);
+        }else{
+            console.log('\x1b[90mTag: <%s class=%s> (index %s): \x1b[0m%s', 
+            element.tagName,source(element).attr('class'),
+            getMyIndex(element,source,[stringsToFind[i]]),removeBlanks(source(element).text()));
+        }
+    });
+    
 }
 
 
@@ -336,9 +368,9 @@ function findTag(html,string) {
    // console.log(html.html());
   //  const tag = html(`*:contains('${string}')`).last();
     const candidates = html(`*:contains('${string}')`);
-    let tag;
+  //  let tag;
     if (candidates.length === 0){
-        console.log('truc');
+       // console.log('\x1b[31mNo Tag Found matching string \x1b[0m\'%s\'\x1b[36m.',string);
         return null;
     }
     let i = 0;
@@ -346,16 +378,6 @@ function findTag(html,string) {
         i++;
     }
     return candidates[i];
-    // for (let i=0;i<candidates.length-1;i++){
-    //     console.log('i=',i);
-    //     // console.log(getTagLocalization(html(candidates[i]),html,false));
-    //     // console.log(html(candidates[i]).prop('tagName'));  
-    //     // console.log(html(candidates[i+1]).parent().prop('tagName'));  
-    //     console.log(html(candidates[i]).is(html(candidates[i+1]).parent()));
-    // }
-    
-//    candidates.forEach(el => console.log(html(el).prop('tagName')));
-    return tag.length > 0 ? tag.get(0) : null;
 }
 
 
@@ -375,7 +397,7 @@ function findTag(html,string) {
     console.log('\n\x1b[36mEvent '+string[1]+' tags:\x1b[0m');
     const tagList = object[key].map(string2 => findTag(cheerioSource,string2));
     showTagsDetails(tagList,cheerioSource,object[key]);
-    return tagList.map((tag,index) => getTagLocalization(tag,cheerioSource,false,[object[key][index]]));
+    return tagList.map((tag,index) => reduceTag(getTagLocalization(tag,cheerioSource,false,[object[key][index]]),cheerioSource));
  }
  
 

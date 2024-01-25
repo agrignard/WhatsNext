@@ -1,59 +1,40 @@
-import { createDate, convertDate, showDate} from './import/dateUtilities.mjs';
+import { createDate, convertDate, showDate, getConversionPatterns} from './import/dateUtilities.mjs';
 import * as fs from 'fs';
 import { parse, isValid }  from 'date-fns';
 import * as cheerio from 'cheerio';
 import {parseDocument} from 'htmlparser2';
-import {makeURL} from './import/stringUtilities.mjs';
-import {loadLinkedPages} from './import/fileUtilities.mjs';
+import {makeURL,fixString} from './import/stringUtilities.mjs';
+import {loadLinkedPages,loadVenuesJSONFile,loadUnlistedVenues} from './import/fileUtilities.mjs';
 
 
 // Chemin vers le fichier à lire
 const filePath = './venues.json';
 const sourcePath = './webSources/';
 
-const dateConversionFile = './import/dateConversion.json';
 var out="";// = "PLACE,TITRE,UNIX,SIZE,GENRE,URL";
 var outFile = "generated/scrapexResult.csv";
-var dateConversionPatterns;
 const globalDefaultStyle = '';
 
-fs.promises.readFile(dateConversionFile, 'utf8')
-  .then((fileContent) =>{
-    try {
-      dateConversionPatterns = JSON.parse(fileContent); 
-    } catch (erreur) {
-      console.error("Erreur de parsing JSON pour les conversions de dates :", erreur.message);
-    }
-    fs.promises.readFile(filePath, 'utf8')
-    .then((fileContent) =>{
-      try {
-        // Parser le texte JSON
-        var venues = JSON.parse(fileContent);
-        
-        const fileToScrap = process.argv[2];
-        if (fileToScrap){
-          if (venues.some(element => element.name === fileToScrap)){
-            console.log('\x1b[32m%s\x1b[0m', `Traitement uniquement de \'${fileToScrap}\'`);
-            venues = venues.filter(element => element.name === fileToScrap);
-            scrapFiles(venues);
-          }else{
-            console.log('\x1b[31mFichier \x1b[0m%s.html\x1b[31m non trouvé. Fin du scrapping.\x1b[0m\n', fileToScrap);
-            return;
-          }
-        }else{
-          scrapFiles(venues);
-        }
-        
-      } catch (erreur) {
-        console.error('\x1b[31mErreur lors de la lecture du fichier JSON :%s. %s\x1b[0m', filePath,erreur.message);
-        throw new Error('JSON Error');
-      }
-    })
-  })
-  .catch((erreur ) => {
-    console.error("Erreur lors de la lecture des fichiers de configuration :", erreur);
-    throw new Error('readFile Error');
-  });
+
+const dateConversionPatterns = await getConversionPatterns();
+let venues = await loadVenuesJSONFile();
+const venueNamesList = venues.map(el => el.name).concat(await loadUnlistedVenues());
+console.log(venueNamesList);
+    
+const fileToScrap = process.argv[2];
+if (fileToScrap){
+  if (venues.some(element => element.name === fileToScrap)){
+    console.log('\x1b[32m%s\x1b[0m', `Traitement uniquement de \'${fileToScrap}\'`);
+    venues = venues.filter(element => element.name === fileToScrap);
+    scrapFiles(venues);
+  }else{
+    console.log('\x1b[31mFichier \x1b[0m%s.html\x1b[31m non trouvé. Fin du scrapping.\x1b[0m\n', fileToScrap);
+  }
+}else{
+  scrapFiles(venues);
+}
+
+
 
 async function scrapFiles(venues) {
   for (const venue of venues) {
@@ -83,20 +64,21 @@ async function scrapFiles(venues) {
 
 
 async function analyseFile(venue) {
-  let linkedFileContent;
-  //var events,eventInfo,eventDate,eventName,eventStyle,unixDate,eventURL, venueContent;
-  let inputFileList = [];
+  let linkedFileContent, inputFileList;
   const venueSourcePath = sourcePath+venue.country+'/'+venue.city+'/'+venue.name+'/';
   if (venue.hasOwnProperty('linkedPage')){
     linkedFileContent = await loadLinkedPages(venueSourcePath);
   }
-  if (venue.hasOwnProperty('multiPages')){
-    for(let i=0;i<venue.multiPages.nbPages;i++){
-      inputFileList.push(venueSourcePath+venue.name+i+".html");
-    }
-  }else{
-    inputFileList = [venueSourcePath+venue.name+".html"];
+  // get file list to scrap
+  try {
+    inputFileList = fs.readdirSync(venueSourcePath)
+      .filter(fileName => fileName.endsWith('.html'))
+      .map(el => venueSourcePath+el);
+  } catch (err) {
+    console.error('\x1b[31mError reading html files in directory \'%s\'.\x1b[0m Error: %s',venueSourcePath, err);
   }
+console.log('liste',inputFileList);
+
   console.log('\n\x1b[32m%s\x1b[0m', `******* Venue: ${venue.name}  (${inputFileList.length} pages) *******`);
   let nbEvents = 0;
   for (let currentPage=0;currentPage<inputFileList.length;currentPage++){
@@ -105,9 +87,9 @@ async function analyseFile(venue) {
   console.log("total number of events: " + nbEvents);     
 
   async function analysePage(venue,inputFile){
-    var events,eventInfo,unixDate,eventURL, venueContent;
+    let events,eventInfo,unixDate,eventURL, venueContent;
     eventInfo = {}; 
-    var $, $eventBlock;
+    let $, $eventBlock;
     try{
       venueContent = await fs.promises.readFile(inputFile, 'utf8');
       const parsedHtml = parseDocument(venueContent);
@@ -155,7 +137,7 @@ async function analyseFile(venue) {
           if (venue.hasOwnProperty('eventeventURLIndex') && venue.eventURLIndex === -1){
             eventURL ='No url link.';
           }else{
-            var index = venue.hasOwnProperty('eventURLIndex')?venue.eventURLIndex:0;
+            let index = venue.hasOwnProperty('eventURLIndex')?venue.eventURLIndex:0;
             if (index == 0){// the URL is in A href
               eventURL = makeURL(venue.baseURL,$(venue.eventsDelimiterTag+':eq('+eveIndex+')').attr('href'));
             }else{// URL is in inner tags
@@ -168,6 +150,7 @@ async function analyseFile(venue) {
           console.log("\x1b[31mErreur lors de la récupération de l\'URL.\x1b[0m",err);
         }
 
+        // scrap info from linked page
         if (linkedFileContent){
           if (venue.linkedPage.hasOwnProperty('eventDateTags')){
             dateFormat = venue.linkedPageDateFormat;
@@ -175,6 +158,7 @@ async function analyseFile(venue) {
           try{
             const $linkedBlock = cheerio.load(linkedFileContent[eventURL]);
             Object.keys(venue.linkedPage).forEach(key => eventInfo[key.replace('Tags','')] = getText(key,venue.linkedPage,$linkedBlock));  
+            //Object.keys(venue.linkedPage).forEach(key => console.log('log: ',key,getText(key,venue.linkedPage,$linkedBlock)));
           }catch{
             console.log('\x1b[31mImpossible de lire la page liée pour l\'événement \'%s\'. Erreur lors du téléchargement ?\x1b[31m', eventInfo.eventName);
           }
@@ -227,18 +211,16 @@ async function analyseFile(venue) {
      // auxiliary function to extract data
      function getText(tagName,JSONblock,source){
       let string = "";
-     // console.log(tagName);
       const tagList = JSONblock[tagName];
-     // console.log(tagList);
       try{
         for (let i = 0; i <= tagList.length-1; i++) {
           let ev = tagList[i]===''?source.text():source(tagList[i]).text();
           string += ev+' ';
         }
       }catch(err){
-        console.log('\x1b[31m%s\x1b[0m', 'Erreur d\'extraction à partir des balises.',tagList);
+        console.log('\x1b[31m%s\x1b[0m', 'Erreur d\'extraction à partir des balises.\x1b[0m',tagList);
       }
-      return removeBlanks(string);
+      return tagName === 'eventPlaceTags'?fixString(removeBlanks(string),venueNamesList):removeBlanks(string);
     }
     // end of auxiliary function
 

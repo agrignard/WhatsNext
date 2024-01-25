@@ -2,7 +2,16 @@ import * as fs from 'fs';
 
 const scrapInfoFile = "./venuesScrapInfo.json"; // path should start from the directory of the calling script
 export const venuesListJSONFile = "./venues.json";
+const unlistedVenuesFile = "./unlistedVenues.json";
 
+export async function loadUnlistedVenues(){
+    try{
+        return JSON.parse(await fs.promises.readFile(unlistedVenuesFile, 'utf8'));
+    }catch(err) {
+        console.error("\x1b[31mError while loading unlisted venues.\x1b[0m\n");
+        throw err;
+    }
+}
 
 // load linked files
 export async function loadLinkedPages(sourcePath){
@@ -35,6 +44,7 @@ export async function loadVenueScrapInfofromFile(venueName){
 }
 
 // load venue JSON
+
 export async function loadVenuesJSONFile(){
     try{
         return await JSON.parse(await fs.promises.readFile(venuesListJSONFile, 'utf8'));
