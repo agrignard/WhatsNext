@@ -64,7 +64,8 @@
             "eventNameStrings": ["vinyl"],
             "eventDateStrings": ["28 janvier"],
             "eventStyleStrings": ["marché"],
-            "eventPlaceStrings": ["cco la rayonne"]
+            "eventPlaceStrings": ["cco la rayonne"],
+            "eventURLStrings": ["https://larayonne.org/evenement/vinyl-pop-up-market/"]
         }
     }
 }

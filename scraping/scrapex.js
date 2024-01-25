@@ -158,15 +158,17 @@ console.log('liste',inputFileList);
           try{
             const $linkedBlock = cheerio.load(linkedFileContent[eventURL]);
             Object.keys(venue.linkedPage).forEach(key => eventInfo[key.replace('Tags','')] = getText(key,venue.linkedPage,$linkedBlock));  
-            //Object.keys(venue.linkedPage).forEach(key => console.log('log: ',key,getText(key,venue.linkedPage,$linkedBlock)));
           }catch{
             console.log('\x1b[31mImpossible de lire la page liée pour l\'événement \'%s\'. Erreur lors du téléchargement ?\x1b[31m', eventInfo.eventName);
+          }
+          // if the linked page contains a direct URL to the event, replace it
+          if (eventInfo.hasOwnProperty('eventURL') && eventInfo.eventURL.length > 0){
+       //     console.log(eventInfo);
+            eventURL = eventInfo.eventURL;
           }
         }
 
         //*** logs  ***//
-
-      //  console.log(eventInfo);
 
         // change the date format to Unix time
         const formatedEventDate = createDate(eventInfo.eventDate,dateFormat,dateConversionPatterns);
@@ -182,7 +184,7 @@ console.log('liste',inputFileList);
         // display
         console.log((eventInfo.eventName));
         Object.keys(eventInfo).forEach(key => {
-          if (key !== 'eventName' && key !== 'eventDate'){
+          if (key !== 'eventName' && key !== 'eventDate' && key !== 'eventURL'){
             console.log(key.replace('event',''),': ',eventInfo[key.replace('Tags','')]);
           }
         });

@@ -214,6 +214,9 @@
       ],
       "eventPlaceTags": [
         "DD.author.fn.org:eq(0)"
+      ],
+      "eventURLTags": [
+        "DD.tribeeventseventurl:eq(0)  A:eq(0)"
       ]
     },
     "linkedPageDateFormat": "dd-MM-HH:mm"
