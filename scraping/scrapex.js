@@ -58,7 +58,12 @@ async function scrapFiles(venues) {
     }
   }
   console.log('Scrapex fini avec succex !!\n\n');
+  try{
     fs.writeFileSync(outFile, out, 'utf-8', { flag: 'w' });
+  }catch(err){
+    console.log("\x1b[31mImpossible de sauvegarder dans le fichier \x1b[0m\'%s\'\x1b[31m.\x1b[0m Erreur: %s",outfile,err);
+  }
+    
 }
 
 

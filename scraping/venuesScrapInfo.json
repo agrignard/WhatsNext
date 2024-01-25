@@ -67,5 +67,15 @@
             "eventPlaceStrings": ["cco la rayonne"],
             "eventURLStrings": ["https://larayonne.org/evenement/vinyl-pop-up-market/"]
         }
+    },
+    "Le Petit Salon":{
+        "mainPage":{
+            "eventNameStrings": ["wooka"],
+            "eventDateStrings": ["27/01"],
+            "eventStyleStrings": ["House"]
+        },
+        "linkedPage":{
+            "eventDateStrings": ["27 janvier","23:30"]
+        }
     }
 }

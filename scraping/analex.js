@@ -191,6 +191,7 @@ async function processFile(){
       
         // find strings in linked pages
 
+        console.log(eventStrings);
         if (eventStrings.hasOwnProperty('linkedPage')){
             if (linkedFileContent){
                 let i = ($(mainTag).prop('tagName')=='A')?venueJSON.eventURLIndex:(venueJSON.eventURLIndex-1);

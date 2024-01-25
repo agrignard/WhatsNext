@@ -25,7 +25,7 @@ export function removeDoubles(list) {
 export function makeURL(baseURL, URL){
     const bu = baseURL.endsWith('/')?baseURL.slice(0,-1):baseURL;
     const url = URL.startsWith('/')?URL.slice(1):URL;
-    if (URL.startsWith(bu)){
+    if (URL.startsWith(bu) || URL.startsWith('http')){
       return URL;
     }else{
       return baseURL+'/'+URL;
