@@ -2,12 +2,23 @@
 /*  utilities to deal with the files  */
 /**************************************/
 
-
 import * as fs from 'fs';
 
 const scrapInfoFile = "./venuesScrapInfo.json"; // path should start from the directory of the calling script
 export const venuesListJSONFile = "./venues.json";
-const unlistedVenuesFile = "./unlistedVenues.json";
+
+// return a list of json object with aliases to change the place name
+export function getAliases(list){
+    return list.filter(el => el.hasOwnProperty('aliases'))
+    .map(el => {
+      const res = {};
+      res.country = el.country;
+      res.city = el.city;
+      res.name = el.name;
+      res.aliases = el.aliases;
+      return res;
+    });
+}
 
 // fetch url and fix the coding when it is not in UTF-8
 export async function fetchAndRecode(url){

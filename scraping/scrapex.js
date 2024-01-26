@@ -4,19 +4,21 @@ import { parse, isValid }  from 'date-fns';
 import * as cheerio from 'cheerio';
 import {parseDocument} from 'htmlparser2';
 import {makeURL} from './import/stringUtilities.mjs';
-import {loadLinkedPages,loadVenuesJSONFile} from './import/fileUtilities.mjs';
+import {loadLinkedPages,loadVenuesJSONFile,getAliases} from './import/fileUtilities.mjs';
 
 
 // Chemin vers le fichier à lire
 const sourcePath = './webSources/';
 
-var out="";// = "PLACE,TITRE,UNIX,SIZE,GENRE,URL";
+//var out="";// = "PLACE,TITRE,UNIX,SIZE,GENRE,URL";
 const outFile = "generated/scrapexResult.csv";
 const globalDefaultStyle = '';
 
 
 const dateConversionPatterns = await getConversionPatterns();
 let venues = await loadVenuesJSONFile();
+let aliasList = getAliases(venues);
+
 //const venueNamesList = venues.map(el => el.name);
     
 const fileToScrap = process.argv[2];
@@ -35,6 +37,7 @@ if (fileToScrap){
 
 
 async function scrapFiles(venues) {
+  let totalEventList = [];
   for (const venue of venues) {
     let err = false;
     if (!(venue.hasOwnProperty('eventsDelimiterTag') || venue.hasOwnProperty('eventsDelimiterRegex'))){
@@ -50,18 +53,13 @@ async function scrapFiles(venues) {
       err = true;
     }
     if (!err){
-      await analyseFile(venue);
+      totalEventList = totalEventList.concat(await analyseFile(venue));
     } else{
       console.log('\x1b[31mEntrée %s non traitée.\x1b[0m', venue.name);
     }
   }
-  console.log('Scrapex fini avec succex !!\n\n');
-  try{
-    fs.writeFileSync(outFile, out, 'utf-8', { flag: 'w' });
-  }catch(err){
-    console.log("\x1b[31mImpossible de sauvegarder dans le fichier \x1b[0m\'%s\'\x1b[31m.\x1b[0m Erreur: %s",outfile,err);
-  }
-    
+  console.log('Scrapex fini avec succex !! (%s events found).\n\n', totalEventList.length);
+  saveToCSV(totalEventList, outFile);
 }
 
 
@@ -82,70 +80,50 @@ async function analyseFile(venue) {
   }
 
   console.log('\n\x1b[32m%s\x1b[0m', `******* Venue: ${venue.name}  (${inputFileList.length} page(s)) *******`);
-  let nbEvents = 0;
-  for (let currentPage=0;currentPage<inputFileList.length;currentPage++){
-    nbEvents += await analysePage(venue,inputFileList[currentPage]);
-  }
-  console.log("total number of events: " + nbEvents);     
 
-  async function analysePage(venue,inputFile){
-    let events,eventInfo,unixDate,eventURL, venueContent;
-    eventInfo = {}; 
-    let $, $eventBlock;
-    try{
-      venueContent = await fs.promises.readFile(inputFile, 'utf8');
-      const parsedHtml = parseDocument(venueContent);
-      $ = cheerio.load(parsedHtml);
-    }catch (err){
-      console.error("\x1b[31mErreur lors de la lecture du fichier local: \'%s\'.\x1b[0m %s",inputFile, (err.code==='ENOENT')?'':err);
-      return 0;
-    }
-    try{
-      if (venue.hasOwnProperty('eventsDelimiterTag')){
-        events = [];
-        $(venue.eventsDelimiterTag).each((index, element) => {
-          let ev = $(element).html();
-          events.push(ev);
-        });
-      }else{
-        const regexDelimiter = new RegExp(venue.eventsDelimiterRegex, 'g');
-        events = venueContent.match(regexDelimiter);
-      }
-      
+  // build event list and analyze the events
+  const [eventBlockList, hrefInDelimiterList] = await extractEvents(inputFileList,venue);
+  let eventList = analyseEvents(eventBlockList, hrefInDelimiterList, venue);
+  eventList = unique(eventList);
+  console.log('Found %s events for %s.\n\n',eventList.length,venue.name);
+  return eventList;
 
-      // console.log("total number of events: " + events.length);      
-    }catch(err){        
-      console.log('\x1b[31m%s\x1b[0m. %s', 'Délimiteur mal défini pour '+venue.name,err);      
-    }
+
+
+  function analyseEvents(eventBlockList, hrefInDelimiterList, venue){
+    let eventList = [];
+    const dateFormat = (venue.hasOwnProperty('linkedPage') && venue.linkedPage.hasOwnProperty('eventDateTags'))?venue.linkedPageDateFormat:venue.dateFormat; 
 
     // parsing each event
     try{
-      let dateFormat = venue.dateFormat;
-
-      events.forEach((eve,eveIndex) =>{
-        $eventBlock = cheerio.load(eve);
+      eventBlockList.forEach((eve,eveIndex) =>{
+        //let unixDate, eventURL;
+        let $eventBlock = cheerio.load(eve);
+        let eventInfo = {'eventPlace':venue.name};
         
         // changing to default style if no style
-          
         eventInfo.eventStyle = venue.hasOwnProperty('defaultStyle')?venue.defaultStyle:globalDefaultStyle;
 
-        // **** event data extraction ****//
-
+        // **** event data extraction ****/
         Object.keys(venue.scrap).forEach(key => eventInfo[key.replace('Tags','')] = getText(key,venue.scrap,$eventBlock));
 
 
         //extract URL
+        let eventURL;
         try{
-          if (venue.hasOwnProperty('eventeventURLIndex') && venue.eventURLIndex === -1){
-            eventURL ='No url link.';
-          }else{
-            let index = venue.hasOwnProperty('eventURLIndex')?venue.eventURLIndex:0;
-            if (index == 0){// the URL is in A href
-              eventURL = makeURL(venue.baseURL,$(venue.eventsDelimiterTag+':eq('+eveIndex+')').attr('href'));
-            }else{// URL is in inner tags
-                index = index - 1;
-              const tagsWithHref = $eventBlock('a[href]');
-              eventURL = makeURL(venue.baseURL,$eventBlock(tagsWithHref[index]).attr('href'));
+          if (!venue.scrap.hasOwnProperty('eventURLTags')){
+            if (venue.hasOwnProperty('eventeventURLIndex') && venue.eventURLIndex === -1){
+              eventURL ='No url link.';
+            }else{
+              let index = venue.hasOwnProperty('eventURLIndex')?venue.eventURLIndex:0;
+              if (index == 0){// the URL is in A href
+                  //     eventURL = makeURL(venue.baseURL,$(venue.eventsDelimiterTag+':eq('+eveIndex+')').attr('href'));
+                  eventURL = makeURL(venue.baseURL,hrefInDelimiterList[eveIndex]);
+              }else{// URL is in inner tags
+                  index = index - 1;
+                const tagsWithHref = $eventBlock('a[href]');
+                eventURL = makeURL(venue.baseURL,$eventBlock(tagsWithHref[index]).attr('href'));
+              }
             }
           }
         }catch(err){
@@ -154,20 +132,18 @@ async function analyseFile(venue) {
 
         // scrap info from linked page
         if (linkedFileContent){
-          if (venue.linkedPage.hasOwnProperty('eventDateTags')){
-            dateFormat = venue.linkedPageDateFormat;
-          }
           try{
             const $linkedBlock = cheerio.load(linkedFileContent[eventURL]);
             Object.keys(venue.linkedPage).forEach(key => eventInfo[key.replace('Tags','')] = getText(key,venue.linkedPage,$linkedBlock));  
           }catch{
             console.log('\x1b[31mImpossible de lire la page liée pour l\'événement \'%s\'. Erreur lors du téléchargement ?\x1b[31m', eventInfo.eventName);
           }
-          // if the linked page contains a direct URL to the event, replace it
-          if (eventInfo.hasOwnProperty('eventURL') && eventInfo.eventURL.length > 0){
-       //     console.log(eventInfo);
-            eventURL = eventInfo.eventURL;
+          // if the url in the linked is empty, replace by the main page one
+          if (!eventInfo.hasOwnProperty('eventURL') || eventInfo.eventURL.length === 0){
+            eventInfo.eventURL = eventURL;
           }
+        }else{
+          eventInfo.eventURL = eventURL;
         }
 
         //*** logs  ***//
@@ -177,32 +153,35 @@ async function analyseFile(venue) {
         if (!isValid(formatedEventDate)){
           console.log('\x1b[31mFormat de date invalide pour %s. Reçu \"%s\", converti en \"%s\" (attendu \"%s\")\x1b[0m', 
             venue.name,eventInfo.eventDate,convertDate(eventInfo.eventDate,dateConversionPatterns),dateFormat);
-          unixDate = new Date().getTime(); // en cas d'erreur, ajoute la date d'aujourd'hui
+          eventInfo.unixDate = new Date().getTime(); // en cas d'erreur, ajoute la date d'aujourd'hui A MODIFIER POUR MIEUX REPERER L'ERREUR
         }else{
-          unixDate = formatedEventDate.getTime();
+          eventInfo.unixDate = formatedEventDate.getTime();
           console.log(showDate(formatedEventDate));
+        }
+
+        // match event place with existing one
+        if (venue.scrap.hasOwnProperty('eventPlaceTags') || (venue.hasOwnProperty('linkedPage') && venue.linkedPage.hasOwnProperty('eventPlaceTags'))){
+          eventInfo.eventPlace = FindLocationFromAlias(eventInfo.eventPlace,venue.country,venue.city,aliasList);
         }
 
         // display
         console.log((eventInfo.eventName));
         Object.keys(eventInfo).forEach(key => {
-          if (key !== 'eventName' && key !== 'eventDate' && key !== 'eventURL'){
+          if (key !== 'eventName' && key !== 'eventDate' && key !== 'eventURL' && key != 'unixDate'){
             console.log(key.replace('event',''),': ',eventInfo[key.replace('Tags','')]);
           }
         });
-
-        console.log((eventURL)+'\n');
-        out = out+''+(eventInfo.hasOwnProperty('eventPlace')?eventInfo.eventPlace:venue.name)+';'
-              +eventInfo.eventName+';'+unixDate+';100;'+eventInfo.eventStyle+';'+eventURL+'\n';
-       // console.log(eventLog);
+        console.log((eventInfo.eventURL)+'\n');
+        eventList.push(eventInfo);
+        // out = out+''+(eventInfo.hasOwnProperty('eventPlace')?eventInfo.eventPlace:venue.name)+';'
+        //       +eventInfo.eventName+';'+eventInfo.unixDate+';100;'+eventInfo.eventStyle+';'+eventInfo.eventURL+'\n';
       }); 
       
     }catch(error){
-      console.log("Erreur générale pour "+venue.name,error);
+      console.log("Unknown error while processing "+venue.name,error);
     }
-    return events.length;
+    return eventList;
   }
-  console.log("\n\n");
 }
   
 
@@ -238,3 +217,58 @@ function removeBlanks(s){
 
 
 
+async function extractEvents(inputFileList, venue){
+  let eventBlockList = [];
+  let hrefInDelimiterList = [];
+  const promise = inputFileList.map(async inputFile =>{
+    try{
+      const venueContent = await fs.promises.readFile(inputFile, 'utf8');
+      const $ = cheerio.load(parseDocument(venueContent));
+      try{
+        $(venue.eventsDelimiterTag).each((index, element) => {
+          let ev = $(element).html();
+          eventBlockList.push(ev);
+          hrefInDelimiterList.push($(venue.eventsDelimiterTag+':eq('+index+')').attr('href'));
+      });     
+      }catch(err){        
+        console.log('\x1b[31m%s\x1b[0m. %s', 'Délimiteur mal défini pour '+venue.name,err);      
+      }
+    }catch (err){
+      console.error("\x1b[31mErreur lors de la lecture du fichier local: \'%s\'.\x1b[0m %s",inputFile, (err.code==='ENOENT')?'':err);
+    }
+  });
+  await Promise.all(promise);
+  return [eventBlockList, hrefInDelimiterList];
+}
+
+
+function unique(list) {
+  const uniqueSet = new Set(list.map(obj => JSON.stringify(obj)));
+  return Array.from(uniqueSet).map(str => JSON.parse(str));
+};
+
+
+function saveToCSV(eventList, outFile){
+  let out = '';
+  eventList.forEach(eventInfo =>{
+    out = out+''+eventInfo.eventPlace+';'
+    +eventInfo.eventName+';'+eventInfo.unixDate+';100;'+eventInfo.eventStyle+';'+eventInfo.eventURL+'\n';
+  });
+  try{
+    fs.writeFileSync(outFile, out, 'utf-8', { flag: 'w' });
+  }catch(err){
+    console.log("\x1b[31mImpossible de sauvegarder dans le fichier \x1b[0m\'%s\'\x1b[31m.\x1b[0m Erreur: %s",outfile,err);
+  } 
+}
+
+
+function FindLocationFromAlias(string,country,city,aliasList){
+  let res = string;
+  aliasList.filter(venue => venue.country === country && venue.city === city)
+  .forEach(venue => {
+    if (venue.aliases.filter(al => al.toLowerCase() === string.toLowerCase()).length > 0){// if the name of the place of the event is in the alias list, replace by the main venue name
+      res = venue.name;
+    }
+  });
+  return res;
+}

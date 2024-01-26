@@ -78,6 +78,7 @@
   },
   {
     "name": "Le Périscope",
+    "aliases": ["périscope"],
     "city": "Lyon",
     "country": "France",
     "url": "https://www.periscope-lyon.com/concerts/",
@@ -98,6 +99,7 @@
   },
   {
     "name": "Le Sonic",
+    "aliases": ["sonic"],
     "city": "Lyon",
     "country": "France",
     "url": "https://sonic-lyon.fr/",
@@ -188,6 +190,7 @@
   },
   {
     "name": "Le Trokson",
+    "aliases": ["TROKSON"],
     "city": "Lyon",
     "country": "France",
     "url": "https://www.trokson.com/shows",
