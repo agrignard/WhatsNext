@@ -170,7 +170,7 @@ async function analyseFile(venue) {
         // display
         console.log((eventInfo.eventName));
         Object.keys(eventInfo).forEach(key => {
-          if (key !== 'eventName' && key !== 'eventDate' && key !== 'eventURL' && key != 'unixDate'){
+          if (key !== 'eventName' && key !== 'eventDate' && key !== 'eventURL' && key != 'unixDate' && key != 'eventDummy'){
             console.log(key.replace('event',''),': ',eventInfo[key.replace('Tags','')]);
           }
         });

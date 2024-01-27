@@ -82,7 +82,8 @@
         "mainPage":{
             "eventNameStrings": ["nash"],
             "eventDateStrings": ["16", "mars"],
-            "eventPlaceStrings": ["ouest"]
+            "eventPlaceStrings": ["ouest"],
+            "eventDummyStrings": ["infos"]
         }
     }
 }

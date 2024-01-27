@@ -266,14 +266,50 @@
     "url": "https://www.infoconcert.com/concerts/",
     "multiPages": {
       "pageList": [
-        "les-plus-reserves-1.html?departement_id=69",
-        "les-plus-reserves-2.html?departement_id=69",
-        "les-plus-reserves-3.html?departement_id=69",
-        "les-plus-reserves-1.html?departement_id=69"
+        "concerts-par-departement-1.html?departement_id=69",
+        "concerts-par-departement-2.html?departement_id=69",
+        "concerts-par-departement-3.html?departement_id=69",
+        "concerts-par-departement-4.html?departement_id=69",
+        "concerts-par-departement-5.html?departement_id=69",
+        "concerts-par-departement-6.html?departement_id=69",
+        "concerts-par-departement-7.html?departement_id=69",
+        "concerts-par-departement-8.html?departement_id=69",
+        "concerts-par-departement-9.html?departement_id=69",
+        "concerts-par-departement-10.html?departement_id=69",
+        "concerts-par-departement-11.html?departement_id=69",
+        "concerts-par-departement-12.html?departement_id=69",
+        "concerts-par-departement-13.html?departement_id=69",
+        "concerts-par-departement-14.html?departement_id=69",
+        "concerts-par-departement-15.html?departement_id=69",
+        "concerts-par-departement-16.html?departement_id=69",
+        "concerts-par-departement-17.html?departement_id=69",
+        "concerts-par-departement-18.html?departement_id=69",
+        "concerts-par-departement-19.html?departement_id=69",
+        "concerts-par-departement-20.html?departement_id=69",
+        "concerts-par-departement-21.html?departement_id=69",
+        "concerts-par-departement-22.html?departement_id=69",
+        "concerts-par-departement-23.html?departement_id=69",
+        "concerts-par-departement-24.html?departement_id=69",
+        "concerts-par-departement-25.html?departement_id=69",
+        "concerts-par-departement-26.html?departement_id=69",
+        "concerts-par-departement-27.html?departement_id=69",
+        "concerts-par-departement-28.html?departement_id=69",
+        "concerts-par-departement-29.html?departement_id=69",
+        "concerts-par-departement-30.html?departement_id=69",
+        "concerts-par-departement-31.html?departement_id=69",
+        "concerts-par-departement-32.html?departement_id=69",
+        "concerts-par-departement-33.html?departement_id=69",
+        "concerts-par-departement-34.html?departement_id=69",
+        "concerts-par-departement-35.html?departement_id=69",
+        "concerts-par-departement-36.html?departement_id=69",
+        "concerts-par-departement-37.html?departement_id=69",
+        "concerts-par-departement-38.html?departement_id=69",
+        "concerts-par-departement-39.html?departement_id=69",
+        "concerts-par-departement-40.html?departement_id=69"
       ]
     },
     "baseURL": "https://www.infoconcert.com/concerts/",
-    "eventsDelimiterTag": "DIV.row",
+    "eventsDelimiterTag": "DIV.panelbody",
     "scrap": {
       "eventNameTags": [
         "A:eq(0)"
@@ -284,6 +320,9 @@
       ],
       "eventPlaceTags": [
         "DIV.salle:eq(0)  A:eq(0)  SPAN:eq(0)"
+      ],
+      "eventDummyTags": [
+        "A.grey:eq(0)"
       ]
     },
     "eventURLIndex": 1,
