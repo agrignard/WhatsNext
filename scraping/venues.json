@@ -4,7 +4,7 @@
     "city": "Lyon",
     "country": "France",
     "url": "https://www.lpslyon.fr/evenements-le-petit-salon/",
-    "baseURL": "https://www.lpslyon.fr",
+    "baseURL": "https://www.lpslyon.fr/evenements-le-petit-salon/",
     "eventsDelimiterTag": "DIV.events__item.item.colmd4.offsetxl1",
     "scrap": {
       "eventNameTags": [
@@ -78,7 +78,9 @@
   },
   {
     "name": "Le Périscope",
-    "aliases": ["périscope"],
+    "aliases": [
+      "périscope"
+    ],
     "city": "Lyon",
     "country": "France",
     "url": "https://www.periscope-lyon.com/concerts/",
@@ -99,7 +101,9 @@
   },
   {
     "name": "Le Sonic",
-    "aliases": ["sonic"],
+    "aliases": [
+      "sonic"
+    ],
     "city": "Lyon",
     "country": "France",
     "url": "https://sonic-lyon.fr/",
@@ -190,7 +194,9 @@
   },
   {
     "name": "Le Trokson",
-    "aliases": ["TROKSON"],
+    "aliases": [
+      "TROKSON"
+    ],
     "city": "Lyon",
     "country": "France",
     "url": "https://www.trokson.com/shows",
@@ -252,5 +258,83 @@
       ]
     },
     "linkedPageDateFormat": "dd-MM-HH:mm"
+  },
+  {
+    "name": "Infoconcert",
+    "country": "France",
+    "city": "Lyon",
+    "url": "https://www.infoconcert.com/concerts/",
+    "multiPages": {
+      "pageList": [
+        "les-plus-reserves-1.html?departement_id=69",
+        "les-plus-reserves-2.html?departement_id=69",
+        "les-plus-reserves-3.html?departement_id=69",
+        "les-plus-reserves-1.html?departement_id=69"
+      ]
+    },
+    "baseURL": "https://www.infoconcert.com/concerts/",
+    "eventsDelimiterTag": "DIV.row",
+    "scrap": {
+      "eventNameTags": [
+        "A:eq(0)"
+      ],
+      "eventDateTags": [
+        "SPAN.day:eq(0)",
+        "SPAN.month:eq(0)"
+      ],
+      "eventPlaceTags": [
+        "DIV.salle:eq(0)  A:eq(0)  SPAN:eq(0)"
+      ]
+    },
+    "eventURLIndex": 1,
+    "dateFormat": "dd-MM"
+  },
+  {
+    "name": "Rock N Eat",
+    "country": "France",
+    "city": "Lyon",
+    "aliases": [
+      "Bar Rock'n eat"
+    ]
+  },
+  {
+    "name": "La Rayonne",
+    "country": "France",
+    "city": "Lyon",
+    "aliases": [
+      "CCO- La Rayonne",
+      "CCO La Rayonne"
+    ]
+  },
+  {
+    "name": "Toï Toï Le Zinc",
+    "country": "France",
+    "city": "Lyon"
+  },
+  {
+    "name": "Jack Jack",
+    "country": "France",
+    "city": "Lyon",
+    "aliases": [
+      "Jack Jack - MJC Aragon"
+    ]
+  },
+  {
+    "name": "Salle 3000",
+    "country": "France",
+    "city": "Lyon",
+    "aliases": [
+      "Amphithéâtre - Salle 3000"
+    ]
+  },
+  {
+    "name": "Epicerie Moderne",
+    "country": "France",
+    "city": "Lyon"
+  },
+  {
+    "name": "Grrrnd Zéro",
+    "country": "France",
+    "city": "Lyon"
   }
 ]

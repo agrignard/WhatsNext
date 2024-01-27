@@ -14,6 +14,17 @@
 // }
 
 // remove duplicates elements from a list
+
+export function removeAccents(string){
+  let res = string;
+  res = res.replace(/[âä]/g,'a');
+  res = res.replace(/[éèêëÉ]/g,'e');
+  res = res.replace(/[ïî]/g,'i');
+  res = res.replace(/[ô]/g,'o');
+  res = res.replace(/[ûù]/g,'u');
+  return res;
+}
+
 export function removeDoubles(list) {
     if (Array.isArray(list)){
      const res = [];

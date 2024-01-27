@@ -3,7 +3,7 @@ import * as fs from 'fs';
 import { parse, isValid }  from 'date-fns';
 import * as cheerio from 'cheerio';
 import {parseDocument} from 'htmlparser2';
-import {makeURL} from './import/stringUtilities.mjs';
+import {makeURL, removeAccents} from './import/stringUtilities.mjs';
 import {loadLinkedPages,loadVenuesJSONFile,getAliases} from './import/fileUtilities.mjs';
 
 
@@ -31,7 +31,9 @@ if (fileToScrap){
     console.log('\x1b[31mFichier \x1b[0m%s.html\x1b[31m non trouvé. Fin du scrapping.\x1b[0m\n', fileToScrap);
   }
 }else{
-  scrapFiles(venues);
+  await scrapFiles(venues.filter(el => el.hasOwnProperty('eventsDelimiterTag')));
+  const venuesToSkip = venues.filter(el => !el.hasOwnProperty('eventsDelimiterTag')).map(el => el.name);
+  console.log('\x1b[36mWarning: the following venues have no scraping details and are only used as aliases. Run analex if it is a mistake.\x1b[0m',venuesToSkip);
 }
 
 
@@ -153,7 +155,8 @@ async function analyseFile(venue) {
         if (!isValid(formatedEventDate)){
           console.log('\x1b[31mFormat de date invalide pour %s. Reçu \"%s\", converti en \"%s\" (attendu \"%s\")\x1b[0m', 
             venue.name,eventInfo.eventDate,convertDate(eventInfo.eventDate,dateConversionPatterns),dateFormat);
-          eventInfo.unixDate = new Date().getTime(); // en cas d'erreur, ajoute la date d'aujourd'hui A MODIFIER POUR MIEUX REPERER L'ERREUR
+          eventInfo.unixDate = new Date().getTime();
+          //eventInfo.unixDate = eventInfo.unixDate.setFullYear(eventInfo.unixDate.getFullYear() - 10); // en cas d'erreur, ajoute la date d'aujourd'hui A MODIFIER POUR MIEUX REPERER L'ERREUR
         }else{
           eventInfo.unixDate = formatedEventDate.getTime();
           console.log(showDate(formatedEventDate));
@@ -266,7 +269,7 @@ function FindLocationFromAlias(string,country,city,aliasList){
   let res = string;
   aliasList.filter(venue => venue.country === country && venue.city === city)
   .forEach(venue => {
-    if (venue.aliases.filter(al => al.toLowerCase() === string.toLowerCase()).length > 0){// if the name of the place of the event is in the alias list, replace by the main venue name
+    if (venue.aliases.filter(al => removeAccents(al.toLowerCase()) === removeAccents(string.toLowerCase())).length > 0){// if the name of the place of the event is in the alias list, replace by the main venue name
       res = venue.name;
     }
   });

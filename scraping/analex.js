@@ -421,7 +421,7 @@ function getURLIndex(venueJSON,nbHrefs,source){
     if (nbHrefs == 1
         || !venueJSON.hasOwnProperty('eventURLIndex') 
         || (venueJSON.eventURLIndex > maxIndex)
-        || (venue.JSON.eventURLIndex < minIndex)){
+        || (venueJSON.eventURLIndex < minIndex)){
         // if only one url, or no index set previously, or index is not in the right range, returns default index
         if (source.prop('tagName')=='A'){
             return 0;

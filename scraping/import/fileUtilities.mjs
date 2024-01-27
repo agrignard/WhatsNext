@@ -9,13 +9,16 @@ export const venuesListJSONFile = "./venues.json";
 
 // return a list of json object with aliases to change the place name
 export function getAliases(list){
-    return list.filter(el => el.hasOwnProperty('aliases'))
+    return list
     .map(el => {
       const res = {};
       res.country = el.country;
       res.city = el.city;
       res.name = el.name;
-      res.aliases = el.aliases;
+      res.aliases = [el.name];
+      if (el.hasOwnProperty('aliases')){
+        res.aliases = res.aliases.concat(el.aliases);
+      }
       return res;
     });
 }

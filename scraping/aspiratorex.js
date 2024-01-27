@@ -104,8 +104,8 @@ async function downloadVenue(venue,path){
       htmlContent = cleanPage(await fetchAndRecode(page));
      // response = await fetch(page);
     }catch(err){
-      console.log("\x1b[31mNetwork error, cannot download \'%s\'\x1b[0m.%s",page);
-      throw err;
+      console.log("\x1b[31mNetwork error, cannot download \'%s\'\x1b[0m.",page);
+      return '';
     }
     //const htmlContent = cleanPage(await response.text());
 

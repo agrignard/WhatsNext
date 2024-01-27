@@ -1,10 +1,9 @@
-function ajouterElement(liste) {
-    liste.push(4);
+const truc = 'pezrkljljkjéopuupù00';
+
+function removeAccents(string){
+    const regex = /[éèêëÉâäïîôûù]/g;
+    return string.replace(regex,'Z');
+    
   }
-  
-  const maListe = [1, 2, 3];
-  
-  console.log('Avant la fonction :', maListe);
-  ajouterElement(maListe);
-  console.log('Après la fonction :', maListe);
-  
+
+  console.log(removeAccents(truc));
