@@ -168,7 +168,7 @@ async function analyseFile(venue) {
         }
 
         // display
-        console.log((eventInfo.eventName));
+        console.log('Event : %s',eventInfo.eventName);
         Object.keys(eventInfo).forEach(key => {
           if (key !== 'eventName' && key !== 'eventDate' && key !== 'eventURL' && key != 'unixDate' && key != 'eventDummy'){
             console.log(key.replace('event',''),': ',eventInfo[key.replace('Tags','')]);
@@ -176,8 +176,6 @@ async function analyseFile(venue) {
         });
         console.log((eventInfo.eventURL)+'\n');
         eventList.push(eventInfo);
-        // out = out+''+(eventInfo.hasOwnProperty('eventPlace')?eventInfo.eventPlace:venue.name)+';'
-        //       +eventInfo.eventName+';'+eventInfo.unixDate+';100;'+eventInfo.eventStyle+';'+eventInfo.eventURL+'\n';
       }); 
       
     }catch(error){

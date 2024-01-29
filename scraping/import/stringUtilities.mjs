@@ -51,6 +51,7 @@ function isAbsoluteURL(url) {
 
 // build an absolute url from a link URL: appends a base url if the link is a relative link
 export function makeURL(baseURL, URL){
+  if (URL){
     const bu = baseURL.endsWith('/')?baseURL.slice(0,-1):baseURL;
     const url = URL.startsWith('/')?URL.slice(1):URL;
     //   if (URL.startsWith(bu) || URL.startsWith('http')){
@@ -59,6 +60,9 @@ export function makeURL(baseURL, URL){
     }else{
       return bu+'/'+url;
     }
+  }else{
+    console.log("\x1b[36mWarning, no URL found. Skipping URL retrieval.\x1b[0m");
+  }
 }
 
 // convert the text of an html file to lower case (does not modify the case within tags)
