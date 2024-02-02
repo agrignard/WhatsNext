@@ -3,9 +3,23 @@
 /**************************************/
 
 import * as fs from 'fs';
+import {removeAccents} from './stringUtilities.mjs';
 
 const scrapInfoFile = "./venuesScrapInfo.json"; // path should start from the directory of the calling script
 export const venuesListJSONFile = "./venues.json";
+const styleConversionFile = "./import/styleConversion.json";
+
+export async function getStyleConversions(){
+    try{
+        const res = await JSON.parse(await fs.promises.readFile(styleConversionFile, 'utf8'));
+        Object.keys(res).forEach(key =>{
+            res[key] = res[key].map(val => removeAccents(val.toLowerCase()));
+        });
+        return res;
+    }catch(err){
+        console.log('\x1b[36mWarning: cannot open style conversion file JSON file:  \'%s\'.\x1b[0m%s\n',styleConversionFile,err);
+    }
+  }
 
 // return a list of json object with aliases to change the place name
 export function getAliases(list){

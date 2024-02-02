@@ -4,7 +4,7 @@ import { parse, isValid }  from 'date-fns';
 import * as cheerio from 'cheerio';
 import {parseDocument} from 'htmlparser2';
 import {makeURL, removeAccents} from './import/stringUtilities.mjs';
-import {loadLinkedPages,loadVenuesJSONFile,getAliases} from './import/fileUtilities.mjs';
+import {loadLinkedPages,loadVenuesJSONFile,getAliases,getStyleConversions} from './import/fileUtilities.mjs';
 
 
 // Chemin vers le fichier à lire
@@ -13,11 +13,12 @@ const sourcePath = './webSources/';
 //var out="";// = "PLACE,TITRE,UNIX,SIZE,GENRE,URL";
 const outFile = "generated/scrapexResult.csv";
 const globalDefaultStyle = '';
+const styleConversion = await getStyleConversions();
 
 
 const dateConversionPatterns = await getConversionPatterns();
 let venues = await loadVenuesJSONFile();
-let aliasList = getAliases(venues);
+let aliasList = await getAliases(venues);
 
 //const venueNamesList = venues.map(el => el.name);
     
@@ -170,6 +171,9 @@ async function analyseFile(venue) {
           eventInfo.eventPlace = FindLocationFromAlias(eventInfo.eventPlace,venue.country,venue.city,aliasList);
         }
 
+        // get normalized style
+        eventInfo.eventStyle = getStyle(eventInfo.eventStyle);
+
         // display
         console.log('Event : %s',eventInfo.eventName);
         Object.keys(eventInfo).forEach(key => {
@@ -272,6 +276,17 @@ function FindLocationFromAlias(string,country,city,aliasList){
   .forEach(venue => {
     if (venue.aliases.filter(al => removeAccents(al.toLowerCase()) === removeAccents(string.toLowerCase())).length > 0){// if the name of the place of the event is in the alias list, replace by the main venue name
       res = venue.name;
+    }
+  });
+  return res;
+}
+
+function getStyle(string){
+  const stringComp = removeAccents(string.toLowerCase());
+  let res = string;
+  Object.keys(styleConversion).forEach(style =>{
+    if (styleConversion[style].some(word => stringComp.includes(word))){
+      res = style;
     }
   });
   return res;

@@ -1,5 +1,6 @@
 {
     "Rock": ["ROCK"],
+    "Electro": ["Electro","techno","house"],
     "": ["Unknwown"]
 }
 

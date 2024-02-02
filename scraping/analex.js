@@ -1,6 +1,6 @@
 import { createDate, numberOfInvalidDates, getCommonDateFormats, getConversionPatterns} from './import/dateUtilities.mjs';
 import {removeDoubles, convertToLowerCase, removeBlanks,makeURL} from './import/stringUtilities.mjs';
-import {loadVenueScrapInfofromFile, loadVenueJSON,loadVenuesJSONFile,venuesListJSONFile,loadLinkedPages} from './import/fileUtilities.mjs';
+import {loadVenueScrapInfofromFile, loadVenueJSON, loadVenuesJSONFile, venuesListJSONFile, loadLinkedPages} from './import/fileUtilities.mjs';
 
 import * as fs from 'fs';
 import * as cheerio from 'cheerio';
