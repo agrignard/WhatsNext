@@ -35,6 +35,7 @@ function convertGeoJsontoCSV(){
 
 
 function convertPlaceCSVtoGeoJson(){
+  console.log("convertPlaceCSVtoGeoJson");
   // Getting the original source file for event
   const existingGeoJSONPath = 'www/template/place_minimal.geojson';
   // Read the existing GeoJSON file
@@ -77,10 +78,7 @@ function convertPlaceCSVtoGeoJson(){
       },
       };
       existingGeoJSON.features.push(newFeature);
-  })
-
-
-
+  });
     // Define the path to the modified GeoJSON file
     const modifiedGeoJSONPath = 'www/lyon_place.geojson';
     // Save the modified GeoJSON to a new file
@@ -91,6 +89,7 @@ function convertPlaceCSVtoGeoJson(){
         console.log('Modified GeoJSON saved to', modifiedGeoJSONPath);
       }
     });
+    console.log(table.length + " places created")
   });
 }
 
@@ -112,7 +111,7 @@ function printEachEvent(){
   
 function convertEventCSVtoGeoJson(){
   // Getting the original source file for event
-  console.log("convertPlaceCSVtoGeoJson");
+  console.log("convertEventCSVtoGeoJson");
   const existingGeoJSONPath = 'www/template/event_minimal.geojson';
   // Read the existing GeoJSON file
   fs.readFile(existingGeoJSONPath, 'utf8', (err, data) => {
@@ -170,5 +169,6 @@ function convertEventCSVtoGeoJson(){
         console.log('Modified GeoJSON saved to', modifiedGeoJSONPath);
       }
     });
+    console.log(existingGeoJSON.features.length + " events");
   });
 }

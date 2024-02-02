@@ -57,6 +57,7 @@ if (darkMode){
 }
 
 var devMode = false;
+var flytoOnClick=false;
 var showAllValueDiv = devMode ? true : false;
 var showAllValue = false;
 updateCircleLegend();
@@ -263,7 +264,7 @@ data: data
         'Rap', ["case",["boolean", ["feature-state", "hover"], false],'rgba(165,2,33,'+ transparencyBig+')','rgba(165,2,33,'+ transparency+')'],
         'Divers', ["case",["boolean", ["feature-state", "hover"], false],'rgba(224,147,40,'+ transparencyBig+')','rgba(224,147,40,'+ transparency+')'],
         'Jam', ["case",["boolean", ["feature-state", "hover"], false],'rgba(238,130,238,'+ transparencyBig+')','rgba(238,130,238,'+ transparency+')'],
-        '#ccc'
+        '#888'
         ],
 'circle-stroke-color':[
     'match',['get', 'style'],
@@ -273,7 +274,7 @@ data: data
     'Rap', ["case",["boolean", ["feature-state", "hover"], false],'rgba(165,2,33,'+ transparencyBig+')','rgba(165,2,33,'+ transparency+')'],
     'Divers', ["case",["boolean", ["feature-state", "hover"], false],'rgba(224,147,40,'+ transparencyBig+')','rgba(224,147,40,'+ transparency+')'],
     'Jam', ["case",["boolean", ["feature-state", "hover"], false],'rgba(238,130,238,'+ transparencyBig+')','rgba(238,130,238,'+ transparency+')'],
-    '#ccc'
+    '#666'
     ],
     'circle-stroke-width': ["case",["boolean", ["feature-state", "hover"], false],10.0,2.5],
     'circle-stroke-opacity':[
@@ -417,12 +418,15 @@ map.on('click', 'event-circles', (e) => {
 const target = e.features[0].geometry.coordinates;
 end.center = target;
 
-/*map.flyTo({
-...end, // Fly to the selected target
-duration: 3000, // Animate over 12 seconds
-essential: true // This animation is considered essential with
-//respect to prefers-reduced-motion
-});  */ 
+if(flytoOnClick){
+    map.flyTo({
+    ...end, // Fly to the selected target
+    duration: 3000, // Animate over 12 seconds
+    essential: true // This animation is considered essential with
+    //respect to prefers-reduced-motion
+    });  
+}
+ 
 // Copy coordinates array.
 const coordinates = e.features[0].geometry.coordinates.slice();
 const description = e.features[0].properties.description;

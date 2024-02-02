@@ -7,6 +7,7 @@ import { parse, isValid }  from 'date-fns';
 import * as fs from 'fs';
 
 const dateConversionFile = './import/dateConversion.json';
+const styleConversionFile = './import/styleConversion.json';
 
 export function showDate(date){
   const day = to2digits(String(date.getDate()));
@@ -16,6 +17,31 @@ export function showDate(date){
   const minutes = to2digits(String(date.getMinutes()));
   const string = day+'/'+month+'/'+year+' (time: '+hour+':'+minutes+')';
   return string;
+}
+
+// load style conversion patterns
+export async function getConversionStylePatterns(){
+  try{
+      return await JSON.parse(await fs.promises.readFile(styleConversionFile, 'utf8'));
+  }catch(err){
+      console.log('\x1b[36mWarning: cannot open style conversion file JSON file:  \'%s\'. Will not save to venues.\x1b[0m%s\n',styleConversionFile,err);
+  }
+}
+
+// clean the style 
+export function convertStyle(s,styleConversionPatterns){
+  convertDate,nsole.log("yo ca convertir du style)")
+  for (const key in styleConversionPatterns) {
+    console.log(key);
+    /*function replacer(match, p1, p2, p3, offset, string) {
+      return ' '+key+' ';
+    }
+    for (const str of dateConversionPatterns[key]){
+       s = s.replace(new RegExp("([^a-zA-Z.]|^)("+str+")([^a-zA-Z.]|$)",'i'),replacer);
+    }*/
+
+  }  
+  return to2digits(unifyCharacters(s));
 }
 
 

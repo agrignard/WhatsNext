@@ -9,13 +9,13 @@ Le Sonic,45.75104322798962,4.8200061963556395,https://sonic-lyon.fr/
 Le Trokson,45.76973724802351,4.831532333405628,https://www.trokson.com/
 Le Sucre,45.73661415788746,4.815308821695801,https://le-sucre.eu/
 Toï Toï Le Zinc,45.77987153345585,4.877406759088646,https://www.toitoilezinc.fr/agenda-salle-de-spectacle/
-Le Radiant,45.79788414153422,4.843125590861963,http://radiant-bellevue.fr/
+Radiant-Bellevue,45.79788414153422,4.843125590861963,http://radiant-bellevue.fr/
 A Thou Bout d'Chant,45.7705358011615,4.836544215343914,https://athouboutdchant.com/
 Ancienne usine Fagor-Brandt,45.73125879157448,4.840202976719573,
 Astrée Amphithéâtre,45.78366736641631,4.870564454581455,https://theatre-astree.univ-lyon1.fr/
-Auditorium,45.76183050086076,4.852376688478581,https://www.auditorium-lyon.com/fr
+Auditorium de Lyon,45.76183050086076,4.852376688478581,https://www.auditorium-lyon.com/fr
 Bar des Capucins,45.769066001542285,4.832469654580621,
-Bizarre !,45.71377458937166,4.879373354577578,https://www.lamachinerie-venissieux.fr/
+Bizarre!,45.71377458937166,4.879373354577578,https://www.lamachinerie-venissieux.fr/
 Bourse du Travail,45.75959719706098,4.848216365673355,https://www.bourse-du-travail.com/
 Briscope,45.676394182325275,4.760768684656085,https://brignais.com/briscope/
 La Rayonne,45.75671235983061,4.917004559049518,https://larayonne.org/
@@ -27,7 +27,7 @@ Espace Tonkin,45.77585500283178,4.86330530363784,https://www.espacetonkin.fr/
 Farmer,45.771548686174434,4.827795820436171,
 Groom,45.770615465336434,4.836937077519969,https://www.groomlyon.com/
 Groupama Stadium,45.765334091684046,4.982036878412183,https://www.olvallee.fr/
-Grrrnd Zero,45.765862217056274,4.9267125190686905,https://www.grrrndzero.org/
+Grrrnd Zéro,45.765862217056274,4.9267125190686905,https://www.grrrndzero.org/
 Hard Rock Café,45.763011898180885,4.837948560264358,https://www.grrrndzero.org/
 Hot Club,45.76568284608088,4.831958880964752,https://www.hotclubjazzlyon.com/
 Kraspek Myzik,45.771294137807615,4.835775421944657,http://kraspekmyzik.com/
@@ -36,7 +36,7 @@ La Plateforme,45.76182849637386,4.840403461890766,https://cafe-oz.com/
 LDLC Arena,45.76865757266265,4.978658041447684,https://www.olvallee.fr/lieux/ldlc-arena/
 Chromatique,45.750819488952686,4.847040160142772,https://www.lesirius.com/
 Matmut Stadium de Gerland,45.72375112024588,4.832137062735327,
-Jack Jack MJC Aragon,45.742338170768804,4.908581917764821,https://mjcbron.fr/
+Jack Jack,45.742338170768804,4.908581917764821,https://mjcbron.fr/
 MJC Bonneterre,45.76175040275761,4.885933617945258,https://www.mjc-villeurbanne.org/
 Théâtre antique de Fourvière,45.75874341341396,4.819662249985661,
 Opéra National de Lyon,45.76782652695555,4.836256972967631,https://www.opera-lyon.com/
@@ -48,7 +48,7 @@ Salle des Rancy,45.755974264407975,4.847594718492895,https://www.salledesrancy.c
 Salle Léo Ferré ,45.76109675206448,4.825993631964207,http://www.mjcduvieuxlyon.com/
 Salle Victor Hugo,45.76784678862205,4.849621760358227,
 Le Toboggan,45.76878299389761,4.955766064092964,https://letoboggan.com/
-Warm audio,45.7667872185702,4.944126920392682,https://warmaudio.fr/
+Warmaudio,45.7667872185702,4.944126920392682,https://warmaudio.fr/
 La Grooverie,45.76973564942163,4.83053012536694,
 La Passagère,45.76059076681801,4.840247992216044,
 Maison M,45.76855453010177,4.829935621383864,https://mmlyon.com/
@@ -79,7 +79,11 @@ Les Valseuses,45.77145007466286, 4.835317772026436,http://www.valseuses.com/,
 Tram33,45.74980672056602, 4.828289178627723,
 405 du Parc, 45.748366943012535, 4.8547559154432385,
 L'Evergreen,45.76573555786398, 4.844296311921913,https://www.levergreen-restaurant-lyon.fr/,
-G.restaurant,45.76947943516, 4.832261743668414,
 La Clef de Voûte,45.77087245546227, 4.834447869226795,https://www.laclefdevoute.fr/,
 Antidote,45.756248731433246, 4.825142104943653,https://www.antidote-pub.com/,
-Platypus Brewpub,45.74635650647595, 4.824321490355014,https://www.facebook.com/platypusbrewpub/ 
+Platypus Brewpub,45.74635650647595, 4.824321490355014,https://www.facebook.com/platypusbrewpub/,
+Théâtre de l’Elysée, 45.755139319907734, 4.842075771456818, https://lelysee.com/,
+IAC,45.76252731618125, 4.872550106024222,https://i-ac.eu/,
+Les Clameurs,45.75402032429334, 4.842524348419091,https://www.barlesclameurs.com/,
+La Boulangerie du Prado,45.750706825674605, 4.842603867002448,https://boulangerieduprado.com/,
+Conservatoire de Lyon - CRR,45.76103406274964, 4.822471990076247,https://www.conservatoire-lyon.fr/
