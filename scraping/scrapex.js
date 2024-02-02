@@ -172,6 +172,7 @@ async function analyseFile(venue) {
         }
 
         // get normalized style
+        eventInfo.eventDetailedStyle = eventInfo.eventStyle;
         eventInfo.eventStyle = getStyle(eventInfo.eventStyle);
 
         // display
@@ -260,7 +261,7 @@ function saveToCSV(eventList, outFile){
   let out = '';
   eventList.forEach(eventInfo =>{
     out = out+''+eventInfo.eventPlace+';'
-    +eventInfo.eventName+';'+eventInfo.unixDate+';100;'+eventInfo.eventStyle+';'+eventInfo.eventURL+'\n';
+    +eventInfo.eventName+';'+eventInfo.unixDate+';100;'+eventInfo.eventStyle+';'+eventInfo.eventDetailedStyle+';'+eventInfo.eventURL+'\n';
   });
   try{
     fs.writeFileSync(outFile, out, 'utf-8', { flag: 'w' });
