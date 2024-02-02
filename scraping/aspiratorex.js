@@ -82,17 +82,24 @@ fs.writeFileSync(venuesListJSONFile, jsonString);// écrit à la fin. Problème 
 async function downloadVenue(venue,path){
   let URLlist = [];
   if (venue.hasOwnProperty('multiPages')){
-    if (venue.multiPages.hasOwnProperty('startPage') && venue.multiPages.hasOwnProperty('nbPages')){
-      let increment = (venue.multiPages.hasOwnProperty('increment'))?venue.multiPages.increment:1;
-      for(let i=0;i<venue.multiPages.nbPages;i++){
-        const pageID = venue.multiPages.startPage+i*increment;
-        URLlist.push(venue.url+pageID);
-      }
+    if (/\{index\}/.test(venue.url)){
+      if (venue.multiPages.hasOwnProperty('startPage') && venue.multiPages.hasOwnProperty('nbPages')){
+        let increment = (venue.multiPages.hasOwnProperty('increment'))?venue.multiPages.increment:1;
+        for(let i=0;i<venue.multiPages.nbPages;i++){
+          const pageID = venue.multiPages.startPage+i*increment;
+          //URLlist.push(venue.url+pageID);
+            URLlist.push(venue.url.replace('{index}',pageID));
+        }
+      }else{
+        console.log("\x1b[31mAttribute \'startPage\' and \'nbPages' are mandatory for multipages if there is a placeholder \'index\' in the URL. No page loaded\x1b[0m.");
+        URLlist = [];
+      }  
     }else if(venue.multiPages.hasOwnProperty('pageList')){
-      venue.multiPages.pageList.forEach(el => URLlist.push(venue.url+el));
+        venue.multiPages.pageList.forEach(el => URLlist.push(venue.url+el));
     }else{
-      console.log("\x1b[36mAttribute \'startPage\' and \'nbPages', or \'pageList\' are mandatory for multipages. No page loaded\x1b[0m.");
-      URLlist = [];
+        console.log("\x1b[31mFound \'multiPage\', but found neither a place holder \'{index}\' or a list of URLs \'pageList\' to load. No page loaded\x1b[0m.");
+        URLlist = [];
+        console.log(venue.url);
     }
   }else{
     URLlist = [venue.url];
@@ -131,11 +138,17 @@ async function downloadVenue(venue,path){
   // get linked pages
   if (venue.hasOwnProperty('linkedPage')){
     // if event tags are defined and contain URLs, download the URLs. Otherwise, ask to run an analyze 
-    if (venue.hasOwnProperty('eventsDelimiterTag') && venue.hasOwnProperty('eventURLIndex') && venue.eventURLIndex !== -1){
+    if (venue.scrap.hasOwnProperty('eventsURLTags')||
+        (venue.hasOwnProperty('eventsDelimiterTag') && venue.hasOwnProperty('eventURLIndex') && venue.eventURLIndex !== -1)){
+      let hrefList;
+      if (venue.scrap.hasOwnProperty('eventURLTags')){// URL is found manually
+        hrefList = pageList.map((page)=>getManualLinksFromPage(page,venue.eventsDelimiterTag,venue.scrap.eventURLTags[0])).flat();
+      }else{
+        let index = venue.hasOwnProperty('eventURLIndex')?venue.eventURLIndex:0;
+        hrefList = pageList.map((page)=>getLinksFromPage(page,venue.eventsDelimiterTag,index)).flat();
+      }
       // get the list of URLs to download
-      let index = venue.hasOwnProperty('eventURLIndex')?venue.eventURLIndex:0;
-      let hrefList = pageList.map((page)=>getLinksFromPage(page,venue.eventsDelimiterTag,index)).flat();
-      hrefList = removeDoubles(hrefList);
+      hrefList = removeDoubles(hrefList.filter(el => el !== undefined));
       hrefList = hrefList.map((el) => makeURL(venue.baseURL,el));
       console.log(shortList(hrefList));
       // check the URLS that already exist
@@ -186,6 +199,18 @@ async function downloadVenue(venue,path){
 /*       aux functions        */
 /******************************/
 
+
+function getManualLinksFromPage(page,delimiter,atag){
+  const $ = cheerio.load(page);
+  let res = [];
+  $(delimiter).each(function () {
+    const block = $(this).html();
+    const $b = cheerio.load(block);
+    const href = $b(atag).attr('href');
+    res.push(href);
+  });
+  return res;
+}
 
 function getLinksFromPage(page,delimiter,index){
   const $ = cheerio.load(page);
