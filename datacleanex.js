@@ -62,7 +62,7 @@ function convertPlaceCSVtoGeoJson(){
       const latitude=parseFloat(columns[1]);
       const longitude=parseFloat(columns[2]);
       const url=columns[3];
-      console.log(place,latitude,longitude,url);
+      console.log("Place: "+place+";"+latitude+";"+longitude+";"+url);
 
     const newFeature = {
       type: 'Feature',
@@ -123,7 +123,7 @@ function convertEventCSVtoGeoJson(){
     // Parse the existing GeoJSON data
     const existingGeoJSON = JSON.parse(data);
 
-    const csvFilePath = 'www/lyon_event.csv';
+    const csvFilePath = 'scraping/generated/scrapexResult.csv';
     const csvData = fs.readFileSync(csvFilePath, 'utf8');
     const table = csvData.split('\n').slice(1);
 
@@ -134,8 +134,9 @@ function convertEventCSVtoGeoJson(){
       const time=parseInt(columns[2]);
       const size=parseInt(columns[3]);
       const style=columns[4];
-      const url=columns[5];
-      console.log(place,title,time,size,style,url);
+      const detailedStyle=columns[5];
+      const url=columns[6];
+      console.log("Event:"+ place+";"+title+";"+time+";"+size+";"+style+";"+detailedStyle+";"+url);
 
     const newFeature = {
       type: 'Feature',
@@ -150,6 +151,7 @@ function convertEventCSVtoGeoJson(){
           "icon": "marker-15",
           "place": place,
           "style": style,
+          "detailedStyle": detailedStyle,
           "time":time,
           "description":url
       },

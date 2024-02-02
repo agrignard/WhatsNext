@@ -1,6 +1,9 @@
 {
     "Rock": ["ROCK"],
-    "Electro": ["Electro","techno","house"],
+    "Rap": ["RAP"],
+    "Electro": ["Electro","techno","house","Clubbing"],
+    "World": ["Sono Mondiale"],    
+    "Classique":["Classique & Lyrique"],
     "": ["Unknwown"]
 }
 

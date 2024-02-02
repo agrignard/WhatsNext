@@ -9,15 +9,14 @@
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
-body { margin: 0; padding: 0; }
-#map { position:absolute; top:0; bottom:0; width:100%; }
+    body { margin: 0; padding: 0; }
+    #map { position:absolute; top:0; bottom:0; width:100%; }
 </style>
 </head>
 <body>
- 
+    
 
 <div id="map"></div>
-
 <div class="map-overlay top">
 <div class="map-overlay-inner">
 <div style='display:none;'>
@@ -26,7 +25,6 @@ body { margin: 0; padding: 0; }
 </div>
 <h2>WhatsNext</h2>
 <canvas id="myCircleCanvas" height="50"></canvas>
-
 <div id="eventList" class="eventList-div"></div>
 <div class="slider">
 <label id="dateSlider"></label>
@@ -100,13 +98,16 @@ projection: 'globe',
 
 
 
-const mapStyle = new Map();
-mapStyle.set('Rock', 'rgba(23,128,251,0.5)');
-mapStyle.set('Electro', 'rgba(40,124,18,0.5)');
-mapStyle.set('Jazz', 'rgba(255,255,0,0.5)');
-mapStyle.set('Rap', 'rgba(165,2,33,0.5)');
-mapStyle.set('Divers', 'rgba(224,147,40,0.5)');
-mapStyle.set('Jam', 'rgba(238,130,238,0.5)');
+// Your dynamic map of categories and their colors
+const categoryColors = {
+  'Rock': '23, 128, 251',
+  'Electro': '40, 124, 18',
+  'Jazz': '255, 255, 0',
+  'Rap': '165, 2, 33',
+  'World': '224, 147, 40',
+  'Jam': '238, 130, 238',
+  'Classique': '127, 0, 255',
+};
 
 const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 
@@ -251,31 +252,40 @@ map.addSource('events', {
 data: data
 });
 
+function generateColorExpressions(categories) {
+  const colorExpressions = [];
+
+  categories.forEach(category => {
+    const baseColor = categoryColors[category];
+
+    if (baseColor) {
+      colorExpressions.push(
+        category,
+        [
+          'case',
+          ['boolean', ['feature-state', 'hover'], false],
+          `rgba(${baseColor}, ${transparencyBig})`,
+          `rgba(${baseColor}, ${transparency})`
+        ]
+      );
+    }
+  });
+
+  // Add a default color at the end if needed
+  colorExpressions.push('#888');
+
+  // Return the complete color expression
+  return ['match', ['get', 'style'], ...colorExpressions];
+}
+
+
  map.addLayer({
 'id': 'event-circles',
 'type': 'circle',
 'source': 'events',
 'paint': {
-'circle-color': [
-        'match',['get', 'style'],
-        'Rock', ["case",["boolean", ["feature-state", "hover"], false],'rgba(23,128,251,'+ transparencyBig+')','rgba(23,128,251,'+ transparency+')'],
-        'Electro', ["case",["boolean", ["feature-state", "hover"], false],'rgba(40,124,18,'+ transparencyBig+')','rgba(40,124,18,'+ transparency+')'],
-        'Jazz', ["case",["boolean", ["feature-state", "hover"], false],'rgba(255,255,0,'+ transparencyBig+')','rgba(255,255,0,'+ transparency+')'],
-        'Rap', ["case",["boolean", ["feature-state", "hover"], false],'rgba(165,2,33,'+ transparencyBig+')','rgba(165,2,33,'+ transparency+')'],
-        'Divers', ["case",["boolean", ["feature-state", "hover"], false],'rgba(224,147,40,'+ transparencyBig+')','rgba(224,147,40,'+ transparency+')'],
-        'Jam', ["case",["boolean", ["feature-state", "hover"], false],'rgba(238,130,238,'+ transparencyBig+')','rgba(238,130,238,'+ transparency+')'],
-        '#888'
-        ],
-'circle-stroke-color':[
-    'match',['get', 'style'],
-    'Rock', ["case",["boolean", ["feature-state", "hover"], false],'rgba(23,128,251,'+ transparencyBig+')','rgba(23,128,251,'+ transparency+')'],
-    'Electro', ["case",["boolean", ["feature-state", "hover"], false],'rgba(40,124,18,'+ transparencyBig+')','rgba(40,124,18,'+ transparency+')'],
-    'Jazz', ["case",["boolean", ["feature-state", "hover"], false],'rgba(255,255,0,'+ transparencyBig+')','rgba(255,255,0,'+ transparency+')'],
-    'Rap', ["case",["boolean", ["feature-state", "hover"], false],'rgba(165,2,33,'+ transparencyBig+')','rgba(165,2,33,'+ transparency+')'],
-    'Divers', ["case",["boolean", ["feature-state", "hover"], false],'rgba(224,147,40,'+ transparencyBig+')','rgba(224,147,40,'+ transparency+')'],
-    'Jam', ["case",["boolean", ["feature-state", "hover"], false],'rgba(238,130,238,'+ transparencyBig+')','rgba(238,130,238,'+ transparency+')'],
-    '#666'
-    ],
+'circle-color': generateColorExpressions(Object.keys(categoryColors)),
+'circle-stroke-color': generateColorExpressions(Object.keys(categoryColors)),
     'circle-stroke-width': ["case",["boolean", ["feature-state", "hover"], false],10.0,2.5],
     'circle-stroke-opacity':[
     'case',
@@ -433,6 +443,7 @@ const description = e.features[0].properties.description;
 var title = e.features[0].properties.title;
 var place = e.features[0].properties.place;
 var style = e.features[0].properties.style;
+var detailedStyle = e.features[0].properties.detailedStyle;
 var time = e.features[0].properties.time;
  
 // Ensure that if the map is zoomed out such that multiple
@@ -460,7 +471,7 @@ console.log(description);
 //console.log("urlString"+urlString);
 new mapboxgl.Popup()
 .setLngLat(coordinates)
-.setHTML("<h4>" + eventURLString + "</h4><b>Place:</b> "+place+"<br><b>Time:</b> "+new Date(time)+"<br><b>Style:</b> "+style)
+.setHTML("<h4>" + eventURLString + "</h4><b>Place:</b> "+place+"<br><b>Time:</b> "+new Date(time)+"<br><b>Style:</b> "+style + " (" + detailedStyle +")")
 .addTo(map);
 });
 
@@ -668,7 +679,8 @@ async function chartIt(){
 }
 
 async function updateCircleLegend(){
-    // Get the canvas element and its 2d rendering context
+
+// Get the canvas element and its 2d rendering context
 const canvas = document.getElementById('myCircleCanvas');
 const ctx = canvas.getContext('2d');
 
@@ -677,8 +689,8 @@ const circles = [
   { x: 75, y: 25, radius: 15, value: 'Electro', color: 'rgba(40,124,18,0.5)' },
   { x: 125, y: 25, radius: 15, value: 'Jazz', color: 'rgba(255,255,0,0.5)' },
   { x: 175, y: 25, radius: 15, value: 'Rap', color: 'rgba(165,2,33,0.5)' },
-  { x: 225, y: 25, radius: 15, value: 'Divers', color: 'rgba(224,147,40,0.5)' },
-  { x: 275, y: 25, radius: 15, value: 'Jam', color: 'rgba(238,130,238,0.5)' }
+  { x: 225, y: 25, radius: 15, value: 'Classique', color: 'rgba(127,0,255,0.5)' },
+  { x: 275, y: 25, radius: 15, value: 'World', color: 'rgba(224,147,40,0.5)' }
 ];
 
 let selectedCircle = null;
