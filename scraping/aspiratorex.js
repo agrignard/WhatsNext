@@ -138,11 +138,17 @@ async function downloadVenue(venue,path){
   // get linked pages
   if (venue.hasOwnProperty('linkedPage')){
     // if event tags are defined and contain URLs, download the URLs. Otherwise, ask to run an analyze 
-    if (venue.hasOwnProperty('eventsDelimiterTag') && venue.hasOwnProperty('eventURLIndex') && venue.eventURLIndex !== -1){
+    if (venue.scrap.hasOwnProperty('eventsURLTags')||
+        (venue.hasOwnProperty('eventsDelimiterTag') && venue.hasOwnProperty('eventURLIndex') && venue.eventURLIndex !== -1)){
+      let hrefList;
+      if (venue.scrap.hasOwnProperty('eventURLTags')){// URL is found manually
+        hrefList = pageList.map((page)=>getManualLinksFromPage(page,venue.eventsDelimiterTag,venue.scrap.eventURLTags[0])).flat();
+      }else{
+        let index = venue.hasOwnProperty('eventURLIndex')?venue.eventURLIndex:0;
+        hrefList = pageList.map((page)=>getLinksFromPage(page,venue.eventsDelimiterTag,index)).flat();
+      }
       // get the list of URLs to download
-      let index = venue.hasOwnProperty('eventURLIndex')?venue.eventURLIndex:0;
-      let hrefList = pageList.map((page)=>getLinksFromPage(page,venue.eventsDelimiterTag,index)).flat();
-      hrefList = removeDoubles(hrefList);
+      hrefList = removeDoubles(hrefList.filter(el => el !== undefined));
       hrefList = hrefList.map((el) => makeURL(venue.baseURL,el));
       console.log(shortList(hrefList));
       // check the URLS that already exist
@@ -193,6 +199,18 @@ async function downloadVenue(venue,path){
 /*       aux functions        */
 /******************************/
 
+
+function getManualLinksFromPage(page,delimiter,atag){
+  const $ = cheerio.load(page);
+  let res = [];
+  $(delimiter).each(function () {
+    const block = $(this).html();
+    const $b = cheerio.load(block);
+    const href = $b(atag).attr('href');
+    res.push(href);
+  });
+  return res;
+}
 
 function getLinksFromPage(page,delimiter,index){
   const $ = cheerio.load(page);

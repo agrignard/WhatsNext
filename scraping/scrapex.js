@@ -32,7 +32,7 @@ if (fileToScrap){
   }
 }else{
   await scrapFiles(venues.filter(el => el.hasOwnProperty('eventsDelimiterTag')));
-  const venuesToSkip = venues.filter(el => !el.hasOwnProperty('eventsDelimiterTag')).map(el => el.name);
+  const venuesToSkip = venues.filter(el => !el.hasOwnProperty('eventsDelimiterTag')).map(el => el.name+' ('+el.city+', '+el.country+')');
   console.log('\x1b[36mWarning: the following venues have no scraping details and are only used as aliases. Run analex if it is a mistake.\x1b[0m',venuesToSkip);
 }
 
@@ -127,6 +127,9 @@ async function analyseFile(venue) {
                 eventURL = makeURL(venue.baseURL,$eventBlock(tagsWithHref[index]).attr('href'));
               }
             }
+          }else{ // if a delimiter for the URL has been defined
+            eventURL = makeURL(venue.baseURL,$eventBlock(venue.scrap.eventURLTags[0]).attr('href'));
+            eventInfo.eventURL = eventURL;
           }
         }catch(err){
           console.log("\x1b[31mErreur lors de la récupération de l\'URL.\x1b[0m",err);
@@ -138,10 +141,10 @@ async function analyseFile(venue) {
             const $linkedBlock = cheerio.load(linkedFileContent[eventURL]);
             Object.keys(venue.linkedPage).forEach(key => eventInfo[key.replace('Tags','')] = getText(key,venue.linkedPage,$linkedBlock));  
           }catch{
-            console.log('\x1b[31mImpossible de lire la page liée pour l\'événement \'%s\'. Erreur lors du téléchargement ?\x1b[31m', eventInfo.eventName);
+            console.log('\x1b[31mImpossible de lire la page liée pour l\'événement \'%s\'. Erreur lors du téléchargement ?\x1b[0m', eventInfo.eventName);
           }
           // if the url in the linked is empty, replace by the main page one
-          if (!eventInfo.hasOwnProperty('eventURL') || eventInfo.eventURL.length === 0){
+          if (!eventInfo.hasOwnProperty('eventURL') || eventInfo.eventURL === undefined || eventInfo.eventURL.length === 0){
             eventInfo.eventURL = eventURL;
           }
         }else{

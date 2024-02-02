@@ -80,10 +80,13 @@
     },
     "Infoconcert":{
         "mainPage":{
-            "eventNameStrings": ["nash"],
-            "eventDateStrings": ["16", "mars"],
-            "eventPlaceStrings": ["ouest"],
-            "eventDummyStrings": ["infos"]
+            "eventNameStrings": ["oratorio"],
+            "eventDateStrings": "03 février",
+            "eventPlaceStrings": ["Eglise"],
+            "eventURLStrings": ["infos"]
+        },
+        "linkedPage":{
+            "eventDateStrings": ["date","18h00"]
         }
     }
 }

@@ -1,5 +1,5 @@
 import { createDate, numberOfInvalidDates, getCommonDateFormats, getConversionPatterns} from './import/dateUtilities.mjs';
-import {removeDoubles, convertToLowerCase, removeBlanks} from './import/stringUtilities.mjs';
+import {removeDoubles, convertToLowerCase, removeBlanks,makeURL} from './import/stringUtilities.mjs';
 import {loadVenueScrapInfofromFile, loadVenueJSON,loadVenuesJSONFile,venuesListJSONFile,loadLinkedPages} from './import/fileUtilities.mjs';
 
 import * as fs from 'fs';
@@ -153,21 +153,26 @@ if (tagsContainingStrings.length === 0){
     // find and display tag for each string to find
     venueJSON.scrap = addJSONBlock(eventStrings.mainPage,$eventBlock);
     
-    // logs depending on if URL has been found.
+    // logs depending on if URLs have been found.
     console.log();
     venueJSON.eventURLIndex = getURLIndex(venueJSON,hrefs.length,$(mainTag));
-    if (hrefs.length === 1) {
-        console.log('URL found:',$eventBlock(hrefs[0]).attr('href'));
-    } else if (hrefs.length > 1){
-        console.log('Found %s URLs. Change index in JSON \"eventURLIndex\" to the most suitable one (current index: %s).', hrefs.length, venueJSON.eventURLIndex);
-        hrefs.each((index, element) => {
-            const href = $eventBlock(element).attr('href');
-            console.log('\x1b[90mURL (index\x1b[0m',index+1,'\x1b[90m):\x1b[0m', href);//index+1 car 0 est réservé au maintTag de type <a=href>
-        });   
-    } else {
-        console.log('\x1b[31mNo url link found.\x1b[0m'
-        +(extendSelectionToGetURL?'':'(consider finding URLs recursively using \"extendSelectionToGetURL = true\")')+'\x1b[0m');
+    if (venueJSON.scrap.hasOwnProperty('eventURLTags')){// tags are used to find the url to the event page
+        console.log('URL found using tags: %s',$eventBlock(venueJSON.scrap.eventURLTags[0]).attr('href'));
+    }else{// automatic search for the tag
+        if (hrefs.length === 1) {
+            console.log('URL found:',$eventBlock(hrefs[0]).attr('href'));
+        } else if (hrefs.length > 1){
+            console.log('Found %s URLs. Change index in JSON \"eventURLIndex\" to the most suitable one (current index: %s).', hrefs.length, venueJSON.eventURLIndex);
+            hrefs.each((index, element) => {
+                const href = $eventBlock(element).attr('href');
+                console.log('\x1b[90mURL (index\x1b[0m',index+1,'\x1b[90m):\x1b[0m', href);//index+1 car 0 est réservé au maintTag de type <a=href>
+            });   
+        } else {
+            console.log('\x1b[31mNo url link found.\x1b[0m'
+            +(extendSelectionToGetURL?'':'(consider finding URLs recursively using \"extendSelectionToGetURL = true\")')+'\x1b[0m');
+        }
     }
+
 
     // find most appropriate date format
 
@@ -179,8 +184,14 @@ if (tagsContainingStrings.length === 0){
     console.log(eventStrings);
     if (eventStrings.hasOwnProperty('linkedPage')){
         if (linkedFileContent){
-            let i = ($(mainTag).prop('tagName')=='A')?venueJSON.eventURLIndex:(venueJSON.eventURLIndex-1);
-            let linkURL = $eventBlock(hrefs[i]).attr('href');
+            let linkURL;
+            if (venueJSON.scrap.hasOwnProperty('eventURLTags')){// URL found with tags
+                linkURL = makeURL(venueJSON.baseURL,$eventBlock(venueJSON.scrap.eventURLTags[0]).attr('href'));
+            }else{// automatic URL
+                let i = ($(mainTag).prop('tagName')=='A')?venueJSON.eventURLIndex:(venueJSON.eventURLIndex-1);
+                linkURL = makeURL(venueJSON.baseURL,$eventBlock(hrefs[i]).attr('href'));
+            }
+            console.log('link ',linkURL);
             let linkedPage = linkedFileContent[linkURL];
             if (linkedPage){
                 console.log('\n*** linked page tags ***');
@@ -199,8 +210,6 @@ if (tagsContainingStrings.length === 0){
             console.log('\x1b[31m\nLinked pages have not been downloaded yet. Run again \x1b[0maspiratorex.js\x1b[31m to get them.\x1b[0m\n');
         }
     }
-
-
 
     // saving to venues JSON and test file
 
@@ -258,6 +267,9 @@ function getTagWithURL(currentTag,$cgp,stringsToFind){
 }
 
 function reduceTag(string,source){// reduce the tag list to keep it compact and avoid errors
+    if (string == undefined){
+        return undefined;
+    }
     const refText = source(string).text();
     const stringList = string.split(' ');
     let reducedString = stringList.pop();

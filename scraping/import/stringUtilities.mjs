@@ -16,13 +16,14 @@
 // remove duplicates elements from a list
 
 export function removeAccents(string){
-  let res = string;
-  res = res.replace(/[âä]/g,'a');
-  res = res.replace(/[éèêëÉ]/g,'e');
-  res = res.replace(/[ïî]/g,'i');
-  res = res.replace(/[ô]/g,'o');
-  res = res.replace(/[ûù]/g,'u');
-  return res;
+  // let res = string;
+  // res = res.replace(/[âä]/g,'a');
+  // res = res.replace(/[éèêëÉ]/g,'e');
+  // res = res.replace(/[ïî]/g,'i');
+  // res = res.replace(/[ô]/g,'o');
+  // res = res.replace(/[ûù]/g,'u');
+  // return res;
+  return string.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
 }
 
 export function removeDoubles(list) {
@@ -39,8 +40,8 @@ export function removeDoubles(list) {
     }
 }
 
-// determine if an URL is absolute or relative
-function isAbsoluteURL(url) {
+// determine if an URL starts with https://www...
+function isFullURL(url) {
   try {
     new URL(url);
     return true;
@@ -50,19 +51,34 @@ function isAbsoluteURL(url) {
 }
 
 // build an absolute url from a link URL: appends a base url if the link is a relative link
-export function makeURL(baseURL, URL){
-  if (URL){
-    const bu = baseURL.endsWith('/')?baseURL.slice(0,-1):baseURL;
-    const url = URL.startsWith('/')?URL.slice(1):URL;
+export function makeURL(baseURL, url){
+  if (url){
+    // const bu = baseURL.endsWith('/')?baseURL.slice(0,-1):baseURL;
+    // const url = URL.startsWith('/')?URL.slice(1):URL;
     //   if (URL.startsWith(bu) || URL.startsWith('http')){
-    if (isAbsoluteURL(url)){
+    if (isFullURL(url)){//full URL
       return url;
-    }else{
-      return bu+'/'+url;
+    }else if(url.startsWith('/')){// absolute URL (URL starts with /)
+      const objURL = new URL(baseURL);
+      return objURL.protocol + '//'+objURL.hostname+url;
+    }else { //relative URL
+      return baseURL+url;
     }
   }else{
-    console.log("\x1b[36mWarning, no URL found. Skipping URL retrieval.\x1b[0m");
+    return undefined;
   }
+  // if (URL){
+  //   const bu = baseURL.endsWith('/')?baseURL.slice(0,-1):baseURL;
+  //   const url = URL.startsWith('/')?URL.slice(1):URL;
+  //   //   if (URL.startsWith(bu) || URL.startsWith('http')){
+  //   if (isAbsoluteURL(url)){
+  //     return url;
+  //   }else{
+  //     return bu+'/'+url;
+  //   }
+  // }else{
+  //   return undefined;
+  // }
 }
 
 // convert the text of an html file to lower case (does not modify the case within tags)

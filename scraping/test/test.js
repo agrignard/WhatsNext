@@ -6,4 +6,6 @@ function removeAccents(string){
     
   }
 
-  console.log(removeAccents(truc));
+  //console.log(removeAccents(truc));
+
+console.log(truc.normalize('NFD').replace(/[\u0300-\u036f]/g, ''));

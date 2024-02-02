@@ -266,7 +266,7 @@
     "url": "https://www.infoconcert.com/concerts/concerts-par-departement-{index}.html?departement_id=69",
     "multiPages": {
       "startPage": 1,
-      "nbPages": 2
+      "nbPages": 42
     },
     "baseURL": "https://www.infoconcert.com/concerts/",
     "eventsDelimiterTag": "DIV.panelbody",
@@ -281,12 +281,19 @@
       "eventPlaceTags": [
         "DIV.salle:eq(0)  A:eq(0)  SPAN:eq(0)"
       ],
-      "eventDummyTags": [
+      "eventURLTags": [
         "A.grey:eq(0)"
       ]
     },
-    "eventURLIndex": 1,
-    "dateFormat": "dd-MM"
+    "eventURLIndex": 5,
+    "dateFormat": "dd-MM",
+    "linkedPage": {
+      "eventDateTags": [
+        "DIV.panelbody__content:eq(1)  H3.mb10:eq(0)",
+        "TIME:eq(0)"
+      ]
+    },
+    "linkedPageDateFormat": "dd-MM-yyyy-HH:mm"
   },
   {
     "name": "Rock N Eat",
