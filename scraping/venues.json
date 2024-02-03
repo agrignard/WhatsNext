@@ -294,6 +294,9 @@
       "eventDateTags": [
         "DIV.panelbody__content:eq(1)  H3.mb10:eq(0)",
         "TIME:eq(0)"
+      ],
+      "eventMultiDateTags": [
+        "LI.listgroupitem"
       ]
     },
     "linkedPageDateFormat": "dd-MM-yyyy-HH:mm"

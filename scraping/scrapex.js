@@ -135,7 +135,7 @@ async function analyseFile(venue) {
             eventInfo.eventURL = eventURL;
           }
         }catch(err){
-          console.log("\x1b[31mErreur lors de la récupération de l\'URL.\x1b[0m",err);
+          toErrorLog(eventInfo,["\x1b[31mErreur lors de la récupération de l\'URL.\x1b[0m",err]);
         }
 
         if (!isEmptyEvent(eventInfo)){
@@ -145,7 +145,7 @@ async function analyseFile(venue) {
               const $linkedBlock = cheerio.load(linkedFileContent[eventURL]);
               Object.keys(venue.linkedPage).forEach(key => eventInfo[key.replace('Tags','')] = getText(key,venue.linkedPage,$linkedBlock));  
             }catch{
-              console.log('\x1b[31mImpossible de lire la page liée pour l\'événement \'%s\'. Erreur lors du téléchargement ?\x1b[0m', eventInfo.eventName);
+              toErrorLog(eventInfo,['\x1b[31mImpossible de lire la page liée pour l\'événement \'%s\'. Erreur lors du téléchargement ?\x1b[0m', eventInfo.eventName]);
             }
             // if the url in the linked is empty, replace by the main page one
             if (!eventInfo.hasOwnProperty('eventURL') || eventInfo.eventURL === undefined || eventInfo.eventURL.length === 0){
@@ -155,22 +155,7 @@ async function analyseFile(venue) {
             eventInfo.eventURL = eventURL;
           }
 
-          //*** logs  ***//
-
-          // change the date format to Unix time
-          
-          const formatedEventDate = createDate(eventInfo.eventDate,dateFormat,dateConversionPatterns);
-          if (!isValid(formatedEventDate)){
-            console.log('\x1b[31mFormat de date invalide pour %s. Reçu \"%s\", converti en \"%s\" (attendu \"%s\")\x1b[0m', 
-              venue.name,eventInfo.eventDate,convertDate(eventInfo.eventDate,dateConversionPatterns),dateFormat);
-            eventInfo.unixDate = new Date().getTime();
-            //eventInfo.unixDate = eventInfo.unixDate.setFullYear(eventInfo.unixDate.getFullYear() - 10); // en cas d'erreur, ajoute la date d'aujourd'hui A MODIFIER POUR MIEUX REPERER L'ERREUR
-          }else{
-            eventInfo.unixDate = formatedEventDate.getTime();
-            console.log(showDate(formatedEventDate));
-          }
-          
-        
+          //*** post processing, show logs and save  ***//
 
           // match event place with existing one
           if (venue.scrap.hasOwnProperty('eventPlaceTags') || (venue.hasOwnProperty('linkedPage') && venue.linkedPage.hasOwnProperty('eventPlaceTags'))){
@@ -181,9 +166,29 @@ async function analyseFile(venue) {
           eventInfo.eventDetailedStyle = eventInfo.eventStyle;
           eventInfo.eventStyle = getStyle(eventInfo.eventStyle);
 
-          // display
-          displayEventLog(eventInfo);
-          eventList.push(eventInfo);
+          // make a list of events in case of multidate
+          const eventInfoList = createMultiEvents(eventInfo);
+         
+          
+          eventInfoList.forEach(el => {
+            // change the date format to Unix time
+            const formatedEventDate = createDate(el.eventDate,dateFormat,dateConversionPatterns);
+            if (!isValid(formatedEventDate)){
+              toErrorLog(eventInfo,['\x1b[31mFormat de date invalide pour %s. Reçu \"%s\", converti en \"%s\" (attendu \"%s\")\x1b[0m', 
+                venue.name,el.eventDate,convertDate(el.eventDate,dateConversionPatterns),dateFormat]);
+              eventInfo.unixDate = 0;
+              //new Date().getTime();
+              //el.unixDate = el.unixDate.setFullYear(el.unixDate.getFullYear() - 10); // en cas d'erreur, ajoute la date d'aujourd'hui A MODIFIER POUR MIEUX REPERER L'ERREUR
+            }else{
+              el.unixDate = formatedEventDate.getTime();
+              console.log(showDate(formatedEventDate));
+            }
+
+            // display
+            displayEventLog(el);
+            eventList.push(el);
+          });
+         
         }
       }); 
       
@@ -205,15 +210,21 @@ async function analyseFile(venue) {
      function getText(tagName,JSONblock,source){
       let string = "";
       const tagList = JSONblock[tagName];
-      try{
-        for (let i = 0; i <= tagList.length-1; i++) {
-          let ev = tagList[i]===''?source.text():source(tagList[i]).text();
-          string += ev+' ';
+      if (tagName !== 'eventMultiDateTags'){
+        try{
+          for (let i = 0; i <= tagList.length-1; i++) {
+            let ev = tagList[i]===''?source.text():source(tagList[i]).text();
+            string += ev+' ';
+          }
+        }catch(err){
+          console.log('\x1b[31m%s\x1b[0m', 'Erreur d\'extraction à partir des balises.\x1b[0m',tagList);
         }
-      }catch(err){
-        console.log('\x1b[31m%s\x1b[0m', 'Erreur d\'extraction à partir des balises.\x1b[0m',tagList);
+        return removeBlanks(string);
+      }else{
+        const res = source(tagList[0]).map((index, element) => source(element).text()).get();
+        return res;
       }
-      return removeBlanks(string);
+     
       //return tagName === 'eventPlaceTags'?fixString(removeBlanks(string),venueNamesList):removeBlanks(string);
     }
     // end of auxiliary function
@@ -308,10 +319,38 @@ function isEmptyEvent(eventInfo){
   return eventInfo.eventName === '' && (eventInfo.eventURL === '' || eventInfo.eventURL == undefined) && eventInfo.eventDate === '';
 }
 
-function toErrorLog(eventInfo, message){
+function toErrorLog(eventInfo, messageList){
+  let string = messageList[0];
+  
+  for(let i=1;i<messageList.length;i++){
+    string = string.replace('%s',messageList[i]);
+  }
+  console.log(string);
+  string = string.replace(/\x1b\[\d+m/g, ''); // remove color tags
   if (eventInfo.hasOwnProperty('errorLog')){
-    eventInfo.errorLog.push(message);
+    eventInfo.errorLog = eventInfo.errorLog+" | "+string;
   }else{
-    eventInfo.errorLog = [message];
+    eventInfo.errorLog = string;
+  }
+  
+}
+
+function createMultiEvents(eventInfo){
+  if (eventInfo.hasOwnProperty('eventMultiDate')){
+    if (eventInfo.eventMultiDate.length >0){
+    const res = [];
+    eventInfo.eventMultiDate.forEach(el =>{
+      const ei = {...eventInfo};
+      ei.eventDate = el;
+      delete ei.eventMultiDate;
+      res.push(ei);
+    });
+    return res;
+    }else{
+      delete eventInfo.eventMultiDate;
+      return [eventInfo];
+    }
+  }else{
+    return [eventInfo];
   }
 }

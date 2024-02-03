@@ -198,7 +198,13 @@ if (tagsContainingStrings.length === 0){
                 const parsedLinkedPage = parseDocument(convertToLowerCase('<html><head></head>'+linkedPage+'</html>'));
                 const $linked = cheerio.load(parsedLinkedPage);
             //    console.log($linked.html());
-                venueJSON.linkedPage = addJSONBlock(eventStrings.linkedPage,$linked);
+                if (venueJSON.hasOwnProperty('linkedPage') && venueJSON.linkedPage.hasOwnProperty('eventMultiDateTags')){
+                    const multiDate = venueJSON.linkedPage.eventMultiDateTags; // do not erase multidate tag
+                    venueJSON.linkedPage = addJSONBlock(eventStrings.linkedPage,$linked);
+                    venueJSON.linkedPage.eventMultiDateTags = multiDate;
+                }else{
+                    venueJSON.linkedPage = addJSONBlock(eventStrings.linkedPage,$linked);
+                }
                 let dates = getAllDates("BODY",venueJSON.linkedPage['eventDateTags'],$linked);
                 console.log(dates);
                 venueJSON.linkedPageDateFormat = getBestDateFormat(dates,venueJSON.linkedPage, dateConversionPatterns);
