@@ -9,11 +9,10 @@ import {parseDocument} from 'htmlparser2';
 var sourcePath = './webSources/';
 
 const venueToAnalyse = process.argv[2];// argument to load default strings to parse
-const extendSelectionToGetURL = true;
 
 let venueName = 'Le Petit Bulletin';
 
-let fileContent, linkedFileContent, venuesListJSON, venueJSON, eventStrings;
+let linkedFileContent, venuesListJSON, venueJSON, eventStrings;
 
 // set the venue to analyze
 if (venueToAnalyse){
@@ -44,16 +43,33 @@ venueJSON =  loadVenueJSON(venueName,venuesListJSON);
 sourcePath += venueJSON.country+'/'+venueJSON.city+'/'+venueName+'/';
 const fileName = venueName+(venueJSON.hasOwnProperty('multiPages')?'0':'')+'.html';
 
+let inputFileList;
+try {
+    inputFileList = fs.readdirSync(sourcePath)
+      .filter(fileName => fileName.endsWith('.html'))
+      .map(el => sourcePath+el);
+} catch (err) {
+    console.error('\x1b[31mError reading html files in directory \'%s\'.\x1b[0m Error: %s',sourcePath, err);
+}
+function readBodyContent(file) {
+    const content = fs.readFileSync(file, 'utf-8');
+    const $ = cheerio.load(content);
+    return $('body').html();
+}
+
+const fileContent = inputFileList.map(readBodyContent).join('\n');
+
+
 // load date conversion pattern
 const dateConversionPatterns = await getConversionPatterns();
 
 // load main page
-try{
-    fileContent = await fs.promises.readFile(sourcePath+fileName, 'utf8');
-}catch(err) {
-    console.error("\x1b[31mCannot open file :%s\x1b[0m\n%s",fileName,err);
-    throw err;
-}
+// try{
+//     fileContent = await fs.promises.readFile(sourcePath+fileName, 'utf8');
+// }catch(err) {
+//     console.error("\x1b[31mCannot open file :%s\x1b[0m\n%s",fileName,err);
+//     throw err;
+// }
 
 // load linked page
 if (eventStrings.linkedPage && fs.existsSync(sourcePath+'linkedPages.json')){
@@ -82,6 +98,7 @@ try{
 }catch(error){
     console.error('\x1b[31mError while reading the strings to parse: %s\x1b[0m',error);
 }
+//const parsedHtml = parseDocument(convertToLowerCase(fileContent));
 const parsedHtml = parseDocument(convertToLowerCase(fileContent));
 const $ = cheerio.load(parsedHtml);
 
@@ -112,9 +129,9 @@ if (tagsContainingStrings.length === 0){
 
     
     // extend the tag if it does not include any URL link
-    if (extendSelectionToGetURL){
+    if (!eventStrings.noUrl){
         try{
-            let mainTagWithURL;
+            let mainTagWithURL;        
             [mainTagWithURL, hrefs] = getTagWithURL(mainTag,$eventBlock,stringsToFind);
             let $eventBlockURL = cheerio.load($(mainTagWithURL).html());
             if (hrefs.length > 0){
@@ -122,9 +139,9 @@ if (tagsContainingStrings.length === 0){
                 $eventBlock = $eventBlockURL;
             } else{
                 console.log("\x1b[33mWarning, no URL found. Keeping the most inner block.\x1b[0m.");
-            }
+            }   
         }catch(err){
-            console.log("\x1b[31mError while trying to find embedded URL recursively. Aborting URL search. Try to turn flag \'extendSelectionToGetURL\' to false to prevent recursive search. %s\x1b[0m",err)
+            console.log("\x1b[31mError while trying to find embedded URL recursively. Aborting URL search. Put field \"noUrl\":true to prevent looking for a link url. %s\x1b[0m",err)
         }
     }
     // adding levels to the main tag
@@ -155,22 +172,25 @@ if (tagsContainingStrings.length === 0){
     
     // logs depending on if URLs have been found.
     console.log();
-    venueJSON.eventURLIndex = getURLIndex(venueJSON,hrefs.length,$(mainTag));
-    if (venueJSON.scrap.hasOwnProperty('eventURLTags')){// tags are used to find the url to the event page
-        console.log('URL found using tags: %s',$eventBlock(venueJSON.scrap.eventURLTags[0]).attr('href'));
-    }else{// automatic search for the tag
-        if (hrefs.length === 1) {
-            console.log('URL found:',$eventBlock(hrefs[0]).attr('href'));
-        } else if (hrefs.length > 1){
-            console.log('Found %s URLs. Change index in JSON \"eventURLIndex\" to the most suitable one (current index: %s).', hrefs.length, venueJSON.eventURLIndex);
-            hrefs.each((index, element) => {
-                const href = $eventBlock(element).attr('href');
-                console.log('\x1b[90mURL (index\x1b[0m',index+1,'\x1b[90m):\x1b[0m', href);//index+1 car 0 est réservé au maintTag de type <a=href>
-            });   
-        } else {
-            console.log('\x1b[31mNo url link found.\x1b[0m'
-            +(extendSelectionToGetURL?'':'(consider finding URLs recursively using \"extendSelectionToGetURL = true\")')+'\x1b[0m');
+    if (!eventStrings.noUrl){
+        venueJSON.eventURLIndex = getURLIndex(venueJSON,hrefs.length,$(mainTag));
+        if (venueJSON.scrap.hasOwnProperty('eventURLTags')){// tags are used to find the url to the event page
+            console.log('URL found using tags: %s',$eventBlock(venueJSON.scrap.eventURLTags[0]).attr('href'));
+        }else{// automatic search for the tag
+            if (hrefs.length === 1) {
+                console.log('URL found:',$eventBlock(hrefs[0]).attr('href'));
+            } else if (hrefs.length > 1){
+                console.log('Found %s URLs. Change index in JSON \"eventURLIndex\" to the most suitable one (current index: %s).', hrefs.length, venueJSON.eventURLIndex);
+                hrefs.each((index, element) => {
+                    const href = $eventBlock(element).attr('href');
+                    console.log('\x1b[90mURL (index\x1b[0m',index+1,'\x1b[90m):\x1b[0m', href);//index+1 car 0 est réservé au maintTag de type <a=href>
+                });   
+            } else {
+                console.log('\x1b[31mNo url link found.\x1b[0m');
+            }
         }
+    }else{
+        venueJSON.eventURLIndex = -1;
     }
 
 

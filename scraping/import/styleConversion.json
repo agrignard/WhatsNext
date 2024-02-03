@@ -4,6 +4,7 @@
     "Electro": ["Electro","techno","house","Clubbing"],
     "World": ["Sono Mondiale"],    
     "Classique":["Classique","lyrique","opera"],
+    "jazz":["jazz","groove"],
     "": ["Unknwown"]
 }
 

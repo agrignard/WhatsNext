@@ -127,6 +127,7 @@ function yearIsValid(yyyy){
 function unifyCharacters(s){
   let string = s.replace(/[\n\t\/\-,;.]/g,' ').replace(/ {2,}/g,' ').replace(/^ /,'').replace(/ $/,'').replace(/ /g,'-');
   string = string.replace('h',':').replace(/: /g,':00').replace(/:$/g,':00');//format to correct time
+  string = string.replace(/:-+/g,':');//remove - after :
   return string;
 }
 

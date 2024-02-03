@@ -43,9 +43,11 @@ export async function fetchAndRecode(url){
         const response = await fetch(url);
         const encoding = response.headers.get('content-type').split('charset=')[1]; // identify the page encoding
         if (encoding === 'utf-8'){
+            //console.log('UTF8');
             return await response.text();
         }else{
             try{
+                //console.log(encoding);
                 const decoder = new TextDecoder(encoding); // convert to plain text (UTF-8 ?)
                 return  response.arrayBuffer().then(buffer => decoder.decode(buffer));
             }catch(err){

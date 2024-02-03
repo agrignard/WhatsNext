@@ -87,7 +87,7 @@
     "eventsDelimiterTag": "DIV.smallcontent.ukwidth14m.ukgridmargin",
     "dateFormat": "dd-MM",
     "defaultStyle": "Jazz",
-    "baseURL": "https://www.periscope-lyon.com",
+    "baseURL": "https://www.periscope-lyon.com/concerts/",
     "scrap": {
       "eventNameTags": [
         "SPAN:eq(0)",
@@ -97,7 +97,14 @@
         "H5:eq(0)"
       ]
     },
-    "eventURLIndex": 1
+    "eventURLIndex": 1,
+    "linkedPage": {
+      "eventDateTags": [
+        "SPAN.cctd:eq(0)",
+        "SPAN.ccth:eq(0)"
+      ]
+    },
+    "linkedPageDateFormat": "dd-MM-yyyy-HH:mm"
   },
   {
     "name": "Le Sonic",
@@ -111,7 +118,7 @@
     "eventsDelimiterTag": "DIV.event_details",
     "eventURLIndex": 1,
     "defaultStyle": "Rock",
-    "baseURL": "https://sonic-lyon.fr",
+    "baseURL": "https://sonic-lyon.fr/",
     "scrap": {
       "eventNameTags": [
         "DIV.event_title:eq(0)"
@@ -120,7 +127,13 @@
         "SPAN.month:eq(0)",
         "SPAN.date:eq(0)"
       ]
-    }
+    },
+    "linkedPage": {
+      "eventDateTags": [
+        "DIV.details:eq(0)  P:eq(0)"
+      ]
+    },
+    "linkedPageDateFormat": "MM-dd-HH:mm"
   },
   {
     "name": "Le Petit Bulletin",
@@ -156,10 +169,11 @@
     "country": "France",
     "url": "https://marchegare.fr/agenda?category=All&page=1",
     "dateFormat": "dd-MM",
-    "baseURL": "https://marchegare.fr",
+    "baseURL": "https://marchegare.fr/",
     "scrap": {
       "eventNameTags": [
-        "DIV.agendatitle.headingsfontweight.uppercase.fontdisplay.fontbold.text3xl.mdtext4xl.xltext5xl.leadingnone.lgleadingnone:eq(0)  SPAN.leadingnone.lgleadingnone:eq(0)"
+        "DIV.agendatitle.headingsfontweight.uppercase.fontdisplay.fontbold.text3xl.mdtext4xl.xltext5xl.leadingnone.lgleadingnone:eq(0)  SPAN.leadingnone.lgleadingnone:eq(0)",
+        "DIV.agendasubtitle.text2xl.lgtext3xl.fontdisplay.uppercase.mt1:eq(0)"
       ],
       "eventDateTags": [
         "SPAN.evtdatefromdayname.evtdatedayname:eq(0)",
@@ -167,11 +181,20 @@
         "SPAN.evtdatefrommonth.evtdatemonth:eq(0)"
       ],
       "eventStyleTags": [
-        "SPAN.uppercase.fontdisplay.textxl.lgtext2xl.nounderline.mx1.leadingnone.lgleadingnone:eq(0)"
+        "SPAN.uppercase.fontdisplay.textxl.lgtext2xl.nounderline.mx1.leadingnone.lgleadingnone:eq(0)",
+        "SPAN.uppercase.fontdisplay.textxl.lgtext2xl.nounderline.mx1.leadingnone.lgleadingnone:eq(1)"
       ]
     },
     "eventURLIndex": 0,
-    "eventsDelimiterTag": "A.agendaitem.nounderline.group"
+    "eventsDelimiterTag": "A.agendaitem.nounderline.group",
+    "linkedPage": {
+      "eventDateTags": [
+        "SPAN.lb_sessionstartdateday:eq(0)",
+        "SPAN.lb_sessionstartdatemonth:eq(0)",
+        "SPAN.lb_sessionhour.me2.mr2:eq(0)"
+      ]
+    },
+    "linkedPageDateFormat": "dd-MM-HH:mm"
   },
   {
     "name": "Halle Tony Garnier",
@@ -201,19 +224,22 @@
     "country": "France",
     "url": "https://www.trokson.com/shows",
     "defaultStyle": "Rock",
-    "baseURL": "https://www.trokson.com",
+    "baseURL": "https://www.trokson.com/",
     "scrap": {
       "eventNameTags": [
-        "A.DjQEyU:eq(0)"
+        "DIV.yuONQy:eq(0)"
+      ],
+      "eventDummyTags": [
+        "DIV.kKuXKf:eq(0)"
       ],
       "eventDateTags": [
-        "DIV.v2vbgt:eq(0)"
+        "DIV.I_kVM1:eq(0)"
       ]
     },
     "eventsDelimiterTag": "DIV.j2Owzh.Wprg5l",
-    "eventURLIndex": 1,
-    "dateFormat": "dd-MM",
-    "delimiterAddLevels": 1
+    "eventURLIndex": -1,
+    "dateFormat": "dd-MM-yyyy-HH:mm",
+    "delimiterAddLevels": 0
   },
   {
     "name": "Ville Morte",

@@ -102,7 +102,6 @@ async function analyseFile(venue) {
     // parsing each event
     try{
       eventBlockList.forEach((eve,eveIndex) =>{
-        //let unixDate, eventURL;
         let $eventBlock = cheerio.load(eve);
         let eventInfo = {'eventPlace':venue.name};
         
@@ -117,8 +116,8 @@ async function analyseFile(venue) {
         let eventURL;
         try{
           if (!venue.scrap.hasOwnProperty('eventURLTags')){
-            if (venue.hasOwnProperty('eventeventURLIndex') && venue.eventURLIndex === -1){
-              eventURL ='No url link.';
+            if (venue.hasOwnProperty('eventURLIndex') && venue.eventURLIndex === -1){
+              eventURL =venue.baseURL;
             }else{
               let index = venue.hasOwnProperty('eventURLIndex')?venue.eventURLIndex:0;
               if (index == 0){// the URL is in A href
