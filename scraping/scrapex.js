@@ -7,6 +7,8 @@ import {makeURL, removeAccents} from './import/stringUtilities.mjs';
 import {loadLinkedPages,loadVenuesJSONFile,getAliases,getStyleConversions} from './import/fileUtilities.mjs';
 
 
+
+
 // Chemin vers le fichier à lire
 const sourcePath = './webSources/';
 
@@ -136,54 +138,53 @@ async function analyseFile(venue) {
           console.log("\x1b[31mErreur lors de la récupération de l\'URL.\x1b[0m",err);
         }
 
-        // scrap info from linked page
-        if (linkedFileContent){
-          try{
-            const $linkedBlock = cheerio.load(linkedFileContent[eventURL]);
-            Object.keys(venue.linkedPage).forEach(key => eventInfo[key.replace('Tags','')] = getText(key,venue.linkedPage,$linkedBlock));  
-          }catch{
-            console.log('\x1b[31mImpossible de lire la page liée pour l\'événement \'%s\'. Erreur lors du téléchargement ?\x1b[0m', eventInfo.eventName);
-          }
-          // if the url in the linked is empty, replace by the main page one
-          if (!eventInfo.hasOwnProperty('eventURL') || eventInfo.eventURL === undefined || eventInfo.eventURL.length === 0){
+        if (!isEmptyEvent(eventInfo)){
+          // scrap info from linked page
+          if (linkedFileContent){
+            try{
+              const $linkedBlock = cheerio.load(linkedFileContent[eventURL]);
+              Object.keys(venue.linkedPage).forEach(key => eventInfo[key.replace('Tags','')] = getText(key,venue.linkedPage,$linkedBlock));  
+            }catch{
+              console.log('\x1b[31mImpossible de lire la page liée pour l\'événement \'%s\'. Erreur lors du téléchargement ?\x1b[0m', eventInfo.eventName);
+            }
+            // if the url in the linked is empty, replace by the main page one
+            if (!eventInfo.hasOwnProperty('eventURL') || eventInfo.eventURL === undefined || eventInfo.eventURL.length === 0){
+              eventInfo.eventURL = eventURL;
+            }
+          }else{
             eventInfo.eventURL = eventURL;
           }
-        }else{
-          eventInfo.eventURL = eventURL;
-        }
 
-        //*** logs  ***//
+          //*** logs  ***//
 
-        // change the date format to Unix time
-        const formatedEventDate = createDate(eventInfo.eventDate,dateFormat,dateConversionPatterns);
-        if (!isValid(formatedEventDate)){
-          console.log('\x1b[31mFormat de date invalide pour %s. Reçu \"%s\", converti en \"%s\" (attendu \"%s\")\x1b[0m', 
-            venue.name,eventInfo.eventDate,convertDate(eventInfo.eventDate,dateConversionPatterns),dateFormat);
-          eventInfo.unixDate = new Date().getTime();
-          //eventInfo.unixDate = eventInfo.unixDate.setFullYear(eventInfo.unixDate.getFullYear() - 10); // en cas d'erreur, ajoute la date d'aujourd'hui A MODIFIER POUR MIEUX REPERER L'ERREUR
-        }else{
-          eventInfo.unixDate = formatedEventDate.getTime();
-          console.log(showDate(formatedEventDate));
-        }
-
-        // match event place with existing one
-        if (venue.scrap.hasOwnProperty('eventPlaceTags') || (venue.hasOwnProperty('linkedPage') && venue.linkedPage.hasOwnProperty('eventPlaceTags'))){
-          eventInfo.eventPlace = FindLocationFromAlias(eventInfo.eventPlace,venue.country,venue.city,aliasList);
-        }
-
-        // get normalized style
-        eventInfo.eventDetailedStyle = eventInfo.eventStyle;
-        eventInfo.eventStyle = getStyle(eventInfo.eventStyle);
-
-        // display
-        console.log('Event : %s',eventInfo.eventName);
-        Object.keys(eventInfo).forEach(key => {
-          if (key !== 'eventName' && key !== 'eventDate' && key !== 'eventURL' && key != 'unixDate' && key != 'eventDummy'){
-            console.log(key.replace('event',''),': ',eventInfo[key.replace('Tags','')]);
+          // change the date format to Unix time
+          
+          const formatedEventDate = createDate(eventInfo.eventDate,dateFormat,dateConversionPatterns);
+          if (!isValid(formatedEventDate)){
+            console.log('\x1b[31mFormat de date invalide pour %s. Reçu \"%s\", converti en \"%s\" (attendu \"%s\")\x1b[0m', 
+              venue.name,eventInfo.eventDate,convertDate(eventInfo.eventDate,dateConversionPatterns),dateFormat);
+            eventInfo.unixDate = new Date().getTime();
+            //eventInfo.unixDate = eventInfo.unixDate.setFullYear(eventInfo.unixDate.getFullYear() - 10); // en cas d'erreur, ajoute la date d'aujourd'hui A MODIFIER POUR MIEUX REPERER L'ERREUR
+          }else{
+            eventInfo.unixDate = formatedEventDate.getTime();
+            console.log(showDate(formatedEventDate));
           }
-        });
-        console.log((eventInfo.eventURL)+'\n');
-        eventList.push(eventInfo);
+          
+        
+
+          // match event place with existing one
+          if (venue.scrap.hasOwnProperty('eventPlaceTags') || (venue.hasOwnProperty('linkedPage') && venue.linkedPage.hasOwnProperty('eventPlaceTags'))){
+            eventInfo.eventPlace = FindLocationFromAlias(eventInfo.eventPlace,venue.country,venue.city,aliasList);
+          }
+
+          // get normalized style
+          eventInfo.eventDetailedStyle = eventInfo.eventStyle;
+          eventInfo.eventStyle = getStyle(eventInfo.eventStyle);
+
+          // display
+          displayEventLog(eventInfo);
+          eventList.push(eventInfo);
+        }
       }); 
       
     }catch(error){
@@ -291,4 +292,26 @@ function getStyle(string){
     }
   });
   return res;
+}
+
+function  displayEventLog(eventInfo){
+  console.log('Event : %s',eventInfo.eventName);
+  Object.keys(eventInfo).forEach(key => {
+    if (key !== 'eventName' && key !== 'eventDate' && key !== 'eventURL' && key != 'unixDate' && key != 'eventDummy'){
+      console.log(key.replace('event',''),': ',eventInfo[key.replace('Tags','')]);
+    }
+  });
+  console.log((eventInfo.eventURL)+'\n');
+}
+
+function isEmptyEvent(eventInfo){
+  return eventInfo.eventName === '' && (eventInfo.eventURL === '' || eventInfo.eventURL == undefined) && eventInfo.eventDate === '';
+}
+
+function toErrorLog(eventInfo, message){
+  if (eventInfo.hasOwnProperty('errorLog')){
+    eventInfo.errorLog.push(message);
+  }else{
+    eventInfo.errorLog = [message];
+  }
 }

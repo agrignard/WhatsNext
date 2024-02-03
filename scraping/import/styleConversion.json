@@ -3,7 +3,7 @@
     "Rap": ["RAP"],
     "Electro": ["Electro","techno","house","Clubbing"],
     "World": ["Sono Mondiale"],    
-    "Classique":["Classique & Lyrique"],
+    "Classique":["Classique","lyrique","opera"],
     "": ["Unknwown"]
 }
 
