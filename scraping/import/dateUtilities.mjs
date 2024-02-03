@@ -98,6 +98,9 @@ export function convertDate(s,dateConversionPatterns){
        s = s.replace(new RegExp("([^a-zA-Z.]|^)("+str+")([^a-zA-Z.]|$)",'i'),replacer);
     }
   }  
+  // change some inconsistencies
+  s = s.replace(/de([^]*?)[aà][^]*$/,(_,p) =>'a'+p);
+
      //  //removing words with 2 or more letters
     // // console.log('\navant:'+s);
     // s = s.replace(/\b[^0-9]{2,}\b/g,' ');
@@ -126,7 +129,7 @@ function yearIsValid(yyyy){
 // clean the date string by removing unwanted characters
 function unifyCharacters(s){
   let string = s.replace(/[\n\t\/\-,;.]/g,' ').replace(/ {2,}/g,' ').replace(/^ /,'').replace(/ $/,'').replace(/ /g,'-');
-  string = string.replace('h',':').replace(/: /g,':00').replace(/:$/g,':00');//format to correct time
+  string = string.replace(/h/g,':').replace(/: /g,':00').replace(/:$/g,':00');//format to correct time
   string = string.replace(/:-+/g,':');//remove - after :
   return string;
 }

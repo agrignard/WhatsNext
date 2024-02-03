@@ -65,6 +65,12 @@ async function scrapFiles(venues) {
   }
   console.log('Scrapex fini avec succex !! (%s events found).\n\n', totalEventList.length);
   saveToCSV(totalEventList, outFile);
+  const showErrors = true;
+  if (showErrors){
+    console.log("\x1b[31m*** found %s events with errors: ***\x1b[0m",totalEventList.filter(el => el.hasOwnProperty('errorLog')).length);
+    totalEventList.filter(el => el.hasOwnProperty('errorLog'))
+    .forEach(el =>displayEventLog(el));
+  }
 }
 
 
@@ -173,9 +179,9 @@ async function analyseFile(venue) {
             // change the date format to Unix time
             const formatedEventDate = createDate(el.eventDate,dateFormat,dateConversionPatterns);
             if (!isValid(formatedEventDate)){
-              toErrorLog(eventInfo,['\x1b[31mFormat de date invalide pour %s. Reçu \"%s\", converti en \"%s\" (attendu \"%s\")\x1b[0m', 
+              toErrorLog(el,['\x1b[31mFormat de date invalide pour %s. Reçu \"%s\", converti en \"%s\" (attendu \"%s\")\x1b[0m', 
                 venue.name,el.eventDate,convertDate(el.eventDate,dateConversionPatterns),dateFormat]);
-              eventInfo.unixDate = 0;
+              el.unixDate = 0;
               //new Date().getTime();
               //el.unixDate = el.unixDate.setFullYear(el.unixDate.getFullYear() - 10); // en cas d'erreur, ajoute la date d'aujourd'hui A MODIFIER POUR MIEUX REPERER L'ERREUR
             }else{
@@ -350,6 +356,36 @@ function createMultiEvents(eventInfo){
       return [eventInfo];
     }
   }else{
-    return [eventInfo];
+    return checkMultiDates(eventInfo);
   }
+}
+
+function checkMultiDates(eventInfo){
+  if (eventInfo.eventDate.includes('et')){
+    const r1 = /([^]*?)à([^]*?)et([^]*?)$/;
+    if (r1.test(eventInfo.eventDate)){
+      const m = eventInfo.eventDate.match(r1);
+      const d1 = m[1]+'à'+m[2];
+      const d2 = m[1]+'à'+m[3];
+      const e1 = {...eventInfo};
+      e1.eventDate = d1;
+      const e2 = {...eventInfo};
+      e2.eventDate = d2;
+      return [e1, e2];
+    }
+    const r2 = /([^]*?)et([^]*?)à([^]*?),[^]*?à([^]*?)$/;
+    if (r2.test(eventInfo.eventDate)){
+      const m = eventInfo.eventDate.match(r2);
+      const year = new Date().getFullYear();
+      const d1 = m[1]+year+' à'+m[3];
+      const d2 = m[2]+year+' à'+m[4];
+      const e1 = {...eventInfo};
+      e1.eventDate = d1;
+      const e2 = {...eventInfo};
+      e2.eventDate = d2;
+      return [e1, e2];
+      //eventInfo.errorLog = "CONVERSION "+d1;
+    }
+  }
+  return [eventInfo];
 }
