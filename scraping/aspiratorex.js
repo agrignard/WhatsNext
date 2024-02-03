@@ -7,6 +7,7 @@
 import * as fs from 'fs';
 import {removeDoubles, makeURL, cleanPage, removeBlanks,extractBody} from './import/stringUtilities.mjs';
 import {loadVenuesJSONFile,venuesListJSONFile,loadLinkedPages,fetchAndRecode} from './import/fileUtilities.mjs';
+import {getURLListFromPattern} from './import/dateUtilities.mjs';
 import * as cheerio from 'cheerio';
 
 
@@ -82,12 +83,13 @@ fs.writeFileSync(venuesListJSONFile, jsonString);// écrit à la fin. Problème 
 async function downloadVenue(venue,path){
   let URLlist = [];
   if (venue.hasOwnProperty('multiPages')){
-    if (/\{index\}/.test(venue.url)){
+    if (venue.multiPages.hasOwnProperty('pattern')){
+      URLlist = getURLListFromPattern(venue.url,venue.multiPages.pattern,venue.multiPages.nbPages);
+    }else if (/\{index\}/.test(venue.url)){
       if (venue.multiPages.hasOwnProperty('startPage') && venue.multiPages.hasOwnProperty('nbPages')){
         let increment = (venue.multiPages.hasOwnProperty('increment'))?venue.multiPages.increment:1;
         for(let i=0;i<venue.multiPages.nbPages;i++){
           const pageID = venue.multiPages.startPage+i*increment;
-          //URLlist.push(venue.url+pageID);
             URLlist.push(venue.url.replace('{index}',pageID));
         }
       }else{
@@ -302,5 +304,4 @@ function shortList(list){
     return list.slice(0,3).concat(['...('+list.length+' elements)']);
   }
 }
-
 

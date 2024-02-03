@@ -232,11 +232,14 @@
       ]
     },
     "multiPages": {
+      "pattern": "yyyy-mm",
+      "nbPages": "4",
       "pageList": [
         "2024-01/",
         "2024-02",
         "2024-03",
-        "2024-04"
+        "2024-04",
+        "pageList is useless here since a pattern is defined. It is kept in a file to be shown as an exemple"
       ]
     },
     "eventURLIndex": 0,

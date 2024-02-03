@@ -135,3 +135,36 @@ function to2digits(dateString){
   return dateString.replace(/(?<!\d)\d(?!\d)/g,p=>'0'+p);
 }
 
+
+// get a list of URLs from date patterns
+// yyyy is year with 4 digits
+// yy is year with 2 digits
+// mm is month with 2 digits
+// m is month with 1 or 2 digits
+export function getURLListFromPattern(url,pattern,nbPages){
+  let res = [];
+  const currentDate = new Date();
+  let month = currentDate.getMonth() + 1; 
+  let year = currentDate.getFullYear();
+  //const week = currentDate.getWeek();
+  for(let i = 0; i<nbPages; i++){
+    let d = pattern.replace(/mm/,to2digits(String(month))).replace(/m/,month);
+    d = d.replace(/yyyy/,year).replace(/m/,year-Math.round(year/100)*100);
+    res.push(url+d);
+    month++;
+    if (month>12){
+      month = 1;
+      year++;
+    }
+  }
+  return res;
+}
+
+// get the current week in the year
+Date.prototype.getWeek = function() {
+  const date = new Date(this.getTime());
+  date.setHours(0, 0, 0, 0);
+  date.setDate(date.getDate() + 3 - (date.getDay() + 6) % 7);
+  const week1 = new Date(date.getFullYear(), 0, 4);
+  return 1 + Math.round(((date - week1) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7);
+};
