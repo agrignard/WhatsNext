@@ -65,12 +65,19 @@ async function scrapFiles(venues) {
   }
   console.log('Scrapex fini avec succex !! (%s events found).\n\n', totalEventList.length);
   saveToCSV(totalEventList, outFile);
-  const showErrors = true;
-  if (showErrors){
-    console.log("\x1b[31m*** found %s events with errors: ***\x1b[0m",totalEventList.filter(el => el.hasOwnProperty('errorLog')).length);
-    totalEventList.filter(el => el.hasOwnProperty('errorLog'))
-    .forEach(el =>displayEventLog(el));
-  }
+
+  let errorLog ='';
+  console.log("\x1b[31mFound %s events with errors, check \'error.log\' for details.\x1b[0m",totalEventList.filter(el => el.hasOwnProperty('errorLog')).length);
+  totalEventList.filter(el => el.hasOwnProperty('errorLog'))
+  .forEach(el =>{
+    errorLog = errorLog + displayEventFullDetails(el);
+  });
+  fs.writeFile('./error.log', errorLog, 'utf8', (err) => {
+    if (err) {
+      console.error("\x1b[31mCannot write error log file:\x1b[0m %s", err);
+    }
+  });
+  
 }
 
 
@@ -170,6 +177,7 @@ async function analyseFile(venue) {
           // get normalized style
           eventInfo.eventDetailedStyle = eventInfo.eventStyle;
           eventInfo.eventStyle = getStyle(eventInfo.eventStyle);
+          eventInfo.source = venue.name;
 
           // make a list of events in case of multidate
           const eventInfoList = createMultiEvents(eventInfo);
@@ -182,8 +190,6 @@ async function analyseFile(venue) {
               toErrorLog(el,['\x1b[31mFormat de date invalide pour %s. Reçu \"%s\", converti en \"%s\" (attendu \"%s\")\x1b[0m', 
                 venue.name,el.eventDate,convertDate(el.eventDate,dateConversionPatterns),dateFormat]);
               el.unixDate = 0;
-              //new Date().getTime();
-              //el.unixDate = el.unixDate.setFullYear(el.unixDate.getFullYear() - 10); // en cas d'erreur, ajoute la date d'aujourd'hui A MODIFIER POUR MIEUX REPERER L'ERREUR
             }else{
               el.unixDate = formatedEventDate.getTime();
               console.log(showDate(formatedEventDate));
@@ -313,12 +319,25 @@ function getStyle(string){
 function  displayEventLog(eventInfo){
   console.log('Event : %s',eventInfo.eventName);
   Object.keys(eventInfo).forEach(key => {
-    if (key !== 'eventName' && key !== 'eventDate' && key !== 'eventURL' && key != 'unixDate' && key != 'eventDummy'){
-      console.log(key.replace('event',''),': ',eventInfo[key.replace('Tags','')]);
+      if (!['eventName', 'eventDate', 'eventURL', 'unixDate', 'eventDummy', 'source'].includes(key)){
+        console.log(key.replace('event',''),': ',eventInfo[key.replace('Tags','')]);
     }
   });
   console.log((eventInfo.eventURL)+'\n');
 }
+
+function  displayEventFullDetails(eventInfo){
+  let string = 'Date: '+eventInfo.eventDate+'\n';
+  string = string+'Event: ',eventInfo.eventName+'\n';
+  Object.keys(eventInfo).forEach(key => {
+      if (!['eventName', 'eventDate', 'eventURL'].includes(key)){
+        string = string+(key.replace('event','')+': '+eventInfo[key.replace('Tags','')])+'\n';
+    }
+  });
+  string = string +eventInfo.eventURL+'\n\n';
+  return string;
+}
+
 
 function isEmptyEvent(eventInfo){
   return eventInfo.eventName === '' && (eventInfo.eventURL === '' || eventInfo.eventURL == undefined) && eventInfo.eventDate === '';
