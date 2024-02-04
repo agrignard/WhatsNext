@@ -328,7 +328,7 @@ function  displayEventLog(eventInfo){
 
 function  displayEventFullDetails(eventInfo){
   let string = 'Date: '+eventInfo.eventDate+'\n';
-  string = string+'Event: ',eventInfo.eventName+'\n';
+  string = string+'Event: '+eventInfo.eventName+'\n';
   Object.keys(eventInfo).forEach(key => {
       if (!['eventName', 'eventDate', 'eventURL'].includes(key)){
         string = string+(key.replace('event','')+': '+eventInfo[key.replace('Tags','')])+'\n';
