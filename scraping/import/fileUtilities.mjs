@@ -3,12 +3,37 @@
 /**************************************/
 
 import * as fs from 'fs';
-import {removeAccents} from './stringUtilities.mjs';
+import {removeAccents, cleanPage, removeBlanks, extractBody} from './stringUtilities.mjs';
 
 const scrapInfoFile = "./venuesScrapInfo.json"; // path should start from the directory of the calling script
 export const venuesListJSONFile = "./venues.json";
 const styleConversionFile = "./import/styleConversion.json";
 
+// fetch linked page
+export async function fetchLink(page, nbFetchTries){
+    try{
+        const content = await fetchWithRetry(page, nbFetchTries, 2000);
+        return extractBody(removeBlanks(cleanPage(content)));
+    }catch(err){
+        console.log("\x1b[31mNetwork error, cannot download \'%s\'.\x1b[0m",page);
+    }
+}
+  
+function fetchWithRetry(page, tries, timeOut) {
+    return fetchAndRecode(page)
+        .catch(error => {
+        if (tries > 1){
+            console.log('Download failed (%s). Trying again in %ss (%s %s left).',page,timeOut/1000,tries-1,tries ===2?'attempt':'attempts');
+            return new Promise(resolve => setTimeout(resolve, timeOut))
+            .then(() => fetchWithRetry(page,tries-1,timeOut));
+        }else{
+            console.log('Download failed (%s). Aborting (too many tries).',page);
+            throw error;
+        }
+    });
+}
+
+// get the style conversion JSON
 export async function getStyleConversions(){
     try{
         const res = await JSON.parse(await fs.promises.readFile(styleConversionFile, 'utf8'));
@@ -42,12 +67,12 @@ export async function fetchAndRecode(url){
     try{
         const response = await fetch(url);
         const encoding = response.headers.get('content-type').split('charset=')[1]; // identify the page encoding
-        if (encoding === 'utf-8'){
+        if (encoding === 'utf-8'){// || encoding ==='UTF-8'){
             //console.log('UTF8');
             return await response.text();
         }else{
             try{
-                //console.log(encoding);
+                //console.log('Page encoding: ',encoding);
                 const decoder = new TextDecoder(encoding); // convert to plain text (UTF-8 ?)
                 return  response.arrayBuffer().then(buffer => decoder.decode(buffer));
             }catch(err){

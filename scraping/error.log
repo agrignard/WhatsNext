@@ -3,7 +3,7 @@ Event:
 Place: Terminal Club
 Style: Electro
 DetailedStyle: Electro
-source: Terminal Club
+source: Terminal Club,Lyon,France
 errorLog: Format de date invalide pour Terminal Club. Reçu "", converti en "" (attendu "dd-MM-yy")
 unixDate: 0
 https://www.terminal-club.com/evenement-multiple/mois/?shortcode=b6439857
@@ -13,7 +13,7 @@ Event: Mahler, Symphonie n° 9
 Place: Auditorium de Lyon
 Style: Classique
 DetailedStyle: Classique & Lyrique
-source: Le Petit Bulletin
+source: Le Petit Bulletin,Lyon,France
 errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Du 7 au 9 mars 2024, jeu à 20h, sam à 18h", converti en "07-09-03-2024-20:18:00" (attendu "dd-MM-yyyy-HH:mm")
 unixDate: 0
 https://www.petit-bulletin.fr/lyon/agenda-308710-mahler-symphonie-n-9.html
@@ -23,7 +23,7 @@ Event: Ayron Jones + Amongst Liars
 Place: Transbordeur
 Style: Rock
 DetailedStyle: Rock & Pop / Folk Rock
-source: Le Petit Bulletin
+source: Le Petit Bulletin,Lyon,France
 errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Du 13 février au 12 mars 2024, à 20h", converti en "13-02-12-03-2024-20:00" (attendu "dd-MM-yyyy-HH:mm")
 unixDate: 0
 https://www.petit-bulletin.fr/lyon/agenda-308615-ayron-jones-amongst-liars.html
@@ -33,7 +33,7 @@ Event: Otages
 Place: Théâtre de la Croix-Rousse
 Style: Classique
 DetailedStyle: Classique & Lyrique / Opéra
-source: Le Petit Bulletin
+source: Le Petit Bulletin,Lyon,France
 errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Du 17 au 23 mars 2024, dim et sam à 16h, lun, mar ", converti en "17-23-03-2024-16:03" (attendu "dd-MM-yyyy-HH:mm")
 unixDate: 0
 https://www.petit-bulletin.fr/lyon/agenda-308401-otages.html
@@ -43,7 +43,7 @@ Event: Otages
 Place: Théâtre de la Croix-Rousse
 Style: Classique
 DetailedStyle: Classique & Lyrique / Opéra
-source: Le Petit Bulletin
+source: Le Petit Bulletin,Lyon,France
 errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Du 17 au 23 mars 2024, dim et sam à ven à 20h, jeu à 19h30", converti en "17-23-03-2024-20:19:30" (attendu "dd-MM-yyyy-HH:mm")
 unixDate: 0
 https://www.petit-bulletin.fr/lyon/agenda-308401-otages.html
@@ -53,7 +53,7 @@ Event: La Dame de pique
 Place: Opéra de Lyon
 Style: Classique
 DetailedStyle: Classique & Lyrique / Opéra
-source: Le Petit Bulletin
+source: Le Petit Bulletin,Lyon,France
 errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Du 16 mars au 3 avril 2024, à 19h30 sf dim à 16h", converti en "16-03-03-04-2024-19:30-16:00" (attendu "dd-MM-yyyy-HH:mm")
 unixDate: 0
 https://www.petit-bulletin.fr/lyon/agenda-308712-la-dame-de-pique.html
@@ -63,138 +63,8 @@ Event: La Fille du Far West
 Place: Opéra de Lyon
 Style: Classique
 DetailedStyle: Classique & Lyrique / Opéra
-source: Le Petit Bulletin
+source: Le Petit Bulletin,Lyon,France
 errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Du 15 mars au 4 avril 2024, à 20h sf dim à 16h", converti en "15-03-04-04-2024-20:16:00" (attendu "dd-MM-yyyy-HH:mm")
 unixDate: 0
 https://www.petit-bulletin.fr/lyon/agenda-308711-la-fille-du-far-west.html
-
-Date: 
-Event: 
-Place: 
-Style: 
-DetailedStyle: 
-source: Ville Morte
-errorLog: Format de date invalide pour Ville Morte. Reçu "", converti en "" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://villemorte.fr/agenda/soiree-de-soutien-pour-le-jusquici/
-
-Date: 
-Event: 
-Place: 
-Style: 
-DetailedStyle: 
-source: Ville Morte
-errorLog: Format de date invalide pour Ville Morte. Reçu "", converti en "" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://villemorte.fr/agenda/bistro-cine-une-ile-et-une-nuit/
-
-Date: 
-Event: 
-Place: 
-Style: 
-DetailedStyle: 
-source: Ville Morte
-errorLog: Format de date invalide pour Ville Morte. Reçu "", converti en "" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://villemorte.fr/agenda/gum-takes-tooth-lost-in-material/
-
-Date: 
-Event: COVERTRAMP
-Place: Bourse Du Travail A Lyon
-Style: 
-DetailedStyle: 
-source: Infoconcert
-errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.infoconcert.com/ticket/concert-covertramp-lyon/1646545.html
-
-Date: 
-Event: DUO MAGIC SPANISH GUITARE VIOLON
-Place: Salle Planete Culture A Lyon
-Style: 
-DetailedStyle: 
-source: Infoconcert
-errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.infoconcert.com/ticket/concert-duo-magic-spanish-guitare-violon-lyon/1637325.html
-
-Date: 
-Event: DUO MAGIC SPANISH GUITARE VIOLON
-Place: Salle Planete Culture A Lyon
-Style: 
-DetailedStyle: 
-source: Infoconcert
-errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.infoconcert.com/ticket/concert-duo-magic-spanish-guitare-violon-lyon/1637337.html
-
-Date: 
-Event: DUO MAGIC SPANISH GUITARE VIOLON
-Place: Salle Planete Culture A Lyon
-Style: 
-DetailedStyle: 
-source: Infoconcert
-errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.infoconcert.com/ticket/concert-duo-magic-spanish-guitare-violon-lyon/1637339.html
-
-Date: 
-Event: DUO MAGIC SPANISH GUITARE VIOLON
-Place: Salle Planete Culture A Lyon
-Style: 
-DetailedStyle: 
-source: Infoconcert
-errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.infoconcert.com/ticket/concert-duo-magic-spanish-guitare-violon-lyon/1637347.html
-
-Date: 
-Event: BOOBA
-Place: Parc Naturel De Miribel Jonage
-Style: 
-DetailedStyle: 
-source: Infoconcert
-errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.infoconcert.com/ticket/concert-booba-lyon/1630117.html
-
-Date: 
-Event: CABARET FLAMENCO
-Place: Salle Planete Culture A Lyon
-Style: 
-DetailedStyle: 
-source: Infoconcert
-errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.infoconcert.com/ticket/concert-cabaret-flamenco-lyon/1636531.html
-
-Date: 
-Event: LUI-MEME
-Place: Bourse Du Travail A Lyon
-Style: 
-DetailedStyle: 
-source: Infoconcert
-errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.infoconcert.com/ticket/concert-gad-elmaleh-lyon/1627475.html
-
-Date: 
-Event: CABARET FLAMENCO
-Place: Salle Planete Culture A Lyon
-Style: 
-DetailedStyle: 
-source: Infoconcert
-errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.infoconcert.com/ticket/concert-cabaret-flamenco-lyon/1636535.html
-
-Date: 
-Event: SLIMANE
-Place: Ldlc Arena A Lyon
-Style: 
-DetailedStyle: 
-source: Infoconcert
-errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.infoconcert.com/ticket/concert-slimane-decines/1538627.html
 

@@ -6,7 +6,7 @@
 
 import * as fs from 'fs';
 import {removeDoubles, makeURL, cleanPage, removeBlanks,extractBody} from './import/stringUtilities.mjs';
-import {loadVenuesJSONFile,venuesListJSONFile,loadLinkedPages,fetchAndRecode} from './import/fileUtilities.mjs';
+import {loadVenuesJSONFile,venuesListJSONFile,loadLinkedPages,fetchAndRecode,fetchLink} from './import/fileUtilities.mjs';
 import {getURLListFromPattern} from './import/dateUtilities.mjs';
 import * as cheerio from 'cheerio';
 
@@ -166,7 +166,7 @@ async function downloadVenue(venue,path){
       // put the new links
       let hrefContents;
       try{
-        hrefContents = (await Promise.all(linksToDownload.map(el => fetchLink(el,venue))));
+        hrefContents = (await Promise.all(linksToDownload.map(el => fetchLink(el,nbFetchTries))));
       }catch(err){
         console.log("\x1b[36mNetwork error, cannot load linked page for \'%s\'\x1b[0m: %s",venue.name,err);
       }
@@ -176,8 +176,8 @@ async function downloadVenue(venue,path){
         const jsonString = JSON.stringify(hrefJSON, null, 2); 
         fs.writeFileSync(path+'linkedPages.json', jsonString);
 
-        const failedDownloads = hrefContents.reduce((acc, valeur) => {
-          return acc + (valeur === undefined ? 1 : 0);
+        const failedDownloads = hrefContents.reduce((acc, val) => {
+          return acc + (val === undefined ? 1 : 0);
         }, 0);
  
         // test if all downloads are successful
@@ -241,37 +241,28 @@ function getLinksFromPage(page,delimiter,index){
 }
 
 
-async function fetchLink(page,venue){
-  try{
-    // const response = await fetch(page);
-    // const content = await response.text();
-    const content = await fetchWithRetry(page, nbFetchTries, 2000);
-    return extractBody(removeBlanks(cleanPage(content)));
-  }catch(err){
-    console.log("\x1b[31mNetwork error, cannot download \'%s\'.\x1b[0m",page);
-  }
-}
+// async function fetchLink(page){
+//   try{
+//     const content = await fetchWithRetry(page, nbFetchTries, 2000);
+//     return extractBody(removeBlanks(cleanPage(content)));
+//   }catch(err){
+//     console.log("\x1b[31mNetwork error, cannot download \'%s\'.\x1b[0m",page);
+//   }
+// }
 
-function fetchWithRetry(page, tries, timeOut) {
-  // return fetch(page)
-  //   .then(response => {
-  //     if (!response.ok) {
-  //       throw new Error('Download failed.');
-  //     }
-  //     return response.text();
-  //   })
-  return fetchAndRecode(page)
-    .catch(error => {
-      if (tries > 1){
-        console.log('Download failed (%s). Trying again in %ss (%s %s left).',page,timeOut/1000,tries-1,tries ===2?'attempt':attempts);
-        return new Promise(resolve => setTimeout(resolve, timeOut))
-          .then(() => fetchWithRetry(page,tries-1,timeOut));
-      }else{
-        console.log('Download failed (%s). Aborting (too many tries).',page);
-        throw error;
-      }
-    });
-}
+// function fetchWithRetry(page, tries, timeOut) {
+//   return fetchAndRecode(page)
+//     .catch(error => {
+//       if (tries > 1){
+//         console.log('Download failed (%s). Trying again in %ss (%s %s left).',page,timeOut/1000,tries-1,tries ===2?'attempt':'attempts');
+//         return new Promise(resolve => setTimeout(resolve, timeOut))
+//           .then(() => fetchWithRetry(page,tries-1,timeOut));
+//       }else{
+//         console.log('Download failed (%s). Aborting (too many tries).',page);
+//         throw error;
+//       }
+//     });
+// }
 
 
 

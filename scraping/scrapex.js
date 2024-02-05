@@ -66,8 +66,21 @@ async function scrapFiles(venues) {
   console.log('Scrapex fini avec succex !! (%s events found).\n\n', totalEventList.length);
   saveToCSV(totalEventList, outFile);
 
+  // save errors to JSON file
+  try{
+    const jsonString = JSON.stringify(totalEventList.filter(el => el.hasOwnProperty('errorLog')), null, 2); 
+    fs.writeFileSync('./errorLog.json', jsonString);
+  }catch(err){
+      console.log('\x1b[31mError saving to \'errorLog.json\': \x1b[0m%s',err);
+  }
+
+  // save errors to error log
   let errorLog ='';
-  console.log("\x1b[31mFound %s events with errors, check \'error.log\' for details.\x1b[0m",totalEventList.filter(el => el.hasOwnProperty('errorLog')).length);
+  const nbErrors = totalEventList.filter(el => el.hasOwnProperty('errorLog')).length;
+  if (nbErrors > 0){
+    console.log("\x1b[31mFound %s events with errors, check \'error.log\' for details.\x1b[0m",nbErrors);
+  }
+
   totalEventList.filter(el => el.hasOwnProperty('errorLog'))
   .forEach(el =>{
     errorLog = errorLog + displayEventFullDetails(el);
@@ -177,7 +190,7 @@ async function analyseFile(venue) {
           // get normalized style
           eventInfo.eventDetailedStyle = eventInfo.eventStyle;
           eventInfo.eventStyle = getStyle(eventInfo.eventStyle);
-          eventInfo.source = venue.name;
+          eventInfo.source = [venue.name, venue.city, venue.country];
 
           // make a list of events in case of multidate
           const eventInfoList = createMultiEvents(eventInfo);
@@ -317,9 +330,9 @@ function getStyle(string){
 }
 
 function  displayEventLog(eventInfo){
-  console.log('Event : %s',eventInfo.eventName);
+  console.log('Event : %s (%s, %s)',eventInfo.eventName,eventInfo.city,eventInfo.country);
   Object.keys(eventInfo).forEach(key => {
-      if (!['eventName', 'eventDate', 'eventURL', 'unixDate', 'eventDummy', 'source'].includes(key)){
+      if (!['eventName', 'eventDate', 'eventURL', 'unixDate', 'eventDummy', 'source','city','country'].includes(key)){
         console.log(key.replace('event',''),': ',eventInfo[key.replace('Tags','')]);
     }
   });

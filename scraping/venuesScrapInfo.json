@@ -68,15 +68,15 @@
     },
     "Ville Morte":{
         "mainPage":{
-            "eventNameStrings": ["vinyl"],
+            "eventNameStrings": ["molécule"],
             "eventDateStrings": [""]
         },
         "linkedPage":{
-            "eventNameStrings": ["vinyl"],
-            "eventDateStrings": ["28 janvier"],
-            "eventStyleStrings": ["marché"],
-            "eventPlaceStrings": ["cco la rayonne"],
-            "eventURLStrings": ["https://larayonne.org/evenement/vinyl-pop-up-market/"]
+            "eventNameStrings": ["molécule"],
+            "eventDateStrings": ["15 février"],
+            "eventStyleStrings": ["musique live"],
+            "eventPlaceStrings": ["Transbordeur"],
+            "eventURLStrings": ["https://www.totaalrez.com/agenda/molecule-live/"]
         }
     },
     "Le Petit Salon":{
