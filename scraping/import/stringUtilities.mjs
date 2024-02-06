@@ -15,6 +15,10 @@
 
 // remove duplicates elements from a list
 
+export function simplify(string){
+  return removeAccents(string.toLowerCase());
+}
+
 export function removeAccents(string){
   // let res = string;
   // res = res.replace(/[âä]/g,'a');

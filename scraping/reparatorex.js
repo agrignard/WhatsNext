@@ -4,15 +4,12 @@
 // to fix event errors due to download errors
 
 import * as fs from 'fs';
-import {removeDoubles, makeURL, cleanPage, removeBlanks,extractBody} from './import/stringUtilities.mjs';
-import {loadVenuesJSONFile,venuesListJSONFile,loadLinkedPages,fetchLink} from './import/fileUtilities.mjs';
-import {getURLListFromPattern} from './import/dateUtilities.mjs';
-import * as cheerio from 'cheerio';
+import {loadVenuesJSONFile,loadLinkedPages,fetchLink} from './import/fileUtilities.mjs';
 import {getSource,jsonRemoveDouble,samePlace} from './import/jsonUtilities.mjs';
 
 
 const webSourcesPath = './webSources/';
-const errorLogFile = './errorLog.json';
+const errorLogFile = './generated/errorLog.json';
 const nbFetchTries = 2;
 
 
@@ -36,7 +33,7 @@ console.log("*******************************************************************
 let venues = await loadVenuesJSONFile();
 
 function hasLinkedPage(venue){
-    const v = venues.find(el => el.name === venue.source[0] && el.city === venue.source[1] && el.country === venue.source[2]);
+    const v = venues.find(el => el.name === venue.source.name && el.city === venue.source.city && el.country === venue.source.country);
     return v.hasOwnProperty('linkedPage');
 }
 

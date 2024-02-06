@@ -2,12 +2,14 @@
 /*    utilities to deal with json     */
 /**************************************/
 
-export function getPlace(object){
-    return {'name':object.hasOwnProperty('name')?object.name:object.eventPlace, 'country':object.country, 'city':object.city}
+import {simplify} from './stringUtilities.mjs';
+
+export function getEventPlace(object){
+    return {'name':object.eventPlace, 'city':object.source.city, 'country':object.source.country};
 }
 
 export function getSource(event){
-    return {'name':event.source[0], 'city':event.source[1], 'country':event.source[2]};
+    return event.source;
 }
 
 // test if two JSON object have exactly the same key:value pairs
@@ -31,5 +33,5 @@ export function jsonRemoveDouble(objectList) {
 }
 
 export function samePlace(p1,p2){
-    return p1.name === p2.name && p1.city === p2.city && p1.country === p2.country;
+    return simplify(p1.name) === simplify(p2.name) && p1.city === p2.city && p1.country === p2.country;
 }

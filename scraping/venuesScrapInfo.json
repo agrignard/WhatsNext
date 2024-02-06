@@ -19,9 +19,12 @@
     },
     "Transbordeur":{
         "mainPage":{
-            "eventNameStrings": ["azyr"],
-            "eventDateStrings": ["03 fév"],
+            "eventNameStrings": ["mathame"],
+            "eventDateStrings": ["02 mars","23:30"],
             "eventStyleStrings": ["techno"]
+        },
+        "linkedPage":{
+            "eventNameStrings": ["mathame"]
         }
     },
     "Le Périscope":{

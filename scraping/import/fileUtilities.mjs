@@ -44,7 +44,16 @@ export async function getStyleConversions(){
     }catch(err){
         console.log('\x1b[36mWarning: cannot open style conversion file JSON file:  \'%s\'.\x1b[0m%s\n',styleConversionFile,err);
     }
-  }
+}
+
+export async function getStyleList(){
+    try{
+        const res = await JSON.parse(await fs.promises.readFile(styleConversionFile, 'utf8'));
+        return Object.keys(res);
+    }catch(err){
+        console.log('\x1b[36mWarning: cannot open style conversion file JSON file:  \'%s\'.\x1b[0m%s\n',styleConversionFile,err);
+    }
+}
 
 // return a list of json object with aliases to change the place name
 export function getAliases(list){
@@ -85,15 +94,6 @@ export async function fetchAndRecode(url){
     }
 }
 
-// not useful anymore. To be removed
-// async function loadUnlistedVenues(){
-//     try{
-//         return JSON.parse(await fs.promises.readFile(unlistedVenuesFile, 'utf8'));
-//     }catch(err) {
-//         console.error("\x1b[31mError while loading unlisted venues.\x1b[0m\n");
-//         throw err;
-//     }
-// }
 
 // load linked files (subpages with more details about the event)
 export async function loadLinkedPages(sourcePath){
@@ -149,3 +149,12 @@ export function loadVenueJSON(venueName,venuesListJSON){
     }
 }
 
+
+export function saveToJSON(fileName,data){
+    try{
+        const jsonString =  JSON.stringify(data, null, 2);  
+        fs.writeFileSync(fileName, jsonString);
+      }catch(err){
+          console.log('\x1b[31mError saving to \'%s\': \x1b[0m%s',fileName,err);
+      }
+} 

@@ -60,21 +60,23 @@
     "city": "Lyon",
     "country": "France",
     "url": "https://www.transbordeur.fr/agenda/",
-    "baseURL": "https://www.transbordeur.fr",
+    "baseURL": "https://www.transbordeur.fr/agenda/",
     "eventsDelimiterTag": "DIV.span6.blocText",
-    "dateFormat": "dd-MM-yy",
+    "dateFormat": "dd-MM-yy-HH:mm",
     "scrap": {
       "eventNameTags": [
         "A:eq(0)"
       ],
       "eventDateTags": [
-        "H2:eq(0)"
+        "H2:eq(0)",
+        "H2:eq(1)"
       ],
       "eventStyleTags": [
         "P:eq(0)"
       ]
     },
-    "eventURLIndex": 1
+    "eventURLIndex": 1,
+    "linkedPage": {}
   },
   {
     "name": "Le Périscope",
@@ -167,6 +169,9 @@
     "name": "Marché Gare",
     "city": "Lyon",
     "country": "France",
+    "aliases": [
+      "le marché gare"
+    ],
     "url": "https://marchegare.fr/agenda?category=All&page=1",
     "dateFormat": "dd-MM",
     "baseURL": "https://marchegare.fr/",
@@ -200,6 +205,9 @@
     "name": "Halle Tony Garnier",
     "city": "Lyon",
     "country": "France",
+    "aliases": [
+      "Halle Tony Garnier (htg)"
+    ],
     "url": "https://www.halle-tony-garnier.com/fr/programmation",
     "baseURL": "https://www.halle-tony-garnier.com",
     "scrap": {
@@ -314,6 +322,12 @@
         "A.grey:eq(0)"
       ]
     },
+    "regexp": {
+      "eventPlace": [
+        " A (?!.* A ).*$",
+        ""
+      ]
+    },
     "eventURLIndex": 5,
     "dateFormat": "dd-MM",
     "linkedPage": {
@@ -341,7 +355,8 @@
     "city": "Lyon",
     "aliases": [
       "CCO- La Rayonne",
-      "CCO La Rayonne"
+      "CCO La Rayonne",
+      "La Rayonne a villeurbanne"
     ]
   },
   {
@@ -374,5 +389,13 @@
     "name": "Grrrnd Zéro",
     "country": "France",
     "city": "Lyon"
+  },
+  {
+    "name": "Hot Club",
+    "country": "France",
+    "city": "Lyon",
+    "aliases": [
+      "Hot Club de Lyon"
+    ]
   }
 ]

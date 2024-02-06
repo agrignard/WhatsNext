@@ -9,6 +9,17 @@ import * as fs from 'fs';
 const dateConversionFile = './import/dateConversion.json';
 const styleConversionFile = './import/styleConversion.json';
 
+export function  sameDay(timestamp1, timestamp2) {// as unixdate
+  const date1 = new Date(timestamp1); 
+  const date2 = new Date(timestamp2); 
+
+  return (
+    date1.getFullYear() === date2.getFullYear() &&
+    date1.getMonth() === date2.getMonth() &&
+    date1.getDate() === date2.getDate()
+  );
+}
+
 export function showDate(date){
   const day = to2digits(String(date.getDate()));
   const month = to2digits(String(date.getMonth() + 1)); 

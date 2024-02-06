@@ -3,8 +3,8 @@ import * as fs from 'fs';
 import { parse, isValid }  from 'date-fns';
 import * as cheerio from 'cheerio';
 import {parseDocument} from 'htmlparser2';
-import {makeURL, removeAccents} from './import/stringUtilities.mjs';
-import {loadLinkedPages,loadVenuesJSONFile,getAliases,getStyleConversions} from './import/fileUtilities.mjs';
+import {makeURL,simplify} from './import/stringUtilities.mjs';
+import {loadLinkedPages,loadVenuesJSONFile,getAliases,getStyleConversions,saveToJSON} from './import/fileUtilities.mjs';
 
 
 
@@ -65,14 +65,12 @@ async function scrapFiles(venues) {
   }
   console.log('Scrapex fini avec succex !! (%s events found).\n\n', totalEventList.length);
   saveToCSV(totalEventList, outFile);
+  // save to JSON
+  saveToJSON('./generated/scrapResult.json',totalEventList);
 
   // save errors to JSON file
-  try{
-    const jsonString = JSON.stringify(totalEventList.filter(el => el.hasOwnProperty('errorLog')), null, 2); 
-    fs.writeFileSync('./errorLog.json', jsonString);
-  }catch(err){
-      console.log('\x1b[31mError saving to \'errorLog.json\': \x1b[0m%s',err);
-  }
+  saveToJSON('./generated/errorLog.json',totalEventList.filter(el => el.hasOwnProperty('errorLog')));
+
 
   // save errors to error log
   let errorLog ='';
@@ -190,7 +188,7 @@ async function analyseFile(venue) {
           // get normalized style
           eventInfo.eventDetailedStyle = eventInfo.eventStyle;
           eventInfo.eventStyle = getStyle(eventInfo.eventStyle);
-          eventInfo.source = [venue.name, venue.city, venue.country];
+          eventInfo.source = {'name':venue.name, 'city':venue.city, 'country':venue.country};
 
           // make a list of events in case of multidate
           const eventInfoList = createMultiEvents(eventInfo);
@@ -199,6 +197,7 @@ async function analyseFile(venue) {
           eventInfoList.forEach(el => {
             // change the date format to Unix time
             const formatedEventDate = createDate(el.eventDate,dateFormat,dateConversionPatterns);
+           // el.date = formatedEventDate;
             if (!isValid(formatedEventDate)){
               toErrorLog(el,['\x1b[31mFormat de date invalide pour %s. Reçu \"%s\", converti en \"%s\" (attendu \"%s\")\x1b[0m', 
                 venue.name,el.eventDate,convertDate(el.eventDate,dateConversionPatterns),dateFormat]);
@@ -207,6 +206,11 @@ async function analyseFile(venue) {
               el.unixDate = formatedEventDate.getTime();
               console.log(showDate(formatedEventDate));
             }
+            // perform regexp
+            if (venue.hasOwnProperty('regexp')){
+              applyRegexp(el,venue.regexp);
+            }
+
 
             // display
             displayEventLog(el);
@@ -297,7 +301,7 @@ function saveToCSV(eventList, outFile){
   let out = '';
   eventList.forEach(eventInfo =>{
     out = out+''+eventInfo.eventPlace+';'
-    +eventInfo.eventName+';'+eventInfo.unixDate+';100;'+eventInfo.eventStyle+';'+eventInfo.eventDetailedStyle+';'+eventInfo.eventURL+'\n';
+    +eventInfo.eventName+';'+eventInfo.unixDate+';100;'+eventInfo.eventStyle+';'+eventInfo.eventDetailedStyle+';'+eventInfo.eventURL+';'+eventInfo.eventDate+'\n';
   });
   try{
     fs.writeFileSync(outFile, out, 'utf-8', { flag: 'w' });
@@ -311,7 +315,7 @@ function FindLocationFromAlias(string,country,city,aliasList){
   let res = string;
   aliasList.filter(venue => venue.country === country && venue.city === city)
   .forEach(venue => {
-    if (venue.aliases.filter(al => removeAccents(al.toLowerCase()) === removeAccents(string.toLowerCase())).length > 0){// if the name of the place of the event is in the alias list, replace by the main venue name
+    if (venue.aliases.filter(al => simplify(al) === simplify(string)).length > 0){// if the name of the place of the event is in the alias list, replace by the main venue name
       res = venue.name;
     }
   });
@@ -319,7 +323,7 @@ function FindLocationFromAlias(string,country,city,aliasList){
 }
 
 function getStyle(string){
-  const stringComp = removeAccents(string.toLowerCase());
+  const stringComp = simplify(string);
   let res = string;
   Object.keys(styleConversion).forEach(style =>{
     if (styleConversion[style].some(word => stringComp.includes(word))){
@@ -330,7 +334,7 @@ function getStyle(string){
 }
 
 function  displayEventLog(eventInfo){
-  console.log('Event : %s (%s, %s)',eventInfo.eventName,eventInfo.city,eventInfo.country);
+  console.log('Event : %s (%s, %s)',eventInfo.eventName,eventInfo.source.city,eventInfo.source.country);
   Object.keys(eventInfo).forEach(key => {
       if (!['eventName', 'eventDate', 'eventURL', 'unixDate', 'eventDummy', 'source','city','country'].includes(key)){
         console.log(key.replace('event',''),': ',eventInfo[key.replace('Tags','')]);
@@ -420,4 +424,17 @@ function checkMultiDates(eventInfo){
     }
   }
   return [eventInfo];
+}
+
+
+function applyRegexp(event, rulesSet){
+  Object.keys(rulesSet).forEach(key =>{
+    console.log('key:',key,' ',rulesSet[key]);
+    if (typeof rulesSet[key] === 'string'){// a string, regexp is used for a match
+      event[key] = event[key].match(new RegExp(rulesSet[key]));
+    }else if (rulesSet[key].length === 2){// a list of two elements. replace pattern (1st) with (2nd)
+      console.log(event[key]);
+      event[key] = event[key].replace(new RegExp(rulesSet[key][0]),rulesSet[key][1]);
+    }
+  });
 }
