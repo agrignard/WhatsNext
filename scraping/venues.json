@@ -6,6 +6,7 @@
     "url": "https://le-sucre.eu/agenda/",
     "baseURL": "https://le-sucre.eu/agenda/",
     "eventsDelimiterTag": "A.pureu11.pureumd12.pureulg14.pureug.agendacard",
+    "comment": "après avoir utilisé analex, enlever t5410 de la classe de la balise qui délimite les events",
     "scrap": {
       "eventNameTags": [
         "DIV.titre:eq(0)",

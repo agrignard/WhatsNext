@@ -33,5 +33,16 @@ export function jsonRemoveDouble(objectList) {
 }
 
 export function samePlace(p1,p2){
-    return simplify(p1.name) === simplify(p2.name) && p1.city === p2.city && p1.country === p2.country;
+    let p1name, p2name;
+    if (p1.hasOwnProperty('eventPlace')){
+        p1name = p1.eventPlace;
+    }else if (p1.hasOwnProperty('name')){
+        p1name = p1.name;
+    }
+    if (p2.hasOwnProperty('eventPlace')){
+        p2name = p2.eventPlace;
+    }else if (p2.hasOwnProperty('name')){
+        p2name = p2.name;
+    }
+    return simplify(p1name) === simplify(p2name) && p1.city === p2.city && p1.country === p2.country;
 }

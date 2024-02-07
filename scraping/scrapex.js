@@ -5,7 +5,7 @@ import * as cheerio from 'cheerio';
 import {parseDocument} from 'htmlparser2';
 import {makeURL,simplify} from './import/stringUtilities.mjs';
 import {loadLinkedPages,loadVenuesJSONFile,getAliases,getStyleConversions,saveToJSON} from './import/fileUtilities.mjs';
-
+import {samePlace} from './import/jsonUtilities.mjs';
 
 
 
@@ -19,23 +19,23 @@ const styleConversion = await getStyleConversions();
 
 
 const dateConversionPatterns = await getConversionPatterns();
-let venues = await loadVenuesJSONFile();
-let aliasList = await getAliases(venues);
+const venueList = await loadVenuesJSONFile();
+let aliasList = await getAliases(venueList);
 
 //const venueNamesList = venues.map(el => el.name);
     
 const fileToScrap = process.argv[2];
 if (fileToScrap){
-  if (venues.some(element => element.name === fileToScrap)){
+  if (venueList.some(element => element.name === fileToScrap)){
     console.log('\x1b[32m%s\x1b[0m', `Traitement uniquement de \'${fileToScrap}\'`);
-    venues = venues.filter(element => element.name === fileToScrap);
+    const venues = venueList.filter(element => element.name === fileToScrap);
     scrapFiles(venues);
   }else{
     console.log('\x1b[31mFichier \x1b[0m%s.html\x1b[31m non trouvé. Fin du scrapping.\x1b[0m\n', fileToScrap);
   }
 }else{
-  await scrapFiles(venues.filter(el => el.hasOwnProperty('eventsDelimiterTag')));
-  const venuesToSkip = venues.filter(el => !el.hasOwnProperty('eventsDelimiterTag')).map(el => el.name+' ('+el.city+', '+el.country+')');
+  await scrapFiles(venueList.filter(el => el.hasOwnProperty('eventsDelimiterTag')));
+  const venuesToSkip = venueList.filter(el => !el.hasOwnProperty('eventsDelimiterTag')).map(el => el.name+' ('+el.city+', '+el.country+')');
   console.log('\x1b[36mWarning: the following venues have no scraping details and are only used as aliases. Run analex if it is a mistake.\x1b[0m',venuesToSkip);
 }
 
@@ -130,7 +130,7 @@ async function analyseFile(venue) {
         let eventInfo = {'eventPlace':venue.name};
         
         // changing to default style if no style
-        eventInfo.eventStyle = venue.hasOwnProperty('defaultStyle')?venue.defaultStyle:globalDefaultStyle;
+        // eventInfo.eventStyle = venue.hasOwnProperty('defaultStyle')?venue.defaultStyle:globalDefaultStyle;
 
         // **** event data extraction ****/
         Object.keys(venue.scrap).forEach(key => eventInfo[key.replace('Tags','')] = getText(key,venue.scrap,$eventBlock));
@@ -191,7 +191,15 @@ async function analyseFile(venue) {
           }
 
           // get normalized style
-          eventInfo.eventDetailedStyle = eventInfo.eventStyle;
+          eventInfo.eventDetailedStyle = eventInfo.hasOwnProperty('eventStyle')?eventInfo.eventStyle:'';
+          if (!eventInfo.hasOwnProperty('eventStyle') || eventInfo.eventStyle ===''){
+            const eventPlace = venueList.find(el => samePlace(el,{name:eventInfo.eventPlace, city: venue.city, country:venue.country}));
+            if (eventPlace && eventPlace.hasOwnProperty('defaultStyle')){
+              eventInfo.eventStyle = eventPlace.defaultStyle;
+            }else{
+              eventInfo.eventStyle = globalDefaultStyle;
+            }
+          }
           eventInfo.eventStyle = getStyle(eventInfo.eventStyle);
           eventInfo.source = {'name':venue.name, 'city':venue.city, 'country':venue.country};
 
@@ -215,10 +223,6 @@ async function analyseFile(venue) {
               el.unixDate = formatedEventDate.getTime();
               console.log(showDate(formatedEventDate));
             }
-            // // perform regexp
-            // if (venue.hasOwnProperty('regexp')){
-            //   applyRegexp(el,venue.regexp);
-            // }
 
 
             // display
