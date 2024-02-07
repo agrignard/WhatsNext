@@ -24,7 +24,7 @@
 <input id="calendar" type="date" min="2023-10-16" max="2023-12-31"/>
 </div>
 <h2>WhatsNext</h2>
-<canvas id="myCircleCanvas" height="50"></canvas>
+<canvas id="myCircleCanvas" height="50" width="400"></canvas>
 <div id="eventList" class="eventList-div"></div>
 <div class="slider">
 <label id="dateSlider"></label>
@@ -107,6 +107,7 @@ const categoryColors = {
   'World': '224, 147, 40',
   'Jam': '238, 130, 238',
   'Classique': '127, 0, 255',
+  'Chanson': '0, 255, 255',
 };
 
 const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
@@ -685,12 +686,13 @@ const canvas = document.getElementById('myCircleCanvas');
 const ctx = canvas.getContext('2d');
 
 const circles = [
-  { x: 25, y: 25, radius: 15, value: 'Rock', color: 'rgba(23,128,251,0.5)' },
-  { x: 75, y: 25, radius: 15, value: 'Electro', color: 'rgba(40,124,18,0.5)' },
-  { x: 125, y: 25, radius: 15, value: 'Jazz', color: 'rgba(255,255,0,0.5)' },
-  { x: 175, y: 25, radius: 15, value: 'Rap', color: 'rgba(165,2,33,0.5)' },
-  { x: 225, y: 25, radius: 15, value: 'Classique', color: 'rgba(127,0,255,0.5)' },
-  { x: 275, y: 25, radius: 15, value: 'World', color: 'rgba(224,147,40,0.5)' }
+  { x: 20, y: 25, radius: 18, value: 'Rock', color: 'rgba(23,128,251,0.5)' },
+  { x: 60, y: 25, radius: 18, value: 'Electro', color: 'rgba(40,124,18,0.5)' },
+  { x: 100, y: 25, radius: 18, value: 'Jazz', color: 'rgba(255,255,0,0.5)' },
+  { x: 140, y: 25, radius: 18, value: 'Rap', color: 'rgba(165,2,33,0.5)' },
+  { x: 180, y: 25, radius: 18, value: 'Classique', color: 'rgba(127,0,255,0.5)' },
+  { x: 220, y: 25, radius: 18, value: 'World', color: 'rgba(224,147,40,0.5)' },
+  { x: 260, y: 25, radius: 18, value: 'Chanson', color: 'rgba(0,255,255,0.5)' }
 ];
 
 let selectedCircle = null;

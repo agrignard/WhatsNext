@@ -86,6 +86,9 @@
   },
   {
     "name": "Transbordeur",
+    "aliases": [
+      "Le Transbordeur"
+    ],
     "city": "Lyon",
     "country": "France",
     "url": "https://www.transbordeur.fr/agenda/",
@@ -389,6 +392,15 @@
     ]
   },
   {
+    "name": "Bizarre!",
+    "country": "France",
+    "city": "Lyon",
+    "aliases": [
+      "Bizarre",
+      "Bizarre !"
+    ]
+  },
+  {
     "name": "Toï Toï Le Zinc",
     "country": "France",
     "city": "Lyon"
@@ -428,6 +440,22 @@
     "city": "Lyon",
     "aliases": [
       "Hot Club de Lyon"
+    ]
+  },
+  {
+    "name": "Opéra National de Lyon",
+    "country": "France",
+    "city": "Lyon",
+    "aliases": [
+      "Opéra de Lyon"
+    ]
+  },
+  {
+    "name": "Les SUBS",
+    "country": "France",
+    "city": "Lyon",
+    "aliases": [
+      "Les Subsistances", "Les Subs"
     ]
   }
 ]
