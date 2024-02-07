@@ -180,19 +180,28 @@ function jsonCallback(err, data) {
 if (err) {
   throw err;
 }
- 
+
+let unKnownPlaces = {};
 // MATCH Coordinates in link with the place
 data.features = data.features.map((d) => {
     d.geometry.type = "Point";
     if(placeToCoord.get(d.properties.place) != null){
         d.geometry.coordinates = placeToCoord.get(d.properties.place);
     }else{
-        console.log(d.properties.place + " is not defined in places");
+        //console.log(d.properties.place + " is not defined in places");
         d.geometry.coordinates = [0,0];
+        unKnownPlaces[d.properties.place] = (unKnownPlaces[d.properties.place] || 0) + 1;
     }
-    d.properties.icon = "music"; 
+    d.properties.icon = "music";
     return d;
 });
+//Show Places that are not well treated and the number of time it appears
+console.log("THE FOLLOWING PLACES ARE NOT HANDLED");
+let occurrencesArray = Object.entries(unKnownPlaces);
+occurrencesArray.sort((a, b) => b[1] - a[1]);
+for (let [key, value] of occurrencesArray) {
+    console.log(`Place ${key} : ${value} fois`);
+}
 
 var transparency = 0.9;
 var transparencyBig = 0.95;

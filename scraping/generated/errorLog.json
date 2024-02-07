@@ -1,1 +1,107 @@
-[]
+[
+  {
+    "eventPlace": "Terminal Club",
+    "eventStyle": "Electro",
+    "eventName": "",
+    "eventDate": "",
+    "eventURL": "https://www.terminal-club.com/evenement-multiple/mois/?shortcode=b6439857",
+    "eventDetailedStyle": "Electro",
+    "source": {
+      "name": "Terminal Club",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Terminal Club. Reçu \"\", converti en \"\" (attendu \"dd-MM-yy\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Auditorium de Lyon",
+    "eventStyle": "Classique",
+    "eventName": "Mahler, Symphonie n° 9",
+    "eventDate": "Du 7 au 9 mars 2024, jeu à 20h, sam à 18h",
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-308710-mahler-symphonie-n-9.html",
+    "eventDetailedStyle": "Classique & Lyrique",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Du 7 au 9 mars 2024, jeu à 20h, sam à 18h\", converti en \"07-09-03-2024-20:18:00\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "eventStyle": "Rock",
+    "eventName": "Ayron Jones + Amongst Liars",
+    "eventDate": "Du 13 février au 12 mars 2024, à 20h",
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-308615-ayron-jones-amongst-liars.html",
+    "eventDetailedStyle": "Rock & Pop / Folk Rock",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Du 13 février au 12 mars 2024, à 20h\", converti en \"13-02-12-03-2024-20:00\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Opéra National de Lyon",
+    "eventStyle": "Classique",
+    "eventName": "La Fille du Far West",
+    "eventDate": "Du 15 mars au 4 avril 2024, à 20h sf dim à 16h",
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-308711-la-fille-du-far-west.html",
+    "eventDetailedStyle": "Classique & Lyrique / Opéra",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Du 15 mars au 4 avril 2024, à 20h sf dim à 16h\", converti en \"15-03-04-04-2024-20:16:00\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Théâtre de la Croix-Rousse",
+    "eventStyle": "Classique",
+    "eventName": "Otages",
+    "eventDate": "Du 17 au 23 mars 2024, dim et sam à 16h, lun, mar ",
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-308401-otages.html",
+    "eventDetailedStyle": "Classique & Lyrique / Opéra",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Du 17 au 23 mars 2024, dim et sam à 16h, lun, mar \", converti en \"17-23-03-2024-16:03\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Théâtre de la Croix-Rousse",
+    "eventStyle": "Classique",
+    "eventName": "Otages",
+    "eventDate": "Du 17 au 23 mars 2024, dim et sam à ven à 20h, jeu à 19h30",
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-308401-otages.html",
+    "eventDetailedStyle": "Classique & Lyrique / Opéra",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Du 17 au 23 mars 2024, dim et sam à ven à 20h, jeu à 19h30\", converti en \"17-23-03-2024-20:19:30\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Opéra National de Lyon",
+    "eventStyle": "Classique",
+    "eventName": "La Dame de pique",
+    "eventDate": "Du 16 mars au 3 avril 2024, à 19h30 sf dim à 16h",
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-308712-la-dame-de-pique.html",
+    "eventDetailedStyle": "Classique & Lyrique / Opéra",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Du 16 mars au 3 avril 2024, à 19h30 sf dim à 16h\", converti en \"16-03-03-04-2024-19:30\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  }
+]

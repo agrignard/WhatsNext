@@ -113,7 +113,7 @@
   {
     "name": "Le Périscope",
     "aliases": [
-      "périscope"
+      "périscope", "Le Periscope"
     ],
     "city": "Lyon",
     "country": "France",
@@ -378,7 +378,7 @@
     "country": "France",
     "city": "Lyon",
     "aliases": [
-      "Bar Rock'n eat"
+      "Bar Rock'n eat", "Le Rock N Eat"
     ]
   },
   {
@@ -418,7 +418,7 @@
     "country": "France",
     "city": "Lyon",
     "aliases": [
-      "Amphithéâtre - Salle 3000"
+      "Amphithéâtre - Salle 3000", "Cite Internationale (Amphitheatre/Salle 3000/Auditorium Lumiere)"
     ]
   },
   {
@@ -461,9 +461,40 @@
   {
     "name": "LDLC Arena",
     "country": "France",
+    "city": "Lyon"
+  },
+  {
+    "name": "Bourse du Travail",
+    "country": "France",
+    "city": "Lyon"
+  },
+  {
+    "name": "Radiant-Bellevue",
+    "country": "France",
     "city": "Lyon",
     "aliases": [
-      "Ldlc Arena"
+      "Radiant Bellevue"
+    ]
+  },
+  {
+    "name": "La Marquise",
+    "country": "France",
+    "city": "Lyon",
+    "aliases": [
+      "Peniche La Marquise"
+    ]
+  },
+  {
+    "name": "À Thou Bout d'Chant",
+    "country": "France",
+    "city": "Lyon"
+  },
+  {
+    "name": "  Espace Albert Camus",
+    "country": "France",
+    "city": "Lyon",
+    "aliases": [
+      "Espace Albert Camus De Bron"
     ]
   }
 ]
