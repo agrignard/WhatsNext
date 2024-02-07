@@ -490,11 +490,18 @@
     "city": "Lyon"
   },
   {
-    "name": "  Espace Albert Camus",
+    "name": "Espace Albert Camus",
     "country": "France",
     "city": "Lyon",
     "aliases": [
       "Espace Albert Camus De Bron"
     ]
+  },
+  {
+    "name": "Espace Gerson",
+    "country": "France",
+    "city": "Lyon",
+    "defaultStyle": "Theatre"
   }
+
 ]
