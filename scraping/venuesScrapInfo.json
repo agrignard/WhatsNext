@@ -1,4 +1,13 @@
 {
+    "Le Sucre":{
+        "mainPage":{
+            "eventNameStrings": ["S.society","Rødhåd","axy"],
+            "eventDateStrings": "25 fév"
+        },
+        "linkedPage":{
+            "eventDateStrings": "25 fév 18:00"
+        }
+    },
     "Terminal Club":{
         "mainPage":{
             "eventNameStrings": ["nashton"],

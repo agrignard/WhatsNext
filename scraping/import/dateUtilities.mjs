@@ -31,29 +31,29 @@ export function showDate(date){
 }
 
 // load style conversion patterns
-export async function getConversionStylePatterns(){
-  try{
-      return await JSON.parse(await fs.promises.readFile(styleConversionFile, 'utf8'));
-  }catch(err){
-      console.log('\x1b[36mWarning: cannot open style conversion file JSON file:  \'%s\'. Will not save to venues.\x1b[0m%s\n',styleConversionFile,err);
-  }
-}
+// export async function getConversionStylePatterns(){
+//   try{
+//       return await JSON.parse(await fs.promises.readFile(styleConversionFile, 'utf8'));
+//   }catch(err){
+//       console.log('\x1b[36mWarning: cannot open style conversion file JSON file:  \'%s\'. Will not save to venues.\x1b[0m%s\n',styleConversionFile,err);
+//   }
+// }
 
-// clean the style 
-export function convertStyle(s,styleConversionPatterns){
-  convertDate,nsole.log("yo ca convertir du style)")
-  for (const key in styleConversionPatterns) {
-    console.log(key);
-    /*function replacer(match, p1, p2, p3, offset, string) {
-      return ' '+key+' ';
-    }
-    for (const str of dateConversionPatterns[key]){
-       s = s.replace(new RegExp("([^a-zA-Z.]|^)("+str+")([^a-zA-Z.]|$)",'i'),replacer);
-    }*/
+// // clean the style 
+// export function convertStyle(s,styleConversionPatterns){
+//   convertDate,nsole.log("yo ca convertir du style)")
+//   for (const key in styleConversionPatterns) {
+//     console.log(key);
+//     /*function replacer(match, p1, p2, p3, offset, string) {
+//       return ' '+key+' ';
+//     }
+//     for (const str of dateConversionPatterns[key]){
+//        s = s.replace(new RegExp("([^a-zA-Z.]|^)("+str+")([^a-zA-Z.]|$)",'i'),replacer);
+//     }*/
 
-  }  
-  return to2digits(unifyCharacters(s));
-}
+//   }  
+//   return to2digits(unifyCharacters(s));
+// }
 
 
 // load date conversion patterns
@@ -84,7 +84,6 @@ export function getCommonDateFormats(){
 // create a date object from a string
 export function createDate(s,dateFormat,dateConversionPatterns) {
   s = convertDate(s,dateConversionPatterns);
-  //console.log(s);
   if (s.includes('tonight')){
     return new Date();
   }else{
@@ -113,15 +112,14 @@ export function convertDate(s,dateConversionPatterns){
   s = s.replace(/de([^]*?)[aà][^]*$/,(_,p) =>'a'+p);
 
      //  //removing words with 2 or more letters
-    // // console.log('\navant:'+s);
     // s = s.replace(/\b[^0-9]{2,}\b/g,' ');
-    //    //  console.log('après:'+s);
-    
-    //removing all words with 2 that are not 'h'
-   //  console.log('\navant:'+s);
-    s = s.replace(/\b[^0-9]{2,}\b/g,' ');
-      //  console.log('après:'+s);
-  return to2digits(unifyCharacters(s));
+ 
+  s = s.replace(/\b[^0-9]{2,}\b/g,' ');
+;
+  s = to2digits(unifyCharacters(s));
+  // remove end time if present. Undo if end time is required
+  s =  s.replace(/\b(\d{2}:\d{2})-\d{2}:\d{2}\b/,(_,p) => p);
+  return s;
 }
 
 // count the number of invalid dates, or with a year too old (older than one year), or a year too far (in more than 2 years)

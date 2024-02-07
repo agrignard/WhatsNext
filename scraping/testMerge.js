@@ -36,45 +36,63 @@ eventList.forEach(event =>{
     }
 });
 
+let res = [];
 newList.filter(el => el.hasOwnProperty('mergeCandidates')).forEach(el=> {
-    merge(el);
-   // eventsToMerge = el.mergeCandidates.
-    //console.log(el);
+    res = res.concat(merge(el));
 });
 
 
 // display
-newList.filter(el => el.hasOwnProperty('mergeCandidates')).forEach(el=> {
- //   console.log(el);
-});
 
-console.log(newList.filter(el => el.hasOwnProperty('mergeCandidates')).length);
+console.log('[');
+res.filter(el => el.hasOwnProperty('mergeCandidates')).forEach(el=> {
+    console.log(el,',');
+});
+console.log(']');
+// console.log(newList.filter(el => el.hasOwnProperty('mergeCandidates')).length);
 
 
 function merge(event){
+    if (!event.hasOwnProperty('mergeCandidates')){
+        return [event];
+    }
     if (event.mergeCandidates.length === 1){
         delete event.mergeCandidates;
+        return [event];
     }else{
         event.eventName = chooseBestEventName(event.mergeCandidates.map(el => el.eventName));
         event.eventStyle = andDoItWithStyle(event.mergeCandidates.map(el => el.eventStyle));
         const detailedStyleList = event.mergeCandidates.map(el => el.eventDetailedStyle);
         const maxLength = detailedStyleList.reduce((max, string) => Math.max(max, string.length), 0);
         event.eventDetailedStyle = detailedStyleList.filter(string => string.length === maxLength)[0];
-        if (event.mergeCandidates.some(el => fromLocalSource(event))){
-            console.log('Event a merger: ',event);
-            event.mergeCandidates = event.mergeCandidates.filter(el => fromLocalSource(event));
+        if (event.mergeCandidates.some(el => fromLocalSource(el))){
+            //console.log('Event a merger: ',event);
+            event.mergeCandidates = event.mergeCandidates.filter(el => fromLocalSource(el));
+            event.source = event.mergeCandidates[0].source;// assign local source to event
             const dateList = removeDoubles(event.mergeCandidates.map(el => el.unixDate));
-            //delete event.mergeCandidates;
+            const newEvents= [];
             dateList.forEach(d => {
                 const singleEvent = {...event};
                 singleEvent.eventURL = event.mergeCandidates.find(el => d).eventURL;
                 singleEvent.unixDate = d;
                 delete singleEvent.mergeCandidates;
-                console.log(singleEvent);
+                newEvents.push(singleEvent);
+             //   console.log(singleEvent);
             });
-            console.log('\n\n');
+            return newEvents;
+          //  console.log('\n\n');
+        }else{
+            const dateList = removeDoubles(event.mergeCandidates.map(el => el.unixDate));
+            if (dateList.length === 1){
+                event.altURLs = removeDoubles(event.mergeCandidates.map(el => el.eventURL));
+                delete event.mergeCandidates;
+                return [event];
+            }else{
+                return [event];
+            }
+            
         }
-        const dateList = removeDoubles(event.mergeCandidates.map(el => el.unixDate));
+       // const dateList = removeDoubles(event.mergeCandidates.map(el => el.unixDate));
     }
 }
 
@@ -106,10 +124,11 @@ function chooseBestEventName(eventNameList){
 function andDoItWithStyle(eventStyleList){
     const styleList = removeDoubles(eventStyleList);
     if (styleList.length>1){
-        const commonElements = styleList.filter(element => refStyleList.includes(element));
+        const commonElements = styleList.filter(element =>element => element !== '' && refStyleList.includes(element));
         if (commonElements.length > 0){
             return commonElements[0];
         }else{
+        //    console.log('result',styleList);
             const maxLength = styleList.reduce((max, string) => Math.max(max, string.length), 0);
             return styleList.filter(string => string.length === maxLength)[0];// keep the longest style 
         }

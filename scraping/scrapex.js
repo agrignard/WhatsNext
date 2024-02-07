@@ -180,8 +180,14 @@ async function analyseFile(venue) {
 
           //*** post processing, show logs and save  ***//
 
+          // perform regexp
+          if (venue.hasOwnProperty('regexp')){
+            applyRegexp(eventInfo,venue.regexp);
+          }
+      
           // match event place with existing one
           if (venue.scrap.hasOwnProperty('eventPlaceTags') || (venue.hasOwnProperty('linkedPage') && venue.linkedPage.hasOwnProperty('eventPlaceTags'))){
+            console.log('alias','X'+eventInfo.eventPlace+'X');
             eventInfo.eventPlace = FindLocationFromAlias(eventInfo.eventPlace,venue.country,venue.city,aliasList);
           }
 
@@ -196,20 +202,24 @@ async function analyseFile(venue) {
           
           eventInfoList.forEach(el => {
             // change the date format to Unix time
-            const formatedEventDate = createDate(el.eventDate,dateFormat,dateConversionPatterns);
+            let formatedEventDate = createDate(el.eventDate,dateFormat,dateConversionPatterns);
            // el.date = formatedEventDate;
             if (!isValid(formatedEventDate)){
               toErrorLog(el,['\x1b[31mFormat de date invalide pour %s. Reçu \"%s\", converti en \"%s\" (attendu \"%s\")\x1b[0m', 
                 venue.name,el.eventDate,convertDate(el.eventDate,dateConversionPatterns),dateFormat]);
               el.unixDate = 0;
             }else{
+              // changer 00:00 en 23:59 si besoin
+              if (venue.hasOwnProperty('midnightHour')){
+                formatedEventDate = changeMidnightHour(formatedEventDate,venue.midnightHour,el);
+              }
               el.unixDate = formatedEventDate.getTime();
               console.log(showDate(formatedEventDate));
             }
-            // perform regexp
-            if (venue.hasOwnProperty('regexp')){
-              applyRegexp(el,venue.regexp);
-            }
+            // // perform regexp
+            // if (venue.hasOwnProperty('regexp')){
+            //   applyRegexp(el,venue.regexp);
+            // }
 
 
             // display
@@ -429,7 +439,6 @@ function checkMultiDates(eventInfo){
 
 function applyRegexp(event, rulesSet){
   Object.keys(rulesSet).forEach(key =>{
-    console.log('key:',key,' ',rulesSet[key]);
     if (typeof rulesSet[key] === 'string'){// a string, regexp is used for a match
       event[key] = event[key].match(new RegExp(rulesSet[key]));
     }else if (rulesSet[key].length === 2){// a list of two elements. replace pattern (1st) with (2nd)
@@ -437,4 +446,21 @@ function applyRegexp(event, rulesSet){
       event[key] = event[key].replace(new RegExp(rulesSet[key][0]),rulesSet[key][1]);
     }
   });
+}
+
+
+function changeMidnightHour(date,targetDay,eventInfo){
+  let newDate = date;
+  if (newDate.getHours() === 0 && newDate.getMinutes() === 0) {
+    newDate.setHours(23);
+    newDate.setMinutes(59);
+  }
+  if (simplify(targetDay) === 'sameday'){
+    // do nothing
+  }else if (simplify(targetDay) === 'previousday'){// set to previous day
+    newDate.setTime(date.getTime() - 86400000);
+  }else{
+    toErrorLog(eventInfo,['\x1b[31mMidnight date string invalid. Received %s, should be \'sameDay\' or \'previousDay\'.\x1b[0m',targetDay]);  
+  }
+  return newDate;
 }

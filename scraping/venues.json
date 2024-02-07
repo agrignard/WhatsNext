@@ -1,5 +1,33 @@
 [
   {
+    "name": "Le Sucre",
+    "city": "Lyon",
+    "country": "France",
+    "url": "https://le-sucre.eu/agenda/",
+    "baseURL": "https://le-sucre.eu/agenda/",
+    "eventsDelimiterTag": "A.pureu11.pureumd12.pureulg14.pureug.agendacard",
+    "scrap": {
+      "eventNameTags": [
+        "DIV.titre:eq(0)",
+        "DIV.artistes:eq(0)  DIV:eq(0)",
+        "DIV.artistes:eq(0)  DIV:eq(1)"
+      ],
+      "eventDateTags": [
+        "DIV.date:eq(0)"
+      ]
+    },
+    "eventURLIndex": 0,
+    "dateFormat": "dd-MM",
+    "linkedPage": {
+      "eventDateTags": [
+        "DIV.journum:eq(0)",
+        "DIV.mois:eq(0)",
+        "DIV.horaires:eq(0)"
+      ]
+    },
+    "linkedPageDateFormat": "dd-MM-HH:mm"
+  },
+  {
     "name": "Le Petit Salon",
     "city": "Lyon",
     "country": "France",
@@ -35,6 +63,7 @@
     "dateFormat": "dd-MM",
     "eventURLIndex": 1,
     "defaultStyle": "Electro",
+    "midnightHour": "sameDay",
     "baseURL": "https://www.terminal-club.com/evenements/",
     "linkedPage": {
       "eventNameTags": [
@@ -383,7 +412,10 @@
   {
     "name": "Epicerie Moderne",
     "country": "France",
-    "city": "Lyon"
+    "city": "Lyon",
+    "aliases": [
+      "L'epicerie Moderne","L’Épicerie Moderne"
+    ]
   },
   {
     "name": "Grrrnd Zéro",
