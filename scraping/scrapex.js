@@ -187,7 +187,6 @@ async function analyseFile(venue) {
       
           // match event place with existing one
           if (venue.scrap.hasOwnProperty('eventPlaceTags') || (venue.hasOwnProperty('linkedPage') && venue.linkedPage.hasOwnProperty('eventPlaceTags'))){
-            console.log('alias','X'+eventInfo.eventPlace+'X');
             eventInfo.eventPlace = FindLocationFromAlias(eventInfo.eventPlace,venue.country,venue.city,aliasList);
           }
 
@@ -442,7 +441,6 @@ function applyRegexp(event, rulesSet){
     if (typeof rulesSet[key] === 'string'){// a string, regexp is used for a match
       event[key] = event[key].match(new RegExp(rulesSet[key]));
     }else if (rulesSet[key].length === 2){// a list of two elements. replace pattern (1st) with (2nd)
-      console.log(event[key]);
       event[key] = event[key].replace(new RegExp(rulesSet[key][0]),rulesSet[key][1]);
     }
   });

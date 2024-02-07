@@ -457,5 +457,13 @@
     "aliases": [
       "Les Subsistances", "Les Subs"
     ]
+  },
+  {
+    "name": "LDLC Arena",
+    "country": "France",
+    "city": "Lyon",
+    "aliases": [
+      "Ldlc Arena"
+    ]
   }
 ]
