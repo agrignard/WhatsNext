@@ -503,6 +503,36 @@
     "country": "France",
     "city": "Lyon",
     "defaultStyle": "Theatre"
+  },
+  {
+    "name": "La Vache Rouge",
+    "country": "France",
+    "city": "Lyon",
+    "aliases": [
+      "Vache Rouge"
+    ]
+  },
+  {
+    "name": "Opéra Underground",
+    "country": "France",
+    "city": "Lyon",
+    "aliases": [
+      "L'opera Underground : L'autre Scene De L'opera De Lyon"
+    ]
+  },
+  {
+    "name": "Salle des Rancy",
+    "country": "France",
+    "city": "Lyon"
+  },
+  {
+    "name": "Groupama Stadium",
+    "country": "France",
+    "city": "Lyon",
+    "aliases": [
+      "Groupama Stadium Lyon"
+    ]
   }
+
 
 ]
