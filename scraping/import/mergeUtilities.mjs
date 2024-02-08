@@ -1,6 +1,6 @@
-import { sameDay} from './dateUtilities.mjs';
-import {simplify,removeDoubles} from './stringUtilities.mjs';
-import {samePlace,getEventPlace,fromLocalSource} from './jsonUtilities.mjs';
+import {to2digits, sameDay} from './dateUtilities.mjs';
+import {simplify, removeDoubles} from './stringUtilities.mjs';
+import {samePlace, getEventPlace, fromLocalSource, writeToLog} from './jsonUtilities.mjs';
 import {getStyleList} from './fileUtilities.mjs';
 import * as fs from 'fs';
 
@@ -10,12 +10,13 @@ const refStyleList = getStyleList();
 export function mergeEvents(eventList,showFullMergeLog){
     
     let newList = [];
-    let mergeLog = [];
+    let mergeLog = '';
 
     // preprocessing: merge events at the same date. All similar events are stored in the list mergeCandidates
     eventList.forEach(event =>{
         const samePlaceSameDayEvent = newList.find(el => samePlace(getEventPlace(el),getEventPlace(event))
             && sameDay(el.unixDate, event.unixDate)
+            && el.unixDate !== 0
             && similarName(el.eventName,event.eventName));
         if (samePlaceSameDayEvent){// for each event, if a similar event is found in newList, it is added to mergeCandidates
             if (samePlaceSameDayEvent.hasOwnProperty('mergeCandidates')){
@@ -34,6 +35,7 @@ export function mergeEvents(eventList,showFullMergeLog){
     newList.filter(el => el.hasOwnProperty('mergeCandidates')).forEach(el=> {
         res = res.concat(merge(el));
     });
+    console.log(mergeLog);
     return res;
 
     // auxiliary function
@@ -77,7 +79,7 @@ export function mergeEvents(eventList,showFullMergeLog){
                 event.unixDate = bestTime;
                 event.eventDate = event.mergeCandidates.find(el => el.unixDate === bestTime).eventDate;
                 const times = removeDoubles(event.mergeCandidates.map(el => el.unixDate)).map(el => to2digits(String(new Date(el).getHours()))+':'+to2digits(String(new Date(el).getMinutes())));
-                toErrorLog(event,['\x1b[31mInconsistent times for \x1b[36m%s\x1b[39m \x1b[0m(%s)\x1b[31m. Found \x1b[0m%s\x1b[31m. Consider merging or discarding.',event.eventName,event.eventPlace,times]);
+                writeToLog('warning',event,['\x1b[31mInconsistent times for \x1b[36m%s\x1b[39m \x1b[0m(%s)\x1b[31m. Found \x1b[0m%s\x1b[31m. Consider merging or discarding.\x1b[0m',event.eventName,event.eventPlace,times],false);
                 mergeLog = mergeLog + toMergeLog(event,candidates,hasLocalSource,true,showFullMergeLog);
                 return [event];
             }else if (dateList.length === 1){// only one legit time schedule. Merge the candidates and remove the candidate list. Keep the different URLs just in case
@@ -98,7 +100,12 @@ export function mergeEvents(eventList,showFullMergeLog){
     }
 }
 
-    
+
+/******************************/
+/*     auxiliary functions    */ 
+/******************************/
+
+
 // log function
 function toMergeLog(event,mergedEvents,hasLocalSource,hasConflict,showFullMergeLog){
     const eventTag = hasConflict?'\x1b[31m':'\x1b[32m';
@@ -135,11 +142,12 @@ function toMergeLog(event,mergedEvents,hasLocalSource,hasConflict,showFullMergeL
         });
         return res+'\n';
     }
+    return '';
 }
 
 
 
-// create an event at the schedule tim d
+// create an event at the schedule time d
 function createEvent(d,event){
     const singleEvent = {...event};
     const candidateList = event.mergeCandidates.filter(el => el.unixDate === d);
@@ -216,41 +224,7 @@ function similarName(name1,name2){
     return false;
 }
 
-// to be removed
-
-function toErrorLog(eventInfo, messageList){
-    let string = messageList[0];
-    for(let i=1;i<messageList.length;i++){
-      string = string.replace('%s',messageList[i]);
-    }
-   // console.log(string);
-    string = string.replace(/\x1b\[\d+m/g, ''); // remove color tags
-    if (eventInfo.hasOwnProperty('errorLog')){
-      eventInfo.errorLog = eventInfo.errorLog+" | "+string;
-    }else{
-      eventInfo.errorLog = string;
-    }
-  }
-
-  function to2digits(dateString){
-    return dateString.replace(/(?<!\d)\d(?!\d)/g,p=>'0'+p);
-  }
-
-
-  function saveToCSV(eventList, outFile){
-    let out = '';
-    eventList.forEach(eventInfo =>{
-      out = out+''+eventInfo.eventPlace+';'
-      +eventInfo.eventName+';'+eventInfo.unixDate+';100;'+eventInfo.eventStyle+';'+eventInfo.eventDetailedStyle+';'+eventInfo.eventURL+';'+eventInfo.eventDate+'\n';
-    });
-    try{
-      fs.writeFileSync(outFile, out, 'utf-8', { flag: 'w' });
-    }catch(err){
-      console.log("\x1b[31mImpossible de sauvegarder dans le fichier \x1b[0m\'%s\'\x1b[31m. %s\x1b[0m",outFile,err.message);
-    } 
-  }
-  
-
+// return the elements of the list that have the maximum number of occurrences
 function mostOccurences(list){
     const occurrences = list.reduce((count, element) => {
         count[element] = (count[element] || 0) + 1;
@@ -259,4 +233,11 @@ function mostOccurences(list){
     const maxOccurence = Math.max(...Object.values(occurrences));
     return Object.keys(occurrences).filter(key => occurrences[key] === maxOccurence).map(el => parseInt(el));
 }
+
+
+
+
+ 
+  
+
  

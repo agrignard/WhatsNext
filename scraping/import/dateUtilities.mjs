@@ -119,7 +119,7 @@ function unifyCharacters(s){
 }
 
 // convert 1 digit elements (day, month) to 2 digits 
-function to2digits(dateString){
+export function to2digits(dateString){
   return dateString.replace(/(?<!\d)\d(?!\d)/g,p=>'0'+p);
 }
 

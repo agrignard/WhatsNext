@@ -3,11 +3,10 @@ import * as fs from 'fs';
 import { parse, isValid }  from 'date-fns';
 import * as cheerio from 'cheerio';
 import {parseDocument} from 'htmlparser2';
-import {makeURL,simplify} from './import/stringUtilities.mjs';
-import {loadLinkedPages,loadVenuesJSONFile,getAliases,getStyleConversions,saveToJSON} from './import/fileUtilities.mjs';
-import {samePlace} from './import/jsonUtilities.mjs';
-
-
+import {makeURL, simplify} from './import/stringUtilities.mjs';
+import {loadLinkedPages, loadVenuesJSONFile, getAliases, getStyleConversions, saveToJSON} from './import/fileUtilities.mjs';
+import {samePlace, writeToLog} from './import/jsonUtilities.mjs';
+import { mergeEvents} from './import/mergeUtilities.mjs';
 
 // Chemin vers le fichier à lire
 const sourcePath = './webSources/';
@@ -16,6 +15,7 @@ const sourcePath = './webSources/';
 const outFile = "generated/scrapexResult.csv";
 const globalDefaultStyle = '';
 const styleConversion = getStyleConversions();
+const showFullMergeLog = false;
 
 
 const dateConversionPatterns = getConversionPatterns();
@@ -63,7 +63,12 @@ async function scrapFiles(venues) {
       console.log('\x1b[31mEntrée %s non traitée.\x1b[0m', venue.name);
     }
   }
-  console.log('Scrapex fini avec succex !! (%s events found).\n\n', totalEventList.length);
+  // merge duplicate events
+  console.log('*** Merging duplicate events ***\n');
+  totalEventList = mergeEvents(totalEventList,showFullMergeLog);
+
+  console.log('Scrapex fini avec succex !! (%s events found).\n', totalEventList.length);
+
   saveToCSV(totalEventList, outFile);
   // save to JSON
   saveToJSON('./generated/scrapResult.json',totalEventList);
@@ -73,22 +78,31 @@ async function scrapFiles(venues) {
 
 
   // save errors to error log
-  let errorLog ='';
-  const nbErrors = totalEventList.filter(el => el.hasOwnProperty('errorLog')).length;
-  if (nbErrors > 0){
-    console.log("\x1b[31mFound %s events with errors, check \'error.log\' for details.\x1b[0m",nbErrors);
+  writeLogFile(totalEventList,'error');
+  writeLogFile(totalEventList,'warning');
+  console.log('\n');
+  
+}
+
+function writeLogFile(eventList,type){
+  const colorTag = type==='error'?'\x1b[31m':'\x1b[36m';
+  const key = type+'Log';
+  const list = eventList.filter(el => el.hasOwnProperty(key));
+  const nbEntries = list.length;
+  if (nbEntries > 0){
+    console.log("\x1b[0mFound %s%s\x1b[0m events with %s%ss\x1b[0m, check \'%s.log\' for details.\x1b[0m",
+            colorTag,nbEntries,colorTag,type,type);
   }
 
-  totalEventList.filter(el => el.hasOwnProperty('errorLog'))
-  .forEach(el =>{
-    errorLog = errorLog + displayEventFullDetails(el);
+  let log = '';
+  list.forEach(el =>{
+    log = log + displayEventFullDetails(el);
   });
-  fs.writeFile('./error.log', errorLog, 'utf8', (err) => {
+  fs.writeFile('./'+type+'.log', log, 'utf8', (err) => {
     if (err) {
       console.error("\x1b[31mCannot write error log file:\x1b[0m %s", err);
     }
   });
-  
 }
 
 
@@ -158,7 +172,7 @@ async function analyseFile(venue) {
             eventInfo.eventURL = eventURL;
           }
         }catch(err){
-          toErrorLog(eventInfo,["\x1b[31mErreur lors de la récupération de l\'URL.\x1b[0m",err]);
+          writeToLog('error',eventInfo,["\x1b[31mErreur lors de la récupération de l\'URL.\x1b[0m",err],true);
         }
 
         if (!isEmptyEvent(eventInfo)){
@@ -168,7 +182,7 @@ async function analyseFile(venue) {
               const $linkedBlock = cheerio.load(linkedFileContent[eventURL]);
               Object.keys(venue.linkedPage).forEach(key => eventInfo[key.replace('Tags','')] = getText(key,venue.linkedPage,$linkedBlock));  
             }catch{
-              toErrorLog(eventInfo,['\x1b[31mImpossible de lire la page liée pour l\'événement \'%s\'. Erreur lors du téléchargement ?\x1b[0m', eventInfo.eventName]);
+              writeToLog('error',eventInfo,['\x1b[31mImpossible de lire la page liée pour l\'événement \'%s\'. Erreur lors du téléchargement ?\x1b[0m', eventInfo.eventName],true);
             }
             // if the url in the linked is empty, replace by the main page one
             if (!eventInfo.hasOwnProperty('eventURL') || eventInfo.eventURL === undefined || eventInfo.eventURL.length === 0){
@@ -212,8 +226,8 @@ async function analyseFile(venue) {
             let formatedEventDate = createDate(el.eventDate,dateFormat,dateConversionPatterns);
            // el.date = formatedEventDate;
             if (!isValid(formatedEventDate)){
-              toErrorLog(el,['\x1b[31mFormat de date invalide pour %s. Reçu \"%s\", converti en \"%s\" (attendu \"%s\")\x1b[0m', 
-                venue.name,el.eventDate,convertDate(el.eventDate,dateConversionPatterns),dateFormat]);
+              writeToLog('error',el,['\x1b[31mFormat de date invalide pour %s. Reçu \"%s\", converti en \"%s\" (attendu \"%s\")\x1b[0m', 
+                venue.name,el.eventDate,convertDate(el.eventDate,dateConversionPatterns),dateFormat],true);
               el.unixDate = 0;
             }else{
               // changer 00:00 en 23:59 si besoin
@@ -373,21 +387,7 @@ function isEmptyEvent(eventInfo){
   return eventInfo.eventName === '' && (eventInfo.eventURL === '' || eventInfo.eventURL == undefined) && eventInfo.eventDate === '';
 }
 
-function toErrorLog(eventInfo, messageList){
-  let string = messageList[0];
-  
-  for(let i=1;i<messageList.length;i++){
-    string = string.replace('%s',messageList[i]);
-  }
-  console.log(string);
-  string = string.replace(/\x1b\[\d+m/g, ''); // remove color tags
-  if (eventInfo.hasOwnProperty('errorLog')){
-    eventInfo.errorLog = eventInfo.errorLog+" | "+string;
-  }else{
-    eventInfo.errorLog = string;
-  }
-  
-}
+
 
 function createMultiEvents(eventInfo){
   if (eventInfo.hasOwnProperty('eventMultiDate')){
@@ -462,7 +462,7 @@ function changeMidnightHour(date,targetDay,eventInfo){
   }else if (simplify(targetDay) === 'previousday'){// set to previous day
     newDate.setTime(date.getTime() - 86400000);
   }else{
-    toErrorLog(eventInfo,['\x1b[31mMidnight date string invalid. Received %s, should be \'sameDay\' or \'previousDay\'.\x1b[0m',targetDay]);  
+    writeToLog('error',eventInfo,['\x1b[31mMidnight date string invalid. Received %s, should be \'sameDay\' or \'previousDay\'.\x1b[0m',targetDay],true);  
   }
   return newDate;
 }

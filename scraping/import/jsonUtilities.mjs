@@ -52,3 +52,26 @@ export function samePlace(p1,p2){
     }
     return simplify(p1name) === simplify(p2name) && p1.city === p2.city && p1.country === p2.country;
 }
+
+export function writeToLog(type,eventInfo, messageList, display){
+    if (['error','warning'].includes(type)){
+        const key = type+'Log';
+        let string = messageList[0];
+        
+        for(let i=1;i<messageList.length;i++){
+          string = string.replace('%s',messageList[i]);
+        }
+        if (display){
+            console.log(string);
+        }
+        string = string.replace(/\x1b\[\d+m/g, ''); // remove color tags
+        if (eventInfo.hasOwnProperty(key)){
+          eventInfo[key] = eventInfo[key]+" | "+string;
+        }else{
+          eventInfo[key] = string;
+        }
+    }else{
+        console.log('\x1b[31mError in \'writeToLog\'. Expected type \'error\' or \'warning\', but received %s.\x1b[0m',type)
+    }
+  
+  }
