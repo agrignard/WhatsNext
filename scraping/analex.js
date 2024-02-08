@@ -16,7 +16,7 @@ let linkedFileContent, venuesListJSON, venueJSON, eventStrings;
 
 // set the venue to analyze
 if (venueToAnalyse){
-    eventStrings = await loadVenueScrapInfofromFile(venueToAnalyse);
+    eventStrings = loadVenueScrapInfofromFile(venueToAnalyse);
     venueName = venueToAnalyse;
 }
 
@@ -38,7 +38,7 @@ if (eventStrings.hasOwnProperty('linkedPage')){
 }
 
 // load JSON data for the venue
-venuesListJSON = await loadVenuesJSONFile();
+venuesListJSON = loadVenuesJSONFile();
 venueJSON =  loadVenueJSON(venueName,venuesListJSON);
 sourcePath += venueJSON.country+'/'+venueJSON.city+'/'+venueName+'/';
 const fileName = venueName+(venueJSON.hasOwnProperty('multiPages')?'0':'')+'.html';
@@ -61,7 +61,7 @@ const fileContent = inputFileList.map(readBodyContent).join('\n');
 
 
 // load date conversion pattern
-const dateConversionPatterns = await getConversionPatterns();
+const dateConversionPatterns = getConversionPatterns();
 
 // load main page
 // try{
@@ -73,7 +73,7 @@ const dateConversionPatterns = await getConversionPatterns();
 
 // load linked page
 if (eventStrings.linkedPage && fs.existsSync(sourcePath+'linkedPages.json')){
-    linkedFileContent = await loadLinkedPages(sourcePath);
+    linkedFileContent = loadLinkedPages(sourcePath);
 }
 
 // aborting process if mandatory strings are not present (safeguard)

@@ -12,6 +12,12 @@ export function getSource(event){
     return event.source;
 }
 
+// test if the event has been scraped from a local source (web site scraped and event place are the same)
+export function fromLocalSource(event){
+    return event.eventPlace === event.source.name;
+}
+
+
 // test if two JSON object have exactly the same key:value pairs
 function isEqual(object1, object2) {
     const keyList = Object.keys(object1);

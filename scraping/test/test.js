@@ -15,5 +15,18 @@
 // } else {
 //   console.log('Les chaînes ne sont pas à peu près les mêmes.');
 // }
-const truc = [false, true, false];
-console.log(truc.some(el => el));
+
+const truc = ['a','a','b','c','b'];
+console.log(mostOccurences(truc));
+
+function mostOccurences(list){
+    const occurrences = list.reduce((count, element) => {
+        count[element] = (count[element] || 0) + 1;
+        return count;
+    }, {});
+    
+    let elementWithMostOccurrences;
+    let largestOccurence = 0;
+    const maxOccurence = Math.max(...Object.values(occurrences));
+    return Object.keys(occurrences).filter(key => occurrences[key] === maxOccurence);
+}

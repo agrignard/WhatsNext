@@ -15,12 +15,12 @@ const sourcePath = './webSources/';
 //var out="";// = "PLACE,TITRE,UNIX,SIZE,GENRE,URL";
 const outFile = "generated/scrapexResult.csv";
 const globalDefaultStyle = '';
-const styleConversion = await getStyleConversions();
+const styleConversion = getStyleConversions();
 
 
-const dateConversionPatterns = await getConversionPatterns();
-const venueList = await loadVenuesJSONFile();
-let aliasList = await getAliases(venueList);
+const dateConversionPatterns = getConversionPatterns();
+const venueList = loadVenuesJSONFile();
+let aliasList = getAliases(venueList);
 
 //const venueNamesList = venues.map(el => el.name);
     
@@ -97,7 +97,7 @@ async function analyseFile(venue) {
   let linkedFileContent, inputFileList;
   const venueSourcePath = sourcePath+venue.country+'/'+venue.city+'/'+venue.name+'/';
   if (venue.hasOwnProperty('linkedPage')){
-    linkedFileContent = await loadLinkedPages(venueSourcePath);
+    linkedFileContent = loadLinkedPages(venueSourcePath);
   }
   // get file list to scrap
   try {
@@ -274,7 +274,7 @@ async function analyseFile(venue) {
 
 
 function removeBlanks(s){
-  return s.replace(/[\n\t]/g, ' ').replace(/ {2,}/g, ' ').replace(/^ /,'').replace(/ $/,'');
+  return s.replace(/[\n\t]/g, ' ').replace(/ {2,}/g, ' ').replace(/^[ ]{1,}/,'').replace(/[ ]{1,}$/,'');
 }
 
 

@@ -45,6 +45,21 @@
     "unixDate": 0
   },
   {
+    "eventPlace": "Opéra National de Lyon",
+    "eventName": "La Dame de pique",
+    "eventDate": "Du 16 mars au 3 avril 2024, à 19h30 sf dim à 16h",
+    "eventStyle": "Classique",
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-308712-la-dame-de-pique.html",
+    "eventDetailedStyle": "Classique & Lyrique / Opéra",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Du 16 mars au 3 avril 2024, à 19h30 sf dim à 16h\", converti en \"16-03-03-04-2024-19:30\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
     "eventPlace": "Théâtre de la Croix-Rousse",
     "eventName": "Otages",
     "eventDate": "Du 17 au 23 mars 2024, dim et sam à 16h, lun, mar ",
@@ -72,21 +87,6 @@
       "country": "France"
     },
     "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Du 17 au 23 mars 2024, dim et sam à ven à 20h, jeu à 19h30\", converti en \"17-23-03-2024-20:19:30\" (attendu \"dd-MM-yyyy-HH:mm\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "Opéra National de Lyon",
-    "eventName": "La Dame de pique",
-    "eventDate": "Du 16 mars au 3 avril 2024, à 19h30 sf dim à 16h",
-    "eventStyle": "Classique",
-    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-308712-la-dame-de-pique.html",
-    "eventDetailedStyle": "Classique & Lyrique / Opéra",
-    "source": {
-      "name": "Le Petit Bulletin",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Du 16 mars au 3 avril 2024, à 19h30 sf dim à 16h\", converti en \"16-03-03-04-2024-19:30\" (attendu \"dd-MM-yyyy-HH:mm\")",
     "unixDate": 0
   },
   {

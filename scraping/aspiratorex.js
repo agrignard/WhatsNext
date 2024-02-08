@@ -6,7 +6,7 @@
 
 import * as fs from 'fs';
 import {removeDoubles, makeURL, cleanPage, removeBlanks,extractBody} from './import/stringUtilities.mjs';
-import {loadVenuesJSONFile,venuesListJSONFile,loadLinkedPages,fetchAndRecode,fetchLink, saveToJSON} from './import/fileUtilities.mjs';
+import {loadVenuesJSONFile,venuesListJSONFile,loadLinkedPages,fetchAndRecode,fetchLink} from './import/fileUtilities.mjs';
 import {getURLListFromPattern} from './import/dateUtilities.mjs';
 import * as cheerio from 'cheerio';
 
@@ -29,7 +29,7 @@ if (venueToDownload){
 }
 console.log("***********************************************************************************\x1b[0m");
 
-venues = await loadVenuesJSONFile();
+venues = loadVenuesJSONFile();
 
 
 // Parcourir chaque objet (ou uniquement celui passé en argument du script)
@@ -154,7 +154,7 @@ async function downloadVenue(venue,path){
       hrefList = hrefList.map((el) => makeURL(venue.baseURL,el));
       console.log(shortList(hrefList));
       // check the URLS that already exist
-      const linkedFileContent = fs.existsSync(path+'linkedPages.json')?await loadLinkedPages(path):[];
+      const linkedFileContent = fs.existsSync(path+'linkedPages.json')?loadLinkedPages(path):[];
       const existingLinks = hrefList.filter(el => Object.keys(linkedFileContent).includes(el));
       const linksToDownload = hrefList.filter(el => !Object.keys(linkedFileContent).includes(el));
       console.log('Loading linked pages for venue %s. Found %s links: %s already exist and won\'t be downloaded, %s will be downloaded.',venue.name,hrefList.length, existingLinks.length,linksToDownload.length);

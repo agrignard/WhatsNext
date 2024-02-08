@@ -34,9 +34,10 @@ function fetchWithRetry(page, tries, timeOut) {
 }
 
 // get the style conversion JSON
-export async function getStyleConversions(){
+export function getStyleConversions(){
     try{
-        const res = await JSON.parse(await fs.promises.readFile(styleConversionFile, 'utf8'));
+        const res = JSON.parse(fs.readFileSync(styleConversionFile, 'utf8'));
+//        const res = await JSON.parse(await fs.promises.readFile(styleConversionFile, 'utf8'));
         Object.keys(res).forEach(key =>{
             res[key] = res[key].map(val => removeAccents(val.toLowerCase()));
         });
@@ -46,9 +47,10 @@ export async function getStyleConversions(){
     }
 }
 
-export async function getStyleList(){
+export function getStyleList(){
     try{
-        const res = await JSON.parse(await fs.promises.readFile(styleConversionFile, 'utf8'));
+     //   const res = await JSON.parse(await fs.promises.readFile(styleConversionFile, 'utf8'));
+        const res = JSON.parse(fs.readFileSync(styleConversionFile, 'utf8'));
         return Object.keys(res);
     }catch(err){
         console.log('\x1b[36mWarning: cannot open style conversion file JSON file:  \'%s\'.\x1b[0m%s\n',styleConversionFile,err);
@@ -96,9 +98,9 @@ export async function fetchAndRecode(url){
 
 
 // load linked files (subpages with more details about the event)
-export async function loadLinkedPages(sourcePath){
+export function loadLinkedPages(sourcePath){
     try{
-        return JSON.parse(await fs.promises.readFile(sourcePath+'linkedPages.json', 'utf8'));
+        return JSON.parse(fs.readFileSync(sourcePath+'linkedPages.json', 'utf8'));
     }catch(err) {
         console.error("\x1b[31mError while retrieving linked pages: %s\x1b[0m\n",sourcePath+'linkedPages.json');
         throw err;
@@ -106,9 +108,9 @@ export async function loadLinkedPages(sourcePath){
 }
 
 // load file that contains scrap info 'venuesScrapInfo.json'
-async function loadScrapInfoFile(){
+function loadScrapInfoFile(){
     try{
-        return JSON.parse(await fs.promises.readFile(scrapInfoFile, 'utf8'));
+        return JSON.parse(fs.readFileSync(scrapInfoFile, 'utf8'));
     }catch(err) {
         console.error("\x1b[31mError loading scrap info file: \'%s\'\x1b[0m\n. Aborting process",scrapInfoFile);
         throw err;
@@ -116,8 +118,8 @@ async function loadScrapInfoFile(){
 }
 
 // load file that contains scrap info 'venuesScrapInfo.json', and return scrap info only for venue venueName
-export async function loadVenueScrapInfofromFile(venueName){
-    let scrapInfo = await loadScrapInfoFile();
+export function loadVenueScrapInfofromFile(venueName){
+    let scrapInfo = loadScrapInfoFile();
     try{
         return scrapInfo[venueName];
     }catch(err) {
@@ -127,9 +129,9 @@ export async function loadVenueScrapInfofromFile(venueName){
 }
 
 // load venue JSON 'venues.json'
-export async function loadVenuesJSONFile(){
+export function loadVenuesJSONFile(){
     try{
-        return await JSON.parse(await fs.promises.readFile(venuesListJSONFile, 'utf8'));
+        return JSON.parse(fs.readFileSync(venuesListJSONFile, 'utf8'));
     }catch(err) {
         console.error('\x1b[36mCannot open venues JSON file:  \'%s\'\x1b[0m%s\n',venuesListJSONFile,err);
         throw err;

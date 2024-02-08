@@ -30,7 +30,7 @@ console.log("*******************************************************************
 
 // load venues file
 
-let venues = await loadVenuesJSONFile();
+let venues = loadVenuesJSONFile();
 
 function hasLinkedPage(venue){
     const v = venues.find(el => el.name === venue.source.name && el.city === venue.source.city && el.country === venue.source.country);
@@ -63,7 +63,7 @@ async function fixVenue(venue,eventList){
     if (!fs.existsSync(path+'linkedPages.json')){
         console.log('\x1b[31mError, file \'linkedPages.json\' is missing for venue %s. No fix can be done.\x1b[0m.',venue.name);
     }else{
-        const linkedFileContent = await loadLinkedPages(path);
+        const linkedFileContent = loadLinkedPages(path);
         eventList.forEach((el,index) => linkedFileContent[el.eventURL]=linkedPagesList[index]);
         try{
             const jsonString = JSON.stringify(linkedFileContent, null, 2); 

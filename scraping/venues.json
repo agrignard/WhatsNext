@@ -109,12 +109,18 @@
       ]
     },
     "eventURLIndex": 1,
-    "linkedPage": {}
+    "linkedPage": {
+      "eventNameTags": [
+        "DIV.span4:eq(1)  DIV:eq(0)  DIV.cscdefault:eq(2)  H1:eq(0)  SPAN:eq(0)"
+      ]
+    },
+    "linkedPageDateFormat": "dd-MM-yyyy"
   },
   {
     "name": "Le Périscope",
     "aliases": [
-      "périscope", "Le Periscope"
+      "périscope",
+      "Le Periscope"
     ],
     "city": "Lyon",
     "country": "France",
@@ -379,7 +385,8 @@
     "country": "France",
     "city": "Lyon",
     "aliases": [
-      "Bar Rock'n eat", "Le Rock N Eat"
+      "Bar Rock'n eat",
+      "Le Rock N Eat"
     ]
   },
   {
@@ -419,7 +426,8 @@
     "country": "France",
     "city": "Lyon",
     "aliases": [
-      "Amphithéâtre - Salle 3000", "Cite Internationale (Amphitheatre/Salle 3000/Auditorium Lumiere)"
+      "Amphithéâtre - Salle 3000",
+      "Cite Internationale (Amphitheatre/Salle 3000/Auditorium Lumiere)"
     ]
   },
   {
@@ -427,7 +435,8 @@
     "country": "France",
     "city": "Lyon",
     "aliases": [
-      "L'epicerie Moderne","L’Épicerie Moderne"
+      "L'epicerie Moderne",
+      "L’Épicerie Moderne"
     ]
   },
   {
@@ -456,7 +465,8 @@
     "country": "France",
     "city": "Lyon",
     "aliases": [
-      "Les Subsistances", "Les Subs"
+      "Les Subsistances",
+      "Les Subs"
     ]
   },
   {
@@ -533,6 +543,4 @@
       "Groupama Stadium Lyon"
     ]
   }
-
-
 ]
