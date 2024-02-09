@@ -1,6 +1,6 @@
 import {to2digits, sameDay} from './dateUtilities.mjs';
 import {simplify, removeDoubles} from './stringUtilities.mjs';
-import {samePlace, getEventPlace, fromLocalSource, getStyleList, writeToLog} from './jsonUtilities.mjs';
+import {samePlace, getEventPlace, fromLocalSource, getStyleList, writeToLog,jsonRemoveDouble} from './jsonUtilities.mjs';
 // import {} from './fileUtilities.mjs';
 // import * as fs from 'fs';
 
@@ -14,28 +14,39 @@ export function mergeEvents(eventList,showFullMergeLog){
 
     // preprocessing: merge events at the same date. All similar events are stored in the list mergeCandidates
     eventList.forEach(event =>{
-        const samePlaceSameDayEvent = newList.find(el => samePlace(getEventPlace(el),getEventPlace(event))
+        // const testv = event.eventName.startsWith('Lanku')||event.eventName.startsWith('LANKU')
+        // if (testv){
+        //     console.log(event);
+        // }
+        const samePlaceSameDayEventList = newList.filter(el => 
+            samePlace(getEventPlace(el),getEventPlace(event))
             && sameDay(el.unixDate, event.unixDate)
             && el.unixDate !== 0
-            && similarName(el.eventName,event.eventName));
-        if (samePlaceSameDayEvent){// for each event, if a similar event is found in newList, it is added to mergeCandidates
-            if (samePlaceSameDayEvent.hasOwnProperty('mergeCandidates')){
-                samePlaceSameDayEvent.mergeCandidates.push(event);
-            }else{
-                samePlaceSameDayEvent.mergeCandidates = [event];
-            }       
+            //&& el.mergeCandidates.some(subEl => similarName(subEl.eventName,event.eventName))
+            && similarName(el.eventName,event.eventName)
+            );
+        if (samePlaceSameDayEventList.length >0){// for each event, if a similar event is found in newList, it is added to mergeCandidates
+            const samePlaceSameDayEvent = samePlaceSameDayEventList[0];    
+            samePlaceSameDayEvent.mergeCandidates.push(event);  
+            // if other elements are found, merge everything
+            for(let i=1;i<samePlaceSameDayEventList.length;i++){
+                const otherEvent = samePlaceSameDayEventList[i];
+                samePlaceSameDayEvent.mergeCandidates = jsonRemoveDouble(samePlaceSameDayEvent.mergeCandidates.concat(otherEvent.mergeCandidates));
+                otherEvent.toRemove = true;// will remove useless entries since they have been merged to another one
+            } 
         }else{// otherwise it is added as a new entry in newList
             event.mergeCandidates = [{...event}];
             newList.push(event);
         }
     });
-
+    newList = newList.filter(el => !el.hasOwnProperty('toRemove'));
+   // return newList;
     // merge process
     let res = [];
     newList.filter(el => el.hasOwnProperty('mergeCandidates')).forEach(el=> {
         res = res.concat(merge(el));
     });
-    console.log(mergeLog);
+   // console.log(mergeLog);
     return res;
 
     // auxiliary function
@@ -60,6 +71,9 @@ export function mergeEvents(eventList,showFullMergeLog){
             const candidates = event.mergeCandidates;// keep a trace for the merge log
             const hasLocalSource = event.mergeCandidates.some(el => fromLocalSource(el));
             if (hasLocalSource){// if some events are from local source (site scraped and venue are the same), discard events from other sources (local source is assumed to be more reliable)
+                if (event.eventName.startsWith('LANK')){
+                    console.log('milieu');
+                }
                 event.mergeCandidates = event.mergeCandidates.filter(el => fromLocalSource(el));
                 dateList = removeDoubles(event.mergeCandidates.map(el => el.unixDate));
             }else{// no local source. Event schedules time are analysed to see if they are legit or a mistake
@@ -83,6 +97,10 @@ export function mergeEvents(eventList,showFullMergeLog){
                 mergeLog = mergeLog + toMergeLog(event,candidates,hasLocalSource,true,showFullMergeLog);
                 return [event];
             }else if (dateList.length === 1){// only one legit time schedule. Merge the candidates and remove the candidate list. Keep the different URLs just in case
+                // if (event.eventName.startsWith('LANK')){
+                //     console.log('essai');
+                //     console.log(event.mergeCandidates.map(el => el.eventURL));
+                // }
                 event.altURLs = removeDoubles(event.mergeCandidates.map(el => el.eventURL));
                 mergeLog = mergeLog + toMergeLog(event,candidates,hasLocalSource,false,showFullMergeLog);
                 delete event.mergeCandidates;

@@ -65,7 +65,7 @@ async function scrapFiles(venues) {
   }
   // merge duplicate events
   console.log('*** Merging duplicate events ***\n');
-  totalEventList = mergeEvents(totalEventList,showFullMergeLog);
+  //totalEventList = mergeEvents(totalEventList,showFullMergeLog);
 
   console.log('Scrapex fini avec succex !! (%s events found).\n', totalEventList.length);
 

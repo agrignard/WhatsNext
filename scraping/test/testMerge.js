@@ -16,10 +16,10 @@ try{
 let res = mergeEvents(eventList,false);
 
 res.forEach(el=> {
-    console.log(el);
+ //   console.log(el);
 });
 
-saveToJSON(res,'./generated/scrapResult.json');
+saveToJSON(res,'./test/mergeResults.json');
 saveToCSV(res, outFile);
 //console.log(mergeLog);
     
