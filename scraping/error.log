@@ -48,16 +48,6 @@ errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Du 17 au 23 mar
 unixDate: 0
 https://www.petit-bulletin.fr/lyon/agenda-308401-otages.html
 
-Date: Du 16 mars au 3 avril 2024, à 19h30 sf dim à 16h
-Event: La Dame de pique
-Place: Opéra National de Lyon
-Style: Classique
-DetailedStyle: Classique & Lyrique / Opéra
-source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Du 16 mars au 3 avril 2024, à 19h30 sf dim à 16h", converti en "16-03-03-04-2024-19:30" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-308712-la-dame-de-pique.html
-
 Date: Du 15 mars au 4 avril 2024, à 20h sf dim à 16h
 Event: La Fille du Far West
 Place: Opéra National de Lyon
@@ -67,4 +57,14 @@ source: [object Object]
 errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Du 15 mars au 4 avril 2024, à 20h sf dim à 16h", converti en "15-03-04-04-2024-20:16:00" (attendu "dd-MM-yyyy-HH:mm")
 unixDate: 0
 https://www.petit-bulletin.fr/lyon/agenda-308711-la-fille-du-far-west.html
+
+Date: Du 16 mars au 3 avril 2024, à 19h30 sf dim à 16h
+Event: La Dame de pique
+Place: Opéra National de Lyon
+Style: Classique
+DetailedStyle: Classique & Lyrique / Opéra
+source: [object Object]
+errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Du 16 mars au 3 avril 2024, à 19h30 sf dim à 16h", converti en "16-03-03-04-2024-19:30" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.petit-bulletin.fr/lyon/agenda-308712-la-dame-de-pique.html
 

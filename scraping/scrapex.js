@@ -65,7 +65,7 @@ async function scrapFiles(venues) {
   }
   // merge duplicate events
   console.log('*** Merging duplicate events ***\n');
-  //totalEventList = mergeEvents(totalEventList,showFullMergeLog);
+  totalEventList = mergeEvents(totalEventList,showFullMergeLog);
 
   console.log('Scrapex fini avec succex !! (%s events found).\n', totalEventList.length);
 
@@ -187,9 +187,11 @@ async function analyseFile(venue) {
           eventInfo.eventDetailedStyle = eventInfo.hasOwnProperty('eventStyle')?eventInfo.eventStyle:'';
           if (!eventInfo.hasOwnProperty('eventStyle') || eventInfo.eventStyle ===''){
             const eventPlace = venueList.find(el => samePlace(el,{name:eventInfo.eventPlace, city: venue.city, country:venue.country}));
-            if (eventPlace && eventPlace.hasOwnProperty('defaultStyle')){
+            if (eventPlace && eventPlace.hasOwnProperty('defaultStyle')){// if no style is found, first apply the event place default style
               eventInfo.eventStyle = eventPlace.defaultStyle;
-            }else{
+            }else if (venue.hasOwnProperty('defaultStyle')){// if no default style for the place, take the one of the scrapped site
+              eventInfo.eventStyle = venue.defaultStyle;
+            }else{// otherwise use the global style
               eventInfo.eventStyle = globalDefaultStyle;
             }
           }
@@ -321,7 +323,7 @@ function getStyle(string){
   const stringComp = simplify(string);
   let res = string;
   Object.keys(styleConversion).forEach(style =>{
-    if (styleConversion[style].some(word => stringComp.includes(word))){
+    if (styleConversion[style].some(word => stringComp.includes(simplify(word)))){
       res = style;
     }
   });
