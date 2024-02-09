@@ -3,11 +3,7 @@
 /**************************************/
 
 import * as fs from 'fs';
-import {removeAccents, cleanPage, removeBlanks, extractBody} from './stringUtilities.mjs';
-
-const scrapInfoFile = "./venuesScrapInfo.json"; // path should start from the directory of the calling script
-export const venuesListJSONFile = "./venues.json";
-const styleConversionFile = "./import/styleConversion.json";
+import {cleanPage, removeBlanks, extractBody} from './stringUtilities.mjs';
 
 // fetch linked page
 export async function fetchLink(page, nbFetchTries){
@@ -33,45 +29,6 @@ function fetchWithRetry(page, tries, timeOut) {
     });
 }
 
-// get the style conversion JSON
-export function getStyleConversions(){
-    try{
-        const res = JSON.parse(fs.readFileSync(styleConversionFile, 'utf8'));
-//        const res = await JSON.parse(await fs.promises.readFile(styleConversionFile, 'utf8'));
-        Object.keys(res).forEach(key =>{
-            res[key] = res[key].map(val => removeAccents(val.toLowerCase()));
-        });
-        return res;
-    }catch(err){
-        console.log('\x1b[36mWarning: cannot open style conversion file JSON file:  \'%s\'.\x1b[0m%s\n',styleConversionFile,err);
-    }
-}
-
-export function getStyleList(){
-    try{
-     //   const res = await JSON.parse(await fs.promises.readFile(styleConversionFile, 'utf8'));
-        const res = JSON.parse(fs.readFileSync(styleConversionFile, 'utf8'));
-        return Object.keys(res);
-    }catch(err){
-        console.log('\x1b[36mWarning: cannot open style conversion file JSON file:  \'%s\'.\x1b[0m%s\n',styleConversionFile,err);
-    }
-}
-
-// return a list of json object with aliases to change the place name
-export function getAliases(list){
-    return list
-    .map(el => {
-      const res = {};
-      res.country = el.country;
-      res.city = el.city;
-      res.name = el.name;
-      res.aliases = [el.name];
-      if (el.hasOwnProperty('aliases')){
-        res.aliases = res.aliases.concat(el.aliases);
-      }
-      return res;
-    });
-}
 
 // fetch url and fix the coding when it is not in UTF-8
 export async function fetchAndRecode(url){
@@ -107,52 +64,8 @@ export function loadLinkedPages(sourcePath){
     }
 }
 
-// load file that contains scrap info 'venuesScrapInfo.json'
-function loadScrapInfoFile(){
-    try{
-        return JSON.parse(fs.readFileSync(scrapInfoFile, 'utf8'));
-    }catch(err) {
-        console.error("\x1b[31mError loading scrap info file: \'%s\'\x1b[0m\n. Aborting process",scrapInfoFile);
-        throw err;
-    }
-}
-
-// load file that contains scrap info 'venuesScrapInfo.json', and return scrap info only for venue venueName
-export function loadVenueScrapInfofromFile(venueName){
-    let scrapInfo = loadScrapInfoFile();
-    try{
-        return scrapInfo[venueName];
-    }catch(err) {
-        console.error("\x1b[31m  Cannot find venue \x1b[0m\'%s\'\x1b[31m in file :%s\x1b[0m\n",venueToAnalyse,scrapInfoFile);
-        throw err;
-    }
-}
-
-// load venue JSON 'venues.json'
-export function loadVenuesJSONFile(){
-    try{
-        return JSON.parse(fs.readFileSync(venuesListJSONFile, 'utf8'));
-    }catch(err) {
-        console.error('\x1b[36mCannot open venues JSON file:  \'%s\'\x1b[0m%s\n',venuesListJSONFile,err);
-        throw err;
-    }
-}
-
-// load a JSON containing info and return the info only for venue venueName
-export function loadVenueJSON(venueName,venuesListJSON){
-    const venueJSON = venuesListJSON.find(function(element) {
-        return element.name === venueName;
-    });
-    if (!venueJSON){
-        console.error("\x1b[31mError venue info. Venue \'%s\' not found in %s\x1b[0m.\n Aborting process",venueName,venuesListJSONFile);
-        throw err;
-    }else{
-        return venueJSON;
-    }
-}
-
-
-export function saveToJSON(fileName,data){
+// save json data to .json
+export function saveToJSON(data,fileName){
     try{
         const jsonString =  JSON.stringify(data, null, 2);  
         fs.writeFileSync(fileName, jsonString);
@@ -160,3 +73,18 @@ export function saveToJSON(fileName,data){
           console.log('\x1b[31mError saving to \'%s\': \x1b[0m%s',fileName,err);
       }
 } 
+
+// save json data to .csv
+export function saveToCSV(eventList, outFile){
+    let out = '';
+    eventList.forEach(eventInfo =>{
+      out = out+''+eventInfo.eventPlace+';'
+      +eventInfo.eventName+';'+eventInfo.unixDate+';100;'+eventInfo.eventStyle+';'+eventInfo.eventDetailedStyle+';'+eventInfo.eventURL+';'+eventInfo.eventDate+'\n';
+    });
+    try{
+      fs.writeFileSync(outFile, out, 'utf-8', { flag: 'w' });
+    }catch(err){
+      console.log("\x1b[31mImpossible de sauvegarder dans le fichier \x1b[0m\'%s\'\x1b[31m. %s\x1b[0m",outFile,err.message);
+    } 
+}
+

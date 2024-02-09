@@ -4,8 +4,8 @@
 // to fix event errors due to download errors
 
 import * as fs from 'fs';
-import {loadVenuesJSONFile,loadLinkedPages,fetchLink} from './import/fileUtilities.mjs';
-import {getSource,jsonRemoveDouble,samePlace} from './import/jsonUtilities.mjs';
+import {loadLinkedPages,fetchLink} from './import/fileUtilities.mjs';
+import {loadVenuesJSONFile,getSource,jsonRemoveDouble,samePlace} from './import/jsonUtilities.mjs';
 
 
 const webSourcesPath = './webSources/';
@@ -56,21 +56,22 @@ async function fixVenue(venue,eventList){
         return acc + (value === undefined ? 1 : 0);
     }, 0);
     if (failedDownloads>0){
-        console.log("\n\x1b[31mDownloads failed: \x1b[0m%s/%s\x1b[31m for venue %s. Run again \'reparatorex\' (you main run \'scrapex\' once before in order to purge error log).\n\x1b[0m",failedDownloads,LPElist.length,venue.name);
+        console.log("\n\x1b[31mDownloads failed: \x1b[0m%s/%s\x1b[31m for venue %s (%s, %s). Run again \'reparatorex\' (you main run \'scrapex\' once before in order to purge error log).\n\x1b[0m",
+            failedDownloads,LPElist.length,venue.name,venue.city,venue.country);
     }
     // modify linkedPages.json to add the downloaded files
     const path = webSourcesPath+venue.country+'/'+venue.city+'/'+venue.name+'/';
     if (!fs.existsSync(path+'linkedPages.json')){
-        console.log('\x1b[31mError, file \'linkedPages.json\' is missing for venue %s. No fix can be done.\x1b[0m.',venue.name);
+        console.log('\x1b[31mError, file \'linkedPages.json\' is missing for venue %s (%s, %s). No fix can be done.\x1b[0m.',venue.name,venue.city,venue.country);
     }else{
         const linkedFileContent = loadLinkedPages(path);
         eventList.forEach((el,index) => linkedFileContent[el.eventURL]=linkedPagesList[index]);
         try{
             const jsonString = JSON.stringify(linkedFileContent, null, 2); 
             fs.writeFileSync(path+'linkedPages.json', jsonString);
-            console.log('Replaced/added %s event linked pages for venue %s',eventList.length,venue.name);
+            console.log('Replaced/added %s event linked pages for venue %s (%s, %s)',eventList.length,venue.name,venue.city,venue.country);
         }catch(err){
-            console.log('\x1b[31mCannot save event linked pages to \'linkedPages.json\' for venue %s: \x1b[0m%s',venue.name,err);
+            console.log('\x1b[31mCannot save event linked pages to \'linkedPages.json\' for venue %s (%s, %s): \x1b[0m%s',venue.name,venue.city,venue.country,err);
         }
         
     }

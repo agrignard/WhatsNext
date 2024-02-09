@@ -6,7 +6,8 @@
 
 import * as fs from 'fs';
 import {removeDoubles, makeURL, cleanPage, removeBlanks,extractBody} from './import/stringUtilities.mjs';
-import {loadVenuesJSONFile,venuesListJSONFile,loadLinkedPages,fetchAndRecode,fetchLink} from './import/fileUtilities.mjs';
+import {loadLinkedPages,fetchAndRecode,fetchLink} from './import/fileUtilities.mjs';
+import {loadVenuesJSONFile, saveToVenuesJSON} from './import/jsonUtilities.mjs';
 import {getURLListFromPattern} from './import/dateUtilities.mjs';
 import * as cheerio from 'cheerio';
 
@@ -25,7 +26,7 @@ console.log("\n\x1b[36m*********************************************************
 if (venueToDownload){
   console.log("ASPIRATOREX IS SNIFFING SOURCES FILES for venue " + venueToDownload);
 }else{
-  console.log("ASPIRATOREX IS SNIFFING SOURCES FILES contained in: " + venuesListJSONFile);
+  console.log("ASPIRATOREX IS SNIFFING SOURCES FILES contained in  venues JSON file.");
 }
 console.log("***********************************************************************************\x1b[0m");
 
@@ -69,8 +70,7 @@ venues.filter(obj => !venueToDownload || obj.name === venueToDownload).forEach((
 });
 
 // save base URL to JSON file
-const jsonString = JSON.stringify(venues, null, 2); 
-fs.writeFileSync(venuesListJSONFile, jsonString);// écrit à la fin. Problème de sauvegarde si un des fichiers a un pb ?
+saveToVenuesJSON(venues);// écrit à la fin. Problème de sauvegarde si un des fichiers a un pb ?
 
 
 
@@ -85,6 +85,7 @@ async function downloadVenue(venue,path){
   if (venue.hasOwnProperty('multiPages')){
     if (venue.multiPages.hasOwnProperty('pattern')){
       URLlist = getURLListFromPattern(venue.url,venue.multiPages.pattern,venue.multiPages.nbPages);
+      console.log(URLlist);
     }else if (/\{index\}/.test(venue.url)){
       if (venue.multiPages.hasOwnProperty('startPage') && venue.multiPages.hasOwnProperty('nbPages')){
         let increment = (venue.multiPages.hasOwnProperty('increment'))?venue.multiPages.increment:1;
@@ -152,7 +153,7 @@ async function downloadVenue(venue,path){
       // get the list of URLs to download
       hrefList = removeDoubles(hrefList.filter(el => el !== undefined));
       hrefList = hrefList.map((el) => makeURL(venue.baseURL,el));
-      console.log(shortList(hrefList));
+      console.log('First entries:',shortList(hrefList));
       // check the URLS that already exist
       const linkedFileContent = fs.existsSync(path+'linkedPages.json')?loadLinkedPages(path):[];
       const existingLinks = hrefList.filter(el => Object.keys(linkedFileContent).includes(el));

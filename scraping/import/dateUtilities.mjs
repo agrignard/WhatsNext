@@ -9,6 +9,7 @@ import * as fs from 'fs';
 const dateConversionFile = './import/dateConversion.json';
 const styleConversionFile = './import/styleConversion.json';
 
+// verify if two unix dates correspond to the same day
 export function  sameDay(timestamp1, timestamp2) {// as unixdate
   const date1 = new Date(timestamp1); 
   const date2 = new Date(timestamp2); 
@@ -20,6 +21,7 @@ export function  sameDay(timestamp1, timestamp2) {// as unixdate
   );
 }
 
+// display date as dd/MM/yyyy (hh:mm)
 export function showDate(date){
   const day = to2digits(String(date.getDate()));
   const month = to2digits(String(date.getMonth() + 1)); 
@@ -124,11 +126,20 @@ export function to2digits(dateString){
 }
 
 
-// get a list of URLs from date patterns
+// Get a list of URLs from date patterns. Used for multipages, when the index of the pages refer to a 
+// date such as 2024-03 (eg: Ville Morte)
+// This function takes in argument a base URL, a pattern (such as yyyy-mm) and a number of pages, and return
+// the list of the URLs of the different pages.
+//
+// patterns should include the followings:
+// 
 // yyyy is year with 4 digits
 // yy is year with 2 digits
-// mm is month with 2 digits
-// m is month with 1 or 2 digits
+// MM (or mm) is month with 2 digits
+// M (or m) is month with 1 or 2 digits
+
+
+
 export function getURLListFromPattern(url,pattern,nbPages){
   let res = [];
   const currentDate = new Date();
@@ -136,8 +147,8 @@ export function getURLListFromPattern(url,pattern,nbPages){
   let year = currentDate.getFullYear();
   //const week = currentDate.getWeek();
   for(let i = 0; i<nbPages; i++){
-    let d = pattern.replace(/mm/,to2digits(String(month))).replace(/m/,month);
-    d = d.replace(/yyyy/,year).replace(/m/,year-Math.round(year/100)*100);
+    let d = pattern.replace(/MM|mm/,to2digits(String(month))).replace(/M|mm/,month);
+    d = d.replace(/yyyy/,year).replace(/yy/,year-Math.round(year/100)*100);
     res.push(url+d);
     month++;
     if (month>12){

@@ -1,6 +1,7 @@
 import { createDate, numberOfInvalidDates, getCommonDateFormats, getConversionPatterns} from './import/dateUtilities.mjs';
 import {removeDoubles, convertToLowerCase, removeBlanks,makeURL} from './import/stringUtilities.mjs';
-import {loadVenueScrapInfofromFile, loadVenueJSON, loadVenuesJSONFile, venuesListJSONFile, loadLinkedPages} from './import/fileUtilities.mjs';
+import {loadLinkedPages} from './import/fileUtilities.mjs';
+import {loadVenueScrapInfofromFile, loadVenueJSON, loadVenuesJSONFile, saveToVenuesJSON} from './import/jsonUtilities.mjs';
 
 import * as fs from 'fs';
 import * as cheerio from 'cheerio';
@@ -242,14 +243,7 @@ if (tagsContainingStrings.length === 0){
     console.log("\n",venueJSON);
     console.log("\n");
 
-    try{
-        const jsonString = JSON.stringify(venuesListJSON, null, 2); 
-        fs.writeFileSync(venuesListJSONFile, jsonString);
-        console.log('Added to venues in %s',venuesListJSONFile);
-    }catch(err){
-        console.log('\x1b[31mError saving to .json: \'%s\' %s\x1b[0m',venuesListJSONFile,err);
-    }
-
+    saveToVenuesJSON(venuesListJSON);
     
 }
 

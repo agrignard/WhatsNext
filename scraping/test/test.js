@@ -16,17 +16,17 @@
 //   console.log('Les chaînes ne sont pas à peu près les mêmes.');
 // }
 
-const truc = ['a','a','b','c','b'];
-console.log(mostOccurences(truc));
+const args = process.argv.slice(2).map(el => el.toLocaleLowerCase());
 
-function mostOccurences(list){
-    const occurrences = list.reduce((count, element) => {
-        count[element] = (count[element] || 0) + 1;
-        return count;
-    }, {});
+import {loadVenuesJSONFile} from './import/fileUtilities.mjs';
+const venueList = loadVenuesJSONFile();
+
+
+function getVenue(args,venueList){
+    let venues = [];
+    if (args.length ===1){// one argument, it is supposed to be a place
+        if (args[0] === '*'){
     
-    let elementWithMostOccurrences;
-    let largestOccurence = 0;
-    const maxOccurence = Math.max(...Object.values(occurrences));
-    return Object.keys(occurrences).filter(key => occurrences[key] === maxOccurence);
+        }
+    }
 }

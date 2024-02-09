@@ -4,8 +4,8 @@ import { parse, isValid }  from 'date-fns';
 import * as cheerio from 'cheerio';
 import {parseDocument} from 'htmlparser2';
 import {makeURL, simplify} from './import/stringUtilities.mjs';
-import {loadLinkedPages, loadVenuesJSONFile, getAliases, getStyleConversions, saveToJSON} from './import/fileUtilities.mjs';
-import {samePlace, writeToLog} from './import/jsonUtilities.mjs';
+import {loadLinkedPages, saveToJSON, saveToCSV} from './import/fileUtilities.mjs';
+import {samePlace, getAliases, getStyleConversions, loadVenuesJSONFile, writeToLog} from './import/jsonUtilities.mjs';
 import { mergeEvents} from './import/mergeUtilities.mjs';
 
 // Chemin vers le fichier à lire
@@ -71,10 +71,10 @@ async function scrapFiles(venues) {
 
   saveToCSV(totalEventList, outFile);
   // save to JSON
-  saveToJSON('./generated/scrapResult.json',totalEventList);
+  saveToJSON(totalEventList,'./generated/scrapResult.json');
 
   // save errors to JSON file
-  saveToJSON('./generated/errorLog.json',totalEventList.filter(el => el.hasOwnProperty('errorLog')));
+  saveToJSON(totalEventList.filter(el => el.hasOwnProperty('errorLog')),'./generated/errorLog.json');
 
 
   // save errors to error log
@@ -82,27 +82,6 @@ async function scrapFiles(venues) {
   writeLogFile(totalEventList,'warning');
   console.log('\n');
   
-}
-
-function writeLogFile(eventList,type){
-  const colorTag = type==='error'?'\x1b[31m':'\x1b[36m';
-  const key = type+'Log';
-  const list = eventList.filter(el => el.hasOwnProperty(key));
-  const nbEntries = list.length;
-  if (nbEntries > 0){
-    console.log("\x1b[0mFound %s%s\x1b[0m events with %s%ss\x1b[0m, check \'%s.log\' for details.\x1b[0m",
-            colorTag,nbEntries,colorTag,type,type);
-  }
-
-  let log = '';
-  list.forEach(el =>{
-    log = log + displayEventFullDetails(el);
-  });
-  fs.writeFile('./'+type+'.log', log, 'utf8', (err) => {
-    if (err) {
-      console.error("\x1b[31mCannot write error log file:\x1b[0m %s", err);
-    }
-  });
 }
 
 
@@ -324,18 +303,7 @@ function unique(list) {
 };
 
 
-function saveToCSV(eventList, outFile){
-  let out = '';
-  eventList.forEach(eventInfo =>{
-    out = out+''+eventInfo.eventPlace+';'
-    +eventInfo.eventName+';'+eventInfo.unixDate+';100;'+eventInfo.eventStyle+';'+eventInfo.eventDetailedStyle+';'+eventInfo.eventURL+';'+eventInfo.eventDate+'\n';
-  });
-  try{
-    fs.writeFileSync(outFile, out, 'utf-8', { flag: 'w' });
-  }catch(err){
-    console.log("\x1b[31mImpossible de sauvegarder dans le fichier \x1b[0m\'%s\'\x1b[31m. %s\x1b[0m",outFile,err.message);
-  } 
-}
+
 
 
 function FindLocationFromAlias(string,country,city,aliasList){
@@ -465,4 +433,26 @@ function changeMidnightHour(date,targetDay,eventInfo){
     writeToLog('error',eventInfo,['\x1b[31mMidnight date string invalid. Received %s, should be \'sameDay\' or \'previousDay\'.\x1b[0m',targetDay],true);  
   }
   return newDate;
+}
+
+
+export function writeLogFile(eventList,type){
+  const colorTag = type==='error'?'\x1b[31m':'\x1b[36m';
+  const key = type+'Log';
+  const list = eventList.filter(el => el.hasOwnProperty(key));
+  const nbEntries = list.length;
+  if (nbEntries > 0){
+    console.log("\x1b[0mFound %s%s\x1b[0m events with %s%ss\x1b[0m, check \'%s.log\' for details.\x1b[0m",
+            colorTag,nbEntries,colorTag,type,type);
+  }
+
+  let log = '';
+  list.forEach(el =>{
+    log = log + displayEventFullDetails(el);
+  });
+  fs.writeFile('./'+type+'.log', log, 'utf8', (err) => {
+    if (err) {
+      console.error("\x1b[31mCannot write error log file:\x1b[0m %s", err);
+    }
+  });
 }

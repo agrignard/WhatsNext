@@ -1,8 +1,8 @@
 import {to2digits, sameDay} from './dateUtilities.mjs';
 import {simplify, removeDoubles} from './stringUtilities.mjs';
-import {samePlace, getEventPlace, fromLocalSource, writeToLog} from './jsonUtilities.mjs';
-import {getStyleList} from './fileUtilities.mjs';
-import * as fs from 'fs';
+import {samePlace, getEventPlace, fromLocalSource, getStyleList, writeToLog} from './jsonUtilities.mjs';
+// import {} from './fileUtilities.mjs';
+// import * as fs from 'fs';
 
 const outFile ="./generated/afterMerge.csv";
 const refStyleList = getStyleList();
