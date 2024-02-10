@@ -6,7 +6,8 @@ import {parseDocument} from 'htmlparser2';
 import {makeURL, simplify} from './import/stringUtilities.mjs';
 import {loadLinkedPages, saveToJSON, saveToCSV} from './import/fileUtilities.mjs';
 import {samePlace, getAliases, getStyleConversions, loadVenuesJSONFile, 
-        loadCancellationKeywords, writeToLog, isOnlyAlias, geAliasesToURLMap} from './import/jsonUtilities.mjs';
+        loadCancellationKeywords, writeToLog, isOnlyAlias, geAliasesToURLMap,
+        getLanguages} from './import/jsonUtilities.mjs';
 import { mergeEvents} from './import/mergeUtilities.mjs';
 
 // Chemin vers le fichier à lire
@@ -22,7 +23,9 @@ const showFullMergeLog = false;
 
 const dateConversionPatterns = getConversionPatterns();
 const venueList = loadVenuesJSONFile();
-let aliasList = getAliases(venueList);
+const aliasList = getAliases(venueList);
+const languages = getLanguages();
+
 
 //const venueNamesList = venues.map(el => el.name);
     
@@ -123,7 +126,7 @@ async function analyseFile(venue) {
   function analyseEvents(eventBlockList, hrefInDelimiterList, venue){
     let eventList = [];
     const dateFormat = (venue.hasOwnProperty('linkedPage') && venue.linkedPage.hasOwnProperty('eventDateTags'))?venue.linkedPageDateFormat:venue.dateFormat; 
-
+    const eventLanguages = languages[venue.country]; 
     // parsing each event
     try{
       eventBlockList.forEach((eve,eveIndex) =>{
@@ -205,7 +208,7 @@ async function analyseFile(venue) {
               eventInfo.eventStyle = globalDefaultStyle;
             }
           }
-          eventInfo.eventStyle = getStyle(eventInfo.eventStyle);
+          eventInfo.eventStyle = getStyle(eventInfo.eventStyle, eventLanguages);
           eventInfo.source = {'name':venue.name, 'city':venue.city, 'country':venue.country};
 
           // make a list of events in case of multidate
@@ -329,11 +332,12 @@ function FindLocationFromAlias(string,country,city,aliasList){
   return res;
 }
 
-function getStyle(string){
+function getStyle(string, eventLanguages){
   const stringComp = simplify(string);
   let res = string;
-  Object.keys(styleConversion).forEach(style =>{
-    if (styleConversion[style].some(word => stringComp.includes(simplify(word)))){
+  let localStyleConversion = styleConversion[eventLanguages[0]];
+  Object.keys(localStyleConversion).forEach(style =>{
+    if (localStyleConversion[style].some(word => stringComp.includes(simplify(word)))){
       res = style;
     }
   });

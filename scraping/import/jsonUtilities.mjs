@@ -80,8 +80,10 @@ export function getStyleConversions(){
     try{
         const res = JSON.parse(fs.readFileSync(styleConversionFile, 'utf8'));
 //        const res = await JSON.parse(await fs.promises.readFile(styleConversionFile, 'utf8'));
-        Object.keys(res).forEach(key =>{
-            res[key] = res[key].map(val => removeAccents(val.toLowerCase()));
+        Object.keys(res).forEach(language =>{
+            Object.keys(res[language]).forEach(key =>{
+                res[language][key] = res[language][key].map(val => removeAccents(val.toLowerCase()));
+            });
         });
         return res;
     }catch(err){
@@ -193,12 +195,20 @@ export function saveToVenuesJSON(jsonList){
     }
 }
 
+export function getLanguages(){
+    try{
+        return JSON.parse(fs.readFileSync(languagesFile, 'utf8'));
+    }catch(err) {
+        console.error('\x1b[36mCannot open languages JSON file:  \'%s\'\x1b[0m%s\n',languagesFile,err);
+    }
+    
+    
+}
 
 // this function is supposed to be multi-languages proof
 export function loadCancellationKeywords(){
     try{
-       // const countryList = removeDoubles(loadVenuesJSONFile().map(el => el.country));
-        const languages = JSON.parse(fs.readFileSync(languagesFile, 'utf8'));
+        const languages = getLanguages();
         const cancellationKeywords = JSON.parse(fs.readFileSync(loadCancellationKeywordsJSONFile, 'utf8'));
         function getKeywords(language){
             if (Object.keys(cancellationKeywords).includes(language)){
@@ -214,7 +224,6 @@ export function loadCancellationKeywords(){
         });
         return res;
     }catch(err) {
-        console.error('\x1b[36mCannot open venues JSON file:  \'%s\'\x1b[0m%s\n',venuesListJSONFile,err);
-        throw err;
+        console.error('\x1b[36mCannot open cancellation keywords JSON file:  \'%s\'\x1b[0m%s\n',loadCancellationKeywordsJSONFile,err);
     }
 }

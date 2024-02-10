@@ -1,10 +1,12 @@
 {
-    "Rock": ["ROCK"],
-    "Rap": ["RAP"],
-    "Electro": ["Electro","techno","house","Clubbing","Dj Set"],
-    "World": ["Sono Mondiale"],    
-    "Classique":["Classique","lyrique","opera"],
-    "Jazz":["jazz","groove"],
-    "": ["Unknwown"]
+    "French":{
+        "Rock": ["ROCK"],
+        "Rap": ["RAP"],
+        "Electro": ["Electro","techno","house","Clubbing","Dj Set"],
+        "World": ["Sono Mondiale"],    
+        "Classique":["Classique","lyrique","opera"],
+        "Jazz":["jazz","groove"],
+        "": ["Unknwown"]
+    }
 }
 
