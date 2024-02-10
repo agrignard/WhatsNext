@@ -1,4 +1,4 @@
-import { createDate, convertDate, showDate, getConversionPatterns} from './import/dateUtilities.mjs';
+import { createDate, convertDate, showDate, getDateConversionPatterns} from './import/dateUtilities.mjs';
 import * as fs from 'fs';
 import { parse, isValid }  from 'date-fns';
 import * as cheerio from 'cheerio';
@@ -7,7 +7,7 @@ import {makeURL, simplify} from './import/stringUtilities.mjs';
 import {loadLinkedPages, saveToJSON, saveToCSV} from './import/fileUtilities.mjs';
 import {samePlace, getAliases, getStyleConversions, loadVenuesJSONFile, 
         loadCancellationKeywords, writeToLog, isOnlyAlias, geAliasesToURLMap,
-        getLanguages} from './import/jsonUtilities.mjs';
+        getLanguages, fromLanguages, checkLanguages} from './import/jsonUtilities.mjs';
 import { mergeEvents} from './import/mergeUtilities.mjs';
 
 // Chemin vers le fichier à lire
@@ -21,13 +21,11 @@ const cancellationKeywords = loadCancellationKeywords();
 const showFullMergeLog = false;
 
 
-const dateConversionPatterns = getConversionPatterns();
+const dateConversionPatterns = getDateConversionPatterns();
 const venueList = loadVenuesJSONFile();
 const aliasList = getAliases(venueList);
 const languages = getLanguages();
 
-
-//const venueNamesList = venues.map(el => el.name);
     
 const fileToScrap = process.argv[2];
 if (fileToScrap){
@@ -92,6 +90,9 @@ async function scrapFiles(venues) {
   writeLogFile(totalEventList,'error');
   writeLogFile(totalEventList,'warning');
   console.log('\n');
+
+  // check missing languages
+  checkLanguages(venues);
   
 }
 
@@ -127,6 +128,7 @@ async function analyseFile(venue) {
     let eventList = [];
     const dateFormat = (venue.hasOwnProperty('linkedPage') && venue.linkedPage.hasOwnProperty('eventDateTags'))?venue.linkedPageDateFormat:venue.dateFormat; 
     const eventLanguages = languages[venue.country]; 
+    const localDateConversionPatterns = fromLanguages(dateConversionPatterns,eventLanguages);
     // parsing each event
     try{
       eventBlockList.forEach((eve,eveIndex) =>{
@@ -217,11 +219,12 @@ async function analyseFile(venue) {
           
           eventInfoList.forEach(el => {
             // change the date format to Unix time
-            let formatedEventDate = createDate(el.eventDate,dateFormat,dateConversionPatterns);
+            let formatedEventDate = createDate(el.eventDate,dateFormat,localDateConversionPatterns);
            // el.date = formatedEventDate;
             if (!isValid(formatedEventDate)){
+              console.log(localDateConversionPatterns);
               writeToLog('error',el,['\x1b[31mFormat de date invalide pour %s. Reçu \"%s\", converti en \"%s\" (attendu \"%s\")\x1b[0m', 
-                venue.name,el.eventDate,convertDate(el.eventDate,dateConversionPatterns),dateFormat],true);
+                venue.name,el.eventDate,convertDate(el.eventDate,localDateConversionPatterns),dateFormat],true);
               el.unixDate = 0;
             }else{
               // changer 00:00 en 23:59 si besoin
@@ -335,7 +338,8 @@ function FindLocationFromAlias(string,country,city,aliasList){
 function getStyle(string, eventLanguages){
   const stringComp = simplify(string);
   let res = string;
-  let localStyleConversion = styleConversion[eventLanguages[0]];
+  //  let localStyleConversion = styleConversion[eventLanguages[0]];
+  let localStyleConversion = fromLanguages(styleConversion,eventLanguages);
   Object.keys(localStyleConversion).forEach(style =>{
     if (localStyleConversion[style].some(word => stringComp.includes(simplify(word)))){
       res = style;

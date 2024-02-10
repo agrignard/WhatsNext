@@ -1,17 +1,19 @@
-import { createDate, numberOfInvalidDates, getCommonDateFormats, getConversionPatterns} from './import/dateUtilities.mjs';
+import { createDate, numberOfInvalidDates, getCommonDateFormats, getDateConversionPatterns} from './import/dateUtilities.mjs';
 import {removeDoubles, convertToLowerCase, removeBlanks, makeURL} from './import/stringUtilities.mjs';
 import {loadLinkedPages} from './import/fileUtilities.mjs';
-import {loadVenueScrapInfofromFile, loadVenueJSON, loadVenuesJSONFile, saveToVenuesJSON} from './import/jsonUtilities.mjs';
+import {loadVenueScrapInfofromFile, loadVenueJSON, loadVenuesJSONFile, saveToVenuesJSON, 
+        getLanguages, checkLanguages, fromLanguages} from './import/jsonUtilities.mjs';
 
 import * as fs from 'fs';
 import * as cheerio from 'cheerio';
 import {parseDocument} from 'htmlparser2';
 
 var sourcePath = './webSources/';
+const languages = getLanguages();
 
 const venueToAnalyse = process.argv[2];// argument to load default strings to parse
 
-let venueName = 'Le Petit Bulletin';
+let venueName;
 
 let linkedFileContent, venuesListJSON, venueJSON, eventStrings;
 
@@ -58,19 +60,16 @@ function readBodyContent(file) {
     return $('body').html();
 }
 
+// load main pages
 const fileContent = inputFileList.map(readBodyContent).join('\n');
 
 
 // load date conversion pattern
-const dateConversionPatterns = getConversionPatterns();
+const dateConversionPatterns = fromLanguages(getDateConversionPatterns(),languages[venueJSON.country]);
+console.log(dateConversionPatterns);
+//const dateConversionPatterns = getDateConversionPatterns()[];
 
-// load main page
-// try{
-//     fileContent = await fs.promises.readFile(sourcePath+fileName, 'utf8');
-// }catch(err) {
-//     console.error("\x1b[31mCannot open file :%s\x1b[0m\n%s",fileName,err);
-//     throw err;
-// }
+
 
 // load linked page
 if (eventStrings.linkedPage && fs.existsSync(sourcePath+'linkedPages.json')){
@@ -202,7 +201,6 @@ if (tagsContainingStrings.length === 0){
     
     // find strings in linked pages
 
-    console.log(eventStrings);
     if (eventStrings.hasOwnProperty('linkedPage')){
         if (linkedFileContent){
             let linkURL;
@@ -226,10 +224,11 @@ if (tagsContainingStrings.length === 0){
                 }else{
                     venueJSON.linkedPage = addJSONBlock(eventStrings.linkedPage,$linked);
                 }
-                let dates = getAllDates("BODY",venueJSON.linkedPage['eventDateTags'],$linked);
-                console.log(dates);
-                venueJSON.linkedPageDateFormat = getBestDateFormat(dates,venueJSON.linkedPage, dateConversionPatterns);
-            }else{
+                if (venueJSON.linkedPage.hasOwnProperty('eventDateTags')){
+                    let dates = getAllDates("BODY",venueJSON.linkedPage['eventDateTags'],$linked);
+                    venueJSON.linkedPageDateFormat = getBestDateFormat(dates,venueJSON.linkedPage, dateConversionPatterns);    
+                }
+             }else{
                 console.log('\x1b[31mError getting data from linked pages. Run again \x1b[0maspiratorex.js\x1b[31m ?.\x1b[0m\n');
             }
         }else{
@@ -248,7 +247,7 @@ if (tagsContainingStrings.length === 0){
 }
 
 console.log("\n\n");
-
+checkLanguages([venueJSON]);
 
 
 

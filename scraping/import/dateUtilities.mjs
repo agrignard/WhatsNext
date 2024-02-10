@@ -6,8 +6,7 @@
 import { parse, isValid }  from 'date-fns';
 import * as fs from 'fs';
 
-const dateConversionFile = './import/dateConversion.json';
-const styleConversionFile = './import/styleConversion.json';
+export const dateConversionFile = './import/dateConversion.json';
 
 // verify if two unix dates correspond to the same day
 export function  sameDay(timestamp1, timestamp2) {// as unixdate
@@ -34,7 +33,7 @@ export function showDate(date){
 
 
 // load date conversion patterns
-export function getConversionPatterns(){
+export function getDateConversionPatterns(){
   try{
       return JSON.parse(fs.readFileSync(dateConversionFile, 'utf8'));
   }catch(err){

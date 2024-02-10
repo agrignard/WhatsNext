@@ -5,13 +5,15 @@
 
 import * as fs from 'fs';
 import {simplify} from './stringUtilities.mjs';
-import {removeAccents, removeBlanks, removeDoubles} from './stringUtilities.mjs';
+import {removeAccents, removeDoubles} from './stringUtilities.mjs';
+import {getDateConversionPatterns, dateConversionFile} from './dateUtilities.mjs';
 
 export const venuesListJSONFile = "./venues.json";
 const scrapInfoFile = "./venuesScrapInfo.json"; // path should start from the directory of the calling script
 const styleConversionFile = "./import/styleConversion.json";
-const loadCancellationKeywordsJSONFile = "./import/cancellationKeywords.json";
+const cancellationKeywordsJSONFile = "./import/cancellationKeywords.json";
 const languagesFile = "./import/languages.json";
+
 
 // returns true is a venue is only an alias (not for scrapping)
 export function isOnlyAlias(venue){
@@ -209,7 +211,7 @@ export function getLanguages(){
 export function loadCancellationKeywords(){
     try{
         const languages = getLanguages();
-        const cancellationKeywords = JSON.parse(fs.readFileSync(loadCancellationKeywordsJSONFile, 'utf8'));
+        const cancellationKeywords = JSON.parse(fs.readFileSync(cancellationKeywordsJSONFile, 'utf8'));
         function getKeywords(language){
             if (Object.keys(cancellationKeywords).includes(language)){
                 return cancellationKeywords[language].map(el => simplify(el));
@@ -224,6 +226,45 @@ export function loadCancellationKeywords(){
         });
         return res;
     }catch(err) {
-        console.error('\x1b[36mCannot open cancellation keywords JSON file:  \'%s\'\x1b[0m%s\n',loadCancellationKeywordsJSONFile,err);
+        console.error('\x1b[36mCannot open cancellation keywords JSON file:  \'%s\'\x1b[0m%s\n',cancellationKeywordsJSONFile,err);
+    }
+}
+
+
+export function fromLanguages(jsonObject, languages){
+    const res = {};
+    Object.keys(jsonObject).filter(language => languages.includes(language))
+    .forEach(language => {
+        Object.keys(jsonObject[language]).forEach(key =>{
+            res[key] = res.hasOwnProperty(key)?res[key].concat(jsonObject[language][key]):jsonObject[language][key];
+        });
+    }); 
+    return res;
+}
+
+export function checkLanguages(venues){
+    let showMessage = false;
+    const countriesToLanguages = getLanguages();
+    const languages = removeDoubles(venues.map(el => countriesToLanguages[el.country]).flat());
+    const styleLanguages = Object.keys(getStyleConversions());
+    languages.filter(language => !styleLanguages.includes(language))
+    .forEach(language =>{
+        showMessage = true;
+        console.log("\x1b[31mLanguage \x1b[0m%s\x1b[31m not defined for \x1b[0mstyles\x1b[31m. Update '%s\'.\x1b[0m", language, styleConversionFile)
+    });
+    const dateLanguages = Object.keys(getDateConversionPatterns());
+    languages.filter(language => !dateLanguages.includes(language))
+    .forEach(language =>{
+        showMessage = true;
+        console.log("\x1b[31mLanguage \x1b[0m%s\x1b[31m not defined for \x1b[0mdates\x1b[31m. Update '%s\'.\x1b[0m", language, dateConversionFile)
+    });
+    const cancellationLanguages = Object.keys(getDateConversionPatterns());
+    languages.filter(language => !cancellationLanguages.includes(language))
+    .forEach(language =>{
+        showMessage = true;
+        console.log("\x1b[31mLanguage \x1b[0m%s\x1b[31m not defined for \x1b[0mcancellation keywords\x1b[31m. Update '%s\'.\x1b[0m", language, dateConversionFile)
+    });
+    if (showMessage){
+        console.log('Fix languages issues then run script again.\n');
     }
 }

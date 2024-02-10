@@ -1,0 +1,282 @@
+Date: Date et horaires Dimanche 04 Février 2024 à 16h00
+Event: Big Band de l'Ouest + Dim Dam Domb' Big Band
+Place: Le Périscope
+city: Lyon
+country: France
+Style: Jazz
+isCancelled: false
+DetailedStyle: Jazz
+source: [object Object]
+unixDate: 1738681200000
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Big Band de l'Ouest + Dim Dam Domb' Big Band (Le Périscope). Found 17:00,16:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-308597-big-band-de-l-ouest-dim-dam-domb-big-band.html
+
+Date: Jeudi 7 mars 2024 à 20h30
+Event: Grandbrothers
+Place: Epicerie Moderne
+city: Lyon
+country: France
+Style: Electro
+isCancelled: false
+DetailedStyle: Musiques Electroniques
+source: [object Object]
+unixDate: 1709839800000
+mergeCandidates: [object Object],[object Object],[object Object]
+warningLog: Inconsistent times for Grandbrothers (Epicerie Moderne). Found 20:30,00:00. Consider merging or discarding.
+altURLs: https://www.petit-bulletin.fr/lyon/agenda-281469-grandbrothers.html,https://epiceriemoderne.com/agenda
+https://epiceriemoderne.com/agenda
+
+Date: Date et horaires Samedi 23 Mars 2024 à 19h30
+Event: Social Dance + Solann + Cyrious + Melba
+Place: Transbordeur
+city: Lyon
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Rock & Pop
+source: [object Object]
+unixDate: 1711218600000
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Social Dance + Solann + Cyrious + Melba (Transbordeur). Found 20:00,19:30. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-308624-social-dance-solann-cyrious-melba.html
+
+Date: Jeudi 28 mars 2024 à 20h30
+Event: Wajdi Riahi Trio
+Place: Hot Club
+city: Lyon
+country: France
+Style: Jazz
+isCancelled: false
+DetailedStyle: Jazz
+source: [object Object]
+unixDate: 1711654200000
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Wajdi Riahi Trio (Hot Club). Found 20:30,00:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-308760-wajdi-riahi-trio.html
+
+Date: Jeudi 21 mars 2024 à 20h30
+Event: Clara Ysé + Barkanan
+Place: Epicerie Moderne
+city: Lyon
+country: France
+Style: Chanson
+isCancelled: false
+DetailedStyle: musique live
+source: [object Object]
+unixDate: 1711049400000
+mergeCandidates: [object Object],[object Object],[object Object]
+warningLog: Inconsistent times for Clara Ysé + Barkanan (Epicerie Moderne). Found 20:30,19:30. Consider merging or discarding.
+altURLs: https://www.petit-bulletin.fr/lyon/agenda-308722-clara-yse.html,https://epiceriemoderne.com/agenda
+https://epiceriemoderne.com/agenda
+
+Date: Vendredi 22 mars 2024 à 20h30
+Event: Malo + Jeune Mort + Matox
+Place: Bizarre!
+city: Lyon
+country: France
+Style: Rap
+isCancelled: false
+DetailedStyle: Rap
+source: [object Object]
+unixDate: 1711135800000
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Malo + Jeune Mort + Matox (Bizarre!). Found 20:30,20:35. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-308204-malo-jeune-mort-matox.html
+
+Date: Vendredi 19 avril 2024 à 19h
+Event: Seth + Kronos
+Place: Rock N Eat
+city: Lyon
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Rock & Pop / Metal
+source: [object Object]
+unixDate: 1713546000000
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Seth + Kronos (Rock N Eat). Found 19:00,00:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-308803-seth-kronos.html
+
+Date: 9 février à 20:00
+Event: KIK (KIKESA)
+Place: La Rayonne
+city: Lyon
+country: France
+Style: Rap
+isCancelled: false
+DetailedStyle: musique live
+source: [object Object]
+unixDate: 1739127600000
+mergeCandidates: [object Object],[object Object],[object Object]
+warningLog: Inconsistent times for KIK (KIKESA) (La Rayonne). Found 19:00,20:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-308843-kik.html
+
+Date: Date et horaires Samedi 10 Février 2024 à 19h30
+Event: Apashe
+Place: Transbordeur
+city: Lyon
+country: France
+Style: Electro
+isCancelled: false
+DetailedStyle: Musiques Electroniques
+source: [object Object]
+unixDate: 1707589800000
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Apashe (Transbordeur). Found 20:00,19:30. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-308614-apashe.html
+
+Date: 16 février à 20:00
+Event: La Colonie de Vacances
+Place: La Rayonne
+city: Lyon
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Rock & Pop / Rock
+source: [object Object]
+unixDate: 1708110000000
+mergeCandidates: [object Object],[object Object],[object Object]
+warningLog: Inconsistent times for La Colonie de Vacances (La Rayonne). Found 19:00,20:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-286577-la-colonie-de-vacances.html
+
+Date: Dimanche 18 février 2024 à 17h
+Event: Didier Barbelivien
+Place: Bourse du Travail
+city: Lyon
+country: France
+Style: Chanson
+isCancelled: false
+DetailedStyle: Chanson
+source: [object Object]
+unixDate: 1708272000000
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Didier Barbelivien (Bourse du Travail). Found 17:00,20:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-300060-didier-barbelivien.html
+
+Date: 18 février à 18:30
+Event: Persefone + Hypno5e + Stellar Circuits + Lampr3a
+Place: Rock N Eat
+city: Lyon
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Rock & Pop / Metal
+source: [object Object]
+unixDate: 1708277400000
+mergeCandidates: [object Object],[object Object],[object Object]
+warningLog: Inconsistent times for Persefone + Hypno5e + Stellar Circuits + Lampr3a (Rock N Eat). Found 19:00,18:30. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-308793-persefone-hypno5e.html
+
+Date: 14 février à 19:00
+Event: Deadfuck + Pulsating Cerebral Slime + Festering Process
+Place: Rock N Eat
+city: Lyon
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Rock & Pop / Metal
+source: [object Object]
+unixDate: 1707933600000
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Deadfuck + Pulsating Cerebral Slime + Festering Process (Rock N Eat). Found 20:00,19:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-308791-deadfuck-pulsating-cerebral-slime-festering-process.html
+
+Date: 24 février à 20:00
+Event: Nick Wheeldon + Romano Bianchi + Wendy Martinez
+Place: Le Périscope
+city: Lyon
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: musique live
+source: [object Object]
+unixDate: 1708801200000
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Nick Wheeldon + Romano Bianchi + Wendy Martinez (Le Périscope). Found 21:00,20:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-308604-nick-wheeldon-romano-bianchi-wendy-martinez.html
+
+Date: Mercredi 28 février 2024 à 20h45
+Event: Tournée Générale: Hassan K + Edi Pou
+Place: Le Trokson
+city: Lyon
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Rock & Pop / Expérimental
+source: [object Object]
+unixDate: 1709149500000
+mergeCandidates: [object Object],[object Object],[object Object]
+warningLog: Inconsistent times for Tournée Générale: Hassan K + Edi Pou (Le Trokson). Found 20:45,20:30. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-309257-hassan-k-edi-pou.html
+
+Date: 29 février à 20:00
+Event: Rsko
+Place: La Rayonne
+city: Lyon
+country: France
+Style: Rap
+isCancelled: false
+DetailedStyle: musique live
+source: [object Object]
+unixDate: 1709233200000
+mergeCandidates: [object Object],[object Object],[object Object]
+warningLog: Inconsistent times for Rsko (La Rayonne). Found 19:00,20:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-308846-rsko.html
+
+Date: Date et horaires Dimanche 03 Mars 2024 à 19h00
+Event: Blaze Bayley + Absolva
+Place: Rock N Eat
+city: Lyon
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Rock & Pop / Metal
+source: [object Object]
+unixDate: 1709488800000
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Blaze Bayley + Absolva (Rock N Eat). Found 20:00,19:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-308797-blaze-bayley-absolva.html
+
+Date: Mardi 5 mars 2024 à 19h
+Event: Leprous
+Place: La Rayonne
+city: Lyon
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Rock & Pop / Metal
+source: [object Object]
+unixDate: 1709661600000
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Leprous (La Rayonne). Found 19:00,19:30. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-281688-leprous.html
+
+Date: Date et horaires Mercredi 31 Janvier 2024 à 20h00
+Event: Control Voltage
+Place: Le Trokson
+city: Lyon
+country: France
+isCancelled: false
+Style: musique live
+DetailedStyle: musique live
+source: [object Object]
+unixDate: 1738350000000
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Control Voltage (Le Trokson). Found 20:30,20:00. Consider merging or discarding.
+https://villemorte.fr/agenda/control-voltage-7/
+
+Date: 2 février à 20:00
+Event: Marc Copland & Daniel Schläppi duo
+Place: Le Périscope
+city: Lyon
+country: France
+isCancelled: false
+Style: musique live
+DetailedStyle: musique live
+source: [object Object]
+unixDate: 1738522800000
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Marc Copland & Daniel Schläppi duo (Le Périscope). Found 20:00,21:00. Consider merging or discarding.
+https://www.periscope-lyon.com/concerts/marc-copland-daniel-schlappi-duo/
+
