@@ -5,7 +5,8 @@ import * as cheerio from 'cheerio';
 import {parseDocument} from 'htmlparser2';
 import {makeURL, simplify} from './import/stringUtilities.mjs';
 import {loadLinkedPages, saveToJSON, saveToCSV} from './import/fileUtilities.mjs';
-import {samePlace, getAliases, getStyleConversions, loadVenuesJSONFile, writeToLog} from './import/jsonUtilities.mjs';
+import {samePlace, getAliases, getStyleConversions, loadVenuesJSONFile, 
+        loadCancellationKeywords, writeToLog, isOnlyAlias, geAliasesToURLMap} from './import/jsonUtilities.mjs';
 import { mergeEvents} from './import/mergeUtilities.mjs';
 
 // Chemin vers le fichier à lire
@@ -15,6 +16,7 @@ const sourcePath = './webSources/';
 const outFile = "generated/scrapexResult.csv";
 const globalDefaultStyle = '';
 const styleConversion = getStyleConversions();
+const cancellationKeywords = loadCancellationKeywords();
 const showFullMergeLog = false;
 
 
@@ -34,8 +36,8 @@ if (fileToScrap){
     console.log('\x1b[31mFichier \x1b[0m%s.html\x1b[31m non trouvé. Fin du scrapping.\x1b[0m\n', fileToScrap);
   }
 }else{
-  await scrapFiles(venueList.filter(el => el.hasOwnProperty('eventsDelimiterTag')));
-  const venuesToSkip = venueList.filter(el => !el.hasOwnProperty('eventsDelimiterTag')).map(el => el.name+' ('+el.city+', '+el.country+')');
+  await scrapFiles(venueList.filter(el => !isOnlyAlias(el)));
+  const venuesToSkip = venueList.filter(el => isOnlyAlias(el)).map(el => el.name+' ('+el.city+', '+el.country+')');
   console.log('\x1b[36mWarning: the following venues have no scraping details and are only used as aliases. Run analex if it is a mistake.\x1b[0m',venuesToSkip);
 }
 
@@ -63,9 +65,15 @@ async function scrapFiles(venues) {
       console.log('\x1b[31mEntrée %s non traitée.\x1b[0m', venue.name);
     }
   }
+  // *** post processing ***
+
   // merge duplicate events
   console.log('*** Merging duplicate events ***\n');
   totalEventList = mergeEvents(totalEventList,showFullMergeLog);
+
+  // provide local URLs for alias venues
+
+  totalEventList = fixAliasURLs(totalEventList,geAliasesToURLMap());
 
   console.log('Scrapex fini avec succex !! (%s events found).\n', totalEventList.length);
 
@@ -120,14 +128,13 @@ async function analyseFile(venue) {
     try{
       eventBlockList.forEach((eve,eveIndex) =>{
         let $eventBlock = cheerio.load(eve);
-        let eventInfo = {'eventPlace':venue.name};
+        let eventInfo = {'eventPlace':venue.name, 'city':venue.city, 'country':venue.country};
         
-        // changing to default style if no style
-        // eventInfo.eventStyle = venue.hasOwnProperty('defaultStyle')?venue.defaultStyle:globalDefaultStyle;
-
         // **** event data extraction ****/
         Object.keys(venue.scrap).forEach(key => eventInfo[key.replace('Tags','')] = getText(key,venue.scrap,$eventBlock));
 
+        // find if cancelled
+        eventInfo.isCancelled = isCancelled($eventBlock.text(),cancellationKeywords[venue.country]);
 
         //extract URL
         let eventURL;
@@ -154,12 +161,15 @@ async function analyseFile(venue) {
           writeToLog('error',eventInfo,["\x1b[31mErreur lors de la récupération de l\'URL.\x1b[0m",err],true);
         }
 
+
         if (!isEmptyEvent(eventInfo)){
           // scrap info from linked page
           if (linkedFileContent){
             try{
               const $linkedBlock = cheerio.load(linkedFileContent[eventURL]);
               Object.keys(venue.linkedPage).forEach(key => eventInfo[key.replace('Tags','')] = getText(key,venue.linkedPage,$linkedBlock));  
+              // look for cancellation keywords. Leave commented since it appears that linkedpages do not contain appropriate information about cancellation 
+              // eventInfo.iscancelled = eventInfo.iscancelled || isCancelled($linkedBlock.text(),cancellationKeywords[venue.country]);
             }catch{
               writeToLog('error',eventInfo,['\x1b[31mImpossible de lire la page liée pour l\'événement \'%s\'. Erreur lors du téléchargement ?\x1b[0m', eventInfo.eventName],true);
             }
@@ -331,10 +341,11 @@ function getStyle(string){
 }
 
 function  displayEventLog(eventInfo){
-  console.log('Event : %s (%s, %s)',eventInfo.eventName,eventInfo.source.city,eventInfo.source.country);
+  console.log('Event : %s (%s, %s)%s',eventInfo.eventName,eventInfo.city,eventInfo.country,eventInfo.isCancelled?' (cancelled)':'');
   Object.keys(eventInfo).forEach(key => {
-      if (!['eventName', 'eventDate', 'eventURL', 'unixDate', 'eventDummy', 'source','city','country'].includes(key)){
-        console.log(key.replace('event',''),': ',eventInfo[key.replace('Tags','')]);
+      if (!['eventName', 'eventDate', 'eventURL', 'unixDate', 'eventDummy', 'source','city','country','isCancelled'].includes(key)
+          && eventInfo[key.replace('Tags','')] !== ''){
+        console.log(key.replace('event','')+': %s',eventInfo[key.replace('Tags','')]);
     }
   });
   console.log((eventInfo.eventURL)+'\n');
@@ -438,7 +449,7 @@ function changeMidnightHour(date,targetDay,eventInfo){
 }
 
 
-export function writeLogFile(eventList,type){
+function writeLogFile(eventList,type){
   const colorTag = type==='error'?'\x1b[31m':'\x1b[36m';
   const key = type+'Log';
   const list = eventList.filter(el => el.hasOwnProperty(key));
@@ -457,4 +468,25 @@ export function writeLogFile(eventList,type){
       console.error("\x1b[31mCannot write error log file:\x1b[0m %s", err);
     }
   });
+}
+
+// find in an event text if the venue is cancelled
+function isCancelled(text,keywords){
+  const txt = simplify(text);
+  return keywords.some(kw => txt.includes(kw));
+}
+
+
+function fixAliasURLs(events, venueToURL){
+  events.forEach(event => {
+    const correspondingVenue = venueToURL.find(el => samePlace(event,el));
+    if (correspondingVenue){
+      if (!event.hasOwnProperty('altURLs')){
+        event.altURLs = [event.eventURL];
+      }
+      event.eventURL = correspondingVenue.url;
+      event.altURLs.push(event.eventURL);
+    }
+  });
+  return events;
 }

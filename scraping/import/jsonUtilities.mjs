@@ -5,13 +5,23 @@
 
 import * as fs from 'fs';
 import {simplify} from './stringUtilities.mjs';
-import {removeAccents, removeBlanks, extractBody} from './stringUtilities.mjs';
+import {removeAccents, removeBlanks, removeDoubles} from './stringUtilities.mjs';
 
 export const venuesListJSONFile = "./venues.json";
 const scrapInfoFile = "./venuesScrapInfo.json"; // path should start from the directory of the calling script
 const styleConversionFile = "./import/styleConversion.json";
+const loadCancellationKeywordsJSONFile = "./import/cancellationKeywords.json";
+const languagesFile = "./import/languages.json";
 
+// returns true is a venue is only an alias (not for scrapping)
+export function isOnlyAlias(venue){
+    return !venue.hasOwnProperty('eventsDelimiterTag');
+}
 
+// provide a map between places and URLs, for aliases places which have a declared URL
+export function geAliasesToURLMap(){
+    return loadVenuesJSONFile().filter(el => isOnlyAlias(el) && el.hasOwnProperty('url'));
+}
 
 // returns the venue (name, city, country) of an object
 export function getEventPlace(object){
@@ -180,5 +190,31 @@ export function saveToVenuesJSON(jsonList){
         console.log('Added to venues in %s',venuesListJSONFile);
     }catch(err){
         console.log('\x1b[31mError saving to .json: \'%s\' %s\x1b[0m',venuesListJSONFile,err);
+    }
+}
+
+
+// this function is supposed to be multi-languages proof
+export function loadCancellationKeywords(){
+    try{
+       // const countryList = removeDoubles(loadVenuesJSONFile().map(el => el.country));
+        const languages = JSON.parse(fs.readFileSync(languagesFile, 'utf8'));
+        const cancellationKeywords = JSON.parse(fs.readFileSync(loadCancellationKeywordsJSONFile, 'utf8'));
+        function getKeywords(language){
+            if (Object.keys(cancellationKeywords).includes(language)){
+                return cancellationKeywords[language].map(el => simplify(el));
+            }else{
+                console.log("\x1b[36mWarning, no cancellation keywords defined for language %s. Add it to \'import\\cancellationKeywords.json\'\x1b[0m", language);
+                return [];
+            }
+        }
+        const res = {};
+        Object.keys(languages).forEach(country => {
+            res[country] = languages[country].map(language => getKeywords(language)).flat();
+        });
+        return res;
+    }catch(err) {
+        console.error('\x1b[36mCannot open venues JSON file:  \'%s\'\x1b[0m%s\n',venuesListJSONFile,err);
+        throw err;
     }
 }

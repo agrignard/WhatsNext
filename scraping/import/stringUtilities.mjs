@@ -13,11 +13,19 @@
 //   return (candidateList.length > 0)?candidateList[0]:string;
 // }
 
-// remove duplicates elements from a list
 
+// simplify a string. This function is intended to be used for string comparison
+// in order to prevent blanks, special caracters, accents from finding a good match
 export function simplify(string){
-  return removeAccents(string.toLowerCase());
+  // remove accents, special characters and convert to lower case
+  const res = removeBlanks(removeSpecialCharacters(removeAccents(string.toLowerCase()),' '));
+  return res;
 }
+
+function removeSpecialCharacters(string, replacement){
+  return string.replace(/[~!@$%^&*()+=\-,.\/';:?><\[\]\\{}|`#]/g,replacement);
+}
+
 
 export function removeAccents(string){
   // let res = string;
@@ -30,6 +38,7 @@ export function removeAccents(string){
   return string.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
 }
 
+// remove duplicates elements from a list
 export function removeDoubles(list) {
     if (Array.isArray(list)){
      const res = [];
@@ -71,18 +80,6 @@ export function makeURL(baseURL, url){
   }else{
     return undefined;
   }
-  // if (URL){
-  //   const bu = baseURL.endsWith('/')?baseURL.slice(0,-1):baseURL;
-  //   const url = URL.startsWith('/')?URL.slice(1):URL;
-  //   //   if (URL.startsWith(bu) || URL.startsWith('http')){
-  //   if (isAbsoluteURL(url)){
-  //     return url;
-  //   }else{
-  //     return bu+'/'+url;
-  //   }
-  // }else{
-  //   return undefined;
-  // }
 }
 
 // convert the text of an html file to lower case (does not modify the case within tags)
@@ -145,7 +142,7 @@ function fixTags(content){// pour l'instant, ne fixe que les balises 'a' mal fer
 // remove forbidden characters from tag classes
 function cleanHtml(content){
   function removeForbiddenCaracters(match,p,offset,string){// remove the forbidden caracters
-    return p.replace(/[~!@$%^&*()+=\-,.\/';:?><\[\]\\{}|`#]/g,'');
+    return removeSpecialCharacters(p,'');
   }
 
   function replaceClass(p) {//find the classes that are URLs (not href) and apply removeForbiddenCaracters

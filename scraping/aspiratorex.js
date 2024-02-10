@@ -5,7 +5,7 @@
 
 
 import * as fs from 'fs';
-import {removeDoubles, makeURL, cleanPage, removeBlanks,extractBody} from './import/stringUtilities.mjs';
+import {removeDoubles, makeURL, cleanPage, extractBody} from './import/stringUtilities.mjs';
 import {loadLinkedPages,fetchAndRecode,fetchLink} from './import/fileUtilities.mjs';
 import {loadVenuesJSONFile, saveToVenuesJSON} from './import/jsonUtilities.mjs';
 import {getURLListFromPattern} from './import/dateUtilities.mjs';

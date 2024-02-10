@@ -71,9 +71,6 @@ export function mergeEvents(eventList,showFullMergeLog){
             const candidates = event.mergeCandidates;// keep a trace for the merge log
             const hasLocalSource = event.mergeCandidates.some(el => fromLocalSource(el));
             if (hasLocalSource){// if some events are from local source (site scraped and venue are the same), discard events from other sources (local source is assumed to be more reliable)
-                if (event.eventName.startsWith('LANK')){
-                    console.log('milieu');
-                }
                 event.mergeCandidates = event.mergeCandidates.filter(el => fromLocalSource(el));
                 dateList = removeDoubles(event.mergeCandidates.map(el => el.unixDate));
             }else{// no local source. Event schedules time are analysed to see if they are legit or a mistake

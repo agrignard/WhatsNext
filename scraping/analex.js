@@ -1,5 +1,5 @@
 import { createDate, numberOfInvalidDates, getCommonDateFormats, getConversionPatterns} from './import/dateUtilities.mjs';
-import {removeDoubles, convertToLowerCase, removeBlanks,makeURL} from './import/stringUtilities.mjs';
+import {removeDoubles, convertToLowerCase, removeBlanks, makeURL} from './import/stringUtilities.mjs';
 import {loadLinkedPages} from './import/fileUtilities.mjs';
 import {loadVenueScrapInfofromFile, loadVenueJSON, loadVenuesJSONFile, saveToVenuesJSON} from './import/jsonUtilities.mjs';
 
