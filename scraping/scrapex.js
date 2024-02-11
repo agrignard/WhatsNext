@@ -4,7 +4,7 @@ import { parse, isValid }  from 'date-fns';
 import * as cheerio from 'cheerio';
 import {parseDocument} from 'htmlparser2';
 import {makeURL, simplify} from './import/stringUtilities.mjs';
-import {loadLinkedPages, saveToJSON, saveToCSV} from './import/fileUtilities.mjs';
+import {loadLinkedPages, getVenuesFromArguments, saveToJSON, saveToCSV} from './import/fileUtilities.mjs';
 import {samePlace, getAliases, getStyleConversions, loadVenuesJSONFile, 
         loadCancellationKeywords, writeToLog, isOnlyAlias, geAliasesToURLMap,
         getLanguages, fromLanguages, checkLanguages} from './import/jsonUtilities.mjs';
@@ -22,24 +22,19 @@ const showFullMergeLog = false;
 
 
 const dateConversionPatterns = getDateConversionPatterns();
-const venueList = loadVenuesJSONFile();
+const venueList = loadVenuesJSONFile(); 
 const aliasList = getAliases(venueList);
 const languages = getLanguages();
 
-    
-const fileToScrap = process.argv[2];
-if (fileToScrap){
-  if (venueList.some(element => element.name === fileToScrap)){
-    console.log('\x1b[32m%s\x1b[0m', `Traitement uniquement de \'${fileToScrap}\'`);
-    const venues = venueList.filter(element => element.name === fileToScrap);
-    scrapFiles(venues);
-  }else{
-    console.log('\x1b[31mFichier \x1b[0m%s.html\x1b[31m non trouvé. Fin du scrapping.\x1b[0m\n', fileToScrap);
-  }
+
+const venues = getVenuesFromArguments(process.argv, venueList); // venueList is kept to allow finding matches with event places
+
+if (venues.length === 0){
+  console.log("No place matching arguments.");
 }else{
-  await scrapFiles(venueList.filter(el => !isOnlyAlias(el)));
-  const venuesToSkip = venueList.filter(el => isOnlyAlias(el)).map(el => el.name+' ('+el.city+', '+el.country+')');
-  console.log('\x1b[36mWarning: the following venues have no scraping details and are only used as aliases. Run analex if it is a mistake.\x1b[0m',venuesToSkip);
+  await scrapFiles(venues.filter(el => !isOnlyAlias(el)));
+  const venuesToSkip = venues.filter(el => isOnlyAlias(el)).map(el => el.name+' ('+el.city+', '+el.country+')');
+  console.log('\x1b[36mWarning: the following venues have no scraping details and are only used as aliases. Run analex if it is a mistake.\x1b[0m',venuesToSkip);    
 }
 
 
@@ -498,3 +493,4 @@ function fixAliasURLs(events, venueToURL){
   });
   return events;
 }
+

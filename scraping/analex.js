@@ -11,17 +11,19 @@ import {parseDocument} from 'htmlparser2';
 var sourcePath = './webSources/';
 const languages = getLanguages();
 
-const venueToAnalyse = process.argv[2];// argument to load default strings to parse
+let linkedFileContent, venuesListJSON, venueJSON;// eventStrings;
 
+const venueToAnalyse = filterFromArguments(process.argv);// argument to load default strings to parse
+let eventStrings = loadVenueScrapInfofromFile(venueToAnalyse);
 let venueName;
 
-let linkedFileContent, venuesListJSON, venueJSON, eventStrings;
+
 
 // set the venue to analyze
-if (venueToAnalyse){
-    eventStrings = loadVenueScrapInfofromFile(venueToAnalyse);
-    venueName = venueToAnalyse;
-}
+// if (venueToAnalyse){
+//     eventStrings = loadVenueScrapInfofromFile(venueToAnalyse);
+//     venueName = venueToAnalyse;
+// }
 
 console.log('\n\n\x1b[36m%s\x1b[0m', `******* Analyzing venue: ${venueName}  *******`);
 Object.keys(eventStrings.mainPage)
@@ -490,4 +492,28 @@ function getBestDateFormat(dates, JSON, dateConversionPatterns){
     });
     console.log("\nFound %s events. Best date format: \x1b[36m\"%s\"\x1b[0m (%s/%s invalid dates)",dates.length,bestDateFormat,bestScore,dates.length);
     return bestDateFormat;
+}
+
+
+function filterFromArguments(args){
+    args = args.slice(2).map(el => el.toLowerCase()); 
+    if (args.length > 3){
+      console.log(args.length);
+      console.log("\x1b[31mError: too many arguments\x1b[0m");
+      args = ['--help'];
+    }
+    if (args.length === 0){
+        console.log("\x1b[31mError: not enough arguments\x1b[0m");
+        args = ['--help'];
+      }
+    if (args.some(arg => arg === '--help')){
+        console.log('\nSyntax: node ./analex [\x1b[32msource_name\x1b[0m] '+
+                    '[\x1b[32mcity\x1b[0m \x1b[90m(optional)\x1b[0m] '+
+                    '[\x1b[32mcountry\x1b[0m \x1b[90m(optional)\x1b[0m]\n'+
+                    'This will analyse the website with the corresponding name/city/country.\n'+
+                    'Only one venue should correspond to the arguments. Use the optional arguments to ensure that the venue is unique');
+        return undefined;
+    }else{
+        return args;
+    }
 }

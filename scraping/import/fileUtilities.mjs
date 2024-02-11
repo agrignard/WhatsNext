@@ -88,3 +88,60 @@ export function saveToCSV(eventList, outFile){
     } 
 }
 
+
+// used to analyse arguments passed to scrapex or aspiratorex
+export function getVenuesFromArguments(args, venueList){
+    let venues = venueList;
+    if (args.length > 2){
+        const venuesFilter = filterFromArguments(args);
+        if (venuesFilter){
+          venues = venuesFilter.name==='*'?venues:venues.filter(el => el.name.toLowerCase() === venuesFilter.name);
+          venues = venuesFilter.city==='*'?venues:venues.filter(el => el.city.toLowerCase() ===venuesFilter.city);
+          venues = venuesFilter.country==='*'?venues:venues.filter(el => el.country.toLowerCase() ===venuesFilter.country);
+        }else{
+          venues = [];
+        }
+    }
+    return venues;
+}
+
+function filterFromArguments(args){
+    const scriptName = args[1].split(/[\/\\]/).pop().split('.').shift();
+    args = args.slice(2).map(el => el.toLowerCase());
+    const action = scriptName === 'scrapex'?'scrap':'download';
+    
+    if (args.length > 3){
+      console.log(args.length);
+      console.log("\x1b[31mError: too many arguments\x1b[0m");
+      args = ['--help'];
+    }
+    if (args.some(arg => arg === '--help')){
+        console.log('\nSyntax: node ./'+scriptName+' [\x1b[32msource_name\x1b[0m] '+
+                    '[\x1b[32mcity\x1b[0m \x1b[90m(optional)\x1b[0m] '+
+                    '[\x1b[32mcountry\x1b[0m \x1b[90m(optional)\x1b[0m]\n'+
+                    'This will '+action+' websites with the corresponding name/city/country.\n'+
+                    'Wildcards \'*\' allowed (\x1b[90mnode ./'+scriptName+' * Lyon\x1b[0m will '+
+                    action+' all websites from cities called Lyon)\n'+
+                    'Alternatively, you can use options \x1b[90m--city=city_name\x1b[0m or \x1b[90m--country=country_name\x1b[0m, wildcards will be filled automatically');
+        return undefined;
+    }else{
+        let i=0;
+        let res ={name:'*', city:'*', country:'*'};
+        for (let j = 0; j<args.length; j++){
+            if (args[j].startsWith('--')){
+                if (args[j].startsWith('--city=')){
+                    res.city = args[j].replace('--city=','');
+                }else if (args[i].startsWith('--country=')){
+                    res.city = args[j].replace('--country=','');
+                }else{
+                    console.log('Wrong option: %s. Use option --help for syntax details.',args[i]);
+                    return undefined;
+                }
+            }else{
+                res[Object.keys(res)[i]] = args[j];
+                i++;
+            }
+        }
+        return res;
+    }
+}

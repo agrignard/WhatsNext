@@ -154,14 +154,22 @@ function loadScrapInfoFile(){
 }
 
 // load file that contains scrap info 'venuesScrapInfo.json', and return scrap info only for venue venueName
-export function loadVenueScrapInfofromFile(venueName){
+export function loadVenueScrapInfofromFile(venueInfo){
     let scrapInfo = loadScrapInfoFile();
-    try{
-        return scrapInfo[venueName];
-    }catch(err) {
-        console.error("\x1b[31m  Cannot find venue \x1b[0m\'%s\'\x1b[31m in file :%s\x1b[0m\n",venueToAnalyse,scrapInfoFile);
-        throw err;
+    scrapInfo = scrapInfo.filter(el => el.name.toLowerCase() === venueInfo[0]);
+    scrapInfo = scrapInfo.filter(el => venueInfo.length>1?el.city.toLowerCase() ===venueInfo[1]:true);
+    scrapInfo = scrapInfo.cfilter(el => venueInfo.length>1?el.country.toLowerCase() ===venueInfo[2]:true);
+    if (scrapInfo.length === 0){
+        console.log("No place matching arguments.");
+        return undefined;
     }
+    if (scrapInfo.length > 1){
+        console.log("Too many places matching arguments:");
+        scrapInfo.forEach(console.log("%s (%s, %s)",scrapInfo.name,scrapInfo.city,scrapInfo.country));
+        console.log("Add city/country to arguments to obtain a unique matching venue.");
+        return undefined;
+    }
+    return scrapInfo[0];
 }
 
 // load venue JSON 'venues.json'
