@@ -84,20 +84,6 @@ mergeCandidates: [object Object],[object Object]
 warningLog: Inconsistent times for Malo + Jeune Mort + Matox (Bizarre!). Found 20:30,20:35. Consider merging or discarding.
 https://www.petit-bulletin.fr/lyon/agenda-308204-malo-jeune-mort-matox.html
 
-Date: Vendredi 19 avril 2024 à 19h
-Event: Seth + Kronos
-Place: Rock N Eat
-city: Lyon
-country: France
-Style: Rock
-isCancelled: false
-DetailedStyle: Rock & Pop / Metal
-source: [object Object]
-unixDate: 1713546000000
-mergeCandidates: [object Object],[object Object]
-warningLog: Inconsistent times for Seth + Kronos (Rock N Eat). Found 19:00,00:00. Consider merging or discarding.
-https://www.petit-bulletin.fr/lyon/agenda-308803-seth-kronos.html
-
 Date: 9 février à 20:00
 Event: KIK (KIKESA)
 Place: La Rayonne
@@ -125,6 +111,20 @@ unixDate: 1739212200000
 mergeCandidates: [object Object],[object Object]
 warningLog: Inconsistent times for Apashe (Transbordeur). Found 20:00,19:30. Consider merging or discarding.
 https://www.petit-bulletin.fr/lyon/agenda-308614-apashe.html
+
+Date: Vendredi 19 avril 2024 à 19h
+Event: Seth + Kronos
+Place: Rock N Eat
+city: Lyon
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Rock & Pop / Metal
+source: [object Object]
+unixDate: 1713546000000
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Seth + Kronos (Rock N Eat). Found 19:00,00:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-308803-seth-kronos.html
 
 Date: 14 février à 19:00
 Event: Deadfuck + Pulsating Cerebral Slime + Festering Process
