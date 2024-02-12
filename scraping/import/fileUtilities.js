@@ -2,11 +2,14 @@
 /*  utilities to deal with the files  */
 /**************************************/
 
-import * as fs from 'fs';
-import {cleanPage, removeBlanks, extractBody} from './stringUtilities.mjs';
+const fs = require('fs');
+const {cleanPage, removeBlanks, extractBody} = require('./stringUtilities.js');
+
+module.exports = {fetchLink, fetchAndRecode, loadLinkedPages, saveToJSON, 
+                    saveToCSV, getVenuesFromArguments};
 
 // fetch linked page
-export async function fetchLink(page, nbFetchTries){
+async function fetchLink(page, nbFetchTries){
     try{
         const content = await fetchWithRetry(page, nbFetchTries, 2000);
         return extractBody(removeBlanks(cleanPage(content)));
@@ -31,7 +34,7 @@ function fetchWithRetry(page, tries, timeOut) {
 
 
 // fetch url and fix the coding when it is not in UTF-8
-export async function fetchAndRecode(url){
+async function fetchAndRecode(url){
     try{
         const response = await fetch(url);
         const encoding = response.headers.get('content-type').split('charset=')[1]; // identify the page encoding
@@ -55,7 +58,7 @@ export async function fetchAndRecode(url){
 
 
 // load linked files (subpages with more details about the event)
-export function loadLinkedPages(sourcePath){
+function loadLinkedPages(sourcePath){
     try{
         return JSON.parse(fs.readFileSync(sourcePath+'linkedPages.json', 'utf8'));
     }catch(err) {
@@ -65,7 +68,7 @@ export function loadLinkedPages(sourcePath){
 }
 
 // save json data to .json
-export function saveToJSON(data,fileName){
+function saveToJSON(data,fileName){
     try{
         const jsonString =  JSON.stringify(data, null, 2);  
         fs.writeFileSync(fileName, jsonString);
@@ -75,7 +78,7 @@ export function saveToJSON(data,fileName){
 } 
 
 // save json data to .csv
-export function saveToCSV(eventList, outFile){
+function saveToCSV(eventList, outFile){
     let out = '';
     eventList.forEach(eventInfo =>{
       out = out+''+eventInfo.eventPlace+';'
@@ -90,7 +93,7 @@ export function saveToCSV(eventList, outFile){
 
 
 // used to analyse arguments passed to scrapex or aspiratorex
-export function getVenuesFromArguments(args, venueList){
+function getVenuesFromArguments(args, venueList){
     let venues = venueList;
     if (args.length > 2){
         const venuesFilter = filterFromArguments(args);
@@ -109,13 +112,13 @@ function filterFromArguments(args){
     const scriptName = args[1].split(/[\/\\]/).pop().split('.').shift();
     args = args.slice(2).map(el => el.toLowerCase());
     const action = scriptName === 'scrapex'?'scrap':'download';
-    
+
     if (args.length > 3){
-      console.log(args.length);
-      console.log("\x1b[31mError: too many arguments\x1b[0m");
-      args = ['--help'];
-    }
-    if (args.some(arg => arg === '--help')){
+        console.log(args.length);
+        console.log("\x1b[31mError: too many arguments\x1b[0m");
+        args = ['--help'];
+      }
+      if (args.some(arg => arg === '--help')){
         console.log('\nSyntax: node ./'+scriptName+' [\x1b[32msource_name\x1b[0m] '+
                     '[\x1b[32mcity\x1b[0m \x1b[90m(optional)\x1b[0m] '+
                     '[\x1b[32mcountry\x1b[0m \x1b[90m(optional)\x1b[0m]\n'+

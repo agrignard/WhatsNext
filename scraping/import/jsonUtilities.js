@@ -3,40 +3,45 @@
 /*    venues, events, style                               */
 /**********************************************************/
 
-import * as fs from 'fs';
-import {simplify} from './stringUtilities.mjs';
-import {removeAccents, removeDoubles} from './stringUtilities.mjs';
-import {getDateConversionPatterns, dateConversionFile} from './dateUtilities.mjs';
+const fs = require('fs');
+const {simplify} = require('./stringUtilities.js');
+const {removeAccents, removeDoubles} = require('./stringUtilities.js');
+const {getDateConversionPatterns, dateConversionFile} = require('./dateUtilities.js');
 
-export const venuesListJSONFile = "./venues.json";
+const venuesListJSONFile = "./venues.json";
 const scrapInfoFile = "./venuesScrapInfo.json"; // path should start from the directory of the calling script
 const styleConversionFile = "./import/styleConversion.json";
 const cancellationKeywordsJSONFile = "./import/cancellationKeywords.json";
 const languagesFile = "./import/languages.json";
 
+module.exports = {venuesListJSONFile, isOnlyAlias, geAliasesToURLMap, getEventPlace, getSource,
+    fromLocalSource, jsonRemoveDouble, samePlace, getStyleConversions, getStyleList, getAliases,
+    writeToLog, loadVenueScrapInfofromFile, loadVenuesJSONFile, loadVenueJSON, saveToVenuesJSON,
+    getLanguages, loadCancellationKeywords, fromLanguages, checkLanguages, loadErrorLog};
+
 
 // returns true is a venue is only an alias (not for scrapping)
-export function isOnlyAlias(venue){
+function isOnlyAlias(venue){
     return !venue.hasOwnProperty('eventsDelimiterTag');
 }
 
 // provide a map between places and URLs, for aliases places which have a declared URL
-export function geAliasesToURLMap(){
+function geAliasesToURLMap(){
     return loadVenuesJSONFile().filter(el => isOnlyAlias(el) && el.hasOwnProperty('url'));
 }
 
 // returns the venue (name, city, country) of an object
-export function getEventPlace(object){
+function getEventPlace(object){
     return {'name':object.eventPlace, 'city':object.source.city, 'country':object.source.country};
 }
 
 // returns the source (website from which the event was scrapped)
-export function getSource(event){
+function getSource(event){
     return event.source;
 }
 
 // test if the event has been scraped from a local source (web site scraped and event place are the same)
-export function fromLocalSource(event){
+function fromLocalSource(event){
     return event.eventPlace === event.source.name;
 }
 
@@ -50,7 +55,7 @@ function isEqual(object1, object2) {
 }
 
 // return a list without duplicates
-export function jsonRemoveDouble(objectList) {
+function jsonRemoveDouble(objectList) {
     const ListWithoutDuplicates = [];
     for (const object of objectList) {
         if (!ListWithoutDuplicates.some(item => isEqual(object, item))) {
@@ -61,7 +66,7 @@ export function jsonRemoveDouble(objectList) {
 }
 
 // tests if two objects are at the same place. Objects could be venues or events
-export function samePlace(p1,p2){
+function samePlace(p1,p2){
     let p1name, p2name;
     if (p1.hasOwnProperty('eventPlace')){
         p1name = p1.eventPlace;
@@ -78,7 +83,7 @@ export function samePlace(p1,p2){
 
 
 // get the style conversion JSON
-export function getStyleConversions(){
+function getStyleConversions(){
     try{
         const res = JSON.parse(fs.readFileSync(styleConversionFile, 'utf8'));
 //        const res = await JSON.parse(await fs.promises.readFile(styleConversionFile, 'utf8'));
@@ -93,7 +98,7 @@ export function getStyleConversions(){
     }
 }
 // get the default styles and their aliases
-export function getStyleList(){
+function getStyleList(){
     try{
      //   const res = await JSON.parse(await fs.promises.readFile(styleConversionFile, 'utf8'));
         const res = JSON.parse(fs.readFileSync(styleConversionFile, 'utf8'));
@@ -104,7 +109,7 @@ export function getStyleList(){
 }
 
 // return a list of json object with aliases to change the place name
-export function getAliases(list){
+function getAliases(list){
     return list
     .map(el => {
       const res = {};
@@ -119,7 +124,7 @@ export function getAliases(list){
     });
 }
 
-export function writeToLog(type,eventInfo, messageList, display){
+function writeToLog(type,eventInfo, messageList, display){
     if (['error','warning'].includes(type)){
         const key = type+'Log';
         let string = messageList[0];
@@ -154,26 +159,18 @@ function loadScrapInfoFile(){
 }
 
 // load file that contains scrap info 'venuesScrapInfo.json', and return scrap info only for venue venueName
-export function loadVenueScrapInfofromFile(venueInfo){
+function loadVenueScrapInfofromFile(venueName){
     let scrapInfo = loadScrapInfoFile();
-    scrapInfo = scrapInfo.filter(el => el.name.toLowerCase() === venueInfo[0]);
-    scrapInfo = scrapInfo.filter(el => venueInfo.length>1?el.city.toLowerCase() ===venueInfo[1]:true);
-    scrapInfo = scrapInfo.cfilter(el => venueInfo.length>1?el.country.toLowerCase() ===venueInfo[2]:true);
-    if (scrapInfo.length === 0){
-        console.log("No place matching arguments.");
-        return undefined;
+    try{
+        return scrapInfo[venueName];
+    }catch(err) {
+        console.error("\x1b[31m  Cannot find venue \x1b[0m\'%s\'\x1b[31m in file :%s\x1b[0m\n",venueToAnalyse,scrapInfoFile);
+        throw err;
     }
-    if (scrapInfo.length > 1){
-        console.log("Too many places matching arguments:");
-        scrapInfo.forEach(console.log("%s (%s, %s)",scrapInfo.name,scrapInfo.city,scrapInfo.country));
-        console.log("Add city/country to arguments to obtain a unique matching venue.");
-        return undefined;
-    }
-    return scrapInfo[0];
 }
 
 // load venue JSON 'venues.json'
-export function loadVenuesJSONFile(){
+function loadVenuesJSONFile(){
     try{
         return JSON.parse(fs.readFileSync(venuesListJSONFile, 'utf8'));
     }catch(err) {
@@ -183,7 +180,7 @@ export function loadVenuesJSONFile(){
 }
 
 // load a JSON containing info and return the info only for venue venueName
-export function loadVenueJSON(venueName,venuesListJSON){
+function loadVenueJSON(venueName,venuesListJSON){
     const venueJSON = venuesListJSON.find(function(element) {
         return element.name === venueName;
     });
@@ -195,7 +192,7 @@ export function loadVenueJSON(venueName,venuesListJSON){
     }
 }
 
-export function saveToVenuesJSON(jsonList){
+function saveToVenuesJSON(jsonList){
     try{
         const jsonString = JSON.stringify(jsonList, null, 2); 
         fs.writeFileSync(venuesListJSONFile, jsonString);
@@ -205,7 +202,7 @@ export function saveToVenuesJSON(jsonList){
     }
 }
 
-export function getLanguages(){
+function getLanguages(){
     try{
         return JSON.parse(fs.readFileSync(languagesFile, 'utf8'));
     }catch(err) {
@@ -216,7 +213,7 @@ export function getLanguages(){
 }
 
 // this function is supposed to be multi-languages proof
-export function loadCancellationKeywords(){
+function loadCancellationKeywords(){
     try{
         const languages = getLanguages();
         const cancellationKeywords = JSON.parse(fs.readFileSync(cancellationKeywordsJSONFile, 'utf8'));
@@ -239,7 +236,7 @@ export function loadCancellationKeywords(){
 }
 
 
-export function fromLanguages(jsonObject, languages){
+function fromLanguages(jsonObject, languages){
     const res = {};
     Object.keys(jsonObject).filter(language => languages.includes(language))
     .forEach(language => {
@@ -250,7 +247,7 @@ export function fromLanguages(jsonObject, languages){
     return res;
 }
 
-export function checkLanguages(venues){
+function checkLanguages(venues){
     let showMessage = false;
     const countriesToLanguages = getLanguages();
     const languages = removeDoubles(venues.map(el => countriesToLanguages[el.country]).flat());
@@ -275,4 +272,15 @@ export function checkLanguages(venues){
     if (showMessage){
         console.log('Fix languages issues then run script again.\n');
     }
+}
+
+// load events JSON from error log
+function loadErrorLog(errorLogFile){
+    try{
+        eventList = JSON.parse(fs.readFileSync(errorLogFile, 'utf8'));
+    }catch(err) {
+        console.error('\x1b[36mCannot open error log file:  \'%s\'\x1b[0m%s\n',errorLogFile,err);
+        throw err;
+    }
+    return eventList;
 }

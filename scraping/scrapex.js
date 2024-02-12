@@ -1,14 +1,14 @@
-import { createDate, convertDate, showDate, getDateConversionPatterns} from './import/dateUtilities.mjs';
-import * as fs from 'fs';
-import { parse, isValid }  from 'date-fns';
-import * as cheerio from 'cheerio';
-import {parseDocument} from 'htmlparser2';
-import {makeURL, simplify} from './import/stringUtilities.mjs';
-import {loadLinkedPages, getVenuesFromArguments, saveToJSON, saveToCSV} from './import/fileUtilities.mjs';
-import {samePlace, getAliases, getStyleConversions, loadVenuesJSONFile, 
+const { createDate, convertDate, showDate, getDateConversionPatterns} = require('./import/dateUtilities.js');
+const fs = require('fs');
+const { parse, isValid } = require('date-fns');
+const cheerio = require('cheerio');
+const {parseDocument} = require('htmlparser2');
+const {makeURL, simplify} = require('./import/stringUtilities.js');
+const {loadLinkedPages, saveToJSON, saveToCSV, getVenuesFromArguments} = require('./import/fileUtilities.js');
+const {samePlace, getAliases, getStyleConversions, loadVenuesJSONFile, 
         loadCancellationKeywords, writeToLog, isOnlyAlias, geAliasesToURLMap,
-        getLanguages, fromLanguages, checkLanguages} from './import/jsonUtilities.mjs';
-import { mergeEvents} from './import/mergeUtilities.mjs';
+        getLanguages, fromLanguages, checkLanguages} = require('./import/jsonUtilities.js');
+const { mergeEvents} = require('./import/mergeUtilities.js');
 
 // Chemin vers le fichier à lire
 const sourcePath = './webSources/';
@@ -22,20 +22,43 @@ const showFullMergeLog = false;
 
 
 const dateConversionPatterns = getDateConversionPatterns();
-const venueList = loadVenuesJSONFile(); 
+const venueList = loadVenuesJSONFile();
 const aliasList = getAliases(venueList);
 const languages = getLanguages();
 
+    
+//initScrap(process.argv[2]);
 
 const venues = getVenuesFromArguments(process.argv, venueList); // venueList is kept to allow finding matches with event places
 
 if (venues.length === 0){
   console.log("No place matching arguments.");
 }else{
+  scrap(venues);
+} 
+
+async function scrap(venues){
   await scrapFiles(venues.filter(el => !isOnlyAlias(el)));
   const venuesToSkip = venues.filter(el => isOnlyAlias(el)).map(el => el.name+' ('+el.city+', '+el.country+')');
   console.log('\x1b[36mWarning: the following venues have no scraping details and are only used as aliases. Run analex if it is a mistake.\x1b[0m',venuesToSkip);    
 }
+
+// async function initScrap(fileToScrap){
+//   if (fileToScrap){
+//     if (venueList.some(element => element.name === fileToScrap)){
+//       console.log('\x1b[32m%s\x1b[0m', `Traitement uniquement de \'${fileToScrap}\'`);
+//       const venues = venueList.filter(element => element.name === fileToScrap);
+//       scrapFiles(venues);
+//     }else{
+//       console.log('\x1b[31mFichier \x1b[0m%s.html\x1b[31m non trouvé. Fin du scrapping.\x1b[0m\n', fileToScrap);
+//     }
+//   }else{
+//     await scrapFiles(venueList.filter(el => !isOnlyAlias(el)));
+//     const venuesToSkip = venueList.filter(el => isOnlyAlias(el)).map(el => el.name+' ('+el.city+', '+el.country+')');
+//     console.log('\x1b[36mWarning: the following venues have no scraping details and are only used as aliases. Run analex if it is a mistake.\x1b[0m',venuesToSkip);
+//   }
+// }
+
 
 
 
@@ -493,4 +516,3 @@ function fixAliasURLs(events, venueToURL){
   });
   return events;
 }
-

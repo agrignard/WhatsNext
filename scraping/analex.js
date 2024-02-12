@@ -1,29 +1,33 @@
-import { createDate, numberOfInvalidDates, getCommonDateFormats, getDateConversionPatterns} from './import/dateUtilities.mjs';
-import {removeDoubles, convertToLowerCase, removeBlanks, makeURL} from './import/stringUtilities.mjs';
-import {loadLinkedPages} from './import/fileUtilities.mjs';
-import {loadVenueScrapInfofromFile, loadVenueJSON, loadVenuesJSONFile, saveToVenuesJSON, 
-        getLanguages, checkLanguages, fromLanguages} from './import/jsonUtilities.mjs';
+const { createDate, numberOfInvalidDates, getCommonDateFormats, getDateConversionPatterns} =require('./import/dateUtilities.js');
+const {removeDoubles, convertToLowerCase, removeBlanks, makeURL} = require('./import/stringUtilities.js');
+const {loadLinkedPages} = require('./import/fileUtilities.js');
+const {loadVenueScrapInfofromFile, loadVenueJSON, loadVenuesJSONFile, saveToVenuesJSON, 
+        getLanguages, checkLanguages, fromLanguages} = require('./import/jsonUtilities.js');
 
-import * as fs from 'fs';
-import * as cheerio from 'cheerio';
-import {parseDocument} from 'htmlparser2';
+const fs = require('fs');
+const cheerio = require('cheerio');
+const {parseDocument} =require('htmlparser2');
 
 var sourcePath = './webSources/';
 const languages = getLanguages();
 
 let linkedFileContent, venuesListJSON, venueJSON;// eventStrings;
 
-const venueToAnalyse = filterFromArguments(process.argv);// argument to load default strings to parse
+const venueToAnalyse = process.argv[2];
+//filterFromArguments(process.argv);// argument to load default strings to parse
+console.log(venueToAnalyse);
+
+
 let eventStrings = loadVenueScrapInfofromFile(venueToAnalyse);
+
 let venueName;
 
 
-
 // set the venue to analyze
-// if (venueToAnalyse){
-//     eventStrings = loadVenueScrapInfofromFile(venueToAnalyse);
-//     venueName = venueToAnalyse;
-// }
+if (venueToAnalyse){
+    eventStrings = loadVenueScrapInfofromFile(venueToAnalyse);
+    venueName = venueToAnalyse;
+}
 
 console.log('\n\n\x1b[36m%s\x1b[0m', `******* Analyzing venue: ${venueName}  *******`);
 Object.keys(eventStrings.mainPage)
@@ -68,9 +72,6 @@ const fileContent = inputFileList.map(readBodyContent).join('\n');
 
 // load date conversion pattern
 const dateConversionPatterns = fromLanguages(getDateConversionPatterns(),languages[venueJSON.country]);
-console.log(dateConversionPatterns);
-//const dateConversionPatterns = getDateConversionPatterns()[];
-
 
 
 // load linked page
@@ -493,6 +494,23 @@ function getBestDateFormat(dates, JSON, dateConversionPatterns){
     console.log("\nFound %s events. Best date format: \x1b[36m\"%s\"\x1b[0m (%s/%s invalid dates)",dates.length,bestDateFormat,bestScore,dates.length);
     return bestDateFormat;
 }
+
+
+function getVenuesFromArguments(args, venueList){
+    let venues = venueList;
+    if (args.length > 2){
+        const venuesFilter = filterFromArguments(args);
+        if (venuesFilter){
+          venues = venuesFilter.name==='*'?venues:venues.filter(el => el.name.toLowerCase() === venuesFilter.name);
+          venues = venuesFilter.city==='*'?venues:venues.filter(el => el.city.toLowerCase() ===venuesFilter.city);
+          venues = venuesFilter.country==='*'?venues:venues.filter(el => el.country.toLowerCase() ===venuesFilter.country);
+        }else{
+          venues = [];
+        }
+    }
+    return venues;
+}
+
 
 
 function filterFromArguments(args){

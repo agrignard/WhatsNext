@@ -2,21 +2,23 @@
 /*   utilities to deal with strings   */
 /**************************************/
 
+module.exports = { simplify, removeAccents, removeBlanks, removeDoubles,
+  makeURL,convertToLowerCase, removeImages, extractBody, cleanPage, fixString };
 
 
-// // if a string has a non standard character, look in a candidate list if there is a corresponding match
+// if a string has a non standard character, look in a candidate list if there is a corresponding match
 
-// export function fixString(string,replacementList){
-//   const regexString = string.replace(/[^\x00-\x7F]/g,'.');
-//   const regex = new RegExp(regexString);
-//   const candidateList = replacementList.filter(el => el.match(regex));
-//   return (candidateList.length > 0)?candidateList[0]:string;
-// }
+function fixString(string,replacementList){
+  const regexString = string.replace(/[^\x00-\x7F]/g,'.');
+  const regex = new RegExp(regexString);
+  const candidateList = replacementList.filter(el => el.match(regex));
+  return (candidateList.length > 0)?candidateList[0]:string;
+}
 
 
 // simplify a string. This function is intended to be used for string comparison
 // in order to prevent blanks, special caracters, accents from finding a good match
-export function simplify(string){
+function simplify(string){
   // remove accents, special characters and convert to lower case
   const res = removeBlanks(removeSpecialCharacters(removeAccents(string.toLowerCase()),' '));
   return res;
@@ -27,19 +29,12 @@ function removeSpecialCharacters(string, replacement){
 }
 
 
-export function removeAccents(string){
-  // let res = string;
-  // res = res.replace(/[âä]/g,'a');
-  // res = res.replace(/[éèêëÉ]/g,'e');
-  // res = res.replace(/[ïî]/g,'i');
-  // res = res.replace(/[ô]/g,'o');
-  // res = res.replace(/[ûù]/g,'u');
-  // return res;
+function removeAccents(string){
   return string.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
 }
 
 // remove duplicates elements from a list
-export function removeDoubles(list) {
+function removeDoubles(list) {
     if (Array.isArray(list)){
      const res = [];
      list.forEach((element) => {
@@ -64,7 +59,7 @@ function isFullURL(url) {
 }
 
 // build an absolute url from a link URL: appends a base url if the link is a relative link
-export function makeURL(baseURL, url){
+function makeURL(baseURL, url){
   if (url){
     // const bu = baseURL.endsWith('/')?baseURL.slice(0,-1):baseURL;
     // const url = URL.startsWith('/')?URL.slice(1):URL;
@@ -83,28 +78,28 @@ export function makeURL(baseURL, url){
 }
 
 // convert the text of an html file to lower case (does not modify the case within tags)
-export  function convertToLowerCase(s){
+function convertToLowerCase(s){
   const regex = /^[^<]*?<|>([^]*?)<|>[^>]*?$/g;
   return s.replace(regex,match => match.toLowerCase());
 }
 
 // remove blancks from a string
-export function removeBlanks(s){
+function removeBlanks(s){
   return s.replace(/[\n\t]/g, ' ').replace(/ {2,}/g, ' ').replace(/^ /,'').replace(/ $/,'');
 }
 
 // remove reference to an image in a html file (provides a more compact text)
-export function removeImages(content){
+function removeImages(content){
    content.replace(/<[ ]*img[^]*?>/g,'[IMAGE]');
 }
 
 // extract the <body> tag from an html content
-export function extractBody(content){
+function extractBody(content){
   return content.match(/<body[^]*?>[^]*?<\/body>/)[0];
 }
 
 // perform several fixes on a html text to make it cleaner and more consistent
-export function cleanPage(content){
+function cleanPage(content){
   var cleanedContent = cleanScripts(content);
   cleanedContent = removeBRTags(cleanedContent);
   cleanedContent = cleanHtml(cleanedContent);

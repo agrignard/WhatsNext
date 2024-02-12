@@ -3,10 +3,9 @@
 /**************************************/
 // to fix event errors due to download errors
 
-import * as fs from 'fs';
-import {loadLinkedPages,fetchLink} from './import/fileUtilities.mjs';
-import {loadVenuesJSONFile,getSource,jsonRemoveDouble,samePlace} from './import/jsonUtilities.mjs';
-
+const fs = require('fs');
+const {loadLinkedPages,fetchLink} = require('./import/fileUtilities.js');
+const {loadVenuesJSONFile,getSource,jsonRemoveDouble,samePlace, loadErrorLog} = require('./import/jsonUtilities.js');
 
 const webSourcesPath = './webSources/';
 const errorLogFile = './generated/errorLog.json';
@@ -15,13 +14,8 @@ const nbFetchTries = 2;
 
 // load error JSON
 
-let eventList;
-try{
-    eventList = await JSON.parse(await fs.promises.readFile(errorLogFile, 'utf8'));
-}catch(err) {
-    console.error('\x1b[36mCannot open error log file:  \'%s\'\x1b[0m%s\n',errorLogFile,err);
-    throw err;
-}
+let eventList = loadErrorLog(errorLogFile);
+
 
 console.log("\n\x1b[36m***********************************************************************************");
 console.log("REPARATOREX will try to fix some errors");

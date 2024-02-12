@@ -1,23 +1,24 @@
-import {to2digits, sameDay} from './dateUtilities.mjs';
-import {simplify, removeDoubles} from './stringUtilities.mjs';
-import {samePlace, getEventPlace, fromLocalSource, getStyleList, writeToLog,jsonRemoveDouble} from './jsonUtilities.mjs';
-// import {} from './fileUtilities.mjs';
-// import * as fs from 'fs';
+// import {to2digits, sameDay} from './dateUtilities.mjs';
+// import {simplify, removeDoubles} from './stringUtilities.mjs';
+// import {samePlace, getEventPlace, fromLocalSource, getStyleList, writeToLog,jsonRemoveDouble} from './jsonUtilities.mjs';
 
+const {to2digits, sameDay} =  require('./dateUtilities.js');
+const {simplify, removeDoubles} = require('./stringUtilities.js');
+const {samePlace, getEventPlace, fromLocalSource, getStyleList, writeToLog,jsonRemoveDouble} = require('./jsonUtilities.js');
+
+
+module.exports = { mergeEvents };
+  
 const outFile ="./generated/afterMerge.csv";
 const refStyleList = getStyleList();
 
-export function mergeEvents(eventList,showFullMergeLog){
+function mergeEvents(eventList,showFullMergeLog){
     
     let newList = [];
     let mergeLog = '';
 
     // preprocessing: merge events at the same date. All similar events are stored in the list mergeCandidates
     eventList.forEach(event =>{
-        // const testv = event.eventName.startsWith('Lanku')||event.eventName.startsWith('LANKU')
-        // if (testv){
-        //     console.log(event);
-        // }
         const samePlaceSameDayEventList = newList.filter(el => 
             samePlace(getEventPlace(el),getEventPlace(event))
             && sameDay(el.unixDate, event.unixDate)

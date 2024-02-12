@@ -4,12 +4,12 @@
 // download files and save them to local directory, including linkedPages if indicated
 
 
-import * as fs from 'fs';
-import {removeDoubles, makeURL, cleanPage, extractBody} from './import/stringUtilities.mjs';
-import {loadLinkedPages,fetchAndRecode,fetchLink,getVenuesFromArguments} from './import/fileUtilities.mjs';
-import {loadVenuesJSONFile, saveToVenuesJSON, isOnlyAlias} from './import/jsonUtilities.mjs';
-import {getURLListFromPattern} from './import/dateUtilities.mjs';
-import * as cheerio from 'cheerio';
+const fs = require('fs');
+const {removeDoubles, makeURL, cleanPage, extractBody} = require('./import/stringUtilities.js');
+const {loadLinkedPages,fetchAndRecode,fetchLink,getVenuesFromArguments} = require('./import/fileUtilities.js');
+const {loadVenuesJSONFile, saveToVenuesJSON, isOnlyAlias} = require('./import/jsonUtilities.js');
+const {getURLListFromPattern} = require('./import/dateUtilities.js');
+const cheerio = require('cheerio');
 
 
 const outputPath = './webSources/';
@@ -17,11 +17,14 @@ const nbFetchTries = 2; // number of tries in case of internet connection time o
 
 const venues = getVenuesFromArguments(process.argv, loadVenuesJSONFile());
 
+// const venueToDownload = process.argv[2];
+// if (venueToDownload && typeof venueToDownload !== "string"){
+//   throw new Error('Argument for this script should be a venue name (string)');
+// }
 
 console.log("\n\x1b[36m***********************************************************************************");
 console.log("ASPIRATOREX IS SNIFFING SOURCES FILES contained in venues JSON file.");
 console.log("***********************************************************************************\x1b[0m");
-
 
 if (venues.length === 0){
   console.log("No place matching arguments.");
@@ -30,7 +33,6 @@ if (venues.length === 0){
   venues.filter(obj => !isOnlyAlias(obj)).forEach((venue, index) => {
         // Afficher le numéro de l'objet
     console.log(`Venue ${index + 1}: \x1b[36m${venue.name} (${venue.city}, ${venue.country})\x1b[0m (${venue.url})`);
-
     // extract baseURL and add it to JSON
     try{
       const url = new URL(venue.url);
@@ -41,30 +43,27 @@ if (venues.length === 0){
       }else{
         const countryPath = venue.country;
         const cityPath = venue.city;
-        if (!fs.existsSync(outputPath+countryPath)){
-            console.log('\x1b[31mError: Country \x1b[0m%s\x1b[31m doesn\'t exist. If orthograph is correct, create a new directory in \x1b[0m%s.',countryPath,outputPath);
+        if (!fs.existsSync(outputPath+countryPath+'/'+cityPath)){
+          console.log('\x1b[31mError: City \x1b[0m%s\x1b[31m does not exist in %s. If orthographe is correct, create a new directory in \x1b[0m%s',cityPath,countryPath,outputPath+countryPath);
         }else{
-          if (!fs.existsSync(outputPath+countryPath+'/'+cityPath)){
-            console.log('\x1b[31mError: City \x1b[0m%s\x1b[31m does not exist in %s. If orthographe is correct, create a new directory in \x1b[0m%s',cityPath,countryPath,outputPath+countryPath);
-          }else{
-            let path = outputPath+countryPath+'/'+cityPath+'/'+venue.name+'/';
-            if (!fs.existsSync(path)){
-              fs.mkdirSync(path);
-            }
-            erasePreviousHtmlFiles(path)
-            .then(() => {downloadVenue(venue,path);})
+          let path = outputPath+countryPath+'/'+cityPath+'/'+venue.name+'/';
+          if (!fs.existsSync(path)){
+            fs.mkdirSync(path);
           }
+          erasePreviousHtmlFiles(path)
+          .then(() => {downloadVenue(venue,path);})
         }
-      }
-      console.log(); 
+      } 
     }catch(err){
       console.log('\x1b[31mCannot read URL for %s.x1b[0m', venue.name);
     }
   });
 }
 
+
+
 // save base URL to JSON file
-//saveToVenuesJSON(venues);// écrit à la fin. Problème de sauvegarde si un des fichiers a un pb ?
+saveToVenuesJSON(venues);// écrit à la fin. Problème de sauvegarde si un des fichiers a un pb ?
 
 
 

@@ -2,14 +2,17 @@
 /*    utilities to deal with dates    */
 /**************************************/
 
+const { parse, isValid }  = require('date-fns');
+const fs = require('fs'); 
 
-import { parse, isValid }  from 'date-fns';
-import * as fs from 'fs';
+const dateConversionFile = './import/dateConversion.json';
 
-export const dateConversionFile = './import/dateConversion.json';
+module.exports = {dateConversionFile, sameDay, showDate, getDateConversionPatterns, getCommonDateFormats,
+  createDate, convertDate, numberOfInvalidDates, to2digits, getURLListFromPattern};
+
 
 // verify if two unix dates correspond to the same day
-export function  sameDay(timestamp1, timestamp2) {// as unixdate
+function  sameDay(timestamp1, timestamp2) {// as unixdate
   const date1 = new Date(timestamp1); 
   const date2 = new Date(timestamp2); 
 
@@ -21,7 +24,7 @@ export function  sameDay(timestamp1, timestamp2) {// as unixdate
 }
 
 // display date as dd/MM/yyyy (hh:mm)
-export function showDate(date){
+function showDate(date){
   const day = to2digits(String(date.getDate()));
   const month = to2digits(String(date.getMonth() + 1)); 
   const year = date.getFullYear();
@@ -33,7 +36,7 @@ export function showDate(date){
 
 
 // load date conversion patterns
-export function getDateConversionPatterns(){
+function getDateConversionPatterns(){
   try{
       return JSON.parse(fs.readFileSync(dateConversionFile, 'utf8'));
   }catch(err){
@@ -42,7 +45,7 @@ export function getDateConversionPatterns(){
 }
 
 // get common date formats
-export function getCommonDateFormats(){
+function getCommonDateFormats(){
   const date = ["dd-MM","MM-dd",
                 "dd-MM-yy","dd-yy-MM","MM-dd-yy","MM-yy-dd","yy-MM-dd","yy-dd-MM",
                 "dd-MM-yyyy","dd-yyyy-MM","MM-dd-yyyy","MM-yyyy-dd","yyyy-MM-dd","yyyy-dd-MM"];
@@ -58,7 +61,7 @@ export function getCommonDateFormats(){
 }
 
 // create a date object from a string
-export function createDate(s,dateFormat,dateConversionPatterns) {
+function createDate(s,dateFormat,dateConversionPatterns) {
   s = convertDate(s,dateConversionPatterns);
   if (s.includes('tonight')){
     return new Date();
@@ -72,7 +75,7 @@ export function createDate(s,dateFormat,dateConversionPatterns) {
 }
 
 // clean the date (remove unwanted characters)
-export function convertDate(s,dateConversionPatterns){
+function convertDate(s,dateConversionPatterns){
   s = s.normalize('NFD').replace(/[\u0300-\u036f]/g, ''); // remove accents
   s = s.replace(/[^\x00-\x7F]/g,''); //remove non standard caracters => to be improved
  
@@ -99,7 +102,7 @@ export function convertDate(s,dateConversionPatterns){
 }
 
 // count the number of invalid dates, or with a year too old (older than one year), or a year too far (in more than 2 years)
-export function numberOfInvalidDates(dateList){
+function numberOfInvalidDates(dateList){
   return dateList.filter(element => (!isValid(element) || !yearIsValid(element.getFullYear()))).length; 
 }
 
@@ -120,7 +123,7 @@ function unifyCharacters(s){
 }
 
 // convert 1 digit elements (day, month) to 2 digits 
-export function to2digits(dateString){
+function to2digits(dateString){
   return dateString.replace(/(?<!\d)\d(?!\d)/g,p=>'0'+p);
 }
 
@@ -139,7 +142,7 @@ export function to2digits(dateString){
 
 
 
-export function getURLListFromPattern(url,pattern,nbPages){
+function getURLListFromPattern(url,pattern,nbPages){
   let res = [];
   const currentDate = new Date();
   let month = currentDate.getMonth() + 1; 
