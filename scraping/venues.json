@@ -27,7 +27,8 @@
         "DIV.horaires:eq(0)"
       ]
     },
-    "linkedPageDateFormat": "dd-MM-HH:mm"
+    "linkedPageDateFormat": "dd-MM-HH:mm",
+    "ID": "Le Sucre|Lyon|France"
   },
   {
     "name": "Le Petit Salon",
@@ -54,7 +55,8 @@
         "B:eq(0)"
       ]
     },
-    "linkedPageDateFormat": "dd-MM-yyyy-HH:mm"
+    "linkedPageDateFormat": "dd-MM-yyyy-HH:mm",
+    "ID": "Le Petit Salon|Lyon|France"
   },
   {
     "name": "Transbordeur",
@@ -116,7 +118,8 @@
         "DIV.nomargin.nopadding:eq(2)"
       ]
     },
-    "linkedPageDateFormat": "dd-MM-yy"
+    "linkedPageDateFormat": "dd-MM-yy",
+    "ID": "Terminal Club|Lyon|France"
   },
   {
     "name": "Le Périscope",
@@ -147,7 +150,8 @@
         "SPAN.ccth:eq(0)"
       ]
     },
-    "linkedPageDateFormat": "dd-MM-yyyy-HH:mm"
+    "linkedPageDateFormat": "dd-MM-yyyy-HH:mm",
+    "ID": "Le Périscope|Lyon|France"
   },
   {
     "name": "Le Sonic",
@@ -176,7 +180,8 @@
         "DIV.details:eq(0)  P:eq(0)"
       ]
     },
-    "linkedPageDateFormat": "MM-dd-HH:mm"
+    "linkedPageDateFormat": "MM-dd-HH:mm",
+    "ID": "Le Sonic|Lyon|France"
   },
   {
     "name": "Le Petit Bulletin",
@@ -204,7 +209,8 @@
       "startPage": 1,
       "nbPages": 20
     },
-    "eventURLIndex": 0
+    "eventURLIndex": 0,
+    "ID": "Le Petit Bulletin|Lyon|France"
   },
   {
     "name": "Marché Gare",
@@ -240,7 +246,8 @@
         "SPAN.lb_sessionhour.me2.mr2:eq(0)"
       ]
     },
-    "linkedPageDateFormat": "dd-MM-HH:mm"
+    "linkedPageDateFormat": "dd-MM-HH:mm",
+    "ID": "Marché Gare|Lyon|France"
   },
   {
     "name": "Halle Tony Garnier",
@@ -250,7 +257,7 @@
       "Halle Tony Garnier (htg)"
     ],
     "url": "https://www.halle-tony-garnier.com/fr/programmation",
-    "baseURL": "https://www.halle-tony-garnier.com",
+    "baseURL": "https://www.halle-tony-garnier.com/fr/",
     "scrap": {
       "eventNameTags": [
         "DIV.blocsquare__title:eq(0)"
@@ -262,7 +269,8 @@
     },
     "eventsDelimiterTag": "A.blocsquare.types.type_concert",
     "eventURLIndex": 0,
-    "dateFormat": "dd-MM-yy-HH:mm"
+    "dateFormat": "dd-MM-yy-HH:mm",
+    "ID": "Halle Tony Garnier|Lyon|France"
   },
   {
     "name": "Le Trokson",
@@ -288,7 +296,8 @@
     "eventsDelimiterTag": "DIV.j2Owzh.Wprg5l",
     "eventURLIndex": -1,
     "dateFormat": "dd-MM-yyyy-HH:mm",
-    "delimiterAddLevels": 0
+    "delimiterAddLevels": 0,
+    "ID": "Le Trokson|Lyon|France"
   },
   {
     "name": "Ville Morte",
@@ -335,7 +344,8 @@
         "DD.tribeeventseventurl:eq(0)  A:eq(0)"
       ]
     },
-    "linkedPageDateFormat": "dd-MM-HH:mm"
+    "linkedPageDateFormat": "dd-MM-HH:mm",
+    "ID": "Ville Morte|Lyon|France"
   },
   {
     "name": "Infoconcert",
@@ -380,7 +390,8 @@
         "LI.listgroupitem"
       ]
     },
-    "linkedPageDateFormat": "dd-MM-yyyy-HH:mm"
+    "linkedPageDateFormat": "dd-MM-yyyy-HH:mm",
+    "ID": "Infoconcert|Lyon|France"
   },
   {
     "name": "Rock N Eat",
@@ -389,7 +400,8 @@
     "aliases": [
       "Bar Rock'n eat",
       "Le Rock N Eat"
-    ]
+    ],
+    "ID": "Rock N Eat|Lyon|France"
   },
   {
     "name": "La Rayonne",
@@ -399,7 +411,8 @@
       "CCO- La Rayonne",
       "CCO La Rayonne",
       "La Rayonne a villeurbanne"
-    ]
+    ],
+    "ID": "La Rayonne|Lyon|France"
   },
   {
     "name": "Bizarre!",
@@ -408,12 +421,14 @@
     "aliases": [
       "Bizarre",
       "Bizarre !"
-    ]
+    ],
+    "ID": "Bizarre!|Lyon|France"
   },
   {
     "name": "Toï Toï Le Zinc",
     "country": "France",
-    "city": "Lyon"
+    "city": "Lyon",
+    "ID": "Toï Toï Le Zinc|Lyon|France"
   },
   {
     "name": "Jack Jack",
@@ -421,7 +436,8 @@
     "city": "Lyon",
     "aliases": [
       "Jack Jack - MJC Aragon"
-    ]
+    ],
+    "ID": "Jack Jack|Lyon|France"
   },
   {
     "name": "Salle 3000",
@@ -430,7 +446,8 @@
     "aliases": [
       "Amphithéâtre - Salle 3000",
       "Cite Internationale (Amphitheatre/Salle 3000/Auditorium Lumiere)"
-    ]
+    ],
+    "ID": "Salle 3000|Lyon|France"
   },
   {
     "name": "Epicerie Moderne",
@@ -440,12 +457,15 @@
     "aliases": [
       "L'epicerie Moderne",
       "L’Épicerie Moderne"
-    ]
+    ],
+    "ID": "Epicerie Moderne|Lyon|France",
+    "baseURL": "https://epiceriemoderne.com/"
   },
   {
     "name": "Grrrnd Zéro",
     "country": "France",
-    "city": "Lyon"
+    "city": "Lyon",
+    "ID": "Grrrnd Zéro|Lyon|France"
   },
   {
     "name": "Hot Club",
@@ -453,7 +473,8 @@
     "city": "Lyon",
     "aliases": [
       "Hot Club de Lyon"
-    ]
+    ],
+    "ID": "Hot Club|Lyon|France"
   },
   {
     "name": "Opéra National de Lyon",
@@ -461,7 +482,8 @@
     "city": "Lyon",
     "aliases": [
       "Opéra de Lyon"
-    ]
+    ],
+    "ID": "Opéra National de Lyon|Lyon|France"
   },
   {
     "name": "Les SUBS",
@@ -470,17 +492,20 @@
     "aliases": [
       "Les Subsistances",
       "Les Subs"
-    ]
+    ],
+    "ID": "Les SUBS|Lyon|France"
   },
   {
     "name": "LDLC Arena",
     "country": "France",
-    "city": "Lyon"
+    "city": "Lyon",
+    "ID": "LDLC Arena|Lyon|France"
   },
   {
     "name": "Bourse du Travail",
     "country": "France",
-    "city": "Lyon"
+    "city": "Lyon",
+    "ID": "Bourse du Travail|Lyon|France"
   },
   {
     "name": "Radiant-Bellevue",
@@ -488,7 +513,8 @@
     "city": "Lyon",
     "aliases": [
       "Radiant Bellevue"
-    ]
+    ],
+    "ID": "Radiant-Bellevue|Lyon|France"
   },
   {
     "name": "La Marquise",
@@ -496,12 +522,14 @@
     "city": "Lyon",
     "aliases": [
       "Peniche La Marquise"
-    ]
+    ],
+    "ID": "La Marquise|Lyon|France"
   },
   {
     "name": "À Thou Bout d'Chant",
     "country": "France",
-    "city": "Lyon"
+    "city": "Lyon",
+    "ID": "À Thou Bout d'Chant|Lyon|France"
   },
   {
     "name": "Espace Albert Camus",
@@ -509,13 +537,15 @@
     "city": "Lyon",
     "aliases": [
       "Espace Albert Camus De Bron"
-    ]
+    ],
+    "ID": "Espace Albert Camus|Lyon|France"
   },
   {
     "name": "Espace Gerson",
     "country": "France",
     "city": "Lyon",
-    "defaultStyle": "Theatre"
+    "defaultStyle": "Theatre",
+    "ID": "Espace Gerson|Lyon|France"
   },
   {
     "name": "La Vache Rouge",
@@ -523,7 +553,8 @@
     "city": "Lyon",
     "aliases": [
       "Vache Rouge"
-    ]
+    ],
+    "ID": "La Vache Rouge|Lyon|France"
   },
   {
     "name": "Opéra Underground",
@@ -531,12 +562,14 @@
     "city": "Lyon",
     "aliases": [
       "L'opera Underground : L'autre Scene De L'opera De Lyon"
-    ]
+    ],
+    "ID": "Opéra Underground|Lyon|France"
   },
   {
     "name": "Salle des Rancy",
     "country": "France",
-    "city": "Lyon"
+    "city": "Lyon",
+    "ID": "Salle des Rancy|Lyon|France"
   },
   {
     "name": "Groupama Stadium",
@@ -544,6 +577,7 @@
     "city": "Lyon",
     "aliases": [
       "Groupama Stadium Lyon"
-    ]
+    ],
+    "ID": "Groupama Stadium|Lyon|France"
   }
 ]

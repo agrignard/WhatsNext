@@ -1,5 +1,5 @@
-const truc = "tpeu|ly on|france";
+const truc = "tpeufrance";
 
-const res = truc.replace(/\|.*?\|.*?$/,'');
 
-console.log(res);
+
+console.log(truc.startsWith('tp'));

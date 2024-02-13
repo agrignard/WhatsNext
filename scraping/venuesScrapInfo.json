@@ -1,5 +1,5 @@
 {
-    "Le Sucre":{
+    "Le Sucre|Lyon|France":{
         "mainPage":{
             "eventNameStrings": ["S.society","Rødhåd","axy"],
             "eventDateStrings": "25 fév"
@@ -8,7 +8,7 @@
             "eventDateStrings": "25 fév 18:00"
         }
     },
-    "Terminal Club":{
+    "Terminal Club|Lyon|France":{
         "mainPage":{
             "eventNameStrings": ["nashton"],
             "eventDateStrings": "8 fév"
@@ -18,7 +18,7 @@
             "eventDateStrings": "08.02.24"
         }
     },
-    "Le Petit Bulletin":{
+    "Le Petit Bulletin|Lyon|France":{
         "mainPage":{
             "eventNameStrings": ["hysteria"],
             "eventDateStrings": ["9 février"],
@@ -26,7 +26,7 @@
             "eventPlaceStrings": ["rock n eat"]
         }
     },
-    "Transbordeur":{
+    "Transbordeur|Lyon|France":{
         "mainPage":{
             "eventNameStrings": ["mathame"],
             "eventDateStrings": ["02 mars","23:30"],
@@ -36,7 +36,7 @@
             "eventNameStrings": ["mathame"]
         }
     },
-    "Le Périscope":{
+    "Le Périscope|Lyon|France":{
         "mainPage":{
             "eventNameStrings": ["jasual","release"],
             "eventDateStrings": ["08 mars"]
@@ -45,7 +45,7 @@
             "eventDateStrings": ["vendredi 08 mars","21h00"]
         }
     },
-    "Le Sonic":{
+    "Le Sonic|Lyon|France":{
         "mainPage":{
             "eventNameStrings": ["patriarchy"],
             "eventDateStrings": "avr 15"
@@ -54,7 +54,7 @@
             "eventDateStrings": ["avril 15","20:00"]
         }
     },
-    "Marché Gare":{
+    "Marché Gare|Lyon|France":{
         "mainPage":{
             "eventNameStrings": ["carwash","release"],
             "eventDateStrings": "jeu 23 05",
@@ -64,7 +64,7 @@
             "eventDateStrings": ["23","05","20:00"]
         }
     },
-    "Le Trokson":{
+    "Le Trokson|Lyon|France":{
         "mainPage":{
             "eventNameStrings": ["basement"],
             "eventDummyStrings": ["partager"],
@@ -72,13 +72,13 @@
         },
         "noUrl":true
     },
-    "Halle Tony Garnier":{
+    "Halle Tony Garnier|Lyon|France":{
         "mainPage":{
             "eventNameStrings": ["STAR ACADEMY"],
             "eventDateStrings": ["15.03.24","20h00"]
         }
     },
-    "Ville Morte":{
+    "Ville Morte|Lyon|France":{
         "mainPage":{
             "eventNameStrings": ["molécule"],
             "eventDateStrings": [""]
@@ -91,7 +91,7 @@
             "eventURLStrings": ["https://www.totaalrez.com/agenda/molecule-live/"]
         }
     },
-    "Le Petit Salon":{
+    "Le Petit Salon|Lyon|France":{
         "mainPage":{
             "eventNameStrings": ["wooka"],
             "eventDateStrings": ["27/01"],
@@ -101,7 +101,7 @@
             "eventDateStrings": ["27 janvier","23:30"]
         }
     },
-    "Infoconcert":{
+    "Infoconcert|Lyon|France":{
         "mainPage":{
             "eventNameStrings": ["heusss"],
             "eventDateStrings": "06 février",
