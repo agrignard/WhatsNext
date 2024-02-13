@@ -2,6 +2,7 @@
 // import {simplify, removeDoubles} from './stringUtilities.mjs';
 // import {samePlace, getEventPlace, fromLocalSource, getStyleList, writeToLog,jsonRemoveDouble} from './jsonUtilities.mjs';
 
+const path = require('path');
 const {to2digits, sameDay} =  require('./dateUtilities.js');
 const {simplify, removeDoubles} = require('./stringUtilities.js');
 const {samePlace, getEventPlace, fromLocalSource, getStyleList, writeToLog,jsonRemoveDouble} = require('./jsonUtilities.js');
@@ -9,7 +10,8 @@ const {samePlace, getEventPlace, fromLocalSource, getStyleList, writeToLog,jsonR
 
 module.exports = { mergeEvents };
   
-const outFile ="./generated/afterMerge.csv";
+const rootDirectory = path.resolve('.').match(/.*scraping/)[0]+'/';
+const outFile = rootDirectory+"/generated/afterMerge.csv";
 const refStyleList = getStyleList();
 
 function mergeEvents(eventList,showFullMergeLog){

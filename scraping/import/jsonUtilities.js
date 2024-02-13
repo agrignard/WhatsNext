@@ -3,26 +3,31 @@
 /*    venues, events, style                               */
 /**********************************************************/
 
+const path = require('path');
 const fs = require('fs');
 const {simplify} = require('./stringUtilities.js');
 const {removeAccents, removeDoubles} = require('./stringUtilities.js');
 const {getDateConversionPatterns, dateConversionFile} = require('./dateUtilities.js');
 
-const venuesListJSONFile = "./venues.json";
-const scrapInfoFile = "./venuesScrapInfo.json"; // path should start from the directory of the calling script
-const styleConversionFile = "./import/styleConversion.json";
-const cancellationKeywordsJSONFile = "./import/cancellationKeywords.json";
-const languagesFile = "./import/languages.json";
+const rootDirectory = path.resolve('.').match(/.*scraping/)[0]+'/';
+const venuesListJSONFile = rootDirectory+"/venues.json";
+const scrapInfoFile = rootDirectory+"/venuesScrapInfo.json"; // path should start from the directory of the calling script
+const styleConversionFile = rootDirectory+"/import/styleConversion.json";
+const cancellationKeywordsJSONFile = rootDirectory+"/import/cancellationKeywords.json";
+//const languagesFile = "./import/languages.json";
+//const languagesFile = "D:\\Travail\\Github\\Shared Projects\\WhatsNext\\scraping\\import\\languages.json";
+const languagesFile = rootDirectory+'import/languages.json';
 
 module.exports = {venuesListJSONFile, isOnlyAlias, geAliasesToURLMap, getEventPlace, getSource,
     fromLocalSource, jsonRemoveDouble, samePlace, getStyleConversions, getStyleList, getAliases,
     writeToLog, loadVenueScrapInfofromFile, loadVenuesJSONFile, loadVenueJSON, saveToVenuesJSON,
-    getLanguages, loadCancellationKeywords, fromLanguages, checkLanguages, loadErrorLog};
+    getLanguages, loadCancellationKeywords, fromLanguages, checkLanguages, loadErrorLog, 
+    getAvailableLanguages, initializeVenue, getNameFromID};
 
 
 // returns true is a venue is only an alias (not for scrapping)
 function isOnlyAlias(venue){
-    return !venue.hasOwnProperty('eventsDelimiterTag');
+    return !venue.hasOwnProperty('url');
 }
 
 // provide a map between places and URLs, for aliases places which have a declared URL
@@ -283,4 +288,47 @@ function loadErrorLog(errorLogFile){
         throw err;
     }
     return eventList;
+}
+
+// languages are available if they are defined in at least dateConversion and style conversion
+function getAvailableLanguages(){
+    const res = Object.keys(getDateConversionPatterns()).filter(lang =>
+        Object.keys(getStyleConversions()).includes(lang)
+    );
+    return res;
+}
+
+// function makeID(venue){
+//     if (!venue.hasOwnProperty('country') || !venue.hasOwnProperty('city')){
+//         console.log('\x1b[31mError: venue \x1b[0m%s\x1b[31m has no country and/or city defined.',venue.name);
+//     }else{
+//     venue.ID = venue.name+'|'+venue.city+'|'+venue.country;
+//     } 
+// }
+
+function getNameFromID(ID){
+    return ID.replace(/\|.*?\|.*?$/,'');
+
+}
+
+// add keys ID and baseURL to new venue
+function initializeVenue(venue, outputPath){
+    if (!venue.hasOwnProperty('country') || !venue.hasOwnProperty('city')){
+        console.log('\x1b[31mError: venue \x1b[0m%s\x1b[31m has no country and/or city defined.',venue.name);
+    }else{
+        if (!venue.hasOwnProperty('ID')){
+            console.log('Initializing new venue %s',venue.name);
+            venue.ID = venue.name+'|'+venue.city+'|'+venue.country;
+        }
+        if (venue.hasOwnProperty('url')){
+            // initializes base url
+            const url = new URL(venue.url);
+            venue.baseURL = url.origin + url.pathname.replace(/\/[^\/]+$/, '/');
+            // initializes directory for storage
+            const path = outputPath+venue.country+'/'+ venue.city+'/'+venue.name+'/';
+            if (!fs.existsSync(path)){
+              fs.mkdirSync(path);
+            }
+        }
+    } 
 }

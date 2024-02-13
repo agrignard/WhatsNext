@@ -57,36 +57,6 @@
     "linkedPageDateFormat": "dd-MM-yyyy-HH:mm"
   },
   {
-    "name": "Terminal Club",
-    "city": "Lyon",
-    "country": "France",
-    "url": "https://www.terminal-club.com/evenements/",
-    "eventsDelimiterTag": "DIV.colinner",
-    "dateFormat": "dd-MM",
-    "eventURLIndex": 1,
-    "defaultStyle": "Electro",
-    "midnightHour": "sameDay",
-    "baseURL": "https://www.terminal-club.com/evenements/",
-    "linkedPage": {
-      "eventNameTags": [
-        "H1.sectiontitle.titreeventsingle:eq(0)"
-      ],
-      "eventDateTags": [
-        "DIV.col.small5:eq(0)"
-      ]
-    },
-    "scrap": {
-      "eventNameTags": [
-        "H5.posttitle.islarge.uppercase:eq(0)"
-      ],
-      "eventDateTags": [
-        "DIV.eventphotodate.nomargin.nopadding:eq(0)",
-        "DIV.nomargin.nopadding:eq(2)"
-      ]
-    },
-    "linkedPageDateFormat": "dd-MM-yy"
-  },
-  {
     "name": "Transbordeur",
     "aliases": [
       "Le Transbordeur"
@@ -115,7 +85,38 @@
         "DIV.span4:eq(1)  DIV:eq(0)  DIV.cscdefault:eq(2)  H1:eq(0)  SPAN:eq(0)"
       ]
     },
-    "linkedPageDateFormat": "dd-MM-yyyy"
+    "linkedPageDateFormat": "dd-MM-yyyy",
+    "ID": "Transbordeur|Lyon|France"
+  },
+  {
+    "name": "Terminal Club",
+    "city": "Lyon",
+    "country": "France",
+    "url": "https://www.terminal-club.com/evenements/",
+    "eventsDelimiterTag": "DIV.colinner",
+    "dateFormat": "dd-MM",
+    "eventURLIndex": 1,
+    "defaultStyle": "Electro",
+    "midnightHour": "sameDay",
+    "baseURL": "https://www.terminal-club.com/evenements/",
+    "linkedPage": {
+      "eventNameTags": [
+        "H1.sectiontitle.titreeventsingle:eq(0)"
+      ],
+      "eventDateTags": [
+        "DIV.col.small5:eq(0)"
+      ]
+    },
+    "scrap": {
+      "eventNameTags": [
+        "H5.posttitle.islarge.uppercase:eq(0)"
+      ],
+      "eventDateTags": [
+        "DIV.eventphotodate.nomargin.nopadding:eq(0)",
+        "DIV.nomargin.nopadding:eq(2)"
+      ]
+    },
+    "linkedPageDateFormat": "dd-MM-yy"
   },
   {
     "name": "Le Périscope",

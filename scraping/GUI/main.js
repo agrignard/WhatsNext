@@ -90,10 +90,11 @@ const template = [
        ]
     },
     {
-        label: 'Places and languages',
+        label: 'Manage',
         submenu: [
-            { label: 'Cities and countries', click: () => { loadPage('citiesAndCountries.html'); } },
-            { label: 'Languages', click: () => { loadPage('languages.html'); } }
+         { label: 'Venues', click: () => { loadPage('venues.html'); } },
+         { label: 'Cities and countries', click: () => { loadPage('citiesAndCountries.html'); } },
+         { label: 'Languages', click: () => { loadPage('languages.html'); } }
         ]
     },
     {

@@ -3,20 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage cities and countries</title>
+    <title>Internationalex</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <select id="countriesDropdown"></select>
-        <select id="citiesDropdown"></select>
+    <!-- country management -->
+    <div class="countries">
+        country:
+        <div class="subCountries">
+            <select id="countriesDropdown"></select>
+            <button id="addcountryBtn">Add country</button>
+            <div id="countryDialog" style="display: none;">
+                <input type="text" id="newCountryNameInput">
+                <button id="countryConfirmBtn">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- city management -->
+    <div class="cities">
+        cities:
+        <div class="subCities">
+            <select id="citiesDropdown"></select>
+            <button id="addcityBtn">Add city</button>
+            <div id="cityDialog" style="display: none;">
+                <input type="text" id="newCityNameInput">
+                <button id="cityConfirmBtn">Confirm</button>
+            </div>
+        </div>      
+    </div>
+    <!-- languages management -->
+    <div> Languages:
+        <div id="languagesContainer">
+            <button class="languageItem" data-value="option1">Langue 1</button>
+        </div>               
     </div>
     <div id="message-container"></div>
-    <button id="addCountryBtn">Ajouter un pays</button>
-    <div id="dialog" style="display: none;">
-        <input type="text" id="newCountryNameInput">
-        <button id="confirmBtn">Confirmer</button>
-    </div>
-    <script src="renderer.js"></script>
+   
+    <script src="citiesAndCountries.js"></script>
 </body>
 </html>

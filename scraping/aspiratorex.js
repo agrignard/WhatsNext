@@ -7,7 +7,7 @@
 const fs = require('fs');
 const {removeDoubles, makeURL, cleanPage, extractBody} = require('./import/stringUtilities.js');
 const {loadLinkedPages,fetchAndRecode,fetchLink,getVenuesFromArguments} = require('./import/fileUtilities.js');
-const {loadVenuesJSONFile, saveToVenuesJSON, isOnlyAlias} = require('./import/jsonUtilities.js');
+const {loadVenuesJSONFile, saveToVenuesJSON, isOnlyAlias, initializeVenue} = require('./import/jsonUtilities.js');
 const {getURLListFromPattern} = require('./import/dateUtilities.js');
 const cheerio = require('cheerio');
 
@@ -15,7 +15,12 @@ const cheerio = require('cheerio');
 const outputPath = './webSources/';
 const nbFetchTries = 2; // number of tries in case of internet connection time outs
 
-const venues = getVenuesFromArguments(process.argv, loadVenuesJSONFile());
+const venues = loadVenuesJSONFile();
+
+const filteredVenues = getVenuesFromArguments(process.argv, venues);
+
+// initializes new venues
+filteredVenues.forEach(venue => initializeVenue(venue, outputPath));
 
 // const venueToDownload = process.argv[2];
 // if (venueToDownload && typeof venueToDownload !== "string"){
@@ -26,33 +31,32 @@ console.log("\n\x1b[36m*********************************************************
 console.log("ASPIRATOREX IS SNIFFING SOURCES FILES contained in venues JSON file.");
 console.log("***********************************************************************************\x1b[0m");
 
-if (venues.length === 0){
+if (filteredVenues.length === 0){
   console.log("No place matching arguments.");
 }else{
-  // Parcourir chaque objet (ou uniquement celui passé en argument du script)
-  venues.filter(obj => !isOnlyAlias(obj)).forEach((venue, index) => {
+  // for non aliases venues
+  filteredVenues.filter(obj => !isOnlyAlias(obj)).forEach((venue, index) => {
         // Afficher le numéro de l'objet
     console.log(`Venue ${index + 1}: \x1b[36m${venue.name} (${venue.city}, ${venue.country})\x1b[0m (${venue.url})`);
     // extract baseURL and add it to JSON
     try{
       const url = new URL(venue.url);
-      //const baseURL = `${url.protocol}//${url.hostname}${url.port ? `:${url.port}` : ''}`;
       venue.baseURL = url.origin + url.pathname.replace(/\/[^\/]+$/, '/');
       if (!venue.hasOwnProperty('country') || !venue.hasOwnProperty('city')){
         console.log('\x1b[31mError: venue \x1b[0m%s\x1b[31m has no country and/or city defined.',venue.name);
       }else{
-        const countryPath = venue.country;
-        const cityPath = venue.city;
-        if (!fs.existsSync(outputPath+countryPath+'/'+cityPath)){
-          console.log('\x1b[31mError: City \x1b[0m%s\x1b[31m does not exist in %s. If orthographe is correct, create a new directory in \x1b[0m%s',cityPath,countryPath,outputPath+countryPath);
-        }else{
-          let path = outputPath+countryPath+'/'+cityPath+'/'+venue.name+'/';
-          if (!fs.existsSync(path)){
-            fs.mkdirSync(path);
-          }
+        // const countryPath = venue.country;
+        // const cityPath = venue.city;
+        // if (!fs.existsSync(outputPath+countryPath+'/'+cityPath)){
+        //   console.log('\x1b[31mError: City \x1b[0m%s\x1b[31m does not exist in %s. If orthographe is correct, create a new directory in \x1b[0m%s',cityPath,countryPath,outputPath+countryPath);
+        // }else{
+          let path = outputPath+venue.country+'/'+venue.city+'/'+venue.name+'/';
+          // if (!fs.existsSync(path)){
+          //   fs.mkdirSync(path);
+          // }
           erasePreviousHtmlFiles(path)
           .then(() => {downloadVenue(venue,path);})
-        }
+        // }
       } 
     }catch(err){
       console.log('\x1b[31mCannot read URL for %s.x1b[0m', venue.name);

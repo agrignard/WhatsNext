@@ -1,0 +1,21 @@
+.container {
+    margin: 20px;
+}
+
+/* Style pour les boutons des options */
+.languageItem {
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    margin: 5px;
+    cursor: pointer;
+  }
+  
+/* Style pour mettre en surbrillance l'option sélectionnée */
+.languageItem.selected {
+background-color: lightblue;
+}
+
+.languageItem.unavailable {
+    color: red;
+    }
+  

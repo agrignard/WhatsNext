@@ -2,10 +2,12 @@
 /*    utilities to deal with dates    */
 /**************************************/
 
+const path = require('path');
 const { parse, isValid }  = require('date-fns');
 const fs = require('fs'); 
 
-const dateConversionFile = './import/dateConversion.json';
+const rootDirectory = path.resolve('.').match(/.*scraping/)[0]+'/';
+const dateConversionFile = rootDirectory+'/import/dateConversion.json';
 
 module.exports = {dateConversionFile, sameDay, showDate, getDateConversionPatterns, getCommonDateFormats,
   createDate, convertDate, numberOfInvalidDates, to2digits, getURLListFromPattern};
