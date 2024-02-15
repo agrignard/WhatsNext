@@ -1,0 +1,10 @@
+{
+    "France": "Europe/Paris",
+    "Vietnam": "Asia/Ho_Chi_Minh",
+    "UK": "Europe/London",
+    "Canada": {
+        "Toronto":"America/Toronto",
+        "Montréal":"America/Montreal"
+    }
+}
+

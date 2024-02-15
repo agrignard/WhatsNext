@@ -8,6 +8,7 @@ const fs = require('fs');
 
 const rootDirectory = path.resolve('.').match(/.*scraping/)[0]+'/';
 const dateConversionFile = rootDirectory+'/import/dateConversion.json';
+const timeZoneFile = rootDirectory+'/import/dateConversion.json';
 
 module.exports = {dateConversionFile, sameDay, showDate, getDateConversionPatterns, getCommonDateFormats,
   createDate, convertDate, numberOfInvalidDates, to2digits, getURLListFromPattern};

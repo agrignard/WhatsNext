@@ -100,7 +100,7 @@ function extractBody(content){
 
 // perform several fixes on a html text to make it cleaner and more consistent
 function cleanPage(content){
-  var cleanedContent = cleanScripts(content);
+  let cleanedContent = cleanScripts(content);
   cleanedContent = removeBRTags(cleanedContent);
   cleanedContent = cleanHtml(cleanedContent);
   cleanedContent = removeForms(cleanedContent);
