@@ -1,58 +1,21 @@
-import * as fs from 'fs';
+const fs = require('fs');
 
 const placeToCoord = new Map();
 
 convertPlaceCSVtoGeoJson();
 convertEventCSVtoGeoJson();
 
-function convertGeoJsontoCSV(){
-  console.log("converting geojson place to csv");
-  const placeGeoJSONPath = 'www/lyon_place.geojson';
-  var placeString="place,latitude,longitude,url\n";
-  fs.readFile(placeGeoJSONPath, 'utf8', (err, data) => {
-      if (err) {
-          console.error('Error reading existing GeoJSON:', err);
-          return;
-      }
-      const placeGeoJSONPath = JSON.parse(data);
-      for (var i = 0; i < placeGeoJSONPath.features.length; i++) {
-        placeString += placeGeoJSONPath.features[i].properties.title + "," + parseFloat(placeGeoJSONPath.features[i].geometry.coordinates[1])+ "," + parseFloat(placeGeoJSONPath.features[i].geometry.coordinates[0]) + ","  + placeGeoJSONPath.features[i].properties.description + "\n"; 
-      }
-      // Define the path to the modified GeoJSON file
-      const modifiedPlacePath = 'www/lyon_place.csv';
-      console.log(placeString);
-      // Save the modified GeoJSON to a new file
-      fs.writeFile(modifiedPlacePath, placeString, 'utf8', (err) => {
-        if (err) {
-          console.error('Error saving modified GeoJSON:', err);
-        } else {
-          console.log('Modified CSV saved to', modifiedPlacePath);
-        }
-      });
-  });
-  
-}
-
-
-function convertPlaceCSVtoGeoJson(){
-  console.log("convertPlaceCSVtoGeoJson");
-  // Getting the original source file for event
-  const existingGeoJSONPath = 'www/template/place_minimal.geojson';
+async function convertPlaceCSVtoGeoJson(){
+  console.log("*****Converting Place CSV to GeoJson (place,lat,long,url)*****");
+  // Getting the original template source file for event
+  const templateGeoJSONPplace = 'www/template/place_minimal.geojson';
   // Read the existing GeoJSON file
-  fs.readFile(existingGeoJSONPath, 'utf8', (err, data) => {
+  fs.readFile(templateGeoJSONPplace, 'utf8', (err, data) => {
     if (err) {
       console.error('Error reading existing GeoJSON:', err);
       return;
     }
-
-    const placeGeoJSONPath = JSON.parse(data);
-    for (var i = 0; i < placeGeoJSONPath.features.length; i++) {
-        placeToCoord.set(placeGeoJSONPath.features[i].properties.title,placeGeoJSONPath.features[i].geometry.coordinates);
-    }
-
-    // Parse the existing GeoJSON data
     const existingGeoJSON = JSON.parse(data);
-
     const csvFilePath = 'www/lyon_place.csv';
     const csvData = fs.readFileSync(csvFilePath, 'utf8');
     const table = csvData.split('\n').slice(1);
@@ -62,7 +25,7 @@ function convertPlaceCSVtoGeoJson(){
       const latitude=parseFloat(columns[1]);
       const longitude=parseFloat(columns[2]);
       const url=columns[3];
-      console.log("Place: "+place+";"+latitude+";"+longitude+";"+url);
+      //console.log("Place: "+place+";"+latitude+";"+longitude+";"+url);
 
     const newFeature = {
       type: 'Feature',
@@ -89,29 +52,13 @@ function convertPlaceCSVtoGeoJson(){
         console.log('Modified GeoJSON saved to', modifiedGeoJSONPath);
       }
     });
-    console.log(table.length + " places created")
+    console.log("in convertPlaceCSVtoGeoJson(): "+ table.length + " places created")
   });
 }
-
-//printEachEvent();
-//Getting the coordinate of each place 
-function printEachEvent(){
-  const placeGeoJSONPath = 'www/lyon_event.geojson';
-  fs.readFile(placeGeoJSONPath, 'utf8', (err, data) => {
-      if (err) {
-          console.error('Error reading existing GeoJSON:', err);
-          return;
-      }
-      const placeGeoJSONPath = JSON.parse(data);
-      for (var i = 0; i < placeGeoJSONPath.features.length; i++) {
-        console.log(placeGeoJSONPath.features[i].properties.place + "," + placeGeoJSONPath.features[i].properties.title + "," + placeGeoJSONPath.features[i].properties.time + "," + placeGeoJSONPath.features[i].properties.size + "," + placeGeoJSONPath.features[i].properties.style + "," + placeGeoJSONPath.features[i].properties.description); 
-      }
-  });
-}
-  
-function convertEventCSVtoGeoJson(){
+ 
+async function convertEventCSVtoGeoJson(){
   // Getting the original source file for event
-  console.log("convertEventCSVtoGeoJson");
+  console.log("*****Converting Event CSV*****");
   const existingGeoJSONPath = 'www/template/event_minimal.geojson';
   // Read the existing GeoJSON file
   fs.readFile(existingGeoJSONPath, 'utf8', (err, data) => {
@@ -136,14 +83,13 @@ function convertEventCSVtoGeoJson(){
       const style=columns[4];
       const detailedStyle=columns[5];
       const url=columns[6];
-      console.log("Event:"+ place+";"+title+";"+time+";"+size+";"+style+";"+detailedStyle+";"+url);
-
+      //console.log("Event:"+ place+";"+title+";"+time+";"+size+";"+style+";"+detailedStyle+";"+url);
     const newFeature = {
       type: 'Feature',
       id:parseInt(time*Math.random()),
       geometry:{
-          type: 'Point',
-          coordinates: placeToCoord.get(place),
+          type: 'Points',
+          //coordinates: placeToCoord.get(place),
       },
       properties:{
           "title": title,
@@ -171,6 +117,50 @@ function convertEventCSVtoGeoJson(){
         console.log('Modified GeoJSON saved to', modifiedGeoJSONPath);
       }
     });
-    console.log(existingGeoJSON.features.length + " events");
+    console.log("in convertEventCSVtoGeoJson(): " + existingGeoJSON.features.length + " events");
   });
+}
+
+//printEachEvent();
+//Getting the coordinate of each place 
+function printEachEvent(){
+  const placeGeoJSONPath = 'www/lyon_event.geojson';
+  fs.readFile(placeGeoJSONPath, 'utf8', (err, data) => {
+      if (err) {
+          console.error('Error reading existing GeoJSON:', err);
+          return;
+      }
+      const placeGeoJSONPath = JSON.parse(data);
+      for (var i = 0; i < placeGeoJSONPath.features.length; i++) {
+        console.log(placeGeoJSONPath.features[i].properties.place + "," + placeGeoJSONPath.features[i].properties.title + "," + placeGeoJSONPath.features[i].properties.time + "," + placeGeoJSONPath.features[i].properties.size + "," + placeGeoJSONPath.features[i].properties.style + "," + placeGeoJSONPath.features[i].properties.description); 
+      }
+  });
+}
+
+function convertGeoJsontoCSV(){
+  console.log("converting geojson place to csv");
+  const placeGeoJSONPath = 'www/lyon_place.geojson';
+  var placeString="place,latitude,longitude,url\n";
+  fs.readFile(placeGeoJSONPath, 'utf8', (err, data) => {
+      if (err) {
+          console.error('Error reading existing GeoJSON:', err);
+          return;
+      }
+      const placeGeoJSONPath = JSON.parse(data);
+      for (var i = 0; i < placeGeoJSONPath.features.length; i++) {
+        placeString += placeGeoJSONPath.features[i].properties.title + "," + parseFloat(placeGeoJSONPath.features[i].geometry.coordinates[1])+ "," + parseFloat(placeGeoJSONPath.features[i].geometry.coordinates[0]) + ","  + placeGeoJSONPath.features[i].properties.description + "\n"; 
+      }
+      // Define the path to the modified GeoJSON file
+      const modifiedPlacePath = 'www/lyon_place.csv';
+      console.log(placeString);
+      // Save the modified GeoJSON to a new file
+      fs.writeFile(modifiedPlacePath, placeString, 'utf8', (err) => {
+        if (err) {
+          console.error('Error saving modified GeoJSON:', err);
+        } else {
+          console.log('Modified CSV saved to', modifiedPlacePath);
+        }
+      });
+  });
+  
 }

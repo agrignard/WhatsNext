@@ -1,14 +1,7 @@
-/*var express = require('express');
-var app = express();*/
-
-import express from 'express';
-import path from 'path';
-import { fileURLToPath } from 'url';
-
+const express = require('express');
+const path = require('path');
+const fileURLToPath = require('url');
 const app = express();
-const __filename = fileURLToPath(import.meta.url);
-
-const __dirname = path.dirname(__filename);
 
 app.use(express.static(__dirname + '/www'));
 const port = process.env.PORT || 3000;

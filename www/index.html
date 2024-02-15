@@ -108,10 +108,10 @@ const categoryColors = {
   'Jam': '238, 130, 238',
   'Classique': '127, 0, 255',
   'Chanson': '0, 255, 255',
+  'Live': '144, 238, 214'
 };
 
 const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-
 const placeToCoord = new Map();
 const placeToUrl = new Map();
 var places= [];
@@ -223,6 +223,7 @@ map.addLayer({
 'circle-stroke-color': !darkMode ? 'white' : 'black'
 }
 });
+map.setLayoutProperty('places-circles', 'visibility', 'visible');
 
 /*map.addLayer({
 'id': 'places-circles2',
@@ -241,7 +242,7 @@ map.addLayer({
 });*/
 
 map.addLayer({
-'id': 'palce-labels',
+'id': 'place-labels',
 'type': 'symbol',
 'source': 'places',
 'layout': {
@@ -255,6 +256,15 @@ map.addLayer({
 }
 });
 
+
+map.setLayoutProperty('place-labels', 'visibility', 'visible');
+
+
+map.style.stylesheet.layers.forEach(function(layer) {
+    if (layer.type === 'symbol') {
+        map.removeLayer(layer.id);
+    }
+});
 
  
 map.addSource('events', {
@@ -282,7 +292,7 @@ function generateColorExpressions(categories) {
   });
 
   // Add a default color at the end if needed
-  colorExpressions.push('#888');
+  colorExpressions.push('#999');
 
   // Return the complete color expression
   return ['match', ['get', 'style'], ...colorExpressions];
@@ -701,7 +711,8 @@ const circles = [
   { x: 140, y: 25, radius: 18, value: 'Rap', color: 'rgba(165,2,33,0.5)' },
   { x: 180, y: 25, radius: 18, value: 'Classique', color: 'rgba(127,0,255,0.5)' },
   { x: 220, y: 25, radius: 18, value: 'World', color: 'rgba(224,147,40,0.5)' },
-  { x: 260, y: 25, radius: 18, value: 'Chanson', color: 'rgba(0,255,255,0.5)' }
+  { x: 260, y: 25, radius: 18, value: 'Chanson', color: 'rgba(0,255,255,0.5)' },
+  { x: 300, y: 25, radius: 18, value: 'Live', color: 'rgba(144,238,144,0.5)' }
 ];
 
 let selectedCircle = null;

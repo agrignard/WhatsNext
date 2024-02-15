@@ -11,8 +11,7 @@ const dateConversionFile = rootDirectory+'/import/dateConversion.json';
 const timeZoneFile = rootDirectory+'/import/dateConversion.json';
 
 module.exports = {dateConversionFile, sameDay, showDate, getDateConversionPatterns, getCommonDateFormats,
-  createDate, convertDate, numberOfInvalidDates, to2digits, getURLListFromPattern
-  getTimeZone, getTimeZoneList};
+  createDate, convertDate, numberOfInvalidDates, to2digits, getURLListFromPattern,getTimeZone, getTimeZoneList};
 
 
 // verify if two unix dates correspond to the same day
