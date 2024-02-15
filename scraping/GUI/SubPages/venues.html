@@ -11,17 +11,18 @@
         <select id="countriesDropdown"></select>
         <select id="citiesDropdown"></select>
         <select id="venuesDropdown"></select>
+        <button id="addVenueBtn">Add venue</button>
+        <div id="dialog" style="display: none;">
+            <input type="text" id="newVenueNameInput">
+            <button id="confirmBtn">Confirm</button>
+        </div>
     </div>
     <div id="venue-info"></div>
+   
     <div id="message-container"></div>
-
-
-    <button id="addCountryBtn">Ajouter un pays</button>
-    <div id="dialog" style="display: none;">
-        <input type="text" id="newCountryNameInput">
-        <button id="confirmBtn">Confirmer</button>
+    <div id="processVenue">
+        <button id="processBtn">Process Venue</button>
     </div>
-
     <script src="venues.js"></script>
 </body>
 </html>

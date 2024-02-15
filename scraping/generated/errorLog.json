@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "eventPlace": "Terminal Club",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Nashton Records : DJ Contest, Haeminum, Prollepse",
+    "eventDate": "8 Fév",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'Nashton Records : DJ Contest, Haeminum, Prollepse'. Erreur lors du téléchargement ? | Format de date invalide pour Terminal Club. Reçu \"8 Fév\", converti en \"08-02\" (attendu \"dd-MM-yy\")",
+    "eventURL": "https://www.terminal-club.com/evenement-multiple/mois/?shortcode=b6439857",
+    "eventDetailedStyle": "",
+    "eventStyle": "Electro",
+    "source": {
+      "name": "Terminal Club",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 0
+  }
+]

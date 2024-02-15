@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venues</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="infos"></div>
+    <div class="processContainer">
+        <div id="leftPanel" class="leftPanel">
+          <div id="delimiter">
+            Delimiter tag:
+            <input type="text" id="delimiterTag" placeholder="">
+          </div>
+          <div id="eventName">
+            String to find:
+            <textarea id="eventNameStrings" class="eventStrings" rows="4" cols="50" placeholder="Enter event name"></textarea>
+            Tag:
+            <textarea  id="eventNameTags" class="eventTags" rows="4" cols="50" placeholder=""></textarea>
+          </div>
+        </div>
+        <div id= "rightPanel" class="rightPanel">
+          Contenu de droite
+        </div>
+      </div>
+      
+    <script src="process.js"></script>
+</body>
+</html>

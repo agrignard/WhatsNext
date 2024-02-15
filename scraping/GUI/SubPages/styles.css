@@ -3,7 +3,7 @@
 }
 
 /* Style pour les boutons des options */
-.languageItem {
+.niceButton {
     border: 1px solid #ccc;
     padding: 5px 10px;
     margin: 5px;
@@ -16,6 +16,42 @@ background-color: lightblue;
 }
 
 .languageItem.unavailable {
-    color: red;
-    }
+  color: red;
+}
+
+#divAlert {
+  color: red;
+}
+
+.greyFont {
+  color: grey;
+}
+
+/* textarea {
+  resize: none;
+} */
+
+
+.processContainer {
+  display: flex; /* Utiliser Flexbox pour le positionnement */
+  height: 100vh; /* Hauteur de la fenêtre visible */
+}
+
+.leftPanel {
+  width: 30%; /* Largeur de la partie gauche */
+  background-color: #f0f0f0; /* Couleur de fond */
+  overflow: auto; /* Ajouter un défilement si le contenu est plus long que la zone */
+}
+
+.rightPanel {
+  width: 70%; /* Largeur de la partie droite */
+  background-color: #d0d0d0; /* Couleur de fond */
+  overflow-y: auto; /* Ajouter un défilement vertical si le contenu est plus long que la zone */
+}
   
+
+.encadre {
+  border: 1px solid black; /* Définit une bordure solide d'un pixel en noir */
+  padding: 10px; /* Ajoute un espacement intérieur de 10 pixels pour séparer le contenu de la bordure */
+  display: inline-block; /* Permet à l'élément de s'ajuster à la largeur du contenu */
+}

@@ -153,7 +153,11 @@ function getURLListFromPattern(url,pattern,nbPages){
   for(let i = 0; i<nbPages; i++){
     let d = pattern.replace(/MM|mm/,to2digits(String(month))).replace(/M|mm/,month);
     d = d.replace(/yyyy/,year).replace(/yy/,year-Math.round(year/100)*100);
-    res.push(url+d);
+    if (/{index}/.test(url)){
+      res.push(url.replace(/{index}/,d));
+    } else{
+      res.push(url+d);
+    }
     month++;
     if (month>12){
       month = 1;

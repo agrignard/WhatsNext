@@ -3,10 +3,11 @@ const fs = require('fs');
 const { parse, isValid } = require('date-fns');
 const cheerio = require('cheerio');
 const {parseDocument} = require('htmlparser2');
-const {makeURL, simplify} = require('./import/stringUtilities.js');
-const {loadLinkedPages, saveToJSON, saveToCSV, getVenuesFromArguments} = require('./import/fileUtilities.js');
+const {makeURL, simplify, removeBlanks} = require('./import/stringUtilities.js');
+const {loadLinkedPages, saveToJSON, saveToCSV, getVenuesFromArguments,
+        getFilesNumber, getFilesContent} = require('./import/fileUtilities.js');
 const {samePlace, getAliases, getStyleConversions, loadVenuesJSONFile, 
-        loadCancellationKeywords, writeToLog, isOnlyAlias, geAliasesToURLMap,
+        loadCancellationKeywords, writeToLog, isAlias, geAliasesToURLMap,
         getLanguages, fromLanguages, checkLanguages} = require('./import/jsonUtilities.js');
 const { mergeEvents} = require('./import/mergeUtilities.js');
 
@@ -38,26 +39,13 @@ if (venues.length === 0){
 } 
 
 async function scrap(venues){
-  await scrapFiles(venues.filter(el => !isOnlyAlias(el)));
-  const venuesToSkip = venues.filter(el => isOnlyAlias(el)).map(el => el.name+' ('+el.city+', '+el.country+')');
-  console.log('\x1b[36mWarning: the following venues have no scraping details and are only used as aliases. Run analex if it is a mistake.\x1b[0m',venuesToSkip);    
+  await scrapFiles(venues.filter(el => !isAlias(el)));
+  const venuesToSkip = venues.filter(el => isAlias(el)).map(el => el.name+' ('+el.city+', '+el.country+')');
+  if (venuesToSkip.length>0){
+    console.log('\x1b[36mWarning: the following venues have no scraping details and are only used as aliases. Run analex if it is a mistake.\x1b[0m',venuesToSkip);    
+  }
 }
 
-// async function initScrap(fileToScrap){
-//   if (fileToScrap){
-//     if (venueList.some(element => element.name === fileToScrap)){
-//       console.log('\x1b[32m%s\x1b[0m', `Traitement uniquement de \'${fileToScrap}\'`);
-//       const venues = venueList.filter(element => element.name === fileToScrap);
-//       scrapFiles(venues);
-//     }else{
-//       console.log('\x1b[31mFichier \x1b[0m%s.html\x1b[31m non trouvé. Fin du scrapping.\x1b[0m\n', fileToScrap);
-//     }
-//   }else{
-//     await scrapFiles(venueList.filter(el => !isOnlyAlias(el)));
-//     const venuesToSkip = venueList.filter(el => isOnlyAlias(el)).map(el => el.name+' ('+el.city+', '+el.country+')');
-//     console.log('\x1b[36mWarning: the following venues have no scraping details and are only used as aliases. Run analex if it is a mistake.\x1b[0m',venuesToSkip);
-//   }
-// }
 
 
 
@@ -117,24 +105,26 @@ async function scrapFiles(venues) {
 
 
 async function analyseFile(venue) {
-  let linkedFileContent, inputFileList;
+  let linkedFileContent;//, inputFileList;
   const venueSourcePath = sourcePath+venue.country+'/'+venue.city+'/'+venue.name+'/';
   if (venue.hasOwnProperty('linkedPage')){
     linkedFileContent = loadLinkedPages(venueSourcePath);
   }
   // get file list to scrap
-  try {
-    inputFileList = fs.readdirSync(venueSourcePath)
-      .filter(fileName => fileName.endsWith('.html'))
-      .map(el => venueSourcePath+el);
-  } catch (err) {
-    console.error('\x1b[31mError reading html files in directory \'%s\'.\x1b[0m Error: %s',venueSourcePath, err);
-  }
+  // try {
+  //   inputFileList = fs.readdirSync(venueSourcePath)
+  //     .filter(fileName => fileName.endsWith('.html'))
+  //     .map(el => venueSourcePath+el);
+  // } catch (err) {
+  //   console.error('\x1b[31mError reading html files in directory \'%s\'.\x1b[0m Error: %s',venueSourcePath, err);
+  // }
+  const fileContent = getFilesContent(venueSourcePath);
 
-  console.log('\n\x1b[32m%s\x1b[0m', `******* Venue: ${venue.name}  (${inputFileList.length} page(s)) *******`);
+  console.log('\n\x1b[32m%s\x1b[0m', `******* Venue: ${venue.name}  (${getFilesNumber(venueSourcePath)} page(s)) *******`);
 
   // build event list and analyze the events
-  const [eventBlockList, hrefInDelimiterList] = await extractEvents(inputFileList,venue);
+  //const [eventBlockList, hrefInDelimiterList] = await extractEvents(inputFileList,venue);
+  const [eventBlockList, hrefInDelimiterList] = await extractEvents(fileContent,venue);
   let eventList = analyseEvents(eventBlockList, hrefInDelimiterList, venue);
   eventList = unique(eventList);
   console.log('Found %s events for %s.\n\n',eventList.length,venue.name);
@@ -240,7 +230,6 @@ async function analyseFile(venue) {
             let formatedEventDate = createDate(el.eventDate,dateFormat,localDateConversionPatterns);
            // el.date = formatedEventDate;
             if (!isValid(formatedEventDate)){
-              console.log(localDateConversionPatterns);
               writeToLog('error',el,['\x1b[31mFormat de date invalide pour %s. Reçu \"%s\", converti en \"%s\" (attendu \"%s\")\x1b[0m', 
                 venue.name,el.eventDate,convertDate(el.eventDate,localDateConversionPatterns),dateFormat],true);
               el.unixDate = 0;
@@ -277,60 +266,75 @@ async function analyseFile(venue) {
 
 
      // auxiliary function to extract data
-     function getText(tagName,JSONblock,source){
-      let string = "";
-      const tagList = JSONblock[tagName];
-      if (tagName !== 'eventMultiDateTags'){
-        try{
-          for (let i = 0; i <= tagList.length-1; i++) {
-            let ev = tagList[i]===''?source.text():source(tagList[i]).text();
-            string += ev+' ';
-          }
-        }catch(err){
-          console.log('\x1b[31m%s\x1b[0m', 'Erreur d\'extraction à partir des balises.\x1b[0m',tagList);
-        }
-        return removeBlanks(string);
-      }else{
-        const res = source(tagList[0]).map((index, element) => source(element).text()).get();
-        return res;
+  function getText(tagName,JSONblock,source){
+  let string = "";
+  const tagList = JSONblock[tagName];
+  if (tagName !== 'eventMultiDateTags'){
+    try{
+      for (let i = 0; i <= tagList.length-1; i++) {
+        let ev = tagList[i]===''?source.text():source(tagList[i]).text();
+        string += ev+' ';
       }
-     
-      //return tagName === 'eventPlaceTags'?fixString(removeBlanks(string),venueNamesList):removeBlanks(string);
+    }catch(err){
+      console.log('\x1b[31m%s\x1b[0m', 'Erreur d\'extraction à partir des balises.\x1b[0m',tagList);
     }
+    return removeBlanks(string);
+  }else{
+    const res = source(tagList[0]).map((index, element) => source(element).text()).get();
+    return res;
+  }
+  
+  //return tagName === 'eventPlaceTags'?fixString(removeBlanks(string),venueNamesList):removeBlanks(string);
+}
     // end of auxiliary function
 
 
 
 
-function removeBlanks(s){
-  return s.replace(/[\n\t]/g, ' ').replace(/ {2,}/g, ' ').replace(/^[ ]{1,}/,'').replace(/[ ]{1,}$/,'');
-}
+// function removeBlanks(s){
+//   return s.replace(/[\n\t]/g, ' ').replace(/ {2,}/g, ' ').replace(/^[ ]{1,}/,'').replace(/[ ]{1,}$/,'');
+// }
 
-
-
-async function extractEvents(inputFileList, venue){
+async function extractEvents(fileContent, venue){
   let eventBlockList = [];
   let hrefInDelimiterList = [];
-  const promise = inputFileList.map(async inputFile =>{
-    try{
-      const venueContent = await fs.promises.readFile(inputFile, 'utf8');
-      const $ = cheerio.load(parseDocument(venueContent));
-      try{
-        $(venue.eventsDelimiterTag).each((index, element) => {
-          let ev = $(element).html();
-          eventBlockList.push(ev);
-          hrefInDelimiterList.push($(venue.eventsDelimiterTag+':eq('+index+')').attr('href'));
-      });     
-      }catch(err){        
-        console.log('\x1b[31m%s\x1b[0m. %s', 'Délimiteur mal défini pour '+venue.name,err);      
-      }
-    }catch (err){
-      console.error("\x1b[31mErreur lors de la lecture du fichier local: \'%s\'.\x1b[0m %s",inputFile, (err.code==='ENOENT')?'':err);
-    }
-  });
-  await Promise.all(promise);
+  const $ = cheerio.load(parseDocument(fileContent));
+  try{
+    $(venue.eventsDelimiterTag).each((index, element) => {
+      let ev = $(element).html();
+      eventBlockList.push(ev);
+      hrefInDelimiterList.push($(venue.eventsDelimiterTag+':eq('+index+')').attr('href'));
+    });     
+  }catch(err){        
+    console.log('\x1b[31m%s\x1b[0m. %s', 'Délimiteur mal défini pour '+venue.name,err);      
+  }
   return [eventBlockList, hrefInDelimiterList];
 }
+
+
+// async function extractEvents(inputFileList, venue){
+//   let eventBlockList = [];
+//   let hrefInDelimiterList = [];
+//   const promise = inputFileList.map(async inputFile =>{
+//     try{
+//       const venueContent = await fs.promises.readFile(inputFile, 'utf8');
+//       const $ = cheerio.load(parseDocument(venueContent));
+//       try{
+//         $(venue.eventsDelimiterTag).each((index, element) => {
+//           let ev = $(element).html();
+//           eventBlockList.push(ev);
+//           hrefInDelimiterList.push($(venue.eventsDelimiterTag+':eq('+index+')').attr('href'));
+//       });     
+//       }catch(err){        
+//         console.log('\x1b[31m%s\x1b[0m. %s', 'Délimiteur mal défini pour '+venue.name,err);      
+//       }
+//     }catch (err){
+//       console.error("\x1b[31mErreur lors de la lecture du fichier local: \'%s\'.\x1b[0m %s",inputFile, (err.code==='ENOENT')?'':err);
+//     }
+//   });
+//   await Promise.all(promise);
+//   return [eventBlockList, hrefInDelimiterList];
+// }
 
 
 function unique(list) {
@@ -356,7 +360,6 @@ function FindLocationFromAlias(string,country,city,aliasList){
 function getStyle(string, eventLanguages){
   const stringComp = simplify(string);
   let res = string;
-  //  let localStyleConversion = styleConversion[eventLanguages[0]];
   let localStyleConversion = fromLanguages(styleConversion,eventLanguages);
   Object.keys(localStyleConversion).forEach(style =>{
     if (localStyleConversion[style].some(word => stringComp.includes(simplify(word)))){

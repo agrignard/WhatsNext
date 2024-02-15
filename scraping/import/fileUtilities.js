@@ -3,10 +3,61 @@
 /**************************************/
 
 const fs = require('fs');
+const cheerio = require('cheerio');
 const {cleanPage, removeBlanks, extractBody} = require('./stringUtilities.js');
 
-module.exports = {fetchLink, fetchAndRecode, loadLinkedPages, saveToJSON, 
-                    saveToCSV, getVenuesFromArguments};
+                    saveToCSV, getVenuesFromArguments,getFilesContent, getFilesNumber};
+
+// // fetch linked page
+// async function fetchLink(page, nbFetchTries){
+//     try{
+//         const content = await fetchWithRetry(page, nbFetchTries, 2000);
+//         return extractBody(removeBlanks(cleanPage(content)));
+//     }catch(err){
+//         console.log("\x1b[31mNetwork error while fetching links, cannot download \'%s\'.\x1b[0m",page);
+//     }
+// }
+  
+// async function fetchWithRetry(page, tries, timeOut) {
+//     return fetchAndRecode(page)
+//    // .then(response => {return response})
+//     .catch(error => {
+//         if (tries > 1){
+//             console.log('Download failed (%s). Trying again in %ss (%s %s left).',page,timeOut/1000,tries-1,tries ===2?'attempt':'attempts');
+//             return new Promise(resolve => setTimeout(resolve, timeOut))
+//             .then(() => fetchWithRetry(page,tries-1,timeOut));
+//         }else{
+//             console.log('Download failed (%s). Aborting (too many tries).',page);
+//             throw error;
+//         }
+//     });
+// }
+
+
+// fetch url and fix the coding when it is not in UTF-8
+// async function fetchAndRecode(url){
+//     return fetch(url)
+//     .then(response => decodeResponse(response));
+// }
+
+// function decodeResponse(response){
+//     const encoding =  response.headers.get('content-type').split('charset=')[1]; // identify the page encoding
+//     if (encoding === 'utf-8'){// || encoding ==='UTF-8'){
+//         //console.log('UTF8');
+//         const res = response.text();
+//         return res;
+//     }else{
+//         try{
+//             //console.log('Page encoding: ',encoding);
+//             const decoder = new TextDecoder(encoding); // convert to plain text (UTF-8 ?)
+//             return  response.arrayBuffer().then(buffer => decoder.decode(buffer));
+//         }catch(err){
+//             console.log('Decoding problem while processing %s. Error: %s',url,err);
+//             throw err;
+//         }
+//     }
+// }
+
 
 // fetch linked page
 async function fetchLink(page, nbFetchTries){
@@ -39,7 +90,6 @@ async function fetchAndRecode(url){
         const response = await fetch(url);
         const encoding = response.headers.get('content-type').split('charset=')[1]; // identify the page encoding
         if (encoding === 'utf-8'){// || encoding ==='UTF-8'){
-            //console.log('UTF8');
             return await response.text();
         }else{
             try{
@@ -147,4 +197,35 @@ function filterFromArguments(args){
         }
         return res;
     }
+}
+
+
+function getFilesContent(sourcePath){
+    let inputFileList;
+    try {
+        inputFileList = fs.readdirSync(sourcePath)
+        .filter(fileName => fileName.endsWith('.html'))
+        .map(el => sourcePath+el);
+    } catch (err) {
+        console.error('\x1b[31mError reading html files in directory \'%s\'.\x1b[0m Error: %s',sourcePath, err);
+    }
+    function readBodyContent(file) {
+        const content = fs.readFileSync(file, 'utf-8');
+        const $ = cheerio.load(content);
+        return $('body').html();
+    }
+
+    // load main pages
+    return inputFileList.map(readBodyContent).join('\n');
+}
+
+function getFilesNumber(sourcePath){
+    let inputFileList;
+    try {
+        inputFileList = fs.readdirSync(sourcePath)
+        .filter(fileName => fileName.endsWith('.html'))
+    } catch (err) {
+        console.error('\x1b[31mError reading html files in directory \'%s\'.\x1b[0m Error: %s',sourcePath, err);
+    }
+    return inputFileList.length;
 }

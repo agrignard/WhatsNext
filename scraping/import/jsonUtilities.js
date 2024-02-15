@@ -5,8 +5,7 @@
 
 const path = require('path');
 const fs = require('fs');
-const {simplify} = require('./stringUtilities.js');
-const {removeAccents, removeDoubles} = require('./stringUtilities.js');
+const {removeAccents, removeDoubles, simplify} = require('./stringUtilities.js');
 const {getDateConversionPatterns, dateConversionFile} = require('./dateUtilities.js');
 
 const rootDirectory = path.resolve('.').match(/.*scraping/)[0]+'/';
@@ -18,21 +17,21 @@ const cancellationKeywordsJSONFile = rootDirectory+"/import/cancellationKeywords
 //const languagesFile = "D:\\Travail\\Github\\Shared Projects\\WhatsNext\\scraping\\import\\languages.json";
 const languagesFile = rootDirectory+'import/languages.json';
 
-module.exports = {venuesListJSONFile, isOnlyAlias, geAliasesToURLMap, getEventPlace, getSource,
+module.exports = {venuesListJSONFile, isAlias, geAliasesToURLMap, getEventPlace, getSource,
     fromLocalSource, jsonRemoveDouble, samePlace, getStyleConversions, getStyleList, getAliases,
     writeToLog, loadVenueScrapInfofromFile, loadVenuesJSONFile, loadVenueJSON, saveToVenuesJSON,
     getLanguages, loadCancellationKeywords, fromLanguages, checkLanguages, loadErrorLog, 
-    getAvailableLanguages, initializeVenue, getNameFromID};
+    getAvailableLanguages, initializeVenue, getNameFromID, makeID};
 
 
 // returns true is a venue is only an alias (not for scrapping)
-function isOnlyAlias(venue){
-    return !venue.hasOwnProperty('url');
+function isAlias(venue){
+    return !venue.hasOwnProperty('scrapURL');
 }
 
 // provide a map between places and URLs, for aliases places which have a declared URL
 function geAliasesToURLMap(){
-    return loadVenuesJSONFile().filter(el => isOnlyAlias(el) && el.hasOwnProperty('url'));
+    return loadVenuesJSONFile().filter(el => isAlias(el) && el.hasOwnProperty('url'));
 }
 
 // returns the venue (name, city, country) of an object
@@ -105,9 +104,9 @@ function getStyleConversions(){
 // get the default styles and their aliases
 function getStyleList(){
     try{
-     //   const res = await JSON.parse(await fs.promises.readFile(styleConversionFile, 'utf8'));
         const res = JSON.parse(fs.readFileSync(styleConversionFile, 'utf8'));
-        return Object.keys(res);
+        const language = Object.keys(res)[0];
+        return Object.keys(res[language]);
     }catch(err){
         console.log('\x1b[36mWarning: cannot open style conversion file JSON file:  \'%s\'.\x1b[0m%s\n',styleConversionFile,err);
     }
@@ -185,10 +184,8 @@ function loadVenuesJSONFile(){
 }
 
 // load a JSON containing info and return the info only for venue venueName
-function loadVenueJSON(venueName,venuesListJSON){
-    const venueJSON = venuesListJSON.find(function(element) {
-        return element.name === venueName;
-    });
+function loadVenueJSON(id,venuesListJSON){
+    const venueJSON = venuesListJSON.find(element => simplify(element.ID) === simplify(id));
     if (!venueJSON){
         console.error("\x1b[31mError venue info. Venue \'%s\' not found in %s\x1b[0m.\n Aborting process",venueName,venuesListJSONFile);
         throw err;
@@ -196,6 +193,19 @@ function loadVenueJSON(venueName,venuesListJSON){
         return venueJSON;
     }
 }
+
+// // load a JSON containing info and return the info only for venue venueName
+// function loadVenueJSON(venueName,venuesListJSON){
+//     const venueJSON = venuesListJSON.find(function(element) {
+//         return element.name === venueName;
+//     });
+//     if (!venueJSON){
+//         console.error("\x1b[31mError venue info. Venue \'%s\' not found in %s\x1b[0m.\n Aborting process",venueName,venuesListJSONFile);
+//         throw err;
+//     }else{
+//         return venueJSON;
+//     }
+// }
 
 function saveToVenuesJSON(jsonList){
     try{
@@ -298,13 +308,13 @@ function getAvailableLanguages(){
     return res;
 }
 
-// function makeID(venue){
-//     if (!venue.hasOwnProperty('country') || !venue.hasOwnProperty('city')){
-//         console.log('\x1b[31mError: venue \x1b[0m%s\x1b[31m has no country and/or city defined.',venue.name);
-//     }else{
-//     venue.ID = venue.name+'|'+venue.city+'|'+venue.country;
-//     } 
-// }
+function makeID(venue){
+    if (!venue.hasOwnProperty('country') || !venue.hasOwnProperty('city')){
+        console.log('\x1b[31mError: venue \x1b[0m%s\x1b[31m has no country and/or city defined.',venue.name);
+    }else{
+        venue.ID = venue.name+'|'+venue.city+'|'+venue.country;
+    } 
+}
 
 function getNameFromID(ID){
     return ID.replace(/\|.*?\|.*?$/,'');
@@ -318,12 +328,12 @@ function initializeVenue(venue, outputPath){
     }else{
         if (!venue.hasOwnProperty('ID')){
             console.log('Initializing new venue %s',venue.name);
-            venue.ID = venue.name+'|'+venue.city+'|'+venue.country;
+            venue.ID = makeID(venue);
         }
-        if (venue.hasOwnProperty('url')){
+        if (!isAlias(venue)){
             // initializes base url
-            const url = new URL(venue.url);
-            venue.baseURL = url.origin + url.pathname.replace(/\/[^\/]+$/, '/');
+            const scrapURL = new URL(venue.scrapURL);
+            venue.baseURL = scrapURL.origin + scrapURL.pathname.replace(/\/[^\/]+$/, '/');
             // initializes directory for storage
             const path = outputPath+venue.country+'/'+ venue.city+'/'+venue.name+'/';
             if (!fs.existsSync(path)){

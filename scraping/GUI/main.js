@@ -1,6 +1,9 @@
-const { app, BrowserWindow, Menu } = require('electron');
-
+const imports = '../import/';
 const subFolder = './SubPages/';
+
+const {app, BrowserWindow, ipcMain} = require('electron');
+const {makeMenu} = require(imports+'GUIUtilities.js');
+
 let mainWindow;
 
 function createWindow() {
@@ -13,108 +16,24 @@ function createWindow() {
             devTools: true  
         }
     });
-    mainWindow.loadFile('index.html');
+   mainWindow.loadFile('index.html');
+   makeMenu(subFolder, mainWindow, true);
 }
 
-    
-const template = [
-    {
-        label: 'File',
-        submenu: [
-            { role: 'quit' }
-        ]
-    },
-    {
-       label: 'Edit',
-       submenu: [
-          {
-             role: 'undo'
-          },
-          {
-             role: 'redo'
-          },
-          {
-             type: 'separator'
-          },
-          {
-             role: 'cut'
-          },
-          {
-             role: 'copy'
-          },
-          {
-             role: 'paste'
-          }
-       ]
-    },
-    
-    {
-       label: 'View',
-       submenu: [
-          {
-             role: 'reload'
-          },
-          {
-             role: 'toggledevtools'
-          },
-          {
-             type: 'separator'
-          },
-          {
-             role: 'resetzoom'
-          },
-          {
-             role: 'zoomin'
-          },
-          {
-             role: 'zoomout'
-          },
-          {
-             type: 'separator'
-          },
-          {
-             role: 'togglefullscreen'
-          }
-       ]
-    },
-    
-    {
-       role: 'window',
-       submenu: [
-          {
-             role: 'minimize'
-          },
-          {
-             role: 'close'
-          }
-       ]
-    },
-    {
-        label: 'Manage',
-        submenu: [
-         { label: 'Venues', click: () => { loadPage('venues.html'); } },
-         { label: 'Cities and countries', click: () => { loadPage('citiesAndCountries.html'); } },
-         { label: 'Languages', click: () => { loadPage('languages.html'); } }
-        ]
-    },
-    {
-       role: 'help',
-       submenu: [
-          {
-             label: 'Learn More'
-          }
-       ]
-    }
- ]
- 
- const menu = Menu.buildFromTemplate(template);
- Menu.setApplicationMenu(menu);
 
+ipcMain.on('execute-fonction', (event, functionName, mode) => {
+   switch (functionName) {
+       case 'changeMenu':
+           makeMenu(subFolder, mainWindow, mode);
+           break;
+   }
+});
+
+ipcMain.on('openProcessPage', (event) => {
+   mainWindow.loadFile('SubPages/process.html');
+ });
 
 app.whenReady().then(createWindow);
 
 
 
-function loadPage(page) {
-    mainWindow.loadFile(subFolder+page);
-}

@@ -3,7 +3,7 @@
     "name": "Le Sucre",
     "city": "Lyon",
     "country": "France",
-    "scrapURL": "https://le-sucre.eu/agenda/",
+    "url": "https://le-sucre.eu/agenda/",
     "baseURL": "https://le-sucre.eu/agenda/",
     "eventsDelimiterTag": "A.pureu11.pureumd12.pureulg14.pureug.agendacard",
     "defaultStyle": "Electro",
@@ -34,7 +34,7 @@
     "name": "Le Petit Salon",
     "city": "Lyon",
     "country": "France",
-    "scrapURL": "https://www.lpslyon.fr/evenements-le-petit-salon/",
+    "url": "https://www.lpslyon.fr/evenements-le-petit-salon/",
     "baseURL": "https://www.lpslyon.fr/evenements-le-petit-salon/",
     "eventsDelimiterTag": "DIV.events__item.item.colmd4.offsetxl1",
     "scrap": {
@@ -65,7 +65,8 @@
     ],
     "city": "Lyon",
     "country": "France",
-    "scrapURL": "https://www.transbordeur.fr/agenda/",
+    "url": "https://www.transbordeur.fr/agenda/",
+    "baseURL": "https://www.transbordeur.fr/agenda/",
     "eventsDelimiterTag": "DIV.span6.blocText",
     "dateFormat": "dd-MM-yy-HH:mm",
     "scrap": {
@@ -87,14 +88,13 @@
       ]
     },
     "linkedPageDateFormat": "dd-MM-yyyy",
-    "ID": "Transbordeur|Lyon|France",
-    "baseURL": "https://www.transbordeur.fr/agenda/"
+    "ID": "Transbordeur|Lyon|France"
   },
   {
     "name": "Terminal Club",
     "city": "Lyon",
     "country": "France",
-    "scrapURL": "https://www.terminal-club.com/evenements/",
+    "url": "https://www.terminal-club.com/evenements/",
     "eventsDelimiterTag": "DIV.colinner",
     "dateFormat": "dd-MM",
     "eventURLIndex": 1,
@@ -129,7 +129,7 @@
     ],
     "city": "Lyon",
     "country": "France",
-    "scrapURL": "https://www.periscope-lyon.com/concerts/",
+    "url": "https://www.periscope-lyon.com/concerts/",
     "eventsDelimiterTag": "DIV.smallcontent.ukwidth14m.ukgridmargin",
     "dateFormat": "dd-MM",
     "defaultStyle": "Jazz",
@@ -160,7 +160,7 @@
     ],
     "city": "Lyon",
     "country": "France",
-    "scrapURL": "https://sonic-lyon.fr/",
+    "url": "https://sonic-lyon.fr/",
     "dateFormat": "MM-dd",
     "eventsDelimiterTag": "DIV.event_details",
     "eventURLIndex": 1,
@@ -187,7 +187,7 @@
     "name": "Le Petit Bulletin",
     "city": "Lyon",
     "country": "France",
-    "scrapURL": "https://www.petit-bulletin.fr/lyon/agenda-recherche.html?idvillepb=lyon&pageagenda=12&thema=musique-soirees&quoi=0&ou=0&quand=0&dateprecise=&qui=&p={index}",
+    "url": "https://www.petit-bulletin.fr/lyon/agenda-recherche.html?idvillepb=lyon&pageagenda=12&thema=musique-soirees&quoi=0&ou=0&quand=0&dateprecise=&qui=&p={index}",
     "eventsDelimiterTag": "A.term7",
     "dateFormat": "dd-MM-yyyy-HH:mm",
     "baseURL": "https://www.petit-bulletin.fr/lyon/",
@@ -219,7 +219,7 @@
     "aliases": [
       "le marché gare"
     ],
-    "scrapURL": "https://marchegare.fr/agenda?category=All&page=1",
+    "url": "https://marchegare.fr/agenda?category=All&page=1",
     "dateFormat": "dd-MM",
     "baseURL": "https://marchegare.fr/",
     "scrap": {
@@ -256,7 +256,7 @@
     "aliases": [
       "Halle Tony Garnier (htg)"
     ],
-    "scrapURL": "https://www.halle-tony-garnier.com/fr/programmation",
+    "url": "https://www.halle-tony-garnier.com/fr/programmation",
     "baseURL": "https://www.halle-tony-garnier.com/fr/",
     "scrap": {
       "eventNameTags": [
@@ -279,7 +279,7 @@
     ],
     "city": "Lyon",
     "country": "France",
-    "scrapURL": "https://www.trokson.com/shows",
+    "url": "https://www.trokson.com/shows",
     "defaultStyle": "Rock",
     "baseURL": "https://www.trokson.com/",
     "scrap": {
@@ -303,7 +303,7 @@
     "name": "Ville Morte",
     "city": "Lyon",
     "country": "France",
-    "scrapURL": "https://villemorte.fr/agenda/",
+    "url": "https://villemorte.fr/agenda/",
     "eventsDelimiterTag": "A.url",
     "dateFormat": "dd MM",
     "baseURL": "https://villemorte.fr/agenda/",
@@ -351,7 +351,7 @@
     "name": "Infoconcert",
     "country": "France",
     "city": "Lyon",
-    "scrapURL": "https://www.infoconcert.com/concerts/concerts-par-departement-{index}.html?departement_id=69",
+    "url": "https://www.infoconcert.com/concerts/concerts-par-departement-{index}.html?departement_id=69",
     "multiPages": {
       "startPage": 1,
       "nbPages": 42
@@ -453,6 +453,7 @@
     "name": "Epicerie Moderne",
     "country": "France",
     "city": "Lyon",
+    "url": "https://epiceriemoderne.com/agenda",
     "aliases": [
       "L'epicerie Moderne",
       "L’Épicerie Moderne"
@@ -513,7 +514,6 @@
     "aliases": [
       "Radiant Bellevue"
     ],
-    "baseURL": "http://radiant-bellevue.fr/",
     "ID": "Radiant-Bellevue|Lyon|France"
   },
   {

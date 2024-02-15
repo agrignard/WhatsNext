@@ -6,8 +6,8 @@
 
 const fs = require('fs');
 const {removeDoubles, makeURL, cleanPage, extractBody} = require('./import/stringUtilities.js');
-const {loadLinkedPages,fetchAndRecode,fetchLink,getVenuesFromArguments} = require('./import/fileUtilities.js');
-const {loadVenuesJSONFile, saveToVenuesJSON, isOnlyAlias, initializeVenue} = require('./import/jsonUtilities.js');
+const {loadLinkedPages,fetchAndRecode, fetchWithRetry, fetchLink,getVenuesFromArguments} = require('./import/fileUtilities.js');
+const {loadVenuesJSONFile, saveToVenuesJSON, isAlias, initializeVenue} = require('./import/jsonUtilities.js');
 const {getURLListFromPattern} = require('./import/dateUtilities.js');
 const cheerio = require('cheerio');
 
@@ -34,29 +34,24 @@ console.log("*******************************************************************
 if (filteredVenues.length === 0){
   console.log("No place matching arguments.");
 }else{
+  filteredVenues.filter(obj => isAlias(obj)).forEach(el =>
+    console.log("Place %s is only defined as an alias and is not processed.",el.name)
+  );
   // for non aliases venues
-  filteredVenues.filter(obj => !isOnlyAlias(obj)).forEach((venue, index) => {
+  filteredVenues.filter(obj => !isAlias(obj)).forEach((venue, index) => {
         // Afficher le numéro de l'objet
-    console.log(`Venue ${index + 1}: \x1b[36m${venue.name} (${venue.city}, ${venue.country})\x1b[0m (${venue.url})`);
+    console.log(`Venue ${index + 1}: \x1b[36m${venue.name} (${venue.city}, ${venue.country})\x1b[0m (${venue.scrapURL})`);
     // extract baseURL and add it to JSON
     try{
-      const url = new URL(venue.url);
-      venue.baseURL = url.origin + url.pathname.replace(/\/[^\/]+$/, '/');
+      // update venue base URL in case of a change
+      const scrapURL = new URL(venue.scrapURL);
+      venue.baseURL = scrapURL.origin + scrapURL.pathname.replace(/\/[^\/]+$/, '/');
       if (!venue.hasOwnProperty('country') || !venue.hasOwnProperty('city')){
         console.log('\x1b[31mError: venue \x1b[0m%s\x1b[31m has no country and/or city defined.',venue.name);
       }else{
-        // const countryPath = venue.country;
-        // const cityPath = venue.city;
-        // if (!fs.existsSync(outputPath+countryPath+'/'+cityPath)){
-        //   console.log('\x1b[31mError: City \x1b[0m%s\x1b[31m does not exist in %s. If orthographe is correct, create a new directory in \x1b[0m%s',cityPath,countryPath,outputPath+countryPath);
-        // }else{
           let path = outputPath+venue.country+'/'+venue.city+'/'+venue.name+'/';
-          // if (!fs.existsSync(path)){
-          //   fs.mkdirSync(path);
-          // }
           erasePreviousHtmlFiles(path)
           .then(() => {downloadVenue(venue,path);})
-        // }
       } 
     }catch(err){
       console.log('\x1b[31mCannot read URL for %s.x1b[0m', venue.name);
@@ -81,37 +76,37 @@ async function downloadVenue(venue,path){
   let URLlist = [];
   if (venue.hasOwnProperty('multiPages')){
     if (venue.multiPages.hasOwnProperty('pattern')){
-      URLlist = getURLListFromPattern(venue.url,venue.multiPages.pattern,venue.multiPages.nbPages);
+      URLlist = getURLListFromPattern(venue.scrapURL,venue.multiPages.pattern,venue.multiPages.nbPages);
       console.log(URLlist);
-    }else if (/\{index\}/.test(venue.url)){
+    }else if (/\{index\}/.test(venue.scrapURL)){
       if (venue.multiPages.hasOwnProperty('startPage') && venue.multiPages.hasOwnProperty('nbPages')){
         let increment = (venue.multiPages.hasOwnProperty('increment'))?venue.multiPages.increment:1;
         for(let i=0;i<venue.multiPages.nbPages;i++){
           const pageID = venue.multiPages.startPage+i*increment;
-            URLlist.push(venue.url.replace('{index}',pageID));
+            URLlist.push(venue.scrapURL.replace('{index}',pageID));
         }
       }else{
         console.log("\x1b[31mAttribute \'startPage\' and \'nbPages' are mandatory for multipages if there is a placeholder \'index\' in the URL. No page loaded\x1b[0m.");
         URLlist = [];
       }  
     }else if(venue.multiPages.hasOwnProperty('pageList')){
-        venue.multiPages.pageList.forEach(el => URLlist.push(venue.url+el));
+        venue.multiPages.pageList.forEach(el => URLlist.push(venue.scrapURL+el));
     }else{
         console.log("\x1b[31mFound \'multiPage\', but found neither a place holder \'{index}\' or a list of URLs \'pageList\' to load. No page loaded\x1b[0m.");
         URLlist = [];
-        console.log(venue.url);
+        console.log(venue.scrapURL);
     }
   }else{
-    URLlist = [venue.url];
+    URLlist = [venue.scrapURL];
   }
 
   async function getPage(page,pageIndex){
     let htmlContent;
     try{
-      htmlContent = cleanPage(await fetchAndRecode(page));
-     // response = await fetch(page);
+      //htmlContent = cleanPage(await fetchAndRecode(page));
+      htmlContent = cleanPage(await fetchWithRetry(page,2,2000));
     }catch(err){
-      console.log("\x1b[31mNetwork error, cannot download \'%s\'\x1b[0m.",page);
+      console.log("\x1b[31mNetwork error, cannot download \'%s\'\x1b[0m. %s",page,err);
       return '';
     }
     //const htmlContent = cleanPage(await response.text());
@@ -122,6 +117,7 @@ async function downloadVenue(venue,path){
     }else{
       outputFile = path+venue.name+pageIndex+".html";
     }
+
     fs.writeFile(outputFile, htmlContent, 'utf8', (erreur) => {
       if (erreur) {
         console.error("\x1b[31mCannot write local file for \'%s\'\x1b[0m: %s",venue.name+'.html', erreur);
@@ -237,30 +233,6 @@ function getLinksFromPage(page,delimiter,index){
   //console.log(res);
   return res;
 }
-
-
-// async function fetchLink(page){
-//   try{
-//     const content = await fetchWithRetry(page, nbFetchTries, 2000);
-//     return extractBody(removeBlanks(cleanPage(content)));
-//   }catch(err){
-//     console.log("\x1b[31mNetwork error, cannot download \'%s\'.\x1b[0m",page);
-//   }
-// }
-
-// function fetchWithRetry(page, tries, timeOut) {
-//   return fetchAndRecode(page)
-//     .catch(error => {
-//       if (tries > 1){
-//         console.log('Download failed (%s). Trying again in %ss (%s %s left).',page,timeOut/1000,tries-1,tries ===2?'attempt':'attempts');
-//         return new Promise(resolve => setTimeout(resolve, timeOut))
-//           .then(() => fetchWithRetry(page,tries-1,timeOut));
-//       }else{
-//         console.log('Download failed (%s). Aborting (too many tries).',page);
-//         throw error;
-//       }
-//     });
-// }
 
 
 

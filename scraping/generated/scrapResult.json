@@ -1,1090 +1,173 @@
 [
   {
-    "eventPlace": "Transbordeur",
+    "eventPlace": "Terminal Club",
     "city": "Lyon",
     "country": "France",
-    "eventName": "AYRON JONES + AMONGST LIARS",
-    "eventDate": "mar. 13 févr. 24 19:00",
-    "eventStyle": "Rock",
+    "eventName": "Nashton Records : DJ Contest, Haeminum, Prollepse",
+    "eventDate": "8 Fév",
     "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/ayron-jones-mar-13-fev-24/",
-    "eventDetailedStyle": "GRUNGE / ROCK",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1707847200000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "ZKR",
-    "eventDate": "mer. 14 févr. 24 19:00",
-    "eventStyle": "Rap",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/zkr-mer-14-fev-24/",
-    "eventDetailedStyle": "RAP",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1707933600000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "MOLÉCULE",
-    "eventDate": "jeu. 15 févr. 24 19:00",
+    "errorLog": "Impossible de lire la page liée pour l'événement 'Nashton Records : DJ Contest, Haeminum, Prollepse'. Erreur lors du téléchargement ? | Format de date invalide pour Terminal Club. Reçu \"8 Fév\", converti en \"08-02\" (attendu \"dd-MM-yy\")",
+    "eventURL": "https://www.terminal-club.com/evenement-multiple/mois/?shortcode=b6439857",
+    "eventDetailedStyle": "",
     "eventStyle": "Electro",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/molecule-jeu-15-fev-24/",
-    "eventDetailedStyle": "ÉLECTRO / TECHNO",
     "source": {
-      "name": "Transbordeur",
+      "name": "Terminal Club",
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1708020000000
+    "unixDate": 0
   },
   {
-    "eventPlace": "Transbordeur",
+    "eventPlace": "Terminal Club",
     "city": "Lyon",
     "country": "France",
-    "eventName": "[COMPLET]",
-    "eventDate": "ven. 16 févr. 24 19:00",
-    "eventStyle": "Rap",
+    "eventName": "Nashton Records : DJ Contest, Haeminum, Prollepse",
+    "eventDate": "08.02.24 jeu",
     "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/rounhaa-ven-16-fev-24/",
-    "eventDetailedStyle": "RAP",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1708106400000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "[COMPLET]",
-    "eventDate": "sam. 17 févr. 24 23:30",
-    "eventStyle": "DRUM AND BASS",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/chase-and-status-elisa-do-brasil-flore-sam-17-fev-24/",
-    "eventDetailedStyle": "DRUM AND BASS",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1708209000000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "VIPÈRES SUCRÉES SALÉES + ANTENN.E",
-    "eventDate": "mer. 21 févr. 24 19:00",
-    "eventStyle": "Rock",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/ninkasi-musik-lab-viperes-sucrees-salees-antenne-mer-21-fev-24/",
-    "eventDetailedStyle": "COLD WAVE / PUNK ROCK",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1708538400000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "LEWIS OFMAN",
-    "eventDate": "ven. 23 févr. 24 19:00",
+    "eventURL": "https://www.terminal-club.com/evenement/nashton-records-tba/",
+    "eventDetailedStyle": "",
     "eventStyle": "Electro",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/lewis-ofman-ven-23-fev-24/",
-    "eventDetailedStyle": "ÉLECTRO POP",
     "source": {
-      "name": "Transbordeur",
+      "name": "Terminal Club",
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1708711200000
+    "unixDate": 1739055540000
   },
   {
-    "eventPlace": "Transbordeur",
+    "eventPlace": "Terminal Club",
     "city": "Lyon",
     "country": "France",
-    "eventName": "DUB ECHO #43 : HIGH BUDUB SOUND SYSTEM + JAEL + I-TIST",
-    "eventDate": "sam. 24 févr. 24 23:30",
-    "eventStyle": "ORIGINAL DUB CULTURE",
+    "eventName": "Euronight Club : Dj Salle Défaite, Jeff Bisous, Dax vender",
+    "eventDate": "09.02.24 ven",
     "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/dub-echo-43-high-budub-sound-system-jael-i-tist-sam-24-fev-24/",
-    "eventDetailedStyle": "ORIGINAL DUB CULTURE",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1708813800000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "NEW MODEL ARMY",
-    "eventDate": "ven. 01 mars 24 19:00",
-    "eventStyle": "Rock",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/new-model-army-ven-01-mars-24/",
-    "eventDetailedStyle": "ROCK",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1709316000000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "ENCORE X ATLAS : MATHAME",
-    "eventDate": "sam. 02 mars 24 23:30",
+    "eventURL": "https://www.terminal-club.com/evenement/euronight-club-dj-salle-defaite-jeff-bisous-dax-vender/",
+    "eventDetailedStyle": "",
     "eventStyle": "Electro",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/mathame-sam-02-mars-24/",
-    "eventDetailedStyle": "MELODIC TECHNO",
     "source": {
-      "name": "Transbordeur",
+      "name": "Terminal Club",
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1709418600000
+    "unixDate": 1739141940000
   },
   {
-    "eventPlace": "Transbordeur",
+    "eventPlace": "Terminal Club",
     "city": "Lyon",
     "country": "France",
-    "eventName": "[COMPLET]",
-    "eventDate": "mer. 06 mars 24 19:00",
-    "eventStyle": "Rock",
+    "eventName": "Dusty Nation : Knuckle G, Larry G, Saint Louïs, The Laughing Ben",
+    "eventDate": "10.02.24 sam",
     "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/dionysos-troy-von-balthazar-mer-06-mars-24/",
-    "eventDetailedStyle": "ROCK",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1709748000000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "ROMÉO ELVIS + MORGAN",
-    "eventDate": "jeu. 07 mars 24 19:00",
-    "eventStyle": "Rap",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/romeo-elvis-morgan-jeu-07-mars-24/",
-    "eventDetailedStyle": "RAP",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1709834400000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "KABOOM #2 : CALLING MARIAN + FLEUR FROM DESIRE + KARISSA",
-    "eventDate": "ven. 08 mars 24 23:00",
+    "eventURL": "https://www.terminal-club.com/evenement/dusty-nation-knuckle-g-larry-g-saint-louis-the-laughing-ben/",
+    "eventDetailedStyle": "",
     "eventStyle": "Electro",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/kaboom-2-calling-marian-fleur-from-desire-karissa-ven-08-mars-24/",
-    "eventDetailedStyle": "ÉLECTRO",
     "source": {
-      "name": "Transbordeur",
+      "name": "Terminal Club",
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1709935200000
+    "unixDate": 1739228340000
   },
   {
-    "eventPlace": "Transbordeur",
+    "eventPlace": "Terminal Club",
     "city": "Lyon",
     "country": "France",
-    "eventName": "[COMPLET]",
-    "eventDate": "ven. 15 mars 24 19:00",
-    "eventStyle": "Rap",
+    "eventName": "Corymb : Flxir, Maïa Neel, Brum, Max Duret",
+    "eventDate": "15.02.24 jeu",
     "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/mc-solaar-ven-15-mars-24/",
-    "eventDetailedStyle": "RAP",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1710525600000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "MAC DECLOS + MISCHLUFT + ASIL",
-    "eventDate": "ven. 15 mars 24 23:30",
+    "eventURL": "https://www.terminal-club.com/evenement/corymb-flxir-maia-neel-brum-max-duret/",
+    "eventDetailedStyle": "",
     "eventStyle": "Electro",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/mac-declos-mischluft-asil-ven-15-mars-24/",
-    "eventDetailedStyle": "TECHNO",
     "source": {
-      "name": "Transbordeur",
+      "name": "Terminal Club",
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1710541800000
+    "unixDate": 1739660340000
   },
   {
-    "eventPlace": "Transbordeur",
+    "eventPlace": "Terminal Club",
     "city": "Lyon",
     "country": "France",
-    "eventName": "LES CHANTS DE MARS : CHIEN NOIR + GWIZDEK",
-    "eventDate": "sam. 16 mars 24 19:00",
-    "eventStyle": "CHANSON",
+    "eventName": "Bad Tips : Salma Rosa, Gboi & Jean Mi",
+    "eventDate": "16.02.24 ven",
     "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/les-chants-de-mars-chien-noir-gwizdek-sam-16-mars-24/",
-    "eventDetailedStyle": "CHANSON",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1710612000000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "GARÇON SAUVAGE XXL",
-    "eventDate": "sam. 16 mars 24 23:30",
+    "eventURL": "https://www.terminal-club.com/evenement/bad-tips-salma-rosa-gboi-jean-mi/",
+    "eventDetailedStyle": "",
     "eventStyle": "Electro",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/garcon-sauvage-xxl-fantastic-twins-doppelgang-anodine-sam-16-mars-24/",
-    "eventDetailedStyle": "ÉLECTRO",
     "source": {
-      "name": "Transbordeur",
+      "name": "Terminal Club",
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1710628200000
+    "unixDate": 1708124340000
   },
   {
-    "eventPlace": "Transbordeur",
+    "eventPlace": "Terminal Club",
     "city": "Lyon",
     "country": "France",
-    "eventName": "LALA &CE",
-    "eventDate": "mer. 20 mars 24 19:00",
-    "eventStyle": "Rap",
+    "eventName": "Hidden Garden : Shamsiel, Cocox, Messina, One4T",
+    "eventDate": "22.02.24 jeu",
     "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/lala-ce-mer-20-mars-24/",
-    "eventDetailedStyle": "RAP",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1710957600000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "KERCHAK",
-    "eventDate": "jeu. 21 mars 24 19:00",
-    "eventStyle": "Rap",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/kerchak-jeu-21-mars-24/",
-    "eventDetailedStyle": "RAP / JERSEY",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1711044000000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "MADAME ARTHUR",
-    "eventDate": "ven. 22 mars 24 19:00",
-    "eventStyle": "CABARET QUEER",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/madame-arthur-ven-22-mars-24/",
-    "eventDetailedStyle": "CABARET QUEER",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1711130400000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "LES CHANTS DE MARS :",
-    "eventDate": "sam. 23 mars 24 19:00",
-    "eventStyle": "POP / CHANSON",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/les-chants-de-mars-social-dance-clay-and-friends-solann-cyrious-melba-sam-23-mars-24/",
-    "eventDetailedStyle": "POP / CHANSON",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1711216800000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "SHAKE SHAKE GO",
-    "eventDate": "dim. 24 mars 24 18:00",
-    "eventStyle": "INDIE POP",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/shake-shake-go-dim-24-mars-24/",
-    "eventDetailedStyle": "INDIE POP",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1711299600000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "GAMBERGE : OKIS + LEO SVR + GEN + KAYNIXE + PANA + MILES WITH FRIENDS",
-    "eventDate": "jeu. 28 mars 24 19:00",
-    "eventStyle": "Rap",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/gamberge-okis-leo-svr-gen-kaynixe-pana-miles-with-friends-jeu-28-mars-24/",
-    "eventDetailedStyle": "RAP",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1711648800000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "guts + pat kalla & LE SUPER MOJO + K.O.G + HEAVENLY SWEETNESS SOUNDSYSTEM",
-    "eventDate": "ven. 29 mars 24 20:00",
-    "eventStyle": "World",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/guts-pat-kalla-le-super-mojo-kog-ven-29-mars-24/",
-    "eventDetailedStyle": "SONO MONDIALE",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1711738800000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "LES TAMBOURS DU BRONX + KLONE + NANOWAR OF STEEL + PSYKUP",
-    "eventDate": "sam. 30 mars 24 18:00",
-    "eventStyle": "SHOW PERCUSSIF / METAL",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/les-tambours-du-bronx-klone-nanowar-of-steel-psykup-sam-30-mars-24/",
-    "eventDetailedStyle": "SHOW PERCUSSIF / METAL",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1711818000000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "MATCH D'IMPRO :",
-    "eventDate": "dim. 31 mars 24 17:00",
-    "eventStyle": "IMPROVISATION THÉÂTRALE",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/lily-vs-quebec-dim-31-mars-24/",
-    "eventDetailedStyle": "IMPROVISATION THÉÂTRALE",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1711897200000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "FONCEDALLE",
-    "eventDate": "mer. 03 avril 24 19:00",
+    "eventURL": "https://www.terminal-club.com/evenement/hidden-garden-shamsiel-cocox-messina-one4t/",
+    "eventDetailedStyle": "",
     "eventStyle": "Electro",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/foncedalle-mer-03-avr-24/",
-    "eventDetailedStyle": "ÉLECTRO ROCK",
     "source": {
-      "name": "Transbordeur",
+      "name": "Terminal Club",
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1712163600000
+    "unixDate": 1708642740000
   },
   {
-    "eventPlace": "Transbordeur",
+    "eventPlace": "Terminal Club",
     "city": "Lyon",
     "country": "France",
-    "eventName": "[COMPLET]",
-    "eventDate": "jeu. 04 avril 24 19:00",
-    "eventStyle": "Rap",
+    "eventName": "R.U.N : No Human Code, Altinbas, Zimer",
+    "eventDate": "23.02.24 ven",
     "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/luther-jeu-04-avr-24/",
-    "eventDetailedStyle": "RAP",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1712250000000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "KEEN'V",
-    "eventDate": "ven. 05 avril 24 19:00",
-    "eventStyle": "CHANSON",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/keenv-ven-05-avr-24/",
-    "eventDetailedStyle": "CHANSON",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1712336400000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "ELOÏZ",
-    "eventDate": "mar. 09 avril 24 19:00",
-    "eventStyle": "POP FOLK",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/eloiz-mar-09-avr-24/",
-    "eventDetailedStyle": "POP FOLK",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1712682000000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "LES TROIS ACCORDS",
-    "eventDate": "mer. 10 avril 24 19:00",
-    "eventStyle": "Rock",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/les-3-accords-mer-10-avr-24/",
-    "eventDetailedStyle": "POP ROCK HUMORISTIQUE",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1712768400000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "YARD ACT + MURKAGE DAVE",
-    "eventDate": "ven. 12 avril 24 19:00",
-    "eventStyle": "POST PUNK",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/yard-act-murkage-dave-ven-12-avr-24/",
-    "eventDetailedStyle": "POST PUNK",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1712941200000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "TIP STEVENS",
-    "eventDate": "mer. 17 avril 24 19:00",
+    "eventURL": "https://www.terminal-club.com/evenement/r-u-n-no-human-code-altinbas-zimer/",
+    "eventDetailedStyle": "",
     "eventStyle": "Electro",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/tip-stevens-mer-17-avr-24/",
-    "eventDetailedStyle": "ROCK ÉLECTRO",
     "source": {
-      "name": "Transbordeur",
+      "name": "Terminal Club",
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1713373200000
+    "unixDate": 1708729140000
   },
   {
-    "eventPlace": "Transbordeur",
+    "eventPlace": "Terminal Club",
     "city": "Lyon",
     "country": "France",
-    "eventName": "ZOUFRIS MARACAS + MAGGY BOLLE",
-    "eventDate": "jeu. 18 avril 24 19:00",
-    "eventStyle": "CHANSON",
+    "eventName": "JEDEMAIN : Mel C, Nick V, Mademoiselle Charby",
+    "eventDate": "24.02.24 sam",
     "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/zoufris-maracas-maggy-bolle-jeu-18-avr-24/",
-    "eventDetailedStyle": "CHANSON",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1713459600000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "KALASH CRIMINEL",
-    "eventDate": "ven. 19 avril 24 19:00",
-    "eventStyle": "Rap",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/kalash-criminel-ven-19-avr-24/",
-    "eventDetailedStyle": "Rap",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1713546000000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "JOE BEL",
-    "eventDate": "sam. 20 avril 24 19:00",
-    "eventStyle": "POP FOLK",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/joe-bel-sam-20-avr-24/",
-    "eventDetailedStyle": "POP FOLK",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1713632400000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "SHLØMO + KRL MX + ZORZA + NOVAH + B2 + SIKOTI + BOLT + ARDL",
-    "eventDate": "sam. 20 avril 24 23:30",
+    "eventURL": "https://www.terminal-club.com/evenement/jedemain-mel-c-nick-v-mademoiselle-charby/",
+    "eventDetailedStyle": "",
     "eventStyle": "Electro",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/shloemo-krl-mx-zorza-ven-20-avr-24/",
-    "eventDetailedStyle": "TECHNO",
     "source": {
-      "name": "Transbordeur",
+      "name": "Terminal Club",
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1713648600000
+    "unixDate": 1708815540000
   },
   {
-    "eventPlace": "Transbordeur",
+    "eventPlace": "Terminal Club",
     "city": "Lyon",
     "country": "France",
-    "eventName": "FFF",
-    "eventDate": "mer. 24 avril 24 19:00",
-    "eventStyle": "Rock",
+    "eventName": "Bon.Soir : Suerte, Gru, f.sonore, GMNZ",
+    "eventDate": "29.02.24 jeu",
     "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/fff-mer-24-avr-24/",
-    "eventDetailedStyle": "FUNK / ROCK",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1713978000000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "CHINESE MAN + DUBANKO",
-    "eventDate": "jeu. 25 avril 24 19:00",
+    "eventURL": "https://www.terminal-club.com/evenement/bon-soir-suerte-gru-f-sonore-gmnz/",
+    "eventDetailedStyle": "",
     "eventStyle": "Electro",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/chinese-man-dubanko-jeu-25-avr-24/",
-    "eventDetailedStyle": "ÉLECTRO / HIP HOP",
     "source": {
-      "name": "Transbordeur",
+      "name": "Terminal Club",
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1714064400000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "LA YEGROS + PAMBELÉ + LUIZA",
-    "eventDate": "ven. 26 avril 24 19:00",
-    "eventStyle": "NUEVA CUMBIA",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/la-yegros-pambele-luiza-ven-26-avr-24/",
-    "eventDetailedStyle": "NUEVA CUMBIA",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1714150800000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "METAL 4 THE PLANET :",
-    "eventDate": "sam. 27 avril 24 17:00",
-    "eventStyle": "METAL 4 THE PLANET",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/metal-4-the-planet-stoned-jesus-karras-grandmas-ashes-vertex-sam-27-avr-24/",
-    "eventDetailedStyle": "METAL 4 THE PLANET",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1714230000000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "[NO GENDER] x NAKT : PARFAIT + BLASPHÈME + ANGEL KAREL + DSTM + NIKOLINA + VIVAY",
-    "eventDate": "sam. 27 avril 24 23:30",
-    "eventStyle": "Electro",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/no-gender-x-nakt-parfait-blaspheme-angel-karel-sam-27-avr-24/",
-    "eventDetailedStyle": "TECHNO QUEER PUNK",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1714253400000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "DECLAN MCKENNA",
-    "eventDate": "lun. 29 avril 24 19:00",
-    "eventStyle": "Rock",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/declan-mckenna-lun-29-avr-24/",
-    "eventDetailedStyle": "INDIE ROCK",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1714410000000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "CLUB PUNK & BOÎTE À RYTHMES : GWENDOLINE",
-    "eventDate": "mar. 30 avril 24 19:00",
-    "eventStyle": "SCHLAGWAVE / NEW WAVE",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/gwendoline-mar-30-avr-24/",
-    "eventDetailedStyle": "SCHLAGWAVE / NEW WAVE",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1714496400000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "MOJI X SBOY",
-    "eventDate": "jeu. 02 mai 24 19:00",
-    "eventStyle": "Rap",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/moji-x-sboy-jeu-02-mai-24/",
-    "eventDetailedStyle": "RAP",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1714669200000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "NUITS SONORES : AUTECHRE",
-    "eventDate": "mar. 07 mai 24 19:00",
-    "eventStyle": "Electro",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/nuits-sonores-autechre-mar-07-mai-24/",
-    "eventDetailedStyle": "ÉLECTRO / AMBIENT",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1715101200000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "TROUBLES : VIRGINIE DESPENTES + CASEY + BÉATRICE DALLE + ZËRO",
-    "eventDate": "ven. 10 mai 24 19:00",
-    "eventStyle": "LECTURE CONCERT",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/nuits-sonores-troubles-ven-10-mai-24/",
-    "eventDetailedStyle": "LECTURE CONCERT",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1715360400000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "DALÍ",
-    "eventDate": "mer. 15 mai 24 19:00",
-    "eventStyle": "Rap",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/dali-mer-15-mai-24/",
-    "eventDetailedStyle": "RAP",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1715792400000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "ELOI",
-    "eventDate": "jeu. 16 mai 24 19:00",
-    "eventStyle": "SYNTHPOP / HYPERPOP",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/eloi-jeu-16-mai-24/",
-    "eventDetailedStyle": "SYNTHPOP / HYPERPOP",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1715878800000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "DENA MWANA",
-    "eventDate": "ven. 24 mai 24 19:00",
-    "eventStyle": "GOSPEL",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/dena-mwana-ven-24-mai-24/",
-    "eventDetailedStyle": "GOSPEL",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1716570000000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "HANG MASSIVE",
-    "eventDate": "dim. 26 mai 24 19:00",
-    "eventStyle": "HANG MUSIC / AMBIENT HYPNOTIQUE",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/hang-massive-dim-26-mai-24/",
-    "eventDetailedStyle": "HANG MUSIC / AMBIENT HYPNOTIQUE",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1716742800000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "CHELSEA WOLFE + KAELAN MIKLA",
-    "eventDate": "mer. 29 mai 24 19:00",
-    "eventStyle": "DARK FOLK / DOOM METAL",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/chelsea-wolfe-kaelan-mikla-mer-29-mai-24/",
-    "eventDetailedStyle": "DARK FOLK / DOOM METAL",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1717002000000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "OSEES",
-    "eventDate": "dim. 02 juin 24 19:00",
-    "eventStyle": "Rock",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/osees-dim-02-juin-24/",
-    "eventDetailedStyle": "GARAGE ROCK",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1717347600000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "GUY2BEZBAR",
-    "eventDate": "jeu. 06 juin 24 19:00",
-    "eventStyle": "Rap",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/guy2bezbar-jeu-06-juin-24/",
-    "eventDetailedStyle": "RAP",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1717693200000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "LES FATALS PICARDS",
-    "eventDate": "ven. 07 juin 24 19:00",
-    "eventStyle": "Rock",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/les-fatals-picards-ven-07-juin-24/",
-    "eventDetailedStyle": "CHANSON ROCK",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1717779600000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "CLUB PUNK & BOÎTE À RYTHMES :",
-    "eventDate": "jeu. 13 juin 24 19:00",
-    "eventStyle": "POST PUNK / COLD WAVE",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/frustration-martin-dupont-dj-chuimix-jeu-13-juin-24/",
-    "eventDetailedStyle": "POST PUNK / COLD WAVE",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1718298000000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "WHILE SHE SLEEPS + BURY TOMORROW + ERRA + MAKE THEM SUFFER + THROWN",
-    "eventDate": "lun. 24 juin 24 18:00",
-    "eventStyle": "METALCORE",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/while-she-sleeps-bury-tomorrow-erra-lun-24-juin-24/",
-    "eventDetailedStyle": "METALCORE",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1719244800000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "STEEL PANTHER",
-    "eventDate": "lun. 01 juil. 24 19:00",
-    "eventStyle": "GLAM METAL",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/steel-panther-lun-01-juil-24/",
-    "eventDetailedStyle": "GLAM METAL",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1719853200000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "PURPLE DISCO MACHINE",
-    "eventDate": "mer. 16 oct. 24 19:00",
-    "eventStyle": "DISCO / FUNK",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2024-2025/purple-disco-machine-mer-16-oct-24/",
-    "eventDetailedStyle": "DISCO / FUNK",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1729098000000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "MARCUS KING",
-    "eventDate": "mer. 23 oct. 24 19:00",
-    "eventStyle": "Rock",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2024-2025/marcus-king-mer-23-oct-24/",
-    "eventDetailedStyle": "BLUES / ROCK",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1729702800000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "ACCEPT",
-    "eventDate": "mar. 29 oct. 24 18:30",
-    "eventStyle": "HEAVY METAL",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2024-2025/accept-mar-29-oct-24/",
-    "eventDetailedStyle": "HEAVY METAL",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1730223000000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "HATIK - FULL BAND",
-    "eventDate": "ven. 08 nov. 24 19:00",
-    "eventStyle": "Rap",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2024-2025/hatik-full-band-ven-08-nov-24/",
-    "eventDetailedStyle": "RAP",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1731088800000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "JOSEPH KAMEL",
-    "eventDate": "ven. 22 nov. 24 19:00",
-    "eventStyle": "CHANSON POP",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2024-2025/joseph-kamel-ven-22-nov-24/",
-    "eventDetailedStyle": "CHANSON POP",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1732298400000
-  },
-  {
-    "eventPlace": "Transbordeur",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "PUGGY",
-    "eventDate": "jeu. 30 janv. 25 19:00",
-    "eventStyle": "Rock",
-    "isCancelled": false,
-    "eventURL": "https://www.transbordeur.fr/agenda-2024-2025/puggy-jeu-30-jan-25/",
-    "eventDetailedStyle": "POP ROCK",
-    "source": {
-      "name": "Transbordeur",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1738260000000
+    "unixDate": 1709247540000
   }
 ]

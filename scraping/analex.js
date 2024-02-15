@@ -1,7 +1,7 @@
 const { createDate, numberOfInvalidDates, getCommonDateFormats, getDateConversionPatterns} =require('./import/dateUtilities.js');
 const {removeDoubles, convertToLowerCase, removeBlanks, makeURL, simplify} = require('./import/stringUtilities.js');
-const {loadLinkedPages} = require('./import/fileUtilities.js');
-const {loadVenueScrapInfofromFile, loadVenueJSON, loadVenuesJSONFile, saveToVenuesJSON, 
+const {loadLinkedPages, getFilesContent} = require('./import/fileUtilities.js');
+const {loadVenueScrapInfofromFile, loadVenuesJSONFile, saveToVenuesJSON, 
         getLanguages, checkLanguages, fromLanguages} = require('./import/jsonUtilities.js');
 
 const fs = require('fs');
@@ -55,24 +55,10 @@ function analyze(venueJSON, path){
     }
 
     sourcePath += venueJSON.country+'/'+venueJSON.city+'/'+venueJSON.name+'/';
-    const fileName = venueJSON.name+(venueJSON.hasOwnProperty('multiPages')?'0':'')+'.html';
-
-    let inputFileList;
-    try {
-        inputFileList = fs.readdirSync(sourcePath)
-        .filter(fileName => fileName.endsWith('.html'))
-        .map(el => sourcePath+el);
-    } catch (err) {
-        console.error('\x1b[31mError reading html files in directory \'%s\'.\x1b[0m Error: %s',sourcePath, err);
-    }
-    function readBodyContent(file) {
-        const content = fs.readFileSync(file, 'utf-8');
-        const $ = cheerio.load(content);
-        return $('body').html();
-    }
+    //const fileName = venueJSON.name+(venueJSON.hasOwnProperty('multiPages')?'0':'')+'.html';
 
     // load main pages
-    const fileContent = inputFileList.map(readBodyContent).join('\n');
+    const fileContent = getFilesContent(sourcePath);
 
 
     // load date conversion pattern
@@ -106,7 +92,7 @@ function analyze(venueJSON, path){
     }catch(error){
         console.error('\x1b[31mError while reading the strings to parse: %s\x1b[0m',error);
     }
-    //const parsedHtml = parseDocument(convertToLowerCase(fileContent));
+    //convert to lower case to allow insensitive string match
     const parsedHtml = parseDocument(convertToLowerCase(fileContent));
     const $ = cheerio.load(parsedHtml);
 

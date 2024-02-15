@@ -145,7 +145,7 @@ function updateContainer(container, dataList){
     dataList.forEach(item => {
         const button = document.createElement('button');
         button.textContent = item;
-        button.classList.add('languageItem');
+        button.classList.add('niceButton');
         button.dataset.value = item; // Vous pouvez stocker des données supplémentaires dans l'attribut data-* si nécessaire
         
         // Ajouter un gestionnaire d'événements pour chaque bouton

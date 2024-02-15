@@ -105,7 +105,7 @@ function cleanPage(content){
   cleanedContent = cleanHtml(cleanedContent);
   cleanedContent = removeForms(cleanedContent);
   cleanedContent = fixTags(cleanedContent);
-//      cleanedContent = removeImages(cleanedContent);
+ // cleanedContent = removeImages(cleanedContent);
   return cleanedContent;
 }
 

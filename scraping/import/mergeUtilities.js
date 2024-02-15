@@ -97,10 +97,6 @@ function mergeEvents(eventList,showFullMergeLog){
                 mergeLog = mergeLog + toMergeLog(event,candidates,hasLocalSource,true,showFullMergeLog);
                 return [event];
             }else if (dateList.length === 1){// only one legit time schedule. Merge the candidates and remove the candidate list. Keep the different URLs just in case
-                // if (event.eventName.startsWith('LANK')){
-                //     console.log('essai');
-                //     console.log(event.mergeCandidates.map(el => el.eventURL));
-                // }
                 event.altURLs = removeDoubles(event.mergeCandidates.map(el => el.eventURL));
                 mergeLog = mergeLog + toMergeLog(event,candidates,hasLocalSource,false,showFullMergeLog);
                 delete event.mergeCandidates;
