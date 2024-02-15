@@ -6,6 +6,7 @@ const fs = require('fs');
 const cheerio = require('cheerio');
 const {cleanPage, removeBlanks, extractBody} = require('./stringUtilities.js');
 
+module.exports = {fetchLink, fetchAndRecode, fetchWithRetry, loadLinkedPages, saveToJSON, 
                     saveToCSV, getVenuesFromArguments,getFilesContent, getFilesNumber};
 
 // // fetch linked page
