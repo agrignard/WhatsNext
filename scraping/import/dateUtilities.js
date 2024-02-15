@@ -11,7 +11,8 @@ const dateConversionFile = rootDirectory+'/import/dateConversion.json';
 const timeZoneFile = rootDirectory+'/import/dateConversion.json';
 
 module.exports = {dateConversionFile, sameDay, showDate, getDateConversionPatterns, getCommonDateFormats,
-  createDate, convertDate, numberOfInvalidDates, to2digits, getURLListFromPattern};
+  createDate, convertDate, numberOfInvalidDates, to2digits, getURLListFromPattern
+  getTimeZone, getTimeZoneList};
 
 
 // verify if two unix dates correspond to the same day
@@ -176,3 +177,30 @@ Date.prototype.getWeek = function() {
   const week1 = new Date(date.getFullYear(), 0, 4);
   return 1 + Math.round(((date - week1) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7);
 };
+
+
+function getTimeZoneList(){
+  try{
+    return JSON.parse(fs.readFileSync(timeZoneFile, 'utf8'));
+  }catch(err){
+      console.log('\x1b[36mWarning: cannot open time zone file:  \'%s\'. Will not save to venues.\x1b[0m%s\n',dateConversionFile,err);
+  }
+}
+
+function getTimeZone(place, timeZoneList){
+  if (timeZoneList.hasOwnProperty(place.country)){
+    const countryTimeZone = timeZoneList[place.country];
+    if (typeof(countryTimeZone) === 'string'){
+      return countryTimeZone;
+    }else{
+      if (timeZoneList[place.country].hasOwnProperty(place.city)){
+        return timeZoneList[place.country][place.city];
+      }else{
+        console.log("\x1b[31mError, city %s (%s) has no time zone. Add time zone to \'import/timeZone.json\'\x1b[0m", place.city,place.country);
+        
+      }
+    }
+  }else{
+    console.log("\x1b[31mError, country %s has no time zone. Add time zone to \'import/timeZone.json\'\x1b[0m", place.country);
+  } 
+}
