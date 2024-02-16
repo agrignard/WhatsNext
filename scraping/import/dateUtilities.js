@@ -12,8 +12,6 @@ const dateConversionFile = rootDirectory+'/import/dateConversion.json';
 const timeZoneFile = rootDirectory+'/import/timeZone.json';
 
 
-
-
 // verify if two unix dates correspond to the same day
 function  sameDay(timestamp1, timestamp2) {// as unixdate
   const date1 = new Date(timestamp1); 
