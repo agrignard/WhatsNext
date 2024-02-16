@@ -5,14 +5,13 @@
 const path = require('path');
 const { parse, isValid }  = require('date-fns');
 const fs = require('fs'); 
+const moment = require('moment-timezone');
 
 const rootDirectory = path.resolve('.').match(/.*scraping/)[0]+'/';
 const dateConversionFile = rootDirectory+'/import/dateConversion.json';
-const timeZoneFile = rootDirectory+'/import/dateConversion.json';
+const timeZoneFile = rootDirectory+'/import/timeZone.json';
 
-module.exports = {dateConversionFile, sameDay, showDate, getDateConversionPatterns, getCommonDateFormats,
-  createDate, convertDate, numberOfInvalidDates, to2digits, getURLListFromPattern
-  getTimeZone, getTimeZoneList};
+
 
 
 // verify if two unix dates correspond to the same day
@@ -65,18 +64,32 @@ function getCommonDateFormats(){
 }
 
 // create a date object from a string
-function createDate(s,dateFormat,dateConversionPatterns) {
-  s = convertDate(s,dateConversionPatterns);
+function createDate(s,dateFormat,dateConversionPatterns,timeZone,refDate) {
   if (s.includes('tonight')){
-    return new Date();
+      return new Date();
   }else{
-    let date = parse(s, dateFormat, new Date());
-    if (date < new Date()){// add one year if the date is past. Useful when the year is not in the data
-      date.setFullYear(date.getFullYear() + 1);
-    }
-    return date;
+      s = convertDate(s,dateConversionPatterns);
+      const date = moment.tz(s,dateFormat.replace(/d/g,'D').replace(/y/g,'Y'), timeZone);
+      let tzDate = date.toDate();
+      if (refDate && !/yy/.test(dateFormat) && tzDate < refDate){// add one year if the date is past for more than one month. Useful when the year is not in the data
+          tzDate.setFullYear(tzDate.getFullYear() + 1);
+      }
+      return tzDate;
   }
 }
+
+// function createDate(s,dateFormat,dateConversionPatterns) {
+//   s = convertDate(s,dateConversionPatterns);
+//   if (s.includes('tonight')){
+//     return new Date();
+//   }else{
+//     let date = parse(s, dateFormat, new Date());
+//     if (date < new Date()){// add one year if the date is past. Useful when the year is not in the data
+//       date.setFullYear(date.getFullYear() + 1);
+//     }
+//     return date;
+//   }
+// }
 
 // clean the date (remove unwanted characters)
 function convertDate(s,dateConversionPatterns){
@@ -179,28 +192,34 @@ Date.prototype.getWeek = function() {
 };
 
 
-function getTimeZoneList(){
-  try{
-    return JSON.parse(fs.readFileSync(timeZoneFile, 'utf8'));
-  }catch(err){
-      console.log('\x1b[36mWarning: cannot open time zone file:  \'%s\'. Will not save to venues.\x1b[0m%s\n',dateConversionFile,err);
+
+class TimeZone {
+  constructor() {
+    try {
+      this.timeZones = JSON.parse(fs.readFileSync(timeZoneFile, 'utf8'));
+    } catch (err) {
+      console.log('\x1b[36mWarning: cannot open time zone file:  \'%s\'. Will not save to venues.\x1b[0m%s\n', dateConversionFile, err);
+    }
+  }
+  getTimeZone(place) {
+    if (this.timeZones.hasOwnProperty(place.country)) {
+      const countryTimeZone = this.timeZones[place.country];
+      if (typeof (countryTimeZone) === 'string') {
+        return countryTimeZone;
+      } else {
+        if (this.timeZones[place.country].hasOwnProperty(place.city)) {
+          return this.timeZones[place.country][place.city];
+        } else {
+          console.log("\x1b[31mError, city %s (%s) has no time zone. Add time zone to \'import/timeZone.json\'\x1b[0m", place.city, place.country);
+        }
+      }
+    } else {
+      console.log("\x1b[31mError, country %s has no time zone. Add time zone to \'import/timeZone.json\'\x1b[0m", place.country);
+    }
   }
 }
 
-function getTimeZone(place, timeZoneList){
-  if (timeZoneList.hasOwnProperty(place.country)){
-    const countryTimeZone = timeZoneList[place.country];
-    if (typeof(countryTimeZone) === 'string'){
-      return countryTimeZone;
-    }else{
-      if (timeZoneList[place.country].hasOwnProperty(place.city)){
-        return timeZoneList[place.country][place.city];
-      }else{
-        console.log("\x1b[31mError, city %s (%s) has no time zone. Add time zone to \'import/timeZone.json\'\x1b[0m", place.city,place.country);
-        
-      }
-    }
-  }else{
-    console.log("\x1b[31mError, country %s has no time zone. Add time zone to \'import/timeZone.json\'\x1b[0m", place.country);
-  } 
-}
+module.exports = {dateConversionFile, sameDay, showDate, getDateConversionPatterns, getCommonDateFormats,
+  createDate, convertDate, numberOfInvalidDates, to2digits, getURLListFromPattern,
+  TimeZone };
+

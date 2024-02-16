@@ -1,11 +1,11 @@
-const { createDate, convertDate, showDate, getDateConversionPatterns} = require('./import/dateUtilities.js');
+const { createDate, convertDate, showDate, getDateConversionPatterns, TimeZone} = require('./import/dateUtilities.js');
 const fs = require('fs');
 const { parse, isValid } = require('date-fns');
 const cheerio = require('cheerio');
 const {parseDocument} = require('htmlparser2');
 const {makeURL, simplify, removeBlanks} = require('./import/stringUtilities.js');
 const {loadLinkedPages, saveToJSON, saveToCSV, getVenuesFromArguments,
-        getFilesNumber, getFilesContent} = require('./import/fileUtilities.js');
+        getFilesNumber, getFilesContent, getModificationDate} = require('./import/fileUtilities.js');
 const {samePlace, getAliases, getStyleConversions, loadVenuesJSONFile, 
         loadCancellationKeywords, writeToLog, isAlias, geAliasesToURLMap,
         getLanguages, fromLanguages, checkLanguages} = require('./import/jsonUtilities.js');
@@ -26,6 +26,7 @@ const dateConversionPatterns = getDateConversionPatterns();
 const venueList = loadVenuesJSONFile();
 const aliasList = getAliases(venueList);
 const languages = getLanguages();
+const timeZones = new TimeZone();
 
     
 //initScrap(process.argv[2]);
@@ -105,6 +106,7 @@ async function scrapFiles(venues) {
 
 
 async function analyseFile(venue) {
+  const timeZone = timeZones.getTimeZone(venue);
   let linkedFileContent;//, inputFileList;
   const venueSourcePath = sourcePath+venue.country+'/'+venue.city+'/'+venue.name+'/';
   if (venue.hasOwnProperty('linkedPage')){
@@ -118,7 +120,8 @@ async function analyseFile(venue) {
   // } catch (err) {
   //   console.error('\x1b[31mError reading html files in directory \'%s\'.\x1b[0m Error: %s',venueSourcePath, err);
   // }
-  const fileContent = getFilesContent(venueSourcePath);
+const fileContent = getFilesContent(venueSourcePath);
+const modificationDate = getModificationDate(venueSourcePath);
 
   console.log('\n\x1b[32m%s\x1b[0m', `******* Venue: ${venue.name}  (${getFilesNumber(venueSourcePath)} page(s)) *******`);
 
@@ -227,7 +230,8 @@ async function analyseFile(venue) {
           
           eventInfoList.forEach(el => {
             // change the date format to Unix time
-            let formatedEventDate = createDate(el.eventDate,dateFormat,localDateConversionPatterns);
+            let formatedEventDate = createDate(el.eventDate,dateFormat,localDateConversionPatterns,timeZone,modificationDate);
+            //createDate(el.eventDate,dateFormat,localDateConversionPatterns);
            // el.date = formatedEventDate;
             if (!isValid(formatedEventDate)){
               writeToLog('error',el,['\x1b[31mFormat de date invalide pour %s. Reçu \"%s\", converti en \"%s\" (attendu \"%s\")\x1b[0m', 
@@ -464,6 +468,7 @@ function applyRegexp(event, rulesSet){
 function changeMidnightHour(date,targetDay,eventInfo){
   let newDate = date;
   if (newDate.getHours() === 0 && newDate.getMinutes() === 0) {
+    //newDate.setHours(24);
     newDate.setHours(23);
     newDate.setMinutes(59);
   }

@@ -1,13 +1,13 @@
-Date: 8 Fév
-Event: Nashton Records : DJ Contest, Haeminum, Prollepse
+Date: 
+Event: 
 Place: Terminal Club
 city: Lyon
 country: France
 isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement 'Nashton Records : DJ Contest, Haeminum, Prollepse'. Erreur lors du téléchargement ? | Format de date invalide pour Terminal Club. Reçu "8 Fév", converti en "08-02" (attendu "dd-MM-yy")
 DetailedStyle: 
 Style: Electro
 source: [object Object]
+errorLog: Format de date invalide pour Terminal Club. Reçu "", converti en "" (attendu "dd-MM-yy")
 unixDate: 0
 https://www.terminal-club.com/evenement-multiple/mois/?shortcode=b6439857
 

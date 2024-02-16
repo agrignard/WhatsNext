@@ -7,7 +7,7 @@ const cheerio = require('cheerio');
 const {cleanPage, removeBlanks, extractBody} = require('./stringUtilities.js');
 
 module.exports = {fetchLink, fetchAndRecode, fetchWithRetry, loadLinkedPages, saveToJSON, 
-                    saveToCSV, getVenuesFromArguments,getFilesContent, getFilesNumber};
+                    saveToCSV, getVenuesFromArguments,getFilesContent, getFilesNumber, getModificationDate};
 
 // // fetch linked page
 // async function fetchLink(page, nbFetchTries){
@@ -200,7 +200,7 @@ function filterFromArguments(args){
     }
 }
 
-
+// return the content of the files
 function getFilesContent(sourcePath){
     let inputFileList;
     try {
@@ -219,6 +219,21 @@ function getFilesContent(sourcePath){
     // load main pages
     return inputFileList.map(readBodyContent).join('\n');
 }
+
+// return the content of the files
+function getModificationDate(sourcePath){
+    let inputFilePath;
+    try {
+        inputFilePath = sourcePath+fs.readdirSync(sourcePath)
+        .find(fileName => fileName.endsWith('.html'));
+    } catch (err) {
+        console.error('\x1b[31mError reading html files in directory \'%s\'.\x1b[0m Error: %s',sourcePath, err);
+    }
+    const stats = fs.statSync(inputFilePath);
+    return new Date(Math.round(stats.mtimeMs));
+    
+}
+
 
 function getFilesNumber(sourcePath){
     let inputFileList;

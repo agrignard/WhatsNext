@@ -3,10 +3,9 @@
     "eventPlace": "Terminal Club",
     "city": "Lyon",
     "country": "France",
-    "eventName": "Nashton Records : DJ Contest, Haeminum, Prollepse",
-    "eventDate": "8 Fév",
+    "eventName": "",
+    "eventDate": "",
     "isCancelled": false,
-    "errorLog": "Impossible de lire la page liée pour l'événement 'Nashton Records : DJ Contest, Haeminum, Prollepse'. Erreur lors du téléchargement ? | Format de date invalide pour Terminal Club. Reçu \"8 Fév\", converti en \"08-02\" (attendu \"dd-MM-yy\")",
     "eventURL": "https://www.terminal-club.com/evenement-multiple/mois/?shortcode=b6439857",
     "eventDetailedStyle": "",
     "eventStyle": "Electro",
@@ -15,6 +14,7 @@
       "city": "Lyon",
       "country": "France"
     },
+    "errorLog": "Format de date invalide pour Terminal Club. Reçu \"\", converti en \"\" (attendu \"dd-MM-yy\")",
     "unixDate": 0
   },
   {
@@ -32,7 +32,7 @@
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1739055540000
+    "unixDate": 1707433200000
   },
   {
     "eventPlace": "Terminal Club",
@@ -49,7 +49,7 @@
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1739141940000
+    "unixDate": 1707519600000
   },
   {
     "eventPlace": "Terminal Club",
@@ -66,7 +66,7 @@
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1739228340000
+    "unixDate": 1707606000000
   },
   {
     "eventPlace": "Terminal Club",
@@ -83,7 +83,7 @@
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1739660340000
+    "unixDate": 1708038000000
   },
   {
     "eventPlace": "Terminal Club",
@@ -100,7 +100,7 @@
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1708124340000
+    "unixDate": 1708124400000
   },
   {
     "eventPlace": "Terminal Club",
@@ -117,7 +117,7 @@
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1708642740000
+    "unixDate": 1708642800000
   },
   {
     "eventPlace": "Terminal Club",
@@ -134,7 +134,7 @@
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1708729140000
+    "unixDate": 1708729200000
   },
   {
     "eventPlace": "Terminal Club",
@@ -151,7 +151,7 @@
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1708815540000
+    "unixDate": 1708815600000
   },
   {
     "eventPlace": "Terminal Club",
@@ -168,6 +168,6 @@
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1709247540000
+    "unixDate": 1709247600000
   }
 ]

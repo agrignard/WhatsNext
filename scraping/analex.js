@@ -473,7 +473,7 @@ function addJSONBlock(scrapSource,source){
 function getBestDateFormat(dates, JSON, dateConversionPatterns){
    // console.log(dates);
     let bestDateFormat = (JSON.hasOwnProperty('dateFormat'))?JSON.dateFormat:"dd-MM-yyyy";
-    let bestScore = numberOfInvalidDates(dates.map(element => createDate(element,bestDateFormat,dateConversionPatterns)));
+    let bestScore = numberOfInvalidDates(dates.map(element => createDate(element,bestDateFormat,dateConversionPatterns,'Europe/Paris')));
     const dateFormatList = getCommonDateFormats();
     dateFormatList.forEach(format => {
         const formattedDateList = dates.map(element => createDate(element,format,dateConversionPatterns));
