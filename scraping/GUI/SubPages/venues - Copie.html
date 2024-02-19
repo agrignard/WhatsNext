@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venues</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <select id="countriesDropdown"></select>
+        <select id="citiesDropdown"></select>
+        <select id="venuesDropdown"></select>
+        <button id="addVenueBtn">Add venue</button>
+        <div id="dialog" style="display: none;">
+            <input type="text" id="newVenueNameInput">
+            <button id="confirmBtn">Confirm</button>
+        </div>
+    </div>
+    <div id="venue-info"></div>
+   
+    <div id="message-container"></div>
+    
+    <div id="processVenue">
+        <button id="processBtn">Process Venue</button>
+    </div>
+    <script src="venues.js"></script>
+</body>
+</html>

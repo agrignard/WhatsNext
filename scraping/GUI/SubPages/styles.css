@@ -15,11 +15,15 @@
 background-color: lightblue;
 }
 
+.multipageBlock{
+  background-color: lightgrey;
+}
+
 .languageItem.unavailable {
   color: red;
 }
 
-#divAlert {
+.alertBlock {
   color: red;
 }
 
@@ -27,10 +31,21 @@ background-color: lightblue;
   color: grey;
 }
 
-/* textarea {
-  resize: none;
-} */
+.inactive{
+  color: grey;
+}
 
+.blue-text {
+  color: blue;
+}
+
+#textAlias {
+  resize: none; /* Empêche le redimensionnement */
+}
+
+#textURL {
+  width: 500px;
+}
 
 .processContainer {
   display: flex; /* Utiliser Flexbox pour le positionnement */

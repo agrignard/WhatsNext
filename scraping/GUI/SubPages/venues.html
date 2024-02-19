@@ -17,12 +17,88 @@
             <button id="confirmBtn">Confirm</button>
         </div>
     </div>
-    <div id="venue-info"></div>
-   
-    <div id="message-container"></div>
-    <div id="processVenue">
-        <button id="processBtn">Process Venue</button>
+    <div id="venueEditPanel">
+        <div id="editVenueName">
+            <div id="editVenueNameText" style ="display: inline;">Venue name:</div>
+            <input type="text" id="inputNameField" placeholder="Enter venue name" style ="display: inline;">
+            <div id = "nameAlert" class="alertBlock" style ="display: inline;"></div>
+            <div style ="display: block;">
+                <label for="aliasCheckbox">Use as alias</label>
+                <input type="checkbox" id="aliasCheckbox">
+            </div>   
+        </div>
+        
+        <div>Aliases:</div>
+            <textarea id="textAlias"  rows="2" cols="30" placeholder="Enter alias" style ="display: inline; border: 1px solid #ccc;"></textarea>
+        
+        <div>URL of agenda page:</div>
+        <div id="textURL" contenteditable="true" style="width: 100ch; height: 40px; border: 1px solid #ccc;"></div>
+        <!--div id="textURL" contenteditable="true" style="width: 300px; height: 20px; border: 1px solid #ccc;"></div-->
+        <div id="downloadPanel">
+            <div id="divMP">
+                <button id="MPButton" class="niceButton">Multipage button</button>
+                <div id="MPfields">
+                    <div> Number of pages to scrap:
+                        <input type="number" id="nbPagesToScrap" step="1" value="5" style ="display: inline;">
+                    </div>
+                    <div>Indexation type:
+                        <select id="selectMPFields">
+                            <option value="index">Index</option>
+                            <option pattern="a">Pattern</option>
+                            <option value="pageList">Page List</option>
+                        </select>
+                    </div>
+                    <div id="divMPIndex">Start index:
+                        <input type="number" id="MPIndex" step="1" value="1" style ="display: inline;">
+                    </div>
+                    <div id="divMPPattern">Pattern:
+                        <input type="text" id="MPPattern" placeholder="yyyy-MM" style ="display: inline;">
+                    </div>
+                    <div id="divMPPageList">Page list:
+                        <textarea id="MPPageListInput"  rows="2" cols="30" placeholder="Enter page" style ="display: inline; border: 1px solid #ccc;"></textarea>
+                    </div>
+                    <div id="divMPInfo">Agenda URL does not contain {index}. Page index will be appended at the end of the URL.</div>
+                </div>
+                <div id="divLinkedPage">
+                    <label for="linkedPageCheckbox">Download linked page:</label>
+                    <input type="checkbox" id="linkedPageCheckbox">
+                </div>
+                <div id="divStyle">Default Style:
+                    <select id="selectStyle"></select>
+                    <input id="inputStyle" type="text" style ="display: none;">
+                </div>
+                <div id="divSelectMidnightHour">Midnight hour action:
+                    <select id="selectMidnightHour"></select>
+                </div>
+                <div id="divTextComments">Comments:
+                    <textarea id="textComments"  rows="3" cols="30" style ="display: inline; border: 1px solid #ccc;"></textarea>
+                </div>
+            </div>
+        </div>
+        <div id="divButtons">
+            <button id="saveVenue" class="saveButton">Save</button>
+            <button id="cancelVenue" class="cancelButton">Cancel</button>
+        </div>   
     </div>
+
+
+    <div id="venueShowPanel">
+        <div id="venueName"></div>
+        <div id="venueAliases"></div>
+        <div id="venueURL"></div>
+        <div id="divMultipages" class="multipageBlock"></div>
+        <div id="venueStyle"></div>
+        <div id="venueLinkedPage">(contains linked pages)</div>
+        <div id="midnightHour"></div>
+        <div id="venueComments"></div>
+        <button id="modifyVenue" class = "modifyButton">Modify</button>
+        <div id="processVenue">
+            <button id="processBtn">Process Venue</button>
+        </div>
+    </div>
+    
+    <div id="message-container"></div>
+    
     <script src="venues.js"></script>
 </body>
 </html>

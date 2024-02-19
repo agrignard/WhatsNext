@@ -14,7 +14,7 @@ const styleList = [''].concat(getStyleList().filter(el => el !=='')).concat(['Ot
 
 
 
-const venueInfo = document.getElementById('venue-info');
+//const venueInfo = document.getElementById('venue-info');
 const messageContainer = document.getElementById('message-container');
 
 // // Créez un élément de paragraphe pour le message
@@ -141,379 +141,359 @@ function updateVenueInfo(mode){
     }else{
         venue = getCurrentVenue();
     }
-    venueInfo.innerHTML = '';
+    const venueShowPanel = document.getElementById('venueShowPanel');
+    venueShowPanel.style.display = 'none';
+    const venueEditPanel = document.getElementById('venueEditPanel');;
+    venueEditPanel.style.display = 'none';
+ 
     if (venue){
         if (mode === 'show'){
-            // name
-            const divName = document.createElement('div');
-            divName.id = 'venueName';
+            console.log("show");
+            venueShowPanel.style.display = 'block';
+            // name      
+            const divName = document.getElementById('venueName');
             divName.textContent = isAlias(venue)?venue.name+' (used as alias)':venue.name;
             if (isAlias(venue)){
                 processButton.disabled = true;
                 divName.classList.add('greyFont');
-                divName.textContent = venue.name+' (used as alias)';
             }else{
                 processButton.disabled = false;
-                divName.textContent = venue.name;
             }
-            venueInfo.appendChild(divName);
-             // aliases
-             if (venue.hasOwnProperty('aliases')){
-                const divAlias = document.createElement('div');
-                divAlias.id = 'venueAliases';
+            const divAlias = document.getElementById('venueAliases');
+            if (venue.hasOwnProperty('aliases')){
+                divAlias.style.display = 'block';
                 divAlias.textContent =  "Aliases: "+venue.aliases.join(', ');
-                venueInfo.appendChild(divAlias);  
-            } 
+            }else{
+                divAlias.textContent =  '';
+                divAlias.style.display = 'none';
+            }
+            
             // url
-            const divURL = document.createElement('div');
-            divURL.id = 'venueURL';
-            divURL.textContent =  venue.hasOwnProperty('scrapURL')?venue.scrapURL:'';
-            venueInfo.appendChild(divURL);  
+            const divURL = document.getElementById('venueURL');
+            if (venue.hasOwnProperty('scrapURL')){
+                divURL.textContent =  venue.scrapURL;
+            } else if (venue.hasOwnProperty('baseURL')){
+                divURL.textContent =  venue.baseURL;
+            } else {
+                divURL.textContent = '';
+            }
+            
+            const divMultipages = document.getElementById('divMultipages');
             if (isMultipages(venue)){
-                const divMultipages = document.createElement('div');
-                    divMultipages.id = 'divMultipages';
-                    divMultipages.textContent =  'Multiple pages: will scrap '+venue.multiPages.nbPages+' pages.';
-                    if (venue.multiPages.hasOwnProperty('pattern')){
-                        divMultipages.textContent = divMultipages.textContent+' Pattern: \''+venue.multiPages.pattern+'\'';
-                    }else if (venue.multiPages.hasOwnProperty('pageList')){
-                        divMultipages.textContent = divMultipages.textContent+'\nList of pages to scrap: '
-                                + venue.multiPages.pageList;
+                divMultipages.style.display = 'block';
+                divMultipages.textContent =  'Multiple pages: will scrap '+venue.multiPages.nbPages+' pages.';
+                if (venue.multiPages.hasOwnProperty('pattern')){
+                    divMultipages.textContent = divMultipages.textContent+' Pattern: \''+venue.multiPages.pattern+'\'';
+                }else if (venue.multiPages.hasOwnProperty('pageList')){
+                    divMultipages.textContent = divMultipages.textContent+'\nList of pages to scrap: '
+                            + venue.multiPages.pageList;
 
-                    }else{
-                        divMultipages.textContent = divMultipages.textContent+' Start index: '+venue.multiPages.startPage;
-                    }
-                venueInfo.appendChild(divMultipages); 
+                }else{
+                    divMultipages.textContent = divMultipages.textContent+' Start index: '+venue.multiPages.startPage;
+                }
+            }else{
+                divMultipages.textContent = '';
+                divMultipages.style.display = 'none';             
             }
             // style
+            const divStyle = document.getElementById('venueStyle');
             if (venue.hasOwnProperty('defaultStyle')){
-                const divStyle = document.createElement('div');
-                divStyle.id = 'venueStyle';
-                divStyle.textContent =  'Style: '+venue.defaultStyle;
-                venueInfo.appendChild(divStyle);  
-            } 
+                divStyle.style.display = 'block';        
+                divStyle.textContent =  'Style: '+venue.defaultStyle; 
+            } else{
+                divStyle.style.display = 'none';        
+                divStyle.textContent =  ''; 
+            }
             // linked page
-            if (venue.hasOwnProperty('linkedPage')){
-                const divLinkedPage = document.createElement('div');
-                divLinkedPage.id = 'venueLinkedPage';
-                divLinkedPage.textContent =  '(Contains linked pages)';
-                venueInfo.appendChild(divLinkedPage);  
-            } 
+            const divLinkedPage = document.getElementById('venueLinkedPage');
+            divLinkedPage.style.display = (venue.hasOwnProperty('linkedPage'))?'block':'none';
             // midnight hour
+            const divmidnightHour = document.getElementById('midnightHour');
             if (venue.hasOwnProperty('midnightHour')){
-                const divmidnightHour = document.createElement('div');
-                divmidnightHour.id = 'venueMidnightHour';
-                divmidnightHour.textContent =  '(Processes events at midnight)';
-                venueInfo.appendChild(divmidnightHour);  
-            } 
+                divmidnightHour.style.display = 'block';
+                divmidnightHour.textContent =  venue.midnightHour === 'sameDay'?'Events at midnight are kept the same day.':'Events at midnight are moved to previous day';  
+            } else{
+                divmidnightHour.style.display = 'none';
+                divmidnightHour.textContent = '';
+            }
             // comment
+            const divComments = document.getElementById('venueComments');
             if (venue.hasOwnProperty('comments')){
-                const divComments = document.createElement('div');
-                divComments.id = 'venueComment';
+                divComments.style.display = 'block';
                 divComments.textContent =  venue.comments;
-                venueInfo.appendChild(divComments);  
-            } 
+            } else{
+                divComments.style.display = 'none';
+                divComments.textContent =  '';
+            }
 
             // add modify button
-            const button = document.createElement('button');
-            button.id = 'modifyVenue';
-            button.textContent = 'Modify';
-            button.classList.add('modifyButton');
+            const button = document.getElementById('modifyVenue');
             button.addEventListener('click', function() {
                 updateVenueInfo('edit');
             });
-            venueInfo.appendChild(button);
         //*************************/
         /*        edit mode       */
         //*************************/
         }else if (mode === 'edit' || mode === 'newVenue'){// if in edit mode
-            //const venuesFromSameCity = venues.filter(el => el.city === currentCity && el.country === currentCountry);
+            venueEditPanel.style.display = 'block';
             toggleMenuesAction('off'); // prevent any action before changes have been saved or cancelled
 
             // name
-            const divName = document.createElement('div');
-                divName.id = 'venueName';
-                if (mode === 'edit'){
-                    divName.textContent = venue.name; 
-                }else{
-                    divName.textContent = 'Venue name:'; 
-                    const inputName = document.createElement('input');
-                        inputName.id = 'inputName';
-                    divName.appendChild(inputName);
-                    const divAlert = document.createElement('div');
-                        divAlert.id = 'divAlert';
-                        divAlert.textContent = 'A venue with the same name already exists';
-                        divAlert.style.display = 'none';
-                        // listener for divName is defined after save and cancel buttons
-                    divName.appendChild(divAlert);
-                }     
-            venueInfo.appendChild(divName);
+            const nameText = document.getElementById('editVenueNameText');
+            const inputNameField = document.getElementById('inputNameField');
+            inputNameField.style.display = (mode === "edit")?'none':'inline';
+            const divAlert = document.getElementById('nameAlert');
+            nameText.textContent = (mode === 'edit')?venue.name:'Venue name: ';
+            const aliasCheckbox = document.getElementById('aliasCheckbox');
+            aliasCheckbox.checked = isAlias(venue);
             // aliases
-            let div = document.createElement('div');
-                div.id = "divTextAlias";
-                div.textContent = "Aliases:";
-                const textAlias = document.createElement('textarea');
-                    textAlias.id = 'textAliases';
-                    textAlias.textContent =  venue.hasOwnProperty('aliases')?venue.aliases.join('\n'):'';
-                    textAlias.setAttribute('rows', venue.hasOwnProperty('aliases')?venue.aliases.length+1:1);
-                    textAlias.setAttribute('cols', '30');
-                div.appendChild(textAlias);  
-            venueInfo.appendChild(div);
+            const textAlias = document.getElementById('textAlias');
+            textAlias.value =  venue.hasOwnProperty('aliases')?venue.aliases.join('\n'):'';
+            textAlias.setAttribute('rows', venue.hasOwnProperty('aliases')?venue.aliases.length:1);
+            textAlias.addEventListener('input', function(event) {
+                const nbLines = textAlias.value.split('\n').length;
+                textAlias.setAttribute('rows', nbLines);
+            }); 
             // url
-            div = document.createElement('div');
-                div.id = "divTextURL";
-                div.textContent = "URL of agenda:";
-                const textURL = document.createElement('textarea');
-                    textURL.id = 'textURL';
-                    textURL.textContent =  venue.hasOwnProperty('scrapURL')?venue.scrapURL:'';
-                    textURL.setAttribute('rows', '1');
-                    textURL.setAttribute('cols', '60');
-                div.appendChild(textURL); 
-            venueInfo.appendChild(div);
+            const textURL = document.getElementById('textURL');
+            textURL.textContent =  venue.hasOwnProperty('scrapURL')?venue.scrapURL:'';
+            function updateTextarea() {
+                let content = textURL.textContent;
+                const cursorPosition = getCaretPosition(textURL);
+                const occurrences = content.match(/\{index\}/g);
+                let nbOccurrences = occurrences ? occurrences.length : 0;
+                const replacement = nbOccurrences > 1?'<span class="red-text">{index}<span class="black-text">':'<span class="blue-text">{index}<span class="black-text">';
+                content = content.replace(/\{index\}/g, replacement);
+                textURL.innerHTML = content;
+                let indexSpans = textURL.querySelectorAll('.blue-text');
+                indexSpans.forEach(function(span) {
+                    span.style.color = 'blue';
+                    // span.style.fontWeight = 'bold';
+                });
+                indexSpans = textURL.querySelectorAll('.red-text');
+                indexSpans.forEach(function(span) {
+                    span.style.color = 'red';
+                //span.style.fontWeight = 'normal';
+                });    
+                indexSpans = textURL.querySelectorAll('.black-text');
+                indexSpans.forEach(function(span) {
+                    span.style.color = 'black';
+                //span.style.fontWeight = 'normal';
+                });
+                // Restore cursor position
+                setCaretPosition(textURL, cursorPosition);
+            }
+            textURL.addEventListener("input", updateTextarea);
+            updateTextarea();
+            // download
+            const downloadPanel = document.getElementById('downloadPanel');
             // multipages
-            const divMP = document.createElement('div');
-                let hasMP = isMultipages(venue);
-                divMP.id = "divMP";
-                const MPButton = document.createElement('button');
-                    MPButton.id = 'MPButton';
-                    MPButton.textContent = hasMP?'Disable multiple pages':'Enable multiple pages';
-                    MPButton.classList.add('niceButton');
-                const MPFields = document.createElement('div');
-                    MPFields.id = "MPfields";
-                    MPFields.textContent = 'Indexation type:';
-                    MPFields.style.display = hasMP?'block':'none';
-                    const selectMPFields = document.createElement('select');
-                        selectMPFields.id = "selectMPFields";
-                        ['index','pattern','pageList'].forEach(type => {
-                            const option = document.createElement('option');
-                            option.text = type;  
-                            selectMPFields.appendChild(option);
-                        });
-                        if (hasMP){
-                            if (venue.multiPages.hasOwnProperty('pattern')){
-                                selectMPFields.selectedIndex = 1;
-                            }else if(venue.multiPages.hasOwnProperty('pageList')){
-                                selectMPFields.selectedIndex = 2;
-                            }
-                        }else{
-                            selectMPFields.selectedIndex = 0;
-                        }
-                    const divMPIndex = document.createElement('div');
-                        divMPIndex.id ='divMPIndex';
-                        divMPIndex.textContent = 'Start index:';
-                        const MPIndexInput = document.createElement('input');
-                            MPIndexInput.id = 'MPIndex';
-                            MPIndexInput.value = '1';
-                            MPIndexInput.addEventListener('input',  filterInteger); 
-                        divMPIndex.appendChild(MPIndexInput);
-                    const divMPPattern = document.createElement('div');
-                        divMPPattern.id ='divMPPattern';
-                        divMPPattern.textContent = 'Pattern:';
-                        const MPPatternInput = document.createElement('input');
-                            MPPatternInput.id = 'MPPattern';
-                            MPPatternInput.value = 'yyyy-MM';
-                            divMPPattern.appendChild(MPPatternInput);
-                    const divMPPageList = document.createElement('div');
-                        divMPPageList.id ='divMPPageList';
-                        divMPPageList.textContent = 'Page list:';
-                        const MPPageListInput = document.createElement('textarea');
-                            MPPageListInput.id = 'divMPPageList';
-                            MPPageListInput.value = (venue.hasOwnProperty('multiPages') && venue.multiPages.hasOwnProperty('pageList'))?
-                                venue.multiPages.pageList.join('\n'):'';
-                        divMPPageList.appendChild(MPPageListInput);
-                    const divMPInfo = document.createElement('div');
-                        divMPInfo.id ='divMPInfo';
-                        divMPInfo.textContent = 'Agenda URL does not contain {index}. Page index will be append at the end of the URL.';
-                        divMPInfo.style.display = /{index}/.test(textURL.value) ? 'none':'inline';
-                    const MPElements = [divMPIndex, divMPPattern, divMPPageList];
-                    setVisibility(MPElements,selectMPFields.selectedIndex);
-                    selectMPFields.addEventListener('change', function(event) {
-                        setVisibility(MPElements,selectMPFields.selectedIndex);
-                    });
-                    MPFields.appendChild(selectMPFields);
-                    MPFields.appendChild(divMPIndex);
-                    MPFields.appendChild(divMPPattern);
-                    MPFields.appendChild(divMPPageList);
-                    MPFields.appendChild(divMPInfo);
-                MPButton.addEventListener('click', function() {
-                    hasMP = !hasMP;
-                    MPFields.style.display = hasMP?'block':'none';
-                });
-                divMP.appendChild(MPButton);
-                divMP.appendChild(MPFields);
-                textURL.addEventListener('input', function() {
-                    divMPInfo.style.display = /{index}/.test(textURL.value) ? 'none':'inline';
-                });
-            venueInfo.appendChild(divMP); 
+            const divMP = document.getElementById('divMP');
+            let hasMP = isMultipages(venue);
+            const MPButton = document.getElementById('MPButton');
+            MPButton.textContent = hasMP?'Disable multiple pages':'Enable multiple pages';
+            const MPFields = document.getElementById('MPfields');
+            MPFields.style.display = hasMP?'block':'none';
+            const nbPagesToScrap = document.getElementById('nbPagesToScrap');
+            if (hasMP){
+                nbPagesToScrap.value = String(venue.multiPages.nbPages);
+            }
+            const selectMPFields = document.getElementById('selectMPFields');
+            if (hasMP){
+                if (venue.multiPages.hasOwnProperty('pattern')){
+                    selectMPFields.selectedIndex = 1;
+                }else if(venue.multiPages.hasOwnProperty('pageList')){
+                    selectMPFields.selectedIndex = 2;
+                }
+            }else{
+                selectMPFields.selectedIndex = 0;
+            }
+            const divMPIndex = document.getElementById('divMPIndex');
+            const MPIndexInput = document.getElementById('MPIndex');
+            if (hasMP && venue.multiPages.hasOwnProperty('startPage')){
+                MPIndexInput.value = venue.multiPages.startPage;
+            }
+            const divMPPattern = document.getElementById('divMPPattern');
+            const MPPatternInput = document.getElementById('MPPattern');
+            if (hasMP && venue.multiPages.hasOwnProperty('pattern')){
+                MPPatternInput.value = venue.multiPages.pattern;
+            }
+            const divMPPageList = document.getElementById('divMPPageList');
+            const MPPageListInput = document.getElementById('MPPageListInput');
+            MPPageListInput.value = (venue.hasOwnProperty('multiPages') && venue.multiPages.hasOwnProperty('pageList'))?
+                venue.multiPages.pageList.join('\n'):'';
+            const divMPInfo = document.getElementById('divMPInfo');
+            divMPInfo.style.display = /\{index\}/.test(textURL.textContent) ? 'none':'inline';
+            const MPElements = [divMPIndex, divMPPattern, divMPPageList];
+            setVisibility(MPElements,selectMPFields.selectedIndex);
+            selectMPFields.addEventListener('change', function(event) {
+                setVisibility(MPElements,selectMPFields.selectedIndex);
+            });
+            MPButton.addEventListener('click', function() {
+                hasMP = !hasMP;
+                MPButton.textContent = hasMP?'Disable multiple pages':'Enable multiple pages';
+                MPFields.style.display = hasMP?'block':'none';
+            });
+            textURL.addEventListener('input', function() {
+                divMPInfo.style.display = /\{index\}/.test(textURL.textContent) ? 'none':'inline';
+            }); 
             // style
-            div = document.createElement('div');
-                div.id = "divTextStyle";
-                div.textContent = "Default Style:";
-                const selectStyle = document.createElement('select');
-                    selectStyle.id = "selectStyle";
-                    styleList.forEach(style => {
-                        const option = document.createElement('option');
-                        option.text = style;  
-                        selectStyle.appendChild(option);
-                    });
-                    selectStyle.selectedIndex = 0;
-                    if (venue.hasOwnProperty('defaultStyle')){
-                        const styleIndex = styleList.map(el => simplify(el)).indexOf(simplify(venue.defaultStyle));
-                        if (styleIndex === -1){
-                            selectStyle.selectedIndex = styleList.length - 1;
-                        }else{
-                            selectStyle.selectedIndex = styleIndex;
-                        }
-                    }   
-                const inputStyle = document.createElement('input');
-                    inputStyle.id = 'inputStyle';
-                    inputStyle.style.display = 'none';
-                    if (selectStyle.selectedIndex === styleList.length - 1){// odd style
-                        inputStyle.value = venue.defaultStyle;
-                        inputStyle.style.display = 'inline';
-                    }
-                    selectStyle.addEventListener('change', (event) => {
-                        inputStyle.style.display = (selectStyle.selectedIndex === styleList.length - 1)?'inline':'none';
-                    });
-                div.appendChild(selectStyle); 
-                div.appendChild(inputStyle); 
-            venueInfo.appendChild(div);
-            div = document.createElement('div');
-                div.id = "divLinkedPageCheck";
-                div.textContent = "Download linked page:";
-                const checkbox = document.createElement('input');
-                    checkbox.type = 'checkbox'; 
-                    checkbox.id = 'linkedPageCheckbox'; 
-                    checkbox.name = 'linkedPageCheckbox'; 
-                    checkbox.checked = venue.hasOwnProperty('linkedPage')?true:false;    
-                    div.appendChild(checkbox);     
-            venueInfo.appendChild(div);
+            const selectStyle = document.getElementById('selectStyle');
+            styleList.forEach(style => {
+                const option = document.createElement('option');
+                option.text = style;  
+                selectStyle.appendChild(option);
+            });
+            selectStyle.selectedIndex = 0;
+            if (venue.hasOwnProperty('defaultStyle')){
+                const styleIndex = styleList.map(el => simplify(el)).indexOf(simplify(venue.defaultStyle));
+                if (styleIndex === -1){
+                    selectStyle.selectedIndex = styleList.length - 1;
+                }else{
+                    selectStyle.selectedIndex = styleIndex;
+                }
+            }   
+            const inputStyle = document.getElementById('inputStyle');
+            if (selectStyle.selectedIndex === styleList.length - 1){// odd style
+                inputStyle.value = venue.defaultStyle;
+                inputStyle.style.display = 'inline';
+            }
+            selectStyle.addEventListener('change', (event) => {
+                inputStyle.style.display = (selectStyle.selectedIndex === styleList.length - 1)?'inline':'none';
+            });
+            // get linked page
+            const linkedPageCheckbox = document.getElementById('linkedPageCheckbox');
+            linkedPageCheckbox.checked = venue.hasOwnProperty('linkedPage')?true:false;    
             // midnight hour
-            div = document.createElement('div');
-                div.id = "divSelectMidnightHour";
-                div.textContent = "Midnight hour action:";
-                const selectMH = document.createElement('select');
-                    selectMH.id = "selectMidnightHout";
-                    midnightHourOptions.forEach(action => {
-                        const option = document.createElement('option');
-                        option.text = action;  
-                        selectMH.appendChild(option);
-                    });
-                    selectMH.selectedIndex = 0;
-                    if (venue.hasOwnProperty('midnightHour')){
-                        const mhIndex = midnightHourOptions.map(el => simplify(el)).indexOf(simplify(venue.midnightHour));
-                        selectMH.selectedIndex = mhIndex === -1?0:mhIndex;
-                    }
-                div.appendChild(selectMH);
-            venueInfo.appendChild(div);
+            const selectMH = document.getElementById('selectMidnightHour');
+            midnightHourOptions.forEach(action => {
+                const option = document.createElement('option');
+                option.text = action;  
+                selectMH.appendChild(option);
+            });
+            selectMH.selectedIndex = 0;
+            if (venue.hasOwnProperty('midnightHour')){
+                const mhIndex = midnightHourOptions.map(el => simplify(el)).indexOf(simplify(venue.midnightHour));
+                selectMH.selectedIndex = mhIndex === -1?0:mhIndex;
+            }
             // comments
-            div = document.createElement('div');
-                div.id = "divTextComments";
-                div.textContent = "Comments:";
-                const textComments = document.createElement('textarea');
-                textComments.id = 'textComments';
-                textComments.textContent =  venue.hasOwnProperty('comments')?venue.comments:'';
-                div.appendChild(textComments);  
-            venueInfo.appendChild(div);
+            const textComments = document.getElementById('textComments');
+            textComments.textContent =  venue.hasOwnProperty('comments')?venue.comments:'';
+            function aliasRender(){
+                if (aliasCheckbox.checked){
+                    downloadPanel.style.display = 'none';
+                }else{
+                    downloadPanel.style.display = 'block';
+                }
+            }
+            aliasCheckbox.addEventListener("change", aliasRender);
+            aliasRender();
+             
             //*************************/
             // save and cancel buttons
             //*************************/
-            const divButtons = document.createElement('div');
-                divName.id = 'divButtons';
-                // add save button
-                const saveButton = document.createElement('button');
-                    saveButton.id = 'saveVenue';
-                    saveButton.textContent = 'Save';
-                    saveButton.classList.add('saveButton');
-                    saveButton.addEventListener('click', function() {
-                        // name
-                        if (mode === 'newVenue'){
-                            venue.name = inputName.value;               
+            const divButtons =  document.getElementById('divButtons');
+            // add save button
+            const saveButton = document.getElementById('saveVenue');
+            saveButton.addEventListener('click', function() {
+                // name
+                if (mode === 'newVenue'){
+                    venue.name = inputNameField.value;               
+                }
+                // aliases
+                const aliases = splitArray(textAlias.value);
+                if (aliases.length > 0){
+                    venue.aliases = aliases;
+                }else{
+                    delete venue.aliases;
+                }
+                // url
+                if (isNotBlank(textURL.value)){
+                    if (aliasCheckbox.value){
+                        venue.baseURL = textURL.textContent;
+                        delete venue.scrapURL;
+                    }else{
+                        venue.scrapURL = textURL.textContent;
+                    }
+                }else{
+                    delete venue.scrapURL;
+                }
+                // multipages
+                if (hasMP){
+                    venue.multiPages = {};
+                    venue.multiPages.nbPages = nbPagesToScrap.value;
+                    if (venue.multiPages.hasOwnProperty('pattern')){delete venue.multiPages.pattern;}
+                    if (venue.multiPages.hasOwnProperty('startIndex')){delete venue.multiPages.startIndex;}
+                    if (selectMPFields.selectedIndex === 0){             
+                        venue.multiPages.startPage = MPIndexInput.value;
+                    }else if (selectMPFields.selectedIndex === 1){                          
+                        venue.multiPages.pattern = MPPatternInput.value;
+                    }else{
+                        venue.multiPages.pageList = splitArray(MPPageListInput.value);
+                    }        
+                }else{
+                    delete venue.multiPages;
+                }
+                // style
+                if (selectStyle.selectedIndex === 0){
+                    delete venue.defaultStyle; 
+                }else if (selectStyle.selectedIndex === styleList.length - 1){
+                    venue.defaultStyle = inputStyle.value;
+                }else{
+                    venue.defaultStyle =  selectStyle.value;
+                }// linked page
+
+                // midnight hour
+                if (selectMH.selectedIndex === 0){
+                    delete venue.selectMH; 
+                }else{
+                    venue.midnightHour =  selectMH.value;
+                }
+                // comments
+                if (isNotBlank(textComments.value)){
+                    venue.comments = textComments.value;
+                }else{
+                    delete venue.comments;
+                }
+                // finalize save
+                makeID(venue);
+                if (mode === 'newVenue'){
+                    venues.push(venue);
+                    populateVenuesMenu();
+                    for (let i = 0; i < venuesDropdown.options.length; i++) {
+                        if (venuesDropdown.options[i].textContent === venue.name){
+                            venuesDropdown.selectedIndex = i;
+                            break;
                         }
-                        // aliases
-                        const aliases = splitArray(textAlias.value);
-                        if (aliases.length > 0){
-                            venue.aliases = aliases;
-                        }else{
-                            delete venue.aliases;
-                        }
-                        // url
-                        if (isNotBlank(textURL.value)){
-                            venue.scrapURL = textURL.value;
-                        }else{
-                            delete venue.scrapURL;
-                        }
-                        // multipages
-                        if (hasMP){
-                            venue.multiPages = {};
-                            if (venue.multiPages.hasOwnProperty('pattern')){delete venue.multiPages.pattern;}
-                            if (venue.multiPages.hasOwnProperty('startIndex')){delete venue.multiPages.startIndex;}
-                            if (selectMPFields.selectedIndex === 0){             
-                                venue.multiPages.startIndex = MPIndexInput.value;
-                            }else if (selectMPFields.selectedIndex === 1){                          
-                                venue.multiPages.pattern = MPPatternInput.value;
-                            }else{
-                                venue.multiPages.pageList = splitArray(MPPageListInput.value);
-                            }
-                            
-                        }else{
-                            delete venue.multiPages;
-                        }
-                        // style
-                        if (selectStyle.selectedIndex === 0){
-                            delete venue.defaultStyle; 
-                        }else if (selectStyle.selectedIndex === styleList.length - 1){
-                            venue.defaultStyle = inputStyle.value;
-                        }else{
-                            venue.defaultStyle =  selectStyle.value;
-                        }
-                        // midnight hour
-                        if (selectMH.selectedIndex === 0){
-                            delete venue.selectMH; 
-                        }else{
-                            venue.midnightHour =  selectMH.value;
-                        }
-                        // comments
-                        if (isNotBlank(textComments.value)){
-                            venue.comments = textComments.value;
-                        }else{
-                            delete venue.comments;
-                        }
-                        // finalize save
-                        makeID(venue);
-                        if (mode === 'newVenue'){
-                            venues.push(venue);
-                            populateVenuesMenu();
-                            for (let i = 0; i < venuesDropdown.options.length; i++) {
-                                if (venuesDropdown.options[i].textContent === venue.name){
-                                    venuesDropdown.selectedIndex = i;
-                                    break;
-                                }
-                            }
-                            currentName = venue.name;
-                            sessionStorage.setItem('venue|'+currentCity+'|'+currentCountry,currentName);
-                        }
-                        sessionStorage.setItem('currentVenue', getCurrentVenue().ID);
-                        toggleMenuesAction('on');
-                        updateVenueInfo('show');
-                        //console.log(venue);
-                    });
-                    // add cancel button
-                const cancelButton = document.createElement('button');
-                    cancelButton.id = 'cancelVenue';
-                    cancelButton.textContent = 'Cancel';
-                    cancelButton.classList.add('cancelButton');
-                    cancelButton.addEventListener('click', function() {
-                        toggleMenuesAction('on');
-                        updateVenueInfo('show');
-                    });
-                divButtons.appendChild(saveButton);
-                divButtons.appendChild(cancelButton);
-            venueInfo.appendChild(divButtons);
-            divName.addEventListener('input', (event) => {
-                if (currentVenues.some(el => simplify(el.name) === simplify(inputName.value))){
+                    }
+                    currentName = venue.name;
+                    sessionStorage.setItem('venue|'+currentCity+'|'+currentCountry,currentName);
+                }
+                sessionStorage.setItem('currentVenue', getCurrentVenue().ID);
+                toggleMenuesAction('on');
+                updateVenueInfo('show');
+                //console.log(venue);
+            });
+            // add cancel button
+            const cancelButton = document.getElementById('cancelVenue');
+            cancelButton.addEventListener('click', function() {
+                toggleMenuesAction('on');
+                updateVenueInfo('show');
+            });
+            if (mode === 'newVenue'){
+                saveButton.disabled = true;
+            }
+            inputNameField.addEventListener('input', (event) => {
+                if (currentVenues.some(el => simplify(el.name) === simplify(inputNameField.value))){
+                    divAlert.textContent = 'A venue with the same name already exists';
+                    divAlert.style.display = 'inline';
+                    saveButton.disabled = true;
+                }else if (simplify(inputNameField.value) === ''){
+                    divAlert.textContent = 'Empty name';
                     divAlert.style.display = 'inline';
                     saveButton.disabled = true;
                 }else{
+                    divAlert.textContent = '';
                     divAlert.style.display = 'none';
                     saveButton.disabled = false;
                 }
@@ -530,6 +510,9 @@ function toggleMenuesAction(mode){
         countriesDropdown.addEventListener('mousedown', lockMenu);
         citiesDropdown.addEventListener('mousedown', lockMenu);
         venuesDropdown.addEventListener('mousedown', lockMenu);
+        countriesDropdown.classList.add('inactive');
+        citiesDropdown.classList.add('inactive');
+        venuesDropdown.classList.add('inactive');
         addVenueButton.disabled = true;
         processButton.disabled = true;
         ipcRenderer.send('execute-fonction', 'changeMenu', false);    
@@ -537,8 +520,10 @@ function toggleMenuesAction(mode){
         countriesDropdown.removeEventListener('mousedown', lockMenu);
         citiesDropdown.removeEventListener('mousedown', lockMenu);
         venuesDropdown.removeEventListener('mousedown', lockMenu);
+        countriesDropdown.classList.remove('inactive');
+        citiesDropdown.classList.remove('inactive');
+        venuesDropdown.classList.remove('inactive');
         addVenueButton.disabled = false;
-
         processButton.disabled = false;
         ipcRenderer.send('execute-fonction', 'changeMenu', true);
     }
@@ -558,15 +543,15 @@ function isMultipages(venue){
 }
 
 
-function filterInteger(event) {
-    let value = event.target.value;
+// function filterInteger(event) {
+//     let value = event.target.value;
   
-    // Remplacer les caractères non numériques par une chaîne vide
-    value = value.replace(/\D/g, '');
+//     // Remplacer les caractères non numériques par une chaîne vide
+//     value = value.replace(/\D/g, '');
   
-    // Mettre à jour la valeur du champ de texte avec les caractères filtrés
-    event.target.value = value;
-}
+//     // Mettre à jour la valeur du champ de texte avec les caractères filtrés
+//     event.target.value = value;
+// }
 
 function setVisibility(list, selectedIndex){
     list.forEach((el,index)=>{
@@ -596,3 +581,56 @@ function getKeyFromStorage(key, dropDown){
         return index;
     }
 }
+
+
+function getCaretPosition(element) {
+    const selection = window.getSelection();
+    if (selection.rangeCount > 0) {
+      const range = selection.getRangeAt(0);
+      range.setStart(element, 0);
+      return range.toString().length;
+    } else {
+      return 0;
+    }
+}
+
+
+  
+  // Fonction pour restaurer la position du curseur
+  function setCaretPosition(element, position) {
+    const nodes = element.childNodes;
+    let found = false;
+    let offset = 0;
+  
+    for (let i = 0; i < nodes.length; i++) {
+      const node = nodes[i];
+      if (node.nodeType === Node.TEXT_NODE) {
+        var length = node.textContent.length;
+        if (position <= length + offset) {
+          var range = document.createRange();
+          range.setStart(node, position - offset);
+          range.collapse(true);
+          var selection = window.getSelection();
+          selection.removeAllRanges();
+          selection.addRange(range);
+          found = true;
+          break;
+        } else {
+          offset += length;
+        }
+      } else {
+        offset += node.outerHTML.length;
+      }
+    }
+  
+    if (!found) {
+      // Si la position n'a pas été trouvée, placer le curseur à la fin
+      const range = document.createRange();
+      range.setStart(element, element.childNodes.length);
+      range.collapse(true);
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+    }
+}
+  

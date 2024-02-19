@@ -5,7 +5,7 @@ const fs = require('fs');
 const cheerio = require('cheerio');
 const {parseDocument} = require('htmlparser2');
 const {app, Menu, ipcRenderer} = require('electron');
-const {loadVenuesJSONFile, loadVenueJSON, loadVenueScrapInfofromFile} = require(imports+'jsonUtilities.js');
+const {loadVenuesJSONFile, loadVenueJSON, loadVenueScrapInfofromFile, initializeVenue} = require(imports+'jsonUtilities.js');
 const {simplify, removeBlanks, extractBody, convertToLowerCase} = require(imports+'stringUtilities.js');
 const {getFilesContent} = require(imports+'fileUtilities.js');
 
@@ -15,9 +15,17 @@ const {getFilesContent} = require(imports+'fileUtilities.js');
 const venues = loadVenuesJSONFile();
 const venueID = sessionStorage.getItem('currentVenue');
 const venue = loadVenueJSON(venueID,venues);
-const venueScrapInfo = loadVenueScrapInfofromFile(venueID);
+initializeVenue(venue,webSources);
+const scrapInfo = loadScrapInfoFile();
+if (scrapInfo.hasOwnProperty(venueID)){
+  console.log('ok');
+}
+const venueScrapInfo = scrapInfo.hasOwnProperty(venueID)?scrapInfo[venueID]:{};
+if (!venueScrapInfo.hasOwnProperty('mainPage')){
+  venueScrapInfo.mainPage = {};
+}
 
-//const styleList = [''].concat(getStyleList().filter(el => el !=='')).concat(['Other']);
+
 
 const venueInfo = document.getElementById('infos');
 const rightPanel = document.getElementById('rightPanel');
