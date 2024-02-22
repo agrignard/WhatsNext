@@ -8,8 +8,17 @@
     padding: 5px 10px;
     margin: 5px;
     cursor: pointer;
-  }
+}
   
+.scrapTextBox{
+  width: 90%;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  background-color: white;
+  font-family: sans-serif;
+  font-size: 85%;
+  resize: none;
+}
 /* Style pour mettre en surbrillance l'option sélectionnée */
 .languageItem.selected {
 background-color: lightblue;
@@ -19,11 +28,31 @@ background-color: lightblue;
   background-color: lightgrey;
 }
 
+.highlightName {
+  background-color: rgb(99, 123, 248);
+}
+
+.highlightDate {
+  background-color: rgb(116, 207, 127);
+}
+
+.highlightStyle {
+  background-color: rgb(147, 88, 104);
+}
+
 .languageItem.unavailable {
   color: red;
 }
 
+.invalid{
+  background-color: rgb(241, 148, 146);
+}
+
 .alertBlock {
+  color: red;
+}
+
+.redFont {
   color: red;
 }
 
@@ -39,6 +68,12 @@ background-color: lightblue;
   color: blue;
 }
 
+#logText {
+  width: 400px;
+  height: 200px;
+  overflow-y: scroll; 
+}
+
 #textAlias {
   resize: none; /* Empêche le redimensionnement */
 }
@@ -47,19 +82,51 @@ background-color: lightblue;
   width: 500px;
 }
 
+#pageManager {
+  position: relative; /* Position relative pour positionner le bouton à l'intérieur */
+  width: 400px;
+  height: 100px;
+  background-color: lightblue;
+  border: 1px solid #ccc;
+  overflow: hidden;
+}
+
+#logPanel {
+  position: relative; /* Position relative pour positionner le bouton à l'intérieur */
+  width: 400px;
+  height: 220px;
+  border: 1px solid #ccc;
+  overflow: hidden;
+}
+
+.compact-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 20px;
+  height: 20px;
+  background-color: lightgray;
+  border: none;
+  cursor: pointer;
+}
+
+.compact-button:hover {
+  background-color: darkgray;
+}
+
 .processContainer {
   display: flex; /* Utiliser Flexbox pour le positionnement */
   height: 100vh; /* Hauteur de la fenêtre visible */
 }
 
 .leftPanel {
-  width: 30%; /* Largeur de la partie gauche */
+  width: 35%; /* Largeur de la partie gauche */
   background-color: #f0f0f0; /* Couleur de fond */
   overflow: auto; /* Ajouter un défilement si le contenu est plus long que la zone */
 }
 
 .rightPanel {
-  width: 70%; /* Largeur de la partie droite */
+  width: 65%; /* Largeur de la partie droite */
   background-color: #d0d0d0; /* Couleur de fond */
   overflow-y: auto; /* Ajouter un défilement vertical si le contenu est plus long que la zone */
 }
@@ -69,4 +136,8 @@ background-color: lightblue;
   border: 1px solid black; /* Définit une bordure solide d'un pixel en noir */
   padding: 10px; /* Ajoute un espacement intérieur de 10 pixels pour séparer le contenu de la bordure */
   display: inline-block; /* Permet à l'élément de s'ajuster à la largeur du contenu */
+}
+
+.mainTag {
+  background-color: rgb(255, 107, 107);
 }

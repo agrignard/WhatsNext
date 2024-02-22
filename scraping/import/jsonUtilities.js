@@ -21,7 +21,7 @@ module.exports = {venuesListJSONFile, isAlias, geAliasesToURLMap, getEventPlace,
     fromLocalSource, jsonRemoveDouble, samePlace, getStyleConversions, getStyleList, getAliases,
     writeToLog, loadVenueScrapInfofromFile, loadVenuesJSONFile, loadVenueJSON, saveToVenuesJSON,
     getLanguages, loadCancellationKeywords, fromLanguages, checkLanguages, loadErrorLog, 
-    getAvailableLanguages, initializeVenue, getNameFromID, makeID};
+    getAvailableLanguages, initializeVenue, getNameFromID, makeID, loadScrapInfoFile};
 
 
 // returns true is a venue is only an alias (not for scrapping)

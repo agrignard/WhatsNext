@@ -220,17 +220,23 @@ function getFilesContent(sourcePath){
     return inputFileList.map(readBodyContent).join('\n');
 }
 
+
 // return the content of the files
 function getModificationDate(sourcePath){
-    let inputFilePath;
+    let fileName;
     try {
-        inputFilePath = sourcePath+fs.readdirSync(sourcePath)
-        .find(fileName => fileName.endsWith('.html'));
+        fileName = fs.readdirSync(sourcePath).find(fileName => fileName.endsWith('.html')); 
     } catch (err) {
         console.error('\x1b[31mError reading html files in directory \'%s\'.\x1b[0m Error: %s',sourcePath, err);
     }
-    const stats = fs.statSync(inputFilePath);
-    return new Date(Math.round(stats.mtimeMs));
+    if (fileName){
+        const inputFilePath = sourcePath+fileName;
+        const stats = fs.statSync(inputFilePath);
+        return new Date(Math.round(stats.mtimeMs));
+    }else{
+        return undefined;
+    }
+    
     
 }
 
