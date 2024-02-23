@@ -148,7 +148,7 @@ function updateVenueInfo(mode){
  
     if (venue){
         if (mode === 'show'){
-            console.log("show");
+            //console.log(venue);
             venueShowPanel.style.display = 'block';
             // name      
             const divName = document.getElementById('venueName');
@@ -409,7 +409,7 @@ function updateVenueInfo(mode){
                 }
                 // url
                 if (isNotBlank(textURL.value)){
-                    if (aliasCheckbox.value){
+                    if (aliasCheckbox.value === true){
                         venue.baseURL = textURL.textContent;
                         delete venue.scrapURL;
                     }else{

@@ -1,8 +1,4 @@
-const truc={name:"j"}
-
-console.log(truc.name);
-for (const key in truc.linkedPage){
-  truc.linkedPage[key] = '0';
-}
-
+const truc = {essai: true};
+truc.essai = {};
+truc.essai.deux = 'popeue';
 console.log(truc);

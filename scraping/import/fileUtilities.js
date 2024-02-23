@@ -227,7 +227,7 @@ function getModificationDate(sourcePath){
     try {
         fileName = fs.readdirSync(sourcePath).find(fileName => fileName.endsWith('.html')); 
     } catch (err) {
-        console.error('\x1b[31mError reading html files in directory \'%s\'.\x1b[0m Error: %s',sourcePath, err);
+        return undefined;
     }
     if (fileName){
         const inputFilePath = sourcePath+fileName;
