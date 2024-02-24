@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
+    <div class="venueHeader">
         <select id="countriesDropdown"></select>
         <select id="citiesDropdown"></select>
         <select id="venuesDropdown"></select>
@@ -17,8 +17,8 @@
             <button id="confirmBtn">Confirm</button>
         </div>
     </div>
-    <div id="venueEditPanel">
-        <div id="editVenueName">
+    <div id="venueEditPanel" class="infoPanel">
+        <div id="editVenueName" class="venueName">
             <div id="editVenueNameText" style ="display: inline;">Venue name:</div>
             <input type="text" id="inputNameField" placeholder="Enter venue name" style ="display: inline;">
             <div id = "nameAlert" class="alertBlock" style ="display: inline;"></div>
@@ -32,7 +32,7 @@
             <textarea id="textAlias"  rows="1" cols="30" placeholder="Enter alias" style ="display: inline; border: 1px solid #ccc;"></textarea>
         
         <div>URL of agenda page:</div>
-        <div id="textURL" contenteditable="true" style="width: 100ch; height: 40px; border: 1px solid #ccc;"></div>
+        <div id="textURL" contenteditable="true" style="width: 60ch; height: 40px; border: 1px solid #ccc;"></div>
         <!--div id="textURL" contenteditable="true" style="width: 300px; height: 20px; border: 1px solid #ccc;"></div-->
         <div id="downloadPanel">
             <div id="divMP">
@@ -59,21 +59,21 @@
                     </div>
                     <div id="divMPInfo">Agenda URL does not contain {index}. Page index will be appended at the end of the URL.</div>
                 </div>
-                <div id="divLinkedPage">
-                    <label for="linkedPageCheckbox">Download linked page:</label>
-                    <input type="checkbox" id="linkedPageCheckbox">
-                </div>
-                <div id="divStyle">Default Style:
-                    <select id="selectStyle"></select>
-                    <input id="inputStyle" type="text" style ="display: none;">
-                </div>
-                <div id="divSelectMidnightHour">Midnight hour action:
-                    <select id="selectMidnightHour"></select>
-                </div>
-                <div id="divTextComments">Comments:
-                    <textarea id="textComments"  rows="3" cols="30" style ="display: inline; border: 1px solid #ccc;"></textarea>
-                </div>
             </div>
+            <div id="divLinkedPage">
+                <label for="linkedPageCheckbox">Download linked page:</label>
+                <input type="checkbox" id="linkedPageCheckbox">
+            </div>
+        </div>
+        <div id="divStyle">Default Style:
+            <select id="selectStyle"></select>
+            <input id="inputStyle" type="text" style ="display: none;">
+        </div>
+        <div id="divSelectMidnightHour">Midnight hour action:
+            <select id="selectMidnightHour"></select>
+        </div>
+        <div id="divTextComments">Comments:
+            <textarea id="textComments"  rows="3" cols="30" style ="display: inline; border: 1px solid #ccc;"></textarea>
         </div>
         <div id="divButtons">
             <button id="saveVenue" class="saveButton">Save</button>
@@ -82,22 +82,22 @@
     </div>
 
 
-    <div id="venueShowPanel">
-        <div id="venueName"></div>
+    <div id="venueShowPanel" class="infoPanel">
+        <div id="venueName" class="venueName" style ="display: inline;"></div>
+        <button id="modifyVenue" class = "modifyButton" style ="display: inline;"></button>
+        <div id="venueURL" class="bottomMargin"></div>
         <div id="venueAliases"></div>
-        <div id="venueURL"></div>
         <div id="divMultipages" class="multipageBlock"></div>
         <div id="venueStyle"></div>
         <div id="venueLinkedPage">(contains linked pages)</div>
         <div id="midnightHour"></div>
-        <div id="venueComments"></div>
-        <button id="modifyVenue" class = "modifyButton">Modify</button>
-        <div id="processVenue">
+        <div id="venueComments" class="topMargin"></div>
+        
+        <div id="processVenue" class="topMargin">
             <button id="processBtn">Process Venue</button>
         </div>
     </div>
     
-    <div id="message-container"></div>
     
     <script src="venues.js"></script>
 </body>

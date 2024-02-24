@@ -1,4 +1,3 @@
 const truc = {essai: true};
-truc.essai = {};
-truc.essai.deux = 'popeue';
+delete truc.chose;
 console.log(truc);

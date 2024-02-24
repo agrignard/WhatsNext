@@ -158,6 +158,7 @@ function updateVenueInfo(mode){
                 divName.classList.add('greyFont');
             }else{
                 processButton.disabled = false;
+                divName.classList.remove('greyFont');
             }
             const divAlias = document.getElementById('venueAliases');
             if (venue.hasOwnProperty('aliases')){
@@ -170,11 +171,9 @@ function updateVenueInfo(mode){
             
             // url
             const divURL = document.getElementById('venueURL');
-            if (venue.hasOwnProperty('scrapURL')){
-                divURL.textContent =  venue.scrapURL;
-            } else if (venue.hasOwnProperty('baseURL')){
-                divURL.textContent =  venue.baseURL;
-            } else {
+            if (venue.hasOwnProperty('url')){
+                divURL.textContent =  venue.url;
+            }else{
                 divURL.textContent = '';
             }
             
@@ -256,7 +255,7 @@ function updateVenueInfo(mode){
             }); 
             // url
             const textURL = document.getElementById('textURL');
-            textURL.textContent =  venue.hasOwnProperty('scrapURL')?venue.scrapURL:'';
+            textURL.textContent =  venue.hasOwnProperty('url')?venue.url:'';
             function updateTextarea() {
                 let content = textURL.textContent;
                 const cursorPosition = getCaretPosition(textURL);
@@ -400,6 +399,14 @@ function updateVenueInfo(mode){
                 if (mode === 'newVenue'){
                     venue.name = inputNameField.value;               
                 }
+                // is alias
+                if (aliasCheckbox.checked === true){
+                    delete venue.scrap;
+                }else{
+                    if (!venue.hasOwnProperty('scrap')){
+                        venue.scrap = {};
+                    }
+                }
                 // aliases
                 const aliases = splitArray(textAlias.value);
                 if (aliases.length > 0){
@@ -409,14 +416,9 @@ function updateVenueInfo(mode){
                 }
                 // url
                 if (isNotBlank(textURL.value)){
-                    if (aliasCheckbox.value === true){
-                        venue.baseURL = textURL.textContent;
-                        delete venue.scrapURL;
-                    }else{
-                        venue.scrapURL = textURL.textContent;
-                    }
+                    venue.url = textURL.textContent;
                 }else{
-                    delete venue.scrapURL;
+                    delete venue.url;
                 }
                 // multipages
                 if (hasMP){

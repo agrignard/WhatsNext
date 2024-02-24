@@ -28,28 +28,28 @@ async function downloadVenue(venue,path){
   let failedDownloads;
   if (venue.hasOwnProperty('multiPages')){
     if (venue.multiPages.hasOwnProperty('pattern')){
-      URLlist = getURLListFromPattern(venue.scrapURL,venue.multiPages.pattern,venue.multiPages.nbPages);
+      URLlist = getURLListFromPattern(venue.url,venue.multiPages.pattern,venue.multiPages.nbPages);
       console.log(URLlist);
-    }else if (/\{index\}/.test(venue.scrapURL)){
+    }else if (/\{index\}/.test(venue.url)){
       if (venue.multiPages.hasOwnProperty('startPage') && venue.multiPages.hasOwnProperty('nbPages')){
         let increment = (venue.multiPages.hasOwnProperty('increment'))?venue.multiPages.increment:1;
         for(let i=0;i<venue.multiPages.nbPages;i++){
           const pageID = venue.multiPages.startPage+i*increment;
-            URLlist.push(venue.scrapURL.replace('{index}',pageID));
+            URLlist.push(venue.url.replace('{index}',pageID));
         }
       }else{
         console.log("\x1b[31mAttribute \'startPage\' and \'nbPages' are mandatory for multipages if there is a placeholder \'index\' in the URL. No page loaded\x1b[0m.");
         URLlist = [];
       }  
     }else if(venue.multiPages.hasOwnProperty('pageList')){
-        venue.multiPages.pageList.forEach(el => URLlist.push(venue.scrapURL+el));
+        venue.multiPages.pageList.forEach(el => URLlist.push(venue.url+el));
     }else{
         console.log("\x1b[31mFound \'multiPage\', but found neither a place holder \'{index}\' or a list of URLs \'pageList\' to load. No page loaded\x1b[0m.");
         URLlist = [];
-        console.log(venue.scrapURL);
+        console.log(venue.url);
     }
   }else{
-    URLlist = [venue.scrapURL];
+    URLlist = [venue.url];
   }
   
   async function getPage(page,pageIndex){

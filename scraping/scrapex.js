@@ -161,7 +161,6 @@ const modificationDate = getModificationDate(venueSourcePath);
             }else{
               let index = venue.hasOwnProperty('eventURLIndex')?venue.eventURLIndex:0;
               if (index == 0){// the URL is in A href
-                  //     eventURL = makeURL(venue.baseURL,$(venue.eventsDelimiterTag+':eq('+eveIndex+')').attr('href'));
                   eventURL = makeURL(venue.baseURL,hrefInDelimiterList[eveIndex]);
               }else{// URL is in inner tags
                   index = index - 1;

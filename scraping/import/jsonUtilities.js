@@ -26,7 +26,7 @@ module.exports = {venuesListJSONFile, isAlias, geAliasesToURLMap, getEventPlace,
 
 // returns true is a venue is only an alias (not for scrapping)
 function isAlias(venue){
-    return !venue.hasOwnProperty('scrapURL');
+    return !venue.hasOwnProperty('url') || !venue.hasOwnProperty('scrap');
 }
 
 // provide a map between places and URLs, for aliases places which have a declared URL
@@ -211,7 +211,7 @@ function saveToVenuesJSON(jsonList){
     try{
         const jsonString = JSON.stringify(jsonList, null, 2); 
         fs.writeFileSync(venuesListJSONFile, jsonString);
-        console.log('Added to venues in %s',venuesListJSONFile);
+        console.log('Saved to in %s',venuesListJSONFile);
     }catch(err){
         console.log('\x1b[31mError saving to .json: \'%s\' %s\x1b[0m',venuesListJSONFile,err);
     }
@@ -332,8 +332,8 @@ function initializeVenue(venue, outputPath){
         }
         if (!isAlias(venue)){
             // initializes base url
-            const scrapURL = new URL(venue.scrapURL);
-            venue.baseURL = scrapURL.origin + scrapURL.pathname.replace(/\/[^\/]+$/, '/');
+            const url = new URL(venue.url);
+            venue.baseURL = url.origin + url.pathname.replace(/\/[^\/]+$/, '/');
             // initializes directory for storage
             const path = outputPath+venue.country+'/'+ venue.city+'/'+venue.name+'/';
             if (!fs.existsSync(path)){

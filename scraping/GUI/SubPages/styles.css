@@ -1,3 +1,7 @@
+body, html {
+  margin: 0;
+  padding: 0;
+}
 .container {
     margin: 20px;
 }
@@ -23,6 +27,35 @@
 .languageItem.selected {
 background-color: lightblue;
 }
+
+
+
+.venueHeader{
+  background-color: rgb(103, 158, 182);
+  width: 100%;
+  margin: 0px;
+  padding: 20px 20px;
+  font-family: sans-serif;
+  margin-bottom: 20px;
+}
+
+.infoPanel{
+  background-color: rgb(228, 237, 240);
+  width: 100%;
+  border: 1px solid #ccc;
+  padding: 15px 20px;
+  font-family: sans-serif;
+  position: relative;
+}
+
+.venueName{
+  font-size: 24px; 
+  padding: 0px 0px;
+  font-weight: bold; 
+  font-family: sans-serif;
+  margin-bottom: 20px;
+}
+
 
 .multipageBlock{
   background-color: lightgrey;
@@ -108,6 +141,30 @@ background-color: lightblue;
   background-color: lightgray;
   border: none;
   cursor: pointer;
+}
+
+.bottomMargin{
+  margin-bottom: 20px;
+}
+
+.topMargin{
+  margin-top: 20px;
+}
+
+
+.modifyButton{
+  position: absolute;
+  top: 15px;
+  margin-left: 10px;
+  width: 12px;
+  height: 12px;
+  background-image: url('icon-edit.png');
+  background-repeat: no-repeat; /* Ne pas répéter l'image */
+  background-position: center; /* Centrer l'image */
+  background-size: 12px 12px;
+  border: none;
+  cursor: pointer;
+  
 }
 
 .compact-button:hover {
