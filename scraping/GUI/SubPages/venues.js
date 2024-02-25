@@ -3,7 +3,7 @@ const imports = '../../import/';
 
 const fs = require('fs');
 const {app, Menu, ipcRenderer} = require('electron');
-const {loadVenuesJSONFile, getStyleList, makeID, isAlias} = require(imports+'jsonUtilities.js');
+const {loadVenuesJSONFile, getStyleList, makeID, isAlias, saveToVenuesJSON} = require(imports+'jsonUtilities.js');
 const {simplify, removeBlanks} = require(imports+'stringUtilities.js');
 
 const midnightHourOptions = ['none','sameday','previousday'];
@@ -480,6 +480,7 @@ function updateVenueInfo(mode){
                     currentName = venue.name;
                     sessionStorage.setItem('venue|'+currentCity+'|'+currentCountry,currentName);
                 }
+                saveToVenuesJSON(venues);
                 sessionStorage.setItem('currentVenue', getCurrentVenue().ID);
                 toggleMenuesAction('on');
                 updateVenueInfo('show');
@@ -566,9 +567,7 @@ function isMultipages(venue){
 
 function setVisibility(list, value){
     const currentClass = "divMP"+value;
-    console.log(currentClass);
     list.forEach((el,index)=>{
-        console.log(el);
         el.style.display = el.classList.contains(currentClass) ? 'block':'none';
     });
 }
