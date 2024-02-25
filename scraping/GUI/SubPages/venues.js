@@ -7,6 +7,7 @@ const {loadVenuesJSONFile, getStyleList, makeID, isAlias} = require(imports+'jso
 const {simplify, removeBlanks} = require(imports+'stringUtilities.js');
 
 const midnightHourOptions = ['none','sameday','previousday'];
+const lineHeightPx = document.getElementById('textURL').offsetHeight;
 
 let venues = loadVenuesJSONFile();
 const styleList = [''].concat(getStyleList().filter(el => el !=='')).concat(['Other']);
@@ -242,7 +243,9 @@ function updateVenueInfo(mode){
             const inputNameField = document.getElementById('inputNameField');
             inputNameField.style.display = (mode === "edit")?'none':'inline';
             const divAlert = document.getElementById('nameAlert');
+            divAlert.style.display = 'none';
             nameText.textContent = (mode === 'edit')?venue.name:'Venue name: ';
+            nameText.style.display = (mode === 'edit')?'inline':'none';
             const aliasCheckbox = document.getElementById('aliasCheckbox');
             aliasCheckbox.checked = isAlias(venue);
             // aliases
@@ -254,7 +257,6 @@ function updateVenueInfo(mode){
                 textAlias.setAttribute('rows', nbLines);
             }); 
             // url
-            const textURL = document.getElementById('textURL');
             textURL.textContent =  venue.hasOwnProperty('url')?venue.url:'';
             function updateTextarea() {
                 let content = textURL.textContent;
@@ -287,13 +289,22 @@ function updateVenueInfo(mode){
             // download
             const downloadPanel = document.getElementById('downloadPanel');
             // multipages
-            const divMP = document.getElementById('divMP');
             let hasMP = isMultipages(venue);
             const MPButton = document.getElementById('MPButton');
             MPButton.textContent = hasMP?'Disable multiple pages':'Enable multiple pages';
             const MPFields = document.getElementById('MPfields');
             MPFields.style.display = hasMP?'block':'none';
             const nbPagesToScrap = document.getElementById('nbPagesToScrap');
+            function changeMPPanel(hasMP){
+                if (hasMP){
+                    downloadPanel.classList.add('downLoadPanelOn');
+                    downloadPanel.classList.remove('downLoadPanelOff');
+                }else{
+                    downloadPanel.classList.add('downLoadPanelOff');
+                    downloadPanel.classList.add('downLoadPanelOn');
+                }
+            }
+            changeMPPanel(hasMP);
             if (hasMP){
                 nbPagesToScrap.value = String(venue.multiPages.nbPages);
             }
@@ -307,31 +318,29 @@ function updateVenueInfo(mode){
             }else{
                 selectMPFields.selectedIndex = 0;
             }
-            const divMPIndex = document.getElementById('divMPIndex');
             const MPIndexInput = document.getElementById('MPIndex');
             if (hasMP && venue.multiPages.hasOwnProperty('startPage')){
                 MPIndexInput.value = venue.multiPages.startPage;
             }
-            const divMPPattern = document.getElementById('divMPPattern');
             const MPPatternInput = document.getElementById('MPPattern');
             if (hasMP && venue.multiPages.hasOwnProperty('pattern')){
                 MPPatternInput.value = venue.multiPages.pattern;
             }
-            const divMPPageList = document.getElementById('divMPPageList');
             const MPPageListInput = document.getElementById('MPPageListInput');
             MPPageListInput.value = (venue.hasOwnProperty('multiPages') && venue.multiPages.hasOwnProperty('pageList'))?
                 venue.multiPages.pageList.join('\n'):'';
             const divMPInfo = document.getElementById('divMPInfo');
             divMPInfo.style.display = /\{index\}/.test(textURL.textContent) ? 'none':'inline';
-            const MPElements = [divMPIndex, divMPPattern, divMPPageList];
-            setVisibility(MPElements,selectMPFields.selectedIndex);
+            const MPElements = document.querySelectorAll(".divMPIndex, .divMPPattern, .divMPPageList");
+            setVisibility(MPElements,selectMPFields.value);
             selectMPFields.addEventListener('change', function(event) {
-                setVisibility(MPElements,selectMPFields.selectedIndex);
+                setVisibility(MPElements,selectMPFields.value);
             });
             MPButton.addEventListener('click', function() {
                 hasMP = !hasMP;
                 MPButton.textContent = hasMP?'Disable multiple pages':'Enable multiple pages';
                 MPFields.style.display = hasMP?'block':'none';
+                changeMPPanel(hasMP);
             });
             textURL.addEventListener('input', function() {
                 divMPInfo.style.display = /\{index\}/.test(textURL.textContent) ? 'none':'inline';
@@ -555,9 +564,12 @@ function isMultipages(venue){
 //     event.target.value = value;
 // }
 
-function setVisibility(list, selectedIndex){
+function setVisibility(list, value){
+    const currentClass = "divMP"+value;
+    console.log(currentClass);
     list.forEach((el,index)=>{
-        el.style.display = selectedIndex === index ? 'block':'none';
+        console.log(el);
+        el.style.display = el.classList.contains(currentClass) ? 'block':'none';
     });
 }
 

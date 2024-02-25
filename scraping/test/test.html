@@ -1,107 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Textarea avec index en bleu</title>
-<style>
-  /* Style pour le texte en bleu */
-  .blue-text {
-    color: blue;
-  }
-  .black-text {
-    color: black;
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disposition sur deux colonnes avec taille adaptative</title>
+    <style>
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Deux colonnes avec taille adaptative */
+            gap: 10px; /* Espacement entre les éléments */
+        }
+
+        /* Style supplémentaire pour la démonstration */
+        .item {
+            padding: 10px;
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
-
-<div id="myTextarea" contenteditable="true" style="width: 300px; height: 200px; border: 1px solid #ccc;"></div>
-
-<script>
-  // draw text area in blue
-  let rt = 2;
-  function updateTextarea() {
-    const div = document.getElementById("myTextarea");
-    let content = div.textContent;
-    const cursorPosition = getCaretPosition(div);
-    content = content.replace(/\{index\}/g, 
-        '<span class="blue-text">{index}<span class="black-text">');
-    console.log(content);
-    div.innerHTML = content;
-    let indexSpans = div.querySelectorAll('.blue-text');
-    indexSpans.forEach(function(span) {
-      span.style.color = 'blue';
-      span.style.fontWeight = 'bold';
-    });    
-    indexSpans = div.querySelectorAll('.black-text');
-    indexSpans.forEach(function(span) {
-      span.style.color = 'black';
-      span.style.fontWeight = 'normal';
-    });
-    // Restore cursor position
-    setCaretPosition(div, cursorPosition);
-  }
-
-  // Événement de changement du contenu du div
-  document.getElementById("myTextarea").addEventListener("input", updateTextarea);
-
-  // Mettre à jour le div lors du chargement initial
-  updateTextarea();
-
-// Fonction pour obtenir la position du curseur
-function getCaretPosition(element) {
-  const selection = window.getSelection();
-  if (selection.rangeCount > 0) {
-    const range = selection.getRangeAt(0);
-    range.setStart(element, 0);
-    return range.toString().length;
-  } else {
-    return 0;
-  }
-}
-
-// Fonction pour restaurer la position du curseur
-function setCaretPosition(element, position) {
-  const nodes = element.childNodes;
-  let found = false;
-  let offset = 0;
-
-  for (let i = 0; i < nodes.length; i++) {
-    const node = nodes[i];
-    if (node.nodeType === Node.TEXT_NODE) {
-      var length = node.textContent.length;
-      if (position <= length + offset) {
-        var range = document.createRange();
-        range.setStart(node, position - offset);
-        range.collapse(true);
-        var selection = window.getSelection();
-        selection.removeAllRanges();
-        selection.addRange(range);
-        found = true;
-        break;
-      } else {
-        offset += length;
-      }
-    } else {
-      offset += node.outerHTML.length;
-    }
-  }
-
-  if (!found) {
-    // Si la position n'a pas été trouvée, placer le curseur à la fin
-    const range = document.createRange();
-    range.setStart(element, element.childNodes.length);
-    range.collapse(true);
-    const selection = window.getSelection();
-    selection.removeAllRanges();
-    selection.addRange(range);
-  }
-}
-
-
-
-</script>
-
+    <div class="container">
+        <!-- Éléments à placer sur deux colonnes -->
+        <div class="item">Élément 1</div>
+        <div class="item">Élément 2</div>
+        <div class="item">Élément 3</div>
+        <div class="item">Élément 4</div>
+        <div class="item">Élément 5</div>
+        <!-- Ajoutez d'autres éléments selon vos besoins -->
+    </div>
 </body>
 </html>

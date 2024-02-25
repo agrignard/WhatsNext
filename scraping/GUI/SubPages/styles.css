@@ -1,9 +1,34 @@
 body, html {
-  margin: 0;
-  padding: 0;
+  margin: 0px;
+  padding: 0px;
 }
 .container {
     margin: 20px;
+}
+
+#indexType{
+  display: grid;
+  grid-template-columns: 17ch 100px;
+  gap: 10px; 
+}
+
+#divMPInfo{
+  color: grey;
+  font-style: italic;
+  font-size: 85%;
+}
+
+#downloadPanel{
+  margin: 0px;
+  padding: 10px 10px;
+}
+
+.downLoadPanelOn{
+  background-color: rgb(238, 240, 241);
+}
+
+.downLoadPanelOff{
+  background-color: rgb(228, 237, 240);;
 }
 
 /* Style pour les boutons des options */
@@ -12,6 +37,13 @@ body, html {
     padding: 5px 10px;
     margin: 5px;
     cursor: pointer;
+}
+
+.niceButtonNoMargin {
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-bottom: 10px;
 }
   
 .scrapTextBox{
@@ -37,6 +69,8 @@ background-color: lightblue;
   padding: 20px 20px;
   font-family: sans-serif;
   margin-bottom: 20px;
+  box-sizing: border-box;
+  max-width: 100%;
 }
 
 .infoPanel{
@@ -46,6 +80,8 @@ background-color: lightblue;
   padding: 15px 20px;
   font-family: sans-serif;
   position: relative;
+  box-sizing: border-box;
+  max-width: 100%;
 }
 
 .venueName{
@@ -107,12 +143,16 @@ background-color: lightblue;
   overflow-y: scroll; 
 }
 
-#textAlias {
-  resize: none; /* Empêche le redimensionnement */
+.VenueTextArea {
+  resize: none;
+  background-color: white;
+  font-family: sans-serif;
 }
 
 #textURL {
-  width: 500px;
+  width: 60ch; 
+  border: 1px solid #ccc; 
+  background-color: white;
 }
 
 #pageManager {
@@ -143,8 +183,35 @@ background-color: lightblue;
   cursor: pointer;
 }
 
+.topElement{
+  position: absolute;
+  top: 15px;
+}
+
+.rightElement{
+  position: absolute;
+  right: 25px;
+}
+
+.bottomElement{
+  position: absolute;
+  bottom: 15px;
+}
+
 .bottomMargin{
   margin-bottom: 20px;
+}
+
+.smallBottomMargin{
+  margin-bottom: 10px;
+}
+
+.miniBottomMargin{
+  margin-bottom: 1px;
+}
+
+.leftMargin{
+  margin-left: 20px;
 }
 
 .topMargin{
