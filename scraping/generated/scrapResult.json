@@ -32,7 +32,8 @@
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1708642740000
+    "unixDate": 1708642740000,
+    "eventTime": "23:59"
   },
   {
     "eventPlace": "Terminal Club",
@@ -49,7 +50,8 @@
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1708729140000
+    "unixDate": 1708729140000,
+    "eventTime": "23:59"
   },
   {
     "eventPlace": "Terminal Club",
@@ -66,7 +68,8 @@
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1708815540000
+    "unixDate": 1708815540000,
+    "eventTime": "23:59"
   },
   {
     "eventPlace": "Terminal Club",
@@ -83,7 +86,8 @@
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1709247540000
+    "unixDate": 1709247540000,
+    "eventTime": "23:59"
   },
   {
     "eventPlace": "Terminal Club",
@@ -100,7 +104,8 @@
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1709333940000
+    "unixDate": 1709333940000,
+    "eventTime": "23:59"
   },
   {
     "eventPlace": "Terminal Club",
@@ -117,7 +122,8 @@
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1709420340000
+    "unixDate": 1709420340000,
+    "eventTime": "23:59"
   },
   {
     "eventPlace": "Terminal Club",
@@ -134,7 +140,8 @@
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1709852340000
+    "unixDate": 1709852340000,
+    "eventTime": "23:59"
   },
   {
     "eventPlace": "Terminal Club",
@@ -151,7 +158,8 @@
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1710025140000
+    "unixDate": 1710025140000,
+    "eventTime": "23:59"
   },
   {
     "eventPlace": "Terminal Club",
@@ -168,7 +176,8 @@
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1710457140000
+    "unixDate": 1710457140000,
+    "eventTime": "23:59"
   },
   {
     "eventPlace": "Terminal Club",
@@ -185,7 +194,8 @@
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1710543540000
+    "unixDate": 1710543540000,
+    "eventTime": "23:59"
   },
   {
     "eventPlace": "Terminal Club",
@@ -202,7 +212,8 @@
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1710629940000
+    "unixDate": 1710629940000,
+    "eventTime": "23:59"
   },
   {
     "eventPlace": "Terminal Club",
@@ -219,6 +230,7 @@
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1711061940000
+    "unixDate": 1711061940000,
+    "eventTime": "23:59"
   }
 ]

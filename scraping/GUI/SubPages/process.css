@@ -1,0 +1,212 @@
+body, html {
+  margin: 0px;
+  padding: 0px;
+  overflow-y: auto;
+}
+.container {
+    margin: 20px;
+}
+
+#venueInfo{
+    font-family: sans-serif;
+    font-size: 105%;
+    padding: 5px 5px;
+    font-weight: bold;
+    background-color: rgb(44, 62, 80);
+    color: rgb(236, 240, 241);
+    overflow-y: hidden;
+}
+
+
+
+/* Style pour les boutons des options */
+.niceButton {
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.niceButtonNoMargin {
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+  
+.scrapTextBox{
+  width: 90%;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  background-color: white;
+  font-family: sans-serif;
+  font-size: 85%;
+  resize: none;
+}
+/* Style pour mettre en surbrillance l'option sélectionnée */
+.languageItem.selected {
+background-color: lightblue;
+}
+
+
+
+.highlightName {
+  background-color: rgb(52, 152, 219);
+}
+
+.highlightDate {
+  background-color: rgb(46, 204, 113);
+}
+
+.highlightStyle {
+  background-color: rgb(243, 156, 18);
+}
+
+.invalid{
+  background-color: rgb(241, 148, 146);
+}
+
+
+.redFont {
+  color: red;
+}
+
+.greyFont {
+  color: grey;
+}
+
+.inactive{
+  color: grey;
+}
+
+.blue-text {
+  color: blue;
+}
+
+#logText {
+  width: 400px;
+  height: 200px;
+  overflow-y: scroll; 
+}
+
+#logPanel {
+  position: relative; /* Position relative pour positionner le bouton à l'intérieur */
+  width: 400px;
+  height: 220px;
+  border: 1px solid #ccc;
+  overflow: hidden;
+}
+
+.compact-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 20px;
+  height: 20px;
+  background-color: lightgray;
+  border: none;
+  cursor: pointer;
+}
+
+.topElement{
+  position: absolute;
+  top: 15px;
+}
+
+.rightElement{
+  position: absolute;
+  right: 25px;
+}
+
+.bottomElement{
+  position: absolute;
+  bottom: 15px;
+}
+
+.bottomMargin{
+  margin-bottom: 20px;
+}
+
+.smallBottomMargin{
+  margin-bottom: 10px;
+}
+
+.miniBottomMargin{
+  margin-bottom: 1px;
+}
+
+.leftMargin{
+  margin-left: 20px;
+}
+
+.topMargin{
+  margin-top: 20px;
+}
+
+
+.compact-button:hover {
+  background-color: darkgray;
+}
+
+#processContainer {
+    font-family: sans-serif;
+    display: flex; /* Utiliser Flexbox pour le positionnement */
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.leftPanel {
+  width: 35%; /* Largeur de la partie gauche */
+  background-color: #f0f0f0; /* Couleur de fond */
+  overflow-y: hidden; /* Ajouter un défilement si le contenu est plus long que la zone */
+}
+
+#pageManager {
+    position: relative; 
+    height: 100px;
+    background-color: rgb(61, 80, 100);
+    color: rgb(236, 240, 241);
+    overflow-y: hidden;
+  }
+
+#analyzePanel{
+    position: relative;
+    height: 550px;
+    overflow-y: scroll;
+}
+
+.title{
+    font-weight: bold;
+}
+
+.scrapElement{
+    padding: 5px 5px;
+}
+
+#eventURLPanelMessage{
+    font-weight: normal;
+    font-size: 80%;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.rightPanel {
+  width: 65%; /* Largeur de la partie droite */
+  background-color: #d0d0d0; /* Couleur de fond */
+  overflow-y: auto; /* Ajouter un défilement vertical si le contenu est plus long que la zone */
+}
+  
+
+.encadre {
+  border: 1px solid black; /* Définit une bordure solide d'un pixel en noir */
+  padding: 10px; /* Ajoute un espacement intérieur de 10 pixels pour séparer le contenu de la bordure */
+  display: inline-block; /* Permet à l'élément de s'ajuster à la largeur du contenu */
+}
+
+.mainTag {
+  background-color: rgb(231, 76, 60);
+}
+
+.delimiterTag {
+    background-color: rgb(231, 76, 60);
+}

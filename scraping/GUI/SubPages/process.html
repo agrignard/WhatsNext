@@ -4,58 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ScrapEnDirex</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="process.css">
 </head>
 <body>
-    <div id="infos"></div>
-    <div class="processContainer">
+    <div id="processContainer">
         <div id="leftPanel" class="leftPanel">
             <div id="pageManager">
-                <button class="compact-button" onclick="toggleDiv('pageManager','20px','100px')">_</button>
+                <div id="venueInfo"></div>
+                <button id="pageManagerButton" class="compact-button">_</button>
                 <button id="downloadButton" class="niceButton">Download Page</button>
                 <div id="lastScrapped" style ="display: inline;"></div>
                 <div id="missingLinks"></div>
-                <button id="repairButton" class="niceButton">Repair missing/broken links</button>
+                <button id="missingLinksButton" class="niceButton">Download missing links</button>
                 <div id="messageArea"></div>     
             </div>
             <div id="analyzePanel">
-                <button id="analyzeButton">Analyze</button>
-                <div id="delimiter">
-                    Delimiter tag:
-                <input type="text" id="delimiterTag" placeholder="" size="50">
-                </div>
-                <div id="scrapInfos">
-                    <div id="eventName">
-                        <div>Event Name</div>
-                        Strings to find:<button id="eventNameStringsCopyButton" class="niceButton copyButton">&lt;</button>
-                        <textarea id="eventNameStrings" class="eventStrings scrapTextBox" placeholder="Copy event name here"></textarea>
-                        Tag:
-                        <textarea  id="eventNameTags" class="eventTags scrapTextBox" placeholder=""></textarea>
-                    </div>
-                    <div id="eventDate">
-                        <div>Event Date</div>
-                        Strings to find:<button id="eventDateStringsCopyButton" class="niceButton copyButton">&lt;</button>
-                        <textarea id="eventDateStrings" class="eventStrings scrapTextBox" rows="1" cols="50" placeholder="Copy event date here"></textarea>
-                        Tag:
-                        <textarea  id="eventDateTags" class="eventTags scrapTextBox" rows="1" cols="50" placeholder=""></textarea>
-                    </div>
-                    <div id="eventStyle">
-                        <div>Event Style</div>
-                        Strings to find:<button id="eventStyleStringsCopyButton" class="niceButton copyButton">&lt;</button>
-                        <textarea id="eventStyleStrings" class="eventStrings scrapTextBox" rows="1" cols="50" placeholder="Copy event style here"></textarea>
-                        Tag:
-                        <textarea  id="eventStyleTags" class="eventTags scrapTextBox" rows="1" cols="50" placeholder=""></textarea>
-                    </div>
+                <div id="delimiterPanel" class="delimiterTag title scrapElement">
+                    Delimiter tag
+                    <button id="freezeDelimiterButton" class="niceButton">Freeze</button>
+                    <input type="text" id="delimiterTag" placeholder="" size="50">
                     <div id="eventURLPanel">
                         <div id="eventURLPanelMessage"></div>
                         <select id="eventURLSelect"></select>
                     </div>
                 </div>
+                <div id="scrapInfos">
+                    <div id="eventName" class="scrapElement highlightName">
+                        <div class="title">Event Name</div>
+                        Strings to find:<button id="eventNameStringsCopyButton" class="niceButton copyButton">&lt;</button>
+                        <textarea id="eventNameStrings" class="eventStrings scrapTextBox" placeholder="Copy event name here"></textarea>
+                        Tag:
+                        <textarea  id="eventNameTags" class="eventTags scrapTextBox" placeholder=""></textarea>
+                    </div>
+                    <div id="eventDate" class="scrapElement highlightDate">
+                        <div class="title">Event Date</div>
+                        Strings to find:<button id="eventDateStringsCopyButton" class="niceButton copyButton">&lt;</button>
+                        <textarea id="eventDateStrings" class="eventStrings scrapTextBox" rows="1" cols="50" placeholder="Copy event date here"></textarea>
+                        Tag:
+                        <textarea  id="eventDateTags" class="eventTags scrapTextBox" rows="1" cols="50" placeholder=""></textarea>
+                    </div>
+                    <div id="eventStyle" class="scrapElement highlightStyle">
+                        <div class="title">Event Style</div>
+                        Strings to find:<button id="eventStyleStringsCopyButton" class="niceButton copyButton">&lt;</button>
+                        <textarea id="eventStyleStrings" class="eventStrings scrapTextBox" rows="1" cols="50" placeholder="Copy event style here"></textarea>
+                        Tag:
+                        <textarea  id="eventStyleTags" class="eventTags scrapTextBox" rows="1" cols="50" placeholder=""></textarea>
+                    </div>
+                </div>
+                <div id="logPanel">
+                    <button class="compact-button" onclick="toggleDiv('logPanel','20px','220px')">_</button>
+                    <textarea id="logText" readonly></textarea>
+                </div>  
             </div>
-            <div id="logPanel">
-                <button class="compact-button" onclick="toggleDiv('logPanel','20px','220px')">_</button>
-                <textarea id="logText" readonly></textarea>
-            </div>  
+           
         </div>
         <div id= "rightPanel" class="rightPanel">
           Contenu de droite

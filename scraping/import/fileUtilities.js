@@ -133,7 +133,7 @@ function saveToCSV(eventList, outFile){
     let out = '';
     eventList.forEach(eventInfo =>{
       out = out+''+eventInfo.eventPlace+';'
-      +eventInfo.eventName+';'+eventInfo.unixDate+';100;'+eventInfo.eventStyle+';'+eventInfo.eventDetailedStyle+';'+eventInfo.eventURL+';'+eventInfo.eventDate+'\n';
+      +eventInfo.eventName+';'+eventInfo.unixDate+';100;'+eventInfo.eventStyle+';'+eventInfo.eventDetailedStyle+';'+eventInfo.eventURL+';'+eventInfo.eventDate+';'+eventInfo.eventTime+'\n';
     });
     try{
       fs.writeFileSync(outFile, out, 'utf-8', { flag: 'w' });

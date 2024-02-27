@@ -1,4 +1,5 @@
-const { createDate, convertDate, showDate, getDateConversionPatterns, TimeZone} = require('./import/dateUtilities.js');
+const { createDate, convertDate, showDate, getDateConversionPatterns, eventTime, 
+        TimeZone} = require('./import/dateUtilities.js');
 const fs = require('fs');
 const { parse, isValid } = require('date-fns');
 const cheerio = require('cheerio');
@@ -242,6 +243,7 @@ const modificationDate = getModificationDate(venueSourcePath);
                 formatedEventDate = changeMidnightHour(formatedEventDate,venue.midnightHour,el);
               }
               el.unixDate = formatedEventDate.getTime();
+              el.eventTime = eventTime(formatedEventDate);
               console.log(showDate(formatedEventDate));
             }
 
@@ -268,8 +270,8 @@ const modificationDate = getModificationDate(venueSourcePath);
 //********************************************/
 
 
-     // auxiliary function to extract data
-  function getText(tagName,JSONblock,source){
+  // auxiliary function to extract data
+function getText(tagName,JSONblock,source){
   let string = "";
   const tagList = JSONblock[tagName];
   if (tagName !== 'eventMultiDateTags'){

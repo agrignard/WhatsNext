@@ -12,6 +12,14 @@ const dateConversionFile = rootDirectory+'/import/dateConversion.json';
 const timeZoneFile = rootDirectory+'/import/timeZone.json';
 
 
+// function to obtain the formatted time (hour:minutes) of the event
+function eventTime(date){
+  const hour = to2digits(String(date.getHours()));
+  const minutes = to2digits(String(date.getMinutes()));
+  const string = hour+':'+minutes;
+  return string;
+}
+
 // verify if two unix dates correspond to the same day
 function  sameDay(timestamp1, timestamp2) {// as unixdate
   const date1 = new Date(timestamp1); 
@@ -218,6 +226,6 @@ class TimeZone {
 }
 
 module.exports = {dateConversionFile, sameDay, showDate, getDateConversionPatterns, getCommonDateFormats,
-  createDate, convertDate, numberOfInvalidDates, to2digits, getURLListFromPattern,
+  createDate, convertDate, numberOfInvalidDates, to2digits, getURLListFromPattern, eventTime,
   TimeZone };
 

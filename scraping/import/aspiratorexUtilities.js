@@ -3,7 +3,7 @@
 /*    venues, events, style                               */
 /**********************************************************/
 
-const path = require('path');
+//const path = require('path');
 const fs = require('fs');
 const {removeDoubles, makeURL, cleanPage} = require('./stringUtilities.js');
 const {loadLinkedPages, fetchWithRetry, fetchLink} = require('./fileUtilities.js');
@@ -14,7 +14,7 @@ const cheerio = require('cheerio');
 const nbFetchTries = 2; // number of tries in case of internet connection time outs
 
 
-module.exports = {downloadVenue, erasePreviousHtmlFiles, getHrefListFrom};
+module.exports = {downloadVenue, erasePreviousHtmlFiles, getHrefListFrom, downloadLinkedPages};
 
 
     
@@ -23,7 +23,7 @@ module.exports = {downloadVenue, erasePreviousHtmlFiles, getHrefListFrom};
 /*       main function        */
 /******************************/
 
-async function downloadVenue(venue,path){
+async function downloadVenue(venue,filePath){
   let URLlist = [];
   let failedDownloads;
   if (venue.hasOwnProperty('multiPages')){
@@ -65,9 +65,9 @@ async function downloadVenue(venue,path){
 
     let outputFile;
     if (!venue.hasOwnProperty('multiPages')){
-      outputFile = path+venue.name+".html";
+      outputFile = filePath+venue.name+".html";
     }else{
-      outputFile = path+venue.name+pageIndex+".html";
+      outputFile = filePath+venue.name+pageIndex+".html";
     }
 
     fs.writeFileSync(outputFile, htmlContent, 'utf8', (erreur) => {
@@ -85,129 +85,132 @@ async function downloadVenue(venue,path){
   
   // get linked pages
   if (venue.hasOwnProperty('linkedPage')){
-    // if event tags are defined and contain URLs, download the URLs. Otherwise, ask to run an analyze 
-    if (venue.scrap.hasOwnProperty('eventsURLTags')||
-        (venue.hasOwnProperty('eventsDelimiterTag') && venue.hasOwnProperty('eventURLIndex') && venue.eventURLIndex !== -1)){
-      const hrefList = getHrefListFrom(pageList,venue);
-      console.log('First entries:',shortList(hrefList));
-      // check the URLS that already exist
-      const linkedFileContent = fs.existsSync(path+'linkedPages.json')?loadLinkedPages(path):[];
-      const existingLinks = hrefList.filter(el => Object.keys(linkedFileContent).includes(el));
-      const linksToDownload = hrefList.filter(el => !Object.keys(linkedFileContent).includes(el));
-      console.log('Loading linked pages for venue %s. Found %s links: %s already exist and won\'t be downloaded, %s will be downloaded.',venue.name,hrefList.length, existingLinks.length,linksToDownload.length);
-      // put the existing links in a new JSON object
-      let hrefJSON = {};
-      existingLinks.forEach(key => {
-        hrefJSON[key] = linkedFileContent[key];
-      });
-      // put the new links
-      let hrefContents;
-      try{
-        hrefContents = (await Promise.all(linksToDownload.map(el => fetchLink(el,nbFetchTries))));
-      }catch(err){
-        console.log("\x1b[36mNetwork error, cannot load linked page for \'%s\'\x1b[0m: %s",venue.name,err);
-      }
-      linksToDownload.forEach((href,index) =>hrefJSON[href]=hrefContents[index]);
-
-      try{
-        const jsonString = JSON.stringify(hrefJSON, null, 2); 
-        fs.writeFileSync(path+'linkedPages.json', jsonString);
-
-        failedDownloads = hrefContents.reduce((acc, val) => {
-          return acc + (val === undefined ? 1 : 0);
-        }, 0);
-  
-        // test if all downloads are successful
-        if (failedDownloads === 0){
-          console.log('All linked pages successfully downloaded and saved for %s.',venue.name);;
-        }else{
-          console.log('to do: ',hrefList.length,'done: ',Object.keys(hrefJSON).length);
-          console.log('\x1b[31mVenue: %s: \x1b[0m%s/%s\x1b[31m links downloaded. \x1b[36mRun aspiratorex again\x1b[31m to load remaining links.\x1b[0m',venue.name,hrefList.length-failedDownloads, hrefList.length);
-        }
-      }catch(err){
-          console.log('\x1b[31mCannot save links to file \'linkedPages.json\' %s\x1b[0m',err);
-      }
-    }else{
-      console.log('\x1b[31mTrying to download linked pages for \x1b[0m\'%s\'\x1b[31m, but no URL delimiter found. Run analex.js to set locate URL tag, then run again aspiratorex.js.\x1b[0m',venue.name)
-    }
+    await downloadLinkedPages(venue, filePath, pageList);
   }
 }
   
   
-  /******************************/
-  /*       aux functions        */
-  /******************************/
+/******************************/
+/*       aux functions        */
+/******************************/
+
+async function downloadLinkedPages(venue, filePath, pageList){
+  // if event tags are defined and contain URLs, download the URLs. Otherwise, ask to run an analyze 
+  if (venue.scrap.hasOwnProperty('eventsURLTags')||
+    (venue.hasOwnProperty('eventsDelimiterTag') && venue.hasOwnProperty('eventURLIndex') && venue.eventURLIndex !== -1)){
+    const hrefList = getHrefListFrom(pageList,venue);
+    console.log('First entries:',shortList(hrefList));
+    // check the URLS that already exist
+    const linkedFileContent = fs.existsSync(filePath+'linkedPages.json')?loadLinkedPages(filePath):[];
+    const existingLinks = hrefList.filter(el => Object.keys(linkedFileContent).includes(el));
+    const linksToDownload = hrefList.filter(el => !Object.keys(linkedFileContent).includes(el));
+    console.log('Loading linked pages for venue %s. Found %s links: %s already exist and won\'t be downloaded, %s will be downloaded.',venue.name,hrefList.length, existingLinks.length,linksToDownload.length);
+    // put the existing links in a new JSON object
+    let hrefJSON = {};
+    existingLinks.forEach(key => {
+      hrefJSON[key] = linkedFileContent[key];
+    });
+    // put the new links
+    let hrefContents;
+    try{
+      hrefContents = (await Promise.all(linksToDownload.map(el => fetchLink(el,nbFetchTries))));
+    }catch(err){
+      console.log("\x1b[36mNetwork error, cannot load linked page for \'%s\'\x1b[0m: %s",venue.name,err);
+    }
+    linksToDownload.forEach((href,index) =>hrefJSON[href]=hrefContents[index]);
+
+    try{
+      const jsonString = JSON.stringify(hrefJSON, null, 2); 
+      fs.writeFileSync(filePath+'linkedPages.json', jsonString);
+
+      failedDownloads = hrefContents.reduce((acc, val) => {
+        return acc + (val === undefined ? 1 : 0);
+    }, 0);
+
+    // test if all downloads are successful
+    if (failedDownloads === 0){
+      console.log('All linked pages successfully downloaded and saved for %s.',venue.name);;
+    }else{
+      console.log('to do: ',hrefList.length,'done: ',Object.keys(hrefJSON).length);
+      console.log('\x1b[31mVenue: %s: \x1b[0m%s/%s\x1b[31m links downloaded. \x1b[36mRun aspiratorex again\x1b[31m to load remaining links.\x1b[0m',venue.name,hrefList.length-failedDownloads, hrefList.length);
+    }
+    }catch(err){
+      console.log('\x1b[31mCannot save links to file \'linkedPages.json\' %s\x1b[0m',err);
+    }
+  }else{
+  console.log('\x1b[31mTrying to download linked pages for \x1b[0m\'%s\'\x1b[31m, but no URL delimiter found. Run analex.js to set locate URL tag, then run again aspiratorex.js.\x1b[0m',venue.name)
+  }
+}
   
   
-  function getManualLinksFromPage(page,delimiter,atag){
-    const $ = cheerio.load(page);
-    let res = [];
+function getManualLinksFromPage(page,delimiter,atag){
+  const $ = cheerio.load(page);
+  let res = [];
+  $(delimiter).each(function () {
+    const block = $(this).html();
+    const $b = cheerio.load(block);
+    const href = $b(atag).attr('href');
+    res.push(href);
+  });
+  return res;
+}
+  
+function getLinksFromPage(page,delimiter,index){
+  const $ = cheerio.load(page);
+  let res = [];
+  if (index == 0){// the URL is in A href 
     $(delimiter).each(function () {
-      const block = $(this).html();
-      const $b = cheerio.load(block);
-      const href = $b(atag).attr('href');
+      const href = $(this).attr('href');
       res.push(href);
     });
-    return res;
+  }else{// URL is in inner tags
+    index = index - 1;
+    let events = [];
+    $(delimiter).each((i, element) => {
+      let ev = $(element).html();
+      events.push(ev);
+    });
+    events.forEach((eve,eveIndex) =>{
+      const $eventBlock = cheerio.load(eve);
+      const tagsWithHref = $eventBlock('a[href]');
+      const hrefs = $eventBlock(tagsWithHref[index]).attr('href');
+      res = res.concat(hrefs);
+    }); 
   }
+  //console.log(res);
+  return res;
+}
   
-  function getLinksFromPage(page,delimiter,index){
-    const $ = cheerio.load(page);
-    let res = [];
-    if (index == 0){// the URL is in A href 
-      $(delimiter).each(function () {
-        const href = $(this).attr('href');
-        res.push(href);
-      });
-    }else{// URL is in inner tags
-      index = index - 1;
-      let events = [];
-      $(delimiter).each((i, element) => {
-        let ev = $(element).html();
-        events.push(ev);
-      });
-      events.forEach((eve,eveIndex) =>{
-        const $eventBlock = cheerio.load(eve);
-        const tagsWithHref = $eventBlock('a[href]');
-        const hrefs = $eventBlock(tagsWithHref[index]).attr('href');
-        res = res.concat(hrefs);
-      }); 
+  
+  
+  
+async function erasePreviousHtmlFiles(filePath){
+
+  fs.readdir(filePath, (err, files) => {
+    if (err) {
+      console.error('\x1b[31mCannot open directory.\x1b[0m', err);
+      return;
     }
-    //console.log(res);
-    return res;
-  }
-  
-  
-  
-  
-  async function erasePreviousHtmlFiles(path){
-  
-    fs.readdir(path, (err, files) => {
-      if (err) {
-        console.error('\x1b[31mCannot open directory.\x1b[0m', err);
-        return;
-      }
-      files.filter(fileName => fileName.endsWith('.html'))
-      .forEach(file => {
-        const fileToErase = `${path}/${file}`;
-     //   console.log("suppression fichier "+fileToErase);
-        fs.unlink(fileToErase, err => {
-          if (err) {
-            console.error(`\x1b[31mCannot remove file  \x1b[0m${file}\x1b[31m:\x1b[0m`, err);
-          }
-        });
+    files.filter(fileName => fileName.endsWith('.html'))
+    .forEach(file => {
+      const fileToErase = `${filePath}/${file}`;
+    //   console.log("suppression fichier "+fileToErase);
+      fs.unlink(fileToErase, err => {
+        if (err) {
+          console.error(`\x1b[31mCannot remove file  \x1b[0m${file}\x1b[31m:\x1b[0m`, err);
+        }
       });
     });
+  });
+}
   
+function shortList(list){
+  if (list.length <= 3){
+    return list;
+  }else{
+    return list.slice(0,3).concat(['...('+list.length+' elements)']);
   }
-  
-  function shortList(list){
-    if (list.length <= 3){
-      return list;
-    }else{
-      return list.slice(0,3).concat(['...('+list.length+' elements)']);
-    }
-  }
+}
   
 function getHrefListFrom(pageList,venue){
   let hrefList;
