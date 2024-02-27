@@ -1,4 +1,7 @@
 
+body { margin: 0; padding: 0; }
+#map { position:absolute; top:0; bottom:0; width:100%; }
+
     .legend label,
     .legend span {
     display:block;
@@ -176,5 +179,16 @@
         white-space: nowrap; /* Prevent text from wrapping */
         text-overflow: ellipsis; /* Add an ellipsis (...) for long text */
     }
+
+    .mapboxgl-ctrl-share {
+        background: #fff;
+        padding: 10px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
 
 

@@ -1,0 +1,98 @@
+Date: Vendredi 16 février 2024 à 19h
+Event: La Colonie de Vacances
+Place: La Rayonne
+city: Lyon
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Rock & Pop / Rock
+source: [object Object]
+unixDate: 1708106400000
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for La Colonie de Vacances (La Rayonne). Found 19:00,20:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-286577-la-colonie-de-vacances.html
+
+Date: 17 février à 20:30
+Event: Chicken Diamond + Madfield
+Place: Le Trokson
+city: Lyon
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Rock & Pop / Punk Rock
+source: [object Object]
+unixDate: 1708198200000
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Chicken Diamond + Madfield (Le Trokson). Found 20:45,20:30. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-309252-chicken-diamond-madfield.html
+
+Date: 18 février à 18:30
+Event: Persefone + Hypno5e + Stellar Circuits + Lampr3a
+Place: Rock N Eat
+city: Lyon
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Rock & Pop / Metal
+source: [object Object]
+unixDate: 1708277400000
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Persefone + Hypno5e + Stellar Circuits + Lampr3a (Rock N Eat). Found 19:00,18:30. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-308793-persefone-hypno5e.html
+
+Date: 24 février à 20:00
+Event: Nick Wheeldon + Romano Bianchi + Wendy Martinez
+Place: Le Périscope
+city: Lyon
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: musique live
+source: [object Object]
+unixDate: 1708801200000
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Nick Wheeldon + Romano Bianchi + Wendy Martinez (Le Périscope). Found 21:00,20:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-308604-nick-wheeldon-romano-bianchi-wendy-martinez.html
+
+Date: 27 février à 20:30
+Event: Delacave + Averse
+Place: Le Trokson
+city: Lyon
+country: France
+Style: Electro
+isCancelled: false
+DetailedStyle: Musiques Electroniques
+source: [object Object]
+unixDate: 1709062200000
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Delacave + Averse (Le Trokson). Found 20:45,20:30. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-309256-delacave-averse.html
+
+Date: Jeudi 29 février 2024 à 19h
+Event: Rsko
+Place: La Rayonne
+city: Lyon
+country: France
+Style: Rap
+isCancelled: false
+DetailedStyle: musique live
+source: [object Object]
+unixDate: 1709229600000
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Rsko (La Rayonne). Found 19:00,20:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-308846-rsko.html
+
+Date: Mercredi 6 mars 2024 à 19h30
+Event: Cosmic Trip Tour - Magnetic Spacemen + Weird Omen + Beach Moonsters + DJ Gilbert Nasal
+Place: Groom
+city: Lyon
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Rock & Pop
+source: [object Object]
+unixDate: 1709749800000
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Cosmic Trip Tour - Magnetic Spacemen + Weird Omen + Beach Moonsters + DJ Gilbert Nasal (Groom). Found 19:30,20:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-309548-cosmic-trip-tour-magnetic-spacemen-weird-omen-beach-moonsters-dj-gilbert-nasal.html
+
