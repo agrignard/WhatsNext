@@ -1,12 +1,12 @@
 import * as mapUtils from './mapUtils.js';
+import * as dataUtils from './dataUtils.js';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiYWdyaWduYXJkIiwiYSI6ImNqdWZ6ZjJ5MDBoenczeXBkYWU3bTk5ajYifQ.SXiCzAGs4wbMlw3RHRvxhw';
 
-var devMode = true;
-var flytoOnClick=false;
+var devMode = false;
 var showAllValueDiv = devMode ? true : false;
 var showAllValue = false;
-const showPlacesNotHandled= false;
+
 updateCircleLegend();
 
 const canvasShowAll = document.getElementById('showAll');
@@ -19,19 +19,13 @@ if (showAllValueDiv){
 
 const map = mapUtils.initializeMap();
 
-
 const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-const placeToCoord = new Map();
-const placeToUrl = new Map();
-var places= [];
-
-var nbActiveEvent;
 
 var currentDate = new Date(Date.now());
 currentDate.setHours(2,0,0);
 var appDate;
  
-function filterBy(value,byday) {  
+function filterBy(value) {  
 if(!showAllValue){
     var filters = [
     "all",     
@@ -74,7 +68,6 @@ function filterByStyle(style,time) {
     map.setFilter('event-labels', filters);
 }
 
-var hoveredStateId =  null; 
 map.on('load', () => {
 d3.json('./lyon_event.geojson',jsonCallback);
     map.flyTo({
@@ -91,13 +84,17 @@ function jsonCallback(err, data) {
     }
     //PLACES
     mapUtils.addPlaces(map,'./lyon_place.geojson');
+    map.setLayoutProperty('places-circles', 'visibility', 'visible');
+    map.setLayoutProperty('place-labels', 'visibility', 'visible');
+    
+    
     //EVENTS
     let unKnownPlaces = {};
     // MATCH Coordinates in link with the place
     data.features = data.features.map((d) => {
         d.geometry.type = "Point";
-        if(placeToCoord.get(d.properties.place) != null){
-            d.geometry.coordinates = placeToCoord.get(d.properties.place);
+        if(dataUtils.placeToCoord.get(d.properties.place) != null){
+            d.geometry.coordinates = dataUtils.placeToCoord.get(d.properties.place);
         }else{
             d.geometry.coordinates = [0,0];
             unKnownPlaces[d.properties.place] = (unKnownPlaces[d.properties.place] || 0) + 1;
@@ -107,10 +104,7 @@ function jsonCallback(err, data) {
     });
     mapUtils.addEvents(map,data);
 
-    map.setLayoutProperty('places-circles', 'visibility', 'visible');
-    map.setLayoutProperty('place-labels', 'visibility', 'visible');
-
-
+    
 
     map.style.stylesheet.layers.forEach(function(layer) {
         if (layer.type === 'symbol') {
@@ -119,15 +113,7 @@ function jsonCallback(err, data) {
     });
 
 
-    //Show Places that are not well treated and the number of time it appears
-    if(showPlacesNotHandled){
-        console.log("THE FOLLOWING PLACES ARE NOT HANDLED");
-        let occurrencesArray = Object.entries(unKnownPlaces);
-        occurrencesArray.sort((a, b) => b[1] - a[1]);
-        for (let [key, value] of occurrencesArray) {
-            console.log(`Place ${key} : ${value} fois`);
-        }
-    }
+   
 
     // Add geolocate control to the map.
     map.addControl(
@@ -174,14 +160,13 @@ function jsonCallback(err, data) {
     }
     map.addControl(new ShareControl(), 'top-left');
 
-
-
-
-
     appDate=currentDate;
     filterBy(currentDate.valueOf(),false);
-    document.getElementById("calendar").valueAsDate = new Date(Date.now);
 
+
+
+
+    document.getElementById("calendar").valueAsDate = new Date(Date.now);
     document.getElementById('slider').addEventListener('input', async (e) => {
     const sliderValue = parseInt(e.target.value, 10);
     const tmpDate= new Date(currentDate);
@@ -192,7 +177,7 @@ function jsonCallback(err, data) {
     //getNbEventPerPlace(new Date(appDate));
     const canvas = document.getElementById('eventList');
     var todayInformation;
-    todayInformation = await getTodayEvents(new Date(appDate));
+    todayInformation = await dataUtils.getTodayEvents(new Date(appDate));
     canvas.textContent = todayInformation;
     updateCircleLegend();
     });
@@ -216,197 +201,12 @@ function jsonCallback(err, data) {
     });
 }
 
-
-
-
-//Create a popup, but don't add it to the map yet.
-var popup = new mapboxgl.Popup({
-closeButton: false,
-closeOnClick: false
-});
-
-// When a click event occurs on a feature in the places layer, open a popup at the
-// location of the feature, with description HTML from its properties.
-map.on('click', 'event-circles', (e) => {
-
-const target = e.features[0].geometry.coordinates;
-mapUtils.end.center = target;
-
-if(flytoOnClick){
-    map.flyTo({
-    ...mapUtils.end, // Fly to the selected target
-    duration: 3000, // Animate over 12 seconds
-    essential: true // This animation is considered essential with
-    //respect to prefers-reduced-motion
-    });  
-}
- 
-// Copy coordinates array.
-const coordinates = e.features[0].geometry.coordinates.slice();
-const description = e.features[0].properties.description;
-var title = e.features[0].properties.title;
-var place = e.features[0].properties.place;
-var style = e.features[0].properties.style;
-var detailedStyle = e.features[0].properties.detailedStyle;
-var time = e.features[0].properties.time;
- 
-// Ensure that if the map is zoomed out such that multiple
-// copies of the feature are visible, the popup appears
-// over the copy being pointed to.
-while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-}
-var eventURLString="";
-if(description.length == 1){
-  eventURLString= "";
-}else{
-  eventURLString= "<a href="+description+" target=   'blank'title='Opens in a new window'>"+title+"</a>";
-}
-
-var placeURLString="";
-if(description.length == 1){
-    placeURLString= "";
-}else{
-  
-    placeURLString= "<a href="+placeToUrl.get(place)+" target=   'blank'title='Opens in a new window'>"+place+"</a>";
-}
-
-console.log(description);
-//console.log("urlString"+urlString);
-new mapboxgl.Popup()
-.setLngLat(coordinates)
-.setHTML("<h4>" + eventURLString + "</h4><b>Place:</b> "+place+"<br><b>Time:</b> "+new Date(time)+"<br><b>Style:</b> "+style + " (" + detailedStyle +")")
-.addTo(map);
-});
-
-// When the user moves their mouse over the state-fill layer, we'll update the
-// feature state for the feature under the mouse.
-map.on("mousemove", "event-circles", function(e) {  
-if (e.features.length > 0) {  
-if (hoveredStateId) {
-map.setFeatureState({source: 'events', id: hoveredStateId}, { hover: false});
-}
-hoveredStateId = e.features[0].id;
-map.setFeatureState({source: 'events', id: hoveredStateId}, { hover: true});
-}
-});
- 
-// When the mouse leaves the state-fill layer, update the feature state of the
-// previously hovered feature.
-map.on("mouseleave", "event-circles", function() {
-if (hoveredStateId) {
-map.setFeatureState({source: 'events', id: hoveredStateId}, { hover: false});
-}
-hoveredStateId =  null;
-});
-
-
-// Change the cursor to a pointer when the mouse is over the places layer.
-map.on('mouseenter', 'places-circles', () => {
-map.getCanvas().style.cursor = 'pointer';
-});
- 
-// Change it back to a pointer when it leaves.
-map.on('mouseleave', 'places-circles', () => {
-map.getCanvas().style.cursor = '';
-});
-
-
-initPlaceInformation();
-//getEventInformation()
+dataUtils.initPlaceInformation();
 chartIt();
-
-
-async function initPlaceInformation(){
-    const response = await fetch('lyon_place.geojson');
-    const data =   await response.json();
-    for (var i = 0; i < data.features.length; i++) {
-        placeToCoord.set(data.features[i].properties.title,data.features[i].geometry.coordinates);
-        placeToUrl.set(data.features[i].properties.title,data.features[i].properties.description);
-        places.push(data.features[i].properties.title);
-    }
-    console.log("Total places imported from lyon_place.geojson: " + placeToCoord.size);
-}
-
-async function getSortedNbEventPerPlaceMap(_date){
-    const response = await fetch('lyon_event.geojson');
-    const data =   await response.json();
-    const nbEventPerPlace = new Map();
-    nbActiveEvent=0;
-    for (var j = 0; j < places.length;j++){
-        nbEventPerPlace.set(places[j], 0);
-    }
-    for (var i = 0; i < data.features.length; i++) {
-        if(data.features[i].properties.time>_date){
-            if (nbEventPerPlace.has(data.features[i].properties.place)) {
-                nbEventPerPlace.set(data.features[i].properties.place, nbEventPerPlace.get(data.features[i].properties.place) + 1);
-            } else {
-                nbEventPerPlace.set(data.features[i].properties.place, 1);
-            }
-            nbActiveEvent = nbActiveEvent+1;
-        }
-    }    
-    function sortMapByValue(map) {
-        const sortedArray = [...map].sort((a, b) => b[1] - a[1]); // Sort by values in ascending order
-        return new Map(sortedArray);
-    }
-    const sortedMap = sortMapByValue(nbEventPerPlace);
-    return sortedMap;
-}
-
-async function getSortedNbEventPerDayMap(_date){
-    const response = await fetch('lyon_event.geojson');
-    const data =   await response.json();
-    const nbEventPerDay = new Map();
-    var keyEntry;
-    for (var i = 0; i < data.features.length; i++) {
-        if(data.features[i].properties.time>_date){
-            const tmpDate = new Date(data.features[i].properties.time);
-            keyEntry = new Date(data.features[i].properties.time );
-            keyEntry = new Date(keyEntry.setHours(0, 0, 0, 0));           
-            if (nbEventPerDay.has(keyEntry.getTime())) {
-                nbEventPerDay.set(keyEntry.getTime(), nbEventPerDay.get(keyEntry.getTime()) + 1);
-            } else {
-                nbEventPerDay.set(keyEntry.getTime(), 1);
-            }
-        }
-    }
-    function getDaysInYear(year) {
-        const startDate = new Date(`${year}-01-01`);
-        const endDate = new Date(`${year + 1}-01-01`);
-        const days = [];
-
-        for (let current = startDate; current < endDate; current.setDate(current.getDate() + 1)) {
-            current = new Date(current.setHours(0, 0, 0, 0));
-            days.push(new Date(current).getTime());
-        }
-
-        return days;
-    }
-    const yearToDisplay = 2024;
-    const allDays = getDaysInYear(yearToDisplay);
-
-    const valuesForDaysUnixTime = new Map();
-    allDays.forEach(day => {
-        const value = nbEventPerDay.get(day);
-        valuesForDaysUnixTime.set(day, value);
-    });
-
-    // Créer une nouvelle Map avec des dates  comme clés
-    let dateMap = new Map();
-    valuesForDaysUnixTime.forEach((value, unixTimestamp) => {
-        const date = new Date(unixTimestamp);
-        dateMap.set(date, value);
-    });
-    return dateMap;
-}
-
-
-
 
 async function chartIt(){
     const canvas = document.getElementById('eventList');
-    const todayInformation = await getTodayEvents(currentDate);
+    const todayInformation = await dataUtils.getTodayEvents(currentDate);
     canvas.textContent = todayInformation;
     canvas.style.display = 'block';
     const canvas1 = document.getElementById('chart1');
@@ -415,7 +215,7 @@ async function chartIt(){
     const ctx2 = canvas2.getContext('2d');
     if(devMode){
         canvas1.style.display = 'block';
-        const eventInformation = await getSortedNbEventPerPlaceMap(currentDate);
+        const eventInformation = await dataUtils.getSortedNbEventPerPlaceMap(currentDate);
         eventInformation.forEach((value, key) => {
         if (value === 0) {
             eventInformation.delete(key);
@@ -426,14 +226,14 @@ async function chartIt(){
         data: {
             labels:Array.from(eventInformation.keys()),
             datasets: [{
-            label: '(Places: ' + eventInformation.size + " - Event: " + nbActiveEvent + " )",
+            label: '(Places: ' + eventInformation.size + " - Event: " + dataUtils.nbActiveEvent + " )",
             data:Array.from(eventInformation.values()),
             borderWidth: 1
             }]
         }
         });
         canvas2.style.display = 'block';
-        const eventbydateInformation = await getSortedNbEventPerDayMap(currentDate);
+        const eventbydateInformation = await dataUtils.getSortedNbEventPerDayMap(currentDate);
         let labels = [...eventbydateInformation.keys()].map(date => {
             const jour = date.getDate();
             const mois = date.getMonth() + 1;
@@ -460,29 +260,6 @@ async function chartIt(){
         canvas1.style.display = 'none'; 
         canvas2.style.display = 'none'; 
     } 
-}
-
-
-var todaysEvent = new Map();
-async function getTodayEvents(_date){
-    const response = await fetch('lyon_event.geojson');
-    const data =   await response.json();
-    var nbEventToday=0;
-    todaysEvent=new Map();
-    for (var i = 0; i < data.features.length; i++) {
-        if(data.features[i].properties.time>_date){
-            if(data.features[i].properties.time<(_date.getTime() + 86400000)){
-                todaysEvent.set(data.features[i].properties.place,data.features[i].properties.title);
-                nbEventToday= nbEventToday+1;
-            } 
-        }
-    }
-    let mapString = '';
-
-    for (const [key, value] of todaysEvent) {
-    mapString += " "+ key +" |";// + value + "\n";
-    }
-    return "";//mapString;
 }
 
 async function updateCircleLegend(){
