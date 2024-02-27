@@ -5,7 +5,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiYWdyaWduYXJkIiwiYSI6ImNqdWZ6ZjJ5MDBoenczeXBkY
 
 var devMode = false;
 var showAllValueDiv = devMode ? true : false;
-var showAllValue = false;
+
 
 updateCircleLegend();
 
@@ -19,55 +19,12 @@ if (showAllValueDiv){
 
 const map = mapUtils.initializeMap();
 
-const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
 
 var currentDate = new Date(Date.now());
 currentDate.setHours(2,0,0);
 var appDate;
  
-function filterBy(value) {  
-if(!showAllValue){
-    var filters = [
-    "all",     
-    [">=", ['get', 'time'], value],
-    ["<=", ['get', 'time'], value+86400000]
-    ];
-    map.setFilter('event-circles', filters);
-    map.setFilter('event-labels', filters);
-    document.getElementById('dateSlider').textContent = days[new Date(value).getDay()] + " " + new Date(value).getDate()+ "/" + parseInt(new Date(value).getMonth()+1) + "/" + new Date(value).getFullYear();  ;
-}else{
-    var filters = [
-    "all",     
-    [">=", ['get', 'time'], value]
-    ];
-    map.setFilter('event-circles', filters);
-    map.setFilter('event-labels', filters);
-    document.getElementById('dateSlider').textContent = new Date(value).getDate()+ "/" + parseInt(new Date(value).getMonth()+1)  + "/" + new Date(value).getFullYear()+ "++";
-}    
-}
-
-function filterByStyle(style,time) {  
-    var filters ="";
-    if(style=="all"){
-        filters = [
-        "all",     
-        [">=", ['get', 'time'], time],
-        ["<=", ['get', 'time'], time+86400000]
-        ];
-    }else{
-        
-        filters = [
-        "all",    
-        ["==", ['get', 'style'], style],
-        [">=", ['get', 'time'], time],
-        ["<=", ['get', 'time'], time+86400000]
-        ];
-    }
-    
-    map.setFilter('event-circles', filters);
-    map.setFilter('event-labels', filters);
-}
-
 map.on('load', () => {
 d3.json('./lyon_event.geojson',jsonCallback);
     map.flyTo({
@@ -86,7 +43,6 @@ function jsonCallback(err, data) {
     mapUtils.addPlaces(map,'./lyon_place.geojson');
     map.setLayoutProperty('places-circles', 'visibility', 'visible');
     map.setLayoutProperty('place-labels', 'visibility', 'visible');
-    
     
     //EVENTS
     let unKnownPlaces = {};
@@ -111,9 +67,6 @@ function jsonCallback(err, data) {
             map.removeLayer(layer.id);
         }
     });
-
-
-   
 
     // Add geolocate control to the map.
     map.addControl(
@@ -161,19 +114,15 @@ function jsonCallback(err, data) {
     map.addControl(new ShareControl(), 'top-left');
 
     appDate=currentDate;
-    filterBy(currentDate.valueOf(),false);
+    mapUtils.filterBy(map,currentDate.valueOf(),false);
 
-
-
-
-    document.getElementById("calendar").valueAsDate = new Date(Date.now);
     document.getElementById('slider').addEventListener('input', async (e) => {
     const sliderValue = parseInt(e.target.value, 10);
     const tmpDate= new Date(currentDate);
     const newDateAsInt = tmpDate.setDate(tmpDate.getDate() + sliderValue).valueOf();
     appDate=newDateAsInt;
 
-    filterBy(newDateAsInt,false);
+    mapUtils.filterBy(map,newDateAsInt,false);
     //getNbEventPerPlace(new Date(appDate));
     const canvas = document.getElementById('eventList');
     var todayInformation;
@@ -182,22 +131,12 @@ function jsonCallback(err, data) {
     updateCircleLegend();
     });
 
-
-    document.getElementById('calendar').addEventListener('input', (e) => {
-    const choosenCalendarDay = e.target.value;
-    currentDate =new Date(e.target.value);
-    document.getElementById('slider').value = 0;
-    const newDateAsInt = currentDate;
-    appDate=newDateAsInt;
-    filterBy(currentDate.valueOf(),false);
-    });
-
     document.getElementById('showAll').addEventListener('input', (e) => {
     showAllValue= document.getElementById("showAll").checked;
     if(showAllValue){
     document.getElementById('slider').value = 0;   
     }
-    filterBy(currentDate.valueOf(),false)
+    mapUtils.filterBy(map,currentDate.valueOf(),false)
     });
 }
 
@@ -285,22 +224,19 @@ canvas.addEventListener('click', function (event) {
   const rect = canvas.getBoundingClientRect();
   const mouseX = event.clientX - rect.left;
   const mouseY = event.clientY - rect.top;
-
   circles.forEach(circle => {
     const dx = mouseX - circle.x;
     const dy = mouseY - circle.y;
     const distance = Math.sqrt(dx * dx + dy * dy);
-
     if (distance <= circle.radius) {
       // Toggle selection
       if (selectedCircle === circle) {
         selectedCircle = null; // Deselect the circle
-        filterByStyle("all",appDate.valueOf());
+        mapUtils.filterByStyle(map,"all",appDate.valueOf());
       } else {
         selectedCircle = circle; // Select the circle
-        filterByStyle(circle.value,appDate.valueOf());
+        mapUtils.filterByStyle(map,circle.value,appDate.valueOf());
       }
-
       // Redraw all circles
       drawCircles();
     }

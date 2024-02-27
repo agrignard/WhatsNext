@@ -1,4 +1,9 @@
 import * as dataUtils from './dataUtils.js';
+
+
+const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+var showAllValue = false;
+
 var flytoOnClick=false;
 const darkMode=false;
 var darkstyle= 'mapbox://styles/mapbox/light-v11';
@@ -207,7 +212,48 @@ map.on('click', 'event-circles', (e) => {
 ////////////////////////////////////////////////////
 
 ////////////LAYER INTERACTION//////////////////////
+export function filterBy(map,value) {  
+    if(!showAllValue){
+        var filters = [
+        "all",     
+        [">=", ['get', 'time'], value],
+        ["<=", ['get', 'time'], value+86400000]
+        ];
+        map.setFilter('event-circles', filters);
+        map.setFilter('event-labels', filters);
+        document.getElementById('dateSlider').textContent = days[new Date(value).getDay()] + " " + new Date(value).getDate()+ "/" + parseInt(new Date(value).getMonth()+1) + "/" + new Date(value).getFullYear();  ;
+    }else{
+        var filters = [
+        "all",     
+        [">=", ['get', 'time'], value]
+        ];
+        map.setFilter('event-circles', filters);
+        map.setFilter('event-labels', filters);
+        document.getElementById('dateSlider').textContent = new Date(value).getDate()+ "/" + parseInt(new Date(value).getMonth()+1)  + "/" + new Date(value).getFullYear()+ "++";
+    }    
+}
 
+export function filterByStyle(map,style,time) {  
+    var filters ="";
+    if(style=="all"){
+        filters = [
+        "all",     
+        [">=", ['get', 'time'], time],
+        ["<=", ['get', 'time'], time+86400000]
+        ];
+    }else{
+        
+        filters = [
+        "all",    
+        ["==", ['get', 'style'], style],
+        [">=", ['get', 'time'], time],
+        ["<=", ['get', 'time'], time+86400000]
+        ];
+    }
+    
+    map.setFilter('event-circles', filters);
+    map.setFilter('event-labels', filters);
+}
 
 //////////////////////////////////////////////////
 
