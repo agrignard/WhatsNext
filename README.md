@@ -19,7 +19,11 @@
 
 Note: Maybe some link are not successfully download in this case rerun the corresponding venue (e.g node aspiratorex.js "Terminal Club")
 
-### ```node analex.js```
+### ```node analex.js``` in case some of the already analysez website changed
+
+#### Output: ```venueOutput.json```
+
+### ```node reparatorex.js``` to fix some of the website that has not been downloaded
 
 #### Output: ```venueOutput.json```
 
