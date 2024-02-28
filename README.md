@@ -17,6 +17,8 @@
 ```
 #### Output: ```webSources/*```
 
+Note: Maybe some link are not successfully download in this case rerun the corresponding venue (e.g node aspiratorex.js "Terminal Club")
+
 ### ```node analex.js```
 
 #### Output: ```venueOutput.json```
