@@ -12,7 +12,7 @@ const cheerio = require('cheerio');
 
 
 module.exports = {getTagLocalization, tagContainsAllStrings, getTagContainingAllStrings, getMyIndex, 
-    splitAndLowerCase, addJSONBlock};
+    splitAndLowerCase, addJSONBlock, reduceTag};
 
 function addJSONBlock(scrapSource,source){
     let res =  {};
@@ -27,6 +27,7 @@ function getTagsForKey(object,key,cheerioSource){
     const string = key.match(/event([^]*)String/);
     console.log('\n\x1b[36mEvent '+string[1]+' tags:\x1b[0m');
     const tagList = object[key].map(string2 => findTag(cheerioSource,string2));
+    //const tagList = object[key].map(string2 => getTagContainingAllStrings(cheerioSource,[string2]));
     showTagsDetails(tagList,cheerioSource,object[key]);
     return tagList.map((tag,index) => reduceTag(getTagLocalization(tag,cheerioSource,false,[object[key][index]]),cheerioSource));
  }
@@ -100,9 +101,12 @@ function tagContainsAllStrings(tag, strings) {
     return strings.every(string => tagContent.includes(string)); // Comparaison insensible à la casse
 }
 
-function getTagLocalization(tag,source,isDelimiter,stringsToFind){
+function getTagLocalization(tag,source,isDelimiter,stringsToFind){ 
     if (tag == null){
         return null;
+    }
+    if (source(tag).prop('tagName') == undefined){
+        return '';
     }
     try{
        //console.log(source.html());
@@ -115,19 +119,20 @@ function getTagLocalization(tag,source,isDelimiter,stringsToFind){
             tagClass = '.'+source(tag).attr('class');//.split(' ')[0];
             tagClass = tagClass.replace(/[ ]*$/g,'').replace(/[ ]{1,}/g,'.');
         }
-        if (isDelimiter){
-            return source(tag).prop('tagName')+tagClass;
-        }
-        if (source(tag).parent().prop('tagName')=='BODY'){    
+        // if (isDelimiter){
+        //     return source(tag).prop('tagName')+tagClass;
+        // }
+        if (source(tag).parent().prop('tagName')=='BODY' || source(tag).parent().prop('tagName')== undefined){    
             string = '';
         }else{
-            string = getTagLocalization(source(tag).parent(),source,false,stringsToFind)+' ';
+            string = getTagLocalization(source(tag).parent(),source,isDelimiter,stringsToFind)+' ';
         }
         string += ' '+source(tag).prop('tagName');
         string += tagClass;
-        const index =  getMyIndex(tag,source,stringsToFind);
-        //console.log(source(tag).prop('tagName'),tagClass,index,'\n');
-        string +=  ':eq('+index+')';
+        if (!isDelimiter){
+            const index =  getMyIndex(tag,source,stringsToFind);
+            string +=  ':eq('+index+')';
+        }
         return string;
     }catch(err){
       console.log("\x1b[31mErreur de localisation de la balise: %s\x1b[0m: %s",source(tag).prop('tagName'),err);

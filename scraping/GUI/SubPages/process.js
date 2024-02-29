@@ -10,7 +10,7 @@ const {simplify, removeBlanks, extractBody, convertToLowerCase} = require(import
 const {getFilesContent, getModificationDate, loadLinkedPages} = require(imports+'fileUtilities.js');
 const {downloadVenue, erasePreviousHtmlFiles, getHrefListFrom, downloadLinkedPages} = require(imports+'aspiratorexUtilities.js');
 const {getTagLocalization, tagContainsAllStrings, getTagContainingAllStrings,
-  splitAndLowerCase, addJSONBlock} = require(imports+'analexUtilities.js');
+  splitAndLowerCase, addJSONBlock, reduceTag} = require(imports+'analexUtilities.js');
 
 let intervalId, linkedFileContent;
 let stopCounter = false;
@@ -55,7 +55,7 @@ let lastModified = getModificationDate(sourcePath);
 // const venueInfoHeight = venueInfo.clientHeight;
 // const processContainer = document.getElementById('processContainer');
 // processContainer.style.height = `calc(100vh - ${venueInfoHeight}px)`;
-const rightPanel = document.getElementById('rightPanel');
+const rightPanel = document.getElementById('scrapEnDirexRightPanel');
 //const leftPanel = document.getElementById('letPanel');
 const analyzePanel = document.getElementById('analyzePanel');
 
@@ -129,9 +129,11 @@ const freezeDelimiterButton = document.getElementById('freezeDelimiterButton');
 freezeDelimiterButton.addEventListener('click', function() {
   freezeDelimiter = !freezeDelimiter;
   if (freezeDelimiter){
+    freezeDelimiterButton.textContent = "Unfreeze";
     delimiterTagField.classList.add('inactive');
   }else{
     delimiterTagField.classList.remove('inactive');
+    freezeDelimiterButton.textContent = "Freeze";
   }
 });
 
@@ -153,6 +155,18 @@ if (venueScrapInfo.mainPage.hasOwnProperty('eventStyleStrings')){
   eventStyleStrings.value = getValue(venueScrapInfo.mainPage.eventStyleStrings);
 }
 const eventStyleTags = document.getElementById('eventStyleTags');
+// event place
+const eventPlaceStrings = document.getElementById('eventPlaceStrings');
+if (venueScrapInfo.mainPage.hasOwnProperty('eventPlaceStrings')){
+  eventPlaceStrings.value = getValue(venueScrapInfo.mainPage.eventPlaceStrings);
+}
+const eventPlaceTags = document.getElementById('eventPlaceTags');
+// event dummy
+const eventDummyStrings = document.getElementById('eventDummyStrings');
+if (venueScrapInfo.mainPage.hasOwnProperty('eventDummyStrings')){
+  eventDummyStrings.value = getValue(venueScrapInfo.mainPage.eventDummyStrings);
+}
+const eventDummyTags = document.getElementById('eventDummyTags');
 
 const copyButtons = document.getElementsByClassName('copyButton');
 for(let i = 0; i < copyButtons.length; i++){
@@ -169,10 +183,10 @@ function copyToTextBox(target){
   const selection = window.getSelection();
   if (selection.toString().length > 0) {
     const textCopy = selection.toString();
-    target.value = target.value.replace(/(\n\s*)*$/,'')+'\n'+textCopy;
+    target.value = (target.value.replace(/(\n\s*)*$/,'').replace(/\n\s*\n/g,'\n')+'\n'+textCopy).replace(/^(\s*\n)*/,'');// remove blank lines
     textBoxUpdate(target);
-    getDelimiterTag(target.id.replace('Strings','Tags'));
-    applyTags();
+    // getDelimiterTag(target.id.replace('Strings','Tags'));
+    // applyTags();
   }
 }
 
@@ -200,6 +214,7 @@ function textBoxUpdate(textBox){
   }else{
    // console.log(venueScrapInfo);
     venueScrapInfo.mainPage[textBox.id] = getArray(textBox.value);
+    console.log(textBox.id);
     getDelimiterTag(textBox.id.replace('Strings','Tags'));
     applyTags();
   }
@@ -252,33 +267,35 @@ function applyTags(){
         $eventBlock(tag).addClass('highlightStyle');  
       });
     }
+    if (venue.scrap.hasOwnProperty('eventDummyTags')){
+      venue.scrap.eventDummyTags.forEach(tag =>{
+        $eventBlock(tag).addClass('highlightDummy');  
+      });
+    }
     $(delimiterTag).html($eventBlock.html());
   });
-  
-  // try{
-    rightPanel.innerHTML = $.html();
-  // }catch(err){
-  //   console.log('erreur');
-  // }
-  
-
+  rightPanel.innerHTML = $.html();
   rightPanel.querySelectorAll('a'||'select').forEach(link => {
     link.addEventListener('click', e => {
       e.preventDefault(); 
     });
   });
 
-  const focusedElement = document.getElementsByClassName("mainTag")[0];
-  if (focusedElement){
-    focusedElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-  
   if (localPage){
     renderEventURLPanel();
   }else{
     analyzePanel.style.display = 'none';
   }
+
+  const focusedElement = document.getElementsByClassName("mainTag")[0];
+  if (focusedElement){
+    focusedElement.scrollIntoView({ behavior: 'auto', block: 'start' });
+   // rightPanel.scrollBy({top: -100, behavior: 'auto'});
+   // rightPanel.scrollBy({top: -rightPanel.offsetHeight/2+focusedElement.offsetHeight/2, behavior: 'auto'});
+  }
 }
+
+
 
 function loadPage(){
   analyzePanel.style.display = 'block';
@@ -407,18 +424,18 @@ function getDelimiterTag(id){
     const stringsToFind = [].concat(...Object.values(splitAndLowerCase(venueScrapInfo).mainPage));
     const tagsContainingStrings =  getTagContainingAllStrings($,stringsToFind);
     mainTag = tagsContainingStrings.last();
-    const delimiterTag = getTagLocalization(mainTag,$,true,stringsToFind);
+    const delimiterTag = reduceTag(getTagLocalization(mainTag,$,true,stringsToFind),$);
     delimiterTagField.value = delimiterTag;
     venue.eventsDelimiterTag = delimiterTag;
   }
   if (validateDelimiterTags()){
     let $eventBlock = cheerio.load($(mainTag).html());
-    if (id){
-      const tmpScrap = addJSONBlock(venueScrapInfo.mainPage,$eventBlock);
-      venue[id] = tmpScrap[id];
-    }else{
+    // if (id){
+    //   const tmpScrap = addJSONBlock(venueScrapInfo.mainPage,$eventBlock);
+    //   venue.scrap[id] = tmpScrap[id];
+    // }else{
       venue.scrap = addJSONBlock(venueScrapInfo.mainPage,$eventBlock);
-    }
+    // }
     renderEventURLPanel();
     initScrapTextTags();
   }
@@ -487,6 +504,7 @@ function initScrapTextTags(){
     const textBox = scrapTextBoxes[i];
     if (venue.scrap.hasOwnProperty(textBox.id)){
       textBox.value = getValue(venue.scrap[textBox.id]);
+      setRows(textBox);
     }
 
   }
