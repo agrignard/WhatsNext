@@ -74,12 +74,11 @@ const pageManagerButton = document.getElementById('pageManagerButton');
 
 pageManagerButton.addEventListener('click',function(){
   pageManagerReduced = !pageManagerReduced;
-  const venueInfoHeight = document.getElementById('venueInfo').clientHeight;
-
+  const pageManagerDetailsPanel = document.getElementById('pageManagerDetailsPanel');
   if (pageManagerReduced === true) {
-    pageManager.style.height = venueInfoHeight.toString()+'px'; 
+    pageManagerDetailsPanel.style.display = 'none';
   } else {
-    pageManager.style.height = '100px';
+    pageManagerDetailsPanel.style.display = 'block';
   }
 });
 
@@ -238,6 +237,7 @@ if (lastModified){// if the file exists
 }else{
   rightPanel.textContent = '';
   analyzePanel.style.display = 'none';
+  missingLinksPanel.style.display = 'none';
 }
 
 
@@ -311,21 +311,27 @@ function computeMissingLinks(){
   const hrefList = getHrefListFrom([localPage],venue);
   const existingLinks = hrefList.filter(el => Object.keys(linkedFileContent).includes(el));
   const linksToDownload = hrefList.filter(el => !Object.keys(linkedFileContent).includes(el));
-  const missingLinks = document.getElementById('missingLinks');
-  if (venue.hasOwnProperty('linkedPage')){
+  const missingLinksPanel = document.getElementById('missingLinksPanel');
+  missingLinksPanel.style.display = 'block';
+  const missingLinksText = document.getElementById('missingLinksText');
+  console.log('essai');
+  if (venue.hasOwnProperty('linkedPage') && lastModified){
+    console.log('coucou');
     if (hrefList.length === 0){
-      missingLinks.textContent = 'Cannot download linked pages, scrap info not defined yet.';
+      missingLinksText.textContent = 'Cannot download linked pages, scrap info not defined yet.';
     }else{
-      missingLinks.textContent = 'Links downloaded: '+existingLinks.length+'/'+hrefList.length;
+      console.log('coucou2');
+      missingLinksText.textContent = 'Links downloaded: '+existingLinks.length+'/'+hrefList.length;
       if (linksToDownload.length === 0){
-        missingLinks.classList.remove('redFont');
+        missingLinksText.classList.remove('redFont');
         missingLinksButton.style.display = 'none';
       }else{
-        missingLinks.classList.add('redFont');
-        missingLinks.textContent += '. Run again to download '+linksToDownload.length+' missing links.';
+        missingLinksText.classList.add('redFont');
         missingLinksButton.style.display = 'inline';
       }
     }
+  }else{
+    missingLinksPanel.style.display = 'none';
   }
 }
 

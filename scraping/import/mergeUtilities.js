@@ -98,6 +98,12 @@ function mergeEvents(eventList,showFullMergeLog){
                 return [event];
             }else if (dateList.length === 1){// only one legit time schedule. Merge the candidates and remove the candidate list. Keep the different URLs just in case
                 event.altURLs = removeDoubles(event.mergeCandidates.map(el => el.eventURL));
+                if (hasLocalSource){// if local source, get its url
+                    const localSource= event.mergeCandidates.find(el => fromLocalSource(el)); 
+                    if (localSource.hasOwnProperty('eventURL')){
+                        event.eventURL = localSource.eventURL;
+                    }
+                }
                 mergeLog = mergeLog + toMergeLog(event,candidates,hasLocalSource,false,showFullMergeLog);
                 delete event.mergeCandidates;
                 return [event];
@@ -165,7 +171,13 @@ function toMergeLog(event,mergedEvents,hasLocalSource,hasConflict,showFullMergeL
 function createEvent(d,event){
     const singleEvent = {...event};
     const candidateList = event.mergeCandidates.filter(el => el.unixDate === d);
-    singleEvent.eventURL = candidateList[0].eventURL;
+    const localSource = candidateList.find(el => fromLocalSource(el));
+    if (localSource===undefined){
+        singleEvent.eventURL = candidateList[0].eventURL;
+    }else{
+        singleEvent.eventURL = localSource.eventURL;
+    }
+    
     singleEvent.eventDate = candidateList[0].eventDate;
     singleEvent.altURLs = removeDoubles(candidateList.map(el => el.eventURL));
     singleEvent.unixDate = d;

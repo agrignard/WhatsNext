@@ -1,5 +1,1420 @@
 [
   {
+    "eventPlace": "Le Petit Salon",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "THIS IS HIT MACHINE 90-2000",
+    "eventDate": "",
+    "eventStyle": "Electro",
+    "isCancelled": false,
+    "eventURL": "https://yurplan.com/events/This-is-Hit-Machine-90-2000-NO2-T-Vyktor-Nova-and-More/118452",
+    "eventDetailedStyle": "GRANDE SALLE : DANCE - POP - ROCK - TECHNO - R'N'B - 90-2000 / PETITE SALLE : TRANCE - DANCE 90 - TECHNO",
+    "source": {
+      "name": "Le Petit Salon",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Salon. Reçu \"\", converti en \"\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "MATHAME + ALEX WANN + MARJO",
+    "eventDate": "sam. 02 mars 24 23:30",
+    "eventStyle": "Electro",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'MATHAME + ALEX WANN + MARJO'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/mathame-alex-wann-marjo-sam-02-mars-24/",
+    "eventDetailedStyle": "MELODIC TECHNO",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1709418600000,
+    "eventTime": "samedi 2 mars à 23:30",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/mathame-alex-wann-marjo-sam-02-mars-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "DIONYSOS + TROY VON BALTHAZAR",
+    "eventDate": "mer. 06 mars 24 19:00",
+    "eventStyle": "Rock",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'DIONYSOS + TROY VON BALTHAZAR'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/dionysos-troy-von-balthazar-mer-06-mars-24/",
+    "eventDetailedStyle": "Chanson",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1709748000000,
+    "eventTime": "mercredi 6 mars à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/dionysos-troy-von-balthazar-mer-06-mars-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "ROMÉO ELVIS + MORGAN",
+    "eventDate": "jeu. 07 mars 24 19:00",
+    "eventStyle": "Rap",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'ROMÉO ELVIS + MORGAN'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/romeo-elvis-morgan-jeu-07-mars-24/",
+    "eventDetailedStyle": "RAP",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1709834400000,
+    "eventTime": "jeudi 7 mars à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/romeo-elvis-morgan-jeu-07-mars-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "CALLING MARIAN + FLEUR FROM DESIRE + KARISSA",
+    "eventDate": "ven. 08 mars 24 23:00",
+    "eventStyle": "Electro",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'CALLING MARIAN + FLEUR FROM DESIRE + KARISSA'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/kaboom-2-calling-marian-fleur-from-desire-karissa-ven-08-mars-24/",
+    "eventDetailedStyle": "ÉLECTRO",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1709935200000,
+    "eventTime": "vendredi 8 mars à 23:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/kaboom-2-calling-marian-fleur-from-desire-karissa-ven-08-mars-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Mc Solaar",
+    "eventDate": "ven. 15 mars 24 19:00",
+    "eventStyle": "Rap",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'MC SOLAAR'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/mc-solaar-ven-15-mars-24/",
+    "eventDetailedStyle": "RAP",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1710525600000,
+    "eventTime": "vendredi 15 mars à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/mc-solaar-ven-15-mars-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "MAC DECLOS + MISCHLUFT + ASIL",
+    "eventDate": "ven. 15 mars 24 23:30",
+    "eventStyle": "Electro",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'MAC DECLOS + MISCHLUFT + ASIL'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/mac-declos-mischluft-asil-ven-15-mars-24/",
+    "eventDetailedStyle": "TECHNO",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1710541800000,
+    "eventTime": "vendredi 15 mars à 23:30",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/mac-declos-mischluft-asil-ven-15-mars-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Chien Noir + Gwizdek",
+    "eventDate": "sam. 16 mars 24 19:00",
+    "eventStyle": "CHANSON",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'CHIEN NOIR + GWIZDEK'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/les-chants-de-mars-chien-noir-gwizdek-sam-16-mars-24/",
+    "eventDetailedStyle": "CHANSON",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1710612000000,
+    "eventTime": "samedi 16 mars à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/les-chants-de-mars-chien-noir-gwizdek-sam-16-mars-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "GARÇON SAUVAGE XXL : FANTASTIC TWINS + DOPPELGANG +...",
+    "eventDate": "sam. 16 mars 24 23:30",
+    "eventStyle": "Electro",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'GARÇON SAUVAGE XXL : FANTASTIC TWINS + DOPPELGANG +...'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/garcon-sauvage-xxl-fantastic-twins-doppelgang-anodine-sam-16-mars-24/",
+    "eventDetailedStyle": "ÉLECTRO",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1710628200000,
+    "eventTime": "samedi 16 mars à 23:30"
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Lala & Ce",
+    "eventDate": "mer. 20 mars 24 19:00",
+    "eventStyle": "Rap",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'LALA &CE'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/lala-ce-mer-20-mars-24/",
+    "eventDetailedStyle": "RAP",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1710957600000,
+    "eventTime": "mercredi 20 mars à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/lala-ce-mer-20-mars-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Kerchak",
+    "eventDate": "jeu. 21 mars 24 19:00",
+    "eventStyle": "Rap",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'KERCHAK'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/kerchak-jeu-21-mars-24/",
+    "eventDetailedStyle": "RAP / JERSEY",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1711044000000,
+    "eventTime": "jeudi 21 mars à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/kerchak-jeu-21-mars-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "MADAME ARTHUR",
+    "eventDate": "ven. 22 mars 24 19:00",
+    "eventStyle": "CABARET QUEER",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'MADAME ARTHUR'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/madame-arthur-ven-22-mars-24/",
+    "eventDetailedStyle": "CABARET QUEER",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1711130400000,
+    "eventTime": "vendredi 22 mars à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/madame-arthur-ven-22-mars-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Social Dance + Clay and Friends + Solann + Cyrious + Melba",
+    "eventDate": "sam. 23 mars 24 19:00",
+    "eventStyle": "POP / CHANSON",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'SOCIAL DANCE + CLAY AND FRIENDS + SOLANN +...'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/les-chants-de-mars-social-dance-clay-and-friends-solann-cyrious-melba-sam-23-mars-24/",
+    "eventDetailedStyle": "POP / CHANSON",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1711216800000,
+    "eventTime": "samedi 23 mars à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/les-chants-de-mars-social-dance-clay-and-friends-solann-cyrious-melba-sam-23-mars-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Shake Shake Go",
+    "eventDate": "dim. 24 mars 24 18:00",
+    "eventStyle": "INDIE POP",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'SHAKE SHAKE GO'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/shake-shake-go-dim-24-mars-24/",
+    "eventDetailedStyle": "Rock & Pop",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1711299600000,
+    "eventTime": "dimanche 24 mars à 18:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/shake-shake-go-dim-24-mars-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "OKIS + LEO SVR + GEN + KAYNIXE +...",
+    "eventDate": "jeu. 28 mars 24 19:00",
+    "eventStyle": "Rap",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'OKIS + LEO SVR + GEN + KAYNIXE +...'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/gamberge-okis-leo-svr-gen-kaynixe-pana-miles-with-friends-jeu-28-mars-24/",
+    "eventDetailedStyle": "RAP",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1711648800000,
+    "eventTime": "jeudi 28 mars à 19:00"
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "PAT KALLA & LE SUPER MOJO + GUTS + K.O.G +...",
+    "eventDate": "ven. 29 mars 24 20:00",
+    "eventStyle": "World",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'PAT KALLA & LE SUPER MOJO + GUTS + K.O.G +...'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/guts-pat-kalla-le-super-mojo-kog-ven-29-mars-24/",
+    "eventDetailedStyle": "SONO MONDIALE",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1711738800000,
+    "eventTime": "vendredi 29 mars à 20:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/guts-pat-kalla-le-super-mojo-kog-ven-29-mars-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Les tambours du Bronx + Klone + Nanowar of Steel + Psykup",
+    "eventDate": "sam. 30 mars 24 18:00",
+    "eventStyle": "SHOW PERCUSSIF / METAL",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'LES TAMBOURS DU BRONX + KLONE +...'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/les-tambours-du-bronx-klone-nanowar-of-steel-psykup-sam-30-mars-24/",
+    "eventDetailedStyle": "SHOW PERCUSSIF / METAL",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1711818000000,
+    "eventTime": "samedi 30 mars à 18:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/les-tambours-du-bronx-klone-nanowar-of-steel-psykup-sam-30-mars-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "LILY VS QUÉBEC",
+    "eventDate": "dim. 31 mars 24 17:00",
+    "eventStyle": "IMPROVISATION THÉÂTRALE",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'LILY VS QUÉBEC'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/lily-vs-quebec-dim-31-mars-24/",
+    "eventDetailedStyle": "IMPROVISATION THÉÂTRALE",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1711897200000,
+    "eventTime": "dimanche 31 mars à 17:00"
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "FONCEDALLE",
+    "eventDate": "mer. 03 avril 24 19:00",
+    "eventStyle": "Electro",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'FONCEDALLE'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/foncedalle-mer-03-avr-24/",
+    "eventDetailedStyle": "ÉLECTRO ROCK",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1712163600000,
+    "eventTime": "mercredi 3 avril à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/foncedalle-mer-03-avr-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Luther",
+    "eventDate": "jeu. 04 avril 24 19:00",
+    "eventStyle": "Rap",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'LUTHER'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/luther-jeu-04-avr-24/",
+    "eventDetailedStyle": "RAP",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1712250000000,
+    "eventTime": "jeudi 4 avril à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/luther-jeu-04-avr-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Keen'V",
+    "eventDate": "ven. 05 avril 24 19:00",
+    "eventStyle": "CHANSON",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'KEEN'V'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/keenv-ven-05-avr-24/",
+    "eventDetailedStyle": "CHANSON",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1712336400000,
+    "eventTime": "vendredi 5 avril à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/keenv-ven-05-avr-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "DUB ECHO #44 : O.B.F X IRATION STEPPAS +...",
+    "eventDate": "sam. 06 avril 24 23:30",
+    "eventStyle": "ORIGINAL DUB CULTURE",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'DUB ECHO #44 : O.B.F X IRATION STEPPAS +...'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/dub-echo-44-obf-x-iration-steppas-mysticwood-dubquake-records-family-sam-06-avr-24/",
+    "eventDetailedStyle": "ORIGINAL DUB CULTURE",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1712439000000,
+    "eventTime": "samedi 6 avril à 23:30"
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "ELOÏZ",
+    "eventDate": "mar. 09 avril 24 19:00",
+    "eventStyle": "POP FOLK",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'ELOÏZ'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/eloiz-mar-09-avr-24/",
+    "eventDetailedStyle": "POP FOLK",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1712682000000,
+    "eventTime": "mardi 9 avril à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/eloiz-mar-09-avr-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "LES 3 ACCORDS",
+    "eventDate": "mer. 10 avril 24 19:00",
+    "eventStyle": "Rock",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'LES 3 ACCORDS'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/les-3-accords-mer-10-avr-24/",
+    "eventDetailedStyle": "POP ROCK HUMORISTIQUE",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1712768400000,
+    "eventTime": "mercredi 10 avril à 19:00"
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "YARD ACT + MURKAGE DAVE",
+    "eventDate": "ven. 12 avril 24 19:00",
+    "eventStyle": "POST PUNK",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'YARD ACT + MURKAGE DAVE'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/yard-act-murkage-dave-ven-12-avr-24/",
+    "eventDetailedStyle": "Rock & Pop / Post-punk",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1712941200000,
+    "eventTime": "vendredi 12 avril à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/yard-act-murkage-dave-ven-12-avr-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "23:59 x BLACKWORKS : APHØTIC + DEXPHASE +...",
+    "eventDate": "sam. 13 avril 24 23:30",
+    "eventStyle": "Electro",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement '23:59 x BLACKWORKS : APHØTIC + DEXPHASE +...'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/blackworks-x-2359-aphoetic-dexphase-jan-vercauteren-sam-13-avr-24/",
+    "eventDetailedStyle": "HARD TECHNO",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1713043800000,
+    "eventTime": "samedi 13 avril à 23:30"
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Tip Stevens",
+    "eventDate": "mer. 17 avril 24 19:00",
+    "eventStyle": "Electro",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'TIP STEVENS'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/tip-stevens-mer-17-avr-24/",
+    "eventDetailedStyle": "ROCK ÉLECTRO",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1713373200000,
+    "eventTime": "mercredi 17 avril à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/tip-stevens-mer-17-avr-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Zoufris Maracas + Maggy Bolle",
+    "eventDate": "jeu. 18 avril 24 19:00",
+    "eventStyle": "CHANSON",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'ZOUFRIS MARACAS + MAGGY BOLLE'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/zoufris-maracas-maggy-bolle-jeu-18-avr-24/",
+    "eventDetailedStyle": "CHANSON",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1713459600000,
+    "eventTime": "jeudi 18 avril à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/zoufris-maracas-maggy-bolle-jeu-18-avr-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Kalash Criminel",
+    "eventDate": "ven. 19 avril 24 19:00",
+    "eventStyle": "Rap",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'KALASH CRIMINEL'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/kalash-criminel-ven-19-avr-24/",
+    "eventDetailedStyle": "Rap",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1713546000000,
+    "eventTime": "vendredi 19 avril à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/kalash-criminel-ven-19-avr-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "EZ! #91 : MOODY GOOD + KUMARION +...",
+    "eventDate": "ven. 19 avril 24 23:30",
+    "eventStyle": "HEAVY BASS NIGHT",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'EZ! #91 : MOODY GOOD + KUMARION +...'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/ez-91-moody-good-kumarion-ecraze-ven-19-avr-24/",
+    "eventDetailedStyle": "HEAVY BASS NIGHT",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1713562200000,
+    "eventTime": "vendredi 19 avril à 23:30"
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Joe Bel",
+    "eventDate": "sam. 20 avril 24 19:00",
+    "eventStyle": "POP FOLK",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'JOE BEL'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/joe-bel-sam-20-avr-24/",
+    "eventDetailedStyle": "Rock & Pop / Pop & folk",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1713632400000,
+    "eventTime": "samedi 20 avril à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/joe-bel-sam-20-avr-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "SHLØMO + KRL MX + ZORZA +...",
+    "eventDate": "sam. 20 avril 24 23:30",
+    "eventStyle": "Electro",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'SHLØMO + KRL MX + ZORZA +...'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/shloemo-krl-mx-zorza-ven-20-avr-24/",
+    "eventDetailedStyle": "TECHNO",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1713648600000,
+    "eventTime": "samedi 20 avril à 23:30"
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "FFF",
+    "eventDate": "mer. 24 avril 24 19:00",
+    "eventStyle": "Rock",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'FFF'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/fff-mer-24-avr-24/",
+    "eventDetailedStyle": "FUNK / ROCK",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1713978000000,
+    "eventTime": "mercredi 24 avril à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/fff-mer-24-avr-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Chinese Man + Dubanko",
+    "eventDate": "jeu. 25 avril 24 19:00",
+    "eventStyle": "Electro",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'CHINESE MAN + DUBANKO'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/chinese-man-dubanko-jeu-25-avr-24/",
+    "eventDetailedStyle": "Musiques Electroniques",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1714064400000,
+    "eventTime": "jeudi 25 avril à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/chinese-man-dubanko-jeu-25-avr-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "La Yegros + Pambélé + Luiza",
+    "eventDate": "ven. 26 avril 24 19:00",
+    "eventStyle": "NUEVA CUMBIA",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'LA YEGROS + PAMBELÉ + LUIZA'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/la-yegros-pambele-luiza-ven-26-avr-24/",
+    "eventDetailedStyle": "Sono Mondiale",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1714150800000,
+    "eventTime": "vendredi 26 avril à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/la-yegros-pambele-luiza-ven-26-avr-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "STONED JESUS + KARRAS + GRANDMA'S ASHES +...",
+    "eventDate": "sam. 27 avril 24 17:00",
+    "eventStyle": "METAL 4 THE PLANET",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'STONED JESUS + KARRAS + GRANDMA'S ASHES +...'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/metal-4-the-planet-stoned-jesus-karras-grandmas-ashes-vertex-sam-27-avr-24/",
+    "eventDetailedStyle": "METAL 4 THE PLANET",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1714230000000,
+    "eventTime": "samedi 27 avril à 17:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/metal-4-the-planet-stoned-jesus-karras-grandmas-ashes-vertex-sam-27-avr-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "[NO GENDER] X NAKT : PARFAIT + BLASPHÈME +...",
+    "eventDate": "sam. 27 avril 24 23:30",
+    "eventStyle": "Electro",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement '[NO GENDER] X NAKT : PARFAIT + BLASPHÈME +...'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/no-gender-x-nakt-parfait-blaspheme-angel-karel-sam-27-avr-24/",
+    "eventDetailedStyle": "TECHNO QUEER PUNK",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1714253400000,
+    "eventTime": "samedi 27 avril à 23:30"
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Declan Mckenna",
+    "eventDate": "lun. 29 avril 24 19:00",
+    "eventStyle": "Rock",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'DECLAN MCKENNA'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/declan-mckenna-lun-29-avr-24/",
+    "eventDetailedStyle": "INDIE ROCK",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1714410000000,
+    "eventTime": "lundi 29 avril à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/declan-mckenna-lun-29-avr-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "GWENDOLINE",
+    "eventDate": "mar. 30 avril 24 19:00",
+    "eventStyle": "SCHLAGWAVE / NEW WAVE",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'GWENDOLINE'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/gwendoline-mar-30-avr-24/",
+    "eventDetailedStyle": "SCHLAGWAVE / NEW WAVE",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1714496400000,
+    "eventTime": "mardi 30 avril à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/gwendoline-mar-30-avr-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "MOJI X SBOY",
+    "eventDate": "jeu. 02 mai 24 19:00",
+    "eventStyle": "Rap",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'MOJI X SBOY'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/moji-x-sboy-jeu-02-mai-24/",
+    "eventDetailedStyle": "RAP",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1714669200000,
+    "eventTime": "jeudi 2 mai à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/moji-x-sboy-jeu-02-mai-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "LA FÈVE",
+    "eventDate": "sam. 04 mai 24 19:00",
+    "eventStyle": "Rap",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'LA FÈVE'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/la-feve-sam-04-mai-24/",
+    "eventDetailedStyle": "RAP",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1714842000000,
+    "eventTime": "samedi 4 mai à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/la-feve-sam-04-mai-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "NUITS SONORES : AUTECHRE",
+    "eventDate": "mar. 07 mai 24 19:00",
+    "eventStyle": "Electro",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'NUITS SONORES : AUTECHRE'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/nuits-sonores-autechre-mar-07-mai-24/",
+    "eventDetailedStyle": "ÉLECTRO / AMBIENT",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1715101200000,
+    "eventTime": "mardi 7 mai à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/nuits-sonores-autechre-mar-07-mai-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "NUITS SONORES : TROUBLES",
+    "eventDate": "ven. 10 mai 24 19:00",
+    "eventStyle": "LECTURE CONCERT",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'NUITS SONORES : TROUBLES'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/nuits-sonores-troubles-ven-10-mai-24/",
+    "eventDetailedStyle": "LECTURE CONCERT",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1715360400000,
+    "eventTime": "vendredi 10 mai à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/nuits-sonores-troubles-ven-10-mai-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "DALÍ",
+    "eventDate": "mer. 15 mai 24 19:00",
+    "eventStyle": "Rap",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'DALÍ'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/dali-mer-15-mai-24/",
+    "eventDetailedStyle": "RAP",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1715792400000,
+    "eventTime": "mercredi 15 mai à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/dali-mer-15-mai-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Eloi",
+    "eventDate": "jeu. 16 mai 24 19:00",
+    "eventStyle": "SYNTHPOP / HYPERPOP",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'ELOI'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/eloi-jeu-16-mai-24/",
+    "eventDetailedStyle": "Musiques Electroniques",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1715878800000,
+    "eventTime": "jeudi 16 mai à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/eloi-jeu-16-mai-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Dena Mwana",
+    "eventDate": "ven. 24 mai 24 19:00",
+    "eventStyle": "GOSPEL",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'DENA MWANA'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/dena-mwana-ven-24-mai-24/",
+    "eventDetailedStyle": "Classique & Lyrique / Gospel",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1716570000000,
+    "eventTime": "vendredi 24 mai à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/dena-mwana-ven-24-mai-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Hang Massive",
+    "eventDate": "dim. 26 mai 24 19:00",
+    "eventStyle": "HANG MUSIC / AMBIENT HYPNOTIQUE",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'HANG MASSIVE'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/hang-massive-dim-26-mai-24/",
+    "eventDetailedStyle": "HANG MUSIC / AMBIENT HYPNOTIQUE",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1716742800000,
+    "eventTime": "dimanche 26 mai à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/hang-massive-dim-26-mai-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "YEULE",
+    "eventDate": "mar. 28 mai 24 19:00",
+    "eventStyle": "POP EXPÉRIMENTALE",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'YEULE'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/yeule-mar-28-mai-24/",
+    "eventDetailedStyle": "POP EXPÉRIMENTALE",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1716915600000,
+    "eventTime": "mardi 28 mai à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/yeule-mar-28-mai-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Chelsea Wolfe + Kaelan Mikla",
+    "eventDate": "mer. 29 mai 24 19:00",
+    "eventStyle": "DARK FOLK / DOOM METAL",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'CHELSEA WOLFE + KAELAN MIKLA'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/chelsea-wolfe-kaelan-mikla-mer-29-mai-24/",
+    "eventDetailedStyle": "DARK FOLK / DOOM METAL",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1717002000000,
+    "eventTime": "mercredi 29 mai à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/chelsea-wolfe-kaelan-mikla-mer-29-mai-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Osees",
+    "eventDate": "dim. 02 juin 24 19:00",
+    "eventStyle": "Rock",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'OSEES'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/osees-dim-02-juin-24/",
+    "eventDetailedStyle": "Rock & Pop / Garage rock",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1717347600000,
+    "eventTime": "dimanche 2 juin à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/osees-dim-02-juin-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "GUY2BEZBAR",
+    "eventDate": "jeu. 06 juin 24 19:00",
+    "eventStyle": "Rap",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'GUY2BEZBAR'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/guy2bezbar-jeu-06-juin-24/",
+    "eventDetailedStyle": "RAP",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1717693200000,
+    "eventTime": "jeudi 6 juin à 19:00"
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "LES FATALS PICARDS",
+    "eventDate": "ven. 07 juin 24 19:00",
+    "eventStyle": "Rock",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'LES FATALS PICARDS'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/les-fatals-picards-ven-07-juin-24/",
+    "eventDetailedStyle": "CHANSON ROCK",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1717779600000,
+    "eventTime": "vendredi 7 juin à 19:00"
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "ALIEN WEAPONRY",
+    "eventDate": "lun. 10 juin 24 19:00",
+    "eventStyle": "THRASH METAL / TE REO",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'ALIEN WEAPONRY'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/alien-weaponry-lun-10-juin-24/",
+    "eventDetailedStyle": "THRASH METAL / TE REO",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1718038800000,
+    "eventTime": "lundi 10 juin à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/alien-weaponry-lun-10-juin-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "FRUSTRATION + MARTIN DUPONT...",
+    "eventDate": "jeu. 13 juin 24 19:00",
+    "eventStyle": "POST PUNK / COLD WAVE",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'FRUSTRATION + MARTIN DUPONT...'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/frustration-martin-dupont-dj-chuimix-jeu-13-juin-24/",
+    "eventDetailedStyle": "POST PUNK / COLD WAVE",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1718298000000,
+    "eventTime": "jeudi 13 juin à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/frustration-martin-dupont-dj-chuimix-jeu-13-juin-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "WHILE SHE SLEEPS + BURY TOMORROW + ERRA +...",
+    "eventDate": "lun. 24 juin 24 18:00",
+    "eventStyle": "METALCORE",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'WHILE SHE SLEEPS + BURY TOMORROW + ERRA +...'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/while-she-sleeps-bury-tomorrow-erra-lun-24-juin-24/",
+    "eventDetailedStyle": "METALCORE",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1719244800000,
+    "eventTime": "lundi 24 juin à 18:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/while-she-sleeps-bury-tomorrow-erra-lun-24-juin-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "ASINHELL + ENDSEEKER",
+    "eventDate": "mar. 25 juin 24 19:00",
+    "eventStyle": "DEATH METAL",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'ASINHELL + ENDSEEKER'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/asinhell-endseeker-mar-25-juin-24/",
+    "eventDetailedStyle": "DEATH METAL",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1719334800000,
+    "eventTime": "mardi 25 juin à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/asinhell-endseeker-mar-25-juin-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "STEEL PANTHER",
+    "eventDate": "lun. 01 juil. 24 19:00",
+    "eventStyle": "GLAM METAL",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'STEEL PANTHER'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2023-2024/steel-panther-lun-01-juil-24/",
+    "eventDetailedStyle": "GLAM METAL",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1719853200000,
+    "eventTime": "lundi 1 juillet à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2023-2024/steel-panther-lun-01-juil-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "PRETENDERS",
+    "eventDate": "mer. 02 oct. 24 19:00",
+    "eventStyle": "Rock",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'PRETENDERS'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2024-2025/pretenders-mer-02-oct-24/",
+    "eventDetailedStyle": "ROCK",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1727888400000,
+    "eventTime": "mercredi 2 octobre à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2024-2025/pretenders-mer-02-oct-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "PURPLE DISCO MACHINE",
+    "eventDate": "mer. 16 oct. 24 19:00",
+    "eventStyle": "DISCO / FUNK",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'PURPLE DISCO MACHINE'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2024-2025/purple-disco-machine-mer-16-oct-24/",
+    "eventDetailedStyle": "DISCO / FUNK",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1729098000000,
+    "eventTime": "mercredi 16 octobre à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2024-2025/purple-disco-machine-mer-16-oct-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "MARCUS KING",
+    "eventDate": "mer. 23 oct. 24 19:00",
+    "eventStyle": "Rock",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'MARCUS KING'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2024-2025/marcus-king-mer-23-oct-24/",
+    "eventDetailedStyle": "BLUES / ROCK",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1729702800000,
+    "eventTime": "mercredi 23 octobre à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2024-2025/marcus-king-mer-23-oct-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "ACCEPT",
+    "eventDate": "mar. 29 oct. 24 18:30",
+    "eventStyle": "HEAVY METAL",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'ACCEPT'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2024-2025/accept-mar-29-oct-24/",
+    "eventDetailedStyle": "HEAVY METAL",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1730223000000,
+    "eventTime": "mardi 29 octobre à 18:30",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2024-2025/accept-mar-29-oct-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "METZ",
+    "eventDate": "mer. 06 nov. 24 19:00",
+    "eventStyle": "Rock",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'METZ'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2024-2025/metz-mer-06-nov-24/",
+    "eventDetailedStyle": "NOISE ROCK",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1730916000000,
+    "eventTime": "mercredi 6 novembre à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2024-2025/metz-mer-06-nov-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "HATIK",
+    "eventDate": "ven. 08 nov. 24 19:00",
+    "eventStyle": "Rap",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'HATIK'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2024-2025/hatik-full-band-ven-08-nov-24/",
+    "eventDetailedStyle": "RAP",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1731088800000,
+    "eventTime": "vendredi 8 novembre à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2024-2025/hatik-full-band-ven-08-nov-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "JOSEPH KAMEL",
+    "eventDate": "ven. 22 nov. 24 19:00",
+    "eventStyle": "CHANSON POP",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'JOSEPH KAMEL'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2024-2025/joseph-kamel-ven-22-nov-24/",
+    "eventDetailedStyle": "CHANSON POP",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1732298400000,
+    "eventTime": "vendredi 22 novembre à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2024-2025/joseph-kamel-ven-22-nov-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "HOUDI",
+    "eventDate": "mer. 27 nov. 24 19:00",
+    "eventStyle": "Rap",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'HOUDI'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2024-2025/houdi-mer-27-nov-24/",
+    "eventDetailedStyle": "RAP",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1732730400000,
+    "eventTime": "mercredi 27 novembre à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2024-2025/houdi-mer-27-nov-24/"
+    ]
+  },
+  {
+    "eventPlace": "Transbordeur",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "PUGGY",
+    "eventDate": "jeu. 30 janv. 25 19:00",
+    "eventStyle": "Rock",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'PUGGY'. Erreur lors du téléchargement ?",
+    "eventURL": "https://www.transbordeur.fr/agenda-2024-2025/puggy-jeu-30-jan-25/",
+    "eventDetailedStyle": "POP ROCK",
+    "source": {
+      "name": "Transbordeur",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1738260000000,
+    "eventTime": "jeudi 30 janvier à 19:00",
+    "altURLs": [
+      "https://www.transbordeur.fr/agenda-2024-2025/puggy-jeu-30-jan-25/"
+    ]
+  },
+  {
     "eventPlace": "Terminal Club",
     "city": "Lyon",
     "country": "France",
@@ -18,135 +1433,75 @@
     "unixDate": 0
   },
   {
-    "eventPlace": "Terminal Club",
+    "eventPlace": "À Thou Bout d'Chant",
     "city": "Lyon",
     "country": "France",
-    "eventName": "Bon.Soir : Suerte, Gru, f.sonore, GMNZ",
-    "eventDate": "",
+    "eventName": "Alexis HK + Benoît Doremus",
+    "eventDate": "Du 22 au 24 mai 2024, à 20h30",
+    "eventStyle": "Chanson",
     "isCancelled": false,
-    "errorLog": "Impossible de lire la page liée pour l'événement 'Bon.Soir : Suerte, Gru, f.sonore, GMNZ'. Erreur lors du téléchargement ? | Format de date invalide pour Terminal Club. Reçu \"\", converti en \"\" (attendu \"dd-MM-yy\")",
-    "eventURL": "https://www.terminal-club.com/evenement/bon-soir-suerte-gru-f-sonore-gmnz/",
-    "eventDetailedStyle": "",
-    "eventStyle": "Electro",
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-309715-alexis-hk-benoit-doremus.html",
+    "eventDetailedStyle": "Chanson",
     "source": {
-      "name": "Terminal Club",
+      "name": "Le Petit Bulletin",
       "city": "Lyon",
       "country": "France"
     },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Du 22 au 24 mai 2024, à 20h30\", converti en \"22-24-05-2024-20:30\" (attendu \"dd-MM-yyyy-HH:mm\")",
     "unixDate": 0
   },
   {
-    "eventPlace": "Terminal Club",
+    "eventPlace": "Auditorium de Lyon",
     "city": "Lyon",
     "country": "France",
-    "eventName": "Tjalk Records : Barasco, DJ RC %, NZM 99",
-    "eventDate": "1 Mar",
+    "eventName": "Così fan tutte",
+    "eventDate": "Du 24 au 26 mai 2024, ven à 19h30, dim à 16h",
+    "eventStyle": "Classique",
     "isCancelled": false,
-    "errorLog": "Impossible de lire la page liée pour l'événement 'Tjalk Records : Barasco, DJ RC %, NZM 99'. Erreur lors du téléchargement ?",
-    "eventURL": "https://www.terminal-club.com/evenement/tjalk-records-barasco-dj-rc-nzm-99/",
-    "eventDetailedStyle": "",
-    "eventStyle": "Electro",
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-309454-cosi-fan-tutte.html",
+    "eventDetailedStyle": "Classique & Lyrique",
     "source": {
-      "name": "Terminal Club",
+      "name": "Le Petit Bulletin",
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1709333940000,
-    "eventTime": "vendredi 1 mars àà 23:59"
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Du 24 au 26 mai 2024, ven à 19h30, dim à 16h\", converti en \"24-26-05-2024-19:30\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
   },
   {
-    "eventPlace": "Terminal Club",
+    "eventPlace": "Théâtre de la Croix-Rousse",
     "city": "Lyon",
     "country": "France",
-    "eventName": "Hard Fist : Günce Aci, Tushen Raï, Neskeh",
-    "eventDate": "2 Mar",
+    "eventName": "Otages",
+    "eventDate": "Du 17 au 23 mars 2024, dim et sam à 16h, lun, mar ",
+    "eventStyle": "Classique",
     "isCancelled": false,
-    "errorLog": "Impossible de lire la page liée pour l'événement 'Hard Fist : Günce Aci, Tushen Raï, Neskeh'. Erreur lors du téléchargement ?",
-    "eventURL": "https://www.terminal-club.com/evenement/hard-fist-gunce-aci-tushen-rai-neskeh/",
-    "eventDetailedStyle": "",
-    "eventStyle": "Electro",
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-308401-otages.html",
+    "eventDetailedStyle": "Classique & Lyrique / Opéra",
     "source": {
-      "name": "Terminal Club",
+      "name": "Le Petit Bulletin",
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1709420340000,
-    "eventTime": "samedi 2 mars àà 23:59"
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Du 17 au 23 mars 2024, dim et sam à 16h, lun, mar \", converti en \"17-23-03-2024-16:03\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
   },
   {
-    "eventPlace": "Terminal Club",
+    "eventPlace": "Théâtre de la Croix-Rousse",
     "city": "Lyon",
     "country": "France",
-    "eventName": "Goa Semoule : Useless Therapy, ShØve, VHS, Jean-Paul Groove",
-    "eventDate": "7 Mar",
+    "eventName": "Otages",
+    "eventDate": "Du 17 au 23 mars 2024, dim et sam à ven à 20h, jeu à 19h30",
+    "eventStyle": "Classique",
     "isCancelled": false,
-    "errorLog": "Impossible de lire la page liée pour l'événement 'Goa Semoule : Useless Therapy, ShØve, VHS, Jean-Paul Groove'. Erreur lors du téléchargement ?",
-    "eventURL": "https://www.terminal-club.com/evenement/goa-semoule-useless-therapy-shove-vhs-jean-paul-groove/",
-    "eventDetailedStyle": "",
-    "eventStyle": "Electro",
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-308401-otages.html",
+    "eventDetailedStyle": "Classique & Lyrique / Opéra",
     "source": {
-      "name": "Terminal Club",
+      "name": "Le Petit Bulletin",
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1709852340000,
-    "eventTime": "jeudi 7 mars àà 23:59"
-  },
-  {
-    "eventPlace": "Terminal Club",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "Zanzi : Lejo, Recette Secrète, Stän, RAM:SEM",
-    "eventDate": "15 Mar",
-    "isCancelled": false,
-    "errorLog": "Impossible de lire la page liée pour l'événement 'Zanzi : Lejo, Recette Secrète, Stän, RAM:SEM'. Erreur lors du téléchargement ?",
-    "eventURL": "https://www.terminal-club.com/evenement/zanzi-lejo-recette-secrete-stan-ramsem/",
-    "eventDetailedStyle": "",
-    "eventStyle": "Electro",
-    "source": {
-      "name": "Terminal Club",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1710543540000,
-    "eventTime": "vendredi 15 mars àà 23:59"
-  },
-  {
-    "eventPlace": "Terminal Club",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "Unknown Records : Karla Böhm, Zgelt, Léon",
-    "eventDate": "16 Mar",
-    "isCancelled": false,
-    "errorLog": "Impossible de lire la page liée pour l'événement 'Unknown Records : Karla Böhm, Zgelt, Léon'. Erreur lors du téléchargement ?",
-    "eventURL": "https://www.terminal-club.com/evenement/unknown-records-karla-bohm-zgelt-leon/",
-    "eventDetailedStyle": "",
-    "eventStyle": "Electro",
-    "source": {
-      "name": "Terminal Club",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1710629940000,
-    "eventTime": "samedi 16 mars àà 23:59"
-  },
-  {
-    "eventPlace": "Terminal Club",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "Black Line Recordings : Dave Alyan, Locate, Carolo",
-    "eventDate": "21 Mar",
-    "isCancelled": false,
-    "errorLog": "Impossible de lire la page liée pour l'événement 'Black Line Recordings : Dave Alyan, Locate, Carolo'. Erreur lors du téléchargement ?",
-    "eventURL": "https://www.terminal-club.com/evenement/black-line-recordings-dave-alyan-locate-carolo/",
-    "eventDetailedStyle": "",
-    "eventStyle": "Electro",
-    "source": {
-      "name": "Terminal Club",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1711061940000,
-    "eventTime": "jeudi 21 mars àà 23:59"
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Du 17 au 23 mars 2024, dim et sam à ven à 20h, jeu à 19h30\", converti en \"17-23-03-2024-20:19:30\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
   }
 ]

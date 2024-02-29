@@ -12,11 +12,14 @@
             <div id="pageManager">
                 <div id="venueInfo"></div>
                 <button id="pageManagerButton" class="compact-button button">_</button>
-                <button id="downloadButton" class="niceButton button">Download Page</button>
-                <div id="lastScrapped" style ="display: inline;"></div>
-                <div id="missingLinks"></div>
-                <button id="missingLinksButton" class="niceButton button">Download missing links</button>
-                <div id="messageArea"></div>     
+                <div id="pageManagerDetailsPanel">            
+                    <button id="downloadButton" class="niceButton button venueInfoButton">Download Page</button>
+                    <div id="lastScrapped" style ="display: inline;"></div>
+                    <div id="missingLinksPanel" class = "verySmallBottomMargin">
+                        <button id="missingLinksButton" style ="display: inline;" class="niceButton button venueInfoButton">Get links</button>
+                       <div id="missingLinksText" style ="display: inline;"></div>
+                     </div>
+                </div>     
             </div>
             <div id="analyzePanel">
                 <div id="delimiterPanel" class="delimiterTag">

@@ -15,26 +15,12 @@ const timeZoneFile = rootDirectory+'/import/timeZone.json';
 // function to obtain the formatted time (hour:minutes) of the event
 function eventTime(date, timeZone){
   const languageZone = 'fr-FR';
- // const options = { timeZone: timeZone}; 
+  const timeString = date.toLocaleTimeString(languageZone, { hour: 'numeric', minute: 'numeric', timeZone: timeZone});
+  const day = date.toLocaleString('fr-FR', { day: 'numeric', timeZone: timeZone });
+  const weekDay = date.toLocaleString(languageZone, { weekday: 'long' , timeZone: timeZone});
+  const month = date.toLocaleString(languageZone, { month: 'long', timeZone: timeZone});
 
-//const dateString = date.toLocaleDateString(languageZone, options);
-const timeString = date.toLocaleTimeString(languageZone, { hour: 'numeric', minute: 'numeric', timeZone: timeZone});
-const day = date.toLocaleString('fr-FR', { day: 'numeric', timeZone: timeZone });
-const weekDay = date.toLocaleString(languageZone, { weekday: 'long' , timeZone: timeZone});
-const month = date.toLocaleString(languageZone, { month: 'long', timeZone: timeZone});
-
-const string = weekDay + " " + day+" "+month + " à " + timeString;
-  // const daysList = ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"];
-  // const weekDay = daysList[date.getDay()];
-  // var monthList = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
-  // var month = monthList[date.getMonth()];
-
-  // const day = to2digits(String(date.getDate()));
-  // //const month = to2digits(String(date.getMonth() + 1)); 
-
-  // const hour = to2digits(String(date.getHours()));
-  // const minutes = to2digits(String(date.getMinutes()));
-  // const string = weekDay+' '+day+' '+month+' à '+hour+':'+minutes;
+  const string = weekDay + " " + day+" "+month + " à " + timeString;
   return string;
 }
 

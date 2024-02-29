@@ -1,0 +1,210 @@
+Date: Jeudi 29 février 2024 à 19h
+Event: Rsko
+Place: La Rayonne
+city: Lyon
+country: France
+Style: Rap
+isCancelled: false
+DetailedStyle: Rap
+source: [object Object]
+unixDate: 1709229600000
+Time: jeudi 29 février à 19:00
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Rsko (La Rayonne). Found 19:00,20:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-308846-rsko.html
+
+Date: Jeudi 29 février 2024 à 20h
+Event: Gadget
+Place: Boulangerie du Prado
+city: Lyon
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Rock & Pop
+source: [object Object]
+unixDate: 1709233200000
+Time: jeudi 29 février à 20:00
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Gadget (Boulangerie du Prado). Found 20:00,20:30. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-309518-gadget.html
+
+Date: Date et horaires Vendredi 01 Mars 2024 à 19h30
+Event: New Model Army
+Place: Transbordeur
+city: Lyon
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Rock & Pop
+source: [object Object]
+unixDate: 1709317800000
+Time: vendredi 1 mars à 20:00
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for New Model Army (Transbordeur). Found 20:00,19:30. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-308619-new-model-army.html
+
+Date: Date et horaires Dimanche 03 Mars 2024 à 19h00
+Event: Blaze Bayley + Absolva
+Place: Rock N Eat
+city: Lyon
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Rock & Pop / Metal
+source: [object Object]
+unixDate: 1709488800000
+Time: dimanche 3 mars à 20:00
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Blaze Bayley + Absolva (Rock N Eat). Found 20:00,19:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-308797-blaze-bayley-absolva.html
+
+Date: Mardi 5 mars 2024 à 19h
+Event: Leprous
+Place: La Rayonne
+city: Lyon
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Rock & Pop / Metal
+source: [object Object]
+unixDate: 1709661600000
+Time: mardi 5 mars à 19:00
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Leprous (La Rayonne). Found 19:00,19:30. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-281688-leprous.html
+
+Date: Samedi 30 mars 2024 à 18h30
+Event: Yvnnis
+Place: Le Sucre
+city: Lyon
+country: France
+Style: Rap
+isCancelled: false
+DetailedStyle: Rap
+source: [object Object]
+unixDate: 1711819800000
+Time: samedi 30 mars à 18:30
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Yvnnis (Le Sucre). Found 18:30,20:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-308837-yvnnis.html
+
+Date: Vendredi 19 avril 2024 à 19h
+Event: Seth + Kronos
+Place: Rock N Eat
+city: Lyon
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Rock & Pop / Metal
+source: [object Object]
+unixDate: 1713546000000
+Time: vendredi 19 avril à 19:00
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Seth + Kronos (Rock N Eat). Found 19:00,00:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-308803-seth-kronos.html
+
+Date: Mardi 14 mai 2024 à 20h30
+Event: Nubiyan Twist
+Place: Epicerie Moderne
+city: Lyon
+country: France
+Style: Jazz
+isCancelled: false
+DetailedStyle: Jazz
+source: [object Object]
+unixDate: 1715711400000
+Time: mardi 14 mai à 20:30
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Nubiyan Twist (Epicerie Moderne). Found 20:30,00:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-308870-nubiyan-twist.html
+
+Date: Jeudi 7 mars 2024 à 20h30
+Event: Grandbrothers
+Place: Epicerie Moderne
+city: Lyon
+country: France
+Style: Electro
+isCancelled: false
+DetailedStyle: Musiques Electroniques
+source: [object Object]
+unixDate: 1709839800000
+Time: jeudi 7 mars à 20:30
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Grandbrothers (Epicerie Moderne). Found 20:30,00:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-281469-grandbrothers.html
+
+Date: Vendredi 8 mars 2024 à 18h30
+Event: Slimka
+Place: Le Sucre
+city: Lyon
+country: France
+Style: Rap
+isCancelled: false
+DetailedStyle: Rap
+source: [object Object]
+unixDate: 1709919000000
+Time: vendredi 8 mars à 18:30
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Slimka (Le Sucre). Found 18:30,20:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-308706-slimka.html
+
+Date: Date et horaires Mercredi 20 Mars 2024 à 20h00
+Event: Oriane Lacaille + Noémie Brigant
+Place: À Thou Bout d'Chant
+city: Lyon
+country: France
+Style: World
+isCancelled: false
+DetailedStyle: Sono Mondiale
+source: [object Object]
+unixDate: 1710961200000
+Time: mercredi 20 mars à 20:30
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Oriane Lacaille + Noémie Brigant (À Thou Bout d'Chant). Found 20:30,20:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-309592-oriane-lacaille-noemie-brigant.html
+
+Date: Date et horaires Jeudi 21 Mars 2024 à 19h30
+Event: Clara Ysé + Barkanan
+Place: Epicerie Moderne
+city: Lyon
+country: France
+Style: Chanson
+isCancelled: false
+DetailedStyle: Chanson
+source: [object Object]
+unixDate: 1711045800000
+Time: jeudi 21 mars à 20:30
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Clara Ysé + Barkanan (Epicerie Moderne). Found 20:30,19:30. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-308722-clara-yse-barkanan.html
+
+Date: Vendredi 22 mars 2024 à 20h30
+Event: Malo + Jeune Mort + Matox
+Place: Bizarre!
+city: Lyon
+country: France
+Style: Rap
+isCancelled: false
+DetailedStyle: Rap
+source: [object Object]
+unixDate: 1711135800000
+Time: vendredi 22 mars à 20:30
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Malo + Jeune Mort + Matox (Bizarre!). Found 20:30,20:35. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-308204-malo-jeune-mort-matox.html
+
+Date: Jeudi 28 mars 2024 à 20h30
+Event: Wajdi Riahi Trio
+Place: Hot Club
+city: Lyon
+country: France
+Style: Jazz
+isCancelled: false
+DetailedStyle: Jazz
+source: [object Object]
+unixDate: 1711654200000
+Time: jeudi 28 mars à 20:30
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Wajdi Riahi Trio (Hot Club). Found 20:30,00:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-308760-wajdi-riahi-trio.html
+
