@@ -20,7 +20,7 @@ const outFile = "generated/scrapexResult.csv";
 const globalDefaultStyle = '';
 const styleConversion = getStyleConversions();
 const cancellationKeywords = loadCancellationKeywords();
-const showFullMergeLog = false;
+const showFullMergeLog = true;
 
 
 const dateConversionPatterns = getDateConversionPatterns();
@@ -243,7 +243,7 @@ const modificationDate = getModificationDate(venueSourcePath);
                 formatedEventDate = changeMidnightHour(formatedEventDate,venue.midnightHour,el);
               }
               el.unixDate = formatedEventDate.getTime();
-              el.eventTime = eventTime(formatedEventDate);
+              el.eventTime = eventTime(formatedEventDate,timeZone);
               console.log(showDate(formatedEventDate));
             }
 

@@ -11,111 +11,100 @@ errorLog: Format de date invalide pour Terminal Club. Reçu "", converti en "" (
 unixDate: 0
 https://www.terminal-club.com/evenement-multiple/mois/?shortcode=b6439857
 
-Date: Du 22 au 24 mai 2024, à 20h30
-Event: Alexis HK + Benoît Doremus
-Place: À Thou Bout d'Chant
-city: Lyon
-country: France
-Style: Chanson
-isCancelled: false
-DetailedStyle: Chanson
-source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Du 22 au 24 mai 2024, à 20h30", converti en "22-24-05-2024-20:30" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-309715-alexis-hk-benoit-doremus.html
-
-Date: Du 24 au 26 mai 2024, ven à 19h30, dim à 16h
-Event: Così fan tutte
-Place: Auditorium de Lyon
-city: Lyon
-country: France
-Style: Classique
-isCancelled: false
-DetailedStyle: Classique & Lyrique
-source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Du 24 au 26 mai 2024, ven à 19h30, dim à 16h", converti en "24-26-05-2024-19:30" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-309454-cosi-fan-tutte.html
-
-Date: Du 17 au 23 mars 2024, dim et sam à 16h, lun, mar 
-Event: Otages
-Place: Théâtre de la Croix-Rousse
-city: Lyon
-country: France
-Style: Classique
-isCancelled: false
-DetailedStyle: Classique & Lyrique / Opéra
-source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Du 17 au 23 mars 2024, dim et sam à 16h, lun, mar ", converti en "17-23-03-2024-16:03" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-308401-otages.html
-
-Date: Du 17 au 23 mars 2024, dim et sam à ven à 20h, jeu à 19h30
-Event: Otages
-Place: Théâtre de la Croix-Rousse
-city: Lyon
-country: France
-Style: Classique
-isCancelled: false
-DetailedStyle: Classique & Lyrique / Opéra
-source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Du 17 au 23 mars 2024, dim et sam à ven à 20h, jeu à 19h30", converti en "17-23-03-2024-20:19:30" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-308401-otages.html
-
 Date: 
-Event: MELANIE DE BIASIO
-Place: Radiant-Bellevue
-city: Lyon
-country: France
-isCancelled: true
-DetailedStyle: 
-Style: 
-source: [object Object]
-errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-altURLs: https://www.infoconcert.com/ticket/concert-melanie-de-biasio-caluire-et-cuire/1562535.html,http://radiant-bellevue.fr/
-http://radiant-bellevue.fr/
-
-Date: 
-Event: YODELICE
-Place: Radiant-Bellevue
+Event: Bon.Soir : Suerte, Gru, f.sonore, GMNZ
+Place: Terminal Club
 city: Lyon
 country: France
 isCancelled: false
+errorLog: Impossible de lire la page liée pour l'événement 'Bon.Soir : Suerte, Gru, f.sonore, GMNZ'. Erreur lors du téléchargement ? | Format de date invalide pour Terminal Club. Reçu "", converti en "" (attendu "dd-MM-yy")
 DetailedStyle: 
-Style: 
+Style: Electro
 source: [object Object]
-errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
 unixDate: 0
-altURLs: https://www.infoconcert.com/ticket/concert-yodelice-caluire-et-cuire/1555669.html,http://radiant-bellevue.fr/
-http://radiant-bellevue.fr/
+https://www.terminal-club.com/evenement/bon-soir-suerte-gru-f-sonore-gmnz/
 
-Date: 
-Event: BATARD SENSIBLE
-Place: Radiant-Bellevue
+Date: 1 Mar
+Event: Tjalk Records : Barasco, DJ RC %, NZM 99
+Place: Terminal Club
 city: Lyon
 country: France
 isCancelled: false
+errorLog: Impossible de lire la page liée pour l'événement 'Tjalk Records : Barasco, DJ RC %, NZM 99'. Erreur lors du téléchargement ?
 DetailedStyle: 
-Style: 
+Style: Electro
 source: [object Object]
-errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-altURLs: https://www.infoconcert.com/ticket/concert-alexandre-kominek-caluire-et-cuire/1602071.html,http://radiant-bellevue.fr/
-http://radiant-bellevue.fr/
+unixDate: 1709333940000
+Time: vendredi 1 mars à 23:59
+https://www.terminal-club.com/evenement/tjalk-records-barasco-dj-rc-nzm-99/
 
-Date: 
-Event: BERENGERE KRIEF
-Place: Radiant-Bellevue
+Date: 2 Mar
+Event: Hard Fist : Günce Aci, Tushen Raï, Neskeh
+Place: Terminal Club
 city: Lyon
 country: France
 isCancelled: false
+errorLog: Impossible de lire la page liée pour l'événement 'Hard Fist : Günce Aci, Tushen Raï, Neskeh'. Erreur lors du téléchargement ?
 DetailedStyle: 
-Style: 
+Style: Electro
 source: [object Object]
-errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-altURLs: https://www.infoconcert.com/ticket/concert-berengere-krief-caluire-et-cuire/1617849.html,http://radiant-bellevue.fr/
-http://radiant-bellevue.fr/
+unixDate: 1709420340000
+Time: samedi 2 mars à 23:59
+https://www.terminal-club.com/evenement/hard-fist-gunce-aci-tushen-rai-neskeh/
+
+Date: 7 Mar
+Event: Goa Semoule : Useless Therapy, ShØve, VHS, Jean-Paul Groove
+Place: Terminal Club
+city: Lyon
+country: France
+isCancelled: false
+errorLog: Impossible de lire la page liée pour l'événement 'Goa Semoule : Useless Therapy, ShØve, VHS, Jean-Paul Groove'. Erreur lors du téléchargement ?
+DetailedStyle: 
+Style: Electro
+source: [object Object]
+unixDate: 1709852340000
+Time: jeudi 7 mars à 23:59
+https://www.terminal-club.com/evenement/goa-semoule-useless-therapy-shove-vhs-jean-paul-groove/
+
+Date: 15 Mar
+Event: Zanzi : Lejo, Recette Secrète, Stän, RAM:SEM
+Place: Terminal Club
+city: Lyon
+country: France
+isCancelled: false
+errorLog: Impossible de lire la page liée pour l'événement 'Zanzi : Lejo, Recette Secrète, Stän, RAM:SEM'. Erreur lors du téléchargement ?
+DetailedStyle: 
+Style: Electro
+source: [object Object]
+unixDate: 1710543540000
+Time: vendredi 15 mars à 23:59
+https://www.terminal-club.com/evenement/zanzi-lejo-recette-secrete-stan-ramsem/
+
+Date: 16 Mar
+Event: Unknown Records : Karla Böhm, Zgelt, Léon
+Place: Terminal Club
+city: Lyon
+country: France
+isCancelled: false
+errorLog: Impossible de lire la page liée pour l'événement 'Unknown Records : Karla Böhm, Zgelt, Léon'. Erreur lors du téléchargement ?
+DetailedStyle: 
+Style: Electro
+source: [object Object]
+unixDate: 1710629940000
+Time: samedi 16 mars à 23:59
+https://www.terminal-club.com/evenement/unknown-records-karla-bohm-zgelt-leon/
+
+Date: 21 Mar
+Event: Black Line Recordings : Dave Alyan, Locate, Carolo
+Place: Terminal Club
+city: Lyon
+country: France
+isCancelled: false
+errorLog: Impossible de lire la page liée pour l'événement 'Black Line Recordings : Dave Alyan, Locate, Carolo'. Erreur lors du téléchargement ?
+DetailedStyle: 
+Style: Electro
+source: [object Object]
+unixDate: 1711061940000
+Time: jeudi 21 mars à 23:59
+https://www.terminal-club.com/evenement/black-line-recordings-dave-alyan-locate-carolo/
 
