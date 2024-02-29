@@ -580,5 +580,14 @@
       "Groupama Stadium Lyon"
     ],
     "ID": "Groupama Stadium|Lyon|France"
+  },
+  {
+    "name": "Auditorium de Lyon",
+    "country": "France",
+    "city": "Lyon",
+    "aliases": [
+      "Auditorium - Orchestre National De Lyon"
+    ],
+    "ID": "Auditorium de Lyon|Lyon|France"
   }
 ]

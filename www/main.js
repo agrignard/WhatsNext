@@ -17,7 +17,6 @@ if (showAllValueDiv){
 }
 
 const map = mapUtils.initializeMap();
-
 var currentDate = new Date(Date.now());
 currentDate.setHours(2,0,0);
 var appDate;
@@ -31,7 +30,6 @@ d3.json('./lyon_event.geojson',jsonCallback);
     //respect to prefers-reduced-motion
     }); 
 });
- 
 function jsonCallback(err, data) {
     if (err) {
     throw err;
@@ -74,7 +72,11 @@ function jsonCallback(err, data) {
 
     ///HANDLE SLIDER
     document.getElementById('slider').addEventListener('input', async (e) => {
+
     const sliderValue = parseInt(e.target.value, 10);
+    console.log("CA move du sldier");
+    console.log("slider value" + sliderValue);
+    console.log("currentDate" + currentDate);
     const tmpDate= new Date(currentDate);
     const newDateAsInt = tmpDate.setDate(tmpDate.getDate() + sliderValue).valueOf();
     appDate=newDateAsInt;
@@ -90,6 +92,7 @@ function jsonCallback(err, data) {
     }
     mapUtils.filterBy(map,currentDate.valueOf(),false)
     });
+    processMapBasedOnUrl(); 
 }
 
 dataUtils.initPlaceInformation();
@@ -227,3 +230,28 @@ function drawCircles() {
 // Initial drawing of circles
 drawCircles();
 }
+
+
+// Function to get the value of a query parameter from the URL
+function getQueryParam(parameter) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(parameter);
+}
+
+// Function to show content based on the URL parameter
+function processMapBasedOnUrl() {
+    const day = getQueryParam('day');
+    // Check the value of the 'type' parameter and take appropriate actions
+    if (day!=null) {
+        document.getElementById('slider').value = day;
+        const tmpDate= new Date(currentDate);
+        const newDateAsInt = tmpDate.setDate(tmpDate.getDate() + parseInt(day)).valueOf();
+        appDate=newDateAsInt;
+        mapUtils.filterBy(map,newDateAsInt,false);
+    }else {
+        // Default behavior or handle unknown types
+        console.log('Unknown or no day specified');
+    }
+}
+
+

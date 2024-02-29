@@ -6,6 +6,7 @@
         "World": ["Sono Mondiale"],    
         "Classique":["Classique","lyrique","opera"],
         "Jazz":["jazz","groove"],
+        "Live":["musique live"],
         "": ["Unknwown"]
     }
 }

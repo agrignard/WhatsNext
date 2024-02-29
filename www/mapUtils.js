@@ -241,10 +241,10 @@ export function addShareWidget(map){
 
         // Add event listener for copying the current URL
         this.container.addEventListener('click', () => {
-            const currentURL = window.location.href;
+            const currentURL = window.location.origin+"/?day="+parseInt(document.getElementById('slider').value,10);
             navigator.clipboard.writeText(currentURL)
             .then(() => {
-                alert('URL copied to clipboard!');
+                alert('URL copied to clipboard!' + currentURL);
             })
             .catch((error) => {
                 console.error('Unable to copy URL', error);

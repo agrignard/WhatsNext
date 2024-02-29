@@ -1,74 +1,4 @@
-Date: Vendredi 16 février 2024 à 19h
-Event: La Colonie de Vacances
-Place: La Rayonne
-city: Lyon
-country: France
-Style: Rock
-isCancelled: false
-DetailedStyle: Rock & Pop / Rock
-source: [object Object]
-unixDate: 1708106400000
-mergeCandidates: [object Object],[object Object]
-warningLog: Inconsistent times for La Colonie de Vacances (La Rayonne). Found 19:00,20:00. Consider merging or discarding.
-https://www.petit-bulletin.fr/lyon/agenda-286577-la-colonie-de-vacances.html
-
-Date: 17 février à 20:30
-Event: Chicken Diamond + Madfield
-Place: Le Trokson
-city: Lyon
-country: France
-Style: Rock
-isCancelled: false
-DetailedStyle: Rock & Pop / Punk Rock
-source: [object Object]
-unixDate: 1708198200000
-mergeCandidates: [object Object],[object Object]
-warningLog: Inconsistent times for Chicken Diamond + Madfield (Le Trokson). Found 20:45,20:30. Consider merging or discarding.
-https://www.petit-bulletin.fr/lyon/agenda-309252-chicken-diamond-madfield.html
-
-Date: 18 février à 18:30
-Event: Persefone + Hypno5e + Stellar Circuits + Lampr3a
-Place: Rock N Eat
-city: Lyon
-country: France
-Style: Rock
-isCancelled: false
-DetailedStyle: Rock & Pop / Metal
-source: [object Object]
-unixDate: 1708277400000
-mergeCandidates: [object Object],[object Object]
-warningLog: Inconsistent times for Persefone + Hypno5e + Stellar Circuits + Lampr3a (Rock N Eat). Found 19:00,18:30. Consider merging or discarding.
-https://www.petit-bulletin.fr/lyon/agenda-308793-persefone-hypno5e.html
-
-Date: 24 février à 20:00
-Event: Nick Wheeldon + Romano Bianchi + Wendy Martinez
-Place: Le Périscope
-city: Lyon
-country: France
-Style: Rock
-isCancelled: false
-DetailedStyle: musique live
-source: [object Object]
-unixDate: 1708801200000
-mergeCandidates: [object Object],[object Object]
-warningLog: Inconsistent times for Nick Wheeldon + Romano Bianchi + Wendy Martinez (Le Périscope). Found 21:00,20:00. Consider merging or discarding.
-https://www.petit-bulletin.fr/lyon/agenda-308604-nick-wheeldon-romano-bianchi-wendy-martinez.html
-
-Date: 27 février à 20:30
-Event: Delacave + Averse
-Place: Le Trokson
-city: Lyon
-country: France
-Style: Electro
-isCancelled: false
-DetailedStyle: Musiques Electroniques
-source: [object Object]
-unixDate: 1709062200000
-mergeCandidates: [object Object],[object Object]
-warningLog: Inconsistent times for Delacave + Averse (Le Trokson). Found 20:45,20:30. Consider merging or discarding.
-https://www.petit-bulletin.fr/lyon/agenda-309256-delacave-averse.html
-
-Date: Jeudi 29 février 2024 à 19h
+Date: 29 février à 20:00
 Event: Rsko
 Place: La Rayonne
 city: Lyon
@@ -77,10 +7,86 @@ Style: Rap
 isCancelled: false
 DetailedStyle: musique live
 source: [object Object]
-unixDate: 1709229600000
-mergeCandidates: [object Object],[object Object]
-warningLog: Inconsistent times for Rsko (La Rayonne). Found 19:00,20:00. Consider merging or discarding.
+unixDate: 1709233200000
+Time: 01:00
+mergeCandidates: [object Object],[object Object],[object Object]
+warningLog: Inconsistent times for Rsko (La Rayonne). Found 01:00,02:00. Consider merging or discarding.
 https://www.petit-bulletin.fr/lyon/agenda-308846-rsko.html
+
+Date: Jeudi 29 février 2024 à 20h
+Event: Gadget
+Place: Boulangerie du Prado
+city: Lyon
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Rock & Pop
+source: [object Object]
+unixDate: 1709233200000
+Time: 02:00
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Gadget (Boulangerie du Prado). Found 02:00,02:30. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-309518-gadget.html
+
+Date: Date et horaires Vendredi 01 Mars 2024 à 19h30
+Event: New Model Army
+Place: Transbordeur
+city: Lyon
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Rock & Pop
+source: [object Object]
+unixDate: 1709317800000
+Time: 02:00
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for New Model Army (Transbordeur). Found 02:00,01:30. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-308619-new-model-army.html
+
+Date: Date et horaires Dimanche 03 Mars 2024 à 19h00
+Event: Blaze Bayley + Absolva
+Place: Rock N Eat
+city: Lyon
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Rock & Pop / Metal
+source: [object Object]
+unixDate: 1709488800000
+Time: 02:00
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Blaze Bayley + Absolva (Rock N Eat). Found 02:00,01:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-308797-blaze-bayley-absolva.html
+
+Date: Mardi 5 mars 2024 à 19h
+Event: Leprous
+Place: La Rayonne
+city: Lyon
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Rock & Pop / Metal
+source: [object Object]
+unixDate: 1709661600000
+Time: 01:00
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Leprous (La Rayonne). Found 01:00,01:30. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-281688-leprous.html
+
+Date: Samedi 30 mars 2024 à 18h30
+Event: Yvnnis
+Place: Le Sucre
+city: Lyon
+country: France
+Style: Rap
+isCancelled: false
+DetailedStyle: Rap
+source: [object Object]
+unixDate: 1711819800000
+Time: 00:30
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Yvnnis (Le Sucre). Found 00:30,02:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-308837-yvnnis.html
 
 Date: Mercredi 6 mars 2024 à 19h30
 Event: Cosmic Trip Tour - Magnetic Spacemen + Weird Omen + Beach Moonsters + DJ Gilbert Nasal
@@ -92,7 +98,188 @@ isCancelled: false
 DetailedStyle: Rock & Pop
 source: [object Object]
 unixDate: 1709749800000
+Time: 01:30
 mergeCandidates: [object Object],[object Object]
-warningLog: Inconsistent times for Cosmic Trip Tour - Magnetic Spacemen + Weird Omen + Beach Moonsters + DJ Gilbert Nasal (Groom). Found 19:30,20:00. Consider merging or discarding.
+warningLog: Inconsistent times for Cosmic Trip Tour - Magnetic Spacemen + Weird Omen + Beach Moonsters + DJ Gilbert Nasal (Groom). Found 01:30,02:00. Consider merging or discarding.
 https://www.petit-bulletin.fr/lyon/agenda-309548-cosmic-trip-tour-magnetic-spacemen-weird-omen-beach-moonsters-dj-gilbert-nasal.html
+
+Date: Vendredi 8 mars 2024 à 18h30
+Event: Slimka
+Place: Le Sucre
+city: Lyon
+country: France
+Style: Rap
+isCancelled: false
+DetailedStyle: Rap
+source: [object Object]
+unixDate: 1709919000000
+Time: 00:30
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Slimka (Le Sucre). Found 00:30,02:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-308706-slimka.html
+
+Date: Vendredi 15 mars 2024 à 19h
+Event: NUSKY & VAATI + Yaåster + Willem TurnUp
+Place: Jack Jack
+city: Lyon
+country: France
+Style: Rap
+isCancelled: false
+DetailedStyle: musique live
+source: [object Object]
+unixDate: 1710525600000
+Time: 01:00
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for NUSKY & VAATI + Yaåster + Willem TurnUp (Jack Jack). Found 01:00,02:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-308986-nusky-vaati-yaaster-willem-turnup.html
+
+Date: Samedi 16 mars 2024 à 19h
+Event: Michèle Bernard + Jean-Baptiste Veujoz
+Place: Jack Jack
+city: Lyon
+country: France
+Style: Chanson
+isCancelled: false
+DetailedStyle: musique live
+source: [object Object]
+unixDate: 1710612000000
+Time: 01:00
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Michèle Bernard + Jean-Baptiste Veujoz (Jack Jack). Found 01:00,02:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-309590-michele-bernard-jean-baptiste-veujoz.html
+
+Date: Date et horaires Mercredi 20 Mars 2024 à 20h00
+Event: Oriane Lacaille + Noémie Brigant
+Place: À Thou Bout d'Chant
+city: Lyon
+country: France
+Style: World
+isCancelled: false
+DetailedStyle: Sono Mondiale
+source: [object Object]
+unixDate: 1710961200000
+Time: 02:30
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Oriane Lacaille + Noémie Brigant (À Thou Bout d'Chant). Found 02:30,02:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-309592-oriane-lacaille-noemie-brigant.html
+
+Date: Mercredi 20 mars 2024 à 20h30
+Event: Grand Eugène + Danilo
+Place: La Marquise
+city: Lyon
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: musique live
+source: [object Object]
+unixDate: 1710963000000
+Time: 02:30
+mergeCandidates: [object Object],[object Object],[object Object]
+warningLog: Inconsistent times for Grand Eugène + Danilo (La Marquise). Found 02:30,02:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-309593-grand-eugene-danilo.html
+
+Date: Mercredi 20 mars 2024 à 20h45
+Event: Control Voltage
+Place: Le Trokson
+city: Lyon
+country: France
+Style: Electro
+isCancelled: false
+DetailedStyle: Musiques Electroniques / Expérimental
+source: [object Object]
+unixDate: 1710963900000
+Time: 02:45
+mergeCandidates: [object Object],[object Object],[object Object]
+warningLog: Inconsistent times for Control Voltage (Le Trokson). Found 02:45,03:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-306365-control-voltage.html
+
+Date: Date et horaires Jeudi 21 Mars 2024 à 19h30
+Event: Clara Ysé + Barkanan
+Place: Epicerie Moderne
+city: Lyon
+country: France
+Style: Chanson
+isCancelled: false
+DetailedStyle: Chanson
+source: [object Object]
+unixDate: 1711045800000
+Time: 02:30
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Clara Ysé + Barkanan (Epicerie Moderne). Found 02:30,01:30. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-308722-clara-yse-barkanan.html
+
+Date: Vendredi 22 mars 2024 à 20h30
+Event: Malo + Jeune Mort + Matox
+Place: Bizarre!
+city: Lyon
+country: France
+Style: Rap
+isCancelled: false
+DetailedStyle: Rap
+source: [object Object]
+unixDate: 1711135800000
+Time: 02:30
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Malo + Jeune Mort + Matox (Bizarre!). Found 02:30,02:35. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-308204-malo-jeune-mort-matox.html
+
+Date: Date et horaires Samedi 23 Mars 2024 à 19h30
+Event: Social Dance + Clay and Friends + Solann + Cyrious + Melba
+Place: Transbordeur
+city: Lyon
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Rock & Pop
+source: [object Object]
+unixDate: 1711218600000
+Time: 02:00
+mergeCandidates: [object Object],[object Object],[object Object]
+warningLog: Inconsistent times for Social Dance + Clay and Friends + Solann + Cyrious + Melba (Transbordeur). Found 02:00,01:30. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-308624-social-dance-clay-and-friends-solann-cyrious-melba.html
+
+Date: Mardi 26 mars 2024 à 20h45
+Event: Deep Merries + CIVS
+Place: Le Trokson
+city: Lyon
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Rock & Pop / Punk Rock
+source: [object Object]
+unixDate: 1711482300000
+Time: 02:45
+mergeCandidates: [object Object],[object Object],[object Object]
+warningLog: Inconsistent times for Deep Merries + CIVS (Le Trokson). Found 02:45,03:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-309808-deep-merries-civs.html
+
+Date: Mercredi 27 mars 2024 à 20h45
+Event: Gurs + Comité Défaite
+Place: Le Trokson
+city: Lyon
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Rock & Pop / Punk Rock
+source: [object Object]
+unixDate: 1711568700000
+Time: 02:45
+mergeCandidates: [object Object],[object Object],[object Object]
+warningLog: Inconsistent times for Gurs + Comité Défaite (Le Trokson). Found 02:45,03:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-309809-gurs-comite-defaite.html
+
+Date: Date et horaires Vendredi 22 Mars 2024 à 19h00
+Event: Bandit Bandit + Caïman + Hôtel Particulier
+Place: MJC Ô Totem
+city: Lyon
+country: France
+isCancelled: false
+Style: Live
+DetailedStyle: musique live
+source: [object Object]
+unixDate: 1711130400000
+Time: 02:30
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Bandit Bandit + Caïman + Hôtel Particulier (MJC Ô Totem). Found 02:30,01:00. Consider merging or discarding.
+https://villemorte.fr/agenda/bandit-bandit-caiman-hotel-particulier/
 
