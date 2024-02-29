@@ -1,0 +1,707 @@
+:
+Date: 
+Event: 
+Place: Terminal Club
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Electro
+source: [object Object]
+errorLog: Format de date invalide pour Terminal Club. Reçu "", converti en "" (attendu "dd-MM-yy")
+unixDate: 0
+https://www.terminal-club.com/evenement-multiple/mois/?shortcode=b6439857
+
+Date: Du 22 au 24 mai 2024, à 20h30
+Event: Alexis HK + Benoît Doremus
+Place: À Thou Bout d'Chant
+city: Lyon
+country: France
+Style: Chanson
+isCancelled: false
+DetailedStyle: Chanson
+source: [object Object]
+errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Du 22 au 24 mai 2024, à 20h30", converti en "22-24-05-2024-20:30" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.petit-bulletin.fr/lyon/agenda-309715-alexis-hk-benoit-doremus.html
+
+Date: Du 24 au 26 mai 2024, ven à 19h30, dim à 16h
+Event: Così fan tutte
+Place: Auditorium de Lyon
+city: Lyon
+country: France
+Style: Classique
+isCancelled: false
+DetailedStyle: Classique & Lyrique
+source: [object Object]
+errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Du 24 au 26 mai 2024, ven à 19h30, dim à 16h", converti en "24-26-05-2024-19:30" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.petit-bulletin.fr/lyon/agenda-309454-cosi-fan-tutte.html
+
+Date: Du 17 au 23 mars 2024, dim et sam à 16h, lun, mar 
+Event: Otages
+Place: Théâtre de la Croix-Rousse
+city: Lyon
+country: France
+Style: Classique
+isCancelled: false
+DetailedStyle: Classique & Lyrique / Opéra
+source: [object Object]
+errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Du 17 au 23 mars 2024, dim et sam à 16h, lun, mar ", converti en "17-23-03-2024-16:03" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.petit-bulletin.fr/lyon/agenda-308401-otages.html
+
+Date: Du 17 au 23 mars 2024, dim et sam à ven à 20h, jeu à 19h30
+Event: Otages
+Place: Théâtre de la Croix-Rousse
+city: Lyon
+country: France
+Style: Classique
+isCancelled: false
+DetailedStyle: Classique & Lyrique / Opéra
+source: [object Object]
+errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Du 17 au 23 mars 2024, dim et sam à ven à 20h, jeu à 19h30", converti en "17-23-03-2024-20:19:30" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.petit-bulletin.fr/lyon/agenda-308401-otages.html
+
+Date: 
+Event: EN ROUE LIBRE
+Place: Theatre A L'ouest
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-kallagan-lyon/1554623.html
+
+Date: 
+Event: JUDAS PRIEST
+Place: Halle Tony Garnier
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-judas-priest-lyon/1559215.html
+
+Date: 
+Event: MELANIE DE BIASIO
+Place: Radiant-Bellevue
+city: Lyon
+country: France
+isCancelled: true
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+altURLs: https://www.infoconcert.com/ticket/concert-melanie-de-biasio-caluire-et-cuire/1562535.html,http://radiant-bellevue.fr/
+http://radiant-bellevue.fr/
+
+Date: 
+Event: IRISH CELTIC
+Place: Bourse du Travail
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-irish-celtic-lyon/1565911.html
+
+Date: 
+Event: CABARET FLAMENCO
+Place: Salle Planete Culture
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-cabaret-flamenco-lyon/1636431.html
+
+Date: 
+Event: SLIMANE
+Place: LDLC Arena
+city: Lyon
+country: France
+isCancelled: true
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-slimane-decines/1490771.html
+
+Date: 
+Event: MURMURATION - SADECK BERRABAH
+Place: Halle Tony Garnier
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-murmuration---sadeck-berrabah-lyon/1559295.html
+
+Date: 
+Event: PABLO ANDRES
+Place: Cafe Theatre Le Complexe
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-pablo-andres-lyon/1654785.html
+
+Date: 
+Event: PABLO ANDRES
+Place: Cafe Theatre Le Complexe
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-pablo-andres-lyon/1654787.html
+
+Date: 
+Event: HOLIDAY ON ICE AVEC AURORE
+Place: Halle Tony Garnier
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-holiday-on-ice-avec-aurore-lyon/1530607.html
+
+Date: 
+Event: AZ
+Place: Le Rideau Rouge
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-az-lyon/1639521.html
+
+Date: 
+Event: HUGO BARRIOL
+Place: La Marquise
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-hugo-barriol-lyon/1648915.html
+
+Date: 
+Event: DUO MAGIC SPANISH GUITARE VIOLON
+Place: Salle Planete Culture
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-duo-magic-spanish-guitare-violon-lyon/1637081.html
+
+Date: 
+Event: THE PINEAPPLE THIEF
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-the-pineapple-thief-villeurbanne/1617271.html
+
+Date: 
+Event: SALUT L'ORAGE
+Place: Marché Gare
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-salut-lorage-lyon/1626661.html
+
+Date: 
+Event: KERRI CHANDLER
+Place: La Sucriere
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-kerri-chandler-dj-lea-lisa-cody-currie-lyon/1637897.html
+
+Date: 
+Event: DIANE SEGARD
+Place: Theatre A L'ouest
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-diane-segard-lyon/1519913.html
+
+Date: 
+Event: YODELICE
+Place: Radiant-Bellevue
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+altURLs: https://www.infoconcert.com/ticket/concert-yodelice-caluire-et-cuire/1555669.html,http://radiant-bellevue.fr/
+http://radiant-bellevue.fr/
+
+Date: 
+Event: DEMOB HAPPY
+Place: Le Périscope
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Jazz
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-demob-happy-lyon/1651301.html
+
+Date: 
+Event: NATASHA ST PIER
+Place: Eglise Saint Bonaventure
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-natasha-st-pier-lyon/1647831.html
+
+Date: 
+Event: ONE MORE TIME - HOMMAGE ELECTRO-SYMPHONIQUE A DAFT PUNK
+Place: Salle 3000
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-one-more-time---hommage-electro-symphonique-a-daft-punk-lyon/1637857.html
+
+Date: 
+Event: DUO MAGIC SPANISH GUITARE VIOLON
+Place: Salle Planete Culture
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-duo-magic-spanish-guitare-violon-lyon/1637283.html
+
+Date: 
+Event: CABARET FLAMENCO
+Place: Salle Planete Culture
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-cabaret-flamenco-lyon/1636473.html
+
+Date: 
+Event: LES COWBOYS FRINGANTS
+Place: Halle Tony Garnier
+city: Lyon
+country: France
+isCancelled: true
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-les-cowboys-fringants-lyon/1619015.html
+
+Date: 
+Event: LOU VOLT
+Place: Theatre A L'ouest
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-lou-volt-eric-toulis-lyon/1637001.html
+
+Date: 
+Event: COLDPLAY
+Place: Groupama Stadium
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-coldplay-decines/1584451.html
+
+Date: 
+Event: CABARET FLAMENCO
+Place: Salle Planete Culture
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-cabaret-flamenco-lyon/1636483.html
+
+Date: 
+Event: DUO MAGIC SPANISH GUITARE VIOLON
+Place: Salle Planete Culture
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-duo-magic-spanish-guitare-violon-lyon/1637303.html
+
+Date: 
+Event: DUO MAGIC SPANISH GUITARE VIOLON
+Place: Salle Planete Culture
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-duo-magic-spanish-guitare-violon-lyon/1637307.html
+
+Date: 
+Event: DUO MAGIC SPANISH GUITARE VIOLON
+Place: Salle Planete Culture
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-duo-magic-spanish-guitare-violon-lyon/1637313.html
+
+Date: 
+Event: DELPHINE DELEPAUT
+Place: Espace Gerson
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Theatre
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-delphine-delepaut-lyon/1623169.html
+
+Date: 
+Event: ORCHESTRE DES PAYS DE SAVOIE
+Place: Theatre Theo Argence
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-orchestre-des-pays-de-savoie-saint-priest/1601303.html
+
+Date: 
+Event: DUO MAGIC SPANISH GUITARE VIOLON
+Place: Salle Planete Culture
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-duo-magic-spanish-guitare-violon-lyon/1637347.html
+
+Date: 
+Event: DUO MAGIC SPANISH GUITARE VIOLON
+Place: Salle Planete Culture
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-duo-magic-spanish-guitare-violon-lyon/1637349.html
+
+Date: 
+Event: CABARET FLAMENCO
+Place: Salle Planete Culture
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-cabaret-flamenco-lyon/1636521.html
+
+Date: 
+Event: DUO MAGIC SPANISH GUITARE VIOLON
+Place: Salle Planete Culture
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-duo-magic-spanish-guitare-violon-lyon/1637353.html
+
+Date: 
+Event: CABARET FLAMENCO
+Place: Salle Planete Culture
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-cabaret-flamenco-lyon/1636537.html
+
+Date: 
+Event: FRANJO
+Place: Bourse du Travail
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-franjo-lyon/1611943.html
+
+Date: 
+Event: OLDELAF
+Place: Bourse du Travail
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-oldelaf-lyon/1575327.html
+
+Date: 
+Event: SCH
+Place: LDLC Arena
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-sch-decines/1627375.html
+
+Date: 
+Event: BATARD SENSIBLE
+Place: Radiant-Bellevue
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+altURLs: https://www.infoconcert.com/ticket/concert-alexandre-kominek-caluire-et-cuire/1602071.html,http://radiant-bellevue.fr/
+http://radiant-bellevue.fr/
+
+Date: 
+Event: LES DARONS
+Place: Bourse du Travail
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-les-darons-lyon/1637919.html
+
+Date: 
+Event: NAWELL TOUT COURT
+Place: Bourse du Travail
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-nawell-madani-lyon/1630003.html
+
+Date: 
+Event: BERENGERE KRIEF
+Place: Radiant-Bellevue
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+altURLs: https://www.infoconcert.com/ticket/concert-berengere-krief-caluire-et-cuire/1617849.html,http://radiant-bellevue.fr/
+http://radiant-bellevue.fr/
+
+Date: 
+Event: ROOTSRIDERS, BOB MARLEY TRIBUTE
+Place: Bourse du Travail
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-rootsriders-bob-marley-tribute-lyon/1637581.html
+
+Date: 
+Event: BIEN ENTOUREE
+Place: Salle Victor Hugo
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-isabelle-vitari-lyon/1559387.html
+
+Date: 
+Event: TROP GENTIL (Nicolas Lacroix)
+Place: Theatre A L'ouest
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-nicolas-lacroix-lyon/1587625.html
+
+Date: 
+Event: DUO MAGIC SPANISH GUITARE VIOLON
+Place: Salle Planete Culture
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-duo-magic-spanish-guitare-violon-lyon/1636741.html
+
+Date: 
+Event: TOUT EST DANS LA VOIX
+Place: Le Toboggan
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.infoconcert.com/ticket/concert-marianne-james-decines/1568657.html
+

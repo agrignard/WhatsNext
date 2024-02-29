@@ -2,7 +2,7 @@ import * as dataUtils from './dataUtils.js';
 
 
 const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-var showAllValue = false;
+
 
 var flytoOnClick=false;
 const darkMode=false;
@@ -211,9 +211,64 @@ map.on('click', 'event-circles', (e) => {
 }
 ////////////////////////////////////////////////////
 
+
+//////////////ADD WIDGET //////////////////////////
+
+export function addGeolocationWidget(map){
+     // Add geolocate control to the map.
+     map.addControl(
+        new mapboxgl.GeolocateControl({
+            positionOptions: {
+            enableHighAccuracy: true
+            },
+            // When active the map will receive updates to the device's location as it changes.
+            trackUserLocation: true,
+            // Draw an arrow next to the location dot to indicate which direction the device is heading.
+            showUserHeading: true
+        })
+    );
+}
+
+export function addShareWidget(map){
+    class ShareControl {
+        onAdd(map) {
+        this.map = map;
+        this.container = document.createElement('div');
+        this.container.className = 'mapboxgl-ctrl mapboxgl-ctrl-share';
+
+        // Add Font Awesome share icon
+        this.container.innerHTML = '<i class="fas fa-share"></i>';
+
+        // Add event listener for copying the current URL
+        this.container.addEventListener('click', () => {
+            const currentURL = window.location.origin+"/?day="+parseInt(document.getElementById('slider').value,10);
+            navigator.clipboard.writeText(currentURL)
+            .then(() => {
+                alert('URL copied to clipboard!' + currentURL);
+            })
+            .catch((error) => {
+                console.error('Unable to copy URL', error);
+            });
+        });
+
+        return this.container;
+        }
+
+        onRemove() {
+        this.container.parentNode.removeChild(this.container);
+        this.map = undefined;
+        }
+    }
+    map.addControl(new ShareControl(), 'top-left');
+}
+
+
+//////////////////////////////////////////////////
+
 ////////////LAYER INTERACTION//////////////////////
 export function filterBy(map,value) {  
-    if(!showAllValue){
+    //console.log("yo ca showALL" + showAllFUCKINGValue);
+    if(!document.getElementById("showAll").checked){
         var filters = [
         "all",     
         [">=", ['get', 'time'], value],
@@ -242,13 +297,21 @@ export function filterByStyle(map,style,time) {
         ["<=", ['get', 'time'], time+86400000]
         ];
     }else{
+        if(!document.getElementById("showAll").checked){
+            filters = [
+                "all",    
+                ["==", ['get', 'style'], style],
+                [">=", ['get', 'time'], time],
+                ["<=", ['get', 'time'], time+86400000]
+            ];
+        }else{
+            filters = [
+                "all",    
+                ["==", ['get', 'style'], style],
+                [">=", ['get', 'time'], time]
+            ];
+        }
         
-        filters = [
-        "all",    
-        ["==", ['get', 'style'], style],
-        [">=", ['get', 'time'], time],
-        ["<=", ['get', 'time'], time+86400000]
-        ];
     }
     
     map.setFilter('event-circles', filters);

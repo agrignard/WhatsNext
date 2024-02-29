@@ -11,3 +11,111 @@ errorLog: Format de date invalide pour Terminal Club. Reçu "", converti en "" (
 unixDate: 0
 https://www.terminal-club.com/evenement-multiple/mois/?shortcode=b6439857
 
+Date: Du 22 au 24 mai 2024, à 20h30
+Event: Alexis HK + Benoît Doremus
+Place: À Thou Bout d'Chant
+city: Lyon
+country: France
+Style: Chanson
+isCancelled: false
+DetailedStyle: Chanson
+source: [object Object]
+errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Du 22 au 24 mai 2024, à 20h30", converti en "22-24-05-2024-20:30" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.petit-bulletin.fr/lyon/agenda-309715-alexis-hk-benoit-doremus.html
+
+Date: Du 24 au 26 mai 2024, ven à 19h30, dim à 16h
+Event: Così fan tutte
+Place: Auditorium de Lyon
+city: Lyon
+country: France
+Style: Classique
+isCancelled: false
+DetailedStyle: Classique & Lyrique
+source: [object Object]
+errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Du 24 au 26 mai 2024, ven à 19h30, dim à 16h", converti en "24-26-05-2024-19:30" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.petit-bulletin.fr/lyon/agenda-309454-cosi-fan-tutte.html
+
+Date: Du 17 au 23 mars 2024, dim et sam à 16h, lun, mar 
+Event: Otages
+Place: Théâtre de la Croix-Rousse
+city: Lyon
+country: France
+Style: Classique
+isCancelled: false
+DetailedStyle: Classique & Lyrique / Opéra
+source: [object Object]
+errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Du 17 au 23 mars 2024, dim et sam à 16h, lun, mar ", converti en "17-23-03-2024-16:03" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.petit-bulletin.fr/lyon/agenda-308401-otages.html
+
+Date: Du 17 au 23 mars 2024, dim et sam à ven à 20h, jeu à 19h30
+Event: Otages
+Place: Théâtre de la Croix-Rousse
+city: Lyon
+country: France
+Style: Classique
+isCancelled: false
+DetailedStyle: Classique & Lyrique / Opéra
+source: [object Object]
+errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Du 17 au 23 mars 2024, dim et sam à ven à 20h, jeu à 19h30", converti en "17-23-03-2024-20:19:30" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+https://www.petit-bulletin.fr/lyon/agenda-308401-otages.html
+
+Date: 
+Event: MELANIE DE BIASIO
+Place: Radiant-Bellevue
+city: Lyon
+country: France
+isCancelled: true
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+altURLs: https://www.infoconcert.com/ticket/concert-melanie-de-biasio-caluire-et-cuire/1562535.html,http://radiant-bellevue.fr/
+http://radiant-bellevue.fr/
+
+Date: 
+Event: YODELICE
+Place: Radiant-Bellevue
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+altURLs: https://www.infoconcert.com/ticket/concert-yodelice-caluire-et-cuire/1555669.html,http://radiant-bellevue.fr/
+http://radiant-bellevue.fr/
+
+Date: 
+Event: BATARD SENSIBLE
+Place: Radiant-Bellevue
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+altURLs: https://www.infoconcert.com/ticket/concert-alexandre-kominek-caluire-et-cuire/1602071.html,http://radiant-bellevue.fr/
+http://radiant-bellevue.fr/
+
+Date: 
+Event: BERENGERE KRIEF
+Place: Radiant-Bellevue
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Infoconcert. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
+unixDate: 0
+altURLs: https://www.infoconcert.com/ticket/concert-berengere-krief-caluire-et-cuire/1617849.html,http://radiant-bellevue.fr/
+http://radiant-bellevue.fr/
+

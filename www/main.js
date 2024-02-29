@@ -6,7 +6,6 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiYWdyaWduYXJkIiwiYSI6ImNqdWZ6ZjJ5MDBoenczeXBkY
 var devMode = false;
 var showAllValueDiv = devMode ? true : false;
 
-
 updateCircleLegend();
 
 const canvasShowAll = document.getElementById('showAll');
@@ -18,9 +17,6 @@ if (showAllValueDiv){
 }
 
 const map = mapUtils.initializeMap();
-
-
-
 var currentDate = new Date(Date.now());
 currentDate.setHours(2,0,0);
 var appDate;
@@ -34,7 +30,6 @@ d3.json('./lyon_event.geojson',jsonCallback);
     //respect to prefers-reduced-motion
     }); 
 });
- 
 function jsonCallback(err, data) {
     if (err) {
     throw err;
@@ -68,86 +63,42 @@ function jsonCallback(err, data) {
         }
     });
 
-    // Add geolocate control to the map.
-    map.addControl(
-    new mapboxgl.GeolocateControl({
-    positionOptions: {
-    enableHighAccuracy: true
-    },
-    // When active the map will receive updates to the device's location as it changes.
-    trackUserLocation: true,
-    // Draw an arrow next to the location dot to indicate which direction the device is heading.
-    showUserHeading: true
-    })
-    );
-
-    //  Share URL
-    class ShareControl {
-        onAdd(map) {
-        this.map = map;
-        this.container = document.createElement('div');
-        this.container.className = 'mapboxgl-ctrl mapboxgl-ctrl-share';
-
-        // Add Font Awesome share icon
-        this.container.innerHTML = '<i class="fas fa-share"></i>';
-
-        // Add event listener for copying the current URL
-        this.container.addEventListener('click', () => {
-            const currentURL = window.location.href;
-            navigator.clipboard.writeText(currentURL)
-            .then(() => {
-                alert('URL copied to clipboard!');
-            })
-            .catch((error) => {
-                console.error('Unable to copy URL', error);
-            });
-        });
-
-        return this.container;
-        }
-
-        onRemove() {
-        this.container.parentNode.removeChild(this.container);
-        this.map = undefined;
-        }
-    }
-    map.addControl(new ShareControl(), 'top-left');
+    mapUtils.addGeolocationWidget(map);
+    mapUtils.addShareWidget(map);
+    
 
     appDate=currentDate;
     mapUtils.filterBy(map,currentDate.valueOf(),false);
 
+    ///HANDLE SLIDER
     document.getElementById('slider').addEventListener('input', async (e) => {
+
     const sliderValue = parseInt(e.target.value, 10);
+    console.log("CA move du sldier");
+    console.log("slider value" + sliderValue);
+    console.log("currentDate" + currentDate);
     const tmpDate= new Date(currentDate);
     const newDateAsInt = tmpDate.setDate(tmpDate.getDate() + sliderValue).valueOf();
     appDate=newDateAsInt;
-
     mapUtils.filterBy(map,newDateAsInt,false);
-    //getNbEventPerPlace(new Date(appDate));
-    const canvas = document.getElementById('eventList');
-    var todayInformation;
-    todayInformation = await dataUtils.getTodayEvents(new Date(appDate));
-    canvas.textContent = todayInformation;
+
     updateCircleLegend();
     });
 
     document.getElementById('showAll').addEventListener('input', (e) => {
-    showAllValue= document.getElementById("showAll").checked;
-    if(showAllValue){
-    document.getElementById('slider').value = 0;   
+    const showAllValueCkecked= document.getElementById("showAll").checked;
+    if(showAllValueCkecked){
+      document.getElementById('slider').value = 0;   
     }
     mapUtils.filterBy(map,currentDate.valueOf(),false)
     });
+    processMapBasedOnUrl(); 
 }
 
 dataUtils.initPlaceInformation();
 chartIt();
 
 async function chartIt(){
-    const canvas = document.getElementById('eventList');
-    const todayInformation = await dataUtils.getTodayEvents(currentDate);
-    canvas.textContent = todayInformation;
-    canvas.style.display = 'block';
     const canvas1 = document.getElementById('chart1');
     const canvas2 = document.getElementById('chart2');
     const ctx1 = canvas1.getContext('2d');
@@ -279,3 +230,28 @@ function drawCircles() {
 // Initial drawing of circles
 drawCircles();
 }
+
+
+// Function to get the value of a query parameter from the URL
+function getQueryParam(parameter) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(parameter);
+}
+
+// Function to show content based on the URL parameter
+function processMapBasedOnUrl() {
+    const day = getQueryParam('day');
+    // Check the value of the 'type' parameter and take appropriate actions
+    if (day!=null) {
+        document.getElementById('slider').value = day;
+        const tmpDate= new Date(currentDate);
+        const newDateAsInt = tmpDate.setDate(tmpDate.getDate() + parseInt(day)).valueOf();
+        appDate=newDateAsInt;
+        mapUtils.filterBy(map,newDateAsInt,false);
+    }else {
+        // Default behavior or handle unknown types
+        console.log('Unknown or no day specified');
+    }
+}
+
+
