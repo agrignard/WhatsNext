@@ -52,7 +52,7 @@
       "country": "France"
     },
     "unixDate": 1709333940000,
-    "eventTime": "vendredi 1 mars à 23:59"
+    "eventTime": "vendredi 1 mars àà 23:59"
   },
   {
     "eventPlace": "Terminal Club",
@@ -71,7 +71,7 @@
       "country": "France"
     },
     "unixDate": 1709420340000,
-    "eventTime": "samedi 2 mars à 23:59"
+    "eventTime": "samedi 2 mars àà 23:59"
   },
   {
     "eventPlace": "Terminal Club",
@@ -90,7 +90,7 @@
       "country": "France"
     },
     "unixDate": 1709852340000,
-    "eventTime": "jeudi 7 mars à 23:59"
+    "eventTime": "jeudi 7 mars àà 23:59"
   },
   {
     "eventPlace": "Terminal Club",
@@ -108,7 +108,7 @@
       "country": "France"
     },
     "unixDate": 1709938740000,
-    "eventTime": "vendredi 8 mars à 23:59"
+    "eventTime": "vendredi 8 mars àà 23:59"
   },
   {
     "eventPlace": "Terminal Club",
@@ -126,7 +126,7 @@
       "country": "France"
     },
     "unixDate": 1710025140000,
-    "eventTime": "samedi 9 mars à 23:59"
+    "eventTime": "samedi 9 mars àà 23:59"
   },
   {
     "eventPlace": "Terminal Club",
@@ -144,7 +144,7 @@
       "country": "France"
     },
     "unixDate": 1710457140000,
-    "eventTime": "jeudi 14 mars à 23:59"
+    "eventTime": "jeudi 14 mars àà 23:59"
   },
   {
     "eventPlace": "Terminal Club",
@@ -163,7 +163,7 @@
       "country": "France"
     },
     "unixDate": 1710543540000,
-    "eventTime": "vendredi 15 mars à 23:59"
+    "eventTime": "vendredi 15 mars àà 23:59"
   },
   {
     "eventPlace": "Terminal Club",
@@ -182,7 +182,7 @@
       "country": "France"
     },
     "unixDate": 1710629940000,
-    "eventTime": "samedi 16 mars à 23:59"
+    "eventTime": "samedi 16 mars àà 23:59"
   },
   {
     "eventPlace": "Terminal Club",
@@ -201,6 +201,6 @@
       "country": "France"
     },
     "unixDate": 1711061940000,
-    "eventTime": "jeudi 21 mars à 23:59"
+    "eventTime": "jeudi 21 mars àà 23:59"
   }
 ]

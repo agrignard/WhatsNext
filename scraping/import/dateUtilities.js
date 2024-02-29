@@ -23,7 +23,7 @@ const day = date.toLocaleString('fr-FR', { day: 'numeric', timeZone: timeZone })
 const weekDay = date.toLocaleString(languageZone, { weekday: 'long' , timeZone: timeZone});
 const month = date.toLocaleString(languageZone, { month: 'long', timeZone: timeZone});
 
-const string = weekDay + " " + day+" "+month + " àà " + timeString;
+const string = weekDay + " " + day+" "+month + " à " + timeString;
   // const daysList = ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"];
   // const weekDay = daysList[date.getDay()];
   // var monthList = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
