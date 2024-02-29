@@ -18,10 +18,10 @@ function eventTime(date, timeZone){
   const options = { timeZone: timeZone}; 
 
 //const dateString = date.toLocaleDateString(languageZone, options);
-const timeString = date.toLocaleTimeString(languageZone, { hour: 'numeric', minute: 'numeric' });
+const timeString = date.toLocaleTimeString(languageZone, { hour: 'numeric', minute: 'numeric' },options);
 const day = date.getDate();
-const weekDay = date.toLocaleString(languageZone, { weekday: 'long' });
-const month = date.toLocaleString(languageZone, { month: 'long' });
+const weekDay = date.toLocaleString(languageZone, { weekday: 'long' },options);
+const month = date.toLocaleString(languageZone, { month: 'long' },options);
 
 const string = weekDay + " " + day+" "+month + " à " + timeString;
   // const daysList = ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"];
