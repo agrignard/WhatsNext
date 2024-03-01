@@ -82,10 +82,11 @@
             </div>
             <div id="logPanel">
                 <div class="smallBottomMargin">Log</div>
-                <button class="log-button button" onclick="toggleDiv('logPanel','20px','220px')">_</button>
-                <textarea id="logText" readonly></textarea>
-            </div>  
-           
+                <button id="logButton" class="compact-button button">_</button>
+                <div id="logTextPanel" style ="display: none;">
+                    <textarea id="logText" readonly></textarea>
+                </div>
+            </div>   
         </div>
         <div id= "scrapEnDirexRightPanel" class="rightPanel">
           Contenu de droite

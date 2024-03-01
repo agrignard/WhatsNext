@@ -39,19 +39,18 @@ function getAllDates(mainTag,dateTags,source){
 }
 
 function getBestDateFormat(dates, JSON, dateConversionPatterns){
-    // console.log(dates);
-     let bestDateFormat = (JSON.hasOwnProperty('dateFormat'))?JSON.dateFormat:"dd-MM-yyyy";
-     let bestScore = numberOfInvalidDates(dates.map(element => createDate(element,bestDateFormat,dateConversionPatterns,'Europe/Paris')));
-     const dateFormatList = getCommonDateFormats();
-     dateFormatList.forEach(format => {
-         const formattedDateList = dates.map(element => createDate(element,format,dateConversionPatterns));
-         if (numberOfInvalidDates(formattedDateList) < bestScore){
-             bestDateFormat = format;
-             bestScore = numberOfInvalidDates(formattedDateList);
-         }
-     });
-     console.log("\nFound %s events. Best date format: \x1b[36m\"%s\"\x1b[0m (%s/%s invalid dates)",dates.length,bestDateFormat,bestScore,dates.length);
-     return [bestDateFormat, bestScore];
+    let bestDateFormat = "";
+    let bestScore = numberOfInvalidDates(dates.map(element => createDate(element,bestDateFormat,dateConversionPatterns,'Europe/Paris')));
+    const dateFormatList = getCommonDateFormats();
+    dateFormatList.forEach(format => {
+        const formattedDateList = dates.map(element => createDate(element,format,dateConversionPatterns));
+        if (numberOfInvalidDates(formattedDateList) < bestScore){
+            bestDateFormat = format;
+            bestScore = numberOfInvalidDates(formattedDateList);
+        }
+    });
+    console.log("\nFound %s events. Best date format: \x1b[36m\"%s\"\x1b[0m (%s/%s invalid dates)",dates.length,bestDateFormat,bestScore,dates.length);
+    return [bestDateFormat, bestScore];
 }
 
 function addJSONBlock(scrapSource,source){

@@ -63,13 +63,14 @@ function getCommonDateFormats(){
                 "dd-MM-yy","dd-yy-MM","MM-dd-yy","MM-yy-dd","yy-MM-dd","yy-dd-MM",
                 "dd-MM-yyyy","dd-yyyy-MM","MM-dd-yyyy","MM-yyyy-dd","yyyy-MM-dd","yyyy-dd-MM"];
   const time = ["HH:mm","mm:HH"];
-  let dateList = date;
+  let dateList = [];
   date.forEach(el1 => 
     time.forEach(el2 => {
       dateList.push(el1+'-'+el2);
       dateList.push(el2+'-'+el1);
     })
   );
+  dateList = dateList.concat(date);
   return dateList;
 }
 
@@ -80,6 +81,7 @@ function createDate(s,dateFormat,dateConversionPatterns,timeZone,refDate) {
   }else{
       s = convertDate(s,dateConversionPatterns);
       const date = moment.tz(s,dateFormat.replace(/d/g,'D').replace(/y/g,'Y'), timeZone);
+      //console.log(date.toLocaleString());
       let tzDate = date.toDate();
       if (refDate && !/yy/.test(dateFormat) && tzDate < refDate){// add one year if the date is past for more than one month. Useful when the year is not in the data
           tzDate.setFullYear(tzDate.getFullYear() + 1);
@@ -126,6 +128,7 @@ function convertDate(s,dateConversionPatterns){
   s = to2digits(unifyCharacters(s));
   // remove end time if present. Undo if end time is required
   s =  s.replace(/\b(\d{2}:\d{2})-\d{2}:\d{2}\b/,(_,p) => p);
+  //console.log(s);
   return s;
 }
 
@@ -144,7 +147,7 @@ function yearIsValid(yyyy){
 
 // clean the date string by removing unwanted characters
 function unifyCharacters(s){
-  let string = s.replace(/[\n\t\/\|\-,;.]/g,' ').replace(/ {2,}/g,' ').replace(/^ /,'').replace(/ $/,'').replace(/ /g,'-');
+  let string = s.replace(/[\n\t\/\-,;.]/g,' ').replace(/ {2,}/g,' ').replace(/^ /,'').replace(/ $/,'').replace(/ /g,'-');
   string = string.replace(/h/g,':').replace(/: /g,':00').replace(/:$/g,':00');//format to correct time
   string = string.replace(/:-+/g,':');//remove - after :
   return string;

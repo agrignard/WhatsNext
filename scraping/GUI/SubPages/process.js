@@ -238,7 +238,7 @@ function textBoxUpdate(textBox){
   }else{
    // console.log(venueScrapInfo);
     venueScrapInfo.mainPage[textBox.id] = getArray(textBox.value);
-    console.log(textBox.id);
+    //console.log(textBox.id);
     computeTags(textBox.id.replace('Strings','Tags'));
     applyTags();
   }
@@ -258,7 +258,16 @@ function toLog(string){
   log += string + '\n';
   logText.textContent = log;
 }
-
+let logCompact = true;
+const logButton = document.getElementById('logButton');
+logButton.addEventListener('click', ()=>{
+  logCompact = !logCompact;
+  if (logCompact){
+    logTextPanel.style.display = 'none';
+  }else{
+    logTextPanel.style.display = "block";
+  }
+})
 
 // right panel
 if (lastModified){// if the file exists
@@ -482,7 +491,6 @@ function computeDateFormat(){
   let dates = getAllDates(venue.eventsDelimiterTag,venue.scrap['eventDateTags'],$);
   let score;
   [venue.dateFormat, bestScore] = getBestDateFormat(dates,venue, dateConversionPatterns);
-  console.log(venue.dateFormat);
   let formatString = "Date format founds: "+venue.dateFormat;
   if (bestScore !== 0){
     formatString += " ("+(dates.length-bestScore)+"/"+dates.length+" valid dates)";

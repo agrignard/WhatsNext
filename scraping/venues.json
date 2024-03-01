@@ -669,12 +669,13 @@
       "eventDateTags": [
         "SPAN.tribeeventdatestart:eq(0)"
       ],
-      "eventURLIndex": 1
+      "eventURLIndex": 1,
+      "eventStyleTags": []
     },
     "url": "https://www.laclefdevoute.fr/concerts-de-jazz-a-lyon/",
     "ID": "La Clef de Voûte|Lyon|France",
     "baseURL": "https://www.laclefdevoute.fr/concerts-de-jazz-a-lyon/",
     "eventsDelimiterTag": "ARTICLE.tribeeventscalendarmonthmobileevents__mobileevent.tribe_events.typetribe_events.statuspublish.haspostthumbnail.hentry  DIV.tribeeventscalendarmonthmobileevents__mobileeventdetails",
-    "dateFormat": "dd-MM"
+    "dateFormat": "dd-MM-HH:mm"
   }
 ]
