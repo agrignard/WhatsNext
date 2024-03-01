@@ -659,7 +659,7 @@
     ]
   },
   {
-    "name": "essai",
+    "name": "La Clef de Voûte",
     "city": "Lyon",
     "country": "France",
     "scrap": {
@@ -672,7 +672,7 @@
       "eventURLIndex": 1
     },
     "url": "https://www.laclefdevoute.fr/concerts-de-jazz-a-lyon/",
-    "ID": "essai|Lyon|France",
+    "ID": "La Clef de Voûte|Lyon|France",
     "baseURL": "https://www.laclefdevoute.fr/concerts-de-jazz-a-lyon/",
     "eventsDelimiterTag": "ARTICLE.tribeeventscalendarmonthmobileevents__mobileevent.tribe_events.typetribe_events.statuspublish.haspostthumbnail.hentry  DIV.tribeeventscalendarmonthmobileevents__mobileeventdetails",
     "dateFormat": "dd-MM"
