@@ -21,7 +21,7 @@ module.exports = {venuesListJSONFile, isAlias, geAliasesToURLMap, getEventPlace,
     fromLocalSource, jsonRemoveDouble, samePlace, getStyleConversions, getStyleList, getAliases,
     writeToLog, loadVenueScrapInfofromFile, loadVenuesJSONFile, loadVenueJSON, saveToVenuesJSON,
     getLanguages, loadCancellationKeywords, fromLanguages, checkLanguages, loadErrorLog, 
-    getAvailableLanguages, initializeVenue, getNameFromID, makeID, loadScrapInfoFile};
+    getAvailableLanguages, initializeVenue, getNameFromID, makeID, loadScrapInfoFile, saveToScrapInfoJSON};
 
 
 // returns true is a venue is only an alias (not for scrapping)
@@ -206,6 +206,16 @@ function loadVenueJSON(id,venuesListJSON){
 //         return venueJSON;
 //     }
 // }
+
+function saveToScrapInfoJSON(jsonList){
+    try{
+        const jsonString = JSON.stringify(jsonList, null, 2); 
+        fs.writeFileSync(scrapInfoFile, jsonString);
+        console.log('Saved to in %s',scrapInfoFile);
+    }catch(err){
+        console.log('\x1b[31mError saving to .json: \'%s\' %s\x1b[0m',scrapInfoFile,err);
+    }
+}
 
 function saveToVenuesJSON(jsonList){
     try{

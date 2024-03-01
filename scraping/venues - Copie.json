@@ -56,7 +56,8 @@
       ]
     },
     "linkedPageDateFormat": "dd-MM-yyyy-HH:mm",
-    "ID": "Le Petit Salon|Lyon|France"
+    "ID": "Le Petit Salon|Lyon|France",
+    "comments": "essai"
   },
   {
     "name": "Transbordeur",
@@ -579,5 +580,14 @@
       "Groupama Stadium Lyon"
     ],
     "ID": "Groupama Stadium|Lyon|France"
+  },
+  {
+    "name": "Auditorium de Lyon",
+    "country": "France",
+    "city": "Lyon",
+    "aliases": [
+      "Auditorium - Orchestre National De Lyon"
+    ],
+    "ID": "Auditorium de Lyon|Lyon|France"
   }
 ]

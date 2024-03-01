@@ -266,7 +266,9 @@
       "eventDateTags": [
         "DIV.blocsquare__date:eq(0)",
         "DIV.blocsquare__heure:eq(0)"
-      ]
+      ],
+      "eventStyleTags": [],
+      "eventURLIndex": 0
     },
     "eventsDelimiterTag": "A.blocsquare.types.type_concert",
     "eventURLIndex": 0,

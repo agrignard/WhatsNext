@@ -5,7 +5,7 @@ const fs = require('fs');
 const cheerio = require('cheerio');
 const {parseDocument} = require('htmlparser2');
 const {app, Menu, ipcRenderer} = require('electron');
-const {loadVenuesJSONFile, loadVenueJSON, loadScrapInfoFile, initializeVenue} = require(imports+'jsonUtilities.js');
+const {loadVenuesJSONFile, loadVenueJSON, loadScrapInfoFile, initializeVenue, saveToVenuesJSON, saveToScrapInfoJSON} = require(imports+'jsonUtilities.js');
 const {simplify, removeBlanks, extractBody, convertToLowerCase} = require(imports+'stringUtilities.js');
 const {getFilesContent, getModificationDate, loadLinkedPages} = require(imports+'fileUtilities.js');
 const {downloadVenue, erasePreviousHtmlFiles, getHrefListFrom, downloadLinkedPages} = require(imports+'aspiratorexUtilities.js');
@@ -65,6 +65,7 @@ venueInfo.textContent = venue.name+' ('+venue.city+', '+venue.country+')';
 const lastScrapped = document.getElementById('lastScrapped');
 lastScrapped.textContent = lastModified?showDate(lastModified):"Page not downloaded yet.";
 const downloadButton = document.getElementById('downloadButton');
+const saveButton = document.getElementById('saveButton');
 const missingLinksButton = document.getElementById('missingLinksButton');
 const pageManager = document.getElementById('pageManager');
 const pageManagerButton = document.getElementById('pageManagerButton');
@@ -72,6 +73,7 @@ const pageManagerButton = document.getElementById('pageManagerButton');
 
 // listeners
 
+// compact view button
 pageManagerButton.addEventListener('click',function(){
   pageManagerReduced = !pageManagerReduced;
   const pageManagerDetailsPanel = document.getElementById('pageManagerDetailsPanel');
@@ -82,6 +84,13 @@ pageManagerButton.addEventListener('click',function(){
   }
 });
 
+// save Button
+saveButton.addEventListener('click',function(){
+  saveToVenuesJSON(venues);
+  saveToScrapInfoJSON(scrapInfo);
+});
+
+// download button
 downloadButton.addEventListener('click', function() {
   downloadButton.disabled = true;
   missingLinksButton.disabled = true;

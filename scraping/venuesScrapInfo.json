@@ -1,115 +1,206 @@
 {
-    "Le Sucre|Lyon|France":{
-        "mainPage":{
-            "eventNameStrings": ["S.society","Rødhåd","axy"],
-            "eventDateStrings": "25 fév"
-        },
-        "linkedPage":{
-            "eventDateStrings": "25 fév 18:00"
-        }
+  "Le Sucre|Lyon|France": {
+    "mainPage": {
+      "eventNameStrings": [
+        "S.society",
+        "Rødhåd",
+        "axy"
+      ],
+      "eventDateStrings": "25 fév"
     },
-    "Terminal Club|Lyon|France":{
-        "mainPage":{
-            "eventNameStrings": ["nashton"],
-            "eventDateStrings": "8 fév"
-        },
-        "linkedPage":{
-            "eventNameStrings": ["nashton"],
-            "eventDateStrings": "08.02.24"
-        }
-    },
-    "Le Petit Bulletin|Lyon|France":{
-        "mainPage":{
-            "eventNameStrings": ["hysteria"],
-            "eventDateStrings": ["9 février"],
-            "eventStyleStrings": ["metal"],
-            "eventPlaceStrings": ["rock n eat"]
-        }
-    },
-    "Transbordeur|Lyon|France":{
-        "mainPage":{
-            "eventNameStrings": ["mathame"],
-            "eventDateStrings": ["02 mars","23:30"],
-            "eventStyleStrings": ["techno"]
-        },
-        "linkedPage":{
-            "eventNameStrings": ["mathame"]
-        }
-    },
-    "Le Périscope|Lyon|France":{
-        "mainPage":{
-            "eventNameStrings": ["jasual","release"],
-            "eventDateStrings": ["08 mars"]
-        },
-        "linkedPage":{
-            "eventDateStrings": ["vendredi 08 mars","21h00"]
-        }
-    },
-    "Le Sonic|Lyon|France":{
-        "mainPage":{
-            "eventNameStrings": ["patriarchy"],
-            "eventDateStrings": "avr 15"
-        },
-        "linkedPage":{
-            "eventDateStrings": ["avril 15","20:00"]
-        }
-    },
-    "Marché Gare|Lyon|France":{
-        "mainPage":{
-            "eventNameStrings": ["carwash","release"],
-            "eventDateStrings": "jeu 23 05",
-            "eventStyleStrings": ["indie","punk"]
-        },
-        "linkedPage":{
-            "eventDateStrings": ["23","05","20:00"]
-        }
-    },
-    "Le Trokson|Lyon|France":{
-        "mainPage":{
-            "eventNameStrings": ["basement"],
-            "eventDummyStrings": ["partager"],
-            "eventDateStrings": ["02 févr. 2024, 20:00"]
-        },
-        "noUrl":true
-    },
-    "Halle Tony Garnier|Lyon|France":{
-        "mainPage":{
-            "eventNameStrings": ["STAR ACADEMY"],
-            "eventDateStrings": ["15.03.24","20h00"]
-        }
-    },
-    "Ville Morte|Lyon|France":{
-        "mainPage":{
-            "eventNameStrings": ["molécule"],
-            "eventDateStrings": [""]
-        },
-        "linkedPage":{
-            "eventNameStrings": ["molécule"],
-            "eventDateStrings": ["15 février"],
-            "eventStyleStrings": ["musique live"],
-            "eventPlaceStrings": ["Transbordeur"],
-            "eventURLStrings": ["https://www.totaalrez.com/agenda/molecule-live/"]
-        }
-    },
-    "Le Petit Salon|Lyon|France":{
-        "mainPage":{
-            "eventNameStrings": ["wooka"],
-            "eventDateStrings": ["27/01"],
-            "eventStyleStrings": ["House"]
-        },
-        "linkedPage":{
-            "eventDateStrings": ["27 janvier","23:30"]
-        }
-    },
-    "Infoconcert|Lyon|France":{
-        "mainPage":{
-            "eventNameStrings": ["heusss"],
-            "eventDateStrings": "06 février",
-            "eventPlaceStrings": ["bourse"],
-            "eventURLStrings": ["infos"]
-        },
-        "linkedPage":{
-            "eventDateStrings": ["date","20h00"]
-        }
+    "linkedPage": {
+      "eventDateStrings": "25 fév 18:00"
     }
+  },
+  "Terminal Club|Lyon|France": {
+    "mainPage": {
+      "eventNameStrings": [
+        "nashton"
+      ],
+      "eventDateStrings": "8 fév"
+    },
+    "linkedPage": {
+      "eventNameStrings": [
+        "nashton"
+      ],
+      "eventDateStrings": "08.02.24"
+    }
+  },
+  "Le Petit Bulletin|Lyon|France": {
+    "mainPage": {
+      "eventNameStrings": [
+        "hysteria"
+      ],
+      "eventDateStrings": [
+        "9 février"
+      ],
+      "eventStyleStrings": [
+        "metal"
+      ],
+      "eventPlaceStrings": [
+        "rock n eat"
+      ]
+    }
+  },
+  "Transbordeur|Lyon|France": {
+    "mainPage": {
+      "eventNameStrings": [
+        "mathame"
+      ],
+      "eventDateStrings": [
+        "02 mars",
+        "23:30"
+      ],
+      "eventStyleStrings": [
+        "techno"
+      ]
+    },
+    "linkedPage": {
+      "eventNameStrings": [
+        "mathame"
+      ]
+    }
+  },
+  "Le Périscope|Lyon|France": {
+    "mainPage": {
+      "eventNameStrings": [
+        "jasual",
+        "release"
+      ],
+      "eventDateStrings": [
+        "08 mars"
+      ]
+    },
+    "linkedPage": {
+      "eventDateStrings": [
+        "vendredi 08 mars",
+        "21h00"
+      ]
+    }
+  },
+  "Le Sonic|Lyon|France": {
+    "mainPage": {
+      "eventNameStrings": [
+        "patriarchy"
+      ],
+      "eventDateStrings": "avr 15"
+    },
+    "linkedPage": {
+      "eventDateStrings": [
+        "avril 15",
+        "20:00"
+      ]
+    }
+  },
+  "Marché Gare|Lyon|France": {
+    "mainPage": {
+      "eventNameStrings": [
+        "carwash",
+        "release"
+      ],
+      "eventDateStrings": "jeu 23 05",
+      "eventStyleStrings": [
+        "indie",
+        "punk"
+      ]
+    },
+    "linkedPage": {
+      "eventDateStrings": [
+        "23",
+        "05",
+        "20:00"
+      ]
+    }
+  },
+  "Le Trokson|Lyon|France": {
+    "mainPage": {
+      "eventNameStrings": [
+        "basement"
+      ],
+      "eventDummyStrings": [
+        "partager"
+      ],
+      "eventDateStrings": [
+        "02 févr. 2024, 20:00"
+      ]
+    },
+    "noUrl": true
+  },
+  "Halle Tony Garnier|Lyon|France": {
+    "mainPage": {
+      "eventNameStrings": [
+        "star academy"
+      ],
+      "eventDateStrings": [
+        "15.03.24",
+        "20h00"
+      ]
+    }
+  },
+  "Ville Morte|Lyon|France": {
+    "mainPage": {
+      "eventNameStrings": [
+        "molécule"
+      ],
+      "eventDateStrings": [
+        ""
+      ]
+    },
+    "linkedPage": {
+      "eventNameStrings": [
+        "molécule"
+      ],
+      "eventDateStrings": [
+        "15 février"
+      ],
+      "eventStyleStrings": [
+        "musique live"
+      ],
+      "eventPlaceStrings": [
+        "Transbordeur"
+      ],
+      "eventURLStrings": [
+        "https://www.totaalrez.com/agenda/molecule-live/"
+      ]
+    }
+  },
+  "Le Petit Salon|Lyon|France": {
+    "mainPage": {
+      "eventNameStrings": [
+        "wooka"
+      ],
+      "eventDateStrings": [
+        "27/01"
+      ],
+      "eventStyleStrings": [
+        "House"
+      ]
+    },
+    "linkedPage": {
+      "eventDateStrings": [
+        "27 janvier",
+        "23:30"
+      ]
+    }
+  },
+  "Infoconcert|Lyon|France": {
+    "mainPage": {
+      "eventNameStrings": [
+        "heusss"
+      ],
+      "eventDateStrings": "06 février",
+      "eventPlaceStrings": [
+        "bourse"
+      ],
+      "eventURLStrings": [
+        "infos"
+      ]
+    },
+    "linkedPage": {
+      "eventDateStrings": [
+        "date",
+        "20h00"
+      ]
+    }
+  }
 }

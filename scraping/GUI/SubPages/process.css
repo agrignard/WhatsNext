@@ -144,6 +144,21 @@ background-color: lightblue;
   cursor: pointer;
 }
 
+#saveButton {
+  position: absolute;
+  top: 5px;
+  right: 30px;
+  width: 60px;
+  height: 20px;
+  background-color: lightgray;
+  border: none;
+  cursor: pointer;
+}
+
+#saveButton:hover {
+  background-color: darkgray;
+}
+
 .topElement{
   position: absolute;
   top: 15px;
@@ -199,6 +214,7 @@ background-color: lightblue;
   width: 35%; /* Largeur de la partie gauche */
   background-color: #f0f0f0; /* Couleur de fond */
   overflow-y: hidden; /* Ajouter un défilement si le contenu est plus long que la zone */
+  overflow-x: hidden;
 }
 
 #pageManager {
@@ -210,8 +226,8 @@ background-color: lightblue;
 
 #analyzePanel{
     position: relative;
-    height: 550px;
-    overflow-y: scroll;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .title{
