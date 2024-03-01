@@ -89,7 +89,10 @@
       "eventNameStrings": [
         "patriarchy"
       ],
-      "eventDateStrings": "avr 15"
+      "eventDateStrings": [
+        "avr",
+        "15"
+      ]
     },
     "linkedPage": {
       "eventDateStrings": [

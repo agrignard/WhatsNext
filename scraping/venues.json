@@ -163,7 +163,7 @@
     "city": "Lyon",
     "country": "France",
     "url": "https://sonic-lyon.fr/",
-    "dateFormat": "MM-dd",
+    "dateFormat": "HH:mm-dd-MM",
     "eventsDelimiterTag": "DIV.event_details",
     "eventURLIndex": 1,
     "defaultStyle": "Rock",
@@ -175,7 +175,8 @@
       "eventDateTags": [
         "SPAN.month:eq(0)",
         "SPAN.date:eq(0)"
-      ]
+      ],
+      "eventStyleTags": []
     },
     "linkedPage": {
       "eventDateTags": [

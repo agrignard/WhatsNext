@@ -80,6 +80,10 @@ function createDate(s,dateFormat,dateConversionPatterns,timeZone,refDate) {
       return new Date();
   }else{
       s = convertDate(s,dateConversionPatterns);
+      const testDate = parse(s, dateFormat, new Date());// use Date to see if a date is valid, because it doesn't work with moment
+      if (!isAValidDate(testDate)){
+        return testDate;
+      }
       const date = moment.tz(s,dateFormat.replace(/d/g,'D').replace(/y/g,'Y'), timeZone);
       //console.log(date.toLocaleString());
       let tzDate = date.toDate();
@@ -135,6 +139,10 @@ function convertDate(s,dateConversionPatterns){
 // count the number of invalid dates, or with a year too old (older than one year), or a year too far (in more than 2 years)
 function numberOfInvalidDates(dateList){
   return dateList.filter(element => (!isValid(element) || !yearIsValid(element.getFullYear()))).length; 
+}
+
+function isAValidDate(date){
+  return isValid(date) && yearIsValid(date.getFullYear());
 }
 
 // test if a year too old (older than one year), or a year too far ahead (in more than 2 years)
@@ -235,5 +243,5 @@ class TimeZone {
 
 module.exports = {dateConversionFile, sameDay, showDate, getDateConversionPatterns, getCommonDateFormats,
   createDate, convertDate, numberOfInvalidDates, to2digits, getURLListFromPattern, eventTime,
-  TimeZone };
+  TimeZone};
 

@@ -7,7 +7,7 @@ const {parseDocument} = require('htmlparser2');
 const {app, Menu, ipcRenderer} = require('electron');
 const {loadVenuesJSONFile, loadVenueJSON, loadScrapInfoFile, initializeVenue, saveToVenuesJSON, saveToScrapInfoJSON,
         fromLanguages, getLanguages} = require(imports+'jsonUtilities.js');
-const {simplify, removeBlanks, extractBody, convertToLowerCase} = require(imports+'stringUtilities.js');
+const {simplify, removeBlanks, extractBody, convertToLowerCase, removeDoubles} = require(imports+'stringUtilities.js');
 const {getFilesContent, getModificationDate, loadLinkedPages} = require(imports+'fileUtilities.js');
 const {downloadVenue, erasePreviousHtmlFiles, getHrefListFrom, downloadLinkedPages} = require(imports+'aspiratorexUtilities.js');
 const {getTagLocalization, tagContainsAllStrings, getTagContainingAllStrings,
@@ -491,7 +491,7 @@ function computeDateFormat(){
   let dates = getAllDates(venue.eventsDelimiterTag,venue.scrap['eventDateTags'],$);
   let score;
   [venue.dateFormat, bestScore] = getBestDateFormat(dates,venue, dateConversionPatterns);
-  let formatString = "Date format founds: "+venue.dateFormat;
+  let formatString = "Date format found: "+venue.dateFormat;
   if (bestScore !== 0){
     formatString += " ("+(dates.length-bestScore)+"/"+dates.length+" valid dates)";
   }
@@ -505,22 +505,24 @@ function renderEventURLPanel(){
   const index = urlList.findIndex(function(element) {
     return typeof element !== 'undefined';
   });
-  venue.scrap.eventURLIndex = index;
+  venue.eventURLIndex = index;
   const definedURLs = urlList.filter(el => el !== undefined);
+  const nbURLs = removeDoubles(definedURLs).length;
   if (definedURLs.length === 0){
     eventURLPanelMessage.textContent = 'No URL found.';
     eventURLSelect.style.display = 'none';
-  } else if (definedURLs.length === 1){
+  } else if (nbURLs === 1){
     eventURLPanelMessage.textContent = 'URL found: '+urlList[index];
     eventURLSelect.style.display = 'none';
   } else {
+    eventURLPanelMessage.textContent = 'Choose URL to keep: ';
     eventURLSelect.innerHTML='';
     definedURLs.forEach(url => {
       const option = document.createElement('option');
       option.text = url;  
       eventURLSelect.appendChild(option);
     });
-    eventURLSelect.style.display = 'none';
+    eventURLSelect.style.display = 'inline';
     eventURLSelect.addEventListener('change', event =>{
       venue.scrap.eventURLIndex = eventURLSelect - index;
     });

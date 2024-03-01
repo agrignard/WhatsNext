@@ -74,6 +74,10 @@ background-color: lightblue;
     background-color: rgb(155, 89, 182);
 }
 
+.highlightURL{
+  background-color: rgb(241, 196, 15);
+}
+
 .highlightDummy{
     background-color: rgb(149, 165, 166);
 }

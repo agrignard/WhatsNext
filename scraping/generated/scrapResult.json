@@ -1,452 +1,218 @@
 [
   {
-    "eventPlace": "La Clef de Voûte",
+    "eventPlace": "Le Sonic",
     "city": "Lyon",
     "country": "France",
-    "eventName": "JAM du MERCREDI",
-    "eventDate": "28 février | 20h30",
-    "eventURLIndex": "",
-    "eventStyle": "",
+    "eventName": "L’EXTRA!!!",
+    "eventDate": "Mar 01",
+    "eventStyle": "Rock",
     "isCancelled": false,
+    "eventURL": "https://sonic-lyon.fr/facebook-event/lextra/",
     "eventDetailedStyle": "",
     "source": {
-      "name": "La Clef de Voûte",
+      "name": "Le Sonic",
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1740771000000,
-    "eventTime": "vendredi 28 février à 20:30"
+    "unixDate": 1709258460000,
+    "eventTime": "vendredi 1 mars à 03:01"
   },
   {
-    "eventPlace": "La Clef de Voûte",
+    "eventPlace": "Le Sonic",
     "city": "Lyon",
     "country": "France",
-    "eventName": "Marc CABRERA",
-    "eventDate": "29 février | 20h30",
-    "eventURLIndex": "",
-    "eventStyle": "",
+    "eventName": "D-TOX « Des boobies pour Bloumyzz »",
+    "eventDate": "Mar 02",
+    "eventStyle": "Rock",
     "isCancelled": false,
+    "eventURL": "https://sonic-lyon.fr/facebook-event/d-tox-des-boobies-pour-bloumyzz/",
     "eventDetailedStyle": "",
     "source": {
-      "name": "La Clef de Voûte",
+      "name": "Le Sonic",
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1740857400000,
-    "eventTime": "samedi 1 mars à 20:30"
+    "unixDate": 1709258520000,
+    "eventTime": "vendredi 1 mars à 03:02"
   },
   {
-    "eventPlace": "La Clef de Voûte",
+    "eventPlace": "Le Sonic",
     "city": "Lyon",
     "country": "France",
-    "eventName": "Cédric PERROT",
-    "eventDate": "1 mars | 20h30",
-    "eventURLIndex": "",
-    "eventStyle": "",
+    "eventName": "Officium + Loïs Lazur",
+    "eventDate": "Mar 08",
+    "eventStyle": "Rock",
     "isCancelled": false,
+    "eventURL": "https://sonic-lyon.fr/facebook-event/officium-lois-lazur/",
     "eventDetailedStyle": "",
     "source": {
-      "name": "La Clef de Voûte",
+      "name": "Le Sonic",
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1709321400000,
-    "eventTime": "vendredi 1 mars à 20:30"
+    "unixDate": 1709258880000,
+    "eventTime": "vendredi 1 mars à 03:08"
   },
   {
-    "eventPlace": "La Clef de Voûte",
+    "eventPlace": "Le Sonic",
     "city": "Lyon",
     "country": "France",
-    "eventName": "HERVE SALAMONE",
-    "eventDate": "2 mars | 20h30",
-    "eventURLIndex": "",
-    "eventStyle": "",
+    "eventName": "La Peau Douce + TNHCH",
+    "eventDate": "Mar 09",
+    "eventStyle": "Rock",
     "isCancelled": false,
+    "eventURL": "https://sonic-lyon.fr/facebook-event/la-peau-douce-tnhch/",
     "eventDetailedStyle": "",
     "source": {
-      "name": "La Clef de Voûte",
+      "name": "Le Sonic",
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1709407800000,
-    "eventTime": "samedi 2 mars à 20:30"
+    "unixDate": 1709258940000,
+    "eventTime": "vendredi 1 mars à 03:09"
   },
   {
-    "eventPlace": "La Clef de Voûte",
+    "eventPlace": "Le Sonic",
     "city": "Lyon",
     "country": "France",
-    "eventName": "Stéphane VINCENZA",
-    "eventDate": "3 mars | 19h30",
-    "eventURLIndex": "",
-    "eventStyle": "",
+    "eventName": "after party : eat-girls DJ SET",
+    "eventDate": "Mar 09",
+    "eventStyle": "Rock",
     "isCancelled": false,
+    "eventURL": "https://sonic-lyon.fr/facebook-event/after-party-eat-girls-dj-set/",
     "eventDetailedStyle": "",
     "source": {
-      "name": "La Clef de Voûte",
+      "name": "Le Sonic",
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1709490600000,
-    "eventTime": "dimanche 3 mars à 19:30"
+    "unixDate": 1709258940000,
+    "eventTime": "vendredi 1 mars à 03:09"
   },
   {
-    "eventPlace": "La Clef de Voûte",
+    "eventPlace": "Le Sonic",
     "city": "Lyon",
     "country": "France",
-    "eventName": "JAM du MERCREDI",
-    "eventDate": "6 mars | 20h30",
-    "eventURLIndex": "",
-    "eventStyle": "",
+    "eventName": "YMNK + Mézinc",
+    "eventDate": "Mar 14",
+    "eventStyle": "Rock",
     "isCancelled": false,
+    "eventURL": "https://sonic-lyon.fr/facebook-event/ymnk-mezinc/",
     "eventDetailedStyle": "",
     "source": {
-      "name": "La Clef de Voûte",
+      "name": "Le Sonic",
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1709753400000,
-    "eventTime": "mercredi 6 mars à 20:30"
+    "unixDate": 1709259240000,
+    "eventTime": "vendredi 1 mars à 03:14"
   },
   {
-    "eventPlace": "La Clef de Voûte",
+    "eventPlace": "Le Sonic",
     "city": "Lyon",
     "country": "France",
-    "eventName": "NEXT GENERATION : DIDI GARO",
-    "eventDate": "7 mars | 20h30",
-    "eventURLIndex": "",
-    "eventStyle": "",
+    "eventName": "Moules À Facettes",
+    "eventDate": "Mar 15",
+    "eventStyle": "Rock",
     "isCancelled": false,
+    "eventURL": "https://sonic-lyon.fr/facebook-event/moules-a-facettes/",
     "eventDetailedStyle": "",
     "source": {
-      "name": "La Clef de Voûte",
+      "name": "Le Sonic",
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1709839800000,
-    "eventTime": "jeudi 7 mars à 20:30"
+    "unixDate": 1709259300000,
+    "eventTime": "vendredi 1 mars à 03:15"
   },
   {
-    "eventPlace": "La Clef de Voûte",
+    "eventPlace": "Le Sonic",
     "city": "Lyon",
     "country": "France",
-    "eventName": "Vincent PERIER",
-    "eventDate": "8 mars | 20h30",
-    "eventURLIndex": "",
-    "eventStyle": "",
+    "eventName": "HAMMERSHØI + GJ106",
+    "eventDate": "Mar 16",
+    "eventStyle": "Rock",
     "isCancelled": false,
+    "eventURL": "https://sonic-lyon.fr/facebook-event/hammershoi-gerard-jugno-106/",
     "eventDetailedStyle": "",
     "source": {
-      "name": "La Clef de Voûte",
+      "name": "Le Sonic",
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1709926200000,
-    "eventTime": "vendredi 8 mars à 20:30"
+    "unixDate": 1709259360000,
+    "eventTime": "vendredi 1 mars à 03:16"
   },
   {
-    "eventPlace": "La Clef de Voûte",
+    "eventPlace": "Le Sonic",
     "city": "Lyon",
     "country": "France",
-    "eventName": "KARIM ADDADI",
-    "eventDate": "9 mars | 20h30",
-    "eventURLIndex": "",
-    "eventStyle": "",
+    "eventName": "Aidan Baker + Yoke",
+    "eventDate": "Mar 20",
+    "eventStyle": "Rock",
     "isCancelled": false,
+    "eventURL": "https://sonic-lyon.fr/facebook-event/aidan-baker-yoke/",
     "eventDetailedStyle": "",
     "source": {
-      "name": "La Clef de Voûte",
+      "name": "Le Sonic",
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1710012600000,
-    "eventTime": "samedi 9 mars à 20:30"
+    "unixDate": 1709259600000,
+    "eventTime": "vendredi 1 mars à 03:20"
   },
   {
-    "eventPlace": "La Clef de Voûte",
+    "eventPlace": "Le Sonic",
     "city": "Lyon",
     "country": "France",
-    "eventName": "Les dimanches du Swing Manouche",
-    "eventDate": "10 mars | 19h30",
-    "eventURLIndex": "",
-    "eventStyle": "",
+    "eventName": "Melenas + Pop Crimes",
+    "eventDate": "Mar 29",
+    "eventStyle": "Rock",
     "isCancelled": false,
+    "eventURL": "https://sonic-lyon.fr/facebook-event/melenas-premiere-partie/",
     "eventDetailedStyle": "",
     "source": {
-      "name": "La Clef de Voûte",
+      "name": "Le Sonic",
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1710095400000,
-    "eventTime": "dimanche 10 mars à 19:30"
+    "unixDate": 1709260140000,
+    "eventTime": "vendredi 1 mars à 03:29"
   },
   {
-    "eventPlace": "La Clef de Voûte",
+    "eventPlace": "Le Sonic",
     "city": "Lyon",
     "country": "France",
-    "eventName": "JAM du MERCREDI",
-    "eventDate": "13 mars | 20h30",
-    "eventURLIndex": "",
-    "eventStyle": "",
+    "eventName": "Maya Al Khaldi & Sarouna",
+    "eventDate": "Avr 03",
+    "eventStyle": "Rock",
     "isCancelled": false,
+    "eventURL": "https://sonic-lyon.fr/facebook-event/maya-al-khaldi-sarouna/",
     "eventDetailedStyle": "",
     "source": {
-      "name": "La Clef de Voûte",
+      "name": "Le Sonic",
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1710358200000,
-    "eventTime": "mercredi 13 mars à 20:30"
+    "unixDate": 1709262180000,
+    "eventTime": "vendredi 1 mars à 04:03"
   },
   {
-    "eventPlace": "La Clef de Voûte",
+    "eventPlace": "Le Sonic",
     "city": "Lyon",
     "country": "France",
-    "eventName": "NEXT GENERATION : GWENN LEGRAND",
-    "eventDate": "14 mars | 20h30",
-    "eventURLIndex": "",
-    "eventStyle": "",
+    "eventName": "Patriarchy + première partie",
+    "eventDate": "Avr 15",
+    "eventStyle": "Rock",
     "isCancelled": false,
+    "eventURL": "https://sonic-lyon.fr/facebook-event/patriarchy-premiere-partie/",
     "eventDetailedStyle": "",
     "source": {
-      "name": "La Clef de Voûte",
+      "name": "Le Sonic",
       "city": "Lyon",
       "country": "France"
     },
-    "unixDate": 1710444600000,
-    "eventTime": "jeudi 14 mars à 20:30"
-  },
-  {
-    "eventPlace": "La Clef de Voûte",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "CLEOBULE PERROT",
-    "eventDate": "15 mars | 20h30",
-    "eventURLIndex": "",
-    "eventStyle": "",
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "source": {
-      "name": "La Clef de Voûte",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1710531000000,
-    "eventTime": "vendredi 15 mars à 20:30"
-  },
-  {
-    "eventPlace": "La Clef de Voûte",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "PATRICK MARADAN",
-    "eventDate": "16 mars | 20h30",
-    "eventURLIndex": "",
-    "eventStyle": "",
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "source": {
-      "name": "La Clef de Voûte",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1710617400000,
-    "eventTime": "samedi 16 mars à 20:30"
-  },
-  {
-    "eventPlace": "La Clef de Voûte",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "JUNIOR JAM",
-    "eventDate": "17 mars | 16h00",
-    "eventURLIndex": "",
-    "eventStyle": "",
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "source": {
-      "name": "La Clef de Voûte",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1710687600000,
-    "eventTime": "dimanche 17 mars à 16:00"
-  },
-  {
-    "eventPlace": "La Clef de Voûte",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "JAM du MERCREDI",
-    "eventDate": "20 mars | 20h30",
-    "eventURLIndex": "",
-    "eventStyle": "",
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "source": {
-      "name": "La Clef de Voûte",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1710963000000,
-    "eventTime": "mercredi 20 mars à 20:30"
-  },
-  {
-    "eventPlace": "La Clef de Voûte",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "Résidence ALEX HITCHCOCK",
-    "eventDate": "21 mars | 20h30",
-    "eventURLIndex": "",
-    "eventStyle": "",
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "source": {
-      "name": "La Clef de Voûte",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1711049400000,
-    "eventTime": "jeudi 21 mars à 20:30"
-  },
-  {
-    "eventPlace": "La Clef de Voûte",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "Résidence ALEX HITCHCOCK",
-    "eventDate": "22 mars | 20h30",
-    "eventURLIndex": "",
-    "eventStyle": "",
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "source": {
-      "name": "La Clef de Voûte",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1711135800000,
-    "eventTime": "vendredi 22 mars à 20:30"
-  },
-  {
-    "eventPlace": "La Clef de Voûte",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "Résidence ALEX HITCHCOCK",
-    "eventDate": "23 mars | 20h30",
-    "eventURLIndex": "",
-    "eventStyle": "",
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "source": {
-      "name": "La Clef de Voûte",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1711222200000,
-    "eventTime": "samedi 23 mars à 20:30"
-  },
-  {
-    "eventPlace": "La Clef de Voûte",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "Résidence ALEX HITCHCOCK",
-    "eventDate": "24 mars | 19h30",
-    "eventURLIndex": "",
-    "eventStyle": "",
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "source": {
-      "name": "La Clef de Voûte",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1711305000000,
-    "eventTime": "dimanche 24 mars à 19:30"
-  },
-  {
-    "eventPlace": "La Clef de Voûte",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "JAM du MERCREDI",
-    "eventDate": "27 mars | 20h30",
-    "eventURLIndex": "",
-    "eventStyle": "",
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "source": {
-      "name": "La Clef de Voûte",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1711567800000,
-    "eventTime": "mercredi 27 mars à 20:30"
-  },
-  {
-    "eventPlace": "La Clef de Voûte",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "THOMAS LE ROUX",
-    "eventDate": "28 mars | 20h30",
-    "eventURLIndex": "",
-    "eventStyle": "",
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "source": {
-      "name": "La Clef de Voûte",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1711654200000,
-    "eventTime": "jeudi 28 mars à 20:30"
-  },
-  {
-    "eventPlace": "La Clef de Voûte",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "CAMILLE WOLFROM",
-    "eventDate": "29 mars | 20h30",
-    "eventURLIndex": "",
-    "eventStyle": "",
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "source": {
-      "name": "La Clef de Voûte",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1711740600000,
-    "eventTime": "vendredi 29 mars à 20:30"
-  },
-  {
-    "eventPlace": "La Clef de Voûte",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "HERVE SALAMONE",
-    "eventDate": "30 mars | 20h30",
-    "eventURLIndex": "",
-    "eventStyle": "",
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "source": {
-      "name": "La Clef de Voûte",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1711827000000,
-    "eventTime": "samedi 30 mars à 20:30"
-  },
-  {
-    "eventPlace": "La Clef de Voûte",
-    "city": "Lyon",
-    "country": "France",
-    "eventName": "Marc CABRERA",
-    "eventDate": "31 mars | 19h30",
-    "eventURLIndex": "",
-    "eventStyle": "",
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "source": {
-      "name": "La Clef de Voûte",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "unixDate": 1711906200000,
-    "eventTime": "dimanche 31 mars à 19:30"
+    "unixDate": 1709262900000,
+    "eventTime": "vendredi 1 mars à 04:15"
   }
 ]
