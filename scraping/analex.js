@@ -1,10 +1,10 @@
-const { createDate, numberOfInvalidDates, getCommonDateFormats, getDateConversionPatterns} =require('./import/dateUtilities.js');
+const {getDateConversionPatterns} =require('./import/dateUtilities.js');
 const {removeDoubles, convertToLowerCase, removeBlanks, makeURL, simplify} = require('./import/stringUtilities.js');
 const {loadLinkedPages, getFilesContent} = require('./import/fileUtilities.js');
 const {loadVenueScrapInfofromFile, loadVenuesJSONFile, saveToVenuesJSON, 
         getLanguages, checkLanguages, fromLanguages} = require('./import/jsonUtilities.js');
 const {getTagLocalization, tagContainsAllStrings, getTagContainingAllStrings,
-    getMyIndex, splitAndLowerCase, addJSONBlock} = require('./import/analexUtilities.js');
+    getMyIndex, splitAndLowerCase, addJSONBlock,  getAllDates, getBestDateFormat} = require('./import/analexUtilities.js');
 
 const fs = require('fs');
 const cheerio = require('cheerio');
@@ -158,7 +158,7 @@ function analyze(venueJSON, path){
         // find most appropriate date format
 
         let dates = getAllDates(venueJSON.eventsDelimiterTag,venueJSON.scrap['eventDateTags'],$);
-        venueJSON.dateFormat = getBestDateFormat(dates,venueJSON, dateConversionPatterns);
+        [venueJSON.dateFormat, _] = getBestDateFormat(dates,venueJSON, dateConversionPatterns);
         
         // find strings in linked pages
 
@@ -187,7 +187,7 @@ function analyze(venueJSON, path){
                     }
                     if (venueJSON.linkedPage.hasOwnProperty('eventDateTags')){
                         let dates = getAllDates("BODY",venueJSON.linkedPage['eventDateTags'],$linked);
-                        venueJSON.linkedPageDateFormat = getBestDateFormat(dates,venueJSON.linkedPage, dateConversionPatterns);    
+                        [venueJSON.linkedPageDateFormat,_] = getBestDateFormat(dates,venueJSON.linkedPage, dateConversionPatterns);    
                     }
                 }else{
                     console.log('\x1b[31mError getting data from linked pages. Run again \x1b[0maspiratorex.js\x1b[31m ?.\x1b[0m\n');
@@ -255,38 +255,14 @@ function getTagWithURL(currentTag,$cgp,stringsToFind){
  
 
 
- function removeImageTag(s){
+function removeImageTag(s){
     const regex = /<img.*?>/g;
     return s.replace(regex,'[***IMAGE***]');
- }
+}
 
 
 
  
-
- function getAllDates(mainTag,dateTags,source){
-    let events = [];
-    let dates = [];
-    source(mainTag).each((index, element) => {
-        let ev = source(element).html();
-        events.push(ev);
-    });
-    try{
-        events.forEach(event =>{
-            const $eve = cheerio.load(event);
-            let string = "";
-            for (let i = 0; i <= dateTags.length-1; i++) {
-                let ev = $eve(dateTags[i]).text();                
-                string += ev+' ';
-            }
-            dates.push(string);
-        });
-
-    }catch(err){
-        console.log('\x1b[31m%s\x1b[0m%s', 'Error extracting the dates:',err);
-    }
-    return dates;
- }
 
 
 function getURLIndex(venueJSON,nbHrefs,source){
@@ -312,38 +288,20 @@ function getURLIndex(venueJSON,nbHrefs,source){
 
 
 
-
-function getBestDateFormat(dates, JSON, dateConversionPatterns){
-   // console.log(dates);
-    let bestDateFormat = (JSON.hasOwnProperty('dateFormat'))?JSON.dateFormat:"dd-MM-yyyy";
-    let bestScore = numberOfInvalidDates(dates.map(element => createDate(element,bestDateFormat,dateConversionPatterns,'Europe/Paris')));
-    const dateFormatList = getCommonDateFormats();
-    dateFormatList.forEach(format => {
-        const formattedDateList = dates.map(element => createDate(element,format,dateConversionPatterns));
-        if (numberOfInvalidDates(formattedDateList) < bestScore){
-            bestDateFormat = format;
-            bestScore = numberOfInvalidDates(formattedDateList);
-        }
-    });
-    console.log("\nFound %s events. Best date format: \x1b[36m\"%s\"\x1b[0m (%s/%s invalid dates)",dates.length,bestDateFormat,bestScore,dates.length);
-    return bestDateFormat;
-}
-
-
-function getVenuesFromArguments(args, venueList){
-    let venues = venueList;
-    if (args.length > 2){
-        const venuesFilter = filterFromArguments(args);
-        if (venuesFilter){
-          venues = venuesFilter.name==='*'?venues:venues.filter(el => el.name.toLowerCase() === venuesFilter.name);
-          venues = venuesFilter.city==='*'?venues:venues.filter(el => el.city.toLowerCase() ===venuesFilter.city);
-          venues = venuesFilter.country==='*'?venues:venues.filter(el => el.country.toLowerCase() ===venuesFilter.country);
-        }else{
-          venues = [];
-        }
-    }
-    return venues;
-}
+// function getVenuesFromArguments(args, venueList){
+//     let venues = venueList;
+//     if (args.length > 2){
+//         const venuesFilter = filterFromArguments(args);
+//         if (venuesFilter){
+//           venues = venuesFilter.name==='*'?venues:venues.filter(el => el.name.toLowerCase() === venuesFilter.name);
+//           venues = venuesFilter.city==='*'?venues:venues.filter(el => el.city.toLowerCase() ===venuesFilter.city);
+//           venues = venuesFilter.country==='*'?venues:venues.filter(el => el.country.toLowerCase() ===venuesFilter.country);
+//         }else{
+//           venues = [];
+//         }
+//     }
+//     return venues;
+// }
 
 
 

@@ -5,18 +5,21 @@ const fs = require('fs');
 const cheerio = require('cheerio');
 const {parseDocument} = require('htmlparser2');
 const {app, Menu, ipcRenderer} = require('electron');
-const {loadVenuesJSONFile, loadVenueJSON, loadScrapInfoFile, initializeVenue, saveToVenuesJSON, saveToScrapInfoJSON} = require(imports+'jsonUtilities.js');
+const {loadVenuesJSONFile, loadVenueJSON, loadScrapInfoFile, initializeVenue, saveToVenuesJSON, saveToScrapInfoJSON,
+        fromLanguages, getLanguages} = require(imports+'jsonUtilities.js');
 const {simplify, removeBlanks, extractBody, convertToLowerCase} = require(imports+'stringUtilities.js');
 const {getFilesContent, getModificationDate, loadLinkedPages} = require(imports+'fileUtilities.js');
 const {downloadVenue, erasePreviousHtmlFiles, getHrefListFrom, downloadLinkedPages} = require(imports+'aspiratorexUtilities.js');
 const {getTagLocalization, tagContainsAllStrings, getTagContainingAllStrings,
-  splitAndLowerCase, addJSONBlock, reduceTag} = require(imports+'analexUtilities.js');
+  splitAndLowerCase, addJSONBlock, reduceTag, getAllDates, getBestDateFormat} = require(imports+'analexUtilities.js');
+const {getDateConversionPatterns} =require(imports+'dateUtilities.js');
 
 let intervalId, linkedFileContent;
 let stopCounter = false;
 var localPage, cheerioTest, mainTag;
 let freezeDelimiter = false;
 let pageManagerReduced = false;
+let log ='';
 
 
 //const midnightHourOptions = ['none','sameday','previousday'];
@@ -37,8 +40,14 @@ if (!venue.scrap.hasOwnProperty('eventDateTags')){
 if (!venue.scrap.hasOwnProperty('eventStyleTags')){
   venue.scrap.eventStyleTags = [];
 }
+
 // initialize new venue
 initializeVenue(venue,webSources);
+
+// get languages, dates and format info
+const languages = getLanguages();
+const dateConversionPatterns = fromLanguages(getDateConversionPatterns(),languages[venue.country]);
+
 // get scrap info
 const scrapInfo = loadScrapInfoFile();
 const venueScrapInfo = scrapInfo.hasOwnProperty(venueID)?{...scrapInfo[venueID]}:{};
@@ -86,6 +95,7 @@ pageManagerButton.addEventListener('click',function(){
 
 // save Button
 saveButton.addEventListener('click',function(){
+  toLog("saved to JSON files.");
   saveToVenuesJSON(venues);
   saveToScrapInfoJSON(scrapInfo);
 });
@@ -157,6 +167,7 @@ if (venueScrapInfo.mainPage.hasOwnProperty('eventDateStrings')){
   eventDateStrings.value = getValue(venueScrapInfo.mainPage.eventDateStrings);
 }
 const eventDateTags = document.getElementById('eventDateTags');
+const dateFormatText = document.getElementById('dateFormatText');
 // event style
 const eventStyleStrings = document.getElementById('eventStyleStrings');
 if (venueScrapInfo.mainPage.hasOwnProperty('eventStyleStrings')){
@@ -193,7 +204,7 @@ function copyToTextBox(target){
     const textCopy = selection.toString();
     target.value = (target.value.replace(/(\n\s*)*$/,'').replace(/\n\s*\n/g,'\n')+'\n'+textCopy).replace(/^(\s*\n)*/,'');// remove blank lines
     textBoxUpdate(target);
-    // getDelimiterTag(target.id.replace('Strings','Tags'));
+    // computeTags(target.id.replace('Strings','Tags'));
     // applyTags();
   }
 }
@@ -223,7 +234,7 @@ function textBoxUpdate(textBox){
    // console.log(venueScrapInfo);
     venueScrapInfo.mainPage[textBox.id] = getArray(textBox.value);
     console.log(textBox.id);
-    getDelimiterTag(textBox.id.replace('Strings','Tags'));
+    computeTags(textBox.id.replace('Strings','Tags'));
     applyTags();
   }
  // console.log(venue);
@@ -232,12 +243,16 @@ function textBoxUpdate(textBox){
 // button analyze
 // const analyzeButton = document.getElementById('analyzeButton');
 // analyzeButton.addEventListener('click',event=>{
-//   getDelimiterTag();
+//   computeTags();
 //   applyTags();
 // });
 
 // log text
 const logText = document.getElementById('logText');
+function toLog(string){
+  log += string + '\n';
+  logText.textContent = log;
+}
 
 
 // right panel
@@ -313,6 +328,9 @@ function loadPage(){
   applyTags();
   // find missing links
   computeMissingLinks();
+  if (validateDelimiterTags()){
+    computeDateFormat();
+  }
 }
 
 function computeMissingLinks(){
@@ -323,13 +341,10 @@ function computeMissingLinks(){
   const missingLinksPanel = document.getElementById('missingLinksPanel');
   missingLinksPanel.style.display = 'block';
   const missingLinksText = document.getElementById('missingLinksText');
-  console.log('essai');
   if (venue.hasOwnProperty('linkedPage') && lastModified){
-    console.log('coucou');
     if (hrefList.length === 0){
       missingLinksText.textContent = 'Cannot download linked pages, scrap info not defined yet.';
     }else{
-      console.log('coucou2');
       missingLinksText.textContent = 'Links downloaded: '+existingLinks.length+'/'+hrefList.length;
       if (linksToDownload.length === 0){
         missingLinksText.classList.remove('redFont');
@@ -433,7 +448,7 @@ function getArray(string){
   return string.split('\n');
 }
 
-function getDelimiterTag(id){
+function computeTags(id){
   const $ = cheerio.load(parseDocument(convertToLowerCase(localPage)));
   if (!freezeDelimiter){
     const stringsToFind = [].concat(...Object.values(splitAndLowerCase(venueScrapInfo).mainPage));
@@ -449,11 +464,25 @@ function getDelimiterTag(id){
     //   const tmpScrap = addJSONBlock(venueScrapInfo.mainPage,$eventBlock);
     //   venue.scrap[id] = tmpScrap[id];
     // }else{
-      venue.scrap = addJSONBlock(venueScrapInfo.mainPage,$eventBlock);
+    venue.scrap = addJSONBlock(venueScrapInfo.mainPage,$eventBlock);
     // }
+    computeDateFormat();
     renderEventURLPanel();
     initScrapTextTags();
   }
+}
+
+function computeDateFormat(){
+  const $ = cheerio.load(parseDocument(convertToLowerCase(localPage)));
+  let dates = getAllDates(venue.eventsDelimiterTag,venue.scrap['eventDateTags'],$);
+  let score;
+  [venue.dateFormat, bestScore] = getBestDateFormat(dates,venue, dateConversionPatterns);
+  console.log(venue.dateFormat);
+  let formatString = "Date format founds: "+venue.dateFormat;
+  if (bestScore !== 0){
+    formatString += " ("+(dates.length-bestScore)+"/"+dates.length+" valid dates)";
+  }
+  dateFormatText.textContent = formatString;
 }
 
 function renderEventURLPanel(){

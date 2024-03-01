@@ -7,12 +7,52 @@
 const {removeDoubles, makeURL, cleanPage, removeBlanks} = require('./stringUtilities.js');
 //const {loadLinkedPages, fetchWithRetry, fetchLink} = require('./fileUtilities.js');
 //const {loadVenuesJSONFile, saveToVenuesJSON, isAlias, initializeVenue} = require('./jsonUtilities.js');
-//const {getURLListFromPattern} = require('./dateUtilities.js');
+const {numberOfInvalidDates, getCommonDateFormats, createDate} = require('./dateUtilities.js');
 const cheerio = require('cheerio');
 
 
 module.exports = {getTagLocalization, tagContainsAllStrings, getTagContainingAllStrings, getMyIndex, 
-    splitAndLowerCase, addJSONBlock, reduceTag};
+    splitAndLowerCase, addJSONBlock, reduceTag, getAllDates, getBestDateFormat};
+
+function getAllDates(mainTag,dateTags,source){
+    let events = [];
+    let dates = [];
+    source(mainTag).each((index, element) => {
+        let ev = source(element).html();
+        events.push(ev);
+    });
+    try{
+        events.forEach(event =>{
+            const $eve = cheerio.load(event);
+            let string = "";
+            for (let i = 0; i <= dateTags.length-1; i++) {
+                let ev = $eve(dateTags[i]).text();                
+                string += ev+' ';
+            }
+            dates.push(string);
+        });
+
+    }catch(err){
+        console.log('\x1b[31m%s\x1b[0m%s', 'Error extracting the dates:',err);
+    }
+    return dates;
+}
+
+function getBestDateFormat(dates, JSON, dateConversionPatterns){
+    // console.log(dates);
+     let bestDateFormat = (JSON.hasOwnProperty('dateFormat'))?JSON.dateFormat:"dd-MM-yyyy";
+     let bestScore = numberOfInvalidDates(dates.map(element => createDate(element,bestDateFormat,dateConversionPatterns,'Europe/Paris')));
+     const dateFormatList = getCommonDateFormats();
+     dateFormatList.forEach(format => {
+         const formattedDateList = dates.map(element => createDate(element,format,dateConversionPatterns));
+         if (numberOfInvalidDates(formattedDateList) < bestScore){
+             bestDateFormat = format;
+             bestScore = numberOfInvalidDates(formattedDateList);
+         }
+     });
+     console.log("\nFound %s events. Best date format: \x1b[36m\"%s\"\x1b[0m (%s/%s invalid dates)",dates.length,bestDateFormat,bestScore,dates.length);
+     return [bestDateFormat, bestScore];
+}
 
 function addJSONBlock(scrapSource,source){
     let res =  {};

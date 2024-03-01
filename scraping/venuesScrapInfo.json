@@ -15,15 +15,21 @@
   "Terminal Club|Lyon|France": {
     "mainPage": {
       "eventNameStrings": [
-        "nashton"
+        "secrète"
       ],
-      "eventDateStrings": "8 fév"
+      "eventDateStrings": [
+        "ven",
+        "15",
+        "mar"
+      ]
     },
     "linkedPage": {
       "eventNameStrings": [
         "nashton"
       ],
-      "eventDateStrings": "08.02.24"
+      "eventDateStrings": [
+        "08.02.24"
+      ]
     }
   },
   "Le Petit Bulletin|Lyon|France": {

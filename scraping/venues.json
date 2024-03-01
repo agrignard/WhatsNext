@@ -96,7 +96,7 @@
     "city": "Lyon",
     "country": "France",
     "url": "https://www.terminal-club.com/evenements/",
-    "eventsDelimiterTag": "DIV.colinner",
+    "eventsDelimiterTag": " DIV  MAIN  DIV.contentarea.pagewrapper  DIV.row.rowmain  DIV.large12.col  DIV.colinner  DIV.tribecommon.tribeevents.tribeeventsview.tribeeventsviewphoto.alignwide.tribeeventsviewshortcode.tribeeventsviewshortcodeb6439857.tribeeventspro  DIV.tribecommonlcontainer.tribeeventslcontainer  DIV.tribeeventsprophoto.col  DIV.row.largecolumns6.mediumcolumns4.smallcolumns2  DIV.col.postitem  DIV.colinner",
     "dateFormat": "dd-MM",
     "eventURLIndex": 1,
     "defaultStyle": "Electro",
@@ -104,10 +104,10 @@
     "baseURL": "https://www.terminal-club.com/evenements/",
     "linkedPage": {
       "eventNameTags": [
-        "H1.sectiontitle.titreeventsingle:eq(0)"
+        "A.tagcloudlink.taglink4296.taglinkposition28:eq(0)"
       ],
       "eventDateTags": [
-        "DIV.col.small5:eq(0)"
+        null
       ]
     },
     "scrap": {
@@ -115,11 +115,12 @@
         "H5.posttitle.islarge.uppercase:eq(0)"
       ],
       "eventDateTags": [
+        "DIV.nomargin.nopadding:eq(0)",
         "DIV.eventphotodate.nomargin.nopadding:eq(0)",
         "DIV.nomargin.nopadding:eq(2)"
       ]
     },
-    "linkedPageDateFormat": "dd-MM-yy",
+    "linkedPageDateFormat": "dd-MM-yyyy",
     "ID": "Terminal Club|Lyon|France"
   },
   {
@@ -131,7 +132,7 @@
     "city": "Lyon",
     "country": "France",
     "url": "https://www.periscope-lyon.com/concerts/",
-    "eventsDelimiterTag": "DIV.smallcontent.ukwidth14m.ukgridmargin",
+    "eventsDelimiterTag": " DIV.site  DIV.contentarea  MAIN.sitemain.wrap_agenda.allconcerts  DIV  DIV  DIV.smallcontent.ukwidth14m.ukgridmargin",
     "dateFormat": "dd-MM",
     "defaultStyle": "Jazz",
     "baseURL": "https://www.periscope-lyon.com/concerts/",
@@ -151,7 +152,7 @@
         "SPAN.ccth:eq(0)"
       ]
     },
-    "linkedPageDateFormat": "dd-MM-yyyy-HH:mm",
+    "linkedPageDateFormat": "dd-MM-yyyy",
     "ID": "Le Périscope|Lyon|France"
   },
   {
