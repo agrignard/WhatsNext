@@ -110,8 +110,9 @@ function convertDate(s,dateConversionPatterns){
     function replacer(match, p1, p2, p3, offset, string) {
       return ' '+key+' ';
     }
-    for (const str of dateConversionPatterns[key]){
-       s = s.replace(new RegExp("([^a-zA-Z.]|^)("+str+")([^a-zA-Z.]|$)",'i'),replacer);
+    for (let str of dateConversionPatterns[key]){
+      const str2 = str.replace(/\./g,'\\.');
+      s = s.replace(new RegExp("([^a-zA-Z.]|^)("+str2+")([^a-zA-Z.]|$)",'i'),replacer);
     }
   }  
   // change some inconsistencies
