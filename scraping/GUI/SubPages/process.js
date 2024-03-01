@@ -96,6 +96,7 @@ pageManagerButton.addEventListener('click',function(){
 // save Button
 saveButton.addEventListener('click',function(){
   toLog("saved to JSON files.");
+  console.log(venue);
   saveToVenuesJSON(venues);
   saveToScrapInfoJSON(scrapInfo);
 });

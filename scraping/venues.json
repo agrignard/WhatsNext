@@ -657,5 +657,24 @@
       "MJC Ô Totem",
       "Mjc O Totem"
     ]
+  },
+  {
+    "name": "essai",
+    "city": "Lyon",
+    "country": "France",
+    "scrap": {
+      "eventNameTags": [
+        "A.tribeeventscalendarmonthmobileevents__mobileeventtitlelink.tribecommonanchor:eq(0)"
+      ],
+      "eventDateTags": [
+        "SPAN.tribeeventdatestart:eq(0)"
+      ],
+      "eventURLIndex": 1
+    },
+    "url": "https://www.laclefdevoute.fr/concerts-de-jazz-a-lyon/",
+    "ID": "essai|Lyon|France",
+    "baseURL": "https://www.laclefdevoute.fr/concerts-de-jazz-a-lyon/",
+    "eventsDelimiterTag": "ARTICLE.tribeeventscalendarmonthmobileevents__mobileevent.tribe_events.typetribe_events.statuspublish.haspostthumbnail.hentry  DIV.tribeeventscalendarmonthmobileevents__mobileeventdetails",
+    "dateFormat": "dd-MM"
   }
 ]

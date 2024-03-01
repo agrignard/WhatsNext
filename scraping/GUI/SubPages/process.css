@@ -29,7 +29,7 @@ body, html {
 .topRightButton{
     position: absolute;
     top: 5px;
-    right: 11.5px;
+    right: 5px;
 }
 
 
@@ -226,7 +226,7 @@ background-color: lightblue;
 
 #analyzePanel{
     position: relative;
-    overflow-y: auto;
+    overflow-y: scroll;
     overflow-x: hidden;
 }
 
@@ -290,17 +290,22 @@ background-color: lightblue;
 }
 
 .delimiterTagInput {
-    width: 93.5%;
-    background-color: rgb(231, 76, 60);
+  position: absolute;
+  right: 5px;
+  width: calc(100% - 10px);
     border: 1px solid #ccc;
     padding: 5px 10px;
     background-color: white;
+    box-sizing: border-box;
 }
 
 
 #delimiterPanel{
     position: relative;
-    padding: 5px 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 #freezeDelimiterButton{
