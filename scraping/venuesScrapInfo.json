@@ -208,5 +208,15 @@
         "20h00"
       ]
     }
+  },
+  "La Clef de Voûte|Lyon|France": {
+    "mainPage": {
+      "eventNameStrings": [
+        "marc cabrera"
+      ],
+      "eventDateStrings": [
+        "31 mars | 19h30"
+      ]
+    }
   }
 }

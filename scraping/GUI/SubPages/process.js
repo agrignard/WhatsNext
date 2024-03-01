@@ -55,6 +55,7 @@ if (!venueScrapInfo.hasOwnProperty('mainPage')){
   venueScrapInfo.mainPage = {};
 }
 
+
 // get file if it exists
 const sourcePath = webSources+'/'+venue.country+'/'+venue.city+'/'+venue.name+'/'
 let lastModified = getModificationDate(sourcePath);
@@ -98,6 +99,9 @@ saveButton.addEventListener('click',function(){
   toLog("saved to JSON files.");
   console.log(venue);
   saveToVenuesJSON(venues);
+  if (!scrapInfo.hasOwnProperty(venueID)){
+    scrapInfo[venueID] = venueScrapInfo;
+  }
   saveToScrapInfoJSON(scrapInfo);
 });
 

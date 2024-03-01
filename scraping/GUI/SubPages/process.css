@@ -260,7 +260,6 @@ background-color: lightblue;
     margin-right: 5px; /* Marge entre les éléments */
 }
 
-
 #eventURLPanelMessage{
     font-weight: normal;
     font-size: 80%;
@@ -285,27 +284,21 @@ background-color: lightblue;
   background-color: rgb(231, 76, 60);
 }
 
-.delimiterTag {
-    background-color: rgb(231, 76, 60);
-}
 
 .delimiterTagInput {
-  position: absolute;
-  right: 5px;
-  width: calc(100% - 10px);
-    border: 1px solid #ccc;
-    padding: 5px 10px;
-    background-color: white;
-    box-sizing: border-box;
+  width: calc(100%); /* Largeur ajustée en fonction de la marge */
+  margin-top: 5px; 
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  background-color: white;
+  box-sizing: border-box;
 }
 
 
 #delimiterPanel{
-    position: relative;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 5px;
-    padding-right: 5px;
+  position: relative;
+  background-color: rgb(231, 76, 60);
+  padding: 5px;
 }
 
 #freezeDelimiterButton{
@@ -313,6 +306,17 @@ background-color: lightblue;
     padding: 1px 5px;
     cursor: pointer;
 }
+
+#eventURLPanel{
+  position: relative;
+}
+
+
+
+
+
+
+
 
 textarea:focus, input:focus {
     outline: 2px solid rgb(189, 195, 199); 
