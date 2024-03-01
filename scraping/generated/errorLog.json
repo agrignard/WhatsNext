@@ -1,5 +1,23 @@
 [
   {
+    "eventPlace": "Terminal Club",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "",
+    "eventDate": "",
+    "isCancelled": false,
+    "eventURL": "https://www.terminal-club.com/evenement-multiple/mois/?shortcode=b6439857",
+    "eventDetailedStyle": "",
+    "eventStyle": "Electro",
+    "source": {
+      "name": "Terminal Club",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Terminal Club. Reçu \"\", converti en \"\" (attendu \"dd-MM-yy\")",
+    "unixDate": 0
+  },
+  {
     "eventPlace": "À Thou Bout d'Chant",
     "city": "Lyon",
     "country": "France",
@@ -70,5 +88,93 @@
     },
     "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Du 17 au 23 mars 2024, dim et sam à ven à 20h, jeu à 19h30\", converti en \"17-23-03-2024-20:19:30\" (attendu \"dd-MM-yyyy-HH:mm\")",
     "unixDate": 0
+  },
+  {
+    "eventPlace": "Radiant-Bellevue",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "MELANIE DE BIASIO",
+    "eventDate": "",
+    "eventURL": "http://radiant-bellevue.fr/",
+    "isCancelled": true,
+    "eventDetailedStyle": "",
+    "eventStyle": "",
+    "source": {
+      "name": "Infoconcert",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Infoconcert. Reçu \"\", converti en \"\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0,
+    "altURLs": [
+      "https://www.infoconcert.com/ticket/concert-melanie-de-biasio-caluire-et-cuire/1562535.html",
+      "http://radiant-bellevue.fr/"
+    ]
+  },
+  {
+    "eventPlace": "Radiant-Bellevue",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "YODELICE",
+    "eventDate": "",
+    "eventURL": "http://radiant-bellevue.fr/",
+    "isCancelled": false,
+    "eventDetailedStyle": "",
+    "eventStyle": "",
+    "source": {
+      "name": "Infoconcert",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Infoconcert. Reçu \"\", converti en \"\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0,
+    "altURLs": [
+      "https://www.infoconcert.com/ticket/concert-yodelice-caluire-et-cuire/1555669.html",
+      "http://radiant-bellevue.fr/"
+    ]
+  },
+  {
+    "eventPlace": "Radiant-Bellevue",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "BATARD SENSIBLE",
+    "eventDate": "",
+    "eventURL": "http://radiant-bellevue.fr/",
+    "isCancelled": false,
+    "eventDetailedStyle": "",
+    "eventStyle": "",
+    "source": {
+      "name": "Infoconcert",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Infoconcert. Reçu \"\", converti en \"\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0,
+    "altURLs": [
+      "https://www.infoconcert.com/ticket/concert-alexandre-kominek-caluire-et-cuire/1602071.html",
+      "http://radiant-bellevue.fr/"
+    ]
+  },
+  {
+    "eventPlace": "Radiant-Bellevue",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "BERENGERE KRIEF",
+    "eventDate": "",
+    "eventURL": "http://radiant-bellevue.fr/",
+    "isCancelled": false,
+    "eventDetailedStyle": "",
+    "eventStyle": "",
+    "source": {
+      "name": "Infoconcert",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Infoconcert. Reçu \"\", converti en \"\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0,
+    "altURLs": [
+      "https://www.infoconcert.com/ticket/concert-berengere-krief-caluire-et-cuire/1617849.html",
+      "http://radiant-bellevue.fr/"
+    ]
   }
 ]

@@ -49,7 +49,7 @@ function mergeEvents(eventList,showFullMergeLog){
     newList.filter(el => el.hasOwnProperty('mergeCandidates')).forEach(el=> {
         res = res.concat(merge(el));
     });
-   // console.log(mergeLog);
+    console.log(mergeLog);
     return res;
 
     // auxiliary function

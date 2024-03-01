@@ -83,6 +83,7 @@ async function convertEventCSVtoGeoJson(){
       const style=columns[4];
       const detailedStyle=columns[5];
       const url=columns[6];
+      const time_string=columns[7];
       //console.log("Event:"+ place+";"+title+";"+time+";"+size+";"+style+";"+detailedStyle+";"+url);
     const newFeature = {
       type: 'Feature',
@@ -99,6 +100,7 @@ async function convertEventCSVtoGeoJson(){
           "style": style,
           "detailedStyle": detailedStyle,
           "time":time,
+          "time_string":time_string,
           "description":url
       },
       };

@@ -74,14 +74,12 @@ function jsonCallback(err, data) {
     document.getElementById('slider').addEventListener('input', async (e) => {
 
     const sliderValue = parseInt(e.target.value, 10);
-    console.log("CA move du sldier");
-    console.log("slider value" + sliderValue);
-    console.log("currentDate" + currentDate);
     const tmpDate= new Date(currentDate);
     const newDateAsInt = tmpDate.setDate(tmpDate.getDate() + sliderValue).valueOf();
     appDate=newDateAsInt;
     mapUtils.filterBy(map,newDateAsInt,false);
-
+    var todayInformation;
+    todayInformation = await dataUtils.getTodayEvents(new Date(appDate));
     updateCircleLegend();
     });
 
@@ -99,6 +97,7 @@ dataUtils.initPlaceInformation();
 chartIt();
 
 async function chartIt(){
+    const todayInformation = await dataUtils.getTodayEvents(currentDate);
     const canvas1 = document.getElementById('chart1');
     const canvas2 = document.getElementById('chart2');
     const ctx1 = canvas1.getContext('2d');
@@ -159,14 +158,15 @@ const canvas = document.getElementById('myCircleCanvas');
 const ctx = canvas.getContext('2d');
 
 const circles = [
-  { x: 20, y: 25, radius: 18, value: 'Rock', color: 'rgba(23,128,251,0.5)' },
+  { x: 20, y: 25, radius: 18, value: 'Rock', color: 'rgba(23,128,251)' },
   { x: 60, y: 25, radius: 18, value: 'Electro', color: 'rgba(40,124,18,0.5)' },
   { x: 100, y: 25, radius: 18, value: 'Jazz', color: 'rgba(255,255,0,0.5)' },
-  { x: 140, y: 25, radius: 18, value: 'Rap', color: 'rgba(165,2,33,0.5)' },
-  { x: 180, y: 25, radius: 18, value: 'Classique', color: 'rgba(127,0,255,0.5)' },
+  { x: 140, y: 25, radius: 18, value: 'Rap', color: 'rgba(255,0,0,0.5)' },
+  { x: 180, y: 25, radius: 18, value: 'Chanson', color: 'rgba(0,255,255,0.5)' },
   { x: 220, y: 25, radius: 18, value: 'World', color: 'rgba(224,147,40,0.5)' },
-  { x: 260, y: 25, radius: 18, value: 'Chanson', color: 'rgba(0,255,255,0.5)' },
-  { x: 300, y: 25, radius: 18, value: 'Live', color: 'rgba(144,238,144,0.5)' }
+  { x: 260, y: 25, radius: 18, value: 'Classique', color: 'rgba(127,0,255,0.5)' },
+  { x: 300, y: 25, radius: 18, value: 'Live', color: 'rgba(144,238,144,0.5)' },
+  { x: 340, y: 25, radius: 18, value: 'Theatre', color: 'rgba(165,42,42,0.5)' }
 ];
 
 let selectedCircle = null;

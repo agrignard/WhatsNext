@@ -156,6 +156,7 @@ map.on('click', 'event-circles', (e) => {
     var style = e.features[0].properties.style;
     var detailedStyle = e.features[0].properties.detailedStyle;
     var time = e.features[0].properties.time;
+    var time_string = e.features[0].properties.time_string;
      
     // Ensure that if the map is zoomed out such that multiple
     // copies of the feature are visible, the popup appears
@@ -178,11 +179,9 @@ map.on('click', 'event-circles', (e) => {
         placeURLString= "<a href="+dataUtils.placeToUrl.get(place)+" target=   'blank'title='Opens in a new window'>"+place+"</a>";
     }
     
-    console.log(description);
-    //console.log("urlString"+urlString);
     new mapboxgl.Popup()
     .setLngLat(coordinates)
-    .setHTML("<h4>" + eventURLString + "</h4><b>Place:</b> "+place+"<br><b>Time:</b> "+new Date(time)+"<br><b>Style:</b> "+style + " (" + detailedStyle +")")
+    .setHTML("<h4>" + eventURLString + "</h4><b>Place:</b> "+place+"<br><b>Time:</b> "+time_string+"<br><b>Style:</b> "+style + " (" + detailedStyle +")")
     .addTo(map);
     });
 
@@ -352,15 +351,16 @@ var transparencyBig = 0.95;
 
 // Your dynamic map of categories and their colors
 export const categoryColors = {
-    'Rock': '23, 128, 251',
+    'Rock': '23, 128, 251 ',
     'Electro': '40, 124, 18',
     'Jazz': '255, 255, 0',
-    'Rap': '165, 2, 33',
+    'Rap': '255, 0, 0',
     'World': '224, 147, 40',
     'Jam': '238, 130, 238',
     'Classique': '127, 0, 255',
     'Chanson': '0, 255, 255',
-    'Live': '144, 238, 214'
+    'Live': '144, 238, 214',
+    'Theatre': '165,42,42'
   };
 
 export function generateColorExpressions(categories) {

@@ -438,7 +438,8 @@
     "country": "France",
     "city": "Lyon",
     "aliases": [
-      "Jack Jack - MJC Aragon"
+      "Jack Jack - MJC Aragon",
+      "Jack Jack / Mjc Louis Aragon De Bron"
     ],
     "ID": "Jack Jack|Lyon|France"
   },
@@ -591,5 +592,69 @@
       "Auditorium - Orchestre National De Lyon"
     ],
     "ID": "Auditorium de Lyon|Lyon|France"
+  },
+  {
+    "name": "Le Nombril du Monde",
+    "country": "France",
+    "city": "Lyon",
+    "ID": "Le Nombril du Monde|Lyon|France",
+    "defaultStyle": "Theatre"
+  },
+  {
+    "name": "Le Boui Boui",
+    "country": "France",
+    "city": "Lyon",
+    "ID": "Le Boui Boui|Lyon|France",
+    "defaultStyle": "Theatre"
+  },
+  {
+    "name": "Salle Paul Garcin",
+    "country": "France",
+    "city": "Lyon",
+    "ID": "Salle Paul Garcin|Lyon|France",
+    "defaultStyle": "Theatre"
+  },
+  {
+    "name": "Cafe Theatre Le Complexe",
+    "country": "France",
+    "city": "Lyon",
+    "ID": "Cafe Theatre Le Complexe|Lyon|France",
+    "defaultStyle": "Theatre"
+  },
+  {
+    "name": "L'ile O",
+    "country": "France",
+    "city": "Lyon",
+    "ID": "L'ile O|Lyon|France",
+    "defaultStyle": "Theatre"
+  },
+  {
+    "name": "Centre culturel Charlie Chaplin",
+    "country": "France",
+    "city": "Lyon",
+    "ID": "Centre culturel Charlie Chaplin|Lyon|France",
+    "aliases": [
+      "Centre Charlie Chaplin"
+    ]
+  },
+  {
+    "name": "Groom",
+    "country": "France",
+    "city": "Lyon",
+    "ID": "Groom|Lyon|France",
+    "aliases": [
+      "Le Groom"
+    ]
+  },
+  {
+    "name": "Ô Totem live",
+    "country": "France",
+    "city": "Lyon",
+    "ID": "Groom|Lyon|France",
+    "aliases": [
+      "Ô Totem",
+      "MJC Ô Totem",
+      "Mjc O Totem"
+    ]
   }
 ]
