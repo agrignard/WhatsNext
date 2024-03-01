@@ -144,7 +144,7 @@ function yearIsValid(yyyy){
 
 // clean the date string by removing unwanted characters
 function unifyCharacters(s){
-  let string = s.replace(/[\n\t\/\-,;.]/g,' ').replace(/ {2,}/g,' ').replace(/^ /,'').replace(/ $/,'').replace(/ /g,'-');
+  let string = s.replace(/[\n\t\/\|\-,;.]/g,' ').replace(/ {2,}/g,' ').replace(/^ /,'').replace(/ $/,'').replace(/ /g,'-');
   string = string.replace(/h/g,':').replace(/: /g,':00').replace(/:$/g,':00');//format to correct time
   string = string.replace(/:-+/g,':');//remove - after :
   return string;
