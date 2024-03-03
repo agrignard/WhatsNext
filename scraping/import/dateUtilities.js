@@ -80,11 +80,13 @@ function createDate(s,dateFormat,dateConversionPatterns,timeZone,refDate) {
       return new Date();
   }else{
       s = convertDate(s,dateConversionPatterns);
-      const testDate = parse(s, dateFormat, new Date());// use Date to see if a date is valid, because it doesn't work with moment
-      if (!isAValidDate(testDate)){
-        return testDate;
-      }
-      const date = moment.tz(s,dateFormat.replace(/d/g,'D').replace(/y/g,'Y'), timeZone);
+      // const testDate = parse(s, dateFormat, new Date());// use Date to see if a date is valid, because it doesn't work with moment
+      // if (!isAValidDate(testDate)){
+      //   return testDate;
+      // }
+      // peut-être que true force moment.tz à faire un formattage strict. Si ça ne fonctionne pas,
+      // enlever true et décommenter les lignes précédentes
+      const date = moment.tz(s,dateFormat.replace(/d/g,'D').replace(/y/g,'Y'), true, timeZone);
       //console.log(date.toLocaleString());
       let tzDate = date.toDate();
       if (refDate && !/yy/.test(dateFormat) && tzDate < refDate){// add one year if the date is past for more than one month. Useful when the year is not in the data

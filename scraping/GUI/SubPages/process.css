@@ -12,6 +12,19 @@ body, html {
     margin: 20px;
 }
 
+
+/* #autoAdjustText{
+  position: absolute;
+  right: 11ch;
+  top: 5px;
+}
+
+#autoAdjustCheckbox{
+  position: absolute;
+  right: 10ch;
+  top: 5px;
+} */
+
 #venueInfo{
     font-family: sans-serif;
     font-size: 105%;

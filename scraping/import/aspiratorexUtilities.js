@@ -225,4 +225,18 @@ function getHrefListFrom(pageList,venue){
   hrefList = hrefList.map((el) => makeURL(venue.baseURL,el));
   return hrefList;
 }
+
+
+// function reduceImgSize(html){
+//   const regexWidth = /(\<(?:img|svg)[^\<]*width\s*=\s*\")([^\"]*)\"/g;
+//   const regexHeight = /(\<(?:img|svg)[^\<]*height\s*=\s*\")([^\"]*)\"/g;
+
+//   function replace(p1,p2,p3){
+//     if (p3 > 100){
+//       return p2+'50'+'\"';
+//     }
+//     return p1;
+//   }
+//   return html.replace(regexWidth,replace).replace(regexHeight,replace);
+// }
   

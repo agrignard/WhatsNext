@@ -12,7 +12,35 @@ const cheerio = require('cheerio');
 
 
 module.exports = {getTagLocalization, tagContainsAllStrings, getTagContainingAllStrings, getMyIndex, 
-    splitAndLowerCase, addJSONBlock, reduceTag, getAllDates, getBestDateFormat};
+    splitAndLowerCase, addJSONBlock, reduceTag, getAllDates, getBestDateFormat, adjustMainTag};
+
+function adjustMainTag(delimiterTag,$){
+    const mainTagEventsNumber = $(delimiterTag).length;
+    console.log('ref', mainTagEventsNumber);
+    let currentNumber = mainTagEventsNumber;
+    let bestTag = delimiterTag;
+    const splitTag = delimiterTag.split(' ');
+    for (let i=0;i<splitTag.length;i++){
+        const startList = splitTag.slice(0,i);
+        const endList = splitTag.slice(i+1);
+        const currentTag = splitTag[i].split('.');
+        if (currentTag.length>2){// only if more than one class exist
+            for(let j=1;j<currentTag.length;j++){
+                const startInnerList = currentTag.slice(0,j);
+                const endInnerList = currentTag.slice(j+1);
+                let newTag = startList.join(' ')+' '+startInnerList.join('.')+'.'+
+                            endInnerList.join('.')+' '+endList.join(' ');
+                newTag = newTag.replace(/\. /g,' ');
+                console.log(newTag);
+                const newNumber = $(newTag).length;
+                console.log('results',newNumber);
+           //     $(newTag).each((index, element)  => {console.log($(element).text())});
+            }
+        }
+    }
+    return delimiterTag;
+}
+
 
 function getAllDates(mainTag,dateTags,source){
     let events = [];
@@ -107,18 +135,39 @@ function findTag(html,string) {
     const refText = source(string).text();
     const stringList = string.split(' ');
     let reducedString = stringList.pop();
-    while(source(reducedString).text() !== refText){
+    while(stringList.length>0){
         reducedString = stringList.pop()+' '+reducedString;
-        if (stringList.length<0){
-            console.log('Error, while loop should have ended before.');
-            break;
+        const reducedStringClasses = getClasses(reducedString);
+        const remainingClasses = getClasses(stringList.join(' '));
+        const noWrapping = reducedStringClasses.some(el =>!remainingClasses.includes(el));
+        if (source(reducedString).text() === refText && noWrapping){
+            return reducedString;
         }
     }
+    // while(source(reducedString).text() !== refText){
+    //     reducedString = stringList.pop()+' '+reducedString;
+    //     if (stringList.length<0){
+    //         console.log('Error, while loop should have ended before.');
+    //         return string;
+    //     }
+    // }
     // console.log(source(reducedString).text());
     // console.log(reducedString);
     return reducedString;
 }
 
+
+function getClasses(tagText){
+    const classList = [];
+    tagText.split(' ').forEach(tag =>{
+        tag.split('.').forEach((el,index) =>{
+            if (index > 0){
+                classList.push(el);
+            }
+        });
+    });
+    return classList;
+}
 
 
 

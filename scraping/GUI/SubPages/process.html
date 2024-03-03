@@ -24,12 +24,19 @@
             </div>
             <div id="analyzePanel">
                 <div id="delimiterPanel">
-                    <div class="title">Delimiter tag</div>
+                    <div id="DelimiterTitle" class="title">Delimiter tag</div>
                     <button id="freezeDelimiterButton" class="topRightButton button">Freeze</button>
-                    <input type="text" id="delimiterTag" class="delimiterTagInput" placeholder="Will be filled automatically" size="50">
+                    <input type="text" id="delimiterTagField" class="delimiterTagInput" placeholder="Will be filled automatically" size="50">
                     <div id="eventURLPanel">
                         <div id="eventURLPanelMessage"></div>
                         <select id="eventURLSelect"></select>
+                    </div>
+                    <div id="optionsPanel">
+                        <div style ="display: inline;">Options:</div>
+                        <label id="autoAdjustText" for="autoAdjustCheckbox" style ="display: inline;">auto adjust</label>
+                        <input type="checkbox" id="autoAdjustCheckbox" style ="display: inline;">
+                        <label id="adjustURL" for="adjustURLCheckbox" style ="display: inline;">Must include an URL</label>
+                        <input type="checkbox" id="adjustURLCheckbox" style ="display: inline;">
                     </div>
                 </div>
                 <div id="scrapInfos">

@@ -11,7 +11,8 @@ const {simplify, removeBlanks, extractBody, convertToLowerCase, removeDoubles} =
 const {getFilesContent, getModificationDate, loadLinkedPages} = require(imports+'fileUtilities.js');
 const {downloadVenue, erasePreviousHtmlFiles, getHrefListFrom, downloadLinkedPages} = require(imports+'aspiratorexUtilities.js');
 const {getTagLocalization, tagContainsAllStrings, getTagContainingAllStrings,
-  splitAndLowerCase, addJSONBlock, reduceTag, getAllDates, getBestDateFormat} = require(imports+'analexUtilities.js');
+  splitAndLowerCase, addJSONBlock, reduceTag, getAllDates, getBestDateFormat,
+  adjustMainTag} = require(imports+'analexUtilities.js');
 const {getDateConversionPatterns} =require(imports+'dateUtilities.js');
 
 let intervalId, linkedFileContent;
@@ -20,6 +21,8 @@ var localPage, cheerioTest, mainTag;
 let freezeDelimiter = false;
 let pageManagerReduced = false;
 let log ='';
+let mustIncludeURL  = true;
+let nbEvents = 0;
 
 
 //const midnightHourOptions = ['none','sameday','previousday'];
@@ -39,6 +42,9 @@ if (!venue.scrap.hasOwnProperty('eventDateTags')){
 }
 if (!venue.scrap.hasOwnProperty('eventStyleTags')){
   venue.scrap.eventStyleTags = [];
+}
+if (venue.hasOwnProperty('eventURLIndex') && venue.eventURLIndex === -1){
+  mustIncludeURL = false;
 }
 
 // initialize new venue
@@ -141,12 +147,15 @@ missingLinksButton.addEventListener('click', function(){
 });
 
 // delimiter panel
-var delimiterTagField = document.getElementById('delimiterTag');
+const DelimiterTitle = document.getElementById('DelimiterTitle');
+var delimiterTagField = document.getElementById('delimiterTagField');
 delimiterTagField.value = venue.hasOwnProperty('eventsDelimiterTag')?venue.eventsDelimiterTag:'';
 delimiterTagField.addEventListener('input'||'change',event =>{
   venue.eventsDelimiterTag = delimiterTagField.value;
-  validateDelimiterTags(delimiterTagField);
-  applyTags();
+  if (validateDelimiterTags()){
+    applyTags();
+  }
+  computeEventsNumber(cheerioTest);
 });
 const freezeDelimiterButton = document.getElementById('freezeDelimiterButton');
 freezeDelimiterButton.addEventListener('click', function() {
@@ -159,6 +168,18 @@ freezeDelimiterButton.addEventListener('click', function() {
     freezeDelimiterButton.textContent = "Freeze";
   }
 });
+// adjust tag check box
+const autoAdjustCheckbox = document.getElementById('autoAdjustCheckbox');
+autoAdjustCheckbox.checked = true;
+// adjust url check box
+const adjustURLCheckbox = document.getElementById('adjustURLCheckbox');
+adjustURLCheckbox.checked = mustIncludeURL;
+adjustURLCheckbox.addEventListener('change',()=>{
+  mustIncludeURL = adjustURLCheckbox.checked;
+  computeTags();
+  applyTags();
+  renderEventURLPanel();
+})
 
 // event name
 const eventNameStrings = document.getElementById('eventNameStrings');
@@ -337,8 +358,9 @@ function applyTags(){
 
 function loadPage(){
   analyzePanel.style.display = 'block';
-  localPage = getFilesContent(sourcePath);
+  localPage = reduceImgSize(getFilesContent(sourcePath));
   cheerioTest = cheerio.load(parseDocument(convertToLowerCase(localPage)));
+  computeEventsNumber(cheerioTest);
   applyTags();
   // find missing links
   computeMissingLinks();
@@ -464,14 +486,37 @@ function getArray(string){
 
 function computeTags(id){
   const $ = cheerio.load(parseDocument(convertToLowerCase(localPage)));
+  // compute main tag
   if (!freezeDelimiter){
     const stringsToFind = [].concat(...Object.values(splitAndLowerCase(venueScrapInfo).mainPage));
     const tagsContainingStrings =  getTagContainingAllStrings($,stringsToFind);
     mainTag = tagsContainingStrings.last();
-    const delimiterTag = reduceTag(getTagLocalization(mainTag,$,true,stringsToFind),$);
+    let candidateTag = getTagLocalization(mainTag,$,true,stringsToFind);
+    if (mustIncludeURL){// extend delimiter tag to include at least one url
+      while(!containURL(candidateTag)){
+        const candidateTagList = candidateTag.split(' ');
+        if (candidateTagList.length <= 1){// if tag cannot be reduced anymore
+          break;
+        }
+        candidateTagList.pop();
+        candidateTag = candidateTagList.join(' ');
+        console.log('finding url',candidateTag);
+      }
+    }
+    // if (containURL(candidateTag)){
+    //   console.log('url ok');
+    // }else{
+    //   console.log('url not found');
+    // }
+    let delimiterTag = reduceTag(candidateTag,$);
+    if (autoAdjustCheckbox.checked === true){
+      delimiterTag = adjustMainTag(delimiterTag,$);
+    }
     delimiterTagField.value = delimiterTag;
     venue.eventsDelimiterTag = delimiterTag;
+    computeEventsNumber($);
   }
+  // compute other tags
   if (validateDelimiterTags()){
     let $eventBlock = cheerio.load($(mainTag).html());
     // if (id){
@@ -601,3 +646,31 @@ function findURLs(ctag){
 //   logText.value += message + '\n';
 //   logText.scrollTop = logText.scrollHeight; // Faire défiler automatiquement vers le bas
 // };
+
+
+function containURL(tagText){
+  const tag = cheerioTest(tagText);
+  const urlList = findURLs(cheerioTest(tag));
+  return urlList.some(el => el !== undefined);
+}
+
+
+function reduceImgSize(html){
+  const regexWidth = /(\<(?:img|svg)[^\<]*width\s*=\s*\")([^\"]*)\"/g;
+  const regexHeight = /(\<(?:img|svg)[^\<]*height\s*=\s*\")([^\"]*)\"/g;
+
+  function replace(p1,p2,p3){
+    if (p3 > 100){
+      return p2+'50'+'\"';
+    }
+    return p1;
+  }
+  return html.replace(regexWidth,replace).replace(regexHeight,replace);
+}
+
+function computeEventsNumber(source){
+  if (venue.hasOwnProperty('eventsDelimiterTag')){
+    nbEvents = source(venue.eventsDelimiterTag).length;
+    DelimiterTitle.textContent = "Delimiter tag (found "+nbEvents+" events)";
+  }
+}

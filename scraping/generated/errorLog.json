@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "eventPlace": "Terminal Club",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Bon.Soir : Suerte, Gru, f.sonore, GMNZ",
+    "eventDate": "",
+    "isCancelled": false,
+    "eventURL": "https://www.terminal-club.com/evenement/bon-soir-suerte-gru-f-sonore-gmnz/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Electro",
+    "source": {
+      "name": "Terminal Club",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Terminal Club. Reçu \"\", converti en \"\" (attendu \"dd-MM\")",
+    "unixDate": 0
+  }
+]

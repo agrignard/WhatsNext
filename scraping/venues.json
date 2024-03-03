@@ -102,14 +102,6 @@
     "defaultStyle": "Electro",
     "midnightHour": "sameDay",
     "baseURL": "https://www.terminal-club.com/evenements/",
-    "linkedPage": {
-      "eventNameTags": [
-        "A.tagcloudlink.taglink4296.taglinkposition28:eq(0)"
-      ],
-      "eventDateTags": [
-        null
-      ]
-    },
     "scrap": {
       "eventNameTags": [
         "H5.posttitle.islarge.uppercase:eq(0)"
@@ -120,7 +112,6 @@
         "DIV.nomargin.nopadding:eq(2)"
       ]
     },
-    "linkedPageDateFormat": "dd-MM-yyyy",
     "ID": "Terminal Club|Lyon|France"
   },
   {
