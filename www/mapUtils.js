@@ -12,6 +12,7 @@ if (darkMode){
 }
 var hoveredStateId =  null; 
 export function initializeMap() {
+
     return new mapboxgl.Map({
         container: 'map',
         style: darkstyle,
@@ -329,12 +330,42 @@ export const start = {
     bearing: 45
 };
 
+export const hanoi_start = {
+    center: [105.85238037071497,21.030703836681795],
+    zoom: 11.5,
+    bearing: 0,
+    pitch: 0
+};
+
 export const lyon_start = {
     center: [4.85, 45.7465],
     zoom: 11.5,
     bearing: 0,
     pitch: 0
 };
+
+
+export const startLocations = new Map([
+    [
+      'hanoi',
+      {
+        center: [105.85238037071497, 21.030703836681795],
+        zoom: 11.5,
+        bearing: 0,
+        pitch: 0
+      }
+    ],
+    [
+      'lyon',
+      {
+        center: [4.85, 45.7465],
+        zoom: 11.5,
+        bearing: 0,
+        pitch: 0
+      }
+    ]
+]);
+  
 
 export const end = {
     center: [8.11862, 46.58842],

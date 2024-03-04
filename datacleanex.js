@@ -5,6 +5,8 @@ const placeToCoord = new Map();
 convertPlaceCSVtoGeoJson();
 convertEventCSVtoGeoJson();
 
+const city="lyon";
+
 async function convertPlaceCSVtoGeoJson(){
   console.log("*****Converting Place CSV to GeoJson (place,lat,long,url)*****");
   // Getting the original template source file for event
@@ -16,7 +18,7 @@ async function convertPlaceCSVtoGeoJson(){
       return;
     }
     const existingGeoJSON = JSON.parse(data);
-    const csvFilePath = 'www/lyon_place.csv';
+    const csvFilePath = 'www/' + city + '_place.csv';
     const csvData = fs.readFileSync(csvFilePath, 'utf8');
     const table = csvData.split('\n').slice(1);
     table.forEach(row => {
@@ -43,7 +45,7 @@ async function convertPlaceCSVtoGeoJson(){
       existingGeoJSON.features.push(newFeature);
   });
     // Define the path to the modified GeoJSON file
-    const modifiedGeoJSONPath = 'www/lyon_place.geojson';
+    const modifiedGeoJSONPath = 'www/' + city + '_place.geojson';
     // Save the modified GeoJSON to a new file
     fs.writeFile(modifiedGeoJSONPath, JSON.stringify(existingGeoJSON), 'utf8', (err) => {
       if (err) {
@@ -110,7 +112,7 @@ async function convertEventCSVtoGeoJson(){
 
 
     // Define the path to the modified GeoJSON file
-    const modifiedGeoJSONPath = 'www/lyon_event.geojson';
+    const modifiedGeoJSONPath = 'www/' + city + '_event.geojson';
     // Save the modified GeoJSON to a new file
     fs.writeFile(modifiedGeoJSONPath, JSON.stringify(existingGeoJSON), 'utf8', (err) => {
       if (err) {
@@ -126,7 +128,7 @@ async function convertEventCSVtoGeoJson(){
 //printEachEvent();
 //Getting the coordinate of each place 
 function printEachEvent(){
-  const placeGeoJSONPath = 'www/lyon_event.geojson';
+  const placeGeoJSONPath = 'www/' + city + '_event.geojson';
   fs.readFile(placeGeoJSONPath, 'utf8', (err, data) => {
       if (err) {
           console.error('Error reading existing GeoJSON:', err);
@@ -141,7 +143,7 @@ function printEachEvent(){
 
 function convertGeoJsontoCSV(){
   console.log("converting geojson place to csv");
-  const placeGeoJSONPath = 'www/lyon_place.geojson';
+  const placeGeoJSONPath = 'www/' + city + '_place.geojson';
   var placeString="place,latitude,longitude,url\n";
   fs.readFile(placeGeoJSONPath, 'utf8', (err, data) => {
       if (err) {
@@ -153,7 +155,7 @@ function convertGeoJsontoCSV(){
         placeString += placeGeoJSONPath.features[i].properties.title + "," + parseFloat(placeGeoJSONPath.features[i].geometry.coordinates[1])+ "," + parseFloat(placeGeoJSONPath.features[i].geometry.coordinates[0]) + ","  + placeGeoJSONPath.features[i].properties.description + "\n"; 
       }
       // Define the path to the modified GeoJSON file
-      const modifiedPlacePath = 'www/lyon_place.csv';
+      const modifiedPlacePath = 'www/' + city + '_place.csv';
       console.log(placeString);
       // Save the modified GeoJSON to a new file
       fs.writeFile(modifiedPlacePath, placeString, 'utf8', (err) => {

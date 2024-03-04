@@ -5,6 +5,8 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiYWdyaWduYXJkIiwiYSI6ImNqdWZ6ZjJ5MDBoenczeXBkY
 
 var devMode = false;
 var showAllValueDiv = devMode ? true : false;
+export const city="lyon";
+
 
 updateCircleLegend();
 
@@ -22,9 +24,9 @@ currentDate.setHours(2,0,0);
 var appDate;
  
 map.on('load', () => {
-d3.json('./lyon_event.geojson',jsonCallback);
+d3.json('./' + city + '_event.geojson',jsonCallback);
     map.flyTo({
-    ...mapUtils.lyon_start, // Fly to the selected target
+    ...mapUtils.startLocations.get(city), // Fly to the selected target
     duration: 5000, // Animate over 12 seconds
     essential: true // This animation is considered essential with
     //respect to prefers-reduced-motion
@@ -35,7 +37,7 @@ function jsonCallback(err, data) {
     throw err;
     }
     //PLACES
-    mapUtils.addPlaces(map,'./lyon_place.geojson');
+    mapUtils.addPlaces(map,'./' + city + '_place.geojson');
     map.setLayoutProperty('places-circles', 'visibility', 'visible');
     map.setLayoutProperty('place-labels', 'visibility', 'visible');
     

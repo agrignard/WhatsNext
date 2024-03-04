@@ -1,3 +1,4 @@
+import * as main from './main.js';
 export const placeToCoord = new Map();
 export const placeToUrl = new Map();
 export var places= [];
@@ -7,19 +8,20 @@ export var nbActiveEvent;
 const showPlacesNotHandled= false;
 
 
+
 export async function initPlaceInformation(){
-    const response = await fetch('lyon_place.geojson');
+    const response = await fetch(main.city+'_place.geojson');
     const data =   await response.json();
     for (var i = 0; i < data.features.length; i++) {
         placeToCoord.set(data.features[i].properties.title,data.features[i].geometry.coordinates);
         placeToUrl.set(data.features[i].properties.title,data.features[i].properties.description);
         places.push(data.features[i].properties.title);
     }
-    console.log("Total places imported from lyon_place.geojson: " + placeToCoord.size);
+    console.log("Total places imported from " + main.city + "_place.geojson: " + placeToCoord.size);
 }
 
 export async function getTodayEvents(_date){
-    const response = await fetch('lyon_event.geojson');
+    const response = await fetch(main.city+'_event.geojson');
     const data =   await response.json();
     var nbEventToday=0;
     todaysEvent=new Map();
@@ -41,7 +43,7 @@ export async function getTodayEvents(_date){
 
 
 export async function getSortedNbEventPerPlaceMap(_date){
-    const response = await fetch('lyon_event.geojson');
+    const response = await fetch(main.city+'_event.geojson');
     const data =   await response.json();
     const nbEventPerPlace = new Map();
     nbActiveEvent=0;
@@ -67,7 +69,7 @@ export async function getSortedNbEventPerPlaceMap(_date){
 }
 
 export async function getSortedNbEventPerDayMap(_date){
-    const response = await fetch('lyon_event.geojson');
+    const response = await fetch(main.city+'_event.geojson');
     const data =   await response.json();
     const nbEventPerDay = new Map();
     var keyEntry;
