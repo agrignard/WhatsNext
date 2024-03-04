@@ -21,8 +21,30 @@ module.exports = {venuesListJSONFile, isAlias, geAliasesToURLMap, getEventPlace,
     fromLocalSource, jsonRemoveDouble, samePlace, getStyleConversions, getStyleList, getAliases,
     writeToLog, loadVenueScrapInfofromFile, loadVenuesJSONFile, loadVenueJSON, saveToVenuesJSON,
     getLanguages, loadCancellationKeywords, fromLanguages, checkLanguages, loadErrorLog, 
-    getAvailableLanguages, initializeVenue, getNameFromID, makeID, loadScrapInfoFile, saveToScrapInfoJSON};
+    getAvailableLanguages, initializeVenue, getNameFromID, makeID, loadScrapInfoFile, saveToScrapInfoJSON,
+    unique, isValidEvent};
 
+// test if an event has a name or a date if required by scrapping
+// it takes into account that for some websites, the date or the name may not be scrapped from the main page
+function isValidEvent(event, venue){
+    if (venue.scrap.hasOwnProperty('eventNameTags')){
+        if (!event.hasOwnProperty('eventName') || event.eventName === undefined || /^\s*$/.test(event.eventName)){
+            return false;
+        }
+    }
+    if (venue.scrap.hasOwnProperty('eventDateTags')){
+        if (!event.hasOwnProperty('eventDate') || event.eventDate === undefined || /^\s*$/.test(event.eventDate)){
+            return false;
+        }
+    }
+    return true;
+}
+
+// remove doubles from a list of json objects
+function unique(list) {
+    const uniqueSet = new Set(list.map(obj => JSON.stringify(obj)));
+    return Array.from(uniqueSet).map(str => JSON.parse(str));
+}
 
 // returns true is a venue is only an alias (not for scrapping)
 function isAlias(venue){

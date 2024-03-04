@@ -5,6 +5,7 @@ const fs = require('fs');
 const cheerio = require('cheerio');
 const {parseDocument} = require('htmlparser2');
 const {app, Menu, ipcRenderer} = require('electron');
+const { isValidEvent } = require('../../import/jsonUtilities');
 const {loadVenuesJSONFile, loadVenueJSON, loadScrapInfoFile, initializeVenue, saveToVenuesJSON, saveToScrapInfoJSON,
         fromLanguages, getLanguages} = require(imports+'jsonUtilities.js');
 const {simplify, removeBlanks, extractBody, convertToLowerCase, removeDoubles} = require(imports+'stringUtilities.js');
@@ -12,7 +13,7 @@ const {getFilesContent, getModificationDate, loadLinkedPages} = require(imports+
 const {downloadVenue, erasePreviousHtmlFiles, getHrefListFrom, downloadLinkedPages} = require(imports+'aspiratorexUtilities.js');
 const {getTagLocalization, tagContainsAllStrings, getTagContainingAllStrings,
   splitAndLowerCase, addJSONBlock, reduceTag, getAllDates, getBestDateFormat,
-  adjustMainTag} = require(imports+'analexUtilities.js');
+  adjustMainTag, countNonEmptyEvents} = require(imports+'analexUtilities.js');
 const {getDateConversionPatterns} =require(imports+'dateUtilities.js');
 
 let intervalId, linkedFileContent;
@@ -22,7 +23,7 @@ let freezeDelimiter = false;
 let pageManagerReduced = false;
 let log ='';
 let mustIncludeURL  = true;
-let nbEvents = 0;
+let mainTagAbsolutePath;
 
 
 //const midnightHourOptions = ['none','sameday','previousday'];
@@ -148,6 +149,7 @@ missingLinksButton.addEventListener('click', function(){
 
 // delimiter panel
 const DelimiterTitle = document.getElementById('DelimiterTitle');
+const eventURLPanel = document.getElementById('eventURLPanel');
 var delimiterTagField = document.getElementById('delimiterTagField');
 delimiterTagField.value = venue.hasOwnProperty('eventsDelimiterTag')?venue.eventsDelimiterTag:'';
 delimiterTagField.addEventListener('input'||'change',event =>{
@@ -304,22 +306,31 @@ if (lastModified){// if the file exists
 
 function applyTags(){
   const $ = cheerio.load( parseDocument(convertToLowerCase(localPage)));
+  $(mainTagAbsolutePath).addClass('mainTag');
   const lowerCaseEventStrings = splitAndLowerCase(venueScrapInfo);
   const stringsToFind = [].concat(...Object.values(lowerCaseEventStrings.mainPage));
   $(venue.eventsDelimiterTag).each((index, delimiterTag) => {
-    $(delimiterTag).addClass('encadre');
-     if (tagContainsAllStrings($(delimiterTag),stringsToFind)){
-      $(delimiterTag).addClass('mainTag');
-     }
     const eve = $(delimiterTag).html();
+    const event = {};
     const $eventBlock = cheerio.load(eve);
-    venue.scrap.eventNameTags.forEach(tag =>{
-      $eventBlock(tag).addClass('highlightName');  
-    });
+    // if (tagContainsAllStrings($(delimiterTag),stringsToFind)){
+    //   $(delimiterTag).addClass('mainTag');
+    // }
+    if (venue.scrap.hasOwnProperty('eventNameTags')){
+      let string = "";
+      venue.scrap.eventNameTags.forEach(tag =>{
+        string += tag ===''?$eventBlock.text():$eventBlock(tag).text();
+        $eventBlock(tag).addClass('highlightName');  
+      });
+      event.eventName = string;
+    }
     if (venue.scrap.hasOwnProperty('eventDateTags')){
+      let string = "";
       venue.scrap.eventDateTags.forEach(tag =>{
+        string += tag ===''?$eventBlock.text():$eventBlock(tag).text();
         $eventBlock(tag).addClass('highlightDate');  
       });
+      event.eventDate = string;
     }
     if (venue.scrap.hasOwnProperty('eventStyleTags')){
       venue.scrap.eventStyleTags.forEach(tag =>{
@@ -331,7 +342,12 @@ function applyTags(){
         $eventBlock(tag).addClass('highlightDummy');  
       });
     }
-    $(delimiterTag).html($eventBlock.html());
+    if (isValidEvent(event, venue)){
+      $(delimiterTag).addClass('encadre');
+    }else{
+      $(delimiterTag).addClass('encadreInvalid');
+    }
+    $(delimiterTag).html($eventBlock.html());//modify the html to be displayed
   });
   rightPanel.innerHTML = $.html();
   rightPanel.querySelectorAll('a'||'select').forEach(link => {
@@ -360,6 +376,12 @@ function loadPage(){
   analyzePanel.style.display = 'block';
   localPage = reduceImgSize(getFilesContent(sourcePath));
   cheerioTest = cheerio.load(parseDocument(convertToLowerCase(localPage)));
+  if (venue.hasOwnProperty('eventsDelimiterTag')){
+    const stringsToFind = [].concat(...Object.values(splitAndLowerCase(venueScrapInfo).mainPage));
+    const tagsContainingStrings =  getTagContainingAllStrings(cheerioTest,stringsToFind);
+    mainTag = tagsContainingStrings.last();
+    mainTagAbsolutePath = getTagLocalization(mainTag,cheerioTest,false,stringsToFind);
+  }
   computeEventsNumber(cheerioTest);
   applyTags();
   // find missing links
@@ -491,16 +513,21 @@ function computeTags(id){
     const stringsToFind = [].concat(...Object.values(splitAndLowerCase(venueScrapInfo).mainPage));
     const tagsContainingStrings =  getTagContainingAllStrings($,stringsToFind);
     mainTag = tagsContainingStrings.last();
+    mainTagAbsolutePath = getTagLocalization(mainTag,$,false,stringsToFind);
+    console.log('maintag',mainTagAbsolutePath);
     let candidateTag = getTagLocalization(mainTag,$,true,stringsToFind);
     if (mustIncludeURL){// extend delimiter tag to include at least one url
       while(!containURL(candidateTag)){
-        const candidateTagList = candidateTag.split(' ');
-        if (candidateTagList.length <= 1){// if tag cannot be reduced anymore
-          break;
-        }
-        candidateTagList.pop();
-        candidateTag = candidateTagList.join(' ');
-        console.log('finding url',candidateTag);
+        mainTag = mainTag.parent();
+        candidateTag = getTagLocalization(mainTag,$,true,stringsToFind);
+        mainTagAbsolutePath = getTagLocalization(mainTag,$,false,stringsToFind);
+        console.log('maintag',mainTagAbsolutePath);
+        // const candidateTagList = candidateTag.split(' ');
+        // if (candidateTagList.length <= 1){// if tag cannot be reduced anymore
+        //   break;
+        // }
+        // candidateTagList.pop();
+        // candidateTag = candidateTagList.join(' ');
       }
     }
     // if (containURL(candidateTag)){
@@ -510,20 +537,28 @@ function computeTags(id){
     // }
     let delimiterTag = reduceTag(candidateTag,$);
     if (autoAdjustCheckbox.checked === true){
-      delimiterTag = adjustMainTag(delimiterTag,$);
+      delimiterTag = adjustMainTag(delimiterTag,$,venue);
     }
     delimiterTagField.value = delimiterTag;
     venue.eventsDelimiterTag = delimiterTag;
     computeEventsNumber($);
   }
   // compute other tags
+  // if (venue.eventsDelimiterTag ===''){
+  //   console.log($.html());
+  //   venue.scrap = addJSONBlock(venueScrapInfo.mainPage,$);
+  //   computeDateFormat();
+  //   renderEventURLPanel();
+  //   initScrapTextTags();
+  // }
   if (validateDelimiterTags()){
-    let $eventBlock = cheerio.load($(mainTag).html());
+   let $eventBlock = cheerio.load($(mainTag).html());
     // if (id){
     //   const tmpScrap = addJSONBlock(venueScrapInfo.mainPage,$eventBlock);
     //   venue.scrap[id] = tmpScrap[id];
     // }else{
     venue.scrap = addJSONBlock(venueScrapInfo.mainPage,$eventBlock);
+    console.log(venue.scrap);
     // }
     computeDateFormat();
     renderEventURLPanel();
@@ -544,9 +579,24 @@ function computeDateFormat(){
 }
 
 function renderEventURLPanel(){
+  if (venue.eventsDelimiterTag === undefined || venue.eventsDelimiterTag === ''){
+    eventURLPanel.style.display = 'none';
+    return;
+  }
+  eventURLPanel.style.display = 'block';
+  const stringsToFind = [].concat(...Object.values(splitAndLowerCase(venueScrapInfo).mainPage));
   const tag = cheerioTest(venue.eventsDelimiterTag);
-  const urlList = findURLs(cheerioTest(tag));
-  //console.log(urlList);
+  // find the index of the tag of the strings currently looked for
+  let i;
+  for (i=0;i<tag.length;i++){
+    if (tagContainsAllStrings(cheerioTest(tag[i]), stringsToFind)){
+      break;
+    }
+  }
+  if (i===tag.length){
+    i=0;
+  }
+  const urlList = findURLs(cheerioTest(tag[i]));
   const index = urlList.findIndex(function(element) {
     return typeof element !== 'undefined';
   });
@@ -616,7 +666,12 @@ function initScrapTextTags(){
 
 function findURLs(ctag){
   const $eventBlock = cheerio.load(ctag.html());
-  let links = ctag.prop('tagName')=='A'?[ctag.attr('href')]:[undefined];
+  let links;
+  try{
+    links = ctag.prop('tagName')=='A'?[ctag.attr('href')]:[];
+  }catch{
+    links = [];
+  }
   const hrefs = $eventBlock('a[href]');
   hrefs.each((index, element) => {
     const href = $eventBlock(element).attr('href');
@@ -649,8 +704,13 @@ function findURLs(ctag){
 
 
 function containURL(tagText){
-  const tag = cheerioTest(tagText);
-  const urlList = findURLs(cheerioTest(tag));
+  let urlList;
+  if (tagText === ''){
+    urlList = findURLs(cheerioTest);
+  }else{
+    const tag = cheerioTest(tagText);
+    urlList = findURLs(cheerioTest(tag));
+  }
   return urlList.some(el => el !== undefined);
 }
 
@@ -670,7 +730,8 @@ function reduceImgSize(html){
 
 function computeEventsNumber(source){
   if (venue.hasOwnProperty('eventsDelimiterTag')){
-    nbEvents = source(venue.eventsDelimiterTag).length;
+    //nbEvents = source(venue.eventsDelimiterTag).length;
+    const nbEvents = countNonEmptyEvents(venue.eventsDelimiterTag,source,venue);
     DelimiterTitle.textContent = "Delimiter tag (found "+nbEvents+" events)";
   }
 }

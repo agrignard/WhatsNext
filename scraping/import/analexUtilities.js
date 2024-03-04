@@ -6,17 +6,16 @@
 //const fs = require('fs');
 const {removeDoubles, makeURL, cleanPage, removeBlanks} = require('./stringUtilities.js');
 //const {loadLinkedPages, fetchWithRetry, fetchLink} = require('./fileUtilities.js');
-//const {loadVenuesJSONFile, saveToVenuesJSON, isAlias, initializeVenue} = require('./jsonUtilities.js');
+const {unique, isValidEvent} = require('./jsonUtilities.js');
 const {numberOfInvalidDates, getCommonDateFormats, createDate} = require('./dateUtilities.js');
 const cheerio = require('cheerio');
 
 
 module.exports = {getTagLocalization, tagContainsAllStrings, getTagContainingAllStrings, getMyIndex, 
-    splitAndLowerCase, addJSONBlock, reduceTag, getAllDates, getBestDateFormat, adjustMainTag};
+    splitAndLowerCase, addJSONBlock, reduceTag, getAllDates, getBestDateFormat, adjustMainTag, countNonEmptyEvents};
 
-function adjustMainTag(delimiterTag,$){
-    const mainTagEventsNumber = $(delimiterTag).length;
-    console.log('ref', mainTagEventsNumber);
+function adjustMainTag(delimiterTag,$,venue){
+    const mainTagEventsNumber = countNonEmptyEvents(delimiterTag,$,venue);//$(delimiterTag).length;
     let currentNumber = mainTagEventsNumber;
     let bestTag = delimiterTag;
     const splitTag = delimiterTag.split(' ');
@@ -31,15 +30,54 @@ function adjustMainTag(delimiterTag,$){
                 let newTag = startList.join(' ')+' '+startInnerList.join('.')+'.'+
                             endInnerList.join('.')+' '+endList.join(' ');
                 newTag = newTag.replace(/\. /g,' ');
-                console.log(newTag);
-                const newNumber = $(newTag).length;
-                console.log('results',newNumber);
-           //     $(newTag).each((index, element)  => {console.log($(element).text())});
+                const newNumber = countNonEmptyEvents(newTag,$,venue);//$(newTag).length;
+                if (newNumber > currentNumber){
+                    currentNumber = newNumber;
+                    bestTag = newTag;
+                }
+            }
+            //console.log('result',currentNumber,bestTag);
+            if (currentNumber > mainTagEventsNumber){
+                return adjustMainTag(bestTag,$,venue);
             }
         }
     }
-    return delimiterTag;
+    return bestTag;
 }
+
+
+
+function countNonEmptyEvents(delimiterTag,$,venue){
+    let eventList = [];
+    $(delimiterTag).each((index, element) => {
+        let event = {};
+        let eve = $(element).html();
+        let $eventBlock = cheerio.load(eve);
+        if (venue.scrap.hasOwnProperty('eventNameTags')){
+            let tagList = venue.scrap.eventNameTags;
+            let string = "";
+            for (let i = 0; i <= tagList.length-1; i++) {
+                let ev = tagList[i]===''?$eventBlock.text():$eventBlock(tagList[i]).text();
+                string += ev+' ';
+            }
+            event.eventName = string;
+        }
+        if (venue.scrap.hasOwnProperty('eventDateTags')){
+            let tagList = venue.scrap.eventDateTags;
+            let string = "";
+            for (let i = 0; i <= tagList.length-1; i++) {
+                let ev = tagList[i]===''?$eventBlock.text():$eventBlock(tagList[i]).text();
+                string += ev+' ';
+            }
+            event.eventDate = string;
+        }
+        if (isValidEvent(event,venue)){
+            eventList.push(event);
+        }
+    });
+    return unique(eventList).length;
+}
+
 
 
 function getAllDates(mainTag,dateTags,source){
@@ -94,7 +132,6 @@ function getTagsForKey(object,key,cheerioSource){
     const string = key.match(/event([^]*)String/);
     console.log('\n\x1b[36mEvent '+string[1]+' tags:\x1b[0m');
     const tagList = object[key].map(string2 => findTag(cheerioSource,string2));
-    //const tagList = object[key].map(string2 => getTagContainingAllStrings(cheerioSource,[string2]));
     showTagsDetails(tagList,cheerioSource,object[key]);
     return tagList.map((tag,index) => reduceTag(getTagLocalization(tag,cheerioSource,false,[object[key][index]]),cheerioSource));
  }
@@ -180,6 +217,7 @@ function getClasses(tagText){
 
 
 function getTagContainingAllStrings($,stringsToFind){
+    // return $('*:contains("' + stringsToFind.join('"):contains("') + '")');
     return $('*:contains("' + stringsToFind.join('"), :contains("') + '")')
     .filter((_, tag) => tagContainsAllStrings($(tag), stringsToFind));
 }
@@ -190,6 +228,7 @@ function tagContainsAllStrings(tag, strings) {
 }
 
 function getTagLocalization(tag,source,isDelimiter,stringsToFind){ 
+    stringsToFind = stringsToFind.filter(el => el !== '');
     if (tag == null){
         return null;
     }
@@ -213,9 +252,10 @@ function getTagLocalization(tag,source,isDelimiter,stringsToFind){
         if (source(tag).parent().prop('tagName')=='BODY' || source(tag).parent().prop('tagName')== undefined){    
             string = '';
         }else{
-            string = getTagLocalization(source(tag).parent(),source,isDelimiter,stringsToFind)+' ';
+            string = getTagLocalization(source(tag).parent(),source,isDelimiter,stringsToFind);
         }
-        string += ' '+source(tag).prop('tagName');
+        string += (string ==='')?'':' ';
+        string += source(tag).prop('tagName');
         string += tagClass;
         if (!isDelimiter){
             const index =  getMyIndex(tag,source,stringsToFind);
@@ -236,14 +276,17 @@ function getMyIndex(tag,source,stringsToFind){// get the index of the tag div.cl
         indexation += '.'+source(tag).attr('class').replace(/[ ]*$/g,'').replace(/[ ]{1,}/g,'.');//.split(' ')[0];
     }
     const parentTag = source(tag).parent();
-    if (parentTag.prop('tagName')=='BODY'){// top level, no parent to find index from
+    // if (parentTag.prop('tagName')=='BODY'){// top level, no parent to find index from
+    if (parentTag.prop('tagName') === undefined || parentTag.prop('tagName')=='BODY'){// top level, no parent to find index from
         tagIndex =  source(tag).index(indexation);
     }else{
         const $parentHtml = cheerio.load(parentTag.html());
-        const str = ':contains("' + stringsToFind.join('"), :contains("') + '")';
+        const str = ':contains("' + stringsToFind.join('"):contains("') + '")';
         const tagsFromParent =  $parentHtml(indexation+str).first();
         tagIndex = $parentHtml(tagsFromParent).index(indexation);
     }
+    console.log(indexation);
+    console.log(stringsToFind,tagIndex);
     return tagIndex;
 }
 

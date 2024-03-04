@@ -9,7 +9,7 @@ const {loadLinkedPages, saveToJSON, saveToCSV, getVenuesFromArguments,
         getFilesNumber, getFilesContent, getModificationDate} = require('./import/fileUtilities.js');
 const {samePlace, getAliases, getStyleConversions, loadVenuesJSONFile, 
         loadCancellationKeywords, writeToLog, isAlias, geAliasesToURLMap,
-        getLanguages, fromLanguages, checkLanguages} = require('./import/jsonUtilities.js');
+        getLanguages, fromLanguages, checkLanguages, unique} = require('./import/jsonUtilities.js');
 const { mergeEvents} = require('./import/mergeUtilities.js');
 
 // Chemin vers le fichier à lire
@@ -342,10 +342,7 @@ async function extractEvents(fileContent, venue){
 // }
 
 
-function unique(list) {
-  const uniqueSet = new Set(list.map(obj => JSON.stringify(obj)));
-  return Array.from(uniqueSet).map(str => JSON.parse(str));
-};
+
 
 
 

@@ -15,7 +15,7 @@
   "Terminal Club|Lyon|France": {
     "mainPage": {
       "eventNameStrings": [
-        "secrète"
+        "secrèt"
       ],
       "eventDateStrings": [
         "ven",
@@ -168,13 +168,13 @@
   "Le Petit Salon|Lyon|France": {
     "mainPage": {
       "eventNameStrings": [
-        "wooka"
+        "istig"
       ],
       "eventDateStrings": [
-        "27/01"
+        "09/03"
       ],
       "eventStyleStrings": [
-        "House"
+        "house"
       ]
     },
     "linkedPage": {

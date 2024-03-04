@@ -36,16 +36,16 @@
     "country": "France",
     "url": "https://www.lpslyon.fr/evenements-le-petit-salon/",
     "baseURL": "https://www.lpslyon.fr/evenements-le-petit-salon/",
-    "eventsDelimiterTag": "DIV.events__item.item.colmd4.offsetxl1",
+    "eventsDelimiterTag": " DIV.events__item.item.colmd4",
     "scrap": {
       "eventNameTags": [
-        "H2.item__title:eq(0)"
+        " H2.item__title:eq(0)"
       ],
       "eventDateTags": [
-        "SPAN:eq(1)"
+        "DIV.item__date.dxlnone:eq(0)  SPAN:eq(1)"
       ],
       "eventStyleTags": [
-        "DIV.item__text:eq(0)"
+        " DIV.item__text:eq(0)"
       ]
     },
     "eventURLIndex": 1,
@@ -96,20 +96,20 @@
     "city": "Lyon",
     "country": "France",
     "url": "https://www.terminal-club.com/evenements/",
-    "eventsDelimiterTag": " DIV  MAIN  DIV.contentarea.pagewrapper  DIV.row.rowmain  DIV.large12.col  DIV.colinner  DIV.tribecommon.tribeevents.tribeeventsview.tribeeventsviewphoto.alignwide.tribeeventsviewshortcode.tribeeventsviewshortcodeb6439857.tribeeventspro  DIV.tribecommonlcontainer.tribeeventslcontainer  DIV.tribeeventsprophoto.col  DIV.row.largecolumns6.mediumcolumns4.smallcolumns2  DIV.col.postitem  DIV.colinner",
+    "eventsDelimiterTag": " DIV.col DIV.colinner",
     "dateFormat": "dd-MM",
-    "eventURLIndex": 1,
+    "eventURLIndex": 0,
     "defaultStyle": "Electro",
     "midnightHour": "sameDay",
     "baseURL": "https://www.terminal-club.com/evenements/",
     "scrap": {
       "eventNameTags": [
-        "H5.posttitle.islarge.uppercase:eq(0)"
+        "DIV.boxtextinner.blogpostinner:eq(0) H5.posttitle.islarge.uppercase:eq(0)"
       ],
       "eventDateTags": [
-        "DIV.nomargin.nopadding:eq(0)",
-        "DIV.eventphotodate.nomargin.nopadding:eq(0)",
-        "DIV.nomargin.nopadding:eq(2)"
+        "TIME.tribeeventsprophoto__eventdatetagdatetime:eq(0) DIV.nomargin.nopadding:eq(0)",
+        "TIME.tribeeventsprophoto__eventdatetagdatetime:eq(0) DIV.eventphotodate.nomargin.nopadding:eq(0)",
+        "TIME.tribeeventsprophoto__eventdatetagdatetime:eq(0) DIV.nomargin.nopadding:eq(2)"
       ]
     },
     "ID": "Terminal Club|Lyon|France"
@@ -656,18 +656,17 @@
     "country": "France",
     "scrap": {
       "eventNameTags": [
-        "A.tribeeventscalendarmonthmobileevents__mobileeventtitlelink.tribecommonanchor:eq(0)"
+        "H3.tribeeventscalendarmonthmobileevents__mobileeventtitle.tribecommonh7:eq(0) A.tribeeventscalendarmonthmobileevents__mobileeventtitlelink.tribecommonanchor:eq(0)"
       ],
       "eventDateTags": [
-        "SPAN.tribeeventdatestart:eq(0)"
-      ],
-      "eventURLIndex": 1,
-      "eventStyleTags": []
+        "TIME:eq(0) SPAN.tribeeventdatestart:eq(0)"
+      ]
     },
     "url": "https://www.laclefdevoute.fr/concerts-de-jazz-a-lyon/",
     "ID": "La Clef de Voûte|Lyon|France",
     "baseURL": "https://www.laclefdevoute.fr/concerts-de-jazz-a-lyon/",
-    "eventsDelimiterTag": "ARTICLE.tribeeventscalendarmonthmobileevents__mobileevent.tribe_events.typetribe_events.statuspublish.haspostthumbnail.hentry  DIV.tribeeventscalendarmonthmobileevents__mobileeventdetails",
-    "dateFormat": "dd-MM-HH:mm"
+    "eventsDelimiterTag": " ARTICLE.tribeeventscalendarmonthmobileevents__mobileevent.tribe_events.typetribe_events.statuspublish.haspostthumbnail.hentry DIV.tribeeventscalendarmonthmobileevents__mobileeventdetails",
+    "dateFormat": "dd-MM-HH:mm",
+    "eventURLIndex": 0
   }
 ]

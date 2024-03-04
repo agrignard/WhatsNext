@@ -302,10 +302,17 @@ background-color: lightblue;
 }
   
 
-.encadre {
-  border: 1px solid black; /* Définit une bordure solide d'un pixel en noir */
-  padding: 10px; /* Ajoute un espacement intérieur de 10 pixels pour séparer le contenu de la bordure */
+.encadreInvalid {
+  border: 1px dashed grey; 
+  padding: 10px; 
+  margin: 1px;
   display: inline-block; /* Permet à l'élément de s'ajuster à la largeur du contenu */
+}
+.encadre {
+  border: 2px solid black; 
+  padding: 10px; 
+  display: inline-block; /* Permet à l'élément de s'ajuster à la largeur du contenu */
+  margin: 1px;
 }
 
 .mainTag {
