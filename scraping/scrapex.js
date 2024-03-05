@@ -16,7 +16,7 @@ const { mergeEvents} = require('./import/mergeUtilities.js');
 const sourcePath = './webSources/';
 
 //var out="";// = "PLACE,TITRE,UNIX,SIZE,GENRE,URL";
-const outFile = "generated/scrapexResult.csv";
+const outFile = "generated/scrapexResult_lyon.csv";
 const globalDefaultStyle = '';
 const styleConversion = getStyleConversions();
 const cancellationKeywords = loadCancellationKeywords();
@@ -88,7 +88,7 @@ async function scrapFiles(venues) {
 
   saveToCSV(totalEventList, outFile);
   // save to JSON
-  saveToJSON(totalEventList,'./generated/scrapResult.json');
+  saveToJSON(totalEventList,'./generated/scrapResult_lyon.json');
 
   // save errors to JSON file
   saveToJSON(totalEventList.filter(el => el.hasOwnProperty('errorLog')),'./generated/errorLog.json');

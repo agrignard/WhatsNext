@@ -7,7 +7,7 @@ var devMode = false;
 var showAllValueDiv = devMode ? true : false;
 export const city="lyon";
 
-
+var selectedCircle = null;
 updateCircleLegend();
 
 const canvasShowAll = document.getElementById('showAll');
@@ -74,17 +74,19 @@ function jsonCallback(err, data) {
 
     ///HANDLE SLIDER
     document.getElementById('slider').addEventListener('input', async (e) => {
-
-    const sliderValue = parseInt(e.target.value, 10);
-    const tmpDate= new Date(currentDate);
-    const newDateAsInt = tmpDate.setDate(tmpDate.getDate() + sliderValue).valueOf();
-    appDate=newDateAsInt;
-    mapUtils.filterBy(map,newDateAsInt,false);
-    var todayInformation;
-    todayInformation = await dataUtils.getTodayEvents(new Date(appDate));
-    updateCircleLegend();
+      const sliderValue = parseInt(e.target.value, 10);
+      const tmpDate= new Date(currentDate);
+      const newDateAsInt = tmpDate.setDate(tmpDate.getDate() + sliderValue).valueOf();
+      appDate=newDateAsInt;
+      //Add to fix issue #30 (to be more tested)
+      if(selectedCircle!=null){
+        mapUtils.filterByStyle(map,selectedCircle.value,newDateAsInt);
+      }else{
+        mapUtils.filterBy(map,newDateAsInt,false);
+      }
+      //Remove when fixing issue #30
+      //updateCircleLegend();
     });
-
     document.getElementById('showAll').addEventListener('input', (e) => {
     const showAllValueCkecked= document.getElementById("showAll").checked;
     if(showAllValueCkecked){
@@ -171,7 +173,7 @@ const circles = [
   { x: 340, y: 25, radius: 18, value: 'Theatre', color: 'rgba(165,42,42,0.5)' }
 ];
 
-let selectedCircle = null;
+
 
 canvas.addEventListener('click', function (event) {
   const rect = canvas.getBoundingClientRect();
@@ -245,14 +247,13 @@ function processMapBasedOnUrl() {
     const day = getQueryParam('day');
     // Check the value of the 'type' parameter and take appropriate actions
     if (day!=null) {
+        console.log('Day parameter: ' + day);
         document.getElementById('slider').value = day;
         const tmpDate= new Date(currentDate);
         const newDateAsInt = tmpDate.setDate(tmpDate.getDate() + parseInt(day)).valueOf();
         appDate=newDateAsInt;
         mapUtils.filterBy(map,newDateAsInt,false);
     }else {
-        // Default behavior or handle unknown types
-        console.log('Unknown or no day specified');
     }
 }
 

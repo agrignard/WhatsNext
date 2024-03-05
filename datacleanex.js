@@ -2,10 +2,12 @@ const fs = require('fs');
 
 const placeToCoord = new Map();
 
+const city="lyon";
+console.log("***************DATACLEANEX-City: " + city + " **************");
 convertPlaceCSVtoGeoJson();
 convertEventCSVtoGeoJson();
 
-const city="lyon";
+
 
 async function convertPlaceCSVtoGeoJson(){
   console.log("*****Converting Place CSV to GeoJson (place,lat,long,url)*****");
@@ -72,7 +74,7 @@ async function convertEventCSVtoGeoJson(){
     // Parse the existing GeoJSON data
     const existingGeoJSON = JSON.parse(data);
 
-    const csvFilePath = 'scraping/generated/scrapexResult.csv';
+    const csvFilePath = 'scraping/generated/scrapexResult_'+city+'.csv';
     const csvData = fs.readFileSync(csvFilePath, 'utf8');
     const table = csvData.split('\n').slice(1);
 
