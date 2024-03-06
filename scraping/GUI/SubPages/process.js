@@ -497,6 +497,38 @@ function getArray(string){
   return string.split('\n');
 }
 
+function containURL(tag,$){
+  if (tag.is('a[href]')){//}.prop('tagName') == A){
+    console.log("balise A");
+    return true;
+  }
+  console.log('tour');
+  const $eventBlock = cheerio.load($(tag).html());
+  const hrefs = $eventBlock('a[href]');
+  if (hrefs.length > 0){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+
+// function findURLs(ctag){
+//   const $eventBlock = cheerio.load(ctag.html());
+//   let links;
+//   try{
+//     links = ctag.prop('tagName')=='A'?[ctag.attr('href')]:[];
+//   }catch{
+//     links = [];
+//   }
+//   const hrefs = $eventBlock('a[href]');
+//   hrefs.each((index, element) => {
+//     const href = $eventBlock(element).attr('href');
+//     links.push(href);
+//   });   
+//   return links;
+// }
+
 function computeTags(id){
   const $ = cheerio.load(parseDocument(convertToLowerCase(localPage)));
   // compute main tag
@@ -504,15 +536,13 @@ function computeTags(id){
     const stringsToFind = [].concat(...Object.values(splitAndLowerCase(venueScrapInfo).mainPage));
     const tagsContainingStrings =  getTagContainingAllStrings($,stringsToFind);
     mainTag = tagsContainingStrings.last();
-    let candidateTag = getTagLocalization(mainTag,$,true,stringsToFind);
     if (mustIncludeURL){// extend delimiter tag to include at least one url
-      while(!containURL(candidateTag)){
+      while(!containURL(mainTag,$)){
         mainTag = mainTag.parent();
-        candidateTag = getTagLocalization(mainTag,$,true,stringsToFind);
       }
     }
     mainTagAbsolutePath = getTagLocalization(mainTag,$,false,stringsToFind);
-    let delimiterTag = reduceTag(candidateTag,$);
+    let delimiterTag = reduceTag(getTagLocalization(mainTag,$,true,stringsToFind),$);
     if (autoAdjustCheckbox.checked === true){
       delimiterTag = adjustMainTag(delimiterTag,$,venue);
     }
@@ -667,16 +697,16 @@ function findURLs(ctag){
 // };
 
 
-function containURL(tagText){
-  let urlList;
-  if (tagText === ''){
-    urlList = findURLs(cheerioTest);
-  }else{
-    const tag = cheerioTest(tagText);
-    urlList = findURLs(cheerioTest(tag));
-  }
-  return urlList.some(el => el !== undefined);
-}
+// function containURL(tagText){
+//   let urlList;
+//   if (tagText === ''){
+//     urlList = findURLs(cheerioTest);
+//   }else{
+//     const tag = cheerioTest(tagText);
+//     urlList = findURLs(cheerioTest(tag));
+//   }
+//   return urlList.some(el => el !== undefined);
+// }
 
 
 function reduceImgSize(html){
