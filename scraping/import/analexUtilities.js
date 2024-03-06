@@ -14,10 +14,11 @@ const cheerio = require('cheerio');
 module.exports = {getTagLocalization, tagContainsAllStrings, getTagContainingAllStrings, getMyIndex, 
     splitAndLowerCase, addJSONBlock, reduceTag, getAllDates, getBestDateFormat, adjustMainTag, countNonEmptyEvents};
 
-function adjustMainTag(delimiterTag,$,venue){
-    const mainTagEventsNumber = countNonEmptyEvents(delimiterTag,$,venue);//$(delimiterTag).length;
+function adjustMainTag(delimiterTag,$,venue, currentEventNumber){
+    const mainTagEventsNumber = currentEventNumber?currentEventNumber:countNonEmptyEvents(delimiterTag,$,venue);//$(delimiterTag).length;
     let currentNumber = mainTagEventsNumber;
     let bestTag = delimiterTag;
+    // console.log('refnum',currentNumber);
     const splitTag = delimiterTag.split(' ');
     for (let i=0;i<splitTag.length;i++){
         const startList = splitTag.slice(0,i);
@@ -27,10 +28,10 @@ function adjustMainTag(delimiterTag,$,venue){
             for(let j=1;j<currentTag.length;j++){
                 const startInnerList = currentTag.slice(0,j);
                 const endInnerList = currentTag.slice(j+1);
-                let newTag = startList.join(' ')+' '+startInnerList.join('.')+'.'+
-                            endInnerList.join('.')+' '+endList.join(' ');
-                newTag = newTag.replace(/\. /g,' ');
+                let newTag = startList.join(' ')+' '+startInnerList.join('.')+((j===currentTag.length-1)?'':'.')+
+                            endInnerList.join('.')+' '+endList.join(' ');;
                 const newNumber = countNonEmptyEvents(newTag,$,venue);//$(newTag).length;
+                // console.log(newNumber, newTag);
                 if (newNumber > currentNumber){
                     currentNumber = newNumber;
                     bestTag = newTag;
@@ -38,7 +39,7 @@ function adjustMainTag(delimiterTag,$,venue){
             }
             //console.log('result',currentNumber,bestTag);
             if (currentNumber > mainTagEventsNumber){
-                return adjustMainTag(bestTag,$,venue);
+                return adjustMainTag(bestTag,$,venue, currentNumber);
             }
         }
     }
@@ -50,26 +51,31 @@ function adjustMainTag(delimiterTag,$,venue){
 function countNonEmptyEvents(delimiterTag,$,venue){
     let eventList = [];
     $(delimiterTag).each((index, element) => {
-        let event = {};
-        let eve = $(element).html();
-        let $eventBlock = cheerio.load(eve);
+        const event = {};
+        const $eventBlock = cheerio.load($(element).html());
         if (venue.scrap.hasOwnProperty('eventNameTags')){
-            let tagList = venue.scrap.eventNameTags;
-            let string = "";
-            for (let i = 0; i <= tagList.length-1; i++) {
-                let ev = tagList[i]===''?$eventBlock.text():$eventBlock(tagList[i]).text();
-                string += ev+' ';
-            }
-            event.eventName = string;
+            const tagList = venue.scrap.eventNameTags;
+            // let string = "";
+            event.eventName = tagList.map(tag =>{
+                return tag ===''?$eventBlock.text():$eventBlock(tag).text();
+            }).join(' ');
+            // for (let i = 0; i <= tagList.length-1; i++) {
+            //     let ev = tagList[i]===''?$eventBlock.text():$eventBlock(tagList[i]).text();
+            //     string += ev+' ';
+            // }
+            // event.eventName = string;
         }
         if (venue.scrap.hasOwnProperty('eventDateTags')){
-            let tagList = venue.scrap.eventDateTags;
-            let string = "";
-            for (let i = 0; i <= tagList.length-1; i++) {
-                let ev = tagList[i]===''?$eventBlock.text():$eventBlock(tagList[i]).text();
-                string += ev+' ';
-            }
-            event.eventDate = string;
+            const tagList = venue.scrap.eventDateTags;
+            // let string = "";
+            event.eventDate = tagList.map(tag =>{
+                return tag ===''?$eventBlock.text():$eventBlock(tag).text();
+            }).join(' ');
+            // for (let i = 0; i <= tagList.length-1; i++) {
+            //     let ev = tagList[i]===''?$eventBlock.text():$eventBlock(tagList[i]).text();
+            //     string += ev+' ';
+            // }
+            // event.eventDate = string;
         }
         if (isValidEvent(event,venue)){
             eventList.push(event);
@@ -285,8 +291,6 @@ function getMyIndex(tag,source,stringsToFind){// get the index of the tag div.cl
         const tagsFromParent =  $parentHtml(indexation+str).first();
         tagIndex = $parentHtml(tagsFromParent).index(indexation);
     }
-    console.log(indexation);
-    console.log(stringsToFind,tagIndex);
     return tagIndex;
 }
 

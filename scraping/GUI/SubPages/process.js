@@ -265,15 +265,9 @@ function textBoxUpdate(textBox){
     computeTags(textBox.id.replace('Strings','Tags'));
     applyTags();
   }
- // console.log(venue);
 }
 
-// button analyze
-// const analyzeButton = document.getElementById('analyzeButton');
-// analyzeButton.addEventListener('click',event=>{
-//   computeTags();
-//   applyTags();
-// });
+
 
 // log text
 const logText = document.getElementById('logText');
@@ -307,15 +301,12 @@ if (lastModified){// if the file exists
 function applyTags(){
   const $ = cheerio.load( parseDocument(convertToLowerCase(localPage)));
   $(mainTagAbsolutePath).addClass('mainTag');
-  const lowerCaseEventStrings = splitAndLowerCase(venueScrapInfo);
-  const stringsToFind = [].concat(...Object.values(lowerCaseEventStrings.mainPage));
+  // const lowerCaseEventStrings = splitAndLowerCase(venueScrapInfo);
+  // const stringsToFind = [].concat(...Object.values(lowerCaseEventStrings.mainPage));
   $(venue.eventsDelimiterTag).each((index, delimiterTag) => {
     const eve = $(delimiterTag).html();
     const event = {};
     const $eventBlock = cheerio.load(eve);
-    // if (tagContainsAllStrings($(delimiterTag),stringsToFind)){
-    //   $(delimiterTag).addClass('mainTag');
-    // }
     if (venue.scrap.hasOwnProperty('eventNameTags')){
       let string = "";
       venue.scrap.eventNameTags.forEach(tag =>{
@@ -513,28 +504,14 @@ function computeTags(id){
     const stringsToFind = [].concat(...Object.values(splitAndLowerCase(venueScrapInfo).mainPage));
     const tagsContainingStrings =  getTagContainingAllStrings($,stringsToFind);
     mainTag = tagsContainingStrings.last();
-    mainTagAbsolutePath = getTagLocalization(mainTag,$,false,stringsToFind);
-    console.log('maintag',mainTagAbsolutePath);
     let candidateTag = getTagLocalization(mainTag,$,true,stringsToFind);
     if (mustIncludeURL){// extend delimiter tag to include at least one url
       while(!containURL(candidateTag)){
         mainTag = mainTag.parent();
         candidateTag = getTagLocalization(mainTag,$,true,stringsToFind);
-        mainTagAbsolutePath = getTagLocalization(mainTag,$,false,stringsToFind);
-        console.log('maintag',mainTagAbsolutePath);
-        // const candidateTagList = candidateTag.split(' ');
-        // if (candidateTagList.length <= 1){// if tag cannot be reduced anymore
-        //   break;
-        // }
-        // candidateTagList.pop();
-        // candidateTag = candidateTagList.join(' ');
       }
     }
-    // if (containURL(candidateTag)){
-    //   console.log('url ok');
-    // }else{
-    //   console.log('url not found');
-    // }
+    mainTagAbsolutePath = getTagLocalization(mainTag,$,false,stringsToFind);
     let delimiterTag = reduceTag(candidateTag,$);
     if (autoAdjustCheckbox.checked === true){
       delimiterTag = adjustMainTag(delimiterTag,$,venue);
@@ -543,23 +520,10 @@ function computeTags(id){
     venue.eventsDelimiterTag = delimiterTag;
     computeEventsNumber($);
   }
-  // compute other tags
-  // if (venue.eventsDelimiterTag ===''){
-  //   console.log($.html());
-  //   venue.scrap = addJSONBlock(venueScrapInfo.mainPage,$);
-  //   computeDateFormat();
-  //   renderEventURLPanel();
-  //   initScrapTextTags();
-  // }
   if (validateDelimiterTags()){
    let $eventBlock = cheerio.load($(mainTag).html());
-    // if (id){
-    //   const tmpScrap = addJSONBlock(venueScrapInfo.mainPage,$eventBlock);
-    //   venue.scrap[id] = tmpScrap[id];
-    // }else{
     venue.scrap = addJSONBlock(venueScrapInfo.mainPage,$eventBlock);
     console.log(venue.scrap);
-    // }
     computeDateFormat();
     renderEventURLPanel();
     initScrapTextTags();
