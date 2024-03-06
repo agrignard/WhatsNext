@@ -155,7 +155,7 @@ delimiterTagField.value = venue.hasOwnProperty('eventsDelimiterTag')?venue.event
 delimiterTagField.addEventListener('input'||'change',event =>{
   venue.eventsDelimiterTag = delimiterTagField.value;
   if (validateDelimiterTags()){
-    applyTags();
+    applyTags(true);
   }
   computeEventsNumber(cheerioTest);
 });
@@ -179,10 +179,12 @@ adjustURLCheckbox.checked = mustIncludeURL;
 adjustURLCheckbox.addEventListener('change',()=>{
   mustIncludeURL = adjustURLCheckbox.checked;
   computeTags();
-  applyTags();
-  renderEventURLPanel();
 })
-
+// scrap panels
+// const scrapElementList = [];
+// document.querySelectorAll('.scrapElement').forEach(el => {
+//   scrapElementList.push(el.id);
+// })
 // event name
 const eventNameStrings = document.getElementById('eventNameStrings');
 if (venueScrapInfo.mainPage.hasOwnProperty('eventNameStrings')){
@@ -232,8 +234,6 @@ function copyToTextBox(target){
     const textCopy = selection.toString();
     target.value = (target.value.replace(/(\n\s*)*$/,'').replace(/\n\s*\n/g,'\n')+'\n'+textCopy).replace(/^(\s*\n)*/,'');// remove blank lines
     textBoxUpdate(target);
-    // computeTags(target.id.replace('Strings','Tags'));
-    // applyTags();
   }
 }
 
@@ -257,13 +257,12 @@ function textBoxUpdate(textBox){
   setRows(textBox);
   if (textBox.id.endsWith('Tags')){
     venue.scrap[textBox.id] = getArray(textBox.value);
-    applyTags();
+    applyTags(false);
   }else{
    // console.log(venueScrapInfo);
     venueScrapInfo.mainPage[textBox.id] = getArray(textBox.value);
     //console.log(textBox.id);
-    computeTags(textBox.id.replace('Strings','Tags'));
-    applyTags();
+    computeTags(textBox.id);
   }
 }
 
@@ -298,7 +297,7 @@ if (lastModified){// if the file exists
 
 
 
-function applyTags(){
+function applyTags(renderURL){
   const $ = cheerio.load( parseDocument(convertToLowerCase(localPage)));
   $(mainTagAbsolutePath).addClass('mainTag');
   // const lowerCaseEventStrings = splitAndLowerCase(venueScrapInfo);
@@ -307,6 +306,7 @@ function applyTags(){
     const eve = $(delimiterTag).html();
     const event = {};
     const $eventBlock = cheerio.load(eve);
+
     if (venue.scrap.hasOwnProperty('eventNameTags')){
       let string = "";
       venue.scrap.eventNameTags.forEach(tag =>{
@@ -326,6 +326,16 @@ function applyTags(){
     if (venue.scrap.hasOwnProperty('eventStyleTags')){
       venue.scrap.eventStyleTags.forEach(tag =>{
         $eventBlock(tag).addClass('highlightStyle');  
+      });
+    }
+    if (venue.scrap.hasOwnProperty('eventPlaceTags')){
+      venue.scrap.eventPlaceTags.forEach(tag =>{
+        $eventBlock(tag).addClass('highlightPlace');  
+      });
+    }
+    if (venue.scrap.hasOwnProperty('eventURLTags')){
+      venue.scrap.eventURLTags.forEach(tag =>{
+        $eventBlock(tag).addClass('highlightURL');  
       });
     }
     if (venue.scrap.hasOwnProperty('eventDummyTags')){
@@ -348,7 +358,9 @@ function applyTags(){
   });
 
   if (localPage){
-    renderEventURLPanel();
+    if (renderURL === true){
+      renderEventURLPanel();
+    }
   }else{
     analyzePanel.style.display = 'none';
   }
@@ -374,7 +386,7 @@ function loadPage(){
     mainTagAbsolutePath = getTagLocalization(mainTag,cheerioTest,false,stringsToFind);
   }
   computeEventsNumber(cheerioTest);
-  applyTags();
+  applyTags(true);
   // find missing links
   computeMissingLinks();
   if (validateDelimiterTags()){
@@ -497,13 +509,13 @@ function getArray(string){
   return string.split('\n');
 }
 
-function containURL(tag,$){
+function containURL(tag){
   if (tag.is('a[href]')){//}.prop('tagName') == A){
     console.log("balise A");
     return true;
   }
   console.log('tour');
-  const $eventBlock = cheerio.load($(tag).html());
+  const $eventBlock = cheerio.load(cheerioTest(tag).html());
   const hrefs = $eventBlock('a[href]');
   if (hrefs.length > 0){
     return true;
@@ -512,58 +524,42 @@ function containURL(tag,$){
   }
 }
 
-
-// function findURLs(ctag){
-//   const $eventBlock = cheerio.load(ctag.html());
-//   let links;
-//   try{
-//     links = ctag.prop('tagName')=='A'?[ctag.attr('href')]:[];
-//   }catch{
-//     links = [];
-//   }
-//   const hrefs = $eventBlock('a[href]');
-//   hrefs.each((index, element) => {
-//     const href = $eventBlock(element).attr('href');
-//     links.push(href);
-//   });   
-//   return links;
-// }
-
 function computeTags(id){
-  const $ = cheerio.load(parseDocument(convertToLowerCase(localPage)));
+  // const $ = cheerioTest;//cheerio.load(parseDocument(convertToLowerCase(localPage)));
   // compute main tag
+  let delimiterHasChanged = false;
   if (!freezeDelimiter){
     const stringsToFind = [].concat(...Object.values(splitAndLowerCase(venueScrapInfo).mainPage));
-    const tagsContainingStrings =  getTagContainingAllStrings($,stringsToFind);
+    const tagsContainingStrings =  getTagContainingAllStrings(cheerioTest,stringsToFind);
     mainTag = tagsContainingStrings.last();
     if (mustIncludeURL){// extend delimiter tag to include at least one url
-      while(!containURL(mainTag,$)){
+      while(!containURL(mainTag)){
         mainTag = mainTag.parent();
       }
     }
-    mainTagAbsolutePath = getTagLocalization(mainTag,$,false,stringsToFind);
-    let delimiterTag = reduceTag(getTagLocalization(mainTag,$,true,stringsToFind),$);
+    mainTagAbsolutePath = getTagLocalization(mainTag,cheerioTest,false,stringsToFind);
+    let delimiterTag = reduceTag(getTagLocalization(mainTag,cheerioTest,true,stringsToFind),cheerioTest);
     if (autoAdjustCheckbox.checked === true){
-      delimiterTag = adjustMainTag(delimiterTag,$,venue);
+      delimiterTag = adjustMainTag(delimiterTag,cheerioTest,venue);
     }
-    delimiterTagField.value = delimiterTag;
-    venue.eventsDelimiterTag = delimiterTag;
-    computeEventsNumber($);
+    delimiterHasChanged = (delimiterTag !== venue.eventsDelimiterTag);
+    if (delimiterHasChanged){
+      delimiterTagField.value = delimiterTag;
+      venue.eventsDelimiterTag = delimiterTag;
+      computeEventsNumber(cheerioTest);
+    }
   }
   if (validateDelimiterTags()){
-   let $eventBlock = cheerio.load($(mainTag).html());
+   let $eventBlock = cheerio.load(cheerioTest(mainTag).html());
     venue.scrap = addJSONBlock(venueScrapInfo.mainPage,$eventBlock);
-    console.log(venue.scrap);
     computeDateFormat();
-    renderEventURLPanel();
+    applyTags(delimiterHasChanged || id === 'eventURLStrings');
     initScrapTextTags();
   }
 }
 
 function computeDateFormat(){
-  const $ = cheerio.load(parseDocument(convertToLowerCase(localPage)));
-  let dates = getAllDates(venue.eventsDelimiterTag,venue.scrap['eventDateTags'],$);
-  let score;
+  let dates = getAllDates(venue.eventsDelimiterTag,venue.scrap['eventDateTags'],cheerioTest);
   [venue.dateFormat, bestScore] = getBestDateFormat(dates,venue, dateConversionPatterns);
   let formatString = "Date format found: "+venue.dateFormat;
   if (bestScore !== 0){
@@ -578,19 +574,12 @@ function renderEventURLPanel(){
     return;
   }
   eventURLPanel.style.display = 'block';
-  const stringsToFind = [].concat(...Object.values(splitAndLowerCase(venueScrapInfo).mainPage));
-  const tag = cheerioTest(venue.eventsDelimiterTag);
-  // find the index of the tag of the strings currently looked for
-  let i;
-  for (i=0;i<tag.length;i++){
-    if (tagContainsAllStrings(cheerioTest(tag[i]), stringsToFind)){
-      break;
-    }
+  if (venue.scrap.hasOwnProperty('eventURLTags')){
+    $eventBlock = cheerio.load(cheerioTest(mainTag).html());
+    eventURLPanelMessage.textContent = 'URL from tag: '+ $eventBlock(venue.scrap.eventURLTags[0]).text();
+    return;
   }
-  if (i===tag.length){
-    i=0;
-  }
-  const urlList = findURLs(cheerioTest(tag[i]));
+  const urlList = findURLs(cheerioTest(mainTag));
   const index = urlList.findIndex(function(element) {
     return typeof element !== 'undefined';
   });
