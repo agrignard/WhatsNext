@@ -7,7 +7,8 @@ const cheerio = require('cheerio');
 const {cleanPage, removeBlanks, extractBody} = require('./stringUtilities.js');
 
 module.exports = {fetchLink, fetchAndRecode, fetchWithRetry, loadLinkedPages, saveToJSON, 
-                    saveToCSV, getVenuesFromArguments,getFilesContent, getFilesNumber, getModificationDate};
+                    saveToCSV, getVenuesFromArguments,getFilesContent, getFilesNumber, 
+                    getModificationDate};
 
 // // fetch linked page
 // async function fetchLink(page, nbFetchTries){
@@ -201,7 +202,7 @@ function filterFromArguments(args){
 }
 
 // return the content of the files
-function getFilesContent(sourcePath){
+function getFilesContent(sourcePath, maxPages){
     let inputFileList;
     try {
         inputFileList = fs.readdirSync(sourcePath)
@@ -215,7 +216,9 @@ function getFilesContent(sourcePath){
         const $ = cheerio.load(content);
         return $('body').html();
     }
-
+    if (maxPages && inputFileList.length > maxPages){
+        inputFileList = inputFileList.filter(el => el.match(/[0-9]*(?=\.html$)/) < maxPages);
+    }
     // load main pages
     return inputFileList.map(readBodyContent).join('\n');
 }
@@ -236,10 +239,9 @@ function getModificationDate(sourcePath){
     }else{
         return undefined;
     }
-    
-    
 }
 
+// return the number of files
 
 function getFilesNumber(sourcePath){
     let inputFileList;

@@ -1,5 +1,4 @@
 div a {
-
     pointer-events: none;
 }
 
@@ -12,18 +11,6 @@ body, html {
     margin: 20px;
 }
 
-
-/* #autoAdjustText{
-  position: absolute;
-  right: 11ch;
-  top: 5px;
-}
-
-#autoAdjustCheckbox{
-  position: absolute;
-  right: 10ch;
-  top: 5px;
-} */
 
 #venueInfo{
     font-family: sans-serif;
@@ -116,7 +103,7 @@ background-color: lightblue;
   color: blue;
 }
 
-#missingLinksText{
+.normalPadding{
   padding: 5px 5px;
 }
 
@@ -288,11 +275,15 @@ background-color: lightblue;
   resize: none;
 }
 
-#eventURLPanelMessage{
+.urlPanel{
     font-weight: normal;
     font-size: 80%;
     margin-top: 10px;
     margin-bottom: 5px;
+}
+
+.warning{
+  color: rgb(243, 156, 18);
 }
 
 .rightPanel {

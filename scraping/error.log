@@ -1,13 +1,182 @@
 Date: 
-Event: Bon.Soir : Suerte, Gru, f.sonore, GMNZ
-Place: Terminal Club
-city: Lyon
-country: France
+Event: Photobook Design with Ann Griffin
+Place: Hanoi Grapevine
+city: Hanoi
+country: Vietnam
 isCancelled: false
 DetailedStyle: 
-Style: Electro
+Style: 
 source: [object Object]
-errorLog: Format de date invalide pour Terminal Club. Reçu "", converti en "" (attendu "dd-MM")
+errorLog: Format de date invalide pour Hanoi Grapevine. Reçu "", converti en "" (attendu "dd-MM-yyyy")
+unixDate: 0
+undefined
+
+Date: 
+Event: FILE: Pitch
+Place: Hanoi Grapevine
+city: Hanoi
+country: Vietnam
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Hanoi Grapevine. Reçu "", converti en "" (attendu "dd-MM-yyyy")
+unixDate: 0
+undefined
+
+Date: 
+Event: Triển lãm “Đối thoại với dòng tranh gỗ Nhật Bản Ukiyo-e”
+Place: Hanoi Grapevine
+city: Hanoi
+country: Vietnam
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Hanoi Grapevine. Reçu "", converti en "" (attendu "dd-MM-yyyy")
+unixDate: 0
+undefined
+
+Date: 
+Event: Triển lãm ảnh "Mẹ yêu con"
+Place: Hanoi Grapevine
+city: Hanoi
+country: Vietnam
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Hanoi Grapevine. Reçu "", converti en "" (attendu "dd-MM-yyyy")
+unixDate: 0
+undefined
+
+Date: 
+Event: Triển lãm "Phồn"
+Place: Hanoi Grapevine
+city: Hanoi
+country: Vietnam
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Hanoi Grapevine. Reçu "", converti en "" (attendu "dd-MM-yyyy")
+unixDate: 0
+undefined
+
+Date: 
+Event: Exhibition "Happy Ever After"
+Place: Hanoi Grapevine
+city: Hanoi
+country: Vietnam
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Hanoi Grapevine. Reçu "", converti en "" (attendu "dd-MM-yyyy")
+unixDate: 0
+undefined
+
+Date: 
+Event: Exhibition "A Tide of Emotions"
+Place: Hanoi Grapevine
+city: Hanoi
+country: Vietnam
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Hanoi Grapevine. Reçu "", converti en "" (attendu "dd-MM-yyyy")
+unixDate: 0
+undefined
+
+Date: 
+Event: Exhibition "The Outlandish Landscape"
+Place: Hanoi Grapevine
+city: Hanoi
+country: Vietnam
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Hanoi Grapevine. Reçu "", converti en "" (attendu "dd-MM-yyyy")
+unixDate: 0
+undefined
+
+Date: 
+Event: Triển lãm "Kính vạn hoa"
+Place: Hanoi Grapevine
+city: Hanoi
+country: Vietnam
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Hanoi Grapevine. Reçu "", converti en "" (attendu "dd-MM-yyyy")
+unixDate: 0
+undefined
+
+Date: 
+Event: Exhibition "The Middle Land"
+Place: Hanoi Grapevine
+city: Hanoi
+country: Vietnam
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Hanoi Grapevine. Reçu "", converti en "" (attendu "dd-MM-yyyy")
+unixDate: 0
+undefined
+
+Date: 
+Event: The Disoriented Garden… A Breath of Dream
+Place: Hanoi Grapevine
+city: Hanoi
+country: Vietnam
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Hanoi Grapevine. Reçu "", converti en "" (attendu "dd-MM-yyyy")
+unixDate: 0
+undefined
+
+Date: 
+Event: Triển lãm "Từ tính tứ linh"
+Place: Hanoi Grapevine
+city: Hanoi
+country: Vietnam
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Hanoi Grapevine. Reçu "", converti en "" (attendu "dd-MM-yyyy")
+unixDate: 0
+undefined
+
+Date: 
+Event: Exhibition “Of Scented Reverie”
+Place: Hanoi Grapevine
+city: Hanoi
+country: Vietnam
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Hanoi Grapevine. Reçu "", converti en "" (attendu "dd-MM-yyyy")
+unixDate: 0
+undefined
+
+Date: 
+Event: Exhibition "The Attention Deficit"
+Place: Hanoi Grapevine
+city: Hanoi
+country: Vietnam
+isCancelled: false
+DetailedStyle: 
+Style: 
+source: [object Object]
+errorLog: Format de date invalide pour Hanoi Grapevine. Reçu "", converti en "" (attendu "dd-MM-yyyy")
 unixDate: 0
 undefined
 

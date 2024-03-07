@@ -37,7 +37,7 @@
             <button id="MPButton" class="niceButtonNoMargin">Multipage button</button>
             <div id="MPfields">
                 <div> Number of pages to scrap:
-                    <input type="number" id="nbPagesToScrap" class="smallBottomMargin" step="1" value="5" style ="display: inline; width: 6ch;">
+                    <input type="number" id="nbPagesToScrap" class="smallBottomMargin" min="1" step="1" value="5" style ="display: inline; width: 6ch;">
                 </div>
                 <div id="indexType" class="bottomMargin">
                     <div>Indexation type:  </div>
@@ -52,7 +52,13 @@
                         Start index:
                     </div>
                     <div class="divMPIndex">
-                        <input type="number" id="MPIndex"  step="1" value="1" style ="width: 6ch">
+                        <input type="number" id="MPIndex"  min="1" step="1" value="1" style ="width: 6ch">
+                    </div>
+                    <div class="leftMargin divMPIndex">
+                        Increment:
+                    </div>
+                    <div class="divMPIndex">
+                        <input type="number" id="MPIncrement"  min="1" step="1" value="1" style ="width: 6ch">
                     </div>
                     <div class="leftMargin divMPPattern">
                         Pattern:

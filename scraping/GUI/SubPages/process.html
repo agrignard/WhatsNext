@@ -9,6 +9,7 @@
 <body>
     <div id="processContainer">
         <div id="leftPanel" class="leftPanel">
+            <!-- page manager panel -->
             <div id="pageManager">
                 <div id="venueInfo"></div>
                 <button id="saveButton">Save</button>
@@ -18,17 +19,23 @@
                     <div id="lastScrapped" style ="display: inline;"></div>
                     <div id="missingLinksPanel" class = "verySmallBottomMargin">
                         <button id="missingLinksButton" style ="display: inline;" class="niceButton button venueInfoButton">Get links</button>
-                       <div id="missingLinksText" style ="display: inline;"></div>
+                       <div id="missingLinksText" style ="display: inline;" class="normalPadding"></div>
                      </div>
-                </div>     
+                </div>
+                <div id="multiPageManager" class="normalPadding">
+                    <div style ="display: inline;">Pages to display</div>
+                    <select id="selectNbPages" style ="display: inline;"></select>
+                </div>
             </div>
             <div id="analyzePanel">
+                <!-- delimiter panel -->
                 <div id="delimiterPanel">
                     <div id="DelimiterTitle" class="title">Delimiter tag</div>
                     <button id="freezeDelimiterButton" class="topRightButton button">Freeze</button>
                     <input type="text" id="delimiterTagField" class="delimiterTagInput" placeholder="Will be filled automatically" size="50">
                     <div id="eventURLPanel">
-                        <div id="eventURLPanelMessage"></div>
+                        <div id="eventURLPanelWarning"  class="urlPanel warning">No recent event match the strings</div>
+                        <div id="eventURLPanelMessage" class="urlPanel"></div>
                         <select id="eventURLSelect"></select>
                     </div>
                     <div id="optionsPanel">
@@ -39,6 +46,7 @@
                         <input type="checkbox" id="adjustURLCheckbox" style ="display: inline;">
                     </div>
                 </div>
+                <!-- scrap panels -->
                 <div id="scrapInfos">
                     <div id="eventName" class="scrapElement highlightName">
                         <div class="title">Event Name</div>
@@ -79,10 +87,10 @@
                     <div id="eventURL" class="scrapElement highlightURL">
                         <div class="title">Event url</div>
                         <div class="input-row">
-                            <textarea id="eventURLStrings" class="eventStrings scrapTextBox" rows="1" cols="50" placeholder="Leave blank if not applicable"></textarea>
+                            <textarea id="eventURLStrings" class="eventStrings scrapTextBox eventURLgroup" rows="1" cols="50" placeholder="Leave blank if not applicable"></textarea>
                             <button id="eventURLStringsCopyButton" class="button copyButton">&lt;</button>
                         </div>
-                        <textarea  id="eventURLTags" class="eventTags scrapTextBox" rows="1" cols="50" placeholder="Tags will be filled automatically"></textarea>
+                        <textarea  id="eventURLTags" class="eventTags scrapTextBox eventURLgroup" rows="1" cols="50" placeholder="Tags will be filled automatically"></textarea>
                     </div>
                     <div id="eventDummy" class="scrapElement highlightDummy">
                         <div class="title">Dummy filler</div>
@@ -95,6 +103,7 @@
           
                 </div>
             </div>
+            <!-- log panel -->
             <div id="logPanel">
                 <div class="smallBottomMargin">Log</div>
                 <button id="logButton" class="compact-button button">_</button>

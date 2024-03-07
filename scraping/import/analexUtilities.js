@@ -55,27 +55,15 @@ function countNonEmptyEvents(delimiterTag,$,venue){
         const $eventBlock = cheerio.load($(element).html());
         if (venue.scrap.hasOwnProperty('eventNameTags')){
             const tagList = venue.scrap.eventNameTags;
-            // let string = "";
             event.eventName = tagList.map(tag =>{
                 return tag ===''?$eventBlock.text():$eventBlock(tag).text();
             }).join(' ');
-            // for (let i = 0; i <= tagList.length-1; i++) {
-            //     let ev = tagList[i]===''?$eventBlock.text():$eventBlock(tagList[i]).text();
-            //     string += ev+' ';
-            // }
-            // event.eventName = string;
         }
         if (venue.scrap.hasOwnProperty('eventDateTags')){
             const tagList = venue.scrap.eventDateTags;
-            // let string = "";
             event.eventDate = tagList.map(tag =>{
                 return tag ===''?$eventBlock.text():$eventBlock(tag).text();
             }).join(' ');
-            // for (let i = 0; i <= tagList.length-1; i++) {
-            //     let ev = tagList[i]===''?$eventBlock.text():$eventBlock(tagList[i]).text();
-            //     string += ev+' ';
-            // }
-            // event.eventDate = string;
         }
         if (isValidEvent(event,venue)){
             eventList.push(event);

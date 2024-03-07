@@ -5,11 +5,10 @@ const fs = require('fs');
 const cheerio = require('cheerio');
 const {parseDocument} = require('htmlparser2');
 const {app, Menu, ipcRenderer} = require('electron');
-const { isValidEvent } = require('../../import/jsonUtilities');
 const {loadVenuesJSONFile, loadVenueJSON, loadScrapInfoFile, initializeVenue, saveToVenuesJSON, saveToScrapInfoJSON,
-        fromLanguages, getLanguages} = require(imports+'jsonUtilities.js');
+        fromLanguages, getLanguages, isValidEvent} = require(imports+'jsonUtilities.js');
 const {simplify, removeBlanks, extractBody, convertToLowerCase, removeDoubles} = require(imports+'stringUtilities.js');
-const {getFilesContent, getModificationDate, loadLinkedPages} = require(imports+'fileUtilities.js');
+const {getFilesContent, getModificationDate, loadLinkedPages, getFilesNumber} = require(imports+'fileUtilities.js');
 const {downloadVenue, erasePreviousHtmlFiles, getHrefListFrom, downloadLinkedPages} = require(imports+'aspiratorexUtilities.js');
 const {getTagLocalization, tagContainsAllStrings, getTagContainingAllStrings,
   splitAndLowerCase, addJSONBlock, reduceTag, getAllDates, getBestDateFormat,
@@ -24,6 +23,8 @@ let pageManagerReduced = false;
 let log ='';
 let mustIncludeURL  = true;
 let mainTagAbsolutePath;
+let nbPagesToShow = 5;
+let nbPages = 0;
 
 
 //const midnightHourOptions = ['none','sameday','previousday'];
@@ -65,7 +66,13 @@ if (!venueScrapInfo.hasOwnProperty('mainPage')){
 
 // get file if it exists
 const sourcePath = webSources+'/'+venue.country+'/'+venue.city+'/'+venue.name+'/'
+const multiPageManager = document.getElementById('multiPageManager');
+const selectNbPages = document.getElementById('selectNbPages');
 let lastModified = getModificationDate(sourcePath);
+if (lastModified){
+  nbPages = getFilesNumber(sourcePath);
+  renderMultiPageManager(nbPages);
+}
 
 // modify html
 // const venueInfo = document.getElementById('venueInfo');
@@ -112,6 +119,20 @@ saveButton.addEventListener('click',function(){
   saveToScrapInfoJSON(scrapInfo);
 });
 
+function removeEmptyFields(object){
+  fieldsToCheck = ['scrap','linkedPage','mainPage'];
+  fieldsToCheck.forEach(field => {
+    if (object.hasOwnProperty(field)){
+      Object.keys(object[field]).forEach(key =>{
+        object[field][key] = object[field][key].filter(el => el.test(/\s*/));
+        if (object[field][key].length === 0){
+          delete object[field][key];
+        }
+      })
+    }
+  });
+}
+
 // download button
 downloadButton.addEventListener('click', function() {
   downloadButton.disabled = true;
@@ -123,6 +144,10 @@ downloadButton.addEventListener('click', function() {
     downloadVenue(venue,sourcePath)
     .then(() =>{
       lastModified = getModificationDate(sourcePath);
+      if (lastModified){
+        nbPages = getFilesNumber(sourcePath);
+        renderMultiPageManager(nbPages);
+      }
       lastScrapped.textContent = lastModified?showDate(lastModified):"Page not downloaded yet.";
       stopCounter = true;
       loadPage();
@@ -157,7 +182,7 @@ delimiterTagField.addEventListener('input'||'change',event =>{
   if (validateDelimiterTags()){
     applyTags(true);
   }
-  computeEventsNumber(cheerioTest);
+  computeEventsNumber();
 });
 const freezeDelimiterButton = document.getElementById('freezeDelimiterButton');
 freezeDelimiterButton.addEventListener('click', function() {
@@ -170,6 +195,7 @@ freezeDelimiterButton.addEventListener('click', function() {
     freezeDelimiterButton.textContent = "Freeze";
   }
 });
+const eventURLPanelWarning = document.getElementById('eventURLPanelWarning');
 // adjust tag check box
 const autoAdjustCheckbox = document.getElementById('autoAdjustCheckbox');
 autoAdjustCheckbox.checked = true;
@@ -210,6 +236,22 @@ if (venueScrapInfo.mainPage.hasOwnProperty('eventPlaceStrings')){
   eventPlaceStrings.value = getValue(venueScrapInfo.mainPage.eventPlaceStrings);
 }
 const eventPlaceTags = document.getElementById('eventPlaceTags');
+// event url
+const eventURLStrings = document.getElementById('eventURLStrings');
+if (venueScrapInfo.mainPage.hasOwnProperty('eventURLStrings')){
+  eventURLStrings.value = getValue(venueScrapInfo.mainPage.eventURLStrings);
+}
+const eventURLTags = document.getElementById('eventPlaceTags');
+eventURLStrings.addEventListener("keydown", function(event) {// prevents field URL tag to have more than one line
+  if (event.key === "Enter") {
+      event.preventDefault();
+  }
+});
+eventURLTags.addEventListener("keydown", function(event) {
+  if (event.key === "Enter") {
+      event.preventDefault();
+  }
+});
 // event dummy
 const eventDummyStrings = document.getElementById('eventDummyStrings');
 if (venueScrapInfo.mainPage.hasOwnProperty('eventDummyStrings')){
@@ -230,9 +272,12 @@ for(let i = 0; i < copyButtons.length; i++){
 
 function copyToTextBox(target){
   const selection = window.getSelection();
-  if (selection.toString().length > 0) {
-    const textCopy = selection.toString();
+  const textCopy = selection.toString();
+  if (textCopy) {
     target.value = (target.value.replace(/(\n\s*)*$/,'').replace(/\n\s*\n/g,'\n')+'\n'+textCopy).replace(/^(\s*\n)*/,'');// remove blank lines
+    if (target.classList.contains("eventURLgroup")){// prevents field URL tag to have more than one line
+      target.value = target.value.replace(/\n/g,'');
+    }
     textBoxUpdate(target);
   }
 }
@@ -377,7 +422,7 @@ function applyTags(renderURL){
 
 function loadPage(){
   analyzePanel.style.display = 'block';
-  localPage = reduceImgSize(getFilesContent(sourcePath));
+  localPage = reduceImgSize(getFilesContent(sourcePath, nbPagesToShow));
   cheerioTest = cheerio.load(parseDocument(convertToLowerCase(localPage)));
   if (venue.hasOwnProperty('eventsDelimiterTag')){
     const stringsToFind = [].concat(...Object.values(splitAndLowerCase(venueScrapInfo).mainPage));
@@ -385,7 +430,7 @@ function loadPage(){
     mainTag = tagsContainingStrings.last();
     mainTagAbsolutePath = getTagLocalization(mainTag,cheerioTest,false,stringsToFind);
   }
-  computeEventsNumber(cheerioTest);
+  computeEventsNumber();
   applyTags(true);
   // find missing links
   computeMissingLinks();
@@ -509,12 +554,10 @@ function getArray(string){
   return string.split('\n');
 }
 
-function containURL(tag){
+function containsURL(tag){
   if (tag.is('a[href]')){//}.prop('tagName') == A){
-    console.log("balise A");
     return true;
   }
-  console.log('tour');
   const $eventBlock = cheerio.load(cheerioTest(tag).html());
   const hrefs = $eventBlock('a[href]');
   if (hrefs.length > 0){
@@ -533,7 +576,7 @@ function computeTags(id){
     const tagsContainingStrings =  getTagContainingAllStrings(cheerioTest,stringsToFind);
     mainTag = tagsContainingStrings.last();
     if (mustIncludeURL){// extend delimiter tag to include at least one url
-      while(!containURL(mainTag)){
+      while(!containsURL(mainTag)){
         mainTag = mainTag.parent();
       }
     }
@@ -546,7 +589,7 @@ function computeTags(id){
     if (delimiterHasChanged){
       delimiterTagField.value = delimiterTag;
       venue.eventsDelimiterTag = delimiterTag;
-      computeEventsNumber(cheerioTest);
+      computeEventsNumber();
     }
   }
   if (validateDelimiterTags()){
@@ -573,13 +616,22 @@ function renderEventURLPanel(){
     eventURLPanel.style.display = 'none';
     return;
   }
+  let tag;
   eventURLPanel.style.display = 'block';
+  if (mainTagAbsolutePath === ''){
+    eventURLPanelWarning.style.display = 'block';
+    tag = cheerioTest(venue.eventsDelimiterTag).first();
+  }else{
+    eventURLPanelWarning.style.display = 'none';
+    tag = mainTag;
+  }
+
   if (venue.scrap.hasOwnProperty('eventURLTags')){
-    $eventBlock = cheerio.load(cheerioTest(mainTag).html());
+    $eventBlock = cheerio.load(cheerioTest(tag).html());
     eventURLPanelMessage.textContent = 'URL from tag: '+ $eventBlock(venue.scrap.eventURLTags[0]).text();
     return;
   }
-  const urlList = findURLs(cheerioTest(mainTag));
+  const urlList = findURLs(cheerioTest(tag));
   const index = urlList.findIndex(function(element) {
     return typeof element !== 'undefined';
   });
@@ -686,7 +738,7 @@ function findURLs(ctag){
 // };
 
 
-// function containURL(tagText){
+// function containsURL(tagText){
 //   let urlList;
 //   if (tagText === ''){
 //     urlList = findURLs(cheerioTest);
@@ -711,10 +763,27 @@ function reduceImgSize(html){
   return html.replace(regexWidth,replace).replace(regexHeight,replace);
 }
 
-function computeEventsNumber(source){
+function computeEventsNumber(){
   if (venue.hasOwnProperty('eventsDelimiterTag')){
     //nbEvents = source(venue.eventsDelimiterTag).length;
-    const nbEvents = countNonEmptyEvents(venue.eventsDelimiterTag,source,venue);
+    const nbEvents = countNonEmptyEvents(venue.eventsDelimiterTag,cheerioTest,venue);
     DelimiterTitle.textContent = "Delimiter tag (found "+nbEvents+" events)";
   }
+}
+
+function renderMultiPageManager(nbPages){
+  if (nbPages <= 1){
+    multiPageManager.style.display = 'none';
+    return;
+  }
+  multiPageManager.style.display = 'block';
+  selectNbPages.innerHTML='';
+  for(i=1;i<=nbPages;i++){
+    const option = document.createElement('option');
+    option.text = i;
+    option.value = i;  
+    selectNbPages.appendChild(option);
+  };
+  nbPagesToShow = Math.min(nbPages,nbPagesToShow);
+  selectNbPages.selectedIndex = nbPagesToShow-1;
 }

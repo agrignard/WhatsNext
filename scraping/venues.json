@@ -200,8 +200,9 @@
       ]
     },
     "multiPages": {
-      "startPage": 1,
-      "nbPages": 20
+      "nbPages": "20",
+      "startPage": "1",
+      "increment": "1"
     },
     "eventURLIndex": 0,
     "ID": "Le Petit Bulletin|Lyon|France"
@@ -668,5 +669,29 @@
     "eventsDelimiterTag": " ARTICLE.tribeeventscalendarmonthmobileevents__mobileevent.tribe_events.typetribe_events.statuspublish.haspostthumbnail.hentry DIV.tribeeventscalendarmonthmobileevents__mobileeventdetails",
     "dateFormat": "dd-MM-HH:mm",
     "eventURLIndex": 0
+  },
+  {
+    "name": "Hanoi Grapevine",
+    "city": "Hanoi",
+    "country": "Vietnam",
+    "scrap": {
+      "eventNameTags": [
+        "H3.entrytitle:eq(0) A:eq(0)"
+      ],
+      "eventDateTags": [
+        "DIV.metainfo:eq(0) TIME.entrydate.updated:eq(0)"
+      ]
+    },
+    "url": "https://hanoigrapevine.com/category/event-listings/page/",
+    "ID": "Hanoi Grapevine|Hanoi|Vietnam",
+    "baseURL": "https://hanoigrapevine.com/category/event-listings/page/",
+    "eventsDelimiterTag": " DIV.td_mod_wrap DIV.itemdetails",
+    "dateFormat": "dd-MM-yyyy",
+    "eventURLIndex": 0,
+    "multiPages": {
+      "nbPages": "1",
+      "startPage": "1",
+      "increment": "1"
+    }
   }
 ]

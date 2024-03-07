@@ -30,12 +30,17 @@ async function downloadVenue(venue,filePath){
     if (venue.multiPages.hasOwnProperty('pattern')){
       URLlist = getURLListFromPattern(venue.url,venue.multiPages.pattern,venue.multiPages.nbPages);
       console.log(URLlist);
-    }else if (/\{index\}/.test(venue.url)){
+    }else if (/\{index\}/.test(venue.url) || venue.multiPages.hasOwnProperty('startPage')){
       if (venue.multiPages.hasOwnProperty('startPage') && venue.multiPages.hasOwnProperty('nbPages')){
         let increment = (venue.multiPages.hasOwnProperty('increment'))?venue.multiPages.increment:1;
         for(let i=0;i<venue.multiPages.nbPages;i++){
-          const pageID = venue.multiPages.startPage+i*increment;
-            URLlist.push(venue.url.replace('{index}',pageID));
+          const pageID = parseInt(venue.multiPages.startPage)+i*increment;
+          if (/\{index\}/.test(venue.url) ){
+            URLlist.push(venue.url.replace('\{index\}',pageID));
+          }else{
+            URLlist.push(venue.url+pageID);
+          }
+          
         }
       }else{
         console.log("\x1b[31mAttribute \'startPage\' and \'nbPages' are mandatory for multipages if there is a placeholder \'index\' in the URL. No page loaded\x1b[0m.");

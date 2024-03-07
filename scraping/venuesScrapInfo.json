@@ -213,5 +213,21 @@
         "31 mars | 19h30"
       ]
     }
+  },
+  "Hanoi Grapevine|Hanoi|Vietnam": {
+    "mainPage": {
+      "eventNameStrings": [
+        "ternational film festi"
+      ],
+      "eventPlaceStrings": [
+        ""
+      ],
+      "eventDateStrings": [
+        "25/11/2023"
+      ],
+      "eventDummyStrings": [
+        ""
+      ]
+    }
   }
 }

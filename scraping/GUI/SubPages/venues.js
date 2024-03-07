@@ -322,6 +322,10 @@ function updateVenueInfo(mode){
             if (hasMP && venue.multiPages.hasOwnProperty('startPage')){
                 MPIndexInput.value = venue.multiPages.startPage;
             }
+            const MPIncrementInput = document.getElementById('MPIncrement');
+            if (hasMP && venue.multiPages.hasOwnProperty('increment')){
+                MPIncrementInput.value = venue.multiPages.increment;
+            }
             const MPPatternInput = document.getElementById('MPPattern');
             if (hasMP && venue.multiPages.hasOwnProperty('pattern')){
                 MPPatternInput.value = venue.multiPages.pattern;
@@ -437,6 +441,7 @@ function updateVenueInfo(mode){
                     if (venue.multiPages.hasOwnProperty('startIndex')){delete venue.multiPages.startIndex;}
                     if (selectMPFields.selectedIndex === 0){             
                         venue.multiPages.startPage = MPIndexInput.value;
+                        venue.multiPages.increment = MPIncrementInput.value;
                     }else if (selectMPFields.selectedIndex === 1){                          
                         venue.multiPages.pattern = MPPatternInput.value;
                     }else{
