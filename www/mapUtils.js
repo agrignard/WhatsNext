@@ -1,7 +1,7 @@
 import * as dataUtils from './dataUtils.js';
 
 
-const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+export const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 
 
 var flytoOnClick=false;
@@ -12,7 +12,6 @@ if (darkMode){
 }
 var hoveredStateId =  null; 
 export function initializeMap() {
-
     return new mapboxgl.Map({
         container: 'map',
         style: darkstyle,
@@ -235,10 +234,8 @@ export function addShareWidget(map){
         this.map = map;
         this.container = document.createElement('div');
         this.container.className = 'mapboxgl-ctrl mapboxgl-ctrl-share';
-
         // Add Font Awesome share icon
         this.container.innerHTML = '<i class="fas fa-share"></i>';
-
         // Add event listener for copying the current URL
         this.container.addEventListener('click', () => {
             const currentURL = window.location.origin+"/?day="+parseInt(document.getElementById('slider').value,10);
@@ -250,10 +247,8 @@ export function addShareWidget(map){
                 console.error('Unable to copy URL', error);
             });
         });
-
         return this.container;
         }
-
         onRemove() {
         this.container.parentNode.removeChild(this.container);
         this.map = undefined;
@@ -266,7 +261,7 @@ export function addShareWidget(map){
 //////////////////////////////////////////////////
 
 ////////////LAYER INTERACTION//////////////////////
-export function filterBy(map,value) {  
+export function filterByTime(map,value) {  
     //console.log("yo ca showALL" + showAllFUCKINGValue);
     if(!document.getElementById("showAll").checked){
         var filters = [
@@ -276,7 +271,7 @@ export function filterBy(map,value) {
         ];
         map.setFilter('event-circles', filters);
         map.setFilter('event-labels', filters);
-        document.getElementById('dateSlider').textContent = days[new Date(value).getDay()] + " " + new Date(value).getDate()+ "/" + parseInt(new Date(value).getMonth()+1) + "/" + new Date(value).getFullYear();  ;
+        document.getElementById('dateSlider').textContent = days[new Date(value).getDay()] + " " + new Date(value).getDate()+ "/" + parseInt(new Date(value).getMonth()+1) + "/" + new Date(value).getFullYear();  
     }else{
         var filters = [
         "all",     
@@ -313,9 +308,35 @@ export function filterByStyle(map,style,time) {
         }
         
     }
-    
     map.setFilter('event-circles', filters);
     map.setFilter('event-labels', filters);
+}
+
+export function getActiveCircles(circles) {
+    return circles.filter(circle => circle.active);
+}
+
+export function filterByStyles(map,circles,time){   
+    function generateFilterConditions(activeCircles,time) {
+        return activeCircles.map(circle => {
+            // Check if 'style' and 'time' properties exist
+            const styleCondition = ["==", ["get", "style"], circle.value];
+            const timeCondition1 = [">=", ["get", "time"], time];
+            const timeCondition2 = ["<=", ["get", "time"], time+86400000];
+            // Filter out null conditions
+            const conditions = [styleCondition, timeCondition1,timeCondition2].filter(condition => condition !== null);
+            // Use 'all' if there are conditions, otherwise return null
+            return conditions.length > 0 ? ["all", ...conditions] : null;
+          });
+    }
+    // Example usage:
+    const activeCircles = getActiveCircles(circles);
+    const filterConditions = generateFilterConditions(activeCircles,time);
+
+    // Now you can combine these conditions using 'any' or 'all' as needed
+    const combinedFilter = ["any", ...filterConditions];
+    map.setFilter('event-circles', combinedFilter);
+    map.setFilter('event-labels', combinedFilter);
 }
 
 //////////////////////////////////////////////////
@@ -379,10 +400,19 @@ export const end = {
 var transparency = 0.9;
 var transparencyBig = 0.95;
 
+export var categoryColors = {};
+
+export const setCategoryColors = (city) => {
+    if (city === "lyon") {
+      categoryColors = { ...categoryColorsLyon };
+    } else if (city === "hanoi") {
+      categoryColors = { ...categoryColorsHanoi };
+    }
+  };
 
 // Your dynamic map of categories and their colors
-export const categoryColors = {
-    'Rock': '23, 128, 251 ',
+export const categoryColorsLyon = {
+    'Rock': '23, 128, 251',
     'Electro': '40, 124, 18',
     'Jazz': '255, 255, 0',
     'Rap': '255, 0, 0',
@@ -392,30 +422,48 @@ export const categoryColors = {
     'Chanson': '0, 255, 255',
     'Live': '144, 238, 214',
     'Theatre': '165,42,42'
-  };
+};
+
+export const categoryColorsHanoi = {
+    'Art': '23, 128, 251',
+    'Photo': '40, 124, 18',
+    'Conference': '255, 255, 0',
+    'Musique': '255, 0, 0',
+    'Expo': '224, 147, 40',
+    'Theatre': '165,42,42'
+};
+
+export const getCategoryColorRGBA = (category) => {
+    const colorString = categoryColors[category];
+    if (colorString) {
+        return `rgba(${colorString}, 0.5)`;
+    } else {
+        return 'rgba(0, 0, 0, 0.5)';
+    }
+};
 
 export function generateColorExpressions(categories) {
-const colorExpressions = [];
+    const colorExpressions = [];
 
-categories.forEach(category => {
-    const baseColor = categoryColors[category];
+    categories.forEach(category => {
+        const baseColor = categoryColors[category];
 
-    if (baseColor) {
-    colorExpressions.push(
-        category,
-        [
-        'case',
-        ['boolean', ['feature-state', 'hover'], false],
-        `rgba(${baseColor}, ${transparencyBig})`,
-        `rgba(${baseColor}, ${transparency})`
-        ]
-    );
-    }
-});
+        if (baseColor) {
+        colorExpressions.push(
+            category,
+            [
+            'case',
+            ['boolean', ['feature-state', 'hover'], false],
+            `rgba(${baseColor}, ${transparencyBig})`,
+            `rgba(${baseColor}, ${transparency})`
+            ]
+        );
+        }
+    });
 
-// Add a default color at the end if needed
-colorExpressions.push('#999');
+    // Add a default color at the end if needed
+    colorExpressions.push('#999');
 
-// Return the complete color expression
-return ['match', ['get', 'style'], ...colorExpressions];
+    // Return the complete color expression
+    return ['match', ['get', 'style'], ...colorExpressions];
 }

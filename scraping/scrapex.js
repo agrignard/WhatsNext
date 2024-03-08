@@ -17,7 +17,7 @@ const sourcePath = './webSources/';
 
 //var out="";// = "PLACE,TITRE,UNIX,SIZE,GENRE,URL";
 const outFile = "generated/scrapexResult_lyon.csv";
-const globalDefaultStyle = '';
+const globalDefaultStyle = 'Live';
 const styleConversion = getStyleConversions();
 const cancellationKeywords = loadCancellationKeywords();
 const showFullMergeLog = true;

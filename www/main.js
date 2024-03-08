@@ -5,8 +5,13 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiYWdyaWduYXJkIiwiYSI6ImNqdWZ6ZjJ5MDBoenczeXBkY
 
 var devMode = false;
 var showAllValueDiv = devMode ? true : false;
-export const city="lyon";
+export var city="lyon";
+processCityBasedOnUrl();
+mapUtils.setCategoryColors(city);
+const map = mapUtils.initializeMap();
 
+// Array to store dynamically generated circles
+const circles = [];
 var selectedCircle = null;
 updateCircleLegend();
 
@@ -18,7 +23,7 @@ if (showAllValueDiv){
     canvasShowAll.style.display = 'none';
 }
 
-const map = mapUtils.initializeMap();
+
 var currentDate = new Date(Date.now());
 currentDate.setHours(2,0,0);
 var appDate;
@@ -67,10 +72,8 @@ function jsonCallback(err, data) {
 
     mapUtils.addGeolocationWidget(map);
     mapUtils.addShareWidget(map);
-    
-
     appDate=currentDate;
-    mapUtils.filterBy(map,currentDate.valueOf(),false);
+    mapUtils.filterByTime(map,currentDate.valueOf(),false);
 
     ///HANDLE SLIDER
     document.getElementById('slider').addEventListener('input', async (e) => {
@@ -78,23 +81,18 @@ function jsonCallback(err, data) {
       const tmpDate= new Date(currentDate);
       const newDateAsInt = tmpDate.setDate(tmpDate.getDate() + sliderValue).valueOf();
       appDate=newDateAsInt;
-      //Add to fix issue #30 (to be more tested)
-      if(selectedCircle!=null){
-        mapUtils.filterByStyle(map,selectedCircle.value,newDateAsInt);
-      }else{
-        mapUtils.filterBy(map,newDateAsInt,false);
-      }
-      //Remove when fixing issue #30
-      //updateCircleLegend();
+      mapUtils.filterByStyles(map,mapUtils.getActiveCircles(circles),newDateAsInt);
+      document.getElementById('dateSlider').textContent = mapUtils.days[new Date(newDateAsInt).getDay()] + " " + new Date(newDateAsInt).getDate()+ "/" + parseInt(new Date(newDateAsInt).getMonth()+1) + "/" + new Date(newDateAsInt).getFullYear();  
     });
+
     document.getElementById('showAll').addEventListener('input', (e) => {
     const showAllValueCkecked= document.getElementById("showAll").checked;
     if(showAllValueCkecked){
       document.getElementById('slider').value = 0;   
     }
-    mapUtils.filterBy(map,currentDate.valueOf(),false)
+    mapUtils.filterByTime(map,currentDate.valueOf(),false)
     });
-    processMapBasedOnUrl(); 
+    processDayBasedOnUrl(); 
 }
 
 dataUtils.initPlaceInformation();
@@ -147,8 +145,6 @@ async function chartIt(){
             }
         }
         });
-
-
     }else{
         canvas1.style.display = 'none'; 
         canvas2.style.display = 'none'; 
@@ -161,18 +157,23 @@ async function updateCircleLegend(){
 const canvas = document.getElementById('myCircleCanvas');
 const ctx = canvas.getContext('2d');
 
-const circles = [
-  { x: 20, y: 25, radius: 18, value: 'Rock', color: 'rgba(23,128,251)' },
-  { x: 60, y: 25, radius: 18, value: 'Electro', color: 'rgba(40,124,18,0.5)' },
-  { x: 100, y: 25, radius: 18, value: 'Jazz', color: 'rgba(255,255,0,0.5)' },
-  { x: 140, y: 25, radius: 18, value: 'Rap', color: 'rgba(255,0,0,0.5)' },
-  { x: 180, y: 25, radius: 18, value: 'Chanson', color: 'rgba(0,255,255,0.5)' },
-  { x: 220, y: 25, radius: 18, value: 'World', color: 'rgba(224,147,40,0.5)' },
-  { x: 260, y: 25, radius: 18, value: 'Classique', color: 'rgba(127,0,255,0.5)' },
-  { x: 300, y: 25, radius: 18, value: 'Live', color: 'rgba(144,238,144,0.5)' },
-  { x: 340, y: 25, radius: 18, value: 'Theatre', color: 'rgba(165,42,42,0.5)' }
-];
 
+let i = 0;
+// Iterate over categoryColors object
+for (const category in mapUtils.categoryColors) {
+  if (mapUtils.categoryColors.hasOwnProperty(category)) {
+      // Add circle object to circles array
+      circles.push({
+          x: 20 + i * 40, // Adjust the x-coordinate as needed
+          y: 25,
+          radius: 18,
+          value: category,
+          color: mapUtils.getCategoryColorRGBA(category),
+          active:true
+      });
+  }
+  i++;
+}
 
 
 canvas.addEventListener('click', function (event) {
@@ -184,15 +185,8 @@ canvas.addEventListener('click', function (event) {
     const dy = mouseY - circle.y;
     const distance = Math.sqrt(dx * dx + dy * dy);
     if (distance <= circle.radius) {
-      // Toggle selection
-      if (selectedCircle === circle) {
-        selectedCircle = null; // Deselect the circle
-        mapUtils.filterByStyle(map,"all",appDate.valueOf());
-      } else {
-        selectedCircle = circle; // Select the circle
-        mapUtils.filterByStyle(map,circle.value,appDate.valueOf());
-      }
-      // Redraw all circles
+      circle.active = !circle.active;
+      mapUtils.filterByStyles(map,circles.filter(circle => circle.active),appDate.valueOf());
       drawCircles();
     }
   });
@@ -204,25 +198,12 @@ function drawCircles() {
   circles.forEach(circle => {
     ctx.beginPath();
     ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
-
-    // Set the fill color based on the selection
-    if (selectedCircle === null) {
-      // When no circle is selected, retain their original color
-      ctx.fillStyle = circle.color;
-    } else if (selectedCircle === circle) {
-      // The selected circle keeps its original color
-      ctx.fillStyle = circle.color;
-    } else {
-      // Non-selected circles are in gray
-      ctx.fillStyle = 'gray';
-    }
-
+    ctx.fillStyle = circle.active ? circle.color : 'gray';
     ctx.fill();
     ctx.strokeStyle = circle.color;
     ctx.lineWidth = 1;
     ctx.stroke();
     ctx.closePath();
-
     ctx.font = '8px Arial';
     ctx.fillStyle = "black";
     ctx.textAlign = 'center';
@@ -243,7 +224,7 @@ function getQueryParam(parameter) {
 }
 
 // Function to show content based on the URL parameter
-function processMapBasedOnUrl() {
+function processDayBasedOnUrl() {
     const day = getQueryParam('day');
     // Check the value of the 'type' parameter and take appropriate actions
     if (day!=null) {
@@ -252,9 +233,19 @@ function processMapBasedOnUrl() {
         const tmpDate= new Date(currentDate);
         const newDateAsInt = tmpDate.setDate(tmpDate.getDate() + parseInt(day)).valueOf();
         appDate=newDateAsInt;
-        mapUtils.filterBy(map,newDateAsInt,false);
+        mapUtils.filterByTime(map,newDateAsInt,false);
     }else {
     }
+}
+
+function processCityBasedOnUrl() {
+  const cityUrl = getQueryParam('city');
+  // Check the value of the 'type' parameter and take appropriate actions
+  if (cityUrl!=null) {
+      console.log('City parameter: ' + city);
+      city=cityUrl;
+  }else {
+  }
 }
 
 
