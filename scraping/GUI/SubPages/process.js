@@ -75,10 +75,6 @@ if (lastModified){
 }
 
 // modify html
-// const venueInfo = document.getElementById('venueInfo');
-// const venueInfoHeight = venueInfo.clientHeight;
-// const processContainer = document.getElementById('processContainer');
-// processContainer.style.height = `calc(100vh - ${venueInfoHeight}px)`;
 const rightPanel = document.getElementById('scrapEnDirexRightPanel');
 //const leftPanel = document.getElementById('letPanel');
 const analyzePanel = document.getElementById('analyzePanel');
@@ -211,10 +207,6 @@ adjustURLCheckbox.addEventListener('change',()=>{
   computeTags();
 })
 // scrap panels
-// const scrapElementList = [];
-// document.querySelectorAll('.scrapElement').forEach(el => {
-//   scrapElementList.push(el.id);
-// })
 // event name
 const eventNameStrings = document.getElementById('eventNameStrings');
 if (venueScrapInfo.mainPage.hasOwnProperty('eventNameStrings')){
@@ -347,8 +339,6 @@ if (lastModified){// if the file exists
 function applyTags(renderURL){
   const $ = cheerio.load( parseDocument(convertToLowerCase(localPage)));
   $(mainTagAbsolutePath).addClass('mainTag');
-  // const lowerCaseEventStrings = splitAndLowerCase(venueScrapInfo);
-  // const stringsToFind = [].concat(...Object.values(lowerCaseEventStrings.mainPage));
   $(venue.eventsDelimiterTag).each((index, delimiterTag) => {
     const eve = $(delimiterTag).html();
     const event = {};
@@ -451,12 +441,7 @@ function computeMissingLinks(){
   const missingLinksText = document.getElementById('missingLinksText');
   if (venue.hasOwnProperty('linkedPage') && lastModified){
     if (hrefList.length === 0){
-      // if (venue.eventURLIndex >=0 || venue.scrap.hasOwnProperty('eventURLTags')){
-
-      // }else{
-        missingLinksText.textContent = 'No linked page references. ';
-        // missingLinksButton.style.display = 'none';
-      // }
+      missingLinksText.textContent = 'No linked page references. ';
     }else{
       missingLinksText.textContent = 'Links downloaded: '+existingLinks.length+'/'+hrefList.length;
       if (linksToDownload.length === 0){
@@ -474,8 +459,6 @@ function computeMissingLinks(){
 
 
 //getPageFromUrl();
-
-// prevent href links to be clicked
 
 
 //console.log(venue);
@@ -536,19 +519,6 @@ function showDate(date){
   return string;
 }
 
-// minimize/maximize for the page manager
-// function toggleDiv(target,minSize,maxSize) {
-//   const div = document.getElementById(target);
-//   if (div.style.height === minSize) {
-//     div.style.height = maxSize; // Rétablir la hauteur initiale
-//   } else {
-//     div.style.height = minSize; // Réduire la hauteur
-//   }
-// }
-
-
-
-
 function getValue(object){
   if (typeof(object)==="string"){
     return object;
@@ -575,7 +545,6 @@ function containsURL(tag){
 }
 
 function computeTags(id){
-  // const $ = cheerioTest;//cheerio.load(parseDocument(convertToLowerCase(localPage)));
   // compute main tag
   let delimiterHasChanged = false;
   if (!freezeDelimiter){
@@ -744,19 +713,6 @@ function findURLs(ctag){
 //   logText.scrollTop = logText.scrollHeight; // Faire défiler automatiquement vers le bas
 // };
 
-
-// function containsURL(tagText){
-//   let urlList;
-//   if (tagText === ''){
-//     urlList = findURLs(cheerioTest);
-//   }else{
-//     const tag = cheerioTest(tagText);
-//     urlList = findURLs(cheerioTest(tag));
-//   }
-//   return urlList.some(el => el !== undefined);
-// }
-
-
 function reduceImgSize(html){
   const regexWidth = /(\<(?:img|svg)[^\<]*width\s*=\s*\")([^\"]*)\"/g;
   const regexHeight = /(\<(?:img|svg)[^\<]*height\s*=\s*\")([^\"]*)\"/g;
@@ -772,7 +728,6 @@ function reduceImgSize(html){
 
 function computeEventsNumber(){
   if (venue.hasOwnProperty('eventsDelimiterTag')){
-    //nbEvents = source(venue.eventsDelimiterTag).length;
     const nbEvents = countNonEmptyEvents(venue.eventsDelimiterTag,cheerioTest,venue);
     DelimiterTitle.textContent = "Delimiter tag (found "+nbEvents+" events)";
   }
