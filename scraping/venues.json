@@ -5,29 +5,31 @@
     "country": "France",
     "url": "https://le-sucre.eu/agenda/",
     "baseURL": "https://le-sucre.eu/agenda/",
-    "eventsDelimiterTag": "A.pureu11.pureumd12.pureulg14.t5410.pureug.agendacard",
+    "eventsDelimiterTag": "DIV.pureg.agendalist.puregg A.pureu11.pureumd12.pureulg14.pureug.agendacard ",
     "defaultStyle": "Electro",
     "comments": "après avoir utilisé analex, enlever t5410 de la classe de la balise qui délimite les events",
     "scrap": {
       "eventNameTags": [
-        "DIV.titre:eq(0)",
-        "DIV.artistes:eq(0)  DIV:eq(0)",
-        "DIV.artistes:eq(0)  DIV:eq(1)"
+        "DIV.labels:eq(0) DIV.titre:eq(0)",
+        "DIV.artistes:eq(0) DIV"
       ],
       "eventDateTags": [
-        "DIV.date:eq(0)"
+        "DIV.infos:eq(0) DIV.date:eq(0)"
+      ],
+      "eventStyleTags": [
+        "DIV.infos:eq(0) DIV.type:eq(0)"
       ]
     },
     "eventURLIndex": 0,
     "dateFormat": "dd-MM",
     "linkedPage": {
       "eventDateTags": [
-        "DIV.journum:eq(0)",
-        "DIV.mois:eq(0)",
-        "DIV.horaires:eq(0)"
+        "DIV.date:eq(0) DIV.journum:eq(0)",
+        "DIV.date:eq(0) DIV.mois:eq(0)",
+        "DIV.pureu11.pureumd12.pureulg524.infos:eq(0) DIV.horaires:eq(0)"
       ]
     },
-    "linkedPageDateFormat": "dd-MM",
+    "linkedPageDateFormat": "dd-MM-HH:mm",
     "ID": "Le Sucre|Lyon|France"
   },
   {
@@ -668,7 +670,8 @@
     "baseURL": "https://www.laclefdevoute.fr/concerts-de-jazz-a-lyon/",
     "eventsDelimiterTag": " ARTICLE.tribeeventscalendarmonthmobileevents__mobileevent.tribe_events.typetribe_events.statuspublish.haspostthumbnail.hentry DIV.tribeeventscalendarmonthmobileevents__mobileeventdetails",
     "dateFormat": "dd-MM-HH:mm",
-    "eventURLIndex": 0
+    "eventURLIndex": 1,
+    "linkedPage": {}
   },
   {
     "name": "Hanoi Grapevine",
@@ -689,9 +692,86 @@
     "dateFormat": "dd-MM-yyyy",
     "eventURLIndex": 0,
     "multiPages": {
-      "nbPages": "1",
+      "nbPages": "20",
       "startPage": "1",
       "increment": "1"
     }
+  },
+  {
+    "name": "google",
+    "city": "Lyon",
+    "country": "France",
+    "url": "https://www.google.com/search?q=lyon+%C3%A9v%C3%A9nements&client=firefox-b-d&sca_esv=ed313d50f24d50b8&sxsrf=ACQVn0-ZmP4Si44IDZrpd01wLIM1xJGiRw%3A1709830776141&ei=ePLpZf6fCJWP2roPja6V4AU&ved=0ahUKEwj-u6aA0OKEAxWVh1YBHQ1XBVwQ4dUDCBA&uact=5&oq=lyon+%C3%A9v%C3%A9nements&gs_lp=Egxnd3Mtd2l6LXNlcnAiEWx5b24gw6l2w6luZW1lbnRzMgoQIxiABBiKBRgnMgUQABiABDIFEAAYgAQyBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHkijHVCsBVj6G3ACeAGQAQCYAbICoAG0F6oBBzAuOS41LjG4AQPIAQD4AQGYAhGgAv4YwgIKEAAYRxjWBBiwA8ICDRAAGIAEGIoFGEMYsAPCAhkQLhiABBiKBRhDGMcBGNEDGMgDGLAD2AEBwgIEECMYJ8ICFhAuGIAEGIoFGEMYsQMYgwEYxwEY0QPCAhAQABiABBiKBRhDGLEDGIMBwgILEC4YgwEYsQMYgATCAhEQLhiABBixAxiDARjHARjRA8ICCxAAGIAEGLEDGIMBwgILEC4YgAQYsQMYgwHCAggQLhiABBixA8ICCBAAGIAEGLEDwgIOEAAYgAQYigUYsQMYgwHCAhoQLhiABBixAxiDARiXBRjcBBjeBBjgBNgBAsICCBAuGLEDGIAEwgIUEC4YgAQYigUYsQMYgwEYxwEY0QPCAgUQLhiABMICCxAuGIAEGMcBGK8BwgIOEC4YFhgeGMcBGK8BGArCAggQABgWGB4YD5gDAIgGAZAGEroGBggBEAEYCLoGBggCEAEYFJIHBzIuNy43LjGgB92hAQ&sclient=gws-wiz-serp",
+    "ID": "google|Lyon|France",
+    "scrap": {
+      "eventNameTags": [
+        "DIV.uoFCfc:eq(0) DIV.bVj5Zb.FozYP:eq(0)"
+      ],
+      "eventDateTags": [
+        "DIV.t3gkGd:eq(0) DIV:eq(0)",
+        "DIV.t3gkGd:eq(0) DIV.oonKPc:eq(0)"
+      ],
+      "eventPlaceTags": [
+        "DIV.TCYkdd.FozYP:eq(0) SPAN:eq(0)"
+      ]
+    },
+    "baseURL": "https://www.google.com/",
+    "eventsDelimiterTag": "DIV.KKHQ8c A.ct5Ked.klitemtr.PZPZlf",
+    "dateFormat": "dd-MM-HH:mm",
+    "eventURLIndex": 0
+  },
+  {
+    "name": "Ninkasi",
+    "city": "Lyon",
+    "country": "France",
+    "scrap": {
+      "eventNameTags": [
+        "SPAN.nqceventMiniaturebottomnametext.nqceventMiniatureHovernametext:eq(0) SPAN:eq(0)"
+      ],
+      "eventDateTags": [
+        "DIV.nqceventMiniaturetop:eq(0)"
+      ],
+      "eventPlaceTags": [
+        "SPAN.nqceventMiniaturethumbnaillocation:eq(0) SPAN:eq(0)"
+      ],
+      "eventURLTags": [
+        "A.nqceventMiniatureHoverbutton.alone:eq(0) SPAN.text:eq(0)"
+      ]
+    },
+    "url": "https://www.ninkasi.fr/agenda/du/07-03-2024/au/07-08-2024/lieu/ninkasi-guillotiere/",
+    "ID": "Ninkasi|Lyon|France",
+    "baseURL": "https://www.ninkasi.fr/agenda/du/07-03-2024/au/07-08-2024/lieu/ninkasi-guillotiere/",
+    "eventsDelimiterTag": "DIV.nqcgrid.jslistingajax.hasmoreposts DIV.nqceventMiniature.nqceventMiniatureOn.jseventsajaxitem.nqcgriditem",
+    "dateFormat": "",
+    "eventURLIndex": 0
+  },
+  {
+    "name": "Likdo",
+    "city": "Hanoi",
+    "country": "Vietnam",
+    "scrap": {
+      "eventDateTags": [
+        "DIV.datetop2.evnt.lp:eq(0) H1.day2:eq(0)",
+        "DIV.datetop2.evnt.lp:eq(0) H1.day2:eq(1)",
+        "DIV.datetop2.evnt.lp:eq(0) H1.day2:eq(2)",
+        "DIV.numberwrapper:eq(0) H1.number2:eq(0)",
+        "DIV.numberwrapper:eq(0) H1.number2:eq(1)",
+        "DIV.monthwrwpper:eq(0) H1.month2.llp:eq(0)",
+        "DIV.monthwrwpper:eq(0) H1.month2.llp:eq(1)",
+        "DIV.monthwrwpper:eq(0) H1.month2.llp:eq(2)"
+      ],
+      "eventNameTags": [
+        "DIV.cardtextwrap:eq(0) H4.cerdheader:eq(0)"
+      ],
+      "eventPlaceTags": [
+        "DIV.eventcardlocationwrapper:eq(0) DIV.eventcardtext:eq(0)"
+      ]
+    },
+    "url": "https://likdo.asia/event/all/",
+    "ID": "Likdo|Hanoi|Vietnam",
+    "baseURL": "https://likdo.asia/event/all/",
+    "eventsDelimiterTag": " DIV.wlayoutgrid.evetscollectionsectionheader.blackbg.recom.artist A.cardwrapper.winlineblock",
+    "dateFormat": "dd-MM",
+    "eventURLIndex": 0
   }
 ]

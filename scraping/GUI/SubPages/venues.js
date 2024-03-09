@@ -458,7 +458,13 @@ function updateVenueInfo(mode){
                 }else{
                     venue.defaultStyle =  selectStyle.value;
                 }// linked page
-
+                    if (linkedPageCheckbox.checked){
+                        if (!venue.hasOwnProperty('linkedPage')){
+                            venue.linkedPage = {};
+                        }
+                    }else{
+                        delete venue.linkedPage;
+                    }
                 // midnight hour
                 if (selectMH.selectedIndex === 0){
                     delete venue.selectMH; 

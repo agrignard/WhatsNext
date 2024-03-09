@@ -110,10 +110,13 @@ pageManagerButton.addEventListener('click',function(){
 
 // save Button
 saveButton.addEventListener('click',function(){
-  toLog("saved to JSON files.");
-  console.log(venue);
+  toLog("saved to JSON files:");
+  removeEmptyFields(venue);
+  toLog(JSON.stringify(venue));
+  console.log('essai', venue);
   saveToVenuesJSON(venues);
   if (!scrapInfo.hasOwnProperty(venueID)){
+    removeEmptyFields(venueScrapInfo);
     scrapInfo[venueID] = venueScrapInfo;
   }
   saveToScrapInfoJSON(scrapInfo);
@@ -124,7 +127,8 @@ function removeEmptyFields(object){
   fieldsToCheck.forEach(field => {
     if (object.hasOwnProperty(field)){
       Object.keys(object[field]).forEach(key =>{
-        object[field][key] = object[field][key].filter(el => el.test(/\s*/));
+        object[field][key] = object[field][key].filter(el =>  /\S/.test(el));
+        console.log(field,key,object[field][key]);
         if (object[field][key].length === 0){
           delete object[field][key];
         }
@@ -304,9 +308,7 @@ function textBoxUpdate(textBox){
     venue.scrap[textBox.id] = getArray(textBox.value);
     applyTags(false);
   }else{
-   // console.log(venueScrapInfo);
     venueScrapInfo.mainPage[textBox.id] = getArray(textBox.value);
-    //console.log(textBox.id);
     computeTags(textBox.id);
   }
 }
@@ -449,7 +451,12 @@ function computeMissingLinks(){
   const missingLinksText = document.getElementById('missingLinksText');
   if (venue.hasOwnProperty('linkedPage') && lastModified){
     if (hrefList.length === 0){
-      missingLinksText.textContent = 'Cannot download linked pages, scrap info not defined yet.';
+      // if (venue.eventURLIndex >=0 || venue.scrap.hasOwnProperty('eventURLTags')){
+
+      // }else{
+        missingLinksText.textContent = 'No linked page references. ';
+        // missingLinksButton.style.display = 'none';
+      // }
     }else{
       missingLinksText.textContent = 'Links downloaded: '+existingLinks.length+'/'+hrefList.length;
       if (linksToDownload.length === 0){
@@ -703,7 +710,7 @@ function findURLs(ctag){
   const $eventBlock = cheerio.load(ctag.html());
   let links;
   try{
-    links = ctag.prop('tagName')=='A'?[ctag.attr('href')]:[];
+    links = ctag.prop('tagName')=='A'?[ctag.attr('href')]:[undefined];
   }catch{
     links = [];
   }

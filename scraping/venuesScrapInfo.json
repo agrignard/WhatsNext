@@ -2,14 +2,22 @@
   "Le Sucre|Lyon|France": {
     "mainPage": {
       "eventNameStrings": [
-        "S.society",
-        "Rødhåd",
-        "axy"
+        "mini club x brk",
+        "otto von schirach (live)"
       ],
-      "eventDateStrings": "25 fév"
+      "eventDateStrings": [
+        "29 mars"
+      ],
+      "eventStyleStrings": [
+        "club"
+      ]
     },
     "linkedPage": {
-      "eventDateStrings": "25 fév 18:00"
+      "eventDateStrings": [
+        "29",
+        "mars",
+        "23:00"
+      ]
     }
   },
   "Terminal Club|Lyon|France": {
@@ -217,16 +225,66 @@
   "Hanoi Grapevine|Hanoi|Vietnam": {
     "mainPage": {
       "eventNameStrings": [
-        "ternational film festi"
+        "deficit"
       ],
       "eventPlaceStrings": [
         ""
       ],
       "eventDateStrings": [
-        "25/11/2023"
+        "25/02/2024"
       ],
       "eventDummyStrings": [
         ""
+      ]
+    }
+  },
+  "google|Lyon|France": {
+    "mainPage": {
+      "eventNameStrings": [
+        "ostromooukhov"
+      ],
+      "eventDateStrings": [
+        "jeu. 7 mars",
+        "19:00"
+      ],
+      "eventPlaceStrings": [
+        "hot club de lyon"
+      ]
+    }
+  },
+  "Ninkasi|Lyon|France": {
+    "mainPage": {
+      "eventNameStrings": [
+        "trevor king"
+      ],
+      "eventDateStrings": [
+        "am. 16 mar.19h0"
+      ],
+      "eventPlaceStrings": [
+        "ninkasi guillotière"
+      ],
+      "eventURLStrings": [
+        "en savoir plus"
+      ]
+    }
+  },
+  "Likdo|Hanoi|Vietnam": {
+    "mainPage": {
+      "eventDateStrings": [
+        "m",
+        "a",
+        "r",
+        "0",
+        "7",
+        "t",
+        "h",
+        "u"
+      ],
+      "eventNameStrings": [
+        "koolkiz"
+      ],
+      "eventPlaceStrings": [
+        "savage"
       ]
     }
   }

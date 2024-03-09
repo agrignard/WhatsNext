@@ -223,6 +223,7 @@ function getHrefListFrom(pageList,venue){
     hrefList = pageList.map((page)=>getManualLinksFromPage(page,venue.eventsDelimiterTag,venue.scrap.eventURLTags[0])).flat();
   }else{
     let index = venue.hasOwnProperty('eventURLIndex')?venue.eventURLIndex:0;
+    console.log('cocou', index);
     hrefList = pageList.map((page)=>getLinksFromPage(page,venue.eventsDelimiterTag,index)).flat();
   }
   // get the list of URLs to download
