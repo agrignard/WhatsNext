@@ -8,7 +8,7 @@
     "eventsDelimiterTag": "DIV.pureg.agendalist.puregg A.pureu11.pureumd12.pureulg14.pureug.agendacard ",
     "defaultStyle": "Electro",
     "comments": "après avoir utilisé analex, enlever t5410 de la classe de la balise qui délimite les events",
-    "scrap": {
+    "mainPage": {
       "eventNameTags": [
         "DIV.labels:eq(0) DIV.titre:eq(0)",
         "DIV.artistes:eq(0) DIV"
@@ -39,7 +39,7 @@
     "url": "https://www.lpslyon.fr/evenements-le-petit-salon/",
     "baseURL": "https://www.lpslyon.fr/evenements-le-petit-salon/",
     "eventsDelimiterTag": " DIV.events__item.item.colmd4",
-    "scrap": {
+    "mainPage": {
       "eventNameTags": [
         " H2.item__title:eq(0)"
       ],
@@ -71,7 +71,7 @@
     "url": "https://www.transbordeur.fr/agenda/",
     "eventsDelimiterTag": "DIV.span6.blocText",
     "dateFormat": "dd-MM-yy-HH:mm",
-    "scrap": {
+    "mainPage": {
       "eventNameTags": [
         "A:eq(0)"
       ],
@@ -98,13 +98,13 @@
     "city": "Lyon",
     "country": "France",
     "url": "https://www.terminal-club.com/evenements/",
-    "eventsDelimiterTag": " DIV.col DIV.colinner",
+    "eventsDelimiterTag": "DIV MAIN DIV.contentarea.pagewrapper DIV.row.rowmain DIV.large12.col DIV.colinner DIV.tribecommon.tribeevents.tribeeventsview.tribeeventsviewphoto.alignwide.tribeeventsviewshortcode.tribeeventsviewshortcodeb6439857.tribeeventspro DIV.tribecommonlcontainer.tribeeventslcontainer DIV.tribeeventsprophoto.col DIV.row.largecolumns6.mediumcolumns4.smallcolumns2 DIV.col.postitem DIV.colinner",
     "dateFormat": "dd-MM",
-    "eventURLIndex": 0,
+    "eventURLIndex": 1,
     "defaultStyle": "Electro",
     "midnightHour": "sameDay",
     "baseURL": "https://www.terminal-club.com/evenements/",
-    "scrap": {
+    "mainPage": {
       "eventNameTags": [
         "DIV.boxtextinner.blogpostinner:eq(0) H5.posttitle.islarge.uppercase:eq(0)"
       ],
@@ -129,7 +129,7 @@
     "dateFormat": "dd-MM",
     "defaultStyle": "Jazz",
     "baseURL": "https://www.periscope-lyon.com/concerts/",
-    "scrap": {
+    "mainPage": {
       "eventNameTags": [
         "SPAN:eq(0)",
         "H4.textsubtitle:eq(0)"
@@ -161,7 +161,7 @@
     "eventURLIndex": 1,
     "defaultStyle": "Rock",
     "baseURL": "https://sonic-lyon.fr/",
-    "scrap": {
+    "mainPage": {
       "eventNameTags": [
         "DIV.event_title:eq(0)"
       ],
@@ -187,7 +187,7 @@
     "eventsDelimiterTag": "A.term7",
     "dateFormat": "dd-MM-yyyy-HH:mm",
     "baseURL": "https://www.petit-bulletin.fr/lyon/",
-    "scrap": {
+    "mainPage": {
       "eventNameTags": [
         "H2:eq(0)"
       ],
@@ -219,7 +219,7 @@
     "url": "https://marchegare.fr/agenda?category=All&page=1",
     "dateFormat": "dd-MM",
     "baseURL": "https://marchegare.fr/",
-    "scrap": {
+    "mainPage": {
       "eventNameTags": [
         "DIV.agendatitle.headingsfontweight.uppercase.fontdisplay.fontbold.text3xl.mdtext4xl.xltext5xl.leadingnone.lgleadingnone:eq(0)  SPAN.leadingnone.lgleadingnone:eq(0)",
         "DIV.agendasubtitle.text2xl.lgtext3xl.fontdisplay.uppercase.mt1:eq(0)"
@@ -255,7 +255,7 @@
     ],
     "url": "https://www.halle-tony-garnier.com/fr/programmation",
     "baseURL": "https://www.halle-tony-garnier.com/fr/",
-    "scrap": {
+    "mainPage": {
       "eventNameTags": [
         "DIV.blocsquare__title:eq(0)"
       ],
@@ -281,7 +281,7 @@
     "url": "https://www.trokson.com/shows",
     "defaultStyle": "Rock",
     "baseURL": "https://www.trokson.com/",
-    "scrap": {
+    "mainPage": {
       "eventNameTags": [
         "DIV.yuONQy:eq(0)"
       ],
@@ -306,7 +306,7 @@
     "eventsDelimiterTag": "A.url",
     "dateFormat": "dd MM",
     "baseURL": "https://villemorte.fr/agenda/",
-    "scrap": {
+    "mainPage": {
       "eventNameTags": [
         ""
       ],
@@ -357,7 +357,7 @@
     },
     "baseURL": "https://www.infoconcert.com/concerts/",
     "eventsDelimiterTag": "DIV.panelbody",
-    "scrap": {
+    "mainPage": {
       "eventNameTags": [
         "A:eq(0)"
       ],
@@ -657,7 +657,7 @@
     "name": "La Clef de Voûte",
     "city": "Lyon",
     "country": "France",
-    "scrap": {
+    "mainPage": {
       "eventNameTags": [
         "H3.tribeeventscalendarmonthmobileevents__mobileeventtitle.tribecommonh7:eq(0) A.tribeeventscalendarmonthmobileevents__mobileeventtitlelink.tribecommonanchor:eq(0)"
       ],
@@ -677,7 +677,7 @@
     "name": "Hanoi Grapevine",
     "city": "Hanoi",
     "country": "Vietnam",
-    "scrap": {
+    "mainPage": {
       "eventNameTags": [
         "H3.entrytitle:eq(0) A:eq(0)"
       ],
@@ -703,7 +703,7 @@
     "country": "France",
     "url": "https://www.google.com/search?q=lyon+%C3%A9v%C3%A9nements&client=firefox-b-d&sca_esv=ed313d50f24d50b8&sxsrf=ACQVn0-ZmP4Si44IDZrpd01wLIM1xJGiRw%3A1709830776141&ei=ePLpZf6fCJWP2roPja6V4AU&ved=0ahUKEwj-u6aA0OKEAxWVh1YBHQ1XBVwQ4dUDCBA&uact=5&oq=lyon+%C3%A9v%C3%A9nements&gs_lp=Egxnd3Mtd2l6LXNlcnAiEWx5b24gw6l2w6luZW1lbnRzMgoQIxiABBiKBRgnMgUQABiABDIFEAAYgAQyBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHkijHVCsBVj6G3ACeAGQAQCYAbICoAG0F6oBBzAuOS41LjG4AQPIAQD4AQGYAhGgAv4YwgIKEAAYRxjWBBiwA8ICDRAAGIAEGIoFGEMYsAPCAhkQLhiABBiKBRhDGMcBGNEDGMgDGLAD2AEBwgIEECMYJ8ICFhAuGIAEGIoFGEMYsQMYgwEYxwEY0QPCAhAQABiABBiKBRhDGLEDGIMBwgILEC4YgwEYsQMYgATCAhEQLhiABBixAxiDARjHARjRA8ICCxAAGIAEGLEDGIMBwgILEC4YgAQYsQMYgwHCAggQLhiABBixA8ICCBAAGIAEGLEDwgIOEAAYgAQYigUYsQMYgwHCAhoQLhiABBixAxiDARiXBRjcBBjeBBjgBNgBAsICCBAuGLEDGIAEwgIUEC4YgAQYigUYsQMYgwEYxwEY0QPCAgUQLhiABMICCxAuGIAEGMcBGK8BwgIOEC4YFhgeGMcBGK8BGArCAggQABgWGB4YD5gDAIgGAZAGEroGBggBEAEYCLoGBggCEAEYFJIHBzIuNy43LjGgB92hAQ&sclient=gws-wiz-serp",
     "ID": "google|Lyon|France",
-    "scrap": {
+    "mainPage": {
       "eventNameTags": [
         "DIV.uoFCfc:eq(0) DIV.bVj5Zb.FozYP:eq(0)"
       ],
@@ -724,7 +724,7 @@
     "name": "Ninkasi",
     "city": "Lyon",
     "country": "France",
-    "scrap": {
+    "mainPage": {
       "eventNameTags": [
         "SPAN.nqceventMiniaturebottomnametext.nqceventMiniatureHovernametext:eq(0) SPAN:eq(0)"
       ],
@@ -749,7 +749,7 @@
     "name": "Likdo",
     "city": "Hanoi",
     "country": "Vietnam",
-    "scrap": {
+    "mainPage": {
       "eventDateTags": [
         "DIV.datetop2.evnt.lp:eq(0) H1.day2:eq(0)",
         "DIV.datetop2.evnt.lp:eq(0) H1.day2:eq(1)",

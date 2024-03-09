@@ -129,14 +129,14 @@ function analyze(venueJSON, path){
         console.log('*** main page tags ***');
 
         // find and display tag for each string to find
-        venueJSON.scrap = addJSONBlock(eventStrings.mainPage,$eventBlock);
+        venueJSON.mainPage = addJSONBlock(eventStrings.mainPage,$eventBlock);
         
         // logs depending on if URLs have been found.
         console.log();
         if (!eventStrings.noUrl){
             venueJSON.eventURLIndex = getURLIndex(venueJSON,hrefs.length,$(mainTag));
-            if (venueJSON.scrap.hasOwnProperty('eventURLTags')){// tags are used to find the url to the event page
-                console.log('URL found using tags: %s',$eventBlock(venueJSON.scrap.eventURLTags[0]).attr('href'));
+            if (venueJSON.mainPage.hasOwnProperty('eventURLTags')){// tags are used to find the url to the event page
+                console.log('URL found using tags: %s',$eventBlock(venueJSON.mainPage.eventURLTags[0]).attr('href'));
             }else{// automatic search for the tag
                 if (hrefs.length === 1) {
                     console.log('URL found:',$eventBlock(hrefs[0]).attr('href'));
@@ -157,7 +157,7 @@ function analyze(venueJSON, path){
 
         // find most appropriate date format
 
-        let dates = getAllDates(venueJSON.eventsDelimiterTag,venueJSON.scrap['eventDateTags'],$);
+        let dates = getAllDates(venueJSON.eventsDelimiterTag,venueJSON.mainPage['eventDateTags'],$);
         [venueJSON.dateFormat, _] = getBestDateFormat(dates,venueJSON, dateConversionPatterns);
         
         // find strings in linked pages
@@ -165,8 +165,8 @@ function analyze(venueJSON, path){
         if (eventStrings.hasOwnProperty('linkedPage')){
             if (linkedFileContent){
                 let linkURL;
-                if (venueJSON.scrap.hasOwnProperty('eventURLTags')){// URL found with tags
-                    linkURL = makeURL(venueJSON.baseURL,$eventBlock(venueJSON.scrap.eventURLTags[0]).attr('href'));
+                if (venueJSON.mainPage.hasOwnProperty('eventURLTags')){// URL found with tags
+                    linkURL = makeURL(venueJSON.baseURL,$eventBlock(venueJSON.mainPage.eventURLTags[0]).attr('href'));
                 }else{// automatic URL
                     let i = ($(mainTag).prop('tagName')=='A')?venueJSON.eventURLIndex:(venueJSON.eventURLIndex-1);
                     linkURL = makeURL(venueJSON.baseURL,$eventBlock(hrefs[i]).attr('href'));

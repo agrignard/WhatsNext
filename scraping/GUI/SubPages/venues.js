@@ -414,10 +414,10 @@ function updateVenueInfo(mode){
                 }
                 // is alias
                 if (aliasCheckbox.checked === true){
-                    delete venue.scrap;
+                    delete venue.mainPage;
                 }else{
-                    if (!venue.hasOwnProperty('scrap')){
-                        venue.scrap = {};
+                    if (!venue.hasOwnProperty('mainPage')){
+                        venue.mainPage = {};
                     }
                 }
                 // aliases

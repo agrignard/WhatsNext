@@ -60,11 +60,11 @@ async function scrapFiles(venues) {
       console.log('\x1b[31m%s\x1b[0m', 'Aucun délimiteur de bloc d\'événement défini pour '+venue.name);
       err = true;
     }
-    if (!venue.hasOwnProperty('scrap') || !(venue.scrap.hasOwnProperty('eventNameTags') || venue.scrap.hasOwnProperty('eventNameRegex'))){
+    if (!venue.hasOwnProperty('mainPage') || !(venue.mainPage.hasOwnProperty('eventNameTags') || venue.mainPage.hasOwnProperty('eventNameRegex'))){
       console.log('\x1b[31m%s\x1b[0m', 'Aucun délimiteur de nom d\'événement défini pour '+venue.name);
       err = true;
     }
-    if (!venue.hasOwnProperty('scrap') || !(venue.scrap.hasOwnProperty('eventDateTags') || venue.scrap.hasOwnProperty('eventDateRegex'))){
+    if (!venue.hasOwnProperty('mainPage') || !(venue.mainPage.hasOwnProperty('eventDateTags') || venue.mainPage.hasOwnProperty('eventDateRegex'))){
       console.log('\x1b[31m%s\x1b[0m', 'Aucun délimiteur de date d\'événement défini pour '+venue.name);
       err = true;
     }
@@ -148,7 +148,7 @@ const modificationDate = getModificationDate(venueSourcePath);
         let eventInfo = {'eventPlace':venue.name, 'city':venue.city, 'country':venue.country};
         
         // **** event data extraction ****/
-        Object.keys(venue.scrap).forEach(key => eventInfo[key.replace('Tags','')] = getText(key,venue.scrap,$eventBlock));
+        Object.keys(venue.mainPage).forEach(key => eventInfo[key.replace('Tags','')] = getText(key,venue.mainPage,$eventBlock));
 
         // find if cancelled
         eventInfo.isCancelled = isCancelled($eventBlock.text(),cancellationKeywords[venue.country]);
@@ -156,7 +156,7 @@ const modificationDate = getModificationDate(venueSourcePath);
         //extract URL
         let eventURL;
         try{
-          if (!venue.scrap.hasOwnProperty('eventURLTags')){
+          if (!venue.mainPage.hasOwnProperty('eventURLTags')){
             if (venue.hasOwnProperty('eventURLIndex') && venue.eventURLIndex === -1){
               eventURL =venue.baseURL;
             }else{
@@ -170,7 +170,7 @@ const modificationDate = getModificationDate(venueSourcePath);
               }
             }
           }else{ // if a delimiter for the URL has been defined
-            eventURL = makeURL(venue.baseURL,$eventBlock(venue.scrap.eventURLTags[0]).attr('href'));
+            eventURL = makeURL(venue.baseURL,$eventBlock(venue.mainPage.eventURLTags[0]).attr('href'));
             eventInfo.eventURL = eventURL;
           }
         }catch(err){
@@ -205,7 +205,7 @@ const modificationDate = getModificationDate(venueSourcePath);
           }
       
           // match event place with existing one
-          if (venue.scrap.hasOwnProperty('eventPlaceTags') || (venue.hasOwnProperty('linkedPage') && venue.linkedPage.hasOwnProperty('eventPlaceTags'))){
+          if (venue.mainPage.hasOwnProperty('eventPlaceTags') || (venue.hasOwnProperty('linkedPage') && venue.linkedPage.hasOwnProperty('eventPlaceTags'))){
             eventInfo.eventPlace = FindLocationFromAlias(eventInfo.eventPlace,venue.country,venue.city,aliasList);
           }
 

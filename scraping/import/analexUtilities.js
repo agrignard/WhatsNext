@@ -53,14 +53,14 @@ function countNonEmptyEvents(delimiterTag,$,venue){
     $(delimiterTag).each((index, element) => {
         const event = {};
         const $eventBlock = cheerio.load($(element).html());
-        if (venue.scrap.hasOwnProperty('eventNameTags')){
-            const tagList = venue.scrap.eventNameTags;
+        if (venue.mainPage.hasOwnProperty('eventNameTags')){
+            const tagList = venue.mainPage.eventNameTags;
             event.eventName = tagList.map(tag =>{
                 return tag ===''?$eventBlock.text():$eventBlock(tag).text();
             }).join(' ');
         }
-        if (venue.scrap.hasOwnProperty('eventDateTags')){
-            const tagList = venue.scrap.eventDateTags;
+        if (venue.mainPage.hasOwnProperty('eventDateTags')){
+            const tagList = venue.mainPage.eventDateTags;
             event.eventDate = tagList.map(tag =>{
                 return tag ===''?$eventBlock.text():$eventBlock(tag).text();
             }).join(' ');

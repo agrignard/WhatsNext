@@ -33,17 +33,17 @@ let nbPages = 0;
 const venues = loadVenuesJSONFile();
 const venueID = sessionStorage.getItem('currentVenue');
 const venue = loadVenueJSON(venueID,venues);
-if (!venue.hasOwnProperty('scrap')){
-  venue.scrap = {};
+if (!venue.hasOwnProperty('mainPage')){
+  venue.mainPage = {};
 }
-if (!venue.scrap.hasOwnProperty('eventNameTags')){
-  venue.scrap.eventNameTags = [];
+if (!venue.mainPage.hasOwnProperty('eventNameTags')){
+  venue.mainPage.eventNameTags = [];
 }
-if (!venue.scrap.hasOwnProperty('eventDateTags')){
-  venue.scrap.eventDateTags = [];
+if (!venue.mainPage.hasOwnProperty('eventDateTags')){
+  venue.mainPage.eventDateTags = [];
 }
-if (!venue.scrap.hasOwnProperty('eventStyleTags')){
-  venue.scrap.eventStyleTags = [];
+if (!venue.mainPage.hasOwnProperty('eventStyleTags')){
+  venue.mainPage.eventStyleTags = [];
 }
 if (venue.hasOwnProperty('eventURLIndex') && venue.eventURLIndex === -1){
   mustIncludeURL = false;
@@ -119,7 +119,7 @@ saveButton.addEventListener('click',function(){
 });
 
 function removeEmptyFields(object){
-  fieldsToCheck = ['scrap','linkedPage','mainPage'];
+  fieldsToCheck = ['linkedPage','mainPage'];
   fieldsToCheck.forEach(field => {
     if (object.hasOwnProperty(field)){
       Object.keys(object[field]).forEach(key =>{
@@ -297,7 +297,7 @@ for(let i = 0; i < scrapTextBoxes.length; i++){
 function textBoxUpdate(textBox){
   setRows(textBox);
   if (textBox.id.endsWith('Tags')){
-    venue.scrap[textBox.id] = getArray(textBox.value);
+    venue.mainPage[textBox.id] = getArray(textBox.value);
     applyTags(false);
   }else{
     venueScrapInfo.mainPage[textBox.id] = getArray(textBox.value);
@@ -344,39 +344,39 @@ function applyTags(renderURL){
     const event = {};
     const $eventBlock = cheerio.load(eve);
 
-    if (venue.scrap.hasOwnProperty('eventNameTags')){
+    if (venue.mainPage.hasOwnProperty('eventNameTags')){
       let string = "";
-      venue.scrap.eventNameTags.forEach(tag =>{
+      venue.mainPage.eventNameTags.forEach(tag =>{
         string += tag ===''?$eventBlock.text():$eventBlock(tag).text();
         $eventBlock(tag).addClass('highlightName');  
       });
       event.eventName = string;
     }
-    if (venue.scrap.hasOwnProperty('eventDateTags')){
+    if (venue.mainPage.hasOwnProperty('eventDateTags')){
       let string = "";
-      venue.scrap.eventDateTags.forEach(tag =>{
+      venue.mainPage.eventDateTags.forEach(tag =>{
         string += tag ===''?$eventBlock.text():$eventBlock(tag).text();
         $eventBlock(tag).addClass('highlightDate');  
       });
       event.eventDate = string;
     }
-    if (venue.scrap.hasOwnProperty('eventStyleTags')){
-      venue.scrap.eventStyleTags.forEach(tag =>{
+    if (venue.mainPage.hasOwnProperty('eventStyleTags')){
+      venue.mainPage.eventStyleTags.forEach(tag =>{
         $eventBlock(tag).addClass('highlightStyle');  
       });
     }
-    if (venue.scrap.hasOwnProperty('eventPlaceTags')){
-      venue.scrap.eventPlaceTags.forEach(tag =>{
+    if (venue.mainPage.hasOwnProperty('eventPlaceTags')){
+      venue.mainPage.eventPlaceTags.forEach(tag =>{
         $eventBlock(tag).addClass('highlightPlace');  
       });
     }
-    if (venue.scrap.hasOwnProperty('eventURLTags')){
-      venue.scrap.eventURLTags.forEach(tag =>{
+    if (venue.mainPage.hasOwnProperty('eventURLTags')){
+      venue.mainPage.eventURLTags.forEach(tag =>{
         $eventBlock(tag).addClass('highlightURL');  
       });
     }
-    if (venue.scrap.hasOwnProperty('eventDummyTags')){
-      venue.scrap.eventDummyTags.forEach(tag =>{
+    if (venue.mainPage.hasOwnProperty('eventDummyTags')){
+      venue.mainPage.eventDummyTags.forEach(tag =>{
         $eventBlock(tag).addClass('highlightDummy');  
       });
     }
@@ -570,7 +570,7 @@ function computeTags(id){
   }
   if (validateDelimiterTags()){
    let $eventBlock = cheerio.load(cheerioTest(mainTag).html());
-    venue.scrap = addJSONBlock(venueScrapInfo.mainPage,$eventBlock);
+    venue.mainPage = addJSONBlock(venueScrapInfo.mainPage,$eventBlock);
     computeDateFormat();
     applyTags(delimiterHasChanged || id === 'eventURLStrings');
     initScrapTextTags();
@@ -578,7 +578,7 @@ function computeTags(id){
 }
 
 function computeDateFormat(){
-  let dates = getAllDates(venue.eventsDelimiterTag,venue.scrap['eventDateTags'],cheerioTest);
+  let dates = getAllDates(venue.eventsDelimiterTag,venue.mainPage['eventDateTags'],cheerioTest);
   [venue.dateFormat, bestScore] = getBestDateFormat(dates,venue, dateConversionPatterns);
   let formatString = "Date format found: "+venue.dateFormat;
   if (bestScore !== 0){
@@ -602,9 +602,9 @@ function renderEventURLPanel(){
     tag = mainTag;
   }
 
-  if (venue.scrap.hasOwnProperty('eventURLTags')){
+  if (venue.mainPage.hasOwnProperty('eventURLTags')){
     $eventBlock = cheerio.load(cheerioTest(tag).html());
-    eventURLPanelMessage.textContent = 'URL from tag: '+ $eventBlock(venue.scrap.eventURLTags[0]).text();
+    eventURLPanelMessage.textContent = 'URL from tag: '+ $eventBlock(venue.mainPage.eventURLTags[0]).text();
     return;
   }
   const urlList = findURLs(cheerioTest(tag));
@@ -630,7 +630,7 @@ function renderEventURLPanel(){
     });
     eventURLSelect.style.display = 'inline';
     eventURLSelect.addEventListener('change', event =>{
-      venue.scrap.eventURLIndex = eventURLSelect - index;
+      venue.mainPage.eventURLIndex = eventURLSelect - index;
     });
   }
 }
@@ -667,8 +667,8 @@ function validateDelimiterTags(){
 function initScrapTextTags(){
   for(let i = 0; i < scrapTextBoxes.length; i++){
     const textBox = scrapTextBoxes[i];
-    if (venue.scrap.hasOwnProperty(textBox.id)){
-      textBox.value = getValue(venue.scrap[textBox.id]);
+    if (venue.mainPage.hasOwnProperty(textBox.id)){
+      textBox.value = getValue(venue.mainPage[textBox.id]);
       setRows(textBox);
     }
 

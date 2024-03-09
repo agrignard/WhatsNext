@@ -101,7 +101,7 @@ async function downloadVenue(venue,filePath){
 
 async function downloadLinkedPages(venue, filePath, pageList){
   // if event tags are defined and contain URLs, download the URLs. Otherwise, ask to run an analyze 
-  if (venue.scrap.hasOwnProperty('eventsURLTags')||
+  if (venue.mainPage.hasOwnProperty('eventsURLTags')||
     (venue.hasOwnProperty('eventsDelimiterTag') && venue.hasOwnProperty('eventURLIndex') && venue.eventURLIndex !== -1)){
     const hrefList = getHrefListFrom(pageList,venue);
     console.log('First entries:',shortList(hrefList));
@@ -219,11 +219,10 @@ function shortList(list){
   
 function getHrefListFrom(pageList,venue){
   let hrefList;
-  if (venue.scrap.hasOwnProperty('eventURLTags')){// URL is found manually
-    hrefList = pageList.map((page)=>getManualLinksFromPage(page,venue.eventsDelimiterTag,venue.scrap.eventURLTags[0])).flat();
+  if (venue.mainPage.hasOwnProperty('eventURLTags')){// URL is found manually
+    hrefList = pageList.map((page)=>getManualLinksFromPage(page,venue.eventsDelimiterTag,venue.mainPage.eventURLTags[0])).flat();
   }else{
     let index = venue.hasOwnProperty('eventURLIndex')?venue.eventURLIndex:0;
-    console.log('cocou', index);
     hrefList = pageList.map((page)=>getLinksFromPage(page,venue.eventsDelimiterTag,index)).flat();
   }
   // get the list of URLs to download

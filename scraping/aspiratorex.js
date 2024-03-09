@@ -38,11 +38,11 @@ if (filteredVenues.length === 0){
 }else{
   filteredVenues.filter(obj => isAlias(obj)).forEach(el =>{
     let text = "Place "+el.name+" not processed (considered as alias: ";
-    if (!el.hasOwnProperty('url') && !el.hasOwnProperty('scrap')){
-      text += "keys \'url\' and \'scrap\'";
+    if (!el.hasOwnProperty('url') && !el.hasOwnProperty('mainPage')){
+      text += "keys \'url\' and \'mainPage\'";
     }else if (!el.hasOwnProperty('url')) {
       text += "key \'url\' ";
-    }else if (!el.hasOwnProperty('scrap')) {
+    }else if (!el.hasOwnProperty('mainPage')) {
       text += "key \'scarp\' ";
     }
     text += " not defined in \'venue.json\')";

@@ -27,12 +27,12 @@ module.exports = {venuesListJSONFile, isAlias, geAliasesToURLMap, getEventPlace,
 // test if an event has a name or a date if required by scrapping
 // it takes into account that for some websites, the date or the name may not be scrapped from the main page
 function isValidEvent(event, venue){
-    if (venue.scrap.hasOwnProperty('eventNameTags')){
+    if (venue.mainPage.hasOwnProperty('eventNameTags')){
         if (!event.hasOwnProperty('eventName') || event.eventName === undefined || /^\s*$/.test(event.eventName)){
             return false;
         }
     }
-    if (venue.scrap.hasOwnProperty('eventDateTags')){
+    if (venue.mainPage.hasOwnProperty('eventDateTags')){
         if (!event.hasOwnProperty('eventDate') || event.eventDate === undefined || /^\s*$/.test(event.eventDate)){
             return false;
         }
@@ -48,7 +48,7 @@ function unique(list) {
 
 // returns true is a venue is only an alias (not for scrapping)
 function isAlias(venue){
-    return !venue.hasOwnProperty('url') || !venue.hasOwnProperty('scrap');
+    return !venue.hasOwnProperty('url') || !venue.hasOwnProperty('mainPage');
 }
 
 // provide a map between places and URLs, for aliases places which have a declared URL
