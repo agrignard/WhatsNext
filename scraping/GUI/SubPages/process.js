@@ -163,6 +163,7 @@ missingLinksButton.addEventListener('click', function(){
 
 // delimiter panel
 
+const delimiterPanel = document.getElementById('delimiterPanel');
 const DelimiterTitle = document.getElementById('DelimiterTitle');
 const eventURLPanel = document.getElementById('eventURLPanel');
 var delimiterTagField = document.getElementById('delimiterTagField');
@@ -176,9 +177,6 @@ delimiterTagField.addEventListener('input'||'change',event =>{
   freezeDelimiterButton.textContent = "Unfreeze";
   delimiterTagField.classList.add('inactive');
   computeTags();
-  // if (validateDelimiterTags()){
-  //   applyTags(true);
-  // }
   computeEventsNumber();
 });
 
@@ -197,13 +195,16 @@ const eventURLPanelWarning = document.getElementById('eventURLPanelWarning');
 // adjust tag check box
 const autoAdjustCheckbox = document.getElementById('autoAdjustCheckbox');
 autoAdjustCheckbox.checked = true;
+autoAdjustCheckbox.addEventListener('change',()=>{
+  computeTags();
+});
 // adjust url check box
 const adjustURLCheckbox = document.getElementById('adjustURLCheckbox');
 adjustURLCheckbox.checked = mustIncludeURL;
 adjustURLCheckbox.addEventListener('change',()=>{
   mustIncludeURL = adjustURLCheckbox.checked;
   computeTags();
-})
+});
 
 // scrap panels
 
@@ -215,7 +216,7 @@ const eventURLStrings = document.getElementById('eventURLStrings');
 const dateFormatText = document.getElementById('dateFormatText');
 const eventURLTags = document.getElementById('eventPlaceTags');
 const eventDummyStrings = document.getElementById('eventDummyStrings');
-
+const eventDummyPanel = document.getElementById('eventDummy');
 const scrapTextBoxes = document.getElementsByClassName('scrapTextBox');
 
 eventURLStrings.addEventListener("keydown", function(event) {// prevents field URL tag to have more than one line
@@ -296,14 +297,21 @@ logButton.addEventListener('click', ()=>{
 // switch button
 
 switchPageButton = document.getElementById('switchPageButton');
+if (!venue.hasOwnProperty('linkedPage')){
+  switchPageButton.style.display = 'none';
+}
 switchPageButton.addEventListener('click',() =>{
   console.log(currentPage);
   if (currentPage === 'mainPage'){
     currentPage = 'linkedPage';
-    switchPageButton.textContent = 'Switch to main page >';
+    switchPageButton.textContent = '< Switch to main page';
+    delimiterPanel.style.display = 'none';
+    eventDummyPanel.style.display = 'none';
   }else{
     currentPage = 'mainPage';
     switchPageButton.textContent = 'Switch to linked page >';
+    delimiterPanel.style.display = 'block';
+    eventDummyPanel.style.display = 'block';
   }
   initializeInterface();
 });
@@ -347,7 +355,6 @@ function loadLinkedPage(){
   }else{
     console.log('***** Error with linked page *****');
   }
-
   applyTags(false);
   // find missing links
   // if (validateDelimiterTags()){
@@ -614,7 +621,6 @@ function computeTags(id){
     if (validateDelimiterTags()){
       let $eventBlock = cheerio.load(cheerioTest(mainTag).html());
        venue[currentPage] = addJSONBlock(venueScrapInfo[currentPage],$eventBlock);
-       console.log(venue);
        computeDateFormat();
        applyTags(delimiterHasChanged || id === 'eventURLStrings');
        initScrapTextTags();

@@ -285,6 +285,10 @@
       ],
       "eventPlaceStrings": [
         "savage"
+      ],
+      "eventStyleStrings": [
+        "house",
+        "techno"
       ]
     }
   }

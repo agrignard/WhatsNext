@@ -257,16 +257,14 @@
     "baseURL": "https://www.halle-tony-garnier.com/fr/",
     "mainPage": {
       "eventNameTags": [
-        "DIV.blocsquare__title:eq(0)"
+        "DIV.blocsquare__infos:eq(0) DIV.blocsquare__title:eq(0)"
       ],
       "eventDateTags": [
-        "DIV.blocsquare__date:eq(0)",
-        "DIV.blocsquare__heure:eq(0)"
-      ],
-      "eventStyleTags": [],
-      "eventURLIndex": 0
+        "DIV.blocsquare__infos:eq(0) DIV.blocsquare__date:eq(0)",
+        "DIV.blocsquare__infos:eq(0) DIV.blocsquare__heure:eq(0)"
+      ]
     },
-    "eventsDelimiterTag": "A.blocsquare.types.type_concert",
+    "eventsDelimiterTag": "DIV.grid.gridcols1.mdgridcols2.lggridcols4.gap2.py8.px4.lgpx0 A.blocsquare.types",
     "eventURLIndex": 0,
     "dateFormat": "dd-MM-yy-HH:mm",
     "ID": "Halle Tony Garnier|Lyon|France"
@@ -688,13 +686,21 @@
     "url": "https://hanoigrapevine.com/category/event-listings/page/",
     "ID": "Hanoi Grapevine|Hanoi|Vietnam",
     "baseURL": "https://hanoigrapevine.com/category/event-listings/page/",
-    "eventsDelimiterTag": " DIV.td_mod_wrap DIV.itemdetails",
-    "dateFormat": "dd-MM-yyyy",
-    "eventURLIndex": 0,
+    "eventsDelimiterTag": "DIV.td_mod_wrap.td_mod9 DIV.itemdetails",
+    "dateFormat": "",
+    "eventURLIndex": 1,
     "multiPages": {
       "nbPages": "20",
       "startPage": "1",
       "increment": "1"
+    },
+    "linkedPage": {
+      "eventDateTags": [
+        "DIV.tdposttextcontent:eq(0) H4:eq(0)"
+      ],
+      "eventPlaceTags": [
+        "DIV.tdposttextcontent:eq(0) H4:eq(0)"
+      ]
     }
   },
   {
@@ -765,6 +771,10 @@
       ],
       "eventPlaceTags": [
         "DIV.eventcardlocationwrapper:eq(0) DIV.eventcardtext:eq(0)"
+      ],
+      "eventStyleTags": [
+        "DIV.tag:eq(0) DIV:eq(0)",
+        "DIV.tag:eq(1) DIV:eq(0)"
       ]
     },
     "url": "https://likdo.asia/event/all/",
