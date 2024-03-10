@@ -211,6 +211,9 @@ background-color: lightblue;
 }
 
 
+#scrapOptionsPanel{
+  background-color: rgb(71, 169, 234);
+}
 
 
 
@@ -219,6 +222,10 @@ background-color: lightblue;
     display: flex; /* Utiliser Flexbox pour le positionnement */
     height: 100vh;
     overflow-y: auto;
+}
+
+.rightJustif {
+  text-align: right;
 }
 
 .leftPanel {

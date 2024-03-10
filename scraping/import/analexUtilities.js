@@ -12,7 +12,31 @@ const cheerio = require('cheerio');
 
 
 module.exports = {getTagLocalization, tagContainsAllStrings, getTagContainingAllStrings, getMyIndex, 
-    splitAndLowerCase, addJSONBlock, reduceTag, getAllDates, getBestDateFormat, adjustMainTag, countNonEmptyEvents};
+    splitAndLowerCase, addJSONBlock, reduceTag, getAllDates, getBestDateFormat, adjustMainTag, 
+    regroupTags, countNonEmptyEvents};
+
+
+// if several tags only differ by the equation number, the equation number is removed
+function regroupTags(tagList){
+    if (tagList.length < 2){
+        return tagList;
+    }
+    let regex = /(.*)(:eq\(\d+\))(?!.*:eq\(\d+\))/;
+    let toProcess = tagList.slice();
+    const res = [];
+    while(toProcess.length >0){
+        const tag = toProcess.pop();
+        const shortTag = tag.replace(regex,(match, p1, p2, p3) => p1);
+        const oldLength = toProcess.length;
+        toProcess= toProcess.filter(el => el.replace(regex,(match, p1, p2, p3) => p1) !== shortTag);
+        if (toProcess.length < oldLength){
+            res.push(shortTag);
+        }else{
+            res.push(tag);
+        }
+    }
+    return res.reverse();
+}
 
 function adjustMainTag(delimiterTag,$,venue, currentEventNumber){
     const mainTagEventsNumber = currentEventNumber?currentEventNumber:countNonEmptyEvents(delimiterTag,$,venue);//$(delimiterTag).length;

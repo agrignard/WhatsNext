@@ -13,7 +13,7 @@ const {getFilesContent, getModificationDate, loadLinkedPages, getFilesNumber} = 
 const {downloadVenue, erasePreviousHtmlFiles, getHrefListFrom, downloadLinkedPages} = require(imports+'aspiratorexUtilities.js');
 const {getTagLocalization, tagContainsAllStrings, getTagContainingAllStrings,
   splitAndLowerCase, addJSONBlock, reduceTag, getAllDates, getBestDateFormat,
-  adjustMainTag, countNonEmptyEvents} = require(imports+'analexUtilities.js');
+  adjustMainTag, countNonEmptyEvents, regroupTags} = require(imports+'analexUtilities.js');
 const {getDateConversionPatterns} =require(imports+'dateUtilities.js');
 
 let intervalId, linkedFileContent, linkedPage, eventURL;
@@ -206,6 +206,14 @@ adjustURLCheckbox.addEventListener('change',()=>{
   mustIncludeURL = adjustURLCheckbox.checked;
   computeTags();
 });
+// group tags check box
+const regroupTagsCheckbox = document.getElementById('regroupTagsCheckbox');
+regroupTagsCheckbox.checked = true;
+regroupTagsCheckbox.addEventListener('change',()=>{
+  mustIncludeURL = regroupTagsCheckbox.checked;
+  computeTags();
+});
+
 
 // scrap panels
 
@@ -618,6 +626,13 @@ function computeTags(id){
     if (validateDelimiterTags()){
       let $eventBlock = cheerio.load(cheerioTest(mainTag).html());
        venue[currentPage] = addJSONBlock(venueScrapInfo[currentPage],$eventBlock);
+       if (regroupTagsCheckbox.checked){
+        console.log('regroup');
+        Object.keys(venue[currentPage]).forEach(key =>{
+          venue[currentPage][key] = regroupTags(venue[currentPage][key]); 
+        });
+       }
+      
        computeDateFormat();
        applyTags(delimiterHasChanged || id === 'eventURLStrings');
        initScrapTextTags();
