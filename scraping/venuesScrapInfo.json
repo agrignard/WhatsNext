@@ -227,14 +227,13 @@
       "eventNameStrings": [
         "deficit"
       ],
-      "eventPlaceStrings": [
-        ""
-      ],
       "eventDateStrings": [
         "25/02/2024"
-      ],
-      "eventDummyStrings": [
-        ""
+      ]
+    },
+    "linkedPage": {
+      "eventPlaceStrings": [
+        "cockt"
       ]
     }
   },

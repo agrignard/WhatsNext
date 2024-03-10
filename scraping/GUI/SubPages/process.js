@@ -29,6 +29,8 @@ let nbPages = 0;
 
 let currentPage = 'mainPage';
 
+const useXmlMode = false;
+
 /*****************************/
 /*         initialize        */
 /*****************************/
@@ -112,13 +114,12 @@ saveButton.addEventListener('click',function(){
   toLog("saved to JSON files:");
   removeEmptyFields(venue);
   toLog(JSON.stringify(venue));
-  console.log('essai', venue);
   saveToVenuesJSON(venues);
-  if (!scrapInfo.hasOwnProperty(venueID)){
-    removeEmptyFields(venueScrapInfo);
-    scrapInfo[venueID] = venueScrapInfo;
-  }
+  removeEmptyFields(venueScrapInfo);
+  scrapInfo[venueID] = venueScrapInfo;
+  toLog(JSON.stringify(venueScrapInfo));
   saveToScrapInfoJSON(scrapInfo);
+  console.log(venueScrapInfo);
 });
 
 
@@ -301,7 +302,7 @@ if (!venue.hasOwnProperty('linkedPage')){
   switchPageButton.style.display = 'none';
 }
 switchPageButton.addEventListener('click',() =>{
-  console.log(currentPage);
+  scrapInfo[venueID] = venueScrapInfo;
   if (currentPage === 'mainPage'){
     currentPage = 'linkedPage';
     switchPageButton.textContent = '< Switch to main page';
@@ -350,8 +351,7 @@ function loadLinkedPage(){
   linkedPage = linkedFileContent[linkURL];
   if (linkedPage){
     const parsedLinkedPage = parseDocument(convertToLowerCase('<html><head></head>'+linkedPage+'</html>'));
-    // const $linked = cheerio.load(parsedLinkedPage);
-    cheerioTest = cheerio.load(parsedLinkedPage);
+    cheerioTest = cheerio.load(parsedLinkedPage, { xmlMode: useXmlMode});
   }else{
     console.log('***** Error with linked page *****');
   }
@@ -411,11 +411,11 @@ function applyTags(renderURL){
   }
 
   if (currentPage === 'mainPage'){
-    const $ = cheerio.load( parseDocument(convertToLowerCase(localPage)));
+    const $ = cheerio.load( parseDocument(convertToLowerCase(localPage)),{ xmlMode: useXmlMode});
     $(mainTagAbsolutePath).addClass('mainTag');
     $(venue.eventsDelimiterTag).each((index, delimiterTag) => {
       const eve = $(delimiterTag).html();
-      const $eventBlock = cheerio.load(eve);
+      const $eventBlock = cheerio.load(eve,{ xmlMode: useXmlMode});
       const event = fillTags($eventBlock);
       
       if (isValidEvent(event, venue)){
@@ -447,7 +447,7 @@ function applyTags(renderURL){
      // rightPanel.scrollBy({top: -rightPanel.offsetHeight/2+focusedElement.offsetHeight/2, behavior: 'auto'});
     }
   }else{
-    const $ = cheerio.load(parseDocument(convertToLowerCase('<html><head></head>'+linkedPage+'</html>')));
+    const $ = cheerio.load(parseDocument(convertToLowerCase('<html><head></head>'+linkedPage+'</html>')),{ xmlMode: useXmlMode});
     fillTags($);
     rightPanel.innerHTML = $.html();
     rightPanel.querySelectorAll('a'||'select').forEach(link => {
@@ -463,7 +463,7 @@ function applyTags(renderURL){
 function loadPage(){
   analyzePanel.style.display = 'block';
   localPage = reduceImgSize(getFilesContent(sourcePath, nbPagesToShow));
-  cheerioTest = cheerio.load(parseDocument(convertToLowerCase(localPage)));
+  cheerioTest = cheerio.load(parseDocument(convertToLowerCase(localPage)),{ xmlMode: useXmlMode});
   if (venue.hasOwnProperty('eventsDelimiterTag')){
     const stringsToFind = [].concat(...Object.values(splitAndLowerCase(venueScrapInfo)[currentPage]));
     const tagsContainingStrings =  getTagContainingAllStrings(cheerioTest,stringsToFind);
@@ -583,7 +583,7 @@ function containsURL(tag){
   if (tag.is('a[href]')){//}.prop('tagName') == A){
     return true;
   }
-  const $eventBlock = cheerio.load(cheerioTest(tag).html());
+  const $eventBlock = cheerio.load(cheerioTest(tag).html(),{ xmlMode: useXmlMode});
   const hrefs = $eventBlock('a[href]');
   if (hrefs.length > 0){
     return true;
@@ -619,14 +619,14 @@ function computeTags(id){
   }
   if (currentPage === 'mainPage'){
     if (validateDelimiterTags()){
-      let $eventBlock = cheerio.load(cheerioTest(mainTag).html());
+      let $eventBlock = cheerio.load(cheerioTest(mainTag).html(),{ xmlMode: useXmlMode});
        venue[currentPage] = addJSONBlock(venueScrapInfo[currentPage],$eventBlock);
        computeDateFormat();
        applyTags(delimiterHasChanged || id === 'eventURLStrings');
        initScrapTextTags();
      }
   }else{
-    let $eventBlock = cheerio.load(cheerioTest(mainTag).html());
+    let $eventBlock = cheerio.load(cheerioTest(mainTag).html(),{ xmlMode: useXmlMode});
     venue[currentPage] = addJSONBlock(venueScrapInfo[currentPage],cheerioTest);
     computeDateFormat();
     applyTags(false);
@@ -661,7 +661,7 @@ function renderEventURLPanel(){
 
   if (venue.mainPage.hasOwnProperty('eventURLTags')){
     eventURL = $eventBlock(venue.mainPage.eventURLTags[0]).text();
-    $eventBlock = cheerio.load(cheerioTest(tag).html());
+    $eventBlock = cheerio.load(cheerioTest(tag).html(),{ xmlMode: useXmlMode});
     eventURLPanelMessage.textContent = 'URL from tag: '+ eventURL;
     return;
   }
@@ -749,7 +749,7 @@ function initScrapTextTags(){
 
 
 function findURLs(ctag){
-  const $eventBlock = cheerio.load(ctag.html());
+  const $eventBlock = cheerio.load(ctag.html(),{ xmlMode: useXmlMode});
   let links;
   try{
     links = ctag.prop('tagName')=='A'?[ctag.attr('href')]:[undefined];
@@ -830,7 +830,6 @@ function removeEmptyFields(object){
     if (object.hasOwnProperty(field)){
       Object.keys(object[field]).forEach(key =>{
         object[field][key] = object[field][key].filter(el =>  /\S/.test(el));
-        console.log(field,key,object[field][key]);
         if (object[field][key].length === 0){
           delete object[field][key];
         }

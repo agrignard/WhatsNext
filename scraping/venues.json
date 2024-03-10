@@ -687,7 +687,7 @@
     "ID": "Hanoi Grapevine|Hanoi|Vietnam",
     "baseURL": "https://hanoigrapevine.com/category/event-listings/page/",
     "eventsDelimiterTag": "DIV.td_mod_wrap.td_mod9 DIV.itemdetails",
-    "dateFormat": "",
+    "dateFormat": "dd-MM-yyyy",
     "eventURLIndex": 1,
     "multiPages": {
       "nbPages": "20",
@@ -695,9 +695,6 @@
       "increment": "1"
     },
     "linkedPage": {
-      "eventDateTags": [
-        "DIV.tdposttextcontent:eq(0) H4:eq(0)"
-      ],
       "eventPlaceTags": [
         "DIV.tdposttextcontent:eq(0) H4:eq(0)"
       ]
