@@ -234,6 +234,9 @@
     "linkedPage": {
       "eventPlaceStrings": [
         "cockt"
+      ],
+      "eventDateStrings": [
+        "01 mar"
       ]
     }
   },

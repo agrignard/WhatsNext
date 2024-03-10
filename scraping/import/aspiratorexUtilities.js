@@ -60,13 +60,11 @@ async function downloadVenue(venue,filePath){
   async function getPage(page,pageIndex){
     let htmlContent;
     try{
-      //htmlContent = cleanPage(await fetchAndRecode(page));
       htmlContent = cleanPage(await fetchWithRetry(page,2,2000));
     }catch(err){
       console.log("\x1b[31mNetwork error, cannot download \'%s\'\x1b[0m. %s",page,err);
       return '';
     }
-    //const htmlContent = cleanPage(await response.text());
 
     let outputFile;
     if (!venue.hasOwnProperty('multiPages')){

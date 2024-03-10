@@ -29,7 +29,6 @@ let nbPages = 0;
 
 let currentPage = 'mainPage';
 
-const useXmlMode = false;
 
 /*****************************/
 /*         initialize        */
@@ -159,6 +158,7 @@ missingLinksButton.addEventListener('click', function(){
       stopCounter = true;
       downloadButton.disabled = false;
       missingLinksButton.disabled = false;
+      setSwitchStatus();
     })
 });
 
@@ -336,22 +336,18 @@ function initializeInterface(){
       missingLinksPanel.style.display = 'none';
     }
   }else{
-    if (true){// replace true by a condition to verify that the link exists
-      loadLinkedPage();
-    }
+    loadLinkedPageContent();
   }
   
   
 }
 
 
-function loadLinkedPage(){
+function loadLinkedPageContent(){
   analyzePanel.style.display = 'block';
-  const linkURL = makeURL(venue.baseURL,eventURL);
-  linkedPage = linkedFileContent[linkURL];
   if (linkedPage){
     const parsedLinkedPage = parseDocument(convertToLowerCase('<html><head></head>'+linkedPage+'</html>'));
-    cheerioTest = cheerio.load(parsedLinkedPage, { xmlMode: useXmlMode});
+    cheerioTest = cheerio.load(parsedLinkedPage);
   }else{
     console.log('***** Error with linked page *****');
   }
@@ -411,11 +407,11 @@ function applyTags(renderURL){
   }
 
   if (currentPage === 'mainPage'){
-    const $ = cheerio.load( parseDocument(convertToLowerCase(localPage)),{ xmlMode: useXmlMode});
+    const $ = cheerio.load( parseDocument(convertToLowerCase(localPage)));
     $(mainTagAbsolutePath).addClass('mainTag');
     $(venue.eventsDelimiterTag).each((index, delimiterTag) => {
       const eve = $(delimiterTag).html();
-      const $eventBlock = cheerio.load(eve,{ xmlMode: useXmlMode});
+      const $eventBlock = cheerio.load(eve);
       const event = fillTags($eventBlock);
       
       if (isValidEvent(event, venue)){
@@ -447,7 +443,7 @@ function applyTags(renderURL){
      // rightPanel.scrollBy({top: -rightPanel.offsetHeight/2+focusedElement.offsetHeight/2, behavior: 'auto'});
     }
   }else{
-    const $ = cheerio.load(parseDocument(convertToLowerCase('<html><head></head>'+linkedPage+'</html>')),{ xmlMode: useXmlMode});
+    const $ = cheerio.load(parseDocument(convertToLowerCase('<html><head></head>'+linkedPage+'</html>')));
     fillTags($);
     rightPanel.innerHTML = $.html();
     rightPanel.querySelectorAll('a'||'select').forEach(link => {
@@ -463,7 +459,7 @@ function applyTags(renderURL){
 function loadPage(){
   analyzePanel.style.display = 'block';
   localPage = reduceImgSize(getFilesContent(sourcePath, nbPagesToShow));
-  cheerioTest = cheerio.load(parseDocument(convertToLowerCase(localPage)),{ xmlMode: useXmlMode});
+  cheerioTest = cheerio.load(parseDocument(convertToLowerCase(localPage)));
   if (venue.hasOwnProperty('eventsDelimiterTag')){
     const stringsToFind = [].concat(...Object.values(splitAndLowerCase(venueScrapInfo)[currentPage]));
     const tagsContainingStrings =  getTagContainingAllStrings(cheerioTest,stringsToFind);
@@ -471,9 +467,10 @@ function loadPage(){
     mainTagAbsolutePath = getTagLocalization(mainTag,cheerioTest,false,stringsToFind);
   }
   computeEventsNumber();
+  computeMissingLinks();
   applyTags(true);
   // find missing links
-  computeMissingLinks();
+  // computeMissingLinks();
   if (validateDelimiterTags()){
     computeDateFormat();
   }
@@ -583,7 +580,7 @@ function containsURL(tag){
   if (tag.is('a[href]')){//}.prop('tagName') == A){
     return true;
   }
-  const $eventBlock = cheerio.load(cheerioTest(tag).html(),{ xmlMode: useXmlMode});
+  const $eventBlock = cheerio.load(cheerioTest(tag).html());
   const hrefs = $eventBlock('a[href]');
   if (hrefs.length > 0){
     return true;
@@ -619,14 +616,14 @@ function computeTags(id){
   }
   if (currentPage === 'mainPage'){
     if (validateDelimiterTags()){
-      let $eventBlock = cheerio.load(cheerioTest(mainTag).html(),{ xmlMode: useXmlMode});
+      let $eventBlock = cheerio.load(cheerioTest(mainTag).html());
        venue[currentPage] = addJSONBlock(venueScrapInfo[currentPage],$eventBlock);
        computeDateFormat();
        applyTags(delimiterHasChanged || id === 'eventURLStrings');
        initScrapTextTags();
      }
   }else{
-    let $eventBlock = cheerio.load(cheerioTest(mainTag).html(),{ xmlMode: useXmlMode});
+    let $eventBlock = cheerio.load(cheerioTest(mainTag).html());
     venue[currentPage] = addJSONBlock(venueScrapInfo[currentPage],cheerioTest);
     computeDateFormat();
     applyTags(false);
@@ -661,45 +658,61 @@ function renderEventURLPanel(){
 
   if (venue.mainPage.hasOwnProperty('eventURLTags')){
     eventURL = $eventBlock(venue.mainPage.eventURLTags[0]).text();
-    $eventBlock = cheerio.load(cheerioTest(tag).html(),{ xmlMode: useXmlMode});
+    $eventBlock = cheerio.load(cheerioTest(tag).html());
     eventURLPanelMessage.textContent = 'URL from tag: '+ eventURL;
-    return;
-  }
-  const urlList = findURLs(cheerioTest(tag));
-  // console.log(cheerioTest(tag).html());
-  const index = urlList.findIndex(function(element) {
-    return typeof element !== 'undefined';
-  });
-  venue.eventURLIndex = index;
-  const definedURLs = urlList.filter(el => el !== undefined);
-  const nbURLs = removeDoubles(definedURLs).length;
-  if (definedURLs.length === 0){
-    eventURLPanelMessage.textContent = 'No URL found.';
-    eventURLSelect.style.display = 'none';
-  } else if (nbURLs === 1){
-    eventURL = urlList[index];
-    eventURLPanelMessage.textContent = 'URL found: '+ eventURL;
-    eventURLSelect.style.display = 'none';
-  } else {
-    eventURLPanelMessage.textContent = 'Choose URL to keep: ';
-    eventURLSelect.innerHTML='';
-    definedURLs.forEach(url => {
-      const option = document.createElement('option');
-      option.text = url;  
-      eventURLSelect.appendChild(option);
+  }else{
+    const urlList = findURLs(cheerioTest(tag));
+    // console.log(cheerioTest(tag).html());
+    const index = urlList.findIndex(function(element) {
+      return typeof element !== 'undefined';
     });
-    eventURLSelect.style.display = 'inline';
-    eventURLSelect.addEventListener('change', event =>{
-      venue.mainPage.eventURLIndex = eventURLSelect - index;
-      eventURL = eventURLSelect.value;
-      console.log('eventURL',eventURL);
-    });
+    venue.eventURLIndex = index;
+    const definedURLs = urlList.filter(el => el !== undefined);
+    const nbURLs = removeDoubles(definedURLs).length;
+    if (definedURLs.length === 0){
+      eventURLPanelMessage.textContent = 'No URL found.';
+      eventURLSelect.style.display = 'none';
+    } else if (nbURLs === 1){
+      eventURL = urlList[index];
+      eventURLPanelMessage.textContent = 'URL found: '+ eventURL;
+      eventURLSelect.style.display = 'none';
+    } else {
+      eventURLPanelMessage.textContent = 'Choose URL to keep: ';
+      eventURLSelect.innerHTML='';
+      definedURLs.forEach(url => {
+        const option = document.createElement('option');
+        option.text = url;  
+        eventURLSelect.appendChild(option);
+      });
+      eventURLSelect.style.display = 'inline';
+      eventURLSelect.addEventListener('change', event =>{
+        venue.mainPage.eventURLIndex = eventURLSelect - index;
+        eventURL = eventURLSelect.value;
+      });
+    }
   }
+  setSwitchStatus();
 }
 
 
-
 //aux functions
+
+function setSwitchStatus(){
+  const linkURL = makeURL(venue.baseURL,eventURL);
+  if (!linkedFileContent){
+    switchPageButton.classList.add('inactive');
+    switchPageButton.disabled = true;
+    return;
+  }
+  linkedPage = linkedFileContent[linkURL];
+  if (linkedPage){
+    switchPageButton.classList.remove('inactive');
+    switchPageButton.disabled = false;
+  }else{
+    switchPageButton.classList.add('inactive');
+    switchPageButton.disabled = true;
+  }
+}
 
 function setRows(textBox) {
   const nbLines = textBox.value.split('\n').length;
@@ -749,7 +762,7 @@ function initScrapTextTags(){
 
 
 function findURLs(ctag){
-  const $eventBlock = cheerio.load(ctag.html(),{ xmlMode: useXmlMode});
+  const $eventBlock = cheerio.load(ctag.html());
   let links;
   try{
     links = ctag.prop('tagName')=='A'?[ctag.attr('href')]:[undefined];

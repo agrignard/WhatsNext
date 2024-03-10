@@ -116,9 +116,14 @@ function cleanScripts(content){
   return res;
 }
 
-// replace paragraph breaks with a real tag (opening and closing)
+// replace paragraph breaks with a real tag (opening and closing) (and add a tag to the text before
+// the first <br>)
 function removeBRTags(content){
-  return content.replace(/<br>([^]*?)</gi, (_,p) => '<p class="addedTag">'+p+'</p><');// remove scripts
+  // return content;
+  return content.replace(/(?<!br)>([^>]*?)<br>/gi, '><p class="addedTag">$1</p><br>')
+    .replace(/<br>([^]*?)(?=<)/gi, '<p class="addedTag">$1</p>');// replace br tags by p tags
+  // return content.replace(/<br>([^]*?)(?=<)/gi, '<div class="addedTag">$1</div>');// replace br tags by p tags
+  // return content.replace(/<br>([^]*?)</gi, (_,p) => '<p class="addedTag">'+p+'</p><');// remove scripts
 }
 
 // remove forms from an html content

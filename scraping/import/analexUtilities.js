@@ -4,7 +4,7 @@
 
 //const path = require('path');
 //const fs = require('fs');
-const {removeDoubles, makeURL, cleanPage, removeBlanks} = require('./stringUtilities.js');
+const {removeDoubles, removeBlanks} = require('./stringUtilities.js');
 //const {loadLinkedPages, fetchWithRetry, fetchLink} = require('./fileUtilities.js');
 const {unique, isValidEvent} = require('./jsonUtilities.js');
 const {numberOfInvalidDates, getCommonDateFormats, createDate} = require('./dateUtilities.js');
