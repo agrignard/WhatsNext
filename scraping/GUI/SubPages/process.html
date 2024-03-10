@@ -12,13 +12,13 @@
             <!-- page manager panel -->
             <div id="pageManager">
                 <div id="venueInfo"></div>
-                <button id="saveButton">Save</button>
-                <button id="pageManagerButton" class="compact-button button">_</button>
+                <button id="saveButton" class="normalButton">Save</button>
+                <button id="pageManagerButton" class="compact-button normalButton topRightButton">_</button>
                 <div id="pageManagerDetailsPanel"> 
-                    <button id="downloadButton" class="niceButton button venueInfoButton">Download Page</button>
+                    <button id="downloadButton" class="normalButton venueInfoButton">Download Page</button>
                     <div id="lastScrapped" style ="display: inline;"></div>
                     <div id="missingLinksPanel" class = "verySmallBottomMargin">
-                        <button id="missingLinksButton" style ="display: inline;" class="niceButton button venueInfoButton">Get links</button>
+                        <button id="missingLinksButton" style ="display: inline;" class="normalButton venueInfoButton">Get links</button>
                        <div id="missingLinksText" style ="display: inline;" class="normalPadding"></div>
                      </div>
                 </div>
@@ -31,7 +31,7 @@
                 <!-- delimiter panel -->
                 <div id="delimiterPanel">
                     <div id="DelimiterTitle" class="title">Delimiter tag</div>
-                    <button id="freezeDelimiterButton" class="topRightButton button">Freeze</button>
+                    <button id="freezeDelimiterButton" class="topRightButton normalButton">Freeze</button>
                     <input type="text" id="delimiterTagField" class="delimiterTagInput" placeholder="Will be filled automatically" size="50">
                     <div id="eventURLPanel">
                         <div id="eventURLPanelWarning"  class="urlPanel warning">No recent event match the strings</div>
@@ -52,7 +52,7 @@
                         <div class="title">Event Name</div>
                         <div class="input-row">
                             <textarea id="eventNameStrings" class="eventStrings scrapTextBox" placeholder="Copy event name here"></textarea>
-                            <button id="eventNameStringsCopyButton" class="copyButton button">&lt;</button>
+                            <button id="eventNameStringsCopyButton" class="copyButton normalButton">&lt;</button>
                         </div>
                         <textarea  id="eventNameTags" class="eventTags scrapTextBox" placeholder="Tags will be filled automatically"></textarea>
                     </div>
@@ -61,7 +61,7 @@
                         <div class="title">Event Date</div>
                         <div class="input-row">
                             <textarea id="eventDateStrings" class="eventStrings scrapTextBox" rows="1" cols="50" placeholder="Copy event date here"></textarea>
-                            <button id="eventDateStringsCopyButton" class="button copyButton">&lt;</button>
+                            <button id="eventDateStringsCopyButton" class="normalButton copyButton">&lt;</button>
                         </div>
                         <textarea  id="eventDateTags" class="eventTags scrapTextBox verySmallBottomMargin" rows="1" cols="50" placeholder="Tags will be filled automatically"></textarea>
                         <div id="dateFormatPanel">
@@ -72,7 +72,7 @@
                         <div class="title">Event Style</div>
                         <div class="input-row">
                             <textarea id="eventStyleStrings" class="eventStrings scrapTextBox" rows="1" cols="50" placeholder="Copy event style here"></textarea>
-                            <button id="eventStyleStringsCopyButton" class="button copyButton">&lt;</button>
+                            <button id="eventStyleStringsCopyButton" class="normalButton copyButton">&lt;</button>
                         </div>
                         <textarea  id="eventStyleTags" class="eventTags scrapTextBox" rows="1" cols="50" placeholder="Tags will be filled automatically"></textarea>
                     </div>
@@ -80,7 +80,7 @@
                         <div class="title">Event Place</div>
                         <div class="input-row">
                             <textarea id="eventPlaceStrings" class="eventStrings scrapTextBox" rows="1" cols="50" placeholder="Leave blank if not applicable"></textarea>
-                            <button id="eventPlaceStringsCopyButton" class="button copyButton">&lt;</button>
+                            <button id="eventPlaceStringsCopyButton" class="normalButton copyButton">&lt;</button>
                         </div>
                         <textarea  id="eventPlaceTags" class="eventTags scrapTextBox" rows="1" cols="50" placeholder="Tags will be filled automatically"></textarea>
                     </div>
@@ -88,7 +88,7 @@
                         <div class="title">Event url</div>
                         <div class="input-row">
                             <textarea id="eventURLStrings" class="eventStrings scrapTextBox eventURLgroup" rows="1" cols="50" placeholder="Leave blank if not applicable"></textarea>
-                            <button id="eventURLStringsCopyButton" class="button copyButton">&lt;</button>
+                            <button id="eventURLStringsCopyButton" class="normalButton copyButton">&lt;</button>
                         </div>
                         <textarea  id="eventURLTags" class="eventTags scrapTextBox eventURLgroup" rows="1" cols="50" placeholder="Tags will be filled automatically"></textarea>
                     </div>
@@ -96,7 +96,7 @@
                         <div class="title">Dummy filler</div>
                         <div class="input-row">
                             <textarea id="eventDummyStrings" class="eventStrings scrapTextBox" rows="1" cols="50" placeholder="Leave blank if not applicable"></textarea>
-                            <button id="eventDummyStringsCopyButton" class="button copyButton">&lt;</button>
+                            <button id="eventDummyStringsCopyButton" class="normalButton copyButton">&lt;</button>
                         </div>
                         <textarea  id="eventDummyTags" class="eventTags scrapTextBox" rows="1" cols="50" placeholder="Tags will be filled automatically"></textarea>
                     </div>
@@ -106,14 +106,15 @@
             <!-- log panel -->
             <div id="logPanel">
                 <div class="smallBottomMargin">Log</div>
-                <button id="logButton" class="compact-button button">_</button>
+                <button id="logButton" class="compact-button normalButton topRightButton">_</button>
                 <div id="logTextPanel" style ="display: none;">
                     <textarea id="logText" readonly></textarea>
                 </div>
             </div>   
         </div>
-        <div id= "scrapEnDirexRightPanel" class="rightPanel">
-          Contenu de droite
+        <button id="switchPageButton" class="normalButton">Switch to linked Page &gt;</button>
+        <div id= "scrapEnDirexRightPanel"class="rightPanel">    
+            Contenu de droite
         </div>
     </div>
       

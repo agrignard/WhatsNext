@@ -309,7 +309,7 @@ async function extractEvents(fileContent, venue){
       let ev = $(element).html();
       eventBlockList.push(ev);
       hrefInDelimiterList.push($(venue.eventsDelimiterTag+':eq('+index+')').attr('href'));
-    });     
+    });
   }catch(err){        
     console.log('\x1b[31m%s\x1b[0m. %s', 'Délimiteur mal défini pour '+venue.name,err);      
   }

@@ -22,6 +22,10 @@ body, html {
     overflow-y: hidden;
 }
 
+
+
+/* Style pour les boutons des options */
+
 .venueInfoButton{
   width: 18ch;
 }
@@ -32,21 +36,58 @@ body, html {
     right: 5px;
 }
 
-
-
-/* Style pour les boutons des options */
-.niceButton {
-    border: 1px solid #ccc;
-    padding: 5px 10px;
-    margin: 5px;
-    cursor: pointer;
+.compact-button {
+  width: 20px;
+  height: 20px;
 }
 
-.niceButtonNoMargin {
-  border: 1px solid #ccc;
-  padding: 5px 10px;
+#saveButton {
+  position: absolute;
+  top: 5px;
+  right: 30px;
+  width: 60px;
+  height: 20px;
+}
+
+.normalButton{
+  background-color: lightgray;
+  border: none;
   cursor: pointer;
-  margin-bottom: 10px;
+}
+
+.normalButton:hover {
+  background-color: darkgray;
+}
+
+.scrapElement .input-row button {
+  /* flex: 0 0 auto;  */
+  margin-right: 5px; /* Marge entre les éléments */
+}
+
+.copyButton {
+position: absolute;
+right: 0px;
+padding: 2px 6px;
+}
+
+#freezeDelimiterButton{
+  padding: 1px 5px;
+}
+
+#switchPageButton{
+  position: fixed;
+  top: 20px; 
+  right: 40px; 
+  padding: 5px 10px;
+  z-index: 9999; /*on top*/
+}
+
+#logButton {
+    position: absolute;
+    top: 5px;
+    right: 30px;
+    width: 20px;
+    height: 20px;
 }
 
   
@@ -124,31 +165,7 @@ background-color: lightblue;
   flex: 0 0 auto;
 }
 
-.compact-button {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  width: 20px;
-  height: 20px;
-  background-color: lightgray;
-  border: none;
-  cursor: pointer;
-}
 
-#saveButton {
-  position: absolute;
-  top: 5px;
-  right: 30px;
-  width: 60px;
-  height: 20px;
-  background-color: lightgray;
-  border: none;
-  cursor: pointer;
-}
-
-#saveButton:hover {
-  background-color: darkgray;
-}
 
 .topElement{
   position: absolute;
@@ -190,9 +207,8 @@ background-color: lightblue;
 }
 
 
-.button:hover {
-  background-color: darkgray;
-}
+
+
 
 #processContainer {
     font-family: sans-serif;
@@ -252,18 +268,7 @@ background-color: lightblue;
     margin-right: 5px; /* Marge entre les éléments */
 }
 
-.scrapElement .input-row button {
-    /* flex: 0 0 auto;  */
-    margin-right: 5px; /* Marge entre les éléments */
-}
 
-.copyButton {
-  position: absolute;
-  border: 1px solid #ccc;
-  right: 0px;
-  padding: 2px 6px;
-  cursor: pointer;
-}
 
 .scrapTextBox{
   width: calc(100% - 40px);
@@ -327,20 +332,9 @@ background-color: lightblue;
   padding: 5px;
 }
 
-#freezeDelimiterButton{
-    border: 1px solid #ccc;
-    padding: 1px 5px;
-    cursor: pointer;
-}
-
 #eventURLPanel{
   position: relative;
 }
-
-
-
-
-
 
 
 
@@ -348,14 +342,4 @@ textarea:focus, input:focus {
     outline: 2px solid rgb(189, 195, 199); 
 }
 
-#logButton {
-    position: absolute;
-    top: 5px;
-    right: 30px;
-    width: 20px;
-    height: 20px;
-    background-color: lightgray;
-    border: none;
-    cursor: pointer;
-}
 

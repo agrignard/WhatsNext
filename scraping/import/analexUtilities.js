@@ -212,6 +212,8 @@ function getClasses(tagText){
 
 function getTagContainingAllStrings($,stringsToFind){
     // return $('*:contains("' + stringsToFind.join('"):contains("') + '")');
+    //console.log('*:contains("' + stringsToFind.join('"), :contains("') + '")');
+    // pose un pb si un texte contient une parenthèse ouvrante mais pas de parenthèse fermante
     return $('*:contains("' + stringsToFind.join('"), :contains("') + '")')
     .filter((_, tag) => tagContainsAllStrings($(tag), stringsToFind));
 }
