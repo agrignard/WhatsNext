@@ -1,0 +1,39 @@
+Date: Mardi 16 avr
+Event: Julian Sartorius
+Place: Le Périscope
+city: Lyon
+country: France
+isCancelled: false
+errorLog: Impossible de lire la page liée pour l'événement 'Julian Sartorius'. Erreur lors du téléchargement ? | Format de date invalide pour Le Périscope. Reçu "Mardi 16 avr", converti en "16-04" (attendu "dd-MM-yyyy-HH:mm")
+DetailedStyle: 
+Style: Jazz
+source: [object Object]
+unixDate: 0
+https://www.periscope-lyon.com/concerts/julian-sartorius/
+
+Date: Mercredi 24 avr
+Event: Les mécaniques du souffle
+Place: Le Périscope
+city: Lyon
+country: France
+isCancelled: false
+errorLog: Impossible de lire la page liée pour l'événement 'Les mécaniques du souffle'. Erreur lors du téléchargement ? | Format de date invalide pour Le Périscope. Reçu "Mercredi 24 avr", converti en "24-04" (attendu "dd-MM-yyyy-HH:mm")
+DetailedStyle: 
+Style: Jazz
+source: [object Object]
+unixDate: 0
+https://www.periscope-lyon.com/concerts/les-mecaniques-du-souffle/
+
+Date: Vendredi 24 mai
+Event: Frankie and The Witch Fingers
+Place: Le Périscope
+city: Lyon
+country: France
+isCancelled: false
+errorLog: Impossible de lire la page liée pour l'événement 'Frankie and The Witch Fingers'. Erreur lors du téléchargement ? | Format de date invalide pour Le Périscope. Reçu "Vendredi 24 mai", converti en "24-05" (attendu "dd-MM-yyyy-HH:mm")
+DetailedStyle: 
+Style: Jazz
+source: [object Object]
+unixDate: 0
+https://www.periscope-lyon.com/concerts/frankie-and-the-witch-fingers/
+

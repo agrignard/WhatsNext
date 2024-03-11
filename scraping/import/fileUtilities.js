@@ -4,7 +4,7 @@
 
 const fs = require('fs');
 const cheerio = require('cheerio');
-const {cleanPage, removeBlanks, extractBody} = require('./stringUtilities.js');
+const {cleanPage, removeBlanks, extractBody, simplify} = require('./stringUtilities.js');
 
 module.exports = {fetchLink, fetchAndRecode, fetchWithRetry, loadLinkedPages, saveToJSON, 
                     saveToCSV, getVenuesFromArguments,getFilesContent, getFilesNumber, 
@@ -146,13 +146,17 @@ function saveToCSV(eventList, outFile){
 
 // used to analyse arguments passed to scrapex or aspiratorex
 function getVenuesFromArguments(args, venueList){
+    console.log(args);
     let venues = venueList;
     if (args.length > 2){
         const venuesFilter = filterFromArguments(args);
         if (venuesFilter){
-          venues = venuesFilter.name==='*'?venues:venues.filter(el => el.name.toLowerCase() === venuesFilter.name);
-          venues = venuesFilter.city==='*'?venues:venues.filter(el => el.city.toLowerCase() ===venuesFilter.city);
-          venues = venuesFilter.country==='*'?venues:venues.filter(el => el.country.toLowerCase() ===venuesFilter.country);
+          venues = (venuesFilter.name==='*'||venuesFilter.name==='?')?
+                venues:venues.filter(el => simplify(el.name) === simplify(venuesFilter.name));
+          venues = (venuesFilter.city==='*'||venuesFilter.city==='?')?
+                venues:venues.filter(el => simplify(el.city) === simplify(venuesFilter.city));
+          venues = (venuesFilter.country==='*'||venuesFilter.country==='*')?
+                venues:venues.filter(el => simplify(el.country) === simplify(venuesFilter.country));
         }else{
           venues = [];
         }

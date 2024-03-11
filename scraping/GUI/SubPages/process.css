@@ -44,6 +44,20 @@ body, html {
   height: 20px;
 }
 
+.easyButton{
+  position: relative;
+  width: 20px;
+  height: 20px;
+  margin-left: 2px;
+  border: none;
+  background-color: rgb(232, 228, 228);
+  padding: 0;
+}
+
+.easyButton:hover{
+  cursor: pointer;
+}
+
 #saveButton {
   position: absolute;
   top: 5px;
@@ -65,6 +79,10 @@ body, html {
 .scrapElement .input-row button {
   /* flex: 0 0 auto;  */
   margin-right: 5px; /* Marge entre les éléments */
+}
+
+#easyPanelButton{
+  margin-right: 5px;
 }
 
 .copyButton {
@@ -94,7 +112,23 @@ padding: 2px 6px;
     height: 20px;
 }
 
+#easyPanel{
+  background-color: rgb(177, 187, 221);
+}
+
   
+.easyPanelLine{
+  display: flex;
+  align-items: center;
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
+.easyField{
+  border: none;
+  flex-grow: 1;
+  height: 18px;
+}
 
 /* Style pour mettre en surbrillance l'option sélectionnée */
 .languageItem.selected {
@@ -125,6 +159,42 @@ background-color: lightblue;
 
 .highlightDummy{
     background-color: rgb(149, 165, 166);
+}
+
+
+
+.easyButtonName:hover{
+  background-color: rgb(52, 152, 219);
+}
+
+.easyButtonDate:hover{
+  background-color: rgb(46, 204, 113);
+}
+
+.easyButtonStyle:hover{
+  background-color: rgb(243, 156, 18);
+}
+
+.easyButtonPlace:hover{
+    background-color: rgb(155, 89, 182);
+}
+
+.easyButtonURL:hover{
+  background-color: rgb(241, 196, 15);
+}
+
+.easyButtonDummy:hover{
+    background-color: rgb(149, 165, 166);
+}
+
+.easyRemoveButton{
+  border: none;
+  font-weight: bold;
+  color: white;
+}
+
+.easyRemoveButton:hover{
+  background-color: rgb(230, 85, 109);
 }
 
 .invalid{
@@ -283,7 +353,7 @@ background-color: lightblue;
 
 .scrapTextBox{
   width: calc(100% - 40px);
-  border: 1px solid #ccc;
+  border: none;
   padding: 2px 5px;
   background-color: white;
   font-family: sans-serif;
@@ -330,7 +400,7 @@ background-color: lightblue;
 .delimiterTagInput {
   width: calc(100%); /* Largeur ajustée en fonction de la marge */
   margin-top: 5px; 
-  border: 1px solid #ccc;
+  border: none;
   padding: 4px 5px;
   background-color: white;
   box-sizing: border-box;

@@ -26,8 +26,15 @@ let mustIncludeURL  = true;
 let mainTagAbsolutePath;
 let nbPagesToShow = 5;
 let nbPages = 0;
-
+let easyPanelInfo = {
+  stringList:[],
+  indexList:[]
+}
 let currentPage = 'mainPage';
+
+var colorClassList = ['highlightName','highlightDate','highlightStyle','highlightPlace','highlightURL','highlightDummy'];
+const easyButtonClassList = ['easyButtonName','easyButtonDate','easyButtonStyle','easyButtonPlace','easyButtonURL','easyButtonDummy'];
+const easyConvert = {'eventNameStrings':0,'eventDateStrings':1,'eventStyleStrings':2,'eventPlaceStrings':3,'eventURLStrings':4,'eventDummyStrings':5};
 
 
 /*****************************/
@@ -206,6 +213,12 @@ adjustURLCheckbox.addEventListener('change',()=>{
   mustIncludeURL = adjustURLCheckbox.checked;
   computeTags();
 });
+
+
+/*****************************/
+/*          Fields           */
+/*****************************/
+
 // group tags check box
 const regroupTagsCheckbox = document.getElementById('regroupTagsCheckbox');
 regroupTagsCheckbox.checked = true;
@@ -214,9 +227,89 @@ regroupTagsCheckbox.addEventListener('change',()=>{
   computeTags();
 });
 
+// easy panel
+
+easyPanelFields = document.getElementById('easyPanelFields');
+easyPanelAddButton = document.getElementById('easyPanelAddButton');
+easyPanelAddButton.addEventListener('click', function (){
+  newEasyLine('');
+});
+
+populateEasyPanel();
+
+
+function populateEasyPanel(){
+  Object.keys(venueScrapInfo[currentPage]).forEach(key => {
+    const typeIndex = easyConvert[key];
+    venueScrapInfo[currentPage][key].forEach(el =>{
+      newEasyLine(el,typeIndex);
+    });
+  });
+}
+
+
+
+function newEasyLine(text, typeIndex){
+  const index = easyPanelInfo.stringList.length;
+  easyPanelInfo.stringList.push(text);
+  easyPanelInfo.indexList.push(typeIndex);
+  let newDiv = document.createElement('div');
+  newDiv.classList.add('easyPanelLine');
+  newDiv.id = 'easyPanelLine'+index;
+  let inputElement = document.createElement('input');
+  inputElement.id = 'easyInput'+index;
+  inputElement.classList.add('easyField');
+  inputElement.setAttribute('type', 'text');
+  inputElement.value = text;
+  inputElement.addEventListener('change',function(){
+    console.log('changement ',this.id);
+    const lineIndex = parseInt(this.id.match(/\d+$/));
+    easyPanelInfo.stringList[lineIndex] = this.value;
+    console.log(easyPanelInfo);
+  })
+  newDiv.appendChild(inputElement);
+  for(i=0;i<6;i++){
+    let newButton = document.createElement('button');
+    newButton.classList.add('easyButton');
+    newButton.classList.add('easyField'+index);
+    newButton.classList.add(easyButtonClassList[i]);
+    newButton.id="easyButton"+index+"-"+i;
+    if (i === typeIndex){
+      newButton.classList.add(colorClassList[typeIndex]);
+    }
+    newButton.addEventListener('click',function() {
+      const buttonList = document.getElementsByClassName('easyField'+index);
+      for(j=0;j<buttonList.length;j++){
+        buttonList[j].classList.remove(colorClassList[j]);
+      }
+      const lineIndex =  parseInt(this.id.match(/\d+-/));
+      const typeIndex = parseInt(this.id.charAt(this.id.length - 1));
+      easyPanelInfo.indexList[lineIndex] = typeIndex;
+      newButton.classList.add(colorClassList[typeIndex]);
+      console.log(easyPanelInfo);
+    });
+    newDiv.appendChild(newButton);
+  }
+  const newButton = document.createElement('button');
+  newButton.id = 'removeButton'+index;
+  newButton.classList.add('easyButton');
+  newButton.classList.add('easyRemoveButton');
+  newButton.textContent = '✖';
+  newButton.addEventListener('click', function(){
+    console.log('remove');
+    const lineIndex = parseInt(this.id.match(/\d+$/));
+    easyPanelInfo.stringList[lineIndex] = undefined;
+    easyPanelInfo.indexList[lineIndex] = undefined;
+    let lineToRemove = document.getElementById('easyPanelLine'+lineIndex);
+    lineToRemove.remove();
+    console.log(easyPanelInfo);
+  });
+  newDiv.appendChild(newButton);
+  easyPanelFields.appendChild(newDiv);
+}
+
 
 // scrap panels
-
 const eventNameStrings = document.getElementById('eventNameStrings');
 const eventDateStrings = document.getElementById('eventDateStrings');
 const eventStyleStrings = document.getElementById('eventStyleStrings');
@@ -468,10 +561,20 @@ function loadPage(){
   analyzePanel.style.display = 'block';
   localPage = reduceImgSize(getFilesContent(sourcePath, nbPagesToShow));
   cheerioTest = cheerio.load(parseDocument(convertToLowerCase(localPage)));
+  // find the tag from eventsDelimiterTag, with the text in the strings. If not found, get the first tag
+  // that matches eventsDelimiterTag
   if (venue.hasOwnProperty('eventsDelimiterTag')){
     const stringsToFind = [].concat(...Object.values(splitAndLowerCase(venueScrapInfo)[currentPage]));
-    const tagsContainingStrings =  getTagContainingAllStrings(cheerioTest,stringsToFind);
-    mainTag = tagsContainingStrings.last();
+    console.log('load page');
+    const mainTagCandidates = cheerioTest(venue.eventsDelimiterTag);
+    for(i=mainTagCandidates.length-1;i>=0;i--){
+      const text = cheerioTest(mainTagCandidates[i]).text();
+      const containStrings = !stringsToFind.some(str => !text.includes(str));
+      if (containStrings){
+        break;
+      }
+    }
+    mainTag = mainTagCandidates[i];
     mainTagAbsolutePath = getTagLocalization(mainTag,cheerioTest,false,stringsToFind);
   }
   computeEventsNumber();
@@ -663,6 +766,7 @@ function renderEventURLPanel(){
   }
   let tag;
   eventURLPanel.style.display = 'block';
+  console.log(mainTagAbsolutePath);
   if (mainTagAbsolutePath === ''){
     eventURLPanelWarning.style.display = 'block';
     tag = cheerioTest(venue.eventsDelimiterTag).first();
@@ -780,6 +884,7 @@ function findURLs(ctag){
   const $eventBlock = cheerio.load(ctag.html());
   let links;
   try{
+    console.log('rdss',ctag.prop('tagName'));
     links = ctag.prop('tagName')=='A'?[ctag.attr('href')]:[undefined];
   }catch{
     links = [];

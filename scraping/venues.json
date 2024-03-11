@@ -125,27 +125,26 @@
     "city": "Lyon",
     "country": "France",
     "url": "https://www.periscope-lyon.com/concerts/",
-    "eventsDelimiterTag": " DIV.site  DIV.contentarea  MAIN.sitemain.wrap_agenda.allconcerts  DIV  DIV  DIV.smallcontent.ukwidth14m.ukgridmargin",
-    "dateFormat": "dd-MM",
+    "eventsDelimiterTag": "DIV.smallcontent.ukwidth14m.ukgridmargin DIV A",
+    "dateFormat": "",
     "defaultStyle": "Jazz",
     "baseURL": "https://www.periscope-lyon.com/concerts/",
     "mainPage": {
       "eventNameTags": [
-        "SPAN:eq(0)",
-        "H4.textsubtitle:eq(0)"
+        "DIV.scct:eq(0) H3:eq(0)"
       ],
       "eventDateTags": [
-        "H5:eq(0)"
+        "DIV.scc:eq(0) H5:eq(0)"
       ]
     },
-    "eventURLIndex": 1,
+    "eventURLIndex": 0,
     "linkedPage": {
       "eventDateTags": [
-        "SPAN.cctd:eq(0)",
-        "SPAN.ccth:eq(0)"
+        "DIV.cctime:eq(0) SPAN.cctd:eq(0)",
+        "DIV.cctime:eq(0) SPAN.ccth:eq(0)"
       ]
     },
-    "linkedPageDateFormat": "dd-MM-yyyy",
+    "linkedPageDateFormat": "dd-MM-yyyy-HH:mm",
     "ID": "Le Périscope|Lyon|France"
   },
   {
