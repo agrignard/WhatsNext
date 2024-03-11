@@ -10,6 +10,7 @@ processCityBasedOnUrl();
 mapUtils.setCategoryColors(city);
 const map = mapUtils.initializeMap();
 
+
 // Array to store dynamically generated circles
 const circles = [];
 var selectedCircle = null;
@@ -164,9 +165,9 @@ for (const category in mapUtils.categoryColors) {
   if (mapUtils.categoryColors.hasOwnProperty(category)) {
       // Add circle object to circles array
       circles.push({
-          x: 20 + i * 40, // Adjust the x-coordinate as needed
+          x: 17 + i * 36, // Adjust the x-coordinate as needed
           y: 25,
-          radius: 18,
+          radius: 17,
           value: category,
           color: mapUtils.getCategoryColorRGBA(category),
           active:true

@@ -7,7 +7,14 @@ console.log("***************DATACLEANEX-City: " + city + " **************");
 convertPlaceCSVtoGeoJson();
 convertEventCSVtoGeoJson();
 
-
+const initPlaceInformationMapping = {
+  'art': 'art-gallery',
+  'institut':'museum',
+  'photo': 'attraction',
+  'theatre': 'theatre',
+  'music': 'music',
+  'undefined' : 'dot-11'
+};
 
 async function convertPlaceCSVtoGeoJson(){
   console.log("*****Converting Place CSV to GeoJson (place,lat,long,url)*****");
@@ -29,6 +36,14 @@ async function convertPlaceCSVtoGeoJson(){
       const latitude=parseFloat(columns[1]);
       const longitude=parseFloat(columns[2]);
       const url=columns[3];
+      var style = columns[4];    
+      if(initPlaceInformationMapping[columns[4]]!=null){
+        style=initPlaceInformationMapping[columns[4]];
+      }else{
+        style= initPlaceInformationMapping['undefined'];
+      }
+      console.log("style after : " + style)
+      
       //console.log("Place: "+place+";"+latitude+";"+longitude+";"+url);
 
     const newFeature = {
@@ -40,7 +55,7 @@ async function convertPlaceCSVtoGeoJson(){
       },
       properties:{
           "title": place,
-          "icon": "marker-15",
+          "icon": style,
           "description":url
       },
       };
