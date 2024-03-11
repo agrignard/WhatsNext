@@ -2,7 +2,7 @@ import * as dataUtils from './dataUtils.js';
 
 
 export const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-
+const showPlacesAsCircle=true;
 
 var flytoOnClick=false;
 const darkMode=false;
@@ -26,17 +26,32 @@ export function addPlaces(map,placesData){
     type: 'geojson',
     data: placesData
     });
-    map.addLayer({
-    'id': 'places-circles',
-    'type': 'circle',
-    'source': 'places',
-    'paint': {
-    'circle-radius': 4,
-    'circle-stroke-width': 2,
-    'circle-color': !darkMode ? 'black' : 'rgba(125,125,125,0.5)',
-    'circle-stroke-color': !darkMode ? 'white' : 'black'
+    if(showPlacesAsCircle){
+        map.addLayer({
+            'id': 'places-circles',
+            'type': 'circle',
+            'source': 'places',
+            'paint': {
+                'circle-radius': 3,
+                'circle-stroke-width': 1,
+                'circle-color': !darkMode ? 'black' : 'rgba(125,125,125,0.5)',
+                'circle-stroke-color': !darkMode ? 'white' : 'black'
+            }
+        });
+    }else{
+        map.addLayer({
+            'id': 'places-circles',
+            'type': 'symbol',
+            'source': 'places',
+            'layout': {
+                // list of icon https://labs.mapbox.com/maki-icons/ or in MapBox Studio
+                'icon-image': ['get', 'icon'],
+                'icon-allow-overlap': true
+            }
+        });
+
     }
-    });
+    
     map.addLayer({
     'id': 'place-labels',
     'type': 'symbol',
@@ -205,8 +220,6 @@ map.on('click', 'event-circles', (e) => {
         }
         hoveredStateId =  null;
     });
-
-
 }
 ////////////////////////////////////////////////////
 
@@ -420,7 +433,7 @@ export const categoryColorsLyon = {
     'Jam': '238, 130, 238',
     'Classique': '127, 0, 255',
     'Chanson': '0, 255, 255',
-    'Live': '144, 238, 214',
+    'Live': '144, 144, 144',
     'Theatre': '165,42,42'
 };
 
