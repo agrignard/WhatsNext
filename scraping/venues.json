@@ -126,7 +126,7 @@
     "country": "France",
     "url": "https://www.periscope-lyon.com/concerts/",
     "eventsDelimiterTag": "DIV.smallcontent.ukwidth14m.ukgridmargin DIV A",
-    "dateFormat": "",
+    "dateFormat": "dd-MM",
     "defaultStyle": "Jazz",
     "baseURL": "https://www.periscope-lyon.com/concerts/",
     "mainPage": {
@@ -686,7 +686,7 @@
     "ID": "Hanoi Grapevine|Hanoi|Vietnam",
     "baseURL": "https://hanoigrapevine.com/category/event-listings/page/",
     "eventsDelimiterTag": "DIV.td_mod_wrap.td_mod9 DIV.itemdetails",
-    "dateFormat": "",
+    "dateFormat": "dd-MM-yyyy",
     "eventURLIndex": 1,
     "multiPages": {
       "nbPages": "20",

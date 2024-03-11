@@ -101,6 +101,9 @@ function countNonEmptyEvents(delimiterTag,$,venue){
 function getAllDates(mainTag,dateTags,source){
     let events = [];
     let dates = [];
+    if (!dateTags){
+        return dates;
+    }
     source(mainTag).each((index, element) => {
         let ev = source(element).html();
         events.push(ev);

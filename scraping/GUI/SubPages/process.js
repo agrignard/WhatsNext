@@ -454,9 +454,7 @@ function loadLinkedPageContent(){
   }
   applyTags(false);
   // find missing links
-  // if (validateDelimiterTags()){
-  //   computeDateFormat();
-  // }
+  computeDateFormat();
 }
 
 
@@ -750,13 +748,29 @@ function computeTags(id){
 }
 
 function computeDateFormat(){
-  let dates = getAllDates(venue.eventsDelimiterTag,venue[currentPage]['eventDateTags'],cheerioTest);
-  [venue.dateFormat, bestScore] = getBestDateFormat(dates,venue, dateConversionPatterns);
-  let formatString = "Date format found: "+venue.dateFormat;
-  if (bestScore !== 0){
-    formatString += " ("+(dates.length-bestScore)+"/"+dates.length+" valid dates)";
+  let dates;
+  if (currentPage === 'mainPage'){
+    dates = getAllDates(venue.eventsDelimiterTag,venue[currentPage]['eventDateTags'],cheerioTest);
+  }else{
+    dates = getAllDates("BODY",venue[currentPage]['eventDateTags'],cheerioTest);
   }
-  dateFormatText.textContent = formatString;
+  if (dates.length > 0){
+    let formatRes;
+    [formatRes, bestScore] = getBestDateFormat(dates,venue, dateConversionPatterns);
+    if (currentPage === 'mainPage'){
+      venue.dateFormat = formatRes;
+    }else{
+      venue.linkedPageDateFormat = formatRes;
+    }
+    let formatString = "Date format found: "+formatRes;
+    if (bestScore !== 0){
+      formatString += " ("+(dates.length-bestScore)+"/"+dates.length+" valid dates)";
+    }
+    dateFormatText.textContent = formatString;
+    dateFormatPanel.style.display = 'block';
+  }else{
+    dateFormatPanel.style.display = 'none';
+  }
 }
 
 function renderEventURLPanel(){
@@ -766,7 +780,6 @@ function renderEventURLPanel(){
   }
   let tag;
   eventURLPanel.style.display = 'block';
-  console.log(mainTagAbsolutePath);
   if (mainTagAbsolutePath === ''){
     eventURLPanelWarning.style.display = 'block';
     tag = cheerioTest(venue.eventsDelimiterTag).first();
@@ -884,7 +897,6 @@ function findURLs(ctag){
   const $eventBlock = cheerio.load(ctag.html());
   let links;
   try{
-    console.log('rdss',ctag.prop('tagName'));
     links = ctag.prop('tagName')=='A'?[ctag.attr('href')]:[undefined];
   }catch{
     links = [];

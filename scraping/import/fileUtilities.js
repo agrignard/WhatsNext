@@ -146,7 +146,6 @@ function saveToCSV(eventList, outFile){
 
 // used to analyse arguments passed to scrapex or aspiratorex
 function getVenuesFromArguments(args, venueList){
-    console.log(args);
     let venues = venueList;
     if (args.length > 2){
         const venuesFilter = filterFromArguments(args);
