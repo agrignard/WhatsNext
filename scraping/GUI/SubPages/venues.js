@@ -327,14 +327,18 @@ function updateVenueInfo(mode){
             }
             changeMPPanel(hasMP);
             if (hasMP){
-                nbPagesToScrap.value = String(venue.multiPages.nbPages);
+                if (venue.multiPages.hasOwnProperty('nbPages')){
+                    nbPagesToScrap.value = String(venue.multiPages.nbPages);
+                }
             }
             const selectMPFields = document.getElementById('selectMPFields');
             if (hasMP){
                 if (venue.multiPages.hasOwnProperty('pattern')){
                     selectMPFields.selectedIndex = 1;
-                }else if(venue.multiPages.hasOwnProperty('pageList')){
+                }else if(venue.multiPages.hasOwnProperty('scroll')){
                     selectMPFields.selectedIndex = 2;
+                }else if(venue.multiPages.hasOwnProperty('pageList')){
+                    selectMPFields.selectedIndex = 3;
                 }
             }else{
                 selectMPFields.selectedIndex = 0;
@@ -355,11 +359,12 @@ function updateVenueInfo(mode){
             MPPageListInput.value = (venue.hasOwnProperty('multiPages') && venue.multiPages.hasOwnProperty('pageList'))?
                 venue.multiPages.pageList.join('\n'):'';
             const divMPInfo = document.getElementById('divMPInfo');
-            divMPInfo.style.display = /\{index\}/.test(textURL.textContent) ? 'none':'inline';
+            checkIndexWarning();
             const MPElements = document.querySelectorAll(".divMPIndex, .divMPPattern, .divMPPageList");
             setVisibility(MPElements,selectMPFields.value);
             selectMPFields.addEventListener('change', function(event) {
                 setVisibility(MPElements,selectMPFields.value);
+                checkIndexWarning();
             });
             MPButton.addEventListener('click', function() {
                 hasMP = !hasMP;
@@ -367,8 +372,15 @@ function updateVenueInfo(mode){
                 MPFields.style.display = hasMP?'block':'none';
                 changeMPPanel(hasMP);
             });
+            function checkIndexWarning(){
+                console.log(selectMPFields.value);
+                console.log(/\{index\}/.test(textURL.textContent));
+                divMPInfo.style.display = selectMPFields.value === 'Scroll' ||
+                                            selectMPFields.value === 'PageList' ||
+                                            /\{index\}/.test(textURL.textContent) ? 'none':'inline';
+            }
             textURL.addEventListener('input', function() {
-                divMPInfo.style.display = /\{index\}/.test(textURL.textContent) ? 'none':'inline';
+                checkIndexWarning();
             }); 
             // style
             const selectStyle = document.getElementById('selectStyle');
@@ -459,12 +471,15 @@ function updateVenueInfo(mode){
                     venue.multiPages = {};
                     venue.multiPages.nbPages = nbPagesToScrap.value;
                     if (venue.multiPages.hasOwnProperty('pattern')){delete venue.multiPages.pattern;}
+                    if (venue.multiPages.hasOwnProperty('scroll')){delete venue.multiPages.scroll;}
                     if (venue.multiPages.hasOwnProperty('startIndex')){delete venue.multiPages.startIndex;}
                     if (selectMPFields.selectedIndex === 0){             
                         venue.multiPages.startPage = MPIndexInput.value;
                         venue.multiPages.increment = MPIncrementInput.value;
                     }else if (selectMPFields.selectedIndex === 1){                          
                         venue.multiPages.pattern = MPPatternInput.value;
+                    }else if (selectMPFields.selectedIndex === 1){                          
+                        venue.multiPages.scroll = true;
                     }else{
                         venue.multiPages.pageList = splitArray(MPPageListInput.value);
                     }        
@@ -602,6 +617,15 @@ function setVisibility(list, value){
     list.forEach((el,index)=>{
         el.style.display = el.classList.contains(currentClass) ? 'block':'none';
     });
+    const nbPagesPanel = document.getElementsByClassName('divMPnbPages');
+    for(let i = 0; i < nbPagesPanel.length;i++){
+        if (value === 'Scroll' || value === 'PageList'){
+            nbPagesPanel[i].style.display = 'none';
+        }else{
+            nbPagesPanel[i].style.display = 'block';
+        }
+    }
+    
 }
 
 function isNotBlank(string){

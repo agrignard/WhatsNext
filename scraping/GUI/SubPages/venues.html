@@ -38,9 +38,6 @@
         <div id="downloadPanel" class="topMargin" style="display: inline-block;  width:60%;">
             <button id="MPButton" class="niceButtonNoMargin">Multipage button</button>
             <div id="MPfields">
-                <div> Number of pages to scrap:
-                    <input type="number" id="nbPagesToScrap" class="smallBottomMargin" min="1" step="1" value="5" style ="display: inline; width: 6ch;">
-                </div>
                 <div id="indexType" class="bottomMargin">
                     <div>Indexation type:  </div>
                     <div>
@@ -50,6 +47,12 @@
                             <option value="Scroll">Scroll</option>
                             <option value="PageList">Page List</option>
                         </select>
+                    </div>
+                    <div class="leftMargin divMPnbPages"> 
+                        Number of pages:
+                    </div>
+                    <div class="divMPnbPages">
+                        <input type="number" id="nbPagesToScrap" min="1" step="1" value="5" style ="width: 6ch;">
                     </div>
                     <div class="leftMargin divMPIndex">
                         Start index:

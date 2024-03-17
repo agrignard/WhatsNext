@@ -8,7 +8,7 @@ body, html {
 
 #indexType{
   display: grid;
-  grid-template-columns: 17ch 100px;
+  grid-template-columns: 19ch 100px;
   gap: 10px; 
 }
 
