@@ -11,6 +11,8 @@
         <select id="countriesDropdown"></select>
         <select id="citiesDropdown"></select>
         <select id="venuesDropdown"></select>
+        <label for="hideAliasesCheckbox" style ="display: inline;">Hide Aliases</label>
+        <input type="checkbox" id="hideAliasesCheckbox" style ="display: inline;">
         <button id="addVenueBtn">Add venue</button>
         <div id="dialog" style="display: none;">
             <input type="text" id="newVenueNameInput">
@@ -44,7 +46,8 @@
                     <div>
                         <select id="selectMPFields">
                             <option value="Index">Index</option>
-                            <option pattern="Pattern">Pattern</option>
+                            <option value="Pattern">Pattern</option>
+                            <option value="Scroll">Scroll</option>
                             <option value="PageList">Page List</option>
                         </select>
                     </div>

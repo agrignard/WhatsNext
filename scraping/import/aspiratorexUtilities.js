@@ -6,7 +6,7 @@
 //const path = require('path');
 const fs = require('fs');
 const {removeDoubles, makeURL, cleanPage} = require('./stringUtilities.js');
-const {loadLinkedPages, fetchWithRetry, fetchLink} = require('./fileUtilities.js');
+const {loadLinkedPages, fetchWithRetry, fetchLink, getPageByPuppeteer} = require('./fileUtilities.js');
 //const {loadVenuesJSONFile, saveToVenuesJSON, isAlias, initializeVenue} = require('./jsonUtilities.js');
 const {getURLListFromPattern} = require('./dateUtilities.js');
 const cheerio = require('cheerio');
@@ -45,7 +45,9 @@ async function downloadVenue(venue,filePath){
       }else{
         console.log("\x1b[31mAttribute \'startPage\' and \'nbPages' are mandatory for multipages if there is a placeholder \'index\' in the URL. No page loaded\x1b[0m.");
         URLlist = [];
-      }  
+      }
+    }else if(venue.multiPages.hasOwnProperty('scroll')){
+      URLlist = [venue.url];
     }else if(venue.multiPages.hasOwnProperty('pageList')){
         venue.multiPages.pageList.forEach(el => URLlist.push(venue.url+el));
     }else{
@@ -60,14 +62,18 @@ async function downloadVenue(venue,filePath){
   async function getPage(page,pageIndex){
     let htmlContent;
     try{
-      htmlContent = cleanPage(await fetchWithRetry(page,2,2000));
+      if (venue.hasOwnProperty('multiPages') && venue.multiPages.hasOwnProperty('scroll')){
+        htmlContent = cleanPage(await getPageByPuppeteer(page));
+      }else{
+        htmlContent = cleanPage(await fetchWithRetry(page,2,2000));
+      }
     }catch(err){
       console.log("\x1b[31mNetwork error, cannot download \'%s\'\x1b[0m. %s",page,err);
       return '';
     }
 
     let outputFile;
-    if (!venue.hasOwnProperty('multiPages')){
+    if (!venue.hasOwnProperty('multiPages') || venue.multiPages.hasOwnProperty('scroll')){
       outputFile = filePath+venue.name+".html";
     }else{
       outputFile = filePath+venue.name+pageIndex+".html";

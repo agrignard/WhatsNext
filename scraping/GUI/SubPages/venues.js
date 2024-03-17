@@ -9,6 +9,8 @@ const {simplify, removeBlanks} = require(imports+'stringUtilities.js');
 const midnightHourOptions = ['none','sameday','previousday'];
 const lineHeightPx = document.getElementById('textURL').offsetHeight;
 
+let hideAliases = true;
+
 let venues = loadVenuesJSONFile();
 const styleList = [''].concat(getStyleList().filter(el => el !=='')).concat(['Other']);
 //let currentMode = 'show';
@@ -29,6 +31,16 @@ const messageContainer = document.getElementById('message-container');
 const addVenueButton = document.getElementById('addVenueBtn');
 addVenueButton.addEventListener('click', () => {
     updateVenueInfo('newVenue');
+});
+
+// hide or show aliases venues in the list
+const hideAliasesCheckbox = document.getElementById('hideAliasesCheckbox');
+if (hideAliases){
+    hideAliasesCheckbox.checked = true;
+}
+hideAliasesCheckbox.addEventListener('change', () => {
+    hideAliases = !hideAliases;
+    populateVenuesMenu();
 });
 
 // button to process
@@ -114,7 +126,11 @@ function addToMenu(directory, menu){
 function populateVenuesMenu(){
     currentVenues = getCurrentVenues();
     venuesDropdown.innerHTML = '';
-    currentVenues.sort((a,b) => a.name.localeCompare(b.name)).forEach(venue => {
+    const venueMenuWidth = Math.max(...(currentVenues.map(el => el.name.length)));
+    venuesDropdown.style.width = venueMenuWidth+'ch';
+    currentVenues.sort((a,b) => a.name.localeCompare(b.name))
+    .filter(el => !hideAliases || !isAlias(el))
+    .forEach(venue => {
         const option = document.createElement('option');
         option.text = venue.name;
         if (isAlias(venue)){
@@ -181,16 +197,21 @@ function updateVenueInfo(mode){
             const divMultipages = document.getElementById('divMultipages');
             if (isMultipages(venue)){
                 divMultipages.style.display = 'block';
-                divMultipages.textContent =  'Multiple pages: will scrap '+venue.multiPages.nbPages+' pages.';
-                if (venue.multiPages.hasOwnProperty('pattern')){
-                    divMultipages.textContent = divMultipages.textContent+' Pattern: \''+venue.multiPages.pattern+'\'';
-                }else if (venue.multiPages.hasOwnProperty('pageList')){
-                    divMultipages.textContent = divMultipages.textContent+'\nList of pages to scrap: '
-                            + venue.multiPages.pageList;
-
+                if (venue.multiPages.hasOwnProperty('scroll')){
+                    divMultipages.textContent = 'Page will be scrolled by puppeteer.';
                 }else{
-                    divMultipages.textContent = divMultipages.textContent+' Start index: '+venue.multiPages.startPage;
+                    divMultipages.textContent =  'Multiple pages: will scrap '+venue.multiPages.nbPages+' pages.';
+                    if (venue.multiPages.hasOwnProperty('pattern')){
+                        divMultipages.textContent = divMultipages.textContent+' Pattern: \''+venue.multiPages.pattern+'\'';
+                    }else if (venue.multiPages.hasOwnProperty('pageList')){
+                        divMultipages.textContent = divMultipages.textContent+'\nList of pages to scrap: '
+                                + venue.multiPages.pageList;
+    
+                    }else{
+                        divMultipages.textContent = divMultipages.textContent+' Start index: '+venue.multiPages.startPage;
+                    }
                 }
+ 
             }else{
                 divMultipages.textContent = '';
                 divMultipages.style.display = 'none';             

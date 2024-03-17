@@ -81,9 +81,13 @@ body, html {
   margin-right: 5px; /* Marge entre les éléments */
 }
 
-#easyPanelButton{
-  margin-right: 5px;
+#easyPanelCopyButton{
+position: absolute;
+right: 5px;
+padding: 2px 6px;
 }
+
+
 
 .copyButton {
 position: absolute;
@@ -135,7 +139,9 @@ padding: 2px 6px;
 background-color: lightblue;
 }
 
-
+.highlightDummy{
+  background-color: rgb(149, 165, 166);
+}
 
 .highlightName {
   background-color: rgb(52, 152, 219);
@@ -157,9 +163,6 @@ background-color: lightblue;
   background-color: rgb(241, 196, 15);
 }
 
-.highlightDummy{
-    background-color: rgb(149, 165, 166);
-}
 
 
 
@@ -197,9 +200,11 @@ background-color: lightblue;
   background-color: rgb(230, 85, 109);
 }
 
-.invalid{
-  background-color: rgb(241, 148, 146);
+#saveButton:active {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+  transition: background-color 0.3s ease;
 }
+
 
 
 .redFont {
@@ -369,7 +374,8 @@ background-color: lightblue;
 }
 
 .warning{
-  color: rgb(243, 156, 18);
+  color: rgb(253, 198, 111);
+  font-weight: bold;
 }
 
 .rightPanel {
@@ -423,4 +429,9 @@ textarea:focus, input:focus {
     outline: 2px solid rgb(189, 195, 199); 
 }
 
+
+.invalid{
+  background-color: rgb(241, 197, 196);
+  color: red;
+}
 

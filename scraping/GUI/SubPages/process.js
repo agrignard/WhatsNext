@@ -28,9 +28,12 @@ let nbPagesToShow = 5;
 let nbPages = 0;
 let easyPanelInfo = {
   stringList:[],
-  indexList:[]
+  indexList:[],
 }
+const defaultIndex = 5;
 let currentPage = 'mainPage';
+let detailedScrapView = true;
+let scrapInfoTooOld; // if scrap info is from a too old event, the linked page does not correspond to the tag
 
 var colorClassList = ['highlightName','highlightDate','highlightStyle','highlightPlace','highlightURL','highlightDummy'];
 const easyButtonClassList = ['easyButtonName','easyButtonDate','easyButtonStyle','easyButtonPlace','easyButtonURL','easyButtonDummy'];
@@ -227,18 +230,62 @@ regroupTagsCheckbox.addEventListener('change',()=>{
   computeTags();
 });
 
+const inputRows = document.getElementsByClassName('input-row');
+const detailedScrapViewCheckbox = document.getElementById('detailedScrapViewCheckbox');
+detailedScrapViewCheckbox.checked = detailedScrapView;
+detailedScrapViewCheckbox.addEventListener('change',()=>{
+  detailedScrapView = !detailedScrapView;
+  renderDetailedView();
+});
+
+function renderDetailedView(){
+  if (detailedScrapView === true){
+    easyPanel.style.display = 'none';
+    for (i=0;i<inputRows.length;i++){
+      inputRows[i].style.display = 'block';
+    };
+  }else{
+    populateEasyPanel();
+    easyPanel.style.display = 'block';
+    for (i=0;i<inputRows.length;i++){
+      inputRows[i].style.display = 'none';
+    };
+  }
+}
+
 // easy panel
 
-easyPanelFields = document.getElementById('easyPanelFields');
-easyPanelAddButton = document.getElementById('easyPanelAddButton');
+const easyPanelFields = document.getElementById('easyPanelFields');
+const easyPanelAddButton = document.getElementById('easyPanelAddButton');
 easyPanelAddButton.addEventListener('click', function (){
   newEasyLine('');
 });
+const easyPanelCopyButton = document.getElementById('easyPanelCopyButton');
+easyPanelCopyButton.addEventListener('click',function(){
+  const selection = window.getSelection();
+  let textCopy = selection.toString();
+  if (textCopy) {
+    textCopy = textCopy.replace(/(\n\s*)*$/,'').replace(/\n(\s*\n)*/g,'\n').replace(/^(\s*\n)*/,'');// remove blank lines
+    const stringsToAdd = textCopy.split('\n');
+    stringsToAdd.forEach(el => {
+      newEasyLine(el);
+    });
+    getStringsFromEasyField();
+    computeTags();
+  }
+});
 
-populateEasyPanel();
+
+// populateEasyPanel();
+// renderDetailedView();
 
 
 function populateEasyPanel(){
+  easyPanelInfo = {
+    stringList:[],
+    indexList:[],
+  }
+  easyPanelFields.innerHTML = '';
   Object.keys(venueScrapInfo[currentPage]).forEach(key => {
     const typeIndex = easyConvert[key];
     venueScrapInfo[currentPage][key].forEach(el =>{
@@ -247,12 +294,25 @@ function populateEasyPanel(){
   });
 }
 
-
+function getStringsFromEasyField(){
+  Object.keys(easyConvert).forEach(key => {
+    const catIndex = easyConvert[key];
+    const newStrings = easyPanelInfo.stringList.filter((el,i)=> easyPanelInfo.indexList[i]===catIndex);
+    stringTextBoxes[catIndex].value = newStrings.join('\n');
+    console.log(stringTextBoxes[catIndex].id);
+    venueScrapInfo[currentPage][stringTextBoxes[catIndex].id] = newStrings;
+  });
+}
 
 function newEasyLine(text, typeIndex){
   const index = easyPanelInfo.stringList.length;
   easyPanelInfo.stringList.push(text);
-  easyPanelInfo.indexList.push(typeIndex);
+  if (typeIndex === undefined){
+    easyPanelInfo.indexList.push(defaultIndex);// by default, select dummyString
+  }else{
+    easyPanelInfo.indexList.push(typeIndex);
+  }
+  // easyPanelInfo.oldValuesList.push(text);
   let newDiv = document.createElement('div');
   newDiv.classList.add('easyPanelLine');
   newDiv.id = 'easyPanelLine'+index;
@@ -265,10 +325,11 @@ function newEasyLine(text, typeIndex){
     console.log('changement ',this.id);
     const lineIndex = parseInt(this.id.match(/\d+$/));
     easyPanelInfo.stringList[lineIndex] = this.value;
-    console.log(easyPanelInfo);
+    getStringsFromEasyField();
+    computeTags();
   })
   newDiv.appendChild(inputElement);
-  for(i=0;i<6;i++){
+  for(i=0;i<5;i++){
     let newButton = document.createElement('button');
     newButton.classList.add('easyButton');
     newButton.classList.add('easyField'+index);
@@ -284,8 +345,14 @@ function newEasyLine(text, typeIndex){
       }
       const lineIndex =  parseInt(this.id.match(/\d+-/));
       const typeIndex = parseInt(this.id.charAt(this.id.length - 1));
-      easyPanelInfo.indexList[lineIndex] = typeIndex;
-      newButton.classList.add(colorClassList[typeIndex]);
+      if (typeIndex === easyPanelInfo.indexList[lineIndex]){// set to default value (dummy)
+        easyPanelInfo.indexList[lineIndex] = defaultIndex;
+      }else{
+        easyPanelInfo.indexList[lineIndex] = typeIndex;
+        newButton.classList.add(colorClassList[typeIndex]);
+      }
+      getStringsFromEasyField();
+      computeTags();
       console.log(easyPanelInfo);
     });
     newDiv.appendChild(newButton);
@@ -298,10 +365,12 @@ function newEasyLine(text, typeIndex){
   newButton.addEventListener('click', function(){
     console.log('remove');
     const lineIndex = parseInt(this.id.match(/\d+$/));
+    let lineToRemove = document.getElementById('easyPanelLine'+lineIndex);
     easyPanelInfo.stringList[lineIndex] = undefined;
     easyPanelInfo.indexList[lineIndex] = undefined;
-    let lineToRemove = document.getElementById('easyPanelLine'+lineIndex);
     lineToRemove.remove();
+    getStringsFromEasyField();
+    computeTags();
     console.log(easyPanelInfo);
   });
   newDiv.appendChild(newButton);
@@ -315,11 +384,14 @@ const eventDateStrings = document.getElementById('eventDateStrings');
 const eventStyleStrings = document.getElementById('eventStyleStrings');
 const eventPlaceStrings = document.getElementById('eventPlaceStrings');
 const eventURLStrings = document.getElementById('eventURLStrings');
+const eventDummyStrings = document.getElementById('eventDummyStrings');
+const stringTextBoxes = [eventNameStrings, eventDateStrings, eventStyleStrings, eventPlaceStrings, eventURLStrings,eventDummyStrings];
 const dateFormatText = document.getElementById('dateFormatText');
 const eventURLTags = document.getElementById('eventPlaceTags');
-const eventDummyStrings = document.getElementById('eventDummyStrings');
 const eventDummyPanel = document.getElementById('eventDummy');
 const scrapTextBoxes = document.getElementsByClassName('scrapTextBox');
+const eventTagsBoxes = document.getElementsByClassName('eventTags');
+const eventStringsBoxes = document.getElementsByClassName('eventStrings');
 
 eventURLStrings.addEventListener("keydown", function(event) {// prevents field URL tag to have more than one line
   if (event.key === "Enter") {
@@ -439,8 +511,8 @@ function initializeInterface(){
   }else{
     loadLinkedPageContent();
   }
-  
-  
+  populateEasyPanel();
+  renderDetailedView();
 }
 
 
@@ -459,47 +531,73 @@ function loadLinkedPageContent(){
 
 
 /*****************************/
+/*        context menu       */
+/*****************************/
+
+// const rightClickMenuEasy = Menu.buildFromTemplate([
+//   { label: 'Add to strings field', click() { console.log('Item 1 cliqué'); } },
+// ]);
+
+
+// rightPanel.addEventListener('contextmenu', (e) => {
+//   e.preventDefault();
+//   rightClickMenuEasy.popup({ window: remote.getCurrentWindow() });
+// }, false);
+
+
+// const rightClickMenu = Menu.buildFromTemplate([
+//   { label: 'Add to strings field', click() { console.log('Item 1 cliqué'); } },
+//   { label: 'Item 2', click() { console.log('Item 2 cliqué'); } }
+// ]);
+
+/*****************************/
 /*    auxiliary functions    */
 /*****************************/
 
 
 function applyTags(renderURL){
-  function fillTags($eventBlock){
+  function fillTags($eventBlock,dtag){
     const event = {};
     if (venue[currentPage].hasOwnProperty('eventNameTags')){
       let string = "";
       venue[currentPage].eventNameTags.forEach(tag =>{
         string += tag ===''?$eventBlock.text():$eventBlock(tag).text();
-        $eventBlock(tag).addClass('highlightName');  
+        const targetTag = (tag === 'BODY')?dtag:$eventBlock(tag);// if the class is body in $eventblock, it is delimiter tag in $.
+        targetTag.addClass('highlightName');  
       });
       event.eventName = string;
+    }
+    if (venue[currentPage].hasOwnProperty('eventDummyTags')){
+      venue[currentPage].eventDummyTags.forEach(tag =>{
+        const targetTag = (tag === 'BODY')?dtag:$eventBlock(tag);
+        targetTag.addClass('highlightDummy');  
+      });
     }
     if (venue[currentPage].hasOwnProperty('eventDateTags')){
       let string = "";
       venue[currentPage].eventDateTags.forEach(tag =>{
         string += tag ===''?$eventBlock.text():$eventBlock(tag).text();
-        $eventBlock(tag).addClass('highlightDate');  
+        const targetTag = (tag === 'BODY')?dtag:$eventBlock(tag);
+        targetTag.addClass('highlightDate');  
       });
       event.eventDate = string;
     }
     if (venue[currentPage].hasOwnProperty('eventStyleTags')){
       venue[currentPage].eventStyleTags.forEach(tag =>{
-        $eventBlock(tag).addClass('highlightStyle');  
+        const targetTag = (tag === 'BODY')?dtag:$eventBlock(tag);
+        targetTag.addClass('highlightStyle');  
       });
     }
     if (venue[currentPage].hasOwnProperty('eventPlaceTags')){
       venue[currentPage].eventPlaceTags.forEach(tag =>{
-        $eventBlock(tag).addClass('highlightPlace');  
+        const targetTag = (tag === 'BODY')?dtag:$eventBlock(tag);
+        targetTag.addClass('highlightPlace');  
       });
     }
     if (venue[currentPage].hasOwnProperty('eventURLTags')){
       venue[currentPage].eventURLTags.forEach(tag =>{
-        $eventBlock(tag).addClass('highlightURL');  
-      });
-    }
-    if (venue[currentPage].hasOwnProperty('eventDummyTags')){
-      venue[currentPage].eventDummyTags.forEach(tag =>{
-        $eventBlock(tag).addClass('highlightDummy');  
+        const targetTag = (tag === 'BODY')?dtag:$eventBlock(tag);
+        targetTag.addClass('highlightURL');  
       });
     }
     return event;
@@ -511,7 +609,7 @@ function applyTags(renderURL){
     $(venue.eventsDelimiterTag).each((index, delimiterTag) => {
       const eve = $(delimiterTag).html();
       const $eventBlock = cheerio.load(eve);
-      const event = fillTags($eventBlock);
+      const event = fillTags($eventBlock,$(delimiterTag));
       
       if (isValidEvent(event, venue)){
         $(delimiterTag).addClass('encadre');
@@ -563,14 +661,20 @@ function loadPage(){
   // that matches eventsDelimiterTag
   if (venue.hasOwnProperty('eventsDelimiterTag')){
     const stringsToFind = [].concat(...Object.values(splitAndLowerCase(venueScrapInfo)[currentPage]));
-    console.log('load page');
     const mainTagCandidates = cheerioTest(venue.eventsDelimiterTag);
+    let i;
     for(i=mainTagCandidates.length-1;i>=0;i--){
       const text = cheerioTest(mainTagCandidates[i]).text();
       const containStrings = !stringsToFind.some(str => !text.includes(str));
       if (containStrings){
         break;
       }
+    }
+    if (i===-1){
+      i=0;
+      scrapInfoTooOld = true;
+    }else{
+      scrapInfoTooOld = false;
     }
     mainTag = mainTagCandidates[i];
     mainTagAbsolutePath = getTagLocalization(mainTag,cheerioTest,false,stringsToFind);
@@ -682,7 +786,7 @@ function getValue(object){
 }
 
 function getArray(string){
-  return string.split('\n');
+  return string.split('\n').filter(el => el !== '');
 }
 
 function containsURL(tag){
@@ -704,12 +808,33 @@ function computeTags(id){
   if (!freezeDelimiter && currentPage === 'mainPage'){
     const stringsToFind = [].concat(...Object.values(splitAndLowerCase(venueScrapInfo)[currentPage]));
     const tagsContainingStrings =  getTagContainingAllStrings(cheerioTest,stringsToFind);
-    mainTag = tagsContainingStrings.last();
-    if (mustIncludeURL){// extend delimiter tag to include at least one url
-      while(!containsURL(mainTag)){
-        mainTag = mainTag.parent();
+    if (tagsContainingStrings.length === 0){
+      const tagId = id.replace(/Strings/,'Tags');
+      delete venue[currentPage][tagId];
+      for(let b=0;b<eventTagsBoxes.length;b++){
+        eventTagsBoxes[b].value = '';
+      }
+      for(let b=0;b<eventStringsBoxes.length;b++){
+        if (eventStringsBoxes[b].value.split('\n').some(el => !cheerioTest.text().includes(el))){
+          eventTagsBoxes[b].placeholder = 'Cannot find string';
+          eventStringsBoxes[b].classList.add('invalid');
+        }      
+      }
+      return;
+    }else{
+      for(let b=0;b<eventStringsBoxes.length;b++){
+        eventTagsBoxes[b].placeholder = 'Tags will be filled automatically';    
+        eventStringsBoxes[b].classList.remove('invalid'); 
+      }
+      mainTag = tagsContainingStrings.last();
+      scrapInfoTooOld = false;
+      if (mustIncludeURL){// extend delimiter tag to include at least one url
+        while(!containsURL(mainTag)){
+          mainTag = mainTag.parent();
+        }
       }
     }
+
     mainTagAbsolutePath = getTagLocalization(mainTag,cheerioTest,false,stringsToFind);
     let delimiterTag = reduceTag(getTagLocalization(mainTag,cheerioTest,true,stringsToFind),cheerioTest);
     if (autoAdjustCheckbox.checked === true){
@@ -720,7 +845,6 @@ function computeTags(id){
     if (delimiterHasChanged){
       delimiterTagField.value = delimiterTag;
       venue.eventsDelimiterTag = delimiterTag;
-      computeEventsNumber();
     }
   }
   if (currentPage === 'mainPage'){
@@ -728,12 +852,14 @@ function computeTags(id){
       let $eventBlock = cheerio.load(cheerioTest(mainTag).html());
        venue[currentPage] = addJSONBlock(venueScrapInfo[currentPage],$eventBlock);
        if (regroupTagsCheckbox.checked){
-        console.log('regroup');
         Object.keys(venue[currentPage]).forEach(key =>{
           venue[currentPage][key] = regroupTags(venue[currentPage][key]); 
         });
        }
       
+       if (delimiterHasChanged){
+        computeEventsNumber();
+      }
        computeDateFormat();
        applyTags(delimiterHasChanged || id === 'eventURLStrings');
        initScrapTextTags();
@@ -778,9 +904,15 @@ function renderEventURLPanel(){
     eventURLPanel.style.display = 'none';
     return;
   }
+  if (!validateDelimiterTags()){
+    eventURLSelect.style.display = 'none';
+    eventURLPanelWarning.style.display = 'none';
+    eventURLPanelMessage.textContent = 'Invalid tag, cannot find URL.';
+    return;
+  }
   let tag;
   eventURLPanel.style.display = 'block';
-  if (mainTagAbsolutePath === ''){
+  if (scrapInfoTooOld === true){
     eventURLPanelWarning.style.display = 'block';
     tag = cheerioTest(venue.eventsDelimiterTag).first();
   }else{
@@ -789,9 +921,10 @@ function renderEventURLPanel(){
   }
 
   if (venue.mainPage.hasOwnProperty('eventURLTags')){
+    const $eventBlock = cheerio.load(cheerioTest(tag).html());
     eventURL = $eventBlock(venue.mainPage.eventURLTags[0]).text();
-    $eventBlock = cheerio.load(cheerioTest(tag).html());
     eventURLPanelMessage.textContent = 'URL from tag: '+ eventURL;
+    eventURLSelect.style.display = 'none';
   }else{
     const urlList = findURLs(cheerioTest(tag));
     // console.log(cheerioTest(tag).html());

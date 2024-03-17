@@ -34,7 +34,7 @@
                     <button id="freezeDelimiterButton" class="topRightButton normalButton">Freeze</button>
                     <input type="text" id="delimiterTagField" class="delimiterTagInput" placeholder="Will be filled automatically" size="50">
                     <div id="eventURLPanel">
-                        <div id="eventURLPanelWarning"  class="urlPanel warning">No recent event match the strings</div>
+                        <div id="eventURLPanelWarning"  class="urlPanel warning">Warning: no event match the strings, url link is not accurate (event too old?)</div>
                         <div id="eventURLPanelMessage" class="urlPanel"></div>
                         <select id="eventURLSelect"></select>
                     </div>
@@ -51,14 +51,16 @@
                     <div style ="display: inline;">Options:</div>
                     <div class="rightJustif" style ="display: inline;">
                         <label id="regroupTagsLabel" for="regroupTagsCheckbox" style ="display: inline;">Group tags</label>
-                        <input type="checkbox" id="regroupTagsCheckbox" style ="display: inline;">    
+                        <input type="checkbox" id="regroupTagsCheckbox" style ="display: inline;">
+                        <label id="detailedScrapViewLabel" for="detailedScrapViewCheckbox" style ="display: inline;">Detail view</label>
+                        <input type="checkbox" id="detailedScrapViewCheckbox" style ="display: inline;">    
                     </div>
                 </div>
                 <!-- easy panel -->
                 <div id="easyPanel" class="normalPadding">
                     <div class="smallBottomMargin">
                         <div class="title" style ="display: inline;">All strings</div>
-                        <button id="easyPanelCopyButton" class="copyButton normalButton">&lt;</button>
+                        <button id="easyPanelCopyButton" class="normalButton">&lt;</button>
                     </div>
                     <div id="easyPanelFields">
 

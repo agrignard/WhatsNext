@@ -51,19 +51,20 @@
   "Transbordeur|Lyon|France": {
     "mainPage": {
       "eventNameStrings": [
-        "mathame"
+        "23:59 x blackworks : aphøtic + dexphase +..."
       ],
       "eventDateStrings": [
-        "02 mars",
+        "sam. 13 avril 24",
         "23:30"
       ],
       "eventStyleStrings": [
-        "techno"
+        "hard techno"
       ]
     },
     "linkedPage": {
       "eventNameStrings": [
-        "mathame"
+        "dionyso",
+        "complet"
       ]
     }
   },
@@ -148,27 +149,24 @@
   "Ville Morte|Lyon|France": {
     "mainPage": {
       "eventNameStrings": [
-        "molécule"
-      ],
-      "eventDateStrings": [
-        ""
+        "arnica"
       ]
     },
     "linkedPage": {
       "eventNameStrings": [
-        "molécule"
+        "arnic"
       ],
       "eventDateStrings": [
-        "15 février"
+        "4 avril à 19:30"
       ],
       "eventStyleStrings": [
         "musique live"
       ],
       "eventPlaceStrings": [
-        "Transbordeur"
+        "grrrnd zero"
       ],
       "eventURLStrings": [
-        "https://www.totaalrez.com/agenda/molecule-live/"
+        "https://www.grrrndzero.org/"
       ]
     }
   },
@@ -256,15 +254,15 @@
   "Ninkasi|Lyon|France": {
     "mainPage": {
       "eventNameStrings": [
-        "trevor king"
-      ],
-      "eventDateStrings": [
-        "am. 16 mar.19h0"
+        "aldebaran"
       ],
       "eventPlaceStrings": [
         "ninkasi guillotière"
       ],
-      "eventURLStrings": [
+      "eventDateStrings": [
+        "ven. 22 mar.21h00"
+      ],
+      "eventDummyStrings": [
         "en savoir plus"
       ]
     }

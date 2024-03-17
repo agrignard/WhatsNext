@@ -69,27 +69,28 @@
     "city": "Lyon",
     "country": "France",
     "url": "https://www.transbordeur.fr/agenda/",
-    "eventsDelimiterTag": "DIV.span6.blocText",
+    "eventsDelimiterTag": "DIV.span4.articletype1 DIV.span6.blocText",
     "dateFormat": "dd-MM-yy-HH:mm",
     "mainPage": {
       "eventNameTags": [
-        "A:eq(0)"
+        "DIV.header:eq(0) H2:eq(0) A:eq(0)"
       ],
       "eventDateTags": [
-        "H2:eq(0)",
-        "H2:eq(1)"
+        "SPAN.jourMois:eq(0) H2:eq(0)",
+        "SPAN.newslistdate:eq(0) H2:eq(1)"
       ],
       "eventStyleTags": [
-        "P:eq(0)"
+        "DIV.teasertext:eq(0) P:eq(0)"
       ]
     },
     "eventURLIndex": 1,
     "linkedPage": {
       "eventNameTags": [
-        "DIV.span4:eq(1)  DIV:eq(0)  DIV.cscdefault:eq(2)  H1:eq(0)  SPAN:eq(0)"
+        "DIV.span4:eq(1) DIV:eq(0) DIV.cscdefault:eq(2) H1:eq(2) SPAN:eq(0)",
+        "DIV.span4:eq(1) DIV:eq(0) DIV.cscdefault:eq(2) H1:eq(0) SPAN:eq(0)"
       ]
     },
-    "linkedPageDateFormat": "dd-MM-yyyy",
+    "linkedPageDateFormat": "dd-MM-yyyy-HH:mm",
     "ID": "Transbordeur|Lyon|France",
     "baseURL": "https://www.transbordeur.fr/agenda/"
   },
@@ -102,7 +103,7 @@
     "dateFormat": "dd-MM",
     "eventURLIndex": 1,
     "defaultStyle": "Electro",
-    "midnightHour": "sameDay",
+    "midnightHour": "sameday",
     "baseURL": "https://www.terminal-club.com/evenements/",
     "mainPage": {
       "eventNameTags": [
@@ -114,7 +115,8 @@
         "TIME.tribeeventsprophoto__eventdatetagdatetime:eq(0) DIV.nomargin.nopadding:eq(2)"
       ]
     },
-    "ID": "Terminal Club|Lyon|France"
+    "ID": "Terminal Club|Lyon|France",
+    "linkedPage": {}
   },
   {
     "name": "Le Périscope",
@@ -300,15 +302,12 @@
     "city": "Lyon",
     "country": "France",
     "url": "https://villemorte.fr/agenda/",
-    "eventsDelimiterTag": "A.url",
+    "eventsDelimiterTag": " DIV.tribe_events.typetribe_events.statuspublish.hentry H3.tribeeventsmontheventtitle A.url",
     "dateFormat": "dd MM",
     "baseURL": "https://villemorte.fr/agenda/",
     "mainPage": {
       "eventNameTags": [
-        ""
-      ],
-      "eventDateTags": [
-        ""
+        "BODY"
       ]
     },
     "multiPages": {
@@ -325,19 +324,19 @@
     "eventURLIndex": 0,
     "linkedPage": {
       "eventNameTags": [
-        "H1.tribeeventssingleeventtitle:eq(0)"
+        "DIV.tribeeventssingle:eq(0) H1.tribeeventssingleeventtitle:eq(0)"
       ],
       "eventDateTags": [
-        "SPAN.tribeeventdatestart:eq(0)"
+        "H2:eq(0) SPAN.tribeeventdatestart:eq(0)"
       ],
       "eventStyleTags": [
-        "DD.tribeeventseventcategories:eq(0)  A:eq(0)"
+        null
       ],
       "eventPlaceTags": [
-        "DD.author.fn.org:eq(0)"
+        "DIV.tribeeventsmetagroup.tribeeventsmetagroupvenue:eq(0) DL:eq(0) DD.author.fn.org:eq(0)"
       ],
       "eventURLTags": [
-        "DD.tribeeventseventurl:eq(0)  A:eq(0)"
+        "DD.url:eq(0) A:eq(0)"
       ]
     },
     "linkedPageDateFormat": "dd-MM-HH:mm",
@@ -733,22 +732,25 @@
       "eventNameTags": [
         "SPAN.nqceventMiniaturebottomnametext.nqceventMiniatureHovernametext:eq(0) SPAN:eq(0)"
       ],
-      "eventDateTags": [
-        "DIV.nqceventMiniaturetop:eq(0)"
-      ],
       "eventPlaceTags": [
         "SPAN.nqceventMiniaturethumbnaillocation:eq(0) SPAN:eq(0)"
       ],
-      "eventURLTags": [
+      "eventDateTags": [
+        "DIV.nqceventMiniaturetop:eq(0)"
+      ],
+      "eventDummyTags": [
         "A.nqceventMiniatureHoverbutton.alone:eq(0) SPAN.text:eq(0)"
       ]
     },
-    "url": "https://www.ninkasi.fr/agenda/du/07-03-2024/au/07-08-2024/lieu/ninkasi-guillotiere/",
+    "multiPages": {
+      "scroll": 300
+    },
+    "url": "https://www.ninkasi.fr/agenda",
     "ID": "Ninkasi|Lyon|France",
-    "baseURL": "https://www.ninkasi.fr/agenda/du/07-03-2024/au/07-08-2024/lieu/ninkasi-guillotiere/",
-    "eventsDelimiterTag": "DIV.nqcgrid.jslistingajax.hasmoreposts DIV.nqceventMiniature.nqceventMiniatureOn.jseventsajaxitem.nqcgriditem",
-    "dateFormat": "",
-    "eventURLIndex": 0
+    "baseURL": "https://www.ninkasi.fr/",
+    "eventsDelimiterTag": "DIV.nqcgrid.jslistingajax DIV.nqceventMiniature.jseventsajaxitem.nqcgriditem",
+    "dateFormat": "dd-MM-HH:mm",
+    "eventURLIndex": 1
   },
   {
     "name": "Likdo",

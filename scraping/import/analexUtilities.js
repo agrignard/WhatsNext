@@ -143,7 +143,11 @@ function getBestDateFormat(dates, JSON, dateConversionPatterns){
 function addJSONBlock(scrapSource,source){
     let res =  {};
     Object.keys(scrapSource).filter(element => scrapSource[element].length > 0)
-        .forEach(key =>res[key.replace(/String/,'Tag')] = getTagsForKey(scrapSource,key,source));
+        .forEach(key =>{
+            // if (scrapSource[key].length>0 && !(scrapSource[key].length === 1 && scrapSource[key][0] !== '')){
+                res[key.replace(/String/,'Tag')] = getTagsForKey(scrapSource,key,source);
+            // }
+        });
     // remove doubles 
     Object.keys(res).forEach(key => {res[key] = removeDoubles(res[key]);});
     return res;
@@ -173,17 +177,22 @@ function findTag(html,string) {
     // console.log('ess',string);
     // console.log(html.html());
    //  const tag = html(`*:contains('${string}')`).last();
-     const candidates = html(`*:contains('${string}')`);
-   //  let tag;
-     if (candidates.length === 0){
-        // console.log('\x1b[31mNo Tag Found matching string \x1b[0m\'%s\'\x1b[36m.',string);
-         return null;
-     }
-     let i = 0;
-     while(i<candidates.length-1 && html(candidates[i]).is(html(candidates[i+1]).parent())){
-         i++;
-     }
-     return candidates[i];
+    const candidates = html(`*:contains('${string}')`);
+    // console.log('rzg',candidates.length);
+    if (candidates.length === 0){
+    // console.log('\x1b[31mNo Tag Found matching string \x1b[0m\'%s\'\x1b[36m.',string);
+        return null;
+    }
+    let i = 0;
+    // for(let j=0;j<candidates.length;j++){
+    //     console.log(html(candidates[j]).text());
+    //     console.log('loc',j,getTagLocalization(candidates[j],html,false,[string]));
+    //     console.log(html(candidates[j]).html());
+    // }
+    while(i<candidates.length-1 && html(candidates[i]).is(html(candidates[i+1]).parent())){
+        i++;
+    }
+    return candidates[i];
  }
 
  function reduceTag(string,source){// reduce the tag list to keep it compact and avoid errors
@@ -261,7 +270,7 @@ function getTagLocalization(tag,source,isDelimiter,stringsToFind){
     try{
        //console.log(source.html());
         if (source(tag).prop('tagName')=='BODY' ||source(tag).prop('tagName')=='HEAD'){// if we are already at top level... may happen ?
-            return '';
+            return source(tag).prop('tagName');
         }
         let tagClass = '';
         let string;

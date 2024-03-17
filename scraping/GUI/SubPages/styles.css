@@ -155,6 +155,10 @@ background-color: lightblue;
   background-color: white;
 }
 
+#addVenueBtn{
+  margin-left: 100px;
+}
+
 #pageManager {
   position: relative; /* Position relative pour positionner le bouton à l'intérieur */
   width: 400px;

@@ -2,63 +2,54 @@
 /*  utilities to deal with the files  */
 /**************************************/
 
+const puppeteer = require('puppeteer');
 const fs = require('fs');
 const cheerio = require('cheerio');
 const {cleanPage, removeBlanks, extractBody, simplify} = require('./stringUtilities.js');
 
+
 module.exports = {fetchLink, fetchAndRecode, fetchWithRetry, loadLinkedPages, saveToJSON, 
                     saveToCSV, getVenuesFromArguments,getFilesContent, getFilesNumber, 
-                    getModificationDate};
+                    getModificationDate, getPageByPuppeteer};
 
-// // fetch linked page
-// async function fetchLink(page, nbFetchTries){
-//     try{
-//         const content = await fetchWithRetry(page, nbFetchTries, 2000);
-//         return extractBody(removeBlanks(cleanPage(content)));
-//     }catch(err){
-//         console.log("\x1b[31mNetwork error while fetching links, cannot download \'%s\'.\x1b[0m",page);
-//     }
-// }
-  
-// async function fetchWithRetry(page, tries, timeOut) {
-//     return fetchAndRecode(page)
-//    // .then(response => {return response})
-//     .catch(error => {
-//         if (tries > 1){
-//             console.log('Download failed (%s). Trying again in %ss (%s %s left).',page,timeOut/1000,tries-1,tries ===2?'attempt':'attempts');
-//             return new Promise(resolve => setTimeout(resolve, timeOut))
-//             .then(() => fetchWithRetry(page,tries-1,timeOut));
-//         }else{
-//             console.log('Download failed (%s). Aborting (too many tries).',page);
-//             throw error;
-//         }
-//     });
-// }
+async function getPageByPuppeteer(pageURL){
+    const browser = await puppeteer.launch({
+        // headless: false
+    });
+    const page = await browser.newPage();
+    await page.goto(pageURL);
+    await page.setViewport({
+        width: 1200,
+        height: 800
+    });
+
+    await autoScroll(page);
+
+    const content = await page.content();
+    await browser.close();
+
+    // fs.writeFileSync('page.html', content);
+    return content;
+};
 
 
-// fetch url and fix the coding when it is not in UTF-8
-// async function fetchAndRecode(url){
-//     return fetch(url)
-//     .then(response => decodeResponse(response));
-// }
-
-// function decodeResponse(response){
-//     const encoding =  response.headers.get('content-type').split('charset=')[1]; // identify the page encoding
-//     if (encoding === 'utf-8'){// || encoding ==='UTF-8'){
-//         //console.log('UTF8');
-//         const res = response.text();
-//         return res;
-//     }else{
-//         try{
-//             //console.log('Page encoding: ',encoding);
-//             const decoder = new TextDecoder(encoding); // convert to plain text (UTF-8 ?)
-//             return  response.arrayBuffer().then(buffer => decoder.decode(buffer));
-//         }catch(err){
-//             console.log('Decoding problem while processing %s. Error: %s',url,err);
-//             throw err;
-//         }
-//     }
-// }
+async function autoScroll(page){
+    await page.evaluate(async () => {
+        await new Promise((resolve) => {
+            var totalHeight = 0;
+            var distance = 100;
+            var timer = setInterval(() => {
+                var scrollHeight = document.body.scrollHeight;
+                window.scrollBy(0, distance);
+                totalHeight += distance;
+                if(totalHeight >= scrollHeight - window.innerHeight){
+                    clearInterval(timer);
+                    resolve();
+                }
+            }, 300); // why can't it be set in a variable ?
+        });
+    });
+}
 
 
 // fetch linked page
