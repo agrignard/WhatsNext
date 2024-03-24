@@ -124,6 +124,11 @@ pageManagerButton.addEventListener('click',function(){
 saveButton.addEventListener('click',function(){
   toLog("saved to JSON files:");
   removeEmptyFields(venue);
+  if (venue.hasOwnProperty('regexp')){
+    if (Object.keys(venue.regexp).length === 0){
+      delete venue.regexp;
+    }
+  }
   toLog(JSON.stringify(venue));
   saveToVenuesJSON(venues);
   removeEmptyFields(venueScrapInfo);
@@ -176,6 +181,8 @@ missingLinksButton.addEventListener('click', function(){
 // tabs panel
 const scrapElementPanels = document.getElementsByClassName('scrapPanelToHideWhenRegex');
 const regexpPanels = document.getElementsByClassName('regexpPanel');
+const regexSelectorPanel = document.getElementById('regexSelectorPanel');
+regexSelectorPanel.style.display = 'none';
 tabList = document.getElementsByClassName('tab');
 
 for(let i=0;i < regexpPanels.length; i++){
@@ -189,18 +196,14 @@ for (let iTab = 0; iTab<tabList.length; iTab++){
       tabList[i].classList.remove('selectedTab');
     }
     this.classList.add('selectedTab');
-    for(let i = 0; i < scrapElementPanels.length; i++){
-      if (currentTab === 'regexpTag'){
-        scrapElementPanels[i].style.display = 'none';
-        if (i < regexpPanels.length){
-          regexpPanels[i].style.display = 'block';
-        }
-      }else{
-        scrapElementPanels[i].style.display = 'block';
-        if (i < regexpPanels.length){
-          regexpPanels[i].style.display = 'none';
-        }
-      }
+    if (currentTab === 'regexpTag'){
+      regexSelectorPanel.style.display = 'block';
+      for(let i = 0; i < scrapElementPanels.length; i++){scrapElementPanels[i].style.display = 'none';};
+      for(let i = 0; i < regexpPanels.length; i++){regexpPanels[i].style.display = 'block';};
+    }else{
+      regexSelectorPanel.style.display = 'none';
+      for(let i = 0; i < scrapElementPanels.length; i++){scrapElementPanels[i].style.display = 'block';};
+      for(let i = 0; i < regexpPanels.length; i++){regexpPanels[i].style.display = 'none';};
     }
   });
 }
@@ -497,6 +500,21 @@ const regexpReplaceList = document.getElementsByClassName('regexpReplace');
 const regexpResultPanels = document.getElementsByClassName('regexpResult');
 let regexButtonShow = Array(regexpButtonList.length).fill(false);
 
+const regexSelectorMainTag = document.getElementById('regexSelectorMainTag');
+const regexSelectorIndex = document.getElementById('regexSelectorIndex');
+
+regexSelectorIndex.addEventListener('change', function(){
+  if (regexSelectorIndex.value >= cheerioTest(venue.eventsDelimiterTag).length){
+    regexSelectorIndex.value = 0;
+  }
+  applyRegexp();
+});
+
+regexSelectorMainTag.addEventListener('click', function(){
+  regexSelectorIndex.value = '';
+  applyRegexp();
+});
+
 const regexpKeyList = [];
 for (let i = 0; i < regexpMatchList.length; i++) {
   regexpKeyList.push(regexpMatchList[i].id.replace('RegexpInput',''));
@@ -594,6 +612,7 @@ switchPageButton.addEventListener('click',() =>{
     eventDummyPanel.style.display = 'block';
   }
   initializeInterface();
+  tabList[0].dispatchEvent(new Event('click'));
 });
 
 /*****************************/
@@ -1234,7 +1253,14 @@ function removeEmptyFields(object){
 }
 
 function applyRegexp(){
-  let $eventBlock = cheerio.load(cheerioTest(mainTag).html());
+  let $eventBlock;
+  if (regexSelectorIndex.value === ''){
+    $eventBlock = cheerio.load(cheerioTest(mainTag).html());
+  }else{
+    const index = parseInt(regexSelectorIndex.value);
+    const tag = cheerioTest(venue.eventsDelimiterTag)[index];
+    $eventBlock = cheerio.load(cheerioTest(tag).html());
+  }
   for(let i=0; i < regexpTextBeforeList.length; i++){
     const key = regexpKeyList[i];
     if (venue[currentPage].hasOwnProperty(key+'Tags')){
