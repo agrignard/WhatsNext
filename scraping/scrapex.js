@@ -166,7 +166,12 @@ const modificationDate = getModificationDate(venueSourcePath);
               }else{// URL is in inner tags
                   index = index - 1;
                 const tagsWithHref = $eventBlock('a[href]');
-                eventURL = makeURL(venue.baseURL,$eventBlock(tagsWithHref[index]).attr('href'));
+                const hrefFromAttribute = $eventBlock(tagsWithHref[index]).attr('href');
+                if (hrefFromAttribute){
+                  eventURL = makeURL(venue.baseURL,hrefFromAttribute);
+                }else{
+                  eventURL = $eventBlock(tagsWithHref[index]).text();
+                }     
               }
             }
           }else{ // if a delimiter for the URL has been defined
@@ -269,29 +274,6 @@ const modificationDate = getModificationDate(venueSourcePath);
 //***            aux functions             ***/
 //********************************************/
 
-
-  // auxiliary function to extract data
-function getText(tagName,JSONblock,source){
-  let string = "";
-  const tagList = JSONblock[tagName];
-  if (tagName !== 'eventMultiDateTags'){
-    try{
-      for (let i = 0; i <= tagList.length-1; i++) {
-        let ev = tagList[i]===''?source.text():source(tagList[i]).text();
-        string += ev+' ';
-      }
-    }catch(err){
-      console.log('\x1b[31m%s\x1b[0m', 'Erreur d\'extraction à partir des balises.\x1b[0m',tagList);
-    }
-    return removeBlanks(string);
-  }else{
-    const res = source(tagList[0]).map((index, element) => source(element).text()).get();
-    return res;
-  }
-  
-  //return tagName === 'eventPlaceTags'?fixString(removeBlanks(string),venueNamesList):removeBlanks(string);
-}
-    // end of auxiliary function
 
 
 

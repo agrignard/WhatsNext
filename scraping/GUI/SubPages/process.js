@@ -15,6 +15,8 @@ const {getTagLocalization, tagContainsAllStrings, getTagContainingAllStrings,
   splitAndLowerCase, addJSONBlock, reduceTag, getAllDates, getBestDateFormat,
   adjustMainTag, countNonEmptyEvents, regroupTags} = require(imports+'analexUtilities.js');
 const {getDateConversionPatterns} =require(imports+'dateUtilities.js');
+const {getText} =require(imports+'scrapexUtilities.js');
+
 
 let intervalId, linkedFileContent, linkedPage, eventURL;
 let stopCounter = false;
@@ -171,6 +173,40 @@ missingLinksButton.addEventListener('click', function(){
       setSwitchStatus();
     })
 });
+// tabs panel
+const scrapElementPanels = document.getElementsByClassName('scrapPanelToHideWhenRegex');
+const regexpPanels = document.getElementsByClassName('regexpPanel');
+tabList = document.getElementsByClassName('tab');
+
+for(let i=0;i < regexpPanels.length; i++){
+  regexpPanels[i].style.display = 'none';
+}
+
+for (let iTab = 0; iTab<tabList.length; iTab++){
+  tabList[iTab].addEventListener('click',function(){
+    currentTab = this.id;
+    for (let i = 0; i < tabList.length; i++){
+      tabList[i].classList.remove('selectedTab');
+    }
+    this.classList.add('selectedTab');
+    for(let i = 0; i < scrapElementPanels.length; i++){
+      if (currentTab === 'regexpTag'){
+        scrapElementPanels[i].style.display = 'none';
+        if (i < regexpPanels.length){
+          regexpPanels[i].style.display = 'block';
+        }
+      }else{
+        scrapElementPanels[i].style.display = 'block';
+        if (i < regexpPanels.length){
+          regexpPanels[i].style.display = 'none';
+        }
+      }
+    }
+  });
+}
+let currentTab = tabList[0].id;
+tabList[0].classList.add('selectedTab');
+
 
 // delimiter panel
 
@@ -387,11 +423,13 @@ const eventURLStrings = document.getElementById('eventURLStrings');
 const eventDummyStrings = document.getElementById('eventDummyStrings');
 const stringTextBoxes = [eventNameStrings, eventDateStrings, eventStyleStrings, eventPlaceStrings, eventURLStrings,eventDummyStrings];
 const dateFormatText = document.getElementById('dateFormatText');
-const eventURLTags = document.getElementById('eventPlaceTags');
+const eventURLTags = document.getElementById('eventURLTags');
 const eventDummyPanel = document.getElementById('eventDummy');
 const scrapTextBoxes = document.getElementsByClassName('scrapTextBox');
 const eventTagsBoxes = document.getElementsByClassName('eventTags');
 const eventStringsBoxes = document.getElementsByClassName('eventStrings');
+
+
 
 eventURLStrings.addEventListener("keydown", function(event) {// prevents field URL tag to have more than one line
   if (event.key === "Enter") {
@@ -449,6 +487,74 @@ function textBoxUpdate(textBox){
   }
 }
 
+// initialize regexp panels
+
+const regexpTextBeforeList = document.getElementsByClassName('regexpTextBefore');
+const regexpTextAfterList = document.getElementsByClassName('regexpTextAfter');
+const regexpMatchList = document.getElementsByClassName('regexpMatch');
+const regexpButtonList = document.getElementsByClassName('regexpButton');
+const regexpReplaceList = document.getElementsByClassName('regexpReplace');
+const regexpResultPanels = document.getElementsByClassName('regexpResult');
+let regexButtonShow = Array(regexpButtonList.length).fill(false);
+
+const regexpKeyList = [];
+for (let i = 0; i < regexpMatchList.length; i++) {
+  regexpKeyList.push(regexpMatchList[i].id.replace('RegexpInput',''));
+  regexpMatchList[i].addEventListener('input', function(){
+    applyChangeRegexField(i);
+  });
+  regexpReplaceList[i].addEventListener('input', function(){
+    applyChangeRegexField(i);
+  });
+}
+
+function applyChangeRegexField(i){
+  const txt = regexpMatchList[i].value;
+  if (txt === ''){
+    delete venue.regexp[regexpKeyList[i]];
+  }else{
+    if (regexButtonShow[i] === true){
+      venue.regexp[regexpKeyList[i]] = [txt,regexpReplaceList[i].value];
+    }else{
+      venue.regexp[regexpKeyList[i]] = txt;
+    }
+  }
+  console.log(venue.regexp);
+  applyRegexp();
+}
+
+
+if (venue.hasOwnProperty('regexp')){
+  Object.keys(venue.regexp).forEach(key => {
+    const fieldMatch = document.getElementById(key+'RegexpInput');
+    if (typeof venue.regexp.key === 'string'){
+      fieldMatch.value = venue.regexp[key];
+    }else{
+      fieldMatch.value = venue.regexp[key][0];
+      const fieldReplace = document.getElementById(key+'RegexpReplace');
+      fieldReplace.value = venue.regexp[key][1];
+      const index = regexpKeyList.indexOf(key);
+      regexButtonShow[index] = true;
+    }
+  });
+}
+
+for (let i = 0; i < regexpButtonList.length; i++){
+  if (regexButtonShow[i] === false){
+    regexpReplaceList[i].style.display = 'none';
+  }
+  regexpButtonList[i].addEventListener('click', function (){
+    regexButtonShow[i] = ! regexButtonShow[i];
+    // const key = this.id.match(/event(.*?)Regexp/)[1];
+    if (regexButtonShow[i]){
+      regexpReplaceList[i].style.display = 'inline';
+    }else{
+      regexpReplaceList[i].style.display = 'none';
+    }
+    applyChangeRegexField(i);
+    // applyRegexp();
+  });
+}
 
 
 // log text
@@ -503,6 +609,7 @@ function initializeInterface(){
   if (currentPage === 'mainPage'){
     if (lastModified){// if the file exists
       loadPage();
+      applyRegexp();
     }else{
       rightPanel.textContent = 'Content not downloaded yet';
       analyzePanel.style.display = 'none';
@@ -519,7 +626,8 @@ function initializeInterface(){
 function loadLinkedPageContent(){
   analyzePanel.style.display = 'block';
   if (linkedPage){
-    const parsedLinkedPage = parseDocument(convertToLowerCase('<html><head></head>'+linkedPage+'</html>'));
+    // const parsedLinkedPage = parseDocument(convertToLowerCase('<html><head></head>'+linkedPage+'</html>'));
+    const parsedLinkedPage = parseDocument('<html><head></head>'+linkedPage+'</html>');
     cheerioTest = cheerio.load(parsedLinkedPage);
   }else{
     console.log('***** Error with linked page *****');
@@ -604,7 +712,8 @@ function applyTags(renderURL){
   }
 
   if (currentPage === 'mainPage'){
-    const $ = cheerio.load( parseDocument(convertToLowerCase(localPage)));
+    // const $ = cheerio.load( parseDocument(convertToLowerCase(localPage)));
+    const $ = cheerio.load( parseDocument(localPage));
     $(mainTagAbsolutePath).addClass('mainTag');
     $(venue.eventsDelimiterTag).each((index, delimiterTag) => {
       const eve = $(delimiterTag).html();
@@ -640,7 +749,8 @@ function applyTags(renderURL){
      // rightPanel.scrollBy({top: -rightPanel.offsetHeight/2+focusedElement.offsetHeight/2, behavior: 'auto'});
     }
   }else{
-    const $ = cheerio.load(parseDocument(convertToLowerCase('<html><head></head>'+linkedPage+'</html>')));
+    // const $ = cheerio.load(parseDocument(convertToLowerCase('<html><head></head>'+linkedPage+'</html>')));
+    const $ = cheerio.load(parseDocument('<html><head></head>'+linkedPage+'</html>'));
     fillTags($);
     rightPanel.innerHTML = $.html();
     rightPanel.querySelectorAll('a'||'select').forEach(link => {
@@ -656,7 +766,8 @@ function applyTags(renderURL){
 function loadPage(){
   analyzePanel.style.display = 'block';
   localPage = reduceImgSize(getFilesContent(sourcePath, nbPagesToShow));
-  cheerioTest = cheerio.load(parseDocument(convertToLowerCase(localPage)));
+  // cheerioTest = cheerio.load(parseDocument(convertToLowerCase(localPage)));
+  cheerioTest = cheerio.load(parseDocument(localPage));
   // find the tag from eventsDelimiterTag, with the text in the strings. If not found, get the first tag
   // that matches eventsDelimiterTag
   if (venue.hasOwnProperty('eventsDelimiterTag')){
@@ -809,8 +920,10 @@ function computeTags(id){
     const stringsToFind = [].concat(...Object.values(splitAndLowerCase(venueScrapInfo)[currentPage]));
     const tagsContainingStrings =  getTagContainingAllStrings(cheerioTest,stringsToFind);
     if (tagsContainingStrings.length === 0){
-      const tagId = id.replace(/Strings/,'Tags');
-      delete venue[currentPage][tagId];
+      if (id){
+        const tagId = id.replace(/Strings/,'Tags');
+        delete venue[currentPage][tagId];
+      }
       for(let b=0;b<eventTagsBoxes.length;b++){
         eventTagsBoxes[b].value = '';
       }
@@ -857,9 +970,9 @@ function computeTags(id){
         });
        }
       
-       if (delimiterHasChanged){
+      // if (delimiterHasChanged){
         computeEventsNumber();
-      }
+      // }
        computeDateFormat();
        applyTags(delimiterHasChanged || id === 'eventURLStrings');
        initScrapTextTags();
@@ -922,7 +1035,7 @@ function renderEventURLPanel(){
 
   if (venue.mainPage.hasOwnProperty('eventURLTags')){
     const $eventBlock = cheerio.load(cheerioTest(tag).html());
-    eventURL = $eventBlock(venue.mainPage.eventURLTags[0]).text();
+    eventURL = $eventBlock(venue.mainPage.eventURLTags[0]).attr('href');
     eventURLPanelMessage.textContent = 'URL from tag: '+ eventURL;
     eventURLSelect.style.display = 'none';
   }else{
@@ -1101,6 +1214,10 @@ function renderMultiPageManager(nbPages){
   selectNbPages.selectedIndex = nbPagesToShow-1;
 }
 
+selectNbPages.addEventListener('change', ()=>{
+  nbPagesToShow = selectNbPages.selectedIndex + 1;
+  loadPage();
+});
 
 function removeEmptyFields(object){
   fieldsToCheck = ['linkedPage','mainPage'];
@@ -1114,4 +1231,35 @@ function removeEmptyFields(object){
       })
     }
   });
+}
+
+function applyRegexp(){
+  let $eventBlock = cheerio.load(cheerioTest(mainTag).html());
+  for(let i=0; i < regexpTextBeforeList.length; i++){
+    const key = regexpKeyList[i];
+    if (venue[currentPage].hasOwnProperty(key+'Tags')){
+      const str = getText(key+'Tags', venue[currentPage], $eventBlock);
+      regexpTextBeforeList[i].textContent = str;
+      regexpTextBeforeList[i].style.display = 'block';
+      regexpResultPanels[i].style.display = 'block';
+    }else{
+      regexpTextBeforeList[i].style.display = 'none';
+      regexpResultPanels[i].style.display = 'none';
+    }
+    regexpTextAfterList[i].style.display = 'none';
+  }
+  if (venue.hasOwnProperty('regexp')){
+    // console.log(venue.regexp);
+    Object.keys(venue.regexp).forEach(key => {
+      // const fieldMatch = document.getElementById(key+'RegexpInput');
+      const source = document.getElementById(key+'RegexpTextBefore');
+      const target = document.getElementById(key+'RegexpTextAfter');
+      target.style.display = 'block';
+      if (typeof venue.regexp[key] === 'string'){// a string, regexp is used for a match
+        target.textContent = source.textContent.match(new RegExp(venue.regexp[key]));
+      }else if (venue.regexp[key].length === 2){// a list of two elements. replace pattern (1st) with (2nd)
+        target.textContent = source.textContent.replace(new RegExp(venue.regexp[key][0]),venue.regexp[key][1]);
+      }
+    });
+  }
 }

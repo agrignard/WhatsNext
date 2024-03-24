@@ -352,20 +352,23 @@
       "nbPages": 42
     },
     "baseURL": "https://www.infoconcert.com/concerts/",
-    "eventsDelimiterTag": "DIV.panelbody",
+    "eventsDelimiterTag": " DIV.panel.paneldefault.dateline DIV.panelbody",
     "mainPage": {
       "eventNameTags": [
-        "A:eq(0)"
-      ],
-      "eventDateTags": [
-        "SPAN.day:eq(0)",
-        "SPAN.month:eq(0)"
+        "DIV.spectacle:eq(0) A"
       ],
       "eventPlaceTags": [
-        "DIV.salle:eq(0)  A:eq(0)  SPAN:eq(0)"
+        "DIV.salle:eq(0) A:eq(0) SPAN:eq(0)"
       ],
       "eventURLTags": [
-        "A.grey:eq(0)"
+        "DIV.colxs6.moreinfos:eq(0) A.grey:eq(0)"
+      ],
+      "eventDateTags": [
+        "TIME:eq(0) SPAN.daytitle:eq(0)",
+        "TIME:eq(0) SPAN.day:eq(0)",
+        "TIME:eq(0) SPAN.month:eq(0)",
+        "TIME:eq(0) SPAN.year:eq(0)",
+        "TIME:eq(0) SPAN.hour:eq(0)"
       ]
     },
     "regexp": {
@@ -374,18 +377,18 @@
         ""
       ]
     },
-    "eventURLIndex": 5,
-    "dateFormat": "dd-MM",
+    "eventURLIndex": 1,
+    "dateFormat": "dd-MM-yyyy-HH:mm",
     "linkedPage": {
       "eventDateTags": [
-        "DIV.panelbody__content:eq(1)  H3.mb10:eq(0)",
-        "TIME:eq(0)"
+        "DIV.panelbody__content:eq(1) H3.mb10:eq(0)",
+        null
       ],
-      "eventMultiDateTags": [
-        "LI.listgroupitem"
+      "eventPlaceTags": [
+        "SPAN.small:eq(1) B:eq(0)"
       ]
     },
-    "linkedPageDateFormat": "dd-MM-yyyy-HH:mm",
+    "linkedPageDateFormat": "",
     "ID": "Infoconcert|Lyon|France"
   },
   {
@@ -743,7 +746,8 @@
       ]
     },
     "multiPages": {
-      "scroll": 300
+      "nbPages": "5",
+      "scroll": true
     },
     "url": "https://www.ninkasi.fr/agenda",
     "ID": "Ninkasi|Lyon|France",
@@ -784,5 +788,17 @@
     "eventsDelimiterTag": " DIV.wlayoutgrid.evetscollectionsectionheader.blackbg.recom.artist A.cardwrapper.winlineblock",
     "dateFormat": "dd-MM",
     "eventURLIndex": 0
+  },
+  {
+    "name": "Noise Hanoi",
+    "city": "Hanoi",
+    "country": "Vietnam",
+    "mainPage": {},
+    "url": "https://www.noisehanoi.com/gigs",
+    "ID": "Noise Hanoi|Hanoi|Vietnam",
+    "multiPages": {
+      "nbPages": "5",
+      "scroll": true
+    }
   }
 ]

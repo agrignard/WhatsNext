@@ -192,20 +192,29 @@
   "Infoconcert|Lyon|France": {
     "mainPage": {
       "eventNameStrings": [
-        "heusss"
+        "SEBASTIEN BRUN"
       ],
-      "eventDateStrings": "06 février",
       "eventPlaceStrings": [
-        "bourse"
+        "Eglise Saint Andre A Lyon"
       ],
       "eventURLStrings": [
-        "infos"
+        "Plus d'infos sur ce concert"
+      ],
+      "eventDateStrings": [
+        "Jeudi",
+        "29",
+        "Février",
+        "2024",
+        "19h00"
       ]
     },
     "linkedPage": {
       "eventDateStrings": [
         "date",
         "20h00"
+      ],
+      "eventPlaceStrings": [
+        "nom"
       ]
     }
   },

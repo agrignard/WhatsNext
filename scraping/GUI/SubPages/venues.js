@@ -373,9 +373,7 @@ function updateVenueInfo(mode){
                 changeMPPanel(hasMP);
             });
             function checkIndexWarning(){
-                console.log(selectMPFields.value);
-                console.log(/\{index\}/.test(textURL.textContent));
-                divMPInfo.style.display = selectMPFields.value === 'Scroll' ||
+                divMPInfo.style.display =   selectMPFields.value === 'Scroll' ||
                                             selectMPFields.value === 'PageList' ||
                                             /\{index\}/.test(textURL.textContent) ? 'none':'inline';
             }
@@ -470,15 +468,15 @@ function updateVenueInfo(mode){
                 if (hasMP){
                     venue.multiPages = {};
                     venue.multiPages.nbPages = nbPagesToScrap.value;
-                    if (venue.multiPages.hasOwnProperty('pattern')){delete venue.multiPages.pattern;}
-                    if (venue.multiPages.hasOwnProperty('scroll')){delete venue.multiPages.scroll;}
-                    if (venue.multiPages.hasOwnProperty('startIndex')){delete venue.multiPages.startIndex;}
+                    // if (venue.multiPages.hasOwnProperty('pattern')){delete venue.multiPages.pattern;}
+                    // if (venue.multiPages.hasOwnProperty('scroll')){delete venue.multiPages.scroll;}
+                    // if (venue.multiPages.hasOwnProperty('startIndex')){delete venue.multiPages.startIndex;}
                     if (selectMPFields.selectedIndex === 0){             
                         venue.multiPages.startPage = MPIndexInput.value;
                         venue.multiPages.increment = MPIncrementInput.value;
                     }else if (selectMPFields.selectedIndex === 1){                          
                         venue.multiPages.pattern = MPPatternInput.value;
-                    }else if (selectMPFields.selectedIndex === 1){                          
+                    }else if (selectMPFields.selectedIndex === 2){                          
                         venue.multiPages.scroll = true;
                     }else{
                         venue.multiPages.pageList = splitArray(MPPageListInput.value);

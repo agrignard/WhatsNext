@@ -288,20 +288,7 @@ function getURLIndex(venueJSON,nbHrefs,source){
 
 
 
-// function getVenuesFromArguments(args, venueList){
-//     let venues = venueList;
-//     if (args.length > 2){
-//         const venuesFilter = filterFromArguments(args);
-//         if (venuesFilter){
-//           venues = venuesFilter.name==='*'?venues:venues.filter(el => el.name.toLowerCase() === venuesFilter.name);
-//           venues = venuesFilter.city==='*'?venues:venues.filter(el => el.city.toLowerCase() ===venuesFilter.city);
-//           venues = venuesFilter.country==='*'?venues:venues.filter(el => el.country.toLowerCase() ===venuesFilter.country);
-//         }else{
-//           venues = [];
-//         }
-//     }
-//     return venues;
-// }
+
 
 
 

@@ -65,6 +65,7 @@ async function downloadVenue(venue,filePath){
       if (venue.hasOwnProperty('multiPages') && venue.multiPages.hasOwnProperty('scroll')){
         htmlContent = cleanPage(await getPageByPuppeteer(page));
       }else{
+        console.log('files',URLlist);
         htmlContent = cleanPage(await fetchWithRetry(page,2,2000));
       }
     }catch(err){

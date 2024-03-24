@@ -328,13 +328,13 @@ function splitAndLowerCase(eventStrings){
             if(typeof newES.mainPage[key] === "string"){
                 newES.mainPage[key] = newES.mainPage[key].split(/\s+/);
             }
-            newES.mainPage[key] = newES.mainPage[key].map(string => string.toLowerCase());
+            // newES.mainPage[key] = newES.mainPage[key].map(string => string.toLowerCase());
         }
         for (const key in newES.linkedPage){
             if(typeof newES.linkedPage[key] === "string"){
                 newES.linkedPage[key] = newES.linkedPage[key].split(/\s+/);
             }
-            newES.linkedPage[key] = newES.linkedPage[key].map(string => string.toLowerCase());
+            // newES.linkedPage[key] = newES.linkedPage[key].map(string => string.toLowerCase());
         }
         return newES;
     }catch(error){
