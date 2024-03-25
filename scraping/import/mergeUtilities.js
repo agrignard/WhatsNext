@@ -58,6 +58,9 @@ function mergeEvents(eventList,showFullMergeLog){
 // legit (several event times like afternoon and evening shows) or if it is a mistake from one of the sources
   
     function merge(event){
+        // if (event.eventName.includes('SPANISH'&&event.eventDate.includes(''))){
+        //     console.log(event);
+        // }
         if (!event.hasOwnProperty('mergeCandidates')){// if there is no candidate to merge, return the event
             return [event];
         }
@@ -79,6 +82,7 @@ function mergeEvents(eventList,showFullMergeLog){
             }else{// no local source. Event schedules time are analysed to see if they are legit or a mistake
                 dateList = removeDoubles(event.mergeCandidates.map(el => el.unixDate));
                 dateList = confirmDates(dateList,event.mergeCandidates);
+                // console.log('liste',dateList);
             }
             if (dateList.length === 0){// no schedule appear to be more legit than the others. Keep the event merged
                 // and keep an error log for manual checking. 

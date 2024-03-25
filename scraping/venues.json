@@ -391,6 +391,9 @@
       ],
       "eventPlaceTags": [
         "SPAN.small:eq(1) B:eq(0)"
+      ],
+      "eventMultiDateTags": [
+        "LI.listgroupitem"
       ]
     },
     "linkedPageDateFormat": "dd-MM-yyyy-HH:mm",
