@@ -11,7 +11,7 @@ const {samePlace, getAliases, getStyleConversions, loadVenuesJSONFile,
         loadCancellationKeywords, writeToLog, isAlias, geAliasesToURLMap,
         getLanguages, fromLanguages, checkLanguages, unique} = require('./import/jsonUtilities.js');
 const { mergeEvents} = require('./import/mergeUtilities.js');
-
+const { getText} = require('./import/scrapexUtilities.js');
 // Chemin vers le fichier à lire
 const sourcePath = './webSources/';
 
