@@ -191,7 +191,7 @@
     "city": "Lyon",
     "country": "France",
     "url": "https://www.petit-bulletin.fr/lyon/agenda-recherche.html?idvillepb=lyon&pageagenda=12&thema=musique-soirees&quoi=0&ou=0&quand=0&dateprecise=&qui=&p={index}",
-    "eventsDelimiterTag": "A.term7",
+    "eventsDelimiterTag": "DIV.entrycontent.bodycolor.clearfix.linkcolorwrap A.term7",
     "dateFormat": "dd-MM-yyyy-HH:mm",
     "baseURL": "https://www.petit-bulletin.fr/lyon/",
     "mainPage": {
