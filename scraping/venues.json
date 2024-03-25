@@ -199,13 +199,13 @@
         "H2:eq(0)"
       ],
       "eventDateTags": [
-        "P:eq(1)"
+        "P.addedTag:eq(0)"
       ],
       "eventStyleTags": [
         "P:eq(0)"
       ],
       "eventPlaceTags": [
-        "P.addedTag:eq(0)"
+        "P.addedTag:eq(1)"
       ]
     },
     "multiPages": {
