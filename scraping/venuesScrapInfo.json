@@ -2,14 +2,15 @@
   "Le Sucre|Lyon|France": {
     "mainPage": {
       "eventNameStrings": [
-        "mini club x brk",
-        "otto von schirach (live)"
+        "mini club x BRK",
+        "Otto von Schirach (live)",
+        "Ato"
       ],
       "eventDateStrings": [
         "29 mars"
       ],
       "eventStyleStrings": [
-        "club"
+        "Club"
       ]
     },
     "linkedPage": {
@@ -210,23 +211,23 @@
     },
     "linkedPage": {
       "eventDateStrings": [
-        "date",
-        "20h00"
+        "Jeudi 29 Février 2024 à 19h00"
       ],
       "eventPlaceStrings": [
-        "nom"
+        "Eglise Saint A"
       ]
     }
   },
   "La Clef de Voûte|Lyon|France": {
     "mainPage": {
       "eventNameStrings": [
-        "marc cabrera"
+        "Marc CABRERA"
       ],
       "eventDateStrings": [
         "31 mars | 19h30"
       ]
-    }
+    },
+    "linkedPage": {}
   },
   "Hanoi Grapevine|Hanoi|Vietnam": {
     "mainPage": {

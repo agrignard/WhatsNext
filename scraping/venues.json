@@ -30,7 +30,13 @@
       ]
     },
     "linkedPageDateFormat": "dd-MM-HH:mm",
-    "ID": "Le Sucre|Lyon|France"
+    "ID": "Le Sucre|Lyon|France",
+    "regexp": {
+      "eventStyle": [
+        "\\| ",
+        ""
+      ]
+    }
   },
   {
     "name": "Le Petit Salon",
@@ -381,14 +387,13 @@
     "dateFormat": "dd-MM-yyyy-HH:mm",
     "linkedPage": {
       "eventDateTags": [
-        "DIV.panelbody__content:eq(1) H3.mb10:eq(0)",
-        null
+        "SPAN.small:eq(0) TIME:eq(0)"
       ],
       "eventPlaceTags": [
         "SPAN.small:eq(1) B:eq(0)"
       ]
     },
-    "linkedPageDateFormat": "",
+    "linkedPageDateFormat": "dd-MM-yyyy-HH:mm",
     "ID": "Infoconcert|Lyon|France"
   },
   {

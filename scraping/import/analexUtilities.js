@@ -156,7 +156,7 @@ function addJSONBlock(scrapSource,source){
 function getTagsForKey(object,key,cheerioSource){
     const string = key.match(/event([^]*)String/);
     console.log('\n\x1b[36mEvent '+string[1]+' tags:\x1b[0m');
-    const tagList = object[key].map(string2 => findTag(cheerioSource,string2));
+    const tagList = object[key].filter(el => el !== '').map(string2 => findTag(cheerioSource,string2));
     showTagsDetails(tagList,cheerioSource,object[key]);
     return tagList.map((tag,index) => reduceTag(getTagLocalization(tag,cheerioSource,false,[object[key][index]]),cheerioSource));
  }

@@ -46,6 +46,27 @@ const easyConvert = {'eventNameStrings':0,'eventDateStrings':1,'eventStyleString
 /*         initialize        */
 /*****************************/
 
+// document.addEventListener('click', function(event) {
+//   var element = event.target;
+//   var tagName = element.tagName;
+//   var tagText = element.textContent;
+//   console.log("Balise de l'élément cliqué : " + tagName);
+//   console.log(getPathTo(element));
+// });
+
+function getPathTo(element) {
+  var path = '';
+  while (element) {
+      var nodeName = element.nodeName.toLowerCase();
+      var id = element.id ? '#' + element.id : '';
+      var className = element.className ? '.' + element.className.replace(/\s+/g, '.') : '';
+      path = nodeName + id + className + (path ? '>' + path : '');
+      element = element.parentNode;
+  }
+  return path;
+}
+
+
 // get venue JSON
 const venues = loadVenuesJSONFile();
 const venueID = sessionStorage.getItem('currentVenue');
@@ -198,6 +219,7 @@ for (let iTab = 0; iTab<tabList.length; iTab++){
     this.classList.add('selectedTab');
     if (currentTab === 'regexpTag'){
       regexSelectorPanel.style.display = 'block';
+      applyRegexp();
       for(let i = 0; i < scrapElementPanels.length; i++){scrapElementPanels[i].style.display = 'none';};
       for(let i = 0; i < regexpPanels.length; i++){regexpPanels[i].style.display = 'block';};
     }else{
@@ -458,6 +480,9 @@ for(let i = 0; i < copyButtons.length; i++){
 function copyToTextBox(target){
   const selection = window.getSelection();
   const textCopy = selection.toString();
+  const myNode = getParentElement(selection.anchorNode);
+  console.log(myNode);
+  console.log(getPathTo(myNode));
   if (textCopy) {
     target.value = (target.value.replace(/(\n\s*)*$/,'').replace(/\n\s*\n/g,'\n')+'\n'+textCopy).replace(/^(\s*\n)*/,'');// remove blank lines
     if (target.classList.contains("eventURLgroup")){// prevents field URL tag to have more than one line
@@ -465,6 +490,16 @@ function copyToTextBox(target){
     }
     textBoxUpdate(target);
   }
+}
+
+function getParentElement(node) {
+  while (node) {
+      if (node.nodeType === Node.ELEMENT_NODE) {
+          return node;
+      }
+      node = node.parentNode;
+  }
+  return null;
 }
 
 const eventURLPanelMessage = document.getElementById('eventURLPanelMessage');
@@ -504,11 +539,20 @@ const regexSelectorMainTag = document.getElementById('regexSelectorMainTag');
 const regexSelectorIndex = document.getElementById('regexSelectorIndex');
 
 regexSelectorIndex.addEventListener('change', function(){
-  if (regexSelectorIndex.value >= cheerioTest(venue.eventsDelimiterTag).length){
-    regexSelectorIndex.value = 0;
+  if (regexSelectorIndex.value > cheerioTest(venue.eventsDelimiterTag).length){
+    regexSelectorIndex.value = 1;
+  }
+  if (regexSelectorIndex.value < 1){
+    regexSelectorIndex.value = cheerioTest(venue.eventsDelimiterTag).length;
   }
   applyRegexp();
 });
+
+// regexSelectorIndex.addEventListener('keydown', function(event) {
+//   if (event.key === 'ArrowDown' && this.value === '0') {
+//       this.value = '10';
+//   }
+// });
 
 regexSelectorMainTag.addEventListener('click', function(){
   regexSelectorIndex.value = '';
@@ -531,13 +575,15 @@ function applyChangeRegexField(i){
   if (txt === ''){
     delete venue.regexp[regexpKeyList[i]];
   }else{
+    if (!venue.hasOwnProperty('regexp')){
+      venue.regexp = {};
+    }
     if (regexButtonShow[i] === true){
       venue.regexp[regexpKeyList[i]] = [txt,regexpReplaceList[i].value];
     }else{
       venue.regexp[regexpKeyList[i]] = txt;
     }
   }
-  console.log(venue.regexp);
   applyRegexp();
 }
 
@@ -752,6 +798,16 @@ function applyTags(renderURL){
         e.preventDefault(); 
       });
     });
+    // console.log($(venue.eventsDelimiterTag).text());
+    // $('BODY').on('click', function(event) {
+    //   // Récupérer l'élément cliqué
+    //   const elementClicked = $(event.target);
+
+    //   // Afficher le HTML de l'élément cliqué
+    //   console.log("HTML de l'élément cliqué : ", elementClicked.html());
+    // });
+
+
   
     if (localPage){
       if (renderURL === true){
@@ -764,7 +820,7 @@ function applyTags(renderURL){
     const focusedElement = document.getElementsByClassName("mainTag")[0];
     if (focusedElement){
       focusedElement.scrollIntoView({ behavior: 'auto', block: 'start' });
-     // rightPanel.scrollBy({top: -100, behavior: 'auto'});
+      rightPanel.scrollBy({top: -100, behavior: 'auto'});
      // rightPanel.scrollBy({top: -rightPanel.offsetHeight/2+focusedElement.offsetHeight/2, behavior: 'auto'});
     }
   }else{
@@ -916,7 +972,7 @@ function getValue(object){
 }
 
 function getArray(string){
-  return string.split('\n').filter(el => el !== '');
+  return string.split('\n');//.filter(el => el !== '');
 }
 
 function containsURL(tag){
@@ -936,7 +992,7 @@ function computeTags(id){
   // compute main tag
   let delimiterHasChanged = false;
   if (!freezeDelimiter && currentPage === 'mainPage'){
-    const stringsToFind = [].concat(...Object.values(splitAndLowerCase(venueScrapInfo)[currentPage]));
+    const stringsToFind = [].concat(...Object.values(splitAndLowerCase(venueScrapInfo)[currentPage])).filter(el => el !== '');
     const tagsContainingStrings =  getTagContainingAllStrings(cheerioTest,stringsToFind);
     if (tagsContainingStrings.length === 0){
       if (id){
@@ -1257,7 +1313,7 @@ function applyRegexp(){
   if (regexSelectorIndex.value === ''){
     $eventBlock = cheerio.load(cheerioTest(mainTag).html());
   }else{
-    const index = parseInt(regexSelectorIndex.value);
+    const index = parseInt(regexSelectorIndex.value)-1;
     const tag = cheerioTest(venue.eventsDelimiterTag)[index];
     $eventBlock = cheerio.load(cheerioTest(tag).html());
   }

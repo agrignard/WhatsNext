@@ -31,7 +31,7 @@ ipcMain.on('execute-fonction', (event, functionName, mode) => {
 
 ipcMain.on('openProcessPage', (event) => {
    mainWindow.loadFile('SubPages/process.html');
- });
+});
 
 app.whenReady().then(createWindow);
 
