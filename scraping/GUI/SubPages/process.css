@@ -402,6 +402,13 @@ background-color: lightblue;
   margin: 1px;
 }
 
+.focusedOn {
+  border: 5px solid rgb(231, 76, 60);; 
+  padding: 10px; 
+  display: inline-block; /* Permet à l'élément de s'ajuster à la largeur du contenu */
+  margin: 1px;
+}
+
 .mainTag {
   background-color: rgb(231, 76, 60);
 }

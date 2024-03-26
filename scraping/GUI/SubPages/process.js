@@ -46,13 +46,13 @@ const easyConvert = {'eventNameStrings':0,'eventDateStrings':1,'eventStyleString
 /*         initialize        */
 /*****************************/
 
-// document.addEventListener('click', function(event) {
-//   var element = event.target;
-//   var tagName = element.tagName;
-//   var tagText = element.textContent;
-//   console.log("Balise de l'élément cliqué : " + tagName);
-//   console.log(getPathTo(element));
-// });
+document.addEventListener('click', function(event) {
+  var element = event.target;
+  var tagName = element.tagName;
+  var tagText = element.textContent;
+  console.log("Balise de l'élément cliqué : " + tagName);
+  console.log(getPathTo(element));
+});
 
 function getPathTo(element) {
   var path = '';
@@ -545,6 +545,9 @@ regexSelectorIndex.addEventListener('change', function(){
   if (regexSelectorIndex.value < 1){
     regexSelectorIndex.value = cheerioTest(venue.eventsDelimiterTag).length;
   }
+  console.log(cheerioTest(venue.eventsDelimiterTag).length);
+  const tag = cheerioTest(venue.eventsDelimiterTag)[regexSelectorIndex.value];
+  tag.classList.add('focusedOn');
   applyRegexp();
 });
 
@@ -1253,17 +1256,37 @@ function findURLs(ctag){
 // };
 
 function reduceImgSize(html){
-  const regexWidth = /(\<(?:img|svg)[^\<]*width\s*=\s*\")([^\"]*)\"/g;
-  const regexHeight = /(\<(?:img|svg)[^\<]*height\s*=\s*\")([^\"]*)\"/g;
+  const regexWidth = /(width\s*=\s*\")(.*?)\"/;
+  const regexHeight = /(height\s*=\s*\")(.*?)\"/;
+  const regexImg = /\<(?:img|svg).*?\>/g;
 
-  function replace(p1,p2,p3){
-    if (p3 > 100){
-      return p2+'50'+'\"';
-    }
-    return p1;
+  function innerReplace(e1,e2,e3){
+      if (e3 > 100){
+          return e2+'100"';
+      }
+      return e1;
   }
-  return html.replace(regexWidth,replace).replace(regexHeight,replace);
+
+  function replace(p1){
+    let res = regexWidth.test(p1)?p1.replace(regexWidth,innerReplace):p1.replace(/img/,'img width="100"').replace(/svg/,'svg width="100"');
+    res = regexHeight.test(res)?res.replace(regexHeight,innerReplace):res.replace(/img/,'img height="100"').replace(/svg/,'svg height="100"');
+  return res;
+  }
+  return html.replace(regexImg,replace);
 }
+
+// function reduceImgSize(html){
+//   const regexWidth = /(\<(?:img|svg)[^\<]*width\s*=\s*\")([^\"]*)\"/g;
+//   const regexHeight = /(\<(?:img|svg)[^\<]*height\s*=\s*\")([^\"]*)\"/g;
+
+//   function replace(p1,p2,p3){
+//     if (p3 > 100){
+//       return p2+'50'+'\"';
+//     }
+//     return p1;
+//   }
+//   return html.replace(regexWidth,replace).replace(regexHeight,replace);
+// }
 
 function computeEventsNumber(){
   if (venue.hasOwnProperty('eventsDelimiterTag')){

@@ -1,1 +1,470 @@
-[]
+[
+  {
+    "eventPlace": "Maison de la Danse",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Cosmologies / Carte blanche à Jan Martens",
+    "eventDate": "Du 27 au 29 mars 2024, 19h30",
+    "eventStyle": "Classique",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-309845-cosmologies-carte-blanche-a-jan-martens.html",
+    "eventDetailedStyle": "Classique & Lyrique",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Du 27 au 29 mars 2024, 19h30\", converti en \"27-29-03-2024-19:30\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Hot Club",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Aka Moon",
+    "eventDate": "29 mars et 30 mars à 20h30",
+    "eventStyle": "Jazz",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-308761-aka-moon.html",
+    "eventDetailedStyle": "Jazz",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"29 mars et 30 mars à 20h30\", converti en \"29-03-30-20:30\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Dans les quartiers de Villeurbanne",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "FeFan - Festival de Fanfare de Villeurbanne",
+    "eventDate": "Du 3 au 5 mai 2024, ven au soir, sam de 11h à 17h, fête de 17h à minuit, dim au matin",
+    "eventStyle": "World",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-302951-fefan-festival-de-fanfare-de-villeurbanne.html",
+    "eventDetailedStyle": "Sono Mondiale / Fanfares",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Du 3 au 5 mai 2024, ven au soir, sam de 11h à 17h, fête de 17h à minuit, dim au matin\", converti en \"03-05-05-2024-11:00\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Le Sucre",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Ns Club x Elevate",
+    "eventDate": "Mardi 7 mai 2024 de minuit à 6h",
+    "eventStyle": "Electro",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-309951-ns-club-x-elevate.html",
+    "eventDetailedStyle": "Musiques Electroniques",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Mardi 7 mai 2024 de minuit à 6h\", converti en \"07-05-2024\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Le Sucre",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Ns Club x Grünt",
+    "eventDate": "Mercredi 8 mai 2024 de minuit à 6h",
+    "eventStyle": "Electro",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-309954-ns-club-x-grunt.html",
+    "eventDetailedStyle": "Musiques Electroniques",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Mercredi 8 mai 2024 de minuit à 6h\", converti en \"08-05-2024\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Le Sucre",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Ns Club x Unsound",
+    "eventDate": "Jeudi 9 mai 2024 de minuit à 6h",
+    "eventStyle": "Electro",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-309957-ns-club-x-unsound.html",
+    "eventDetailedStyle": "Musiques Electroniques",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Jeudi 9 mai 2024 de minuit à 6h\", converti en \"09-05-2024\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Le Sucre",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "NS Club x Terraforma",
+    "eventDate": "Vendredi 10 mai 2024 de minuit à 6h",
+    "eventStyle": "Electro",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-309960-ns-club-x-terraforma.html",
+    "eventDetailedStyle": "Musiques Electroniques",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Vendredi 10 mai 2024 de minuit à 6h\", converti en \"10-05-2024\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Le Sucre",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "NS Club",
+    "eventDate": "Samedi 11 mai 2024 de minuit à 6h",
+    "eventStyle": "Electro",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-309963-ns-club.html",
+    "eventDetailedStyle": "Musiques Electroniques",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Samedi 11 mai 2024 de minuit à 6h\", converti en \"11-05-2024\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Opéra National de Lyon",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Béatrice et Bénédict",
+    "eventDate": "13 mai et 14 mai à 20h",
+    "eventStyle": "Classique",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-309474-beatrice-et-benedict.html",
+    "eventDetailedStyle": "Classique & Lyrique / Opéra",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"13 mai et 14 mai à 20h\", converti en \"13-05-14-20:00\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Auditorium de Lyon",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Tchaïkovski, la Pathétique",
+    "eventDate": "15 mai et 16 mai à 20h",
+    "eventStyle": "Classique",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-309453-tchaikovski-la-pathetique.html",
+    "eventDetailedStyle": "Classique & Lyrique",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"15 mai et 16 mai à 20h\", converti en \"15-05-16-20:00\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Théâtre Instant T.",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Hangmoon",
+    "eventDate": "15 mai et 16 mai à 20h30",
+    "eventStyle": "Chanson / Folk",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-309745-hangmoon.html",
+    "eventDetailedStyle": "Chanson / Folk",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"15 mai et 16 mai à 20h30\", converti en \"15-05-16-20:30\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "À Thou Bout d'Chant",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Alexis HK + Benoît Doremus",
+    "eventDate": "Du 22 au 24 mai 2024, à 20h30",
+    "eventStyle": "Chanson",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-309715-alexis-hk-benoit-doremus.html",
+    "eventDetailedStyle": "Chanson",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Du 22 au 24 mai 2024, à 20h30\", converti en \"22-24-05-2024-20:30\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Auditorium de Lyon",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Così fan tutte",
+    "eventDate": "Du 24 au 26 mai 2024, ven à 19h30, dim à 16h",
+    "eventStyle": "Classique",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-309454-cosi-fan-tutte.html",
+    "eventDetailedStyle": "Classique & Lyrique",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Du 24 au 26 mai 2024, ven à 19h30, dim à 16h\", converti en \"24-26-05-2024-19:30\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Théâtre Théo Argence",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Brundibár",
+    "eventDate": "Du 22 mai au 1 juin 2024, mer à 16h, 24 ",
+    "eventStyle": "Classique",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-192821-brundibar.html",
+    "eventDetailedStyle": "Classique & Lyrique / Opéra",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Du 22 mai au 1 juin 2024, mer à 16h, 24 \", converti en \"22-05-01-06-2024-16:24\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Théâtre Théo Argence",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Brundibár",
+    "eventDate": "Du 22 mai au 1 juin 2024, mer à 25 mai à 19h, 31 mai à 20h et 1er juin à 18h",
+    "eventStyle": "Classique",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-192821-brundibar.html",
+    "eventDetailedStyle": "Classique & Lyrique / Opéra",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Du 22 mai au 1 juin 2024, mer à 25 mai à 19h, 31 mai à 20h et 1er juin à 18h\", converti en \"22-05-01-06-2024-25-19:31-20:01er-18:00\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Rock N Eat",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Lions Metal Festival",
+    "eventDate": "1 juin et 2 juin à 23h30",
+    "eventStyle": "Rock",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-223961-lions-metal-festival.html",
+    "eventDetailedStyle": "Rock & Pop",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"1 juin et 2 juin à 23h30\", converti en \"01-06-02-23:30\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "À Thou Bout d'Chant",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Lucio Bukowski",
+    "eventDate": "6 juin et 7 juin à 20h30",
+    "eventStyle": "Rap",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-309718-lucio-bukowski.html",
+    "eventDetailedStyle": "Rap",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"6 juin et 7 juin à 20h30\", converti en \"06-06-07-20:30\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Auditorium de Lyon",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Orchestres Démos Lyon Métropole",
+    "eventDate": "Mercredi 19 juin 2024",
+    "eventStyle": "Classique",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-309464-orchestres-demos-lyon-metropole.html",
+    "eventDetailedStyle": "Classique & Lyrique",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Mercredi 19 juin 2024\", converti en \"19-06-2024\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Stade Jean Lacaze",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Mondor Festival",
+    "eventDate": "22 juin et 23 juin de 15h à 1h",
+    "eventStyle": "Soul & funk",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-308260-mondor-festival.html",
+    "eventDetailedStyle": "Soul & funk",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"22 juin et 23 juin de 15h à 1h\", converti en \"22-06-23-15:00\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Opéra National de Lyon",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "L'affaire Makropoulos",
+    "eventDate": "Du 14 au 24 juin 2024, à 20h sf dim à 16h",
+    "eventStyle": "Classique",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-309469-l-affaire-makropoulos.html",
+    "eventDetailedStyle": "Classique & Lyrique / Opéra",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Du 14 au 24 juin 2024, à 20h sf dim à 16h\", converti en \"14-24-06-2024-20:16:00\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Théâtres romains de Fourvière",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Alain Souchon",
+    "eventDate": "24 juin et 25 juin à 21h30",
+    "eventStyle": "Chanson",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-309875-alain-souchon.html",
+    "eventDetailedStyle": "Chanson",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"24 juin et 25 juin à 21h30\", converti en \"24-06-25-21:30\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Parc des Oiseaux",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Francis Cabrel",
+    "eventDate": "6 septembre et 7 septembre à 20h30",
+    "eventStyle": "Chanson",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-282488-francis-cabrel.html",
+    "eventDetailedStyle": "Chanson",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"6 septembre et 7 septembre à 20h30\", converti en \"06-09-07-20:30\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Basilique de Saint-Martin-d'Ainay",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Musique française du 19ᵉ",
+    "eventDate": "Mercredi 3 avril 2024",
+    "eventStyle": "Classique",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-309833-musique-francaise-du-19-7497.html",
+    "eventDetailedStyle": "Classique & Lyrique",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Mercredi 3 avril 2024\", converti en \"03-04-2024\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Opéra National de Lyon",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "La Fille du Far West",
+    "eventDate": "Jusqu'au 4 avril 2024, à 20h sf dim à 16h",
+    "eventStyle": "Classique",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-308711-la-fille-du-far-west.html",
+    "eventDetailedStyle": "Classique & Lyrique / Opéra",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Jusqu'au 4 avril 2024, à 20h sf dim à 16h\", converti en \"04-04-2024-20:16:00\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Opéra National de Lyon",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Dusapin : influence et contemporanéité",
+    "eventDate": "6 avril et 7 avril à 18h",
+    "eventStyle": "Classique",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-309485-dusapin-influence-et-contemporaneite.html",
+    "eventDetailedStyle": "Classique & Lyrique",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"6 avril et 7 avril à 18h\", converti en \"06-04-07-18:00\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Parc de la Commune de Paris",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Aux Rythmes du Monde",
+    "eventDate": "Samedi 27 avril 2024",
+    "eventStyle": "World",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-309619-aux-rythmes-du-monde.html",
+    "eventDetailedStyle": "Sono Mondiale",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Samedi 27 avril 2024\", converti en \"27-04-2024\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  }
+]
