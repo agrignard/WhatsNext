@@ -66,6 +66,10 @@ body, html {
   height: 20px;
 }
 
+#regexSelectorMainTag{
+  margin-left: 10px;
+}
+
 .normalButton{
   background-color: lightgray;
   border: none;
@@ -403,7 +407,7 @@ background-color: lightblue;
 }
 
 .focusedOn {
-  border: 5px solid rgb(231, 76, 60);; 
+  border: 2px dashed rgb(231, 76, 60);; 
   padding: 10px; 
   display: inline-block; /* Permet à l'élément de s'ajuster à la largeur du contenu */
   margin: 1px;

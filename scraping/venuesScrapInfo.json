@@ -248,18 +248,7 @@
     }
   },
   "google|Lyon|France": {
-    "mainPage": {
-      "eventNameStrings": [
-        "ostromooukhov"
-      ],
-      "eventDateStrings": [
-        "jeu. 7 mars",
-        "19:00"
-      ],
-      "eventPlaceStrings": [
-        "hot club de lyon"
-      ]
-    }
+    "mainPage": {}
   },
   "Ninkasi|Lyon|France": {
     "mainPage": {

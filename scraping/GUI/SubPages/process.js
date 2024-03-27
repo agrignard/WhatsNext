@@ -20,7 +20,7 @@ const {getText} =require(imports+'scrapexUtilities.js');
 
 let intervalId, linkedFileContent, linkedPage, eventURL;
 let stopCounter = false;
-var localPage, cheerioTest, mainTag;
+var localPage, $page, mainTag;
 let freezeDelimiter = false;
 let pageManagerReduced = false;
 let log ='';
@@ -46,13 +46,13 @@ const easyConvert = {'eventNameStrings':0,'eventDateStrings':1,'eventStyleString
 /*         initialize        */
 /*****************************/
 
-document.addEventListener('click', function(event) {
-  var element = event.target;
-  var tagName = element.tagName;
-  var tagText = element.textContent;
-  console.log("Balise de l'élément cliqué : " + tagName);
-  console.log(getPathTo(element));
-});
+// document.addEventListener('click', function(event) {
+//   var element = event.target;
+//   var tagName = element.tagName;
+//   var tagText = element.textContent;
+//   console.log("Balise de l'élément cliqué : " + tagName);
+//   console.log(getPathTo(element));
+// });
 
 function getPathTo(element) {
   var path = '';
@@ -242,9 +242,16 @@ var delimiterTagField = document.getElementById('delimiterTagField');
 delimiterTagField.value = venue.hasOwnProperty('eventsDelimiterTag')?venue.eventsDelimiterTag:'';
 delimiterTagField.addEventListener('input'||'change',event =>{
   venue.eventsDelimiterTag = delimiterTagField.value;
-  mainTag = cheerioTest(venue.eventsDelimiterTag);
+  // mainTag = $page(venue.eventsDelimiterTag);
+  // console.log('ln',mainTag.length);
   const stringsToFind = [].concat(...Object.values(splitAndLowerCase(venueScrapInfo)[currentPage]));
-  mainTagAbsolutePath = getTagLocalization(mainTag,cheerioTest,false,stringsToFind);
+  console.log(stringsToFind.map(el=>':contains('+el+')').join(''));
+  const mainTagCandidates = $page(venue.eventsDelimiterTag+stringsToFind.map(el=>':contains('+el+')').join(''));
+  mainTag = mainTagCandidates[0];
+  console.log('tag',venue.eventsDelimiterTag);
+  console.log('ln',mainTagCandidates.length);
+  mainTagAbsolutePath = getTagLocalization(mainTag,$page,false,stringsToFind);
+  console.log('path',mainTagAbsolutePath);
   freezeDelimiter = true;
   freezeDelimiterButton.textContent = "Unfreeze";
   delimiterTagField.classList.add('inactive');
@@ -518,6 +525,7 @@ function textBoxUpdate(textBox){
   setRows(textBox);
   if (textBox.id.endsWith('Tags')){
     venue[currentPage][textBox.id] = getArray(textBox.value);
+    clearTags();
     applyTags(false);
   }else{
     venueScrapInfo[currentPage][textBox.id] = getArray(textBox.value);
@@ -537,19 +545,46 @@ let regexButtonShow = Array(regexpButtonList.length).fill(false);
 
 const regexSelectorMainTag = document.getElementById('regexSelectorMainTag');
 const regexSelectorIndex = document.getElementById('regexSelectorIndex');
+const regexSelectorPrevious = document.getElementById('regexSelectorPrevious');
+const regexSelectorNext = document.getElementById('regexSelectorNext');
+
+regexSelectorPrevious.addEventListener('click', function(){
+  if (regexSelectorIndex.value===''){
+    regexSelectorIndex.value = getMainTagIndex();
+  }
+  regexSelectorIndex.value = parseInt(regexSelectorIndex.value) - 1;
+  selectorIndexChange();
+});
+
+regexSelectorNext.addEventListener('click', function(){
+  if (regexSelectorIndex.value===''){
+    regexSelectorIndex.value = getMainTagIndex();
+  }
+  regexSelectorIndex.value = parseInt(regexSelectorIndex.value) + 1;
+  selectorIndexChange();
+});
 
 regexSelectorIndex.addEventListener('change', function(){
-  if (regexSelectorIndex.value > cheerioTest(venue.eventsDelimiterTag).length){
+ selectorIndexChange();
+});
+
+function selectorIndexChange(){
+  if (regexSelectorIndex.value > $page(venue.eventsDelimiterTag).length){
     regexSelectorIndex.value = 1;
   }
   if (regexSelectorIndex.value < 1){
-    regexSelectorIndex.value = cheerioTest(venue.eventsDelimiterTag).length;
+    regexSelectorIndex.value = $page(venue.eventsDelimiterTag).length;
   }
-  console.log(cheerioTest(venue.eventsDelimiterTag).length);
-  const tag = cheerioTest(venue.eventsDelimiterTag)[regexSelectorIndex.value];
-  tag.classList.add('focusedOn');
+  const tag = $page(venue.eventsDelimiterTag)[parseInt(regexSelectorIndex.value)];
+  $page('.focusedOn').each(function(index, element) {
+    $page(element).removeClass('focusedOn');
+  });
+  $page(tag).addClass('focusedOn');
+  rightPanel.innerHTML = $page.html();
+  focusTo(document.getElementsByClassName('focusedOn')[0]);
   applyRegexp();
-});
+}
+
 
 // regexSelectorIndex.addEventListener('keydown', function(event) {
 //   if (event.key === 'ArrowDown' && this.value === '0') {
@@ -559,6 +594,13 @@ regexSelectorIndex.addEventListener('change', function(){
 
 regexSelectorMainTag.addEventListener('click', function(){
   regexSelectorIndex.value = '';
+  console.log('reset');
+  $page('.focusedOn').each(function(index, element) {
+    console.log('t',index);
+    $page(element).removeClass('focusedOn');
+  });
+  rightPanel.innerHTML = $page.html();
+  focusTo(document.getElementsByClassName('mainTag')[0]);
   applyRegexp();
 });
 
@@ -696,7 +738,7 @@ function loadLinkedPageContent(){
   if (linkedPage){
     // const parsedLinkedPage = parseDocument(convertToLowerCase('<html><head></head>'+linkedPage+'</html>'));
     const parsedLinkedPage = parseDocument('<html><head></head>'+linkedPage+'</html>');
-    cheerioTest = cheerio.load(parsedLinkedPage);
+    $page = cheerio.load(parsedLinkedPage);
   }else{
     console.log('***** Error with linked page *****');
   }
@@ -730,87 +772,97 @@ function loadLinkedPageContent(){
 /*    auxiliary functions    */
 /*****************************/
 
+function clearTags(){
+  classes = ['highlightName', 'highlightDummy','highlightDate','highlightStyle','highlightPlace',
+  'highlightURL','mainTag','encadre','encadreInvalid'];
+  classes.forEach(el => {
+    const tags = $page('.'+el);
+    tags.each(function(index, element) {
+      $page(this).removeClass(el);
+      // Appliquer une fonction à chaque élément
+      // console.log($page(this).text()); // Affiche le texte de l'élément
+    });
+  });
+}
+
+function gotoTag(ctag,tagString){
+  let currentTag = [ctag];
+  tagString.split(' ').forEach(el =>{
+    currentTag = currentTag.map(ct => $page(ct.find(el))).flat();
+  });
+  return currentTag;
+}
 
 function applyTags(renderURL){
-  function fillTags($eventBlock,dtag){
+  function fillTags(dtag){
     const event = {};
     if (venue[currentPage].hasOwnProperty('eventNameTags')){
       let string = "";
+      // console.log(venue[currentPage].eventNameTags);
       venue[currentPage].eventNameTags.forEach(tag =>{
-        string += tag ===''?$eventBlock.text():$eventBlock(tag).text();
-        const targetTag = (tag === 'BODY')?dtag:$eventBlock(tag);// if the class is body in $eventblock, it is delimiter tag in $.
-        targetTag.addClass('highlightName');  
+        const ntag = gotoTag($page(dtag),tag);
+        ntag.forEach(el => {
+          string += $page(el).text();
+          $page(el).addClass('highlightName');
+        });
       });
       event.eventName = string;
     }
     if (venue[currentPage].hasOwnProperty('eventDummyTags')){
       venue[currentPage].eventDummyTags.forEach(tag =>{
-        const targetTag = (tag === 'BODY')?dtag:$eventBlock(tag);
-        targetTag.addClass('highlightDummy');  
+        const ntag = gotoTag($page(dtag),tag);
+        ntag.forEach(el => {$page(el).addClass('highlightDummy');});
       });
     }
     if (venue[currentPage].hasOwnProperty('eventDateTags')){
       let string = "";
       venue[currentPage].eventDateTags.forEach(tag =>{
-        string += tag ===''?$eventBlock.text():$eventBlock(tag).text();
-        const targetTag = (tag === 'BODY')?dtag:$eventBlock(tag);
-        targetTag.addClass('highlightDate');  
+        const ntag = gotoTag($page(dtag),tag);
+        ntag.forEach(el => {
+          string += $page(el).text();
+          $page(el).addClass('highlightDate');
+        }); 
       });
       event.eventDate = string;
     }
     if (venue[currentPage].hasOwnProperty('eventStyleTags')){
       venue[currentPage].eventStyleTags.forEach(tag =>{
-        const targetTag = (tag === 'BODY')?dtag:$eventBlock(tag);
-        targetTag.addClass('highlightStyle');  
+        const ntag = gotoTag($page(dtag),tag);
+        ntag.forEach(el => {$page(el).addClass('highlightStyle');});
       });
     }
     if (venue[currentPage].hasOwnProperty('eventPlaceTags')){
       venue[currentPage].eventPlaceTags.forEach(tag =>{
-        const targetTag = (tag === 'BODY')?dtag:$eventBlock(tag);
-        targetTag.addClass('highlightPlace');  
+        const ntag = gotoTag($page(dtag),tag);
+        ntag.forEach(el => {$page(el).addClass('highlightPlace');});
       });
     }
     if (venue[currentPage].hasOwnProperty('eventURLTags')){
       venue[currentPage].eventURLTags.forEach(tag =>{
-        const targetTag = (tag === 'BODY')?dtag:$eventBlock(tag);
-        targetTag.addClass('highlightURL');  
+        const ntag = gotoTag($page(dtag),tag);
+        ntag.forEach(el => {$page(el).addClass('highlightURL');});  
       });
     }
     return event;
   }
 
   if (currentPage === 'mainPage'){
-    // const $ = cheerio.load( parseDocument(convertToLowerCase(localPage)));
-    const $ = cheerio.load( parseDocument(localPage));
-    $(mainTagAbsolutePath).addClass('mainTag');
-    $(venue.eventsDelimiterTag).each((index, delimiterTag) => {
-      const eve = $(delimiterTag).html();
-      const $eventBlock = cheerio.load(eve);
-      const event = fillTags($eventBlock,$(delimiterTag));
-      
+    $page(mainTagAbsolutePath).addClass('mainTag');
+    console.log('tag',venue.eventsDelimiterTag);
+    $page(venue.eventsDelimiterTag).each((index, delimiterTag) => {
+      const event = fillTags(delimiterTag);
       if (isValidEvent(event, venue)){
-        $(delimiterTag).addClass('encadre');
+        $page(delimiterTag).addClass('encadre');
       }else{
-        $(delimiterTag).addClass('encadreInvalid');
+        $page(delimiterTag).addClass('encadreInvalid');
       }
-      $(delimiterTag).html($eventBlock.html());//modify the html to be displayed
     });
-    rightPanel.innerHTML = $.html();
+    rightPanel.innerHTML = $page.html();
     rightPanel.querySelectorAll('a'||'select').forEach(link => {
       link.addEventListener('click', e => {
         e.preventDefault(); 
       });
     });
-    // console.log($(venue.eventsDelimiterTag).text());
-    // $('BODY').on('click', function(event) {
-    //   // Récupérer l'élément cliqué
-    //   const elementClicked = $(event.target);
-
-    //   // Afficher le HTML de l'élément cliqué
-    //   console.log("HTML de l'élément cliqué : ", elementClicked.html());
-    // });
-
-
   
     if (localPage){
       if (renderURL === true){
@@ -821,16 +873,10 @@ function applyTags(renderURL){
     }
   
     const focusedElement = document.getElementsByClassName("mainTag")[0];
-    if (focusedElement){
-      focusedElement.scrollIntoView({ behavior: 'auto', block: 'start' });
-      rightPanel.scrollBy({top: -100, behavior: 'auto'});
-     // rightPanel.scrollBy({top: -rightPanel.offsetHeight/2+focusedElement.offsetHeight/2, behavior: 'auto'});
-    }
+    focusTo(focusedElement);
   }else{
-    // const $ = cheerio.load(parseDocument(convertToLowerCase('<html><head></head>'+linkedPage+'</html>')));
-    const $ = cheerio.load(parseDocument('<html><head></head>'+linkedPage+'</html>'));
-    fillTags($);
-    rightPanel.innerHTML = $.html();
+    fillTags($page('BODY'));
+    rightPanel.innerHTML = $page.html();
     rightPanel.querySelectorAll('a'||'select').forEach(link => {
       link.addEventListener('click', e => {
         e.preventDefault(); 
@@ -844,16 +890,16 @@ function applyTags(renderURL){
 function loadPage(){
   analyzePanel.style.display = 'block';
   localPage = reduceImgSize(getFilesContent(sourcePath, nbPagesToShow));
-  // cheerioTest = cheerio.load(parseDocument(convertToLowerCase(localPage)));
-  cheerioTest = cheerio.load(parseDocument(localPage));
+  $page = cheerio.load(parseDocument(localPage));
+  
   // find the tag from eventsDelimiterTag, with the text in the strings. If not found, get the first tag
   // that matches eventsDelimiterTag
   if (venue.hasOwnProperty('eventsDelimiterTag')){
     const stringsToFind = [].concat(...Object.values(splitAndLowerCase(venueScrapInfo)[currentPage]));
-    const mainTagCandidates = cheerioTest(venue.eventsDelimiterTag);
+    const mainTagCandidates = $page(venue.eventsDelimiterTag);
     let i;
     for(i=mainTagCandidates.length-1;i>=0;i--){
-      const text = cheerioTest(mainTagCandidates[i]).text();
+      const text = $page(mainTagCandidates[i]).text();
       const containStrings = !stringsToFind.some(str => !text.includes(str));
       if (containStrings){
         break;
@@ -866,7 +912,7 @@ function loadPage(){
       scrapInfoTooOld = false;
     }
     mainTag = mainTagCandidates[i];
-    mainTagAbsolutePath = getTagLocalization(mainTag,cheerioTest,false,stringsToFind);
+    mainTagAbsolutePath = getTagLocalization(mainTag,$page,false,stringsToFind);
   }
   computeEventsNumber();
   computeMissingLinks();
@@ -982,7 +1028,7 @@ function containsURL(tag){
   if (tag.is('a[href]')){//}.prop('tagName') == A){
     return true;
   }
-  const $eventBlock = cheerio.load(cheerioTest(tag).html());
+  const $eventBlock = cheerio.load($page(tag).html());
   const hrefs = $eventBlock('a[href]');
   if (hrefs.length > 0){
     return true;
@@ -992,11 +1038,12 @@ function containsURL(tag){
 }
 
 function computeTags(id){
+  clearTags();
   // compute main tag
   let delimiterHasChanged = false;
   if (!freezeDelimiter && currentPage === 'mainPage'){
     const stringsToFind = [].concat(...Object.values(splitAndLowerCase(venueScrapInfo)[currentPage])).filter(el => el !== '');
-    const tagsContainingStrings =  getTagContainingAllStrings(cheerioTest,stringsToFind);
+    const tagsContainingStrings =  getTagContainingAllStrings($page,stringsToFind);
     if (tagsContainingStrings.length === 0){
       if (id){
         const tagId = id.replace(/Strings/,'Tags');
@@ -1006,7 +1053,7 @@ function computeTags(id){
         eventTagsBoxes[b].value = '';
       }
       for(let b=0;b<eventStringsBoxes.length;b++){
-        if (eventStringsBoxes[b].value.split('\n').some(el => !cheerioTest.text().includes(el))){
+        if (eventStringsBoxes[b].value.split('\n').some(el => !$page.text().includes(el))){
           eventTagsBoxes[b].placeholder = 'Cannot find string';
           eventStringsBoxes[b].classList.add('invalid');
         }      
@@ -1026,10 +1073,10 @@ function computeTags(id){
       }
     }
 
-    mainTagAbsolutePath = getTagLocalization(mainTag,cheerioTest,false,stringsToFind);
-    let delimiterTag = reduceTag(getTagLocalization(mainTag,cheerioTest,true,stringsToFind),cheerioTest);
+    mainTagAbsolutePath = getTagLocalization(mainTag,$page,false,stringsToFind);
+    let delimiterTag = reduceTag(getTagLocalization(mainTag,$page,true,stringsToFind),$page);
     if (autoAdjustCheckbox.checked === true){
-      delimiterTag = adjustMainTag(delimiterTag,cheerioTest,venue);
+      delimiterTag = adjustMainTag(delimiterTag,$page,venue);
     }
     delimiterTag = delimiterTag.replace(/\s*$/,'');
     delimiterHasChanged = (delimiterTag !== venue.eventsDelimiterTag);
@@ -1040,7 +1087,7 @@ function computeTags(id){
   }
   if (currentPage === 'mainPage'){
     if (validateDelimiterTags()){
-      let $eventBlock = cheerio.load(cheerioTest(mainTag).html());
+      let $eventBlock = cheerio.load($page(mainTag).html());
        venue[currentPage] = addJSONBlock(venueScrapInfo[currentPage],$eventBlock);
        if (regroupTagsCheckbox.checked){
         Object.keys(venue[currentPage]).forEach(key =>{
@@ -1056,9 +1103,9 @@ function computeTags(id){
        initScrapTextTags();
      }
   }else{
-    let $eventBlock = cheerio.load(cheerioTest(mainTag).html());
-    venue[currentPage] = addJSONBlock(venueScrapInfo[currentPage],cheerioTest);
+    venue[currentPage] = addJSONBlock(venueScrapInfo[currentPage],$page);
     computeDateFormat();
+    clearTags();
     applyTags(false);
     initScrapTextTags();
   }
@@ -1067,9 +1114,9 @@ function computeTags(id){
 function computeDateFormat(){
   let dates;
   if (currentPage === 'mainPage'){
-    dates = getAllDates(venue.eventsDelimiterTag,venue[currentPage]['eventDateTags'],cheerioTest);
+    dates = getAllDates(venue.eventsDelimiterTag,venue[currentPage]['eventDateTags'],$page);
   }else{
-    dates = getAllDates("BODY",venue[currentPage]['eventDateTags'],cheerioTest);
+    dates = getAllDates("BODY",venue[currentPage]['eventDateTags'],$page);
   }
   if (dates.length > 0){
     let formatRes;
@@ -1105,20 +1152,20 @@ function renderEventURLPanel(){
   eventURLPanel.style.display = 'block';
   if (scrapInfoTooOld === true){
     eventURLPanelWarning.style.display = 'block';
-    tag = cheerioTest(venue.eventsDelimiterTag).first();
+    tag = $page(venue.eventsDelimiterTag).first();
   }else{
     eventURLPanelWarning.style.display = 'none';
     tag = mainTag;
   }
 
   if (venue.mainPage.hasOwnProperty('eventURLTags')){
-    const $eventBlock = cheerio.load(cheerioTest(tag).html());
+    const $eventBlock = cheerio.load($page(tag).html());
     eventURL = $eventBlock(venue.mainPage.eventURLTags[0]).attr('href');
     eventURLPanelMessage.textContent = 'URL from tag: '+ eventURL;
     eventURLSelect.style.display = 'none';
   }else{
-    const urlList = findURLs(cheerioTest(tag));
-    // console.log(cheerioTest(tag).html());
+    const urlList = findURLs($page(tag));
+    // console.log($page(tag).html());
     const index = urlList.findIndex(function(element) {
       return typeof element !== 'undefined';
     });
@@ -1177,7 +1224,7 @@ function setRows(textBox) {
 
 function isValidTag(tag){
   try{
-    const nbTags = cheerioTest(tag).length;
+    const nbTags = $page(tag).length;
     return (!nbTags || nbTags===0)?false:true;
   }catch(err){
     return false;
@@ -1290,7 +1337,7 @@ function reduceImgSize(html){
 
 function computeEventsNumber(){
   if (venue.hasOwnProperty('eventsDelimiterTag')){
-    const nbEvents = countNonEmptyEvents(venue.eventsDelimiterTag,cheerioTest,venue);
+    const nbEvents = countNonEmptyEvents(venue.eventsDelimiterTag,$page,venue);
     DelimiterTitle.textContent = "Delimiter tag (found "+nbEvents+" events)";
   }
 }
@@ -1333,12 +1380,22 @@ function removeEmptyFields(object){
 
 function applyRegexp(){
   let $eventBlock;
+  console.log('mt',mainTag);
+  console.log('ht',$page(mainTag).html());
+  if (!mainTag){
+    for(let i=0; i < regexpTextBeforeList.length; i++){
+      regexpTextBeforeList[i].style.display = 'none';
+      regexpResultPanels[i].style.display = 'none';
+      regexpTextAfterList[i].style.display = 'none';
+    }
+    return;
+  }
   if (regexSelectorIndex.value === ''){
-    $eventBlock = cheerio.load(cheerioTest(mainTag).html());
+    $eventBlock = cheerio.load($page(mainTag).html());
   }else{
     const index = parseInt(regexSelectorIndex.value)-1;
-    const tag = cheerioTest(venue.eventsDelimiterTag)[index];
-    $eventBlock = cheerio.load(cheerioTest(tag).html());
+    const tag = $page(venue.eventsDelimiterTag)[index];
+    $eventBlock = cheerio.load($page(tag).html());
   }
   for(let i=0; i < regexpTextBeforeList.length; i++){
     const key = regexpKeyList[i];
@@ -1367,4 +1424,25 @@ function applyRegexp(){
       }
     });
   }
+}
+
+
+function focusTo(element){
+  if (element){
+    element.scrollIntoView({ behavior: 'auto', block: 'start' });
+    rightPanel.scrollBy({top: -100, behavior: 'auto'});
+   // rightPanel.scrollBy({top: -rightPanel.offsetHeight/2+focusedElement.offsetHeight/2, behavior: 'auto'});
+  }
+}
+
+function getMainTagIndex(){
+  const delimiterList = $page(venue.eventsDelimiterTag);
+  let j;
+  const pageRef = $page(mainTag).text();
+  for(j=0;j<delimiterList.length;j++){
+    if ($page(delimiterList[j]).text()===pageRef){
+      break;
+    }
+  }
+  return j;
 }

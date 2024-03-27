@@ -719,19 +719,12 @@
     "url": "https://www.google.com/search?q=lyon+%C3%A9v%C3%A9nements&client=firefox-b-d&sca_esv=ed313d50f24d50b8&sxsrf=ACQVn0-ZmP4Si44IDZrpd01wLIM1xJGiRw%3A1709830776141&ei=ePLpZf6fCJWP2roPja6V4AU&ved=0ahUKEwj-u6aA0OKEAxWVh1YBHQ1XBVwQ4dUDCBA&uact=5&oq=lyon+%C3%A9v%C3%A9nements&gs_lp=Egxnd3Mtd2l6LXNlcnAiEWx5b24gw6l2w6luZW1lbnRzMgoQIxiABBiKBRgnMgUQABiABDIFEAAYgAQyBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHkijHVCsBVj6G3ACeAGQAQCYAbICoAG0F6oBBzAuOS41LjG4AQPIAQD4AQGYAhGgAv4YwgIKEAAYRxjWBBiwA8ICDRAAGIAEGIoFGEMYsAPCAhkQLhiABBiKBRhDGMcBGNEDGMgDGLAD2AEBwgIEECMYJ8ICFhAuGIAEGIoFGEMYsQMYgwEYxwEY0QPCAhAQABiABBiKBRhDGLEDGIMBwgILEC4YgwEYsQMYgATCAhEQLhiABBixAxiDARjHARjRA8ICCxAAGIAEGLEDGIMBwgILEC4YgAQYsQMYgwHCAggQLhiABBixA8ICCBAAGIAEGLEDwgIOEAAYgAQYigUYsQMYgwHCAhoQLhiABBixAxiDARiXBRjcBBjeBBjgBNgBAsICCBAuGLEDGIAEwgIUEC4YgAQYigUYsQMYgwEYxwEY0QPCAgUQLhiABMICCxAuGIAEGMcBGK8BwgIOEC4YFhgeGMcBGK8BGArCAggQABgWGB4YD5gDAIgGAZAGEroGBggBEAEYCLoGBggCEAEYFJIHBzIuNy43LjGgB92hAQ&sclient=gws-wiz-serp",
     "ID": "google|Lyon|France",
     "mainPage": {
-      "eventNameTags": [
-        "DIV.uoFCfc:eq(0) DIV.bVj5Zb.FozYP:eq(0)"
-      ],
-      "eventDateTags": [
-        "DIV.t3gkGd:eq(0) DIV:eq(0)",
-        "DIV.t3gkGd:eq(0) DIV.oonKPc:eq(0)"
-      ],
       "eventPlaceTags": [
         "DIV.TCYkdd.FozYP:eq(0) SPAN:eq(0)"
       ]
     },
     "baseURL": "https://www.google.com/",
-    "eventsDelimiterTag": "DIV.KKHQ8c A.ct5Ked.klitemtr.PZPZlf",
+    "eventsDelimiterTag": "",
     "dateFormat": "dd-MM-HH:mm",
     "eventURLIndex": 0
   },

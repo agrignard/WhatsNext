@@ -251,7 +251,10 @@ function getTagContainingAllStrings($,stringsToFind){
     //console.log('*:contains("' + stringsToFind.join('"), :contains("') + '")');
     // pose un pb si un texte contient une parenthèse ouvrante mais pas de parenthèse fermante
     return $('*:contains("' + stringsToFind.join('"), :contains("') + '")')
-    .filter((_, tag) => tagContainsAllStrings($(tag), stringsToFind));
+    .filter((_, tag) => {
+        // console.log(getTagLocalization(tag,$,false,stringsToFind));
+        return tagContainsAllStrings($(tag), stringsToFind)
+    });
 }
 
 function tagContainsAllStrings(tag, strings) {
