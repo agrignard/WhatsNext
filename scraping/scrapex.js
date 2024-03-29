@@ -121,8 +121,8 @@ async function analyseFile(venue) {
   // } catch (err) {
   //   console.error('\x1b[31mError reading html files in directory \'%s\'.\x1b[0m Error: %s',venueSourcePath, err);
   // }
-const fileContent = getFilesContent(venueSourcePath);
-const modificationDate = getModificationDate(venueSourcePath);
+  const fileContent = getFilesContent(venueSourcePath);
+  const modificationDate = getModificationDate(venueSourcePath);
 
   console.log('\n\x1b[32m%s\x1b[0m', `******* Venue: ${venue.name}  (${getFilesNumber(venueSourcePath)} page(s)) *******`);
 

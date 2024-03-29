@@ -40,11 +40,14 @@ function regroupTags(tagList){
 }
 
 function adjustMainTag(delimiterTag,$,venue, currentEventNumber){
+    delimiterTag = delimiterTag.replace(/\s*$/,'');
     const mainTagEventsNumber = currentEventNumber?currentEventNumber:countNonEmptyEvents(delimiterTag,$,venue);//$(delimiterTag).length;
     let currentNumber = mainTagEventsNumber;
+    // console.log('start number', currentNumber, delimiterTag);
     let bestTag = delimiterTag;
     // console.log('refnum',currentNumber);
     const splitTag = delimiterTag.split(' ');
+    // console.log(splitTag);
     for (let i=0;i<splitTag.length;i++){
         const startList = splitTag.slice(0,i);
         const endList = splitTag.slice(i+1);
@@ -54,12 +57,13 @@ function adjustMainTag(delimiterTag,$,venue, currentEventNumber){
                 const startInnerList = currentTag.slice(0,j);
                 const endInnerList = currentTag.slice(j+1);
                 let newTag = startList.join(' ')+' '+startInnerList.join('.')+((j===currentTag.length-1)?'':'.')+
-                            endInnerList.join('.')+' '+endList.join(' ');;
+                            endInnerList.join('.')+' '+endList.join(' ');
+                newTag = newTag.replace(/\s*$/,'');
                 const newNumber = countNonEmptyEvents(newTag,$,venue);//$(newTag).length;
                 // console.log(newNumber, newTag);
                 if (newNumber > currentNumber){
                     currentNumber = newNumber;
-                    bestTag = newTag;
+                    bestTag = newTag.replace(/\s*$/,'');
                 }
             }
             //console.log('result',currentNumber,bestTag);
@@ -68,12 +72,16 @@ function adjustMainTag(delimiterTag,$,venue, currentEventNumber){
             }
         }
     }
-    return bestTag;
+    return [bestTag, currentNumber];
 }
 
 
 
 function countNonEmptyEvents(delimiterTag,$,venue){
+    // console.log('deli', venue.mainPage.eventNameTags);
+    if (delimiterTag === undefined){
+        return 0;
+    }
     let eventList = [];
     $(delimiterTag).each((index, element) => {
         const event = {};
@@ -81,6 +89,7 @@ function countNonEmptyEvents(delimiterTag,$,venue){
         if (venue.mainPage.hasOwnProperty('eventNameTags')){
             const tagList = venue.mainPage.eventNameTags;
             event.eventName = tagList.map(tag =>{
+                // console.log('tag:',tag,$eventBlock(tag).text());
                 return tag ===''?$eventBlock.text():$eventBlock(tag).text();
             }).join(' ');
         }
@@ -94,6 +103,7 @@ function countNonEmptyEvents(delimiterTag,$,venue){
             eventList.push(event);
         }
     });
+    // console.log('kff',eventList.length);
     return unique(eventList).length;
 }
 
@@ -141,12 +151,12 @@ function getBestDateFormat(dates, JSON, dateConversionPatterns){
     return [bestDateFormat, bestScore];
 }
 
-function addJSONBlock(scrapSource,source){
+function addJSONBlock(scrapSource,source, showLog){
     let res =  {};
     Object.keys(scrapSource).filter(element => scrapSource[element].length > 0)
         .forEach(key =>{
             // if (scrapSource[key].length>0 && !(scrapSource[key].length === 1 && scrapSource[key][0] !== '')){
-                res[key.replace(/String/,'Tag')] = getTagsForKey(scrapSource,key,source);
+                res[key.replace(/String/,'Tag')] = getTagsForKey(scrapSource,key,source, showLog);
             // }
         });
     // remove doubles 
@@ -154,11 +164,13 @@ function addJSONBlock(scrapSource,source){
     return res;
 }
 
-function getTagsForKey(object,key,cheerioSource){
+function getTagsForKey(object,key,cheerioSource, showLog){
     const string = key.match(/event([^]*)String/);
-    console.log('\n\x1b[36mEvent '+string[1]+' tags:\x1b[0m');
     const tagList = object[key].filter(el => el !== '').map(string2 => findTag(cheerioSource,string2));
-    showTagsDetails(tagList,cheerioSource,object[key]);
+    if(showLog === undefined || showLog === true){
+        console.log('\n\x1b[36mEvent '+string[1]+' tags:\x1b[0m');
+        showTagsDetails(tagList,cheerioSource,object[key]);
+    }
     return tagList.map((tag,index) => reduceTag(getTagLocalization(tag,cheerioSource,false,[object[key][index]]),cheerioSource));
  }
 
@@ -201,7 +213,7 @@ function findTag(html,string) {
         return undefined;
     }
     const refText = source(string).text();
-    const stringList = string.split(' ');
+    const stringList = string.replace(/\s*$/,'').split(' ');
     let reducedString = stringList.pop();
     while(stringList.length>0){
         reducedString = stringList.pop()+' '+reducedString;

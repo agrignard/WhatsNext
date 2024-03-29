@@ -85,7 +85,8 @@ function convertToLowerCase(s){
 
 // remove blancks from a string
 function removeBlanks(s){
-  return s.replace(/[\n\t]/g, ' ').replace(/ {2,}/g, ' ').replace(/^ /,'').replace(/ $/,'');
+    return s.replace(/[\n\t]/g, ' ').replace(/\s{2,}/g, ' ').replace(/^\s/,'').replace(/\s$/,'');
+  // return s.replace(/[\n\t]/g, ' ').replace(/ {2,}/g, ' ').replace(/^ /,'').replace(/ $/,'');
 }
 
 // remove reference to an image in a html file (provides a more compact text)

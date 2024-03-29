@@ -106,7 +106,7 @@ function loadLinkedPages(sourcePath){
         return JSON.parse(fs.readFileSync(sourcePath+'linkedPages.json', 'utf8'));
     }catch(err) {
         console.error("\x1b[31mError while retrieving linked pages: %s\x1b[0m\n",sourcePath+'linkedPages.json');
-        throw err;
+        return undefined;
     }
 }
 

@@ -58,7 +58,7 @@ function mergeEvents(eventList,showFullMergeLog){
 // legit (several event times like afternoon and evening shows) or if it is a mistake from one of the sources
   
     function merge(event){
-        // if (event.eventName.includes('SPANISH'&&event.eventDate.includes(''))){
+        // if (event.eventName.includes('nalog')){
         //     console.log(event);
         // }
         if (!event.hasOwnProperty('mergeCandidates')){// if there is no candidate to merge, return the event

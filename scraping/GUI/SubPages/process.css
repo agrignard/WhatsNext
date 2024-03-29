@@ -377,6 +377,7 @@ background-color: lightblue;
   font-family: sans-serif;
   font-size: 85%;
   resize: none;
+  margin-bottom: 5px;
 }
 
 .urlPanel{
