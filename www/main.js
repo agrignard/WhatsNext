@@ -76,6 +76,7 @@ function jsonCallback(err, data) {
     appDate=currentDate;
     mapUtils.filterByTime(map,currentDate.valueOf(),false);
 
+
     ///HANDLE SLIDER
     document.getElementById('slider').addEventListener('input', async (e) => {
       const sliderValue = parseInt(e.target.value, 10);
@@ -109,7 +110,7 @@ async function chartIt(){
         canvas1.style.display = 'block';
         const eventInformation = await dataUtils.getSortedNbEventPerPlaceMap(currentDate);
         eventInformation.forEach((value, key) => {
-        if (value === 0) {
+        if (value < 2) {
             eventInformation.delete(key);
         }
         });
@@ -118,11 +119,22 @@ async function chartIt(){
         data: {
             labels:Array.from(eventInformation.keys()),
             datasets: [{
-            label: '(Places: ' + eventInformation.size + " - Event: " + dataUtils.nbActiveEvent + " )",
+            label: '(Places with more than 2 events: ' + eventInformation.size + " - Event: " + dataUtils.nbActiveEvent + " )",
             data:Array.from(eventInformation.values()),
             borderWidth: 1
             }]
-        }
+        },
+        options: {
+          scales: {
+              x: {
+                  ticks: {
+                      maxRotation: 90,
+                      minRotation: 90,
+                  },
+                  fontSize: 5
+              }
+          }
+      }
         });
         canvas2.style.display = 'block';
         const eventbydateInformation = await dataUtils.getSortedNbEventPerDayMap(currentDate);
@@ -245,7 +257,6 @@ function processCityBasedOnUrl() {
   if (cityUrl!=null) {
       console.log('City parameter: ' + city);
       city=cityUrl;
-  }else {
   }
 }
 

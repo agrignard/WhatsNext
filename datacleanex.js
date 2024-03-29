@@ -41,9 +41,7 @@ async function convertPlaceCSVtoGeoJson(){
         style=initPlaceInformationMapping[columns[4]];
       }else{
         style= initPlaceInformationMapping['undefined'];
-      }
-      console.log("style after : " + style)
-      
+      }    
       //console.log("Place: "+place+";"+latitude+";"+longitude+";"+url);
 
     const newFeature = {
@@ -91,7 +89,7 @@ async function convertEventCSVtoGeoJson(){
 
     const csvFilePath = 'scraping/generated/scrapexResult_'+city+'.csv';
     const csvData = fs.readFileSync(csvFilePath, 'utf8');
-    const table = csvData.split('\n').slice(1);
+    const table = csvData.split('\n');
 
     table.forEach(row => {
       const columns = row.split(';'); 

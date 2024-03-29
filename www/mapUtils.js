@@ -2,7 +2,7 @@ import * as dataUtils from './dataUtils.js';
 
 
 export const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-const showPlacesAsCircle=true;
+export var showPlacesAsCircle=true;
 
 var flytoOnClick=false;
 const darkMode=false;
@@ -275,7 +275,6 @@ export function addShareWidget(map){
 
 ////////////LAYER INTERACTION//////////////////////
 export function filterByTime(map,value) {  
-    //console.log("yo ca showALL" + showAllFUCKINGValue);
     if(!document.getElementById("showAll").checked){
         var filters = [
         "all",     
