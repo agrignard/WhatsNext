@@ -18,6 +18,7 @@ module.exports = {getTagLocalization, tagContainsAllStrings, getTagContainingAll
 
 // if several tags only differ by the equation number, the equation number is removed
 function regroupTags(tagList){
+    tagList = tagList.filter(el => el !== undefined);
     if (tagList.length < 2){
         return tagList;
     }

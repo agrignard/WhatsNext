@@ -43,7 +43,7 @@
             <div id="regexSelectorPanel">
                 <div id="regexSelectorText" style ="display: inline;">Event index</div>
                 <button id="regexSelectorPrevious" class="normalButton">&lt;</button>
-                <input type="number" id="regexSelectorIndex"  min="0" step="1" value="" style ="width: 10ch" placeholder="Main event">
+                <input type="number" id="regexSelectorIndex"  min="0" step="1" value="" style ="width: 12ch" placeholder="Main event">
                 <button id="regexSelectorNext" class="normalButton">&gt;</button>
                 <button id="regexSelectorMainTag" class="normalButton">Reset</button>
             </div>
@@ -97,6 +97,9 @@
                                 <textarea id="eventNameStrings" class="eventStrings scrapTextBox" placeholder="Copy event name here"></textarea>
                                 <button id="eventNameStringsCopyButton" class="copyButton normalButton">&lt;</button>
                             </div>
+                            <div id="eventNameStringsList" class="scrapTextBoxStrings" contenteditable="true">
+
+                            </div>
                             <textarea  id="eventNameTags" class="eventTags scrapTextBox" placeholder="Tags will be filled automatically"></textarea>
                         </div>
                         <div id="eventNameRegexpPanel" class="regexpPanel highlightName normalPadding">
@@ -114,7 +117,8 @@
                         <div class="title">Event Date</div>
                         <div class="scrapPanelToHideWhenRegex">
                             <div class="input-row">
-                                <textarea id="eventDateStrings" class="eventStrings scrapTextBox" rows="1" cols="50" placeholder="Copy event date here"></textarea>
+                                <textarea id="eventDateStrings" class="eventStrings scrapTextBox" rows="1" cols="50" placeholder="Copy event date here">
+                                </textarea>
                                 <button id="eventDateStringsCopyButton" class="normalButton copyButton">&lt;</button>
                             </div>
                             <textarea  id="eventDateTags" class="eventTags scrapTextBox verySmallBottomMargin" rows="1" cols="50" placeholder="Tags will be filled automatically"></textarea>

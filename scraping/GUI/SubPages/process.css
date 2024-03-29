@@ -363,6 +363,11 @@ background-color: lightblue;
 }
 
 
+.scrapTextBoxStrings{
+  background-color: rgb(107, 224, 180);
+  padding: 2px 5px;
+  min-height: 1ch;
+}
 
 .scrapTextBox{
   width: calc(100% - 40px);

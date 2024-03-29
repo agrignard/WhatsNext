@@ -275,6 +275,7 @@ const eventURLPanelWarning = document.getElementById('eventURLPanelWarning');
 const autoAdjustCheckbox = document.getElementById('autoAdjustCheckbox');
 autoAdjustCheckbox.checked = true;
 autoAdjustCheckbox.addEventListener('change',()=>{
+  computeDelimiterTag();
   computeTags();
 });
 // adjust url check box
@@ -282,6 +283,7 @@ const adjustURLCheckbox = document.getElementById('adjustURLCheckbox');
 adjustURLCheckbox.checked = mustIncludeURL;
 adjustURLCheckbox.addEventListener('change',()=>{
   mustIncludeURL = adjustURLCheckbox.checked;
+  computeDelimiterTag();
   computeTags();
 });
 
@@ -294,7 +296,7 @@ adjustURLCheckbox.addEventListener('change',()=>{
 const regroupTagsCheckbox = document.getElementById('regroupTagsCheckbox');
 regroupTagsCheckbox.checked = true;
 regroupTagsCheckbox.addEventListener('change',()=>{
-  mustIncludeURL = regroupTagsCheckbox.checked;
+  // mustIncludeURL = regroupTagsCheckbox.checked;
   computeTags();
 });
 
@@ -321,7 +323,9 @@ function renderDetailedView(){
   }
 }
 
-// easy panel
+/*****************************/
+/*        easy panel         */
+/*****************************/
 
 const easyPanelFields = document.getElementById('easyPanelFields');
 const easyPanelAddButton = document.getElementById('easyPanelAddButton');
@@ -339,6 +343,9 @@ easyPanelCopyButton.addEventListener('click',function(){
       newEasyLine(el);
     });
     getStringsFromEasyField();
+    if (!freezeDelimiter && currentPage ==='mainPage'){
+      computeDelimiterTag();
+    }
     computeTags();
   }
 });
@@ -389,11 +396,16 @@ function newEasyLine(text, typeIndex){
   inputElement.classList.add('easyField');
   inputElement.setAttribute('type', 'text');
   inputElement.value = text;
-  inputElement.addEventListener('change',function(){
-    console.log('changement ',this.id);
+  validateString(inputElement);
+  inputElement.addEventListener('input',function(){
+    // console.log('changement ',this.id);
     const lineIndex = parseInt(this.id.match(/\d+$/));
     easyPanelInfo.stringList[lineIndex] = this.value;
+    validateString(this);
     getStringsFromEasyField();
+    if (!freezeDelimiter && currentPage ==='mainPage'){
+      computeDelimiterTag();
+    }
     computeTags();
   })
   newDiv.appendChild(inputElement);
@@ -438,6 +450,9 @@ function newEasyLine(text, typeIndex){
     easyPanelInfo.indexList[lineIndex] = undefined;
     lineToRemove.remove();
     getStringsFromEasyField();
+    if (!freezeDelimiter && currentPage ==='mainPage'){
+      computeDelimiterTag();
+    }
     computeTags();
     console.log(easyPanelInfo);
   });
@@ -458,6 +473,7 @@ const dateFormatText = document.getElementById('dateFormatText');
 const eventURLTags = document.getElementById('eventURLTags');
 const eventDummyPanel = document.getElementById('eventDummy');
 const scrapTextBoxes = document.getElementsByClassName('scrapTextBox');
+const scrapTextBoxStrings = document.getElementsByClassName('scrapTextBoxStrings');
 const eventTagsBoxes = document.getElementsByClassName('eventTags');
 const eventStringsBoxes = document.getElementsByClassName('eventStrings');
 
@@ -529,6 +545,9 @@ function textBoxUpdate(textBox){
     applyTags(false);
   }else{
     venueScrapInfo[currentPage][textBox.id] = getArray(textBox.value);
+    if (!freezeDelimiter && currentPage ==='mainPage'){
+      computeDelimiterTag();
+    }
     computeTags(textBox.id);
   }
 }
@@ -848,7 +867,6 @@ function applyTags(renderURL){
 
   if (currentPage === 'mainPage'){
     $page(mainTagAbsolutePath).addClass('mainTag');
-    console.log('tag',venue.eventsDelimiterTag);
     $page(venue.eventsDelimiterTag).each((index, delimiterTag) => {
       const event = fillTags(delimiterTag);
       if (isValidEvent(event, venue)){
@@ -916,6 +934,7 @@ function loadPage(){
   }
   computeEventsNumber();
   computeMissingLinks();
+  checkStringsNotFound();
   applyTags(true);
   // find missing links
   // computeMissingLinks();
@@ -1012,11 +1031,16 @@ function showDate(date){
   return string;
 }
 
-function getValue(object){
-  if (typeof(object)==="string"){
-    return object;
+function getValue(source, key){
+  if (source.hasOwnProperty(key)){
+    const object = source[key];
+    if (typeof(object)==="string"){
+      return object;
+    }else{
+      return object.join('\n');
+    }
   }else{
-    return object.join('\n');
+    return '';
   }
 }
 
@@ -1037,42 +1061,18 @@ function containsURL(tag){
   }
 }
 
-function computeTags(id){
+function computeDelimiterTag(){// returns true if the delimiter has changed
   clearTags();
-  // compute main tag
-  let delimiterHasChanged = false;
-  if (!freezeDelimiter && currentPage === 'mainPage'){
-    const stringsToFind = [].concat(...Object.values(splitAndLowerCase(venueScrapInfo)[currentPage])).filter(el => el !== '');
-    const tagsContainingStrings =  getTagContainingAllStrings($page,stringsToFind);
-    if (tagsContainingStrings.length === 0){
-      if (id){
-        const tagId = id.replace(/Strings/,'Tags');
-        delete venue[currentPage][tagId];
-      }
-      for(let b=0;b<eventTagsBoxes.length;b++){
-        eventTagsBoxes[b].value = '';
-      }
-      for(let b=0;b<eventStringsBoxes.length;b++){
-        if (eventStringsBoxes[b].value.split('\n').some(el => !$page.text().includes(el))){
-          eventTagsBoxes[b].placeholder = 'Cannot find string';
-          eventStringsBoxes[b].classList.add('invalid');
-        }      
-      }
-      return;
-    }else{
-      for(let b=0;b<eventStringsBoxes.length;b++){
-        eventTagsBoxes[b].placeholder = 'Tags will be filled automatically';    
-        eventStringsBoxes[b].classList.remove('invalid'); 
-      }
-      mainTag = tagsContainingStrings.last();
-      scrapInfoTooOld = false;
-      if (mustIncludeURL){// extend delimiter tag to include at least one url
-        while(!containsURL(mainTag)){
-          mainTag = mainTag.parent();
-        }
+  const stringsToFind = [].concat(...Object.values(splitAndLowerCase(venueScrapInfo)[currentPage])).filter(el => el !== '');
+  const tagsCandidates =  getTagContainingAllStrings($page,stringsToFind);
+  if (tagsCandidates.length !== 0){
+    mainTag = tagsCandidates.last();
+    scrapInfoTooOld = false;
+    if (mustIncludeURL){// extend delimiter tag to include at least one url
+      while(!containsURL(mainTag)){
+        mainTag = mainTag.parent();
       }
     }
-
     mainTagAbsolutePath = getTagLocalization(mainTag,$page,false,stringsToFind);
     let delimiterTag = reduceTag(getTagLocalization(mainTag,$page,true,stringsToFind),$page);
     if (autoAdjustCheckbox.checked === true){
@@ -1083,25 +1083,43 @@ function computeTags(id){
     if (delimiterHasChanged){
       delimiterTagField.value = delimiterTag;
       venue.eventsDelimiterTag = delimiterTag;
+      return true;
     }
+    return false;
+  }else{
+    return false;
   }
+}
+
+function computeTags(id){
+  clearTags();
+  // compute main tag
+  let delimiterHasChanged = true;
+  checkStringsNotFound();
   if (currentPage === 'mainPage'){
     if (validateDelimiterTags()){
       let $eventBlock = cheerio.load($page(mainTag).html());
-       venue[currentPage] = addJSONBlock(venueScrapInfo[currentPage],$eventBlock);
-       if (regroupTagsCheckbox.checked){
+      venue[currentPage] = addJSONBlock(venueScrapInfo[currentPage],$eventBlock);
+      if (regroupTagsCheckbox.checked){
         Object.keys(venue[currentPage]).forEach(key =>{
+          console.log(key, venue[currentPage][key]);
           venue[currentPage][key] = regroupTags(venue[currentPage][key]); 
         });
-       }
+      }
       
       // if (delimiterHasChanged){
-        computeEventsNumber();
+      computeEventsNumber();
+      //}
+      computeDateFormat();
+      applyTags(delimiterHasChanged || id === 'eventURLStrings');
+      initScrapTextTags();
+    }else{
+    }
+      // if (id){
+      //   const tagId = id.replace(/Strings/,'Tags');
+      //   delete venue[currentPage][tagId];
       // }
-       computeDateFormat();
-       applyTags(delimiterHasChanged || id === 'eventURLStrings');
-       initScrapTextTags();
-     }
+
   }else{
     venue[currentPage] = addJSONBlock(venueScrapInfo[currentPage],$page);
     computeDateFormat();
@@ -1202,6 +1220,7 @@ function renderEventURLPanel(){
 
 function setSwitchStatus(){
   const linkURL = makeURL(venue.baseURL,eventURL);
+  console.log(linkURL);
   if (!linkedFileContent){
     switchPageButton.classList.add('inactive');
     switchPageButton.disabled = true;
@@ -1243,24 +1262,92 @@ function validateDelimiterTags(){
 }
 
 function initScrapTextTags(){
+  for(let i = 0; i < scrapTextBoxStrings.length; i++){
+    const textBox = scrapTextBoxStrings[i];
+    console.log(textBox.id.replace('List',''));
+    populateField(textBox, getValue(venueScrapInfo[currentPage],textBox.id.replace('List','')));
+  }
   for(let i = 0; i < scrapTextBoxes.length; i++){
     const textBox = scrapTextBoxes[i];
     if (textBox.id.endsWith('Tags')){
-      if (venue[currentPage].hasOwnProperty(textBox.id)){
-        textBox.value = getValue(venue[currentPage][textBox.id]);
+        textBox.value = getValue(venue[currentPage],textBox.id);
         setRows(textBox);
-      }else{
-        textBox.value = '';
-      }
     }else{
-      if (venueScrapInfo[currentPage].hasOwnProperty(textBox.id)){
-        textBox.value = getValue(venueScrapInfo[currentPage][textBox.id]);
+        textBox.value = getValue(venueScrapInfo[currentPage],textBox.id);
         setRows(textBox);
-      }else{
-        textBox.value = '';
-      }
     }
   }
+}
+
+function populateField(textBox, strings){
+  textBox.innerHTML ='';
+  strings.split('\n').forEach(el =>{
+    console.log('str',el);
+    let inputElement = document.createElement('div');
+    inputElement.classList.add(textBox.id+'Field');
+    inputElement.setAttribute('type', 'text');
+    inputElement.textContent = el;
+    // validateString(inputElement);
+    // inputElement.addEventListener("keydown", function(event) {// prevents field URL tag to have more than one line
+    //   if (event.key === "Enter") {
+    //     // const cursorPosition = monInput.selectionStart;
+    //   }
+    // });
+    // inputElement.addEventListener('input',function(){
+    //   console.log('input change');
+    //   // const fields = document.getElementsByClassName(textBox.id+'Field');
+    //   // let newStrings = "";
+    //   // for (let i =0;i<fields.length;i++){
+    //   //   newStrings = newStrings+'\n'+fields[i].value;
+    //   // } 
+    //   // console.log(newStrings);
+    //   // // console.log('changement ',this.id);
+    //   // populateField(textBox, newStrings);
+    //   // // validateString(this);
+    //   // if (!freezeDelimiter && currentPage ==='mainPage'){
+    //   //   computeDelimiterTag();
+    //   // }
+    //   // computeTags();
+    // })
+    textBox.appendChild(inputElement);
+  });
+  textBox.addEventListener('input',function(){
+    console.log('avant',this.innerHTML);
+    if (!this.innerHTML.includes('<div') && this.innerHTML !== ''){
+      this.innerHTML = '<div type="text">'+this.innerHTML+'</div>';
+      const nouvelleSelection = window.getSelection();
+
+      // Créez une plage de texte pour la position souhaitée
+      const range = document.createRange();
+      range.setStart(this.childNodes[0], 1); // 5 est l'indice du caractère où vous voulez placer le curseur
+      
+      // Effacez la sélection précédente et ajoutez la nouvelle plage de texte
+      nouvelleSelection.removeAllRanges();
+      nouvelleSelection.addRange(range);
+      
+
+    }
+    
+    // console.log('avant',this.innerHTML);
+    // this.innerHTML = this.innerHTML.replace(/^([^\<]*)\</,(match, p1) => {
+    //   if (p1.length > 0) {
+    //       return `X${p1}X\<`;
+    //   } else {
+    //       return match; 
+    //   }
+    // });
+    console.log('change',this.textContent);
+    const divsChildren = textBox.querySelectorAll('div');
+    divsChildren.forEach(myDiv =>{
+      console.log('el',myDiv.textContent)
+      if ($page.text().includes(myDiv.textContent)){
+        myDiv.classList.remove('redFont');
+      }else{
+        myDiv.classList.add('redFont');
+      }
+    });
+    console.log('inner',textBox.innerHTML);
+  });
 }
 
 
@@ -1380,8 +1467,8 @@ function removeEmptyFields(object){
 
 function applyRegexp(){
   let $eventBlock;
-  console.log('mt',mainTag);
-  console.log('ht',$page(mainTag).html());
+  // console.log('mt',mainTag);
+  // console.log('ht',$page(mainTag).html());
   if (!mainTag){
     for(let i=0; i < regexpTextBeforeList.length; i++){
       regexpTextBeforeList[i].style.display = 'none';
@@ -1445,4 +1532,36 @@ function getMainTagIndex(){
     }
   }
   return j;
+}
+
+
+function checkStringsNotFound(){
+  for(let b=0;b<eventStringsBoxes.length;b++){
+    if (eventStringsBoxes[b].value.split('\n').some(el => !$page.text().includes(el))){
+      eventTagsBoxes[b].placeholder = 'Cannot find strings';
+      eventStringsBoxes[b].classList.add('invalid');
+      // console.log('value',eventStringsBoxes[b].value);
+      // console.log('text',eventStringsBoxes[b].innerHTML);
+      // const replacement = eventStringsBoxes[b].value.split('\n').map(str => '<span class="redFont">'+str+'XXX'+'</span>').join('\n');
+      // console.log('repl',replacement);
+      // // venueScrapInfo[currentPage][eventTagsBoxes[b].id] = replacement;
+      // eventStringsBoxes[b].innerHTML = replacement;
+      // console.log('value2',eventStringsBoxes[b].value);
+
+      // console.log(eventStringsBoxes[b].value);
+    }else{
+      eventTagsBoxes[b].placeholder = 'Tags will be filled automatically';    
+      eventStringsBoxes[b].classList.remove('invalid'); 
+    }
+  }
+}
+
+// for easyfield, put font in red if the string is not in the document
+function validateString(box){
+  if ($page.text().includes(box.value)){
+    box.classList.remove('redFont');
+  }else{
+    box.classList.add('redFont');
+  }
+
 }
