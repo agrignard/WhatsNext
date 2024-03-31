@@ -66,7 +66,7 @@ body, html {
   height: 20px;
 }
 
-#regexSelectorMainTag{
+#eventSelectorMainTag{
   margin-left: 10px;
 }
 
@@ -147,27 +147,27 @@ padding: 2px 6px;
 background-color: lightblue;
 }
 
-.highlightDummy{
+.SCRPXhighlightDummy{
   background-color: rgb(149, 165, 166);
 }
 
-.highlightName {
+.SCRPXhighlightName {
   background-color: rgb(52, 152, 219);
 }
 
-.highlightDate {
+.SCRPXhighlightDate {
   background-color: rgb(46, 204, 113);
 }
 
-.highlightStyle {
+.SCRPXhighlightStyle {
   background-color: rgb(243, 156, 18);
 }
 
-.highlightPlace{
+.SCRPXhighlightPlace{
     background-color: rgb(155, 89, 182);
 }
 
-.highlightURL{
+.SCRPXhighlightURL{
   background-color: rgb(241, 196, 15);
 }
 
@@ -350,14 +350,12 @@ background-color: lightblue;
 
 
 .scrapElement .input-row {
-    /* display: flex;
-    align-items: center; */
     width: 100%;
     margin-bottom: 0px;
     padding: 0px;
 }
 
-.scrapElement .input-row textarea {
+.scrapElement .input-row .eventStrings {
     /* flex: 1 0 80%;  */
     margin-right: 5px; /* Marge entre les éléments */
 }
@@ -366,7 +364,7 @@ background-color: lightblue;
 .scrapTextBoxStrings{
   background-color: rgb(107, 224, 180);
   padding: 2px 5px;
-  min-height: 1ch;
+  min-height: 30px;
 }
 
 .scrapTextBox{
@@ -378,6 +376,7 @@ background-color: lightblue;
   font-size: 85%;
   resize: none;
   margin-bottom: 5px;
+  min-height: calc(1ch + 10px);
 }
 
 .urlPanel{
@@ -399,13 +398,13 @@ background-color: lightblue;
 }
   
 
-.encadreInvalid {
+.SCRPXeventBlockInvalid {
   border: 1px dashed grey; 
   padding: 10px; 
   margin: 1px;
   display: inline-block; /* Permet à l'élément de s'ajuster à la largeur du contenu */
 }
-.encadre {
+.SCRPXeventBlock {
   border: 2px solid black; 
   padding: 10px; 
   display: inline-block; /* Permet à l'élément de s'ajuster à la largeur du contenu */
@@ -419,7 +418,7 @@ background-color: lightblue;
   margin: 1px;
 }
 
-.mainTag {
+.SCRPXmainTag {
   background-color: rgb(231, 76, 60);
 }
 
@@ -462,17 +461,17 @@ background-color: lightblue;
   box-sizing: border-box;
 }
 
-#regexSelectorPanel{
+#eventSelectorPanel{
   position: relative;
   background-color: rgb(61, 80, 100);
   padding: 5px;
 }
 
-#regexSelectorIndex{
+#eventSelectorIndex{
   border: none;
 }
 
-#regexSelectorText{
+#eventSelectorText{
   color: white;
   margin-right: 5px;
 }
@@ -489,7 +488,7 @@ background-color: lightblue;
 
 
 
-textarea:focus, input:focus {
+.scrapTextBox:focus, input:focus {
     outline: 2px solid rgb(189, 195, 199); 
 }
 

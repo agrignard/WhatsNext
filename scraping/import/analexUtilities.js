@@ -72,7 +72,7 @@ function adjustMainTag(delimiterTag,$,venue, currentEventNumber){
             }
         }
     }
-    return [bestTag, currentNumber];
+    return [bestTag.trim(), currentNumber];
 }
 
 
@@ -189,8 +189,9 @@ function getTagsForKey(object,key,cheerioSource, showLog){
 function findTag(html,string) {
     // console.log('ess',string);
     // console.log(html.html());
-   //  const tag = html(`*:contains('${string}')`).last();
-    const candidates = html(`*:contains('${string}')`);
+    //  const tag = html(`*:contains('${string}')`).last();
+    const string2 = string.replace('(','\\(').replace(')','\\)');
+    const candidates = html(`*:contains('${string2}')`);
     // console.log('rzg',candidates.length);
     if (candidates.length === 0){
     // console.log('\x1b[31mNo Tag Found matching string \x1b[0m\'%s\'\x1b[36m.',string);
@@ -261,9 +262,11 @@ function getClasses(tagText){
 
 function getTagContainingAllStrings($,stringsToFind){
     // return $('*:contains("' + stringsToFind.join('"):contains("') + '")');
-    //console.log('*:contains("' + stringsToFind.join('"), :contains("') + '")');
+
+    const stringsToFind2 = stringsToFind.map(el => el.replace('(','\\(').replace(')','\\)'));
+    // console.log('*:contains("' + stringsToFind.join('"), :contains("') + '")');
     // pose un pb si un texte contient une parenthèse ouvrante mais pas de parenthèse fermante
-    return $('*:contains("' + stringsToFind.join('"), :contains("') + '")')
+    return $('*:contains("' + stringsToFind2.join('"), :contains("') + '")')
     .filter((_, tag) => {
         // console.log(getTagLocalization(tag,$,false,stringsToFind));
         return tagContainsAllStrings($(tag), stringsToFind)
@@ -329,7 +332,8 @@ function getMyIndex(tag,source,stringsToFind){// get the index of the tag div.cl
         tagIndex =  source(tag).index(indexation);
     }else{
         const $parentHtml = cheerio.load(parentTag.html());
-        const str = ':contains("' + stringsToFind.join('"):contains("') + '")';
+        const stringsToFind2 = stringsToFind.map(el => el.replace('(','\\(').replace(')','\\)'));
+        const str = ':contains("' + stringsToFind2.join('"):contains("') + '")';
         const tagsFromParent =  $parentHtml(indexation+str).first();
         tagIndex = $parentHtml(tagsFromParent).index(indexation);
     }

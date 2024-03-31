@@ -40,7 +40,7 @@ let currentPage = 'mainPage';
 let detailedScrapView = true;
 let scrapInfoTooOld; // if scrap info is from a too old event, the linked page does not correspond to the tag
 
-var colorClassList = ['highlightName','highlightDate','highlightStyle','highlightPlace','highlightURL','highlightDummy'];
+var colorClassList = ['SCRPXhighlightName','SCRPXhighlightDate','SCRPXhighlightStyle','SCRPXhighlightPlace','SCRPXhighlightURL','SCRPXhighlightDummy'];
 const easyButtonClassList = ['easyButtonName','easyButtonDate','easyButtonStyle','easyButtonPlace','easyButtonURL','easyButtonDummy'];
 const easyConvert = {'eventNameStrings':0,'eventDateStrings':1,'eventStyleStrings':2,'eventPlaceStrings':3,'eventURLStrings':4,'eventDummyStrings':5};
 
@@ -205,8 +205,7 @@ missingLinksButton.addEventListener('click', function(){
 // tabs panel
 const scrapElementPanels = document.getElementsByClassName('scrapPanelToHideWhenRegex');
 const regexpPanels = document.getElementsByClassName('regexpPanel');
-const regexSelectorPanel = document.getElementById('regexSelectorPanel');
-regexSelectorPanel.style.display = 'none';
+const eventSelectorPanel = document.getElementById('eventSelectorPanel');
 tabList = document.getElementsByClassName('tab');
 
 for(let i=0;i < regexpPanels.length; i++){
@@ -221,12 +220,10 @@ for (let iTab = 0; iTab<tabList.length; iTab++){
     }
     this.classList.add('selectedTab');
     if (currentTab === 'regexpTag'){
-      regexSelectorPanel.style.display = 'block';
       applyRegexp();
       for(let i = 0; i < scrapElementPanels.length; i++){scrapElementPanels[i].style.display = 'none';};
       for(let i = 0; i < regexpPanels.length; i++){regexpPanels[i].style.display = 'block';};
     }else{
-      regexSelectorPanel.style.display = 'none';
       for(let i = 0; i < scrapElementPanels.length; i++){scrapElementPanels[i].style.display = 'block';};
       for(let i = 0; i < regexpPanels.length; i++){regexpPanels[i].style.display = 'none';};
     }
@@ -244,15 +241,15 @@ const eventURLPanel = document.getElementById('eventURLPanel');
 var delimiterTagField = document.getElementById('delimiterTagField');
 delimiterTagField.value = venue.hasOwnProperty('eventsDelimiterTag')?venue.eventsDelimiterTag:'';
 delimiterTagField.addEventListener('input'||'change',event =>{
-  venue.eventsDelimiterTag = delimiterTagField.value.replace(/\s*$/,'');
+  venue.eventsDelimiterTag = delimiterTagField.value.trim();//replace(/\s*$/,'');
   const stringsToFind = [].concat(...Object.values(splitAndLowerCase(venueScrapInfo)[currentPage]));
   const mainTagCandidates = $page(venue.eventsDelimiterTag+stringsToFind.map(el=>':contains('+el+')').join(''));
   if (mainTagCandidates.length > 0){
     clearTags();
     mainTag = mainTagCandidates[0];
     mainTagAbsolutePath = getTagLocalization(mainTag,$page,false,stringsToFind);
-    delimiterTag = reduceTag(getTagLocalization(mainTag,$page,true,stringsToFind),$page);//.replace(/\s*$/,'');
-    nbEvents = computeEventsNumber();
+    delimiterTag = reduceTag(getTagLocalization(mainTag,$page,true,stringsToFind),$page);
+    nbEvents.main = computeEventsNumber();
     adjustedDelimiterTag = undefined;
     nbEvents.adjusted = undefined;
   }
@@ -283,8 +280,7 @@ autoAdjustCheckbox.addEventListener('change',()=>{
   if (autoAdjustCheckbox.checked === true){
     if (adjustedDelimiterTag === undefined){
       [adjustedDelimiterTag, nbEvents.adjusted] = adjustMainTag(delimiterTag,$page,venue);
-      adjustedDelimiterTag.replace(/\s*$/,'');
-    }   
+    }
     hasChanged = delimiterTagField.value !== adjustedDelimiterTag;
     delimiterTagField.value = adjustedDelimiterTag;
     venue.eventsDelimiterTag = adjustedDelimiterTag;
@@ -357,7 +353,7 @@ easyPanelCopyButton.addEventListener('click',function(){
     textCopy = textCopy.replace(/(\n\s*)*$/,'').replace(/\n(\s*\n)*/g,'\n').replace(/^(\s*\n)*/,'');// remove blank lines
     const stringsToAdd = textCopy.split('\n');
     stringsToAdd.forEach(el => {
-      newEasyLine(el);
+      newEasyLine(el.trim());
     });
     getStringsFromEasyField();
     if (!freezeDelimiter && currentPage ==='mainPage'){
@@ -368,9 +364,6 @@ easyPanelCopyButton.addEventListener('click',function(){
   }
 });
 
-
-// populateEasyPanel();
-// renderDetailedView();
 
 
 function populateEasyPanel(){
@@ -391,8 +384,7 @@ function getStringsFromEasyField(){
   Object.keys(easyConvert).forEach(key => {
     const catIndex = easyConvert[key];
     const newStrings = easyPanelInfo.stringList.filter((el,i)=> easyPanelInfo.indexList[i]===catIndex);
-    stringTextBoxes[catIndex].value = newStrings.join('\n');
-    console.log(stringTextBoxes[catIndex].id);
+    populateField(stringTextBoxes[catIndex], newStrings.join('\n'));
     venueScrapInfo[currentPage][stringTextBoxes[catIndex].id] = newStrings;
   });
 }
@@ -416,16 +408,15 @@ function newEasyLine(text, typeIndex){
   inputElement.value = text;
   validateString(inputElement);
   inputElement.addEventListener('input',function(){
-    // console.log('changement ',this.id);
     const lineIndex = parseInt(this.id.match(/\d+$/));
-    easyPanelInfo.stringList[lineIndex] = this.value;
+    easyPanelInfo.stringList[lineIndex] = this.value.trim();
     validateString(this);
     getStringsFromEasyField();
     if (!freezeDelimiter && currentPage ==='mainPage'){
       computeDelimiterTag();
     }else{
-      const toDefine = true;
-      computeTags(toDefine);
+      const renderURL = easyPanelInfo.indexList[lineIndex] === easyConvert['eventURLStrings'];
+      computeTags(renderURL);
     }
   })
   newDiv.appendChild(inputElement);
@@ -445,6 +436,8 @@ function newEasyLine(text, typeIndex){
       }
       const lineIndex =  parseInt(this.id.match(/\d+-/));
       const typeIndex = parseInt(this.id.charAt(this.id.length - 1));
+      const renderURL = easyPanelInfo.indexList[lineIndex] === easyConvert['eventURLStrings'] 
+                        || typeIndex === easyConvert['eventURLStrings'] ;
       if (typeIndex === easyPanelInfo.indexList[lineIndex]){// set to default value (dummy)
         easyPanelInfo.indexList[lineIndex] = defaultIndex;
       }else{
@@ -452,9 +445,7 @@ function newEasyLine(text, typeIndex){
         newButton.classList.add(colorClassList[typeIndex]);
       }
       getStringsFromEasyField();
-      const toDefine = true;
-      computeTags(toDefine);// if url is changed
-      console.log(easyPanelInfo);
+      computeTags(renderURL);// if url is changed
     });
     newDiv.appendChild(newButton);
   }
@@ -464,8 +455,8 @@ function newEasyLine(text, typeIndex){
   newButton.classList.add('easyRemoveButton');
   newButton.textContent = '✖';
   newButton.addEventListener('click', function(){
-    console.log('remove');
     const lineIndex = parseInt(this.id.match(/\d+$/));
+    const renderURL = easyPanelInfo.indexList[lineIndex] === easyConvert['eventURLStrings'];
     let lineToRemove = document.getElementById('easyPanelLine'+lineIndex);
     easyPanelInfo.stringList[lineIndex] = undefined;
     easyPanelInfo.indexList[lineIndex] = undefined;
@@ -474,10 +465,8 @@ function newEasyLine(text, typeIndex){
     if (!freezeDelimiter && currentPage ==='mainPage'){
       computeDelimiterTag();
     }else{
-      const toDefine = true;
-      computeTags(toDefine);
+      computeTags(renderURL);
     }
-    console.log(easyPanelInfo);
   });
   newDiv.appendChild(newButton);
   easyPanelFields.appendChild(newDiv);
@@ -525,15 +514,18 @@ for(let i = 0; i < copyButtons.length; i++){
 
 function copyToTextBox(target){
   const selection = window.getSelection();
-  const textCopy = selection.toString();
-  const myNode = getParentElement(selection.anchorNode);
-  console.log(myNode);
-  console.log(getPathTo(myNode));
+  let textCopy = selection.toString();
+  // const myNode = getParentElement(selection.anchorNode);
+  // console.log(myNode);
+  // console.log(getPathTo(myNode));
   if (textCopy) {
-    target.value = (target.value.replace(/(\n\s*)*$/,'').replace(/\n\s*\n/g,'\n')+'\n'+textCopy).replace(/^(\s*\n)*/,'');// remove blank lines
     if (target.classList.contains("eventURLgroup")){// prevents field URL tag to have more than one line
-      target.value = target.value.replace(/\n/g,'');
+      textCopy = textCopy.replace(/\n/g,'');
     }
+    textCopy = textCopy.replace(/(\s*\n\s*)+/g,'\n').replace(/^\n/,'').replace(/\n$/,'');// remove blank lines
+    console.log('X'+target.innerHTML+'X');
+    populateField(target, textCopy, true);
+    console.log(target.innerHTML);
     stringTextBoxUpdate(target);
   }
 }
@@ -571,6 +563,9 @@ function tagTextBoxUpdate(textBox){
 for(let i = 0; i < eventStringsBoxes.length; i++){
   const textBox = eventStringsBoxes[i];
   textBox.addEventListener('input',function(){
+    if(!/[^\s\t\n]/.test(this.textContent)){// remove unwanted divs if they contain no text
+      this.innerHTML = '';
+    }
     if (!this.innerHTML.includes('<div') && this.innerHTML !== ''){
       this.innerHTML = '<div type="text">'+this.innerHTML+'</div>';
       const newSelection = window.getSelection();
@@ -580,16 +575,8 @@ for(let i = 0; i < eventStringsBoxes.length; i++){
       newSelection.addRange(range);
     }
     const divsChildren = textBox.querySelectorAll('div');
-    divsChildren.forEach(myDiv =>{
-      // console.log('el',myDiv.textContent);
-      if ($page.text().includes(myDiv.textContent)){
-        myDiv.classList.remove('redFont');
-      }else{
-        myDiv.classList.add('redFont');
-      }
-    });
+    highlightStringsNotFound(divsChildren);
     stringTextBoxUpdate(textBox);
-    // console.log('inner',textBox.innerHTML);
   });
 }
 
@@ -597,7 +584,6 @@ for(let i = 0; i < eventStringsBoxes.length; i++){
 function stringTextBoxUpdate(textBox){
   venueScrapInfo[currentPage][textBox.id] = getValueFromBox(textBox);//getArray(textBox.value);
   if (!freezeDelimiter && currentPage ==='mainPage'){
-    console.log('trigger',textBox.id);
     computeDelimiterTag();
   }else{
     computeTags(textBox.id === 'eventURLStrings');
@@ -614,64 +600,62 @@ const regexpReplaceList = document.getElementsByClassName('regexpReplace');
 const regexpResultPanels = document.getElementsByClassName('regexpResult');
 let regexButtonShow = Array(regexpButtonList.length).fill(false);
 
-const regexSelectorMainTag = document.getElementById('regexSelectorMainTag');
-const regexSelectorIndex = document.getElementById('regexSelectorIndex');
-const regexSelectorPrevious = document.getElementById('regexSelectorPrevious');
-const regexSelectorNext = document.getElementById('regexSelectorNext');
+const eventSelectorMainTag = document.getElementById('eventSelectorMainTag');
+const eventSelectorIndex = document.getElementById('eventSelectorIndex');
+const eventSelectorPrevious = document.getElementById('eventSelectorPrevious');
+const eventSelectorNext = document.getElementById('eventSelectorNext');
 
-regexSelectorPrevious.addEventListener('click', function(){
-  if (regexSelectorIndex.value===''){
-    regexSelectorIndex.value = getMainTagIndex();
+eventSelectorPrevious.addEventListener('click', function(){
+  if (eventSelectorIndex.value===''){
+    eventSelectorIndex.value = getMainTagIndex();
   }
-  regexSelectorIndex.value = parseInt(regexSelectorIndex.value) - 1;
+  eventSelectorIndex.value = parseInt(eventSelectorIndex.value) - 1;
   selectorIndexChange();
 });
 
-regexSelectorNext.addEventListener('click', function(){
-  if (regexSelectorIndex.value===''){
-    regexSelectorIndex.value = getMainTagIndex();
+eventSelectorNext.addEventListener('click', function(){
+  if (eventSelectorIndex.value===''){
+    eventSelectorIndex.value = getMainTagIndex();
   }
-  regexSelectorIndex.value = parseInt(regexSelectorIndex.value) + 1;
+  eventSelectorIndex.value = parseInt(eventSelectorIndex.value) + 1;
   selectorIndexChange();
 });
 
-regexSelectorIndex.addEventListener('change', function(){
+eventSelectorIndex.addEventListener('change', function(){
  selectorIndexChange();
 });
 
 function selectorIndexChange(){
-  if (regexSelectorIndex.value > $page(venue.eventsDelimiterTag).length){
-    regexSelectorIndex.value = 1;
+  if (eventSelectorIndex.value > $page(venue.eventsDelimiterTag).length){
+    eventSelectorIndex.value = 1;
   }
-  if (regexSelectorIndex.value < 1){
-    regexSelectorIndex.value = $page(venue.eventsDelimiterTag).length;
+  if (eventSelectorIndex.value < 1){
+    eventSelectorIndex.value = $page(venue.eventsDelimiterTag).length;
   }
-  const tag = $page(venue.eventsDelimiterTag)[parseInt(regexSelectorIndex.value)];
+  const tag = $page(venue.eventsDelimiterTag)[parseInt(eventSelectorIndex.value)];
   $page('.focusedOn').each(function(index, element) {
     $page(element).removeClass('focusedOn');
   });
   $page(tag).addClass('focusedOn');
   rightPanel.innerHTML = $page.html();
   focusTo(document.getElementsByClassName('focusedOn')[0]);
+  renderEventURLPanel(eventSelectorIndex.value);
   applyRegexp();
 }
 
 
-// regexSelectorIndex.addEventListener('keydown', function(event) {
-//   if (event.key === 'ArrowDown' && this.value === '0') {
-//       this.value = '10';
-//   }
-// });
 
-regexSelectorMainTag.addEventListener('click', function(){
-  regexSelectorIndex.value = '';
+
+eventSelectorMainTag.addEventListener('click', function(){
+  eventSelectorIndex.value = '';
   console.log('reset');
   $page('.focusedOn').each(function(index, element) {
     console.log('t',index);
     $page(element).removeClass('focusedOn');
   });
   rightPanel.innerHTML = $page.html();
-  focusTo(document.getElementsByClassName('mainTag')[0]);
+  focusTo(document.getElementsByClassName('SCRPXmainTag')[0]);
+  renderEventURLPanel();
   applyRegexp();
 });
 
@@ -732,7 +716,6 @@ for (let i = 0; i < regexpButtonList.length; i++){
       regexpReplaceList[i].style.display = 'none';
     }
     applyChangeRegexField(i);
-    // applyRegexp();
   });
 }
 
@@ -786,8 +769,6 @@ switchPageButton.addEventListener('click',() =>{
 initializeInterface();
 
 function initializeInterface(){
-  initScrapTextStrings();
-  initScrapTextTags();
   if (currentPage === 'mainPage'){
     if (lastModified){// if the file exists
       loadPage();
@@ -800,6 +781,8 @@ function initializeInterface(){
   }else{
     loadLinkedPageContent();
   }
+  initScrapTextStrings();
+  initScrapTextTags();
   populateEasyPanel();
   renderDetailedView();
 }
@@ -844,8 +827,7 @@ function loadLinkedPageContent(){
 /*****************************/
 
 function clearTags(){
-  classes = ['highlightName', 'highlightDummy','highlightDate','highlightStyle','highlightPlace',
-  'highlightURL','mainTag','encadre','encadreInvalid'];
+  const classes = colorClassList.concat(['SCRPXmainTag','SCRPXeventBlock','SCRPXeventBlockInvalid']);
   classes.forEach(el => {
     const tags = $page('.'+el);
     tags.each(function(index, element) {
@@ -874,7 +856,7 @@ function applyTags(renderURL){
         const ntag = gotoTag($page(dtag),tag);
         ntag.forEach(el => {
           string += $page(el).text();
-          $page(el).addClass('highlightName');
+          $page(el).addClass('SCRPXhighlightName');
         });
       });
       event.eventName = string;
@@ -882,7 +864,7 @@ function applyTags(renderURL){
     if (venue[currentPage].hasOwnProperty('eventDummyTags')){
       venue[currentPage].eventDummyTags.forEach(tag =>{
         const ntag = gotoTag($page(dtag),tag);
-        ntag.forEach(el => {$page(el).addClass('highlightDummy');});
+        ntag.forEach(el => {$page(el).addClass('SCRPXhighlightDummy');});
       });
     }
     if (venue[currentPage].hasOwnProperty('eventDateTags')){
@@ -891,7 +873,7 @@ function applyTags(renderURL){
         const ntag = gotoTag($page(dtag),tag);
         ntag.forEach(el => {
           string += $page(el).text();
-          $page(el).addClass('highlightDate');
+          $page(el).addClass('SCRPXhighlightDate');
         }); 
       });
       event.eventDate = string;
@@ -899,32 +881,32 @@ function applyTags(renderURL){
     if (venue[currentPage].hasOwnProperty('eventStyleTags')){
       venue[currentPage].eventStyleTags.forEach(tag =>{
         const ntag = gotoTag($page(dtag),tag);
-        ntag.forEach(el => {$page(el).addClass('highlightStyle');});
+        ntag.forEach(el => {$page(el).addClass('SCRPXhighlightStyle');});
       });
     }
     if (venue[currentPage].hasOwnProperty('eventPlaceTags')){
       venue[currentPage].eventPlaceTags.forEach(tag =>{
         const ntag = gotoTag($page(dtag),tag);
-        ntag.forEach(el => {$page(el).addClass('highlightPlace');});
+        ntag.forEach(el => {$page(el).addClass('SCRPXhighlightPlace');});
       });
     }
     if (venue[currentPage].hasOwnProperty('eventURLTags')){
       venue[currentPage].eventURLTags.forEach(tag =>{
         const ntag = gotoTag($page(dtag),tag);
-        ntag.forEach(el => {$page(el).addClass('highlightURL');});  
+        ntag.forEach(el => {$page(el).addClass('SCRPXhighlightURL');});  
       });
     }
     return event;
   }
 
   if (currentPage === 'mainPage'){
-    $page(mainTagAbsolutePath).addClass('mainTag');
+    $page(mainTagAbsolutePath).addClass('SCRPXmainTag');
     $page(venue.eventsDelimiterTag).each((index, dTag) => {
       const event = fillTags(dTag);
       if (isValidEvent(event, venue)){
-        $page(dTag).addClass('encadre');
+        $page(dTag).addClass('SCRPXeventBlock');
       }else{
-        $page(dTag).addClass('encadreInvalid');
+        $page(dTag).addClass('SCRPXeventBlockInvalid');
       }
     });
     rightPanel.innerHTML = $page.html();
@@ -942,7 +924,7 @@ function applyTags(renderURL){
       analyzePanel.style.display = 'none';
     }
   
-    const focusedElement = document.getElementsByClassName("mainTag")[0];
+    const focusedElement = document.getElementsByClassName("SCRPXmainTag")[0];
     focusTo(focusedElement);
   }else{
     fillTags($page('BODY'));
@@ -983,7 +965,7 @@ function loadPage(){
     }
     mainTag = mainTagCandidates[i];
     mainTagAbsolutePath = getTagLocalization(mainTag,$page,false,stringsToFind);
-    delimiterTag = reduceTag(getTagLocalization(mainTag,$page,true,stringsToFind),$page);//.replace(/\s*$/,'');
+    delimiterTag = reduceTag(getTagLocalization(mainTag,$page,true,stringsToFind),$page);
     nbEvents.main = computeEventsNumber(delimiterTag);
     [adjustedDelimiterTag, nbEvents.adjusted] = adjustMainTag(delimiterTag,$page,venue,nbEvents.main);
     if (adjustedDelimiterTag === venue.eventsDelimiterTag){
@@ -1135,11 +1117,10 @@ function computeDelimiterTag(){// returns true if the delimiter has changed
     mainTagAbsolutePath = getTagLocalization(mainTag,$page,false,stringsToFind);
     tagsFromStrings(cheerio.load($page(mainTag).html()));
     if (oldTag !== mainTagAbsolutePath){
-      delimiterTag = reduceTag(getTagLocalization(mainTag,$page,true,stringsToFind),$page);//.replace(/\s*$/,'');
+      delimiterTag = reduceTag(getTagLocalization(mainTag,$page,true,stringsToFind),$page);
       nbEvents.main = computeEventsNumber();
       if (autoAdjustCheckbox.checked === true){
         [adjustedDelimiterTag, nbEvents.adjusted] = adjustMainTag(delimiterTag,$page,venue,nbEvents.main);
-        adjustedDelimiterTag.replace(/\s*$/,'');
         setEventPanel(nbEvents.adjusted);
         delimiterTagField.value = adjustedDelimiterTag;
         venue.eventsDelimiterTag = adjustedDelimiterTag;
@@ -1150,6 +1131,9 @@ function computeDelimiterTag(){// returns true if the delimiter has changed
       }
     }else{
       if (autoAdjustCheckbox.checked === true){
+        if (adjustedDelimiterTag === undefined){
+          [adjustedDelimiterTag, nbEvents.adjusted] = adjustMainTag(delimiterTag,$page,venue);
+        }
         setEventPanel(nbEvents.adjusted);
       }else{
         setEventPanel(nbEvents.main);
@@ -1181,10 +1165,13 @@ function computeTags(renderURL){
       applyTags(renderURL);
     }
   }else{
+    console.log('eeee');
     venue[currentPage] = addJSONBlock(venueScrapInfo[currentPage],$page, showLog);
+    // tagsFromStrings($page);
+    // console.log(venueScrapInfo[currentPage]);
     computeDateFormat();
-    applyTags(false);
     initScrapTextTags();
+    applyTags(false);
   }
 }
 
@@ -1222,7 +1209,7 @@ function computeDateFormat(){
   
 }
 
-function renderEventURLPanel(){
+function renderEventURLPanel(eventIndex){
   if (venue.eventsDelimiterTag === undefined || venue.eventsDelimiterTag === ''){
     eventURLPanel.style.display = 'none';
     return;
@@ -1235,7 +1222,9 @@ function renderEventURLPanel(){
   }
   let tag;
   eventURLPanel.style.display = 'block';
-  if (scrapInfoTooOld === true){
+  if (eventIndex){
+    tag = $page(venue.eventsDelimiterTag)[eventIndex];
+  }else if (scrapInfoTooOld === true){
     eventURLPanelWarning.style.display = 'block';
     tag = $page(venue.eventsDelimiterTag).first();
   }else{
@@ -1328,9 +1317,12 @@ function validateDelimiterTags(){
 }
 
 function initScrapTextStrings(){
+  console.log('inint');
   for(let i = 0; i < eventStringsBoxes.length; i++){
     const textBox = eventStringsBoxes[i];
     populateField(textBox, getValue(venueScrapInfo[currentPage],textBox.id));
+    const divsChildren = textBox.querySelectorAll('div');
+    highlightStringsNotFound(divsChildren);
   }
 }
 
@@ -1342,21 +1334,24 @@ function initScrapTextTags(){
   }
 }
 
-function populateField(textBox, strings){
-  textBox.innerHTML ='';
-  strings.split('\n').forEach(el =>{
-    console.log('str',el);
-    let inputElement = document.createElement('div');
-    inputElement.classList.add(textBox.id+'Field');
-    inputElement.setAttribute('type', 'text');
-    inputElement.textContent = el;
-    textBox.appendChild(inputElement);
-  });
+function populateField(textBox, strings, append){
+  if (append === undefined || append === false){
+    textBox.innerHTML ='';
+  }
+  if (strings.length > 0){
+    strings.split('\n').forEach(el =>{
+      let inputElement = document.createElement('div');
+      // inputElement.classList.add(textBox.id+'Field');
+      inputElement.setAttribute('type', 'text');
+      inputElement.textContent = el;
+      textBox.appendChild(inputElement);
+    });
+  }
 }
 
 function getValueFromBox(textBox){
   const divsChildren = Array.from(textBox.querySelectorAll('div'));
-  return divsChildren.map(myDiv => myDiv.textContent);
+  return divsChildren.map(myDiv => myDiv.textContent.trim());
 }
 
 
@@ -1421,6 +1416,11 @@ function reduceImgSize(html){
 
 function setEventPanel(n){
   DelimiterTitle.textContent = "Delimiter tag (found "+n+" events)";
+  if (n>0){
+    eventSelectorPanel.style.display = 'block';
+  }else{
+    eventSelectorPanel.style.display = 'none';
+  }
 }
 
 // by default, return the number of events with the eventDelimiter in venue. Otherwise, count the number
@@ -1482,10 +1482,10 @@ function applyRegexp(){
     }
     return;
   }
-  if (regexSelectorIndex.value === ''){
+  if (eventSelectorIndex.value === ''){
     $eventBlock = cheerio.load($page(mainTag).html());
   }else{
-    const index = parseInt(regexSelectorIndex.value)-1;
+    const index = parseInt(eventSelectorIndex.value);
     const tag = $page(venue.eventsDelimiterTag)[index];
     $eventBlock = cheerio.load($page(tag).html());
   }
@@ -1540,33 +1540,23 @@ function getMainTagIndex(){
 }
 
 
-// function checkStringsNotFound(){
-//   for(let b=0;b<eventStringsBoxes.length;b++){
-//       if (eventStringsBoxes[b].value.split('\n').some(el => !$page.text().includes(el))){
-//       eventTagsBoxes[b].placeholder = 'Cannot find strings';
-//       eventStringsBoxes[b].classList.add('invalid');
-//       // console.log('value',eventStringsBoxes[b].value);
-//       // console.log('text',eventStringsBoxes[b].innerHTML);
-//       // const replacement = eventStringsBoxes[b].value.split('\n').map(str => '<span class="redFont">'+str+'XXX'+'</span>').join('\n');
-//       // console.log('repl',replacement);
-//       // // venueScrapInfo[currentPage][eventTagsBoxes[b].id] = replacement;
-//       // eventStringsBoxes[b].innerHTML = replacement;
-//       // console.log('value2',eventStringsBoxes[b].value);
-
-//       // console.log(eventStringsBoxes[b].value);
-//     }else{
-//       eventTagsBoxes[b].placeholder = 'Tags will be filled automatically';    
-//       eventStringsBoxes[b].classList.remove('invalid'); 
-//     }
-//   }
-// }
 
 // for easyfield, put font in red if the string is not in the document
 function validateString(box){
-  if ($page.text().includes(box.value)){
+  if ($page.text().includes(box.value.trim())){
     box.classList.remove('redFont');
   }else{
     box.classList.add('redFont');
   }
 
+}
+
+function highlightStringsNotFound(divsChildren){
+  divsChildren.forEach(myDiv =>{
+    if ($page.text().includes(myDiv.textContent.trim())){
+      myDiv.classList.remove('redFont');
+    }else{
+      myDiv.classList.add('redFont');
+    }
+  });
 }

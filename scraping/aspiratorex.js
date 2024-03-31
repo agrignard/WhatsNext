@@ -18,6 +18,7 @@ const outputPath = './webSources/';
 //const nbFetchTries = 2; // number of tries in case of internet connection time outs
 
 const venues = loadVenuesJSONFile();
+let log = '';
 
 const filteredVenues = getVenuesFromArguments(process.argv, venues);
 
@@ -47,24 +48,31 @@ if (filteredVenues.length === 0){
     }
     text += " not defined in \'venue.json\')";
     console.log(text);
+    log +=text;
   });
   // for non aliases venues
   filteredVenues.filter(obj => !isAlias(obj)).forEach((venue, index) => {
         // Afficher le numéro de l'objet
     console.log(`Venue ${index + 1}: \x1b[36m${venue.name} (${venue.city}, ${venue.country})\x1b[0m (${venue.url})`);
+    let venueLog = 'Venue ${index + 1}: \x1b[36m${venue.name} (${venue.city}, ${venue.country})\n';
     try{
       // // update venue base URL in case of a change => now done in initializeVenue !
       // const url = new URL(venue.url);
       // venue.baseURL = url.origin + url.pathname.replace(/\/[^\/]+$/, '/');
       if (!venue.hasOwnProperty('country') || !venue.hasOwnProperty('city')){
         console.log('\x1b[31mError: venue \x1b[0m%s\x1b[31m has no country and/or city defined.',venue.name);
+        venueLog += '\x1b[31mError: venue '+venue.name+' has no country and/or city defined.\x1b[0m';
       }else{
           let path = outputPath+venue.country+'/'+venue.city+'/'+venue.name+'/';
           erasePreviousHtmlFiles(path)
-          .then(() => {downloadVenue(venue,path);})
+          .then(() => {
+            downloadVenue(venue,path);
+            venueLog += '\x1b[31mEssaid URL for '+venue.name+'.x1b[0m';
+          })
       } 
     }catch(err){
       console.log('\x1b[31mCannot read URL for %s.x1b[0m', venue.name);
+      venueLog += '\x1b[31mCannot read URL for '+venue.name+'.x1b[0m';
     }
   });
 }
