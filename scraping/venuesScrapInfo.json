@@ -174,13 +174,13 @@
   "Le Petit Salon|Lyon|France": {
     "mainPage": {
       "eventNameStrings": [
-        "istig"
+        "ISTI"
       ],
       "eventDateStrings": [
         "09/03"
       ],
       "eventStyleStrings": [
-        "house"
+        "HOUSE"
       ]
     },
     "linkedPage": {

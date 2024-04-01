@@ -11,6 +11,7 @@ const {numberOfInvalidDates, getCommonDateFormats, createDate} = require('./date
 const cheerio = require('cheerio');
 
 
+
 module.exports = {getTagLocalization, tagContainsAllStrings, getTagContainingAllStrings, getMyIndex, 
     splitAndLowerCase, addJSONBlock, reduceTag, getAllDates, getBestDateFormat, adjustMainTag, 
     regroupTags, countNonEmptyEvents};
@@ -155,8 +156,12 @@ function addJSONBlock(scrapSource,source, showLog){
     let res =  {};
     Object.keys(scrapSource).filter(element => scrapSource[element].length > 0)
         .forEach(key =>{
+            const keyTag = key.replace(/String/,'Tag');
             // if (scrapSource[key].length>0 && !(scrapSource[key].length === 1 && scrapSource[key][0] !== '')){
-                res[key.replace(/String/,'Tag')] = getTagsForKey(scrapSource,key,source, showLog);
+            res[keyTag] = getTagsForKey(scrapSource,key,source, showLog);
+            if (key.startsWith('eventMulti')){//replaces the last occurence of :eq(x)
+                res[keyTag] = res[keyTag].map(el=>el.replace(/:eq\(\d+\)(?!.*:eq\(\d+\))/,''));
+            }
             // }
         });
     // remove doubles 
@@ -166,12 +171,13 @@ function addJSONBlock(scrapSource,source, showLog){
 
 function getTagsForKey(object,key,cheerioSource, showLog){
     const string = key.match(/event([^]*)String/);
-    const tagList = object[key].filter(el => el !== '').map(string2 => findTag(cheerioSource,string2));
+    const tagStrings = object[key].filter(el => el !== '');
+    const tagList = tagStrings.map(string2 => findTag(cheerioSource,string2));
     if(showLog === undefined || showLog === true){
         console.log('\n\x1b[36mEvent '+string[1]+' tags:\x1b[0m');
         showTagsDetails(tagList,cheerioSource,object[key]);
     }
-    return tagList.map((tag,index) => reduceTag(getTagLocalization(tag,cheerioSource,false,[object[key][index]]),cheerioSource));
+    return tagList.map((tag,ind) => reduceTag(getTagLocalization(tag,cheerioSource,false,[tagStrings[ind]]),cheerioSource));
  }
 
  function showTagsDetails(tagList,source,stringsToFind){
@@ -268,7 +274,6 @@ function getTagContainingAllStrings($,stringsToFind){
     // pose un pb si un texte contient une parenthèse ouvrante mais pas de parenthèse fermante
     return $('*:contains("' + stringsToFind2.join('"), :contains("') + '")')
     .filter((_, tag) => {
-        // console.log(getTagLocalization(tag,$,false,stringsToFind));
         return tagContainsAllStrings($(tag), stringsToFind)
     });
 }
@@ -278,49 +283,88 @@ function tagContainsAllStrings(tag, strings) {
     return strings.every(string => tagContent.includes(string)); // Comparaison insensible à la casse
 }
 
-function getTagLocalization(tag,source,isDelimiter,stringsToFind){ 
-    stringsToFind = stringsToFind.filter(el => el !== '');
-    if (tag == null){
-        return null;
+function getTagLocalization(tag,source,isDelimiter,stringsToFind){
+
+    let path = '';
+  let currentElement = tag;
+
+  while (currentElement.length) {
+      let name = currentElement.get(0).name;
+      let id = currentElement.attr('id');
+      let className = currentElement.attr('class');
+      let index;
+      
+    if (className){
+      const childrenWithClass = currentElement.parent().children(`${name}.${className}`);
+      index = childrenWithClass.index(currentElement) + 1;
+    }else{
+      const childrenWithoutClass = currentElement.parent().children(`${name}`).filter(function() {
+          return !source(this).attr('class');
+      });
+      index = childrenWithoutClass.index(currentElement) + 1;
     }
-    if (source(tag).prop('tagName') == undefined){
-        return '';
+    let node = name;
+    // if (id && !isDelimiter) {
+    //     node += `#${id}`;
+    // }
+    if (className) {
+        node += `.${className.replace(/\s+/g, '.')}`;
     }
-    try{
-       //console.log(source.html());
-        if (source(tag).prop('tagName')=='BODY' ||source(tag).prop('tagName')=='HEAD'){// if we are already at top level... may happen ?
-            return source(tag).prop('tagName');
-        }
-        let tagClass = '';
-        let string;
-        if (source(tag).attr('class')){
-            tagClass = '.'+source(tag).attr('class');//.split(' ')[0];
-            tagClass = tagClass.replace(/[ ]*$/g,'').replace(/[ ]{1,}/g,'.');
-        }
-        // if (isDelimiter){
-        //     return source(tag).prop('tagName')+tagClass;
-        // }
-        if (source(tag).parent().prop('tagName')=='BODY' || source(tag).parent().prop('tagName')== undefined){    
-            string = '';
-        }else{
-            string = getTagLocalization(source(tag).parent(),source,isDelimiter,stringsToFind);
-        }
-        string += (string ==='')?'':' ';
-        string += source(tag).prop('tagName');
-        string += tagClass;
-        if (!isDelimiter){
-            const index =  getMyIndex(tag,source,stringsToFind);
-            string +=  ':eq('+index+')';
-        }
-        return string;
-    }catch(err){
-      console.log("\x1b[31mErreur de localisation de la balise: %s\x1b[0m: %s",source(tag).prop('tagName'),err);
-      throw err;
+    if (index && !isDelimiter) {
+        node += `:eq(${index - 1})`;
     }
+
+    path = node + (path ? '>' + path : '');
+    currentElement = currentElement.parent();
+  }
+  return path;
 }
 
 
+// function getTagLocalization(tag,source,isDelimiter,stringsToFind){ 
+//     stringsToFind = stringsToFind.filter(el => el !== '');
+//     if (tag == null){
+//         return null;
+//     }
+//     if (source(tag).prop('tagName') == undefined){
+//         return '';
+//     }
+//     try{
+//        //console.log(source.html());
+//         if (source(tag).prop('tagName')=='BODY' ||source(tag).prop('tagName')=='HEAD'){// if we are already at top level... may happen ?
+//             return source(tag).prop('tagName');
+//         }
+//         let tagClass = '';
+//         let string;
+//         if (source(tag).attr('class')){
+//             tagClass = '.'+source(tag).attr('class');//.split(' ')[0];
+//             tagClass = tagClass.replace(/[ ]*$/g,'').replace(/[ ]{1,}/g,'.');
+//         }
+//         // if (isDelimiter){
+//         //     return source(tag).prop('tagName')+tagClass;
+//         // }
+//         if (source(tag).parent().prop('tagName')=='BODY' || source(tag).parent().prop('tagName')== undefined){    
+//             string = '';
+//         }else{
+//             string = getTagLocalization(source(tag).parent(),source,isDelimiter,stringsToFind);
+//         }
+//         string += (string ==='')?'':'>';
+//         string += source(tag).prop('tagName');
+//         string += tagClass;
+//         if (!isDelimiter){
+//             const index =  getMyIndex(tag,source,stringsToFind);
+//             string +=  ':eq('+index+')';
+//         }
+//         return string;
+//     }catch(err){
+//       console.log("\x1b[31mErreur de localisation de la balise: %s\x1b[0m: %s",source(tag).prop('tagName'),err);
+//       throw err;
+//     }
+// }
+
+
 function getMyIndex(tag,source,stringsToFind){// get the index of the tag div.class among the same type and same class
+    // console.log(stringsToFind);
     let indexation = source(tag).prop('tagName');
     let tagIndex;
     if (source(tag).attr('class')){
@@ -337,6 +381,7 @@ function getMyIndex(tag,source,stringsToFind){// get the index of the tag div.cl
         const tagsFromParent =  $parentHtml(indexation+str).first();
         tagIndex = $parentHtml(tagsFromParent).index(indexation);
     }
+    console.log(tagIndex, stringsToFind);
     return tagIndex;
 }
 

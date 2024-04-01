@@ -33,8 +33,7 @@
     "ID": "Le Sucre|Lyon|France",
     "regexp": {
       "eventStyle": [
-        "\\| ",
-        ""
+        "\\| "
       ]
     }
   },
@@ -44,19 +43,19 @@
     "country": "France",
     "url": "https://www.lpslyon.fr/evenements-le-petit-salon/",
     "baseURL": "https://www.lpslyon.fr/evenements-le-petit-salon/",
-    "eventsDelimiterTag": " DIV.events__item.item.colmd4",
+    "eventsDelimiterTag": "DIV.row.flexxlnowrap DIV.events__item.item.colmd4.offsetxl1",
     "mainPage": {
       "eventNameTags": [
-        " H2.item__title:eq(0)"
+        "H2.item__title:eq(0)"
       ],
       "eventDateTags": [
-        "DIV.item__date.dxlnone:eq(0)  SPAN:eq(1)"
+        "DIV.item__date.dxlnone:eq(0) SPAN:eq(1)"
       ],
       "eventStyleTags": [
-        " DIV.item__text:eq(0)"
+        "DIV.item__text:eq(0)"
       ]
     },
-    "eventURLIndex": 1,
+    "eventURLIndex": -1,
     "dateFormat": "dd-MM",
     "linkedPage": {
       "eventDateTags": [

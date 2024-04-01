@@ -40,7 +40,9 @@ let currentPage = 'mainPage';
 let detailedScrapView = true;
 let scrapInfoTooOld; // if scrap info is from a too old event, the linked page does not correspond to the tag
 
-var colorClassList = ['SCRPXhighlightName','SCRPXhighlightDate','SCRPXhighlightStyle','SCRPXhighlightPlace','SCRPXhighlightURL','SCRPXhighlightDummy'];
+const keyNames = ['Name','Dummy','Date','Style','Place','URL','MultiName'];
+const colorClassList = ['SCRPXhighlightName','SCRPXhighlightDate','SCRPXhighlightStyle',
+                        'SCRPXhighlightPlace','SCRPXhighlightURL','SCRPXhighlightDummy'];
 const easyButtonClassList = ['easyButtonName','easyButtonDate','easyButtonStyle','easyButtonPlace','easyButtonURL','easyButtonDummy'];
 const easyConvert = {'eventNameStrings':0,'eventDateStrings':1,'eventStyleStrings':2,'eventPlaceStrings':3,'eventURLStrings':4,'eventDummyStrings':5};
 
@@ -146,18 +148,20 @@ pageManagerButton.addEventListener('click',function(){
 
 // save Button
 saveButton.addEventListener('click',function(){
-  toLog("saved to JSON files:");
+  toLog("saved.");
   removeEmptyFields(venue);
   if (venue.hasOwnProperty('regexp')){
     if (Object.keys(venue.regexp).length === 0){
       delete venue.regexp;
     }
   }
+  toLog("venue.json:");
   toLog(JSON.stringify(venue));
   saveToVenuesJSON(venues);
   removeEmptyFields(venueScrapInfo);
   scrapInfo[venueID] = venueScrapInfo;
-  toLog(JSON.stringify(venueScrapInfo));
+  toLog("\nvenueSrapInfo.json:");
+  toLog(JSON.stringify(venueScrapInfo)+'\n');
   saveToScrapInfoJSON(scrapInfo);
   console.log(venueScrapInfo);
 });
@@ -206,10 +210,15 @@ missingLinksButton.addEventListener('click', function(){
 const scrapElementPanels = document.getElementsByClassName('scrapPanelToHideWhenRegex');
 const regexpPanels = document.getElementsByClassName('regexpPanel');
 const eventSelectorPanel = document.getElementById('eventSelectorPanel');
+const subtitles = document.getElementsByClassName('subtitle');
+const multipleEventsPanels = document.getElementsByClassName('multipleEventsPanel')
 tabList = document.getElementsByClassName('tab');
 
 for(let i=0;i < regexpPanels.length; i++){
   regexpPanels[i].style.display = 'none';
+}
+for(let i=0;i < multipleEventsPanels.length; i++){
+  multipleEventsPanels[i].style.display = 'none';
 }
 
 for (let iTab = 0; iTab<tabList.length; iTab++){
@@ -219,18 +228,29 @@ for (let iTab = 0; iTab<tabList.length; iTab++){
       tabList[i].classList.remove('selectedTab');
     }
     this.classList.add('selectedTab');
+    const visibility = {scrapTab:'none', multipleEventsTab:'none', regexpTag:'none'};
+    visibility[currentTab] = 'block';
+    for(let i = 0; i < scrapElementPanels.length; i++){scrapElementPanels[i].style.display = visibility.scrapTab;};
+    for(let i = 0; i < regexpPanels.length; i++){regexpPanels[i].style.display = visibility.regexpTag;};
+    for(let i = 0; i < multipleEventsPanels.length; i++){multipleEventsPanels[i].style.display = visibility.multipleEventsTab;};
     if (currentTab === 'regexpTag'){
       applyRegexp();
-      for(let i = 0; i < scrapElementPanels.length; i++){scrapElementPanels[i].style.display = 'none';};
-      for(let i = 0; i < regexpPanels.length; i++){regexpPanels[i].style.display = 'block';};
+      setSubtitles('(regex)');
+    }else if (currentTab === 'scrapTab'){
+      setSubtitles('');
     }else{
-      for(let i = 0; i < scrapElementPanels.length; i++){scrapElementPanels[i].style.display = 'block';};
-      for(let i = 0; i < regexpPanels.length; i++){regexpPanels[i].style.display = 'none';};
+      setSubtitles('(multiple events)')
     }
   });
 }
 let currentTab = tabList[0].id;
 tabList[0].classList.add('selectedTab');
+
+function setSubtitles(string){
+  for(let i=0; i < subtitles.length; i++){
+    subtitles[i].textContent = string;
+  }
+}
 
 
 // delimiter panel
@@ -313,7 +333,7 @@ regroupTagsCheckbox.addEventListener('change',()=>{
   computeTags(false);
 });
 
-const inputRows = document.getElementsByClassName('input-row');
+const inputRows = document.getElementsByClassName('hideWhenEasyPanel');
 const detailedScrapViewCheckbox = document.getElementById('detailedScrapViewCheckbox');
 detailedScrapViewCheckbox.checked = detailedScrapView;
 detailedScrapViewCheckbox.addEventListener('change',()=>{
@@ -412,10 +432,10 @@ function newEasyLine(text, typeIndex){
     easyPanelInfo.stringList[lineIndex] = this.value.trim();
     validateString(this);
     getStringsFromEasyField();
+    const renderURL = easyPanelInfo.indexList[lineIndex] === easyConvert['eventURLStrings'];
     if (!freezeDelimiter && currentPage ==='mainPage'){
-      computeDelimiterTag();
+      computeDelimiterTag(renderURL);
     }else{
-      const renderURL = easyPanelInfo.indexList[lineIndex] === easyConvert['eventURLStrings'];
       computeTags(renderURL);
     }
   })
@@ -463,7 +483,7 @@ function newEasyLine(text, typeIndex){
     lineToRemove.remove();
     getStringsFromEasyField();
     if (!freezeDelimiter && currentPage ==='mainPage'){
-      computeDelimiterTag();
+      computeDelimiterTag(renderURL);
     }else{
       computeTags(renderURL);
     }
@@ -584,7 +604,9 @@ for(let i = 0; i < eventStringsBoxes.length; i++){
 function stringTextBoxUpdate(textBox){
   venueScrapInfo[currentPage][textBox.id] = getValueFromBox(textBox);//getArray(textBox.value);
   if (!freezeDelimiter && currentPage ==='mainPage'){
-    computeDelimiterTag();
+    console.log(textBox.id);
+    const renderURL = textBox.id === 'eventURLStrings';
+    computeDelimiterTag(renderURL);
   }else{
     computeTags(textBox.id === 'eventURLStrings');
   }
@@ -723,7 +745,7 @@ for (let i = 0; i < regexpButtonList.length; i++){
 // log text
 const logText = document.getElementById('logText');
 function toLog(string){
-  log += string + '\n';
+  log += string.replace(/,/g,',\n') + '\n';
   logText.textContent = log;
 }
 let logCompact = true;
@@ -827,7 +849,8 @@ function loadLinkedPageContent(){
 /*****************************/
 
 function clearTags(){
-  const classes = colorClassList.concat(['SCRPXmainTag','SCRPXeventBlock','SCRPXeventBlockInvalid']);
+  const classes = colorClassList
+    .concat(['SCRPXhighlightMultiName','SCRPXmainTag','SCRPXeventBlock','SCRPXeventBlockInvalid']);
   classes.forEach(el => {
     const tags = $page('.'+el);
     tags.each(function(index, element) {
@@ -846,56 +869,34 @@ function gotoTag(ctag,tagString){
   return currentTag;
 }
 
+
+function applyTagForKey(keyName, dtag, event){
+  const key = 'event'+keyName+'Tags';
+  if (venue[currentPage].hasOwnProperty(key)){
+    let string = "";
+    venue[currentPage][key].forEach(tag =>{
+      const ntag = gotoTag($page(dtag),tag);
+      ntag.forEach(el => {
+        string += $page(el).text();
+        $page(el).addClass('SCRPXhighlight'+keyName);
+      });
+    });
+    if (keyName.includes('Name')){
+      event.eventName = event.eventName?event.eventName+string:string;
+    }
+    if (keyName.includes('Date')){
+      event.eventDate = event.eventDate?event.eventDate+string:string;
+    }
+  }
+}
+
+
 function applyTags(renderURL){
   function fillTags(dtag){
     const event = {};
-    if (venue[currentPage].hasOwnProperty('eventNameTags')){
-      let string = "";
-      // console.log(venue[currentPage].eventNameTags);
-      venue[currentPage].eventNameTags.forEach(tag =>{
-        const ntag = gotoTag($page(dtag),tag);
-        ntag.forEach(el => {
-          string += $page(el).text();
-          $page(el).addClass('SCRPXhighlightName');
-        });
-      });
-      event.eventName = string;
-    }
-    if (venue[currentPage].hasOwnProperty('eventDummyTags')){
-      venue[currentPage].eventDummyTags.forEach(tag =>{
-        const ntag = gotoTag($page(dtag),tag);
-        ntag.forEach(el => {$page(el).addClass('SCRPXhighlightDummy');});
-      });
-    }
-    if (venue[currentPage].hasOwnProperty('eventDateTags')){
-      let string = "";
-      venue[currentPage].eventDateTags.forEach(tag =>{
-        const ntag = gotoTag($page(dtag),tag);
-        ntag.forEach(el => {
-          string += $page(el).text();
-          $page(el).addClass('SCRPXhighlightDate');
-        }); 
-      });
-      event.eventDate = string;
-    }
-    if (venue[currentPage].hasOwnProperty('eventStyleTags')){
-      venue[currentPage].eventStyleTags.forEach(tag =>{
-        const ntag = gotoTag($page(dtag),tag);
-        ntag.forEach(el => {$page(el).addClass('SCRPXhighlightStyle');});
-      });
-    }
-    if (venue[currentPage].hasOwnProperty('eventPlaceTags')){
-      venue[currentPage].eventPlaceTags.forEach(tag =>{
-        const ntag = gotoTag($page(dtag),tag);
-        ntag.forEach(el => {$page(el).addClass('SCRPXhighlightPlace');});
-      });
-    }
-    if (venue[currentPage].hasOwnProperty('eventURLTags')){
-      venue[currentPage].eventURLTags.forEach(tag =>{
-        const ntag = gotoTag($page(dtag),tag);
-        ntag.forEach(el => {$page(el).addClass('SCRPXhighlightURL');});  
-      });
-    }
+    keyNames.forEach(keyName =>{
+      applyTagForKey(keyName, dtag, event);
+    });
     return event;
   }
 
@@ -1099,7 +1100,37 @@ function containsURL(tag){
   }
 }
 
-function computeDelimiterTag(){// returns true if the delimiter has changed
+
+function getPath(element) {
+  let path = '';
+  let currentElement = element;
+
+  while (currentElement.length) {
+      let name = currentElement.get(0).name;
+      let id = currentElement.attr('id');
+      let className = currentElement.attr('class');
+      let index = currentElement.index() + 1; // Ajout de 1 pour commencer à l'indice 1
+
+      let node = name;
+      if (id) {
+          // node += `#${id}`;
+          node += ':eq(0)';
+      }
+      if (className) {
+          node += `.${className.replace(/\s+/g, '.')}`;
+      }
+      if (index) {
+          node += `:eq(${index - 1})`; // Retrait de 1 pour commencer à l'indice 0
+      }
+
+      path = node + (path ? ' ' + path : '');
+      currentElement = currentElement.parent();
+  }
+  return path;
+}
+
+
+function computeDelimiterTag(renderURL){// renderURL forces to update the URL in the delimiter tag. If false or undefined, the panel will be rendered only if the main tag has changed.
   clearTags();
   const stringsToFind = [].concat(...Object.values(splitAndLowerCase(venueScrapInfo)[currentPage])).filter(el => el !== '');
   const tagsCandidates =  getTagContainingAllStrings($page,stringsToFind);
@@ -1115,6 +1146,12 @@ function computeDelimiterTag(){// returns true if the delimiter has changed
     }
     const oldTag = mainTagAbsolutePath;
     mainTagAbsolutePath = getTagLocalization(mainTag,$page,false,stringsToFind);
+    console.log('maintag:',$page(mainTag).text());
+    console.log(mainTagAbsolutePath,$page(mainTagAbsolutePath.replace(/\s/g,'\>')).text());
+    const truc = getPath(mainTag).replace(/div/g,'DIV');
+    console.log('path', truc);
+    const essai = $page(truc);
+    console.log('txc',$page(truc).text());
     tagsFromStrings(cheerio.load($page(mainTag).html()));
     if (oldTag !== mainTagAbsolutePath){
       delimiterTag = reduceTag(getTagLocalization(mainTag,$page,true,stringsToFind),$page);
@@ -1141,7 +1178,12 @@ function computeDelimiterTag(){// returns true if the delimiter has changed
     }
     computeDateFormat();
     initScrapTextTags();
+    if (renderURL === true || oldTag !== mainTagAbsolutePath){
+      renderEventURLPanel();
+    }
     applyTags();
+
+    console.log('classes',delimiterTagField.classList);
   }
 }
 
@@ -1292,8 +1334,10 @@ function setSwitchStatus(){
 }
 
 function setRows(textBox) {
-  const nbLines = textBox.value.split('\n').length;
-  textBox.setAttribute('rows', nbLines);
+  // const nbLines = textBox.value.split('\n').length;
+  // textBox.setAttribute('rows', nbLines);
+  // textBox.setAttribute('rows', textBox.scrollHeight / 24);
+  textBox.setAttribute('rows', 5);
 } 
 
 function isValidTag(tag){
@@ -1457,7 +1501,7 @@ selectNbPages.addEventListener('change', ()=>{
 });
 
 function removeEmptyFields(object){
-  fieldsToCheck = ['linkedPage','mainPage'];
+  fieldsToCheck = ['linkedPage','mainPage','regexp'];
   fieldsToCheck.forEach(field => {
     if (object.hasOwnProperty(field)){
       Object.keys(object[field]).forEach(key =>{

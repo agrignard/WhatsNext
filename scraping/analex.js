@@ -4,7 +4,7 @@ const {loadLinkedPages, getFilesContent} = require('./import/fileUtilities.js');
 const {loadVenueScrapInfofromFile, loadVenuesJSONFile, saveToVenuesJSON, 
         getLanguages, checkLanguages, fromLanguages} = require('./import/jsonUtilities.js');
 const {getTagLocalization, tagContainsAllStrings, getTagContainingAllStrings,
-    getMyIndex, splitAndLowerCase, addJSONBlock,  getAllDates, getBestDateFormat} = require('./import/analexUtilities.js');
+    splitAndLowerCase, addJSONBlock,  getAllDates, getBestDateFormat} = require('./import/analexUtilities.js');
 
 const fs = require('fs');
 const cheerio = require('cheerio');
