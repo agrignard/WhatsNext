@@ -680,38 +680,6 @@
     "linkedPage": {}
   },
   {
-    "name": "Hanoi Grapevine",
-    "city": "Hanoi",
-    "country": "Vietnam",
-    "mainPage": {
-      "eventNameTags": [
-        "H3.entrytitle:eq(0) A:eq(0)"
-      ],
-      "eventDateTags": [
-        "DIV.metainfo:eq(0) TIME.entrydate.updated:eq(0)"
-      ]
-    },
-    "url": "https://hanoigrapevine.com/category/event-listings/page/",
-    "ID": "Hanoi Grapevine|Hanoi|Vietnam",
-    "baseURL": "https://hanoigrapevine.com/category/event-listings/page/",
-    "eventsDelimiterTag": "DIV.td_mod_wrap.td_mod9 DIV.itemdetails",
-    "dateFormat": "dd-MM-yyyy",
-    "eventURLIndex": 1,
-    "multiPages": {
-      "nbPages": "20",
-      "startPage": "1",
-      "increment": "1"
-    },
-    "linkedPage": {
-      "eventPlaceTags": [
-        "H4:eq(0) P.addedTag:eq(2)"
-      ],
-      "eventDateTags": [
-        "H4:eq(0) P.addedTag:eq(0)"
-      ]
-    }
-  },
-  {
     "name": "google",
     "city": "Lyon",
     "country": "France",
@@ -755,50 +723,5 @@
     "eventsDelimiterTag": "DIV.nqcgrid.jslistingajax DIV.nqceventMiniature.jseventsajaxitem.nqcgriditem",
     "dateFormat": "dd-MM-HH:mm",
     "eventURLIndex": 1
-  },
-  {
-    "name": "Likdo",
-    "city": "Hanoi",
-    "country": "Vietnam",
-    "mainPage": {
-      "eventDateTags": [
-        "DIV.datetop2.evnt.lp:eq(0) H1.day2:eq(0)",
-        "DIV.datetop2.evnt.lp:eq(0) H1.day2:eq(1)",
-        "DIV.datetop2.evnt.lp:eq(0) H1.day2:eq(2)",
-        "DIV.numberwrapper:eq(0) H1.number2:eq(0)",
-        "DIV.numberwrapper:eq(0) H1.number2:eq(1)",
-        "DIV.monthwrwpper:eq(0) H1.month2.llp:eq(0)",
-        "DIV.monthwrwpper:eq(0) H1.month2.llp:eq(1)",
-        "DIV.monthwrwpper:eq(0) H1.month2.llp:eq(2)"
-      ],
-      "eventNameTags": [
-        "DIV.cardtextwrap:eq(0) H4.cerdheader:eq(0)"
-      ],
-      "eventPlaceTags": [
-        "DIV.eventcardlocationwrapper:eq(0) DIV.eventcardtext:eq(0)"
-      ],
-      "eventStyleTags": [
-        "DIV.tag:eq(0) DIV:eq(0)",
-        "DIV.tag:eq(1) DIV:eq(0)"
-      ]
-    },
-    "url": "https://likdo.asia/event/all/",
-    "ID": "Likdo|Hanoi|Vietnam",
-    "baseURL": "https://likdo.asia/event/all/",
-    "eventsDelimiterTag": " DIV.wlayoutgrid.evetscollectionsectionheader.blackbg.recom.artist A.cardwrapper.winlineblock",
-    "dateFormat": "dd-MM",
-    "eventURLIndex": 0
-  },
-  {
-    "name": "Noise Hanoi",
-    "city": "Hanoi",
-    "country": "Vietnam",
-    "mainPage": {},
-    "url": "https://www.noisehanoi.com/gigs",
-    "ID": "Noise Hanoi|Hanoi|Vietnam",
-    "multiPages": {
-      "nbPages": "5",
-      "scroll": true
-    }
   }
 ]

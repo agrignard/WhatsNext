@@ -67,7 +67,7 @@ function jsonCallback(err, data) {
 
     map.style.stylesheet.layers.forEach(function(layer) {
         if (layer.type === 'symbol') {
-            map.removeLayer(layer.id);
+            //map.removeLayer(layer.id);
         }
     });
 

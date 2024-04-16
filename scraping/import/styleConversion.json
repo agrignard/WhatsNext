@@ -2,7 +2,7 @@
     "French":{
         "Rock": ["ROCK"],
         "Rap": ["RAP"],
-        "Electro": ["Electro","techno","house","Clubbing","Dj Set","House Techno"],
+        "Electro": ["Electro","techno","house","Clubbing","Club","Dj Set","House Techno"],
         "World": ["Sono Mondiale"],    
         "Classique":["Classique","lyrique","opera"],
         "Jazz":["jazz","groove"],
