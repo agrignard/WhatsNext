@@ -28,7 +28,7 @@ export function addPlaces(map,placesData){
     });
     if(showPlacesAsCircle){
         map.addLayer({
-            'id': 'places-circles',
+            'id': 'places-circles_v',
             'type': 'circle',
             'source': 'places',
             'paint': {
@@ -40,7 +40,7 @@ export function addPlaces(map,placesData){
         });
     }else{
         map.addLayer({
-            'id': 'places-circles',
+            'id': 'places-circles_v',
             'type': 'symbol',
             'source': 'places',
             'layout': {
@@ -51,6 +51,19 @@ export function addPlaces(map,placesData){
         });
 
     }
+
+    map.addLayer({
+        'id': 'places-circles',
+        'type': 'circle',
+        'source': 'places',
+        'paint': {
+          'circle-radius': 10, // Larger radius for hit detection
+          'circle-opacity': 0, // Hide the circles while keeping their size for hit detection
+          'circle-stroke-width': 1,
+          'circle-color': 'transparent', // Transparent fill color
+          'circle-stroke-color': 'transparent' // Transparent stroke color
+        }
+      });
     
     map.addLayer({
     'id': 'place-labels',
@@ -83,11 +96,13 @@ export function addPlaces(map,placesData){
         }
         //CANNOT ADD THE POP UP AS BOTH ARE DISPLAYED (PLACE AND EVENT)
         if (!dataUtils.todaysEvent.has(place)) {
-            const html= "<a href='"+ description +  "' target='blank'title='Opens in a new window'>"+place+"</a>";
-            new mapboxgl.Popup()
-            .setLngLat(coordinates)
-            .setHTML(html)
-            .addTo(map);
+            if(description.length>0){
+                const html= "<a href='"+ description +  "' target='blank'title='Opens in a new window'>"+place+"</a>";
+                new mapboxgl.Popup()
+                .setLngLat(coordinates)
+                .setHTML(html)
+                .addTo(map);
+            } 
         }  
     });
 
@@ -193,11 +208,10 @@ map.on('click', 'event-circles', (e) => {
       
         placeURLString= "<a href="+dataUtils.placeToUrl.get(place)+" target=   'blank'title='Opens in a new window'>"+place+"</a>";
     }
-    
-    new mapboxgl.Popup()
-    .setLngLat(coordinates)
-    .setHTML("<h4>" + eventURLString + "</h4><b>Place:</b> "+place+"<br><b>Time:</b> "+time_string+"<br><b>Style:</b> "+style + " (" + detailedStyle +")")
-    .addTo(map);
+        var popup = new mapboxgl.Popup()
+        .setLngLat(coordinates)
+        .setHTML("<h4>" + eventURLString + "</h4><b>Place:</b> "+place+"<br><b>Time:</b> "+time_string+"<br><b>Style:</b> "+style + " (" + detailedStyle +")")
+        .addTo(map);  
     });
 
     // When the user moves their mouse over the state-fill layer, we'll update the
