@@ -101,27 +101,28 @@ async function convertEventCSVtoGeoJson(){
       const detailedStyle=columns[5];
       const url=columns[6];
       const time_string=columns[7];
-      //console.log("Event:"+ place+";"+title+";"+time+";"+size+";"+style+";"+detailedStyle+";"+url);
-    const newFeature = {
-      type: 'Feature',
-      id:parseInt(time*Math.random()),
-      geometry:{
-          type: 'Points',
-          //coordinates: placeToCoord.get(place),
-      },
-      properties:{
-          "title": title,
-          "size": size,
-          "icon": "marker-15",
-          "place": place,
-          "style": style,
-          "detailedStyle": detailedStyle,
-          "time":time,
-          "time_string":time_string,
-          "description":url
-      },
-      };
-      existingGeoJSON.features.push(newFeature);
+      if(style!="Theatre"){
+        const newFeature = {
+          type: 'Feature',
+          id:parseInt(time*Math.random()),
+          geometry:{
+              type: 'Points',
+              //coordinates: placeToCoord.get(place),
+          },
+          properties:{
+              "title": title,
+              "size": size,
+              "icon": "marker-15",
+              "place": place,
+              "style": style,
+              "detailedStyle": detailedStyle,
+              "time":time,
+              "time_string":time_string,
+              "description":url
+          },
+          };
+        existingGeoJSON.features.push(newFeature);
+      } 
   })
 
 

@@ -166,67 +166,67 @@ async function chartIt(){
 
 async function updateCircleLegend(){
 
-// Get the canvas element and its 2d rendering context
-const canvas = document.getElementById('myCircleCanvas');
-const ctx = canvas.getContext('2d');
+    // Get the canvas element and its 2d rendering context
+    const canvas = document.getElementById('myCircleCanvas');
+    //canvas.style.display= "none";
+    const ctx = canvas.getContext('2d');
 
 
-let i = 0;
-// Iterate over categoryColors object
-for (const category in mapUtils.categoryColors) {
-  if (mapUtils.categoryColors.hasOwnProperty(category)) {
-      // Add circle object to circles array
-      circles.push({
-          x: 17 + i * 36, // Adjust the x-coordinate as needed
-          y: 25,
-          radius: 17,
-          value: category,
-          color: mapUtils.getCategoryColorRGBA(category),
-          active:true
-      });
-  }
-  i++;
-}
-
-
-canvas.addEventListener('click', function (event) {
-  const rect = canvas.getBoundingClientRect();
-  const mouseX = event.clientX - rect.left;
-  const mouseY = event.clientY - rect.top;
-  circles.forEach(circle => {
-    const dx = mouseX - circle.x;
-    const dy = mouseY - circle.y;
-    const distance = Math.sqrt(dx * dx + dy * dy);
-    if (distance <= circle.radius) {
-      circle.active = !circle.active;
-      mapUtils.filterByStyles(map,circles.filter(circle => circle.active),appDate.valueOf());
-      drawCircles();
+    let i = 0;
+    // Iterate over categoryColors object
+    for (const category in mapUtils.categoryColors) {
+    if (mapUtils.categoryColors.hasOwnProperty(category)) {
+        // Add circle object to circles array
+        circles.push({
+            x: 20 + i * 42, // Adjust the x-coordinate as needed
+            y: 25,
+            radius: 20,
+            value: category,
+            color: mapUtils.getCategoryColorRGBA(category),
+            active:true
+        });
     }
-  });
-});
+    i++;
+    }
 
-function drawCircles() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  circles.forEach(circle => {
-    ctx.beginPath();
-    ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
-    ctx.fillStyle = circle.active ? circle.color : 'gray';
-    ctx.fill();
-    ctx.strokeStyle = circle.color;
-    ctx.lineWidth = 1;
-    ctx.stroke();
-    ctx.closePath();
-    ctx.font = '8px Arial';
-    ctx.fillStyle = "black";
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(circle.value, circle.x, circle.y);
-  });
-}
+    canvas.addEventListener('click', function (event) {
+    const rect = canvas.getBoundingClientRect();
+    const mouseX = event.clientX - rect.left;
+    const mouseY = event.clientY - rect.top;
+    circles.forEach(circle => {
+        const dx = mouseX - circle.x;
+        const dy = mouseY - circle.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        if (distance <= circle.radius) {
+        circle.active = !circle.active;
+        mapUtils.filterByStyles(map,circles.filter(circle => circle.active),appDate.valueOf());
+        drawCircles();
+        }
+    });
+    });
 
-// Initial drawing of circles
-drawCircles();
+    function drawCircles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    circles.forEach(circle => {
+        ctx.beginPath();
+        ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
+        ctx.fillStyle = circle.active ? circle.color : 'gray';
+        ctx.fill();
+        ctx.strokeStyle = circle.color;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+        ctx.closePath();
+        ctx.font = '10px Arial';
+        ctx.fillStyle = "black";
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(circle.value, circle.x, circle.y);
+    });
+    }
+
+    // Initial drawing of circles
+    drawCircles();
 }
 
 

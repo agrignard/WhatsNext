@@ -442,12 +442,13 @@ export const categoryColorsLyon = {
     'Electro': '40, 124, 18',
     'Jazz': '255, 255, 0',
     'Rap': '255, 0, 0',
-    'World': '224, 147, 40',
-    'Jam': '238, 130, 238',
-    'Classique': '127, 0, 255',
     'Chanson': '0, 255, 255',
     'Live': '144, 144, 144',
-    'Theatre': '165,42,42'
+    //'World': '224, 147, 40',
+   // 'Jam': '238, 130, 238',
+    'Classique': '127, 0, 255',
+    
+    //'Theatre': '165,42,42'
 };
 
 export const categoryColorsHanoi = {
