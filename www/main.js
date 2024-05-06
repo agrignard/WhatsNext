@@ -3,7 +3,7 @@ import * as dataUtils from './dataUtils.js';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiYWdyaWduYXJkIiwiYSI6ImNqdWZ6ZjJ5MDBoenczeXBkYWU3bTk5ajYifQ.SXiCzAGs4wbMlw3RHRvxhw';
 
-var devMode = false;
+var devMode = true;
 var showAllValueDiv = devMode ? true : false;
 export var city="lyon";
 processCityBasedOnUrl();
@@ -104,8 +104,10 @@ async function chartIt(){
     const todayInformation = await dataUtils.getTodayEvents(currentDate);
     const canvas1 = document.getElementById('chart1');
     const canvas2 = document.getElementById('chart2');
+    const canvas3 = document.getElementById('chart3');
     const ctx1 = canvas1.getContext('2d');
     const ctx2 = canvas2.getContext('2d');
+    const ctx3 = canvas3.getContext('2d');
     if(devMode){
         canvas1.style.display = 'block';
         const eventInformation = await dataUtils.getSortedNbEventPerPlaceMap(currentDate);
@@ -115,26 +117,26 @@ async function chartIt(){
         }
         });
         const myChart = new Chart(ctx1, {
-        type: 'bar',
-        data: {
-            labels:Array.from(eventInformation.keys()),
-            datasets: [{
-            label: '(Places with more than 2 events: ' + eventInformation.size + " - Event: " + dataUtils.nbActiveEvent + " )",
-            data:Array.from(eventInformation.values()),
-            borderWidth: 1
-            }]
-        },
-        options: {
-          scales: {
-              x: {
-                  ticks: {
-                      maxRotation: 90,
-                      minRotation: 90,
-                  },
-                  fontSize: 5
-              }
-          }
-      }
+            type: 'bar',
+            data: {
+                labels:Array.from(eventInformation.keys()),
+                datasets: [{
+                label: '(Places with more than 2 events: ' + eventInformation.size + " - Event: " + dataUtils.nbActiveEvent + " )",
+                data:Array.from(eventInformation.values()),
+                borderWidth: 1
+                }]
+            },
+            options: {
+            scales: {
+                x: {
+                    ticks: {
+                        maxRotation: 90,
+                        minRotation: 90,
+                    },
+                    fontSize: 5
+                }
+            }
+            }
         });
         canvas2.style.display = 'block';
         const eventbydateInformation = await dataUtils.getSortedNbEventPerDayMap(currentDate);
@@ -158,9 +160,40 @@ async function chartIt(){
             }
         }
         });
+        canvas3.style.display = 'block';
+        const eventStyleInformation = await dataUtils.getSortedNbEventPerStyleMap(currentDate);
+        eventStyleInformation.forEach((value, key) => {
+        if (value < 2) {
+            eventStyleInformation.delete(key);
+        }
+        });
+        const myChart3 = new Chart(ctx3, {
+            type: 'bar',
+            data: {
+                labels:Array.from(eventStyleInformation.keys()),
+                datasets: [{
+                label: '(Number of events per Style: ' + eventStyleInformation.size + " - Event: " + dataUtils.nbActiveEvent + " )",
+                data:Array.from(eventStyleInformation.values()),
+                borderWidth: 1
+                }]
+            },
+            options: {
+            scales: {
+                x: {
+                    ticks: {
+                        maxRotation: 90,
+                        minRotation: 90,
+                    },
+                    fontSize: 5
+                }
+            }
+            }
+        });
+        
     }else{
         canvas1.style.display = 'none'; 
         canvas2.style.display = 'none'; 
+        canvas3.style.display = 'none'; 
     } 
 }
 

@@ -1,4 +1,5 @@
 import * as main from './main.js';
+import * as mapUtils from './mapUtils.js';
 export const placeToCoord = new Map();
 export const placeToUrl = new Map();
 export var places= [];
@@ -65,6 +66,30 @@ export async function getSortedNbEventPerPlaceMap(_date){
         return new Map(sortedArray);
     }
     const sortedMap = sortMapByValue(nbEventPerPlace);
+    return sortedMap;
+}
+
+export async function getSortedNbEventPerStyleMap(_date){
+    const response = await fetch(main.city+'_event.geojson');
+    const data =   await response.json();
+    const nbEventPerStyle = new Map();
+    for (var j = 0; j < mapUtils.categoryColors.length;j++){
+        nbEventPerStyle.set(mapUtils.categoryColors[j].value, 0);
+    }
+    for (var i = 0; i < data.features.length; i++) {
+        if(data.features[i].properties.time>_date){
+            if (nbEventPerStyle.has(data.features[i].properties.style)) {
+                nbEventPerStyle.set(data.features[i].properties.style, nbEventPerStyle.get(data.features[i].properties.style) + 1);
+            } else {
+                nbEventPerStyle.set(data.features[i].properties.style, 1);
+            }
+        }
+    }    
+    function sortMapByValue(map) {
+        const sortedArray = [...map].sort((a, b) => b[1] - a[1]); // Sort by values in ascending order
+        return new Map(sortedArray);
+    }
+    const sortedMap = sortMapByValue(nbEventPerStyle);
     return sortedMap;
 }
 
