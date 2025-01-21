@@ -46,9 +46,8 @@ function adjustMainTag(delimiterTag,$,venue, currentEventNumber){
     let currentNumber = mainTagEventsNumber;
     // console.log('start number', currentNumber, delimiterTag);
     let bestTag = delimiterTag;
-    // console.log('refnum',currentNumber);
-    const splitTag = delimiterTag.split(' ');
-    // console.log(splitTag);
+    const splitTag = delimiterTag.split('\>');
+    // console.log('split',splitTag);
     for (let i=0;i<splitTag.length;i++){
         const startList = splitTag.slice(0,i);
         const endList = splitTag.slice(i+1);
@@ -57,17 +56,18 @@ function adjustMainTag(delimiterTag,$,venue, currentEventNumber){
             for(let j=1;j<currentTag.length;j++){
                 const startInnerList = currentTag.slice(0,j);
                 const endInnerList = currentTag.slice(j+1);
-                let newTag = startList.join(' ')+' '+startInnerList.join('.')+((j===currentTag.length-1)?'':'.')+
-                            endInnerList.join('.')+' '+endList.join(' ');
-                newTag = newTag.replace(/\s*$/,'');
+                let newTag = [startList.join('\>'),
+                               startInnerList.join('.')+((j===currentTag.length-1)?'':'.')+endInnerList.join('.'),
+                                endList.join('\>')].filter(el => el !='').join('\>').trim();
+                // newTag = newTag.replace(/\s*$/,'');
                 const newNumber = countNonEmptyEvents(newTag,$,venue);//$(newTag).length;
-                // console.log(newNumber, newTag);
+                // console.log('newTag',newNumber, newTag);
                 if (newNumber > currentNumber){
                     currentNumber = newNumber;
-                    bestTag = newTag.replace(/\s*$/,'');
+                    bestTag = newTag;//.replace(/\s*$/,'');
                 }
             }
-            //console.log('result',currentNumber,bestTag);
+            // console.log('result',currentNumber,bestTag);
             if (currentNumber > mainTagEventsNumber){
                 return adjustMainTag(bestTag,$,venue, currentNumber);
             }
@@ -160,7 +160,8 @@ function addJSONBlock(scrapSource,source, showLog){
             // if (scrapSource[key].length>0 && !(scrapSource[key].length === 1 && scrapSource[key][0] !== '')){
             res[keyTag] = getTagsForKey(scrapSource,key,source, showLog);
             if (key.startsWith('eventMulti')){//replaces the last occurence of :eq(x)
-                res[keyTag] = res[keyTag].map(el=>el.replace(/:eq\(\d+\)(?!.*:eq\(\d+\))/,''));
+                // res[keyTag] = res[keyTag].map(el=>el.replace(/:eq\(\d+\)(?!.*:eq\(\d+\))/,''));//remove the last references to :eq(x) if multitag
+                res[keyTag] = res[keyTag].map(el=>el.replace(/:eq\(\d+\)/g,''));//remove references to :eq(x) if multitag
             }
             // }
         });
@@ -173,11 +174,18 @@ function getTagsForKey(object,key,cheerioSource, showLog){
     const string = key.match(/event([^]*)String/);
     const tagStrings = object[key].filter(el => el !== '');
     const tagList = tagStrings.map(string2 => findTag(cheerioSource,string2));
+    if (string[1] === 'Date'){
+        const truc = getTagLocalization(cheerioSource(tagList[0]),cheerioSource,false);
+        console.log(tagStrings[0],truc);
+    }
+    // const truc = reduceTag(getTagLocalization(cheerioSource(tagList[0]),cheerioSource,false),cheerioSource);
+    // console.log(tagStrings[0],truc);
+    // console.log(cheerioSource(truc).text());
     if(showLog === undefined || showLog === true){
         console.log('\n\x1b[36mEvent '+string[1]+' tags:\x1b[0m');
         showTagsDetails(tagList,cheerioSource,object[key]);
     }
-    return tagList.map((tag,ind) => reduceTag(getTagLocalization(tag,cheerioSource,false,[tagStrings[ind]]),cheerioSource));
+    return tagList.map((tag,ind) => reduceTag(getTagLocalization(cheerioSource(tag),cheerioSource,false),cheerioSource));
  }
 
  function showTagsDetails(tagList,source,stringsToFind){
@@ -220,14 +228,28 @@ function findTag(html,string) {
         return undefined;
     }
     const refText = source(string).text();
-    const stringList = string.replace(/\s*$/,'').split(' ');
-    let reducedString = stringList.pop();
+    // console.log("truc ",string);
+    // console.log(string.replace(/:not\(\[class\]\)/g,''));
+    // const refText = source(string.replace(/:not\(\[class\]\)/g,'')).text();
+    // const stringList = string.replace(/\s*$/,'').split('\>');
+    const stringList = string.trim().split('\>');
+    // if (testP){
+    //     console.log('before reduc',stringList);
+    //     console.log('ref',refText);
+    // }
+    let reducedString = '';//stringList.pop();//why pop and not '' ? I don't remember if there is a reason or if it is a mistake.
     while(stringList.length>0){
-        reducedString = stringList.pop()+' '+reducedString;
+        reducedString = stringList.pop()+(reducedString===''?'':('\>'+reducedString));
         const reducedStringClasses = getClasses(reducedString);
-        const remainingClasses = getClasses(stringList.join(' '));
-        const noWrapping = reducedStringClasses.some(el =>!remainingClasses.includes(el));
+        const remainingClasses = getClasses(stringList.join('\>'));
+        const noWrapping = reducedStringClasses.some(el =>!remainingClasses.includes(el));// prevent problems if some classes are present several times in the string
+        // if (testP){
+        // console.log(stringList.length, noWrapping);
+        // }
         if (source(reducedString).text() === refText && noWrapping){
+            // if (testP){
+            //     console.log('afterreduc',reducedString);
+            // }
             return reducedString;
         }
     }
@@ -244,9 +266,9 @@ function findTag(html,string) {
 }
 
 
-function getClasses(tagText){
+function getClasses(tagText){//return all the classes found in a tag string
     const classList = [];
-    tagText.split(' ').forEach(tag =>{
+    tagText.split('\>').forEach(tag =>{
         tag.split('.').forEach((el,index) =>{
             if (index > 0){
                 classList.push(el);
@@ -283,33 +305,41 @@ function tagContainsAllStrings(tag, strings) {
     return strings.every(string => tagContent.includes(string)); // Comparaison insensible à la casse
 }
 
-function getTagLocalization(tag,source,isDelimiter,stringsToFind){
+function getTagLocalization(tag,source,isDelimiter){
 
-    let path = '';
+  let path = '';
   let currentElement = tag;
 
   while (currentElement.length) {
       let name = currentElement.get(0).name;
-      let id = currentElement.attr('id');
       let className = currentElement.attr('class');
-      let index;
-      
-    if (className){
-      const childrenWithClass = currentElement.parent().children(`${name}.${className}`);
-      index = childrenWithClass.index(currentElement) + 1;
-    }else{
-      const childrenWithoutClass = currentElement.parent().children(`${name}`).filter(function() {
-          return !source(this).attr('class');
-      });
-      index = childrenWithoutClass.index(currentElement) + 1;
-    }
+      let index;  
+      if (className){
+        className = className.trim();//prevent problem when classes ends with ' '
+        const classList = className.split(' ');
+        let childrenWithClass = currentElement.parent().children(name);
+        childrenWithClass = childrenWithClass.filter((_,element)=>{
+          const elClass = $page(element).attr('class');
+          return elClass && !classList.some(cl => !elClass.includes(cl));
+        });
+        index = childrenWithClass.index(currentElement) + 1;
+      }else{
+        const childrenWithoutClass = currentElement.parent().children(`${name}`).filter(function() {
+            return !$page(this).attr('class');
+        });
+        index = childrenWithoutClass.index(currentElement) + 1;
+        if (name==='span'){
+            console.log('span ',childrenWithoutClass.length);
+        }
+      }
+    // console.log('elem: ',name,className, index);  
+
     let node = name;
-    // if (id && !isDelimiter) {
-    //     node += `#${id}`;
-    // }
     if (className) {
         node += `.${className.replace(/\s+/g, '.')}`;
-    }
+    }else{
+        node += ':not([class])';
+      }
     if (index && !isDelimiter) {
         node += `:eq(${index - 1})`;
     }

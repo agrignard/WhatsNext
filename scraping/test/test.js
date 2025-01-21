@@ -5,7 +5,7 @@ const content = fs.readFileSync('../test/test.html', 'utf-8');
 const $page = cheerio.load(content);
 
 
-const mainTag = $page('*:contains("tt22")').last();
+
 
 
 // function getPath(element) {
@@ -47,9 +47,17 @@ function getPath(element) {
       let id = currentElement.attr('id');
       let className = currentElement.attr('class');
       let index;
+      console.log('el:',name,className);
       
     if (className){
-      const childrenWithClass = currentElement.parent().children(`${name}.${className}`);
+      className = className.trim();
+      const classList = className.split(' ');
+      let childrenWithClass = currentElement.parent().children(name);
+      childrenWithClass = childrenWithClass.filter((_,element)=>{
+        const elClass = $page(element).attr('class');
+        return elClass && !classList.some(cl => !elClass.includes(cl));
+      });
+      childrenWithClass.each((index,el) =>console.log('->',$page(el).attr('class')));
       index = childrenWithClass.index(currentElement) + 1;
     }else{
       const childrenWithoutClass = currentElement.parent().children(`${name}`).filter(function() {
@@ -63,6 +71,8 @@ function getPath(element) {
     }
     if (className) {
         node += `.${className.replace(/\s+/g, '.')}`;
+    }else{
+      node += ':not([class])';
     }
     if (index) {
         node += `:eq(${index - 1})`;
@@ -74,13 +84,19 @@ function getPath(element) {
   return path;
 }
 
+// const mainTag = $page('*:contains("el12")').last();
+const mainTag = $page('*:contains("09/03")').last();
 
-const tag = 'div.truc1:eq(1)>div:not([class]):eq(1)';
-console.log('tag', $page(tag).text());
+// const tag = 'div.truc1:eq(1)>div:not([class]):eq(1)';
+// console.log('tag', $page(tag).text().trim());
 const path = getPath(mainTag);
 console.log('texte cherché',$page(mainTag).text().trim());
 console.log('maintag',path);
-console.log('maintagfrom string',$page(path).text());
+console.log($page(path).text());
+
+const truc = $page('div.truc1').children('div.element.rep');
+
+console.log(truc.length);
 
 // const res = "body>div.truc1:eq(1)>div.element3:eq(0)";
 // console.log('trc',$page(res).text());

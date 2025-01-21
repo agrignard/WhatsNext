@@ -1,4039 +1,1662 @@
-Date: 
-Event: THIS IS HIT MACHINE 90-2000
-Place: Le Petit Salon
-city: Lyon
-country: France
-Style: Electro
-isCancelled: false
-DetailedStyle: GRANDE SALLE : DANCE - POP - ROCK - TECHNO - R'N'B - 90-2000 / PETITE SALLE : TRANCE - DANCE 90 - TECHNO
-source: [object Object]
-errorLog: Format de date invalide pour Le Petit Salon. Reçu "", converti en "" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://yurplan.com/events/This-is-Hit-Machine-90-2000-NO2-T-Vyktor-Nova-and-More/118452
-
-Date: Mardi 16 avr
-Event: Julian Sartorius
-Place: Le Périscope
-city: Lyon
-country: France
-isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement 'Julian Sartorius'. Erreur lors du téléchargement ? | Format de date invalide pour Le Périscope. Reçu "Mardi 16 avr", converti en "16-04" (attendu "dd-MM-yyyy-HH:mm")
-DetailedStyle: 
-Style: Jazz
-source: [object Object]
-unixDate: 0
-https://www.periscope-lyon.com/concerts/julian-sartorius/
-
-Date: Mercredi 24 avr
-Event: Les mécaniques du souffle
-Place: Le Périscope
-city: Lyon
-country: France
-isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement 'Les mécaniques du souffle'. Erreur lors du téléchargement ? | Format de date invalide pour Le Périscope. Reçu "Mercredi 24 avr", converti en "24-04" (attendu "dd-MM-yyyy-HH:mm")
-DetailedStyle: 
-Style: Jazz
-source: [object Object]
-unixDate: 0
-https://www.periscope-lyon.com/concerts/les-mecaniques-du-souffle/
-
-Date: Vendredi 24 mai
-Event: Frankie and The Witch Fingers
-Place: Le Périscope
-city: Lyon
-country: France
-isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement 'Frankie and The Witch Fingers'. Erreur lors du téléchargement ? | Format de date invalide pour Le Périscope. Reçu "Vendredi 24 mai", converti en "24-05" (attendu "dd-MM-yyyy-HH:mm")
-DetailedStyle: 
-Style: Jazz
-source: [object Object]
-unixDate: 0
-https://www.periscope-lyon.com/concerts/frankie-and-the-witch-fingers/
-
-Date: Du 27 au 29 mars 2024, 19h30
-Event: Cosmologies / Carte blanche à Jan Martens
-Place: Maison de la Danse
-city: Lyon
-country: France
-Style: Classique
-isCancelled: false
-DetailedStyle: Classique & Lyrique
-source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Du 27 au 29 mars 2024, 19h30", converti en "27-29-03-2024-19:30" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-309845-cosmologies-carte-blanche-a-jan-martens.html
-
-Date: 29 mars et 30 mars à 20h30
-Event: Aka Moon
-Place: Hot Club
-city: Lyon
-country: France
-Style: Jazz
-isCancelled: false
-DetailedStyle: Jazz
-source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "29 mars et 30 mars à 20h30", converti en "29-03-30-20:30" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-308761-aka-moon.html
-
-Date: Du 3 au 5 mai 2024, ven au soir, sam de 11h à 17h, fête de 17h à minuit, dim au matin
-Event: FeFan - Festival de Fanfare de Villeurbanne
-Place: Dans les quartiers de Villeurbanne
-city: Lyon
-country: France
-Style: World
-isCancelled: false
-DetailedStyle: Sono Mondiale / Fanfares
-source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Du 3 au 5 mai 2024, ven au soir, sam de 11h à 17h, fête de 17h à minuit, dim au matin", converti en "03-05-05-2024-11:00" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-302951-fefan-festival-de-fanfare-de-villeurbanne.html
-
-Date: Mardi 7 mai 2024 de minuit à 6h
-Event: Ns Club x Elevate
-Place: Le Sucre
-city: Lyon
-country: France
-Style: Electro
-isCancelled: false
-DetailedStyle: Musiques Electroniques
-source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Mardi 7 mai 2024 de minuit à 6h", converti en "07-05-2024" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-309951-ns-club-x-elevate.html
-
-Date: Mercredi 8 mai 2024 de minuit à 6h
-Event: Ns Club x Grünt
-Place: Le Sucre
-city: Lyon
-country: France
-Style: Electro
-isCancelled: false
-DetailedStyle: Musiques Electroniques
-source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Mercredi 8 mai 2024 de minuit à 6h", converti en "08-05-2024" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-309954-ns-club-x-grunt.html
-
-Date: Jeudi 9 mai 2024 de minuit à 6h
-Event: Ns Club x Unsound
-Place: Le Sucre
-city: Lyon
-country: France
-Style: Electro
-isCancelled: false
-DetailedStyle: Musiques Electroniques
-source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Jeudi 9 mai 2024 de minuit à 6h", converti en "09-05-2024" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-309957-ns-club-x-unsound.html
-
-Date: Vendredi 10 mai 2024 de minuit à 6h
-Event: NS Club x Terraforma
-Place: Le Sucre
-city: Lyon
-country: France
-Style: Electro
-isCancelled: false
-DetailedStyle: Musiques Electroniques
-source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Vendredi 10 mai 2024 de minuit à 6h", converti en "10-05-2024" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-309960-ns-club-x-terraforma.html
-
-Date: Samedi 11 mai 2024 de minuit à 6h
-Event: NS Club
-Place: Le Sucre
-city: Lyon
-country: France
-Style: Electro
-isCancelled: false
-DetailedStyle: Musiques Electroniques
-source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Samedi 11 mai 2024 de minuit à 6h", converti en "11-05-2024" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-309963-ns-club.html
-
-Date: 13 mai et 14 mai à 20h
-Event: Béatrice et Bénédict
-Place: Opéra National de Lyon
-city: Lyon
-country: France
-Style: Classique
-isCancelled: false
-DetailedStyle: Classique & Lyrique / Opéra
-source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "13 mai et 14 mai à 20h", converti en "13-05-14-20:00" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-309474-beatrice-et-benedict.html
-
-Date: 15 mai et 16 mai à 20h
-Event: Tchaïkovski, la Pathétique
-Place: Auditorium de Lyon
-city: Lyon
-country: France
-Style: Classique
-isCancelled: false
-DetailedStyle: Classique & Lyrique
-source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "15 mai et 16 mai à 20h", converti en "15-05-16-20:00" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-309453-tchaikovski-la-pathetique.html
-
-Date: 15 mai et 16 mai à 20h30
-Event: Hangmoon
-Place: Théâtre Instant T.
-city: Lyon
-country: France
-Style: Chanson / Folk
-isCancelled: false
-DetailedStyle: Chanson / Folk
-source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "15 mai et 16 mai à 20h30", converti en "15-05-16-20:30" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-309745-hangmoon.html
-
-Date: Du 22 au 24 mai 2024, à 20h30
-Event: Alexis HK + Benoît Doremus
-Place: À Thou Bout d'Chant
-city: Lyon
-country: France
-Style: Chanson
-isCancelled: false
-DetailedStyle: Chanson
-source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Du 22 au 24 mai 2024, à 20h30", converti en "22-24-05-2024-20:30" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-309715-alexis-hk-benoit-doremus.html
-
-Date: Du 24 au 26 mai 2024, ven à 19h30, dim à 16h
-Event: Così fan tutte
-Place: Auditorium de Lyon
-city: Lyon
-country: France
-Style: Classique
-isCancelled: false
-DetailedStyle: Classique & Lyrique
-source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Du 24 au 26 mai 2024, ven à 19h30, dim à 16h", converti en "24-26-05-2024-19:30" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-309454-cosi-fan-tutte.html
-
-Date: Du 22 mai au 1 juin 2024, mer à 16h, 24 
-Event: Brundibár
-Place: Théâtre Théo Argence
-city: Lyon
-country: France
-Style: Classique
-isCancelled: false
-DetailedStyle: Classique & Lyrique / Opéra
-source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Du 22 mai au 1 juin 2024, mer à 16h, 24 ", converti en "22-05-01-06-2024-16:24" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-192821-brundibar.html
-
-Date: Du 22 mai au 1 juin 2024, mer à 25 mai à 19h, 31 mai à 20h et 1er juin à 18h
-Event: Brundibár
-Place: Théâtre Théo Argence
-city: Lyon
-country: France
-Style: Classique
-isCancelled: false
-DetailedStyle: Classique & Lyrique / Opéra
-source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Du 22 mai au 1 juin 2024, mer à 25 mai à 19h, 31 mai à 20h et 1er juin à 18h", converti en "22-05-01-06-2024-25-19:31-20:01er-18:00" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-192821-brundibar.html
-
-Date: 1 juin et 2 juin à 23h30
-Event: Lions Metal Festival
-Place: Rock N Eat
-city: Lyon
-country: France
-Style: Rock
-isCancelled: false
-DetailedStyle: Rock & Pop
-source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "1 juin et 2 juin à 23h30", converti en "01-06-02-23:30" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-223961-lions-metal-festival.html
-
-Date: 6 juin et 7 juin à 20h30
-Event: Lucio Bukowski
-Place: À Thou Bout d'Chant
-city: Lyon
-country: France
-Style: Rap
-isCancelled: false
-DetailedStyle: Rap
-source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "6 juin et 7 juin à 20h30", converti en "06-06-07-20:30" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-309718-lucio-bukowski.html
-
-Date: Mercredi 19 juin 2024
-Event: Orchestres Démos Lyon Métropole
-Place: Auditorium de Lyon
-city: Lyon
-country: France
-Style: Classique
-isCancelled: false
-DetailedStyle: Classique & Lyrique
-source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Mercredi 19 juin 2024", converti en "19-06-2024" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-309464-orchestres-demos-lyon-metropole.html
-
-Date: 22 juin et 23 juin de 15h à 1h
-Event: Mondor Festival
-Place: Stade Jean Lacaze
-city: Lyon
-country: France
-Style: Soul & funk
-isCancelled: false
-DetailedStyle: Soul & funk
-source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "22 juin et 23 juin de 15h à 1h", converti en "22-06-23-15:00" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-308260-mondor-festival.html
-
-Date: Du 14 au 24 juin 2024, à 20h sf dim à 16h
-Event: L'affaire Makropoulos
-Place: Opéra National de Lyon
-city: Lyon
-country: France
-Style: Classique
-isCancelled: false
-DetailedStyle: Classique & Lyrique / Opéra
-source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Du 14 au 24 juin 2024, à 20h sf dim à 16h", converti en "14-24-06-2024-20:16:00" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-309469-l-affaire-makropoulos.html
-
-Date: 24 juin et 25 juin à 21h30
-Event: Alain Souchon
-Place: Théâtres romains de Fourvière
-city: Lyon
-country: France
-Style: Chanson
-isCancelled: false
-DetailedStyle: Chanson
-source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "24 juin et 25 juin à 21h30", converti en "24-06-25-21:30" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-309875-alain-souchon.html
-
-Date: 6 septembre et 7 septembre à 20h30
-Event: Francis Cabrel
-Place: Parc des Oiseaux
-city: Lyon
-country: France
-Style: Chanson
-isCancelled: false
-DetailedStyle: Chanson
-source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "6 septembre et 7 septembre à 20h30", converti en "06-09-07-20:30" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-282488-francis-cabrel.html
-
-Date: Mercredi 3 avril 2024
-Event: Musique française du 19ᵉ
-Place: Basilique de Saint-Martin-d'Ainay
-city: Lyon
-country: France
-Style: Classique
-isCancelled: false
-DetailedStyle: Classique & Lyrique
-source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Mercredi 3 avril 2024", converti en "03-04-2024" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-309833-musique-francaise-du-19-7497.html
-
-Date: Jusqu'au 4 avril 2024, à 20h sf dim à 16h
-Event: La Fille du Far West
-Place: Opéra National de Lyon
-city: Lyon
-country: France
-Style: Classique
-isCancelled: false
-DetailedStyle: Classique & Lyrique / Opéra
-source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Jusqu'au 4 avril 2024, à 20h sf dim à 16h", converti en "04-04-2024-20:16:00" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-308711-la-fille-du-far-west.html
-
-Date: 6 avril et 7 avril à 18h
-Event: Dusapin : influence et contemporanéité
-Place: Opéra National de Lyon
-city: Lyon
-country: France
-Style: Classique
-isCancelled: false
-DetailedStyle: Classique & Lyrique
-source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "6 avril et 7 avril à 18h", converti en "06-04-07-18:00" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-309485-dusapin-influence-et-contemporaneite.html
-
-Date: Samedi 27 avril 2024
-Event: Aux Rythmes du Monde
-Place: Parc de la Commune de Paris
-city: Lyon
-country: France
-Style: World
-isCancelled: false
-DetailedStyle: Sono Mondiale
-source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Samedi 27 avril 2024", converti en "27-04-2024" (attendu "dd-MM-yyyy-HH:mm")
-unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-309619-aux-rythmes-du-monde.html
-
-Date: Dim. 17 Mar.18H00
-Event: Game Of Quiz de la Saint-Patrick
-Place: Ninkasi Cordeliers
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Dim. 17 Mar.18H00", converti en "17-08H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/quiz-special-saint-patrick/
-
-Date: Dim. 17 Mar.18H00
-Event: SAINT PATRICK : COVER CLUB
-Place: Ninkasi OL Vallée
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Dim. 17 Mar.18H00", converti en "17-08H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/saint-patrick-cover-club-3/
-
-Date: Lun. 18 Mar.20H00
-Event: Blind Test
-Place: Ninkasi Gratte Ciel / Ninkasi La Doua / Ninkasi Grand Parilly
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Lun. 18 Mar.20H00", converti en "18-00H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/blind-test-219/
-
-Date: Lun. 18 Mar.20H30
-Event: Blind Test
-Place: Multi-lieux
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Lun. 18 Mar.20H30", converti en "18-00H30" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/blind-test-220/
-
-Date: Lun. 18 Mar.19H00
-Event: Les Lundis Salsa W/ DJ Saad
-Place: Ninkasi Cordeliers
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Lun. 18 Mar.19H00", converti en "18-09H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/les-lundis-salsa-w-dj-carlos-3/
-
-Date: Mar. 19 Mar.19H30
-Event: DJ RAVEN
-Place: Ninkasi Vaise
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 19 Mar.19H30", converti en "19-19H30" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/dj-raven-7/
-
-Date: Mar. 19 Mar.19H00
-Event: Soirée Apéro-Jeux
-Place: Ninkasi Champagne
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 19 Mar.19H00", converti en "19-19H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/soiree-apero-jeux-46/
-
-Date: Mer. 20 Mar.19H00
-Event: Atelier Whisky
-Place: Ninkasi Saint-Paul
+Date: lundi 20 janvier
+Event: 
+Place: La Rayonne
 city: Lyon
 country: France
 Dummy: 
+MultiName: 
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mer. 20 Mar.19H00", converti en "20-09H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "lundi 20 janvier", converti en "20-01" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/atelier-whisky-6/
 
-Date: Mer. 20 Mar.19H00
-Event: Cocktail Factory Du Printemps
-Place: Ninkasi Vaise
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mer. 20 Mar.19H00", converti en "20-09H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/cocktail-factory-du-printemps/
-
-Date: Mer. 20 Mar.19H30
-Event: L’Irish Disco Bingo
-Place: Ninkasi Crolles
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mer. 20 Mar.19H30", converti en "20-09H30" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/lirish-disco-bingo-warm-up-saint-patrick/
-
-Date: Mer. 20 Mar.19H00
-Event: Les Mercredis Salsa
-Place: Ninkasi OL Vallée
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mer. 20 Mar.19H00", converti en "20-09H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/les-mercredis-salsa-5/
-
-Date: Jeu. 21 Mar.19H30
-Event: DJ RAVEN
-Place: Ninkasi Vaise
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Jeu. 21 Mar.19H30", converti en "21-09H30" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/dj-raven-8/
-
-Date: Jeu. 21 Mar.21H00
-Event: Human Jukebox : Leon Dans Ton Salon
-Place: Ninkasi Saint-Paul
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Jeu. 21 Mar.21H00", converti en "21-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/human-jukebox-leon-dans-ton-salon-25/
-
-Date: Jeu. 21 Mar.20H00
-Event: Hynsha DJ Set
-Place: Ninkasi OL Vallée
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Jeu. 21 Mar.20H00", converti en "21-00H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/hynsha-dj-set-20/
-
-Date: Jeu. 21 Mar.19H00
-Event: Le Pop Quiz spécial Saint Patrick
-Place: Ninkasi Gratte Ciel / Ninkasi Saint-Paul
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Jeu. 21 Mar.19H00", converti en "21-09H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/le-pop-quiz-special-saint-patrick-2/
-
-Date: Ven. 22 Mar.19H00
-Event: Back To Harlem · All Night Swing Party
-Place: Ninkasi Cordeliers
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 22 Mar.19H00", converti en "22-09H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/back-to-harlem-cordeliers/
-
-Date: Ven. 22 Mar.21H00
-Event: EVE SOUL
-Place: Ninkasi Tarare
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 22 Mar.21H00", converti en "22-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/eve-soul-8/
-
-Date: Ven. 22 Mar.21H00
-Event: FREDDY ROCKET
-Place: Ninkasi Vaise
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 22 Mar.21H00", converti en "22-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/freddy-rocket/
-
-Date: Ven. 22 Mar.21H00
-Event: Human Jukebox : Aldebaran
-Place: Ninkasi Guillotière
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 22 Mar.21H00", converti en "22-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/human-jukebox-aldebaran-9/
-
-Date: Ven. 22 Mar.21H00
-Event: Human Jukebox : Mister Mellow
-Place: Ninkasi Part Dieu
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 22 Mar.21H00", converti en "22-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/human-jukebox-mister-mellow-11/
-
-Date: Ven. 22 Mar.20H00
-Event: Hynsha DJ Set
-Place: Ninkasi OL Vallée
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 22 Mar.20H00", converti en "22-00H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/hynsha-dj-set-21/
-
-Date: Ven. 22 Mar.18H00
-Event: Le Vendredi C’Est Partyyy !
-Place: Ninkasi Bourgoin
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 22 Mar.18H00", converti en "22-08H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/le-vendredi-cest-partyyy-2/
-
-Date: Ven. 22 Mar.21H00
-Event: OBROVSKY
-Place: Ninkasi La Soie
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 22 Mar.21H00", converti en "22-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/obrovsky-2/
-
-Date: Ven. 22 Mar.21H00
-Event: PATSILVERMAN
-Place: Ninkasi Crolles
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 22 Mar.21H00", converti en "22-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/patsilverman/
-
-Date: Ven. 22 Mar.21H00
-Event: SOUL ESCAPE
-Place: Ninkasi Villefranche
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 22 Mar.21H00", converti en "22-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/soul-escape-2/
-
-Date: Sam. 23 Mar.21H00
-Event: DJ Artokss
-Place: Ninkasi Crolles
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Sam. 23 Mar.21H00", converti en "23-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/dj-artokss-4/
-
-Date: Sam. 23 Mar.21H00
-Event: France – Allemagne
-Place: Multi-lieux
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Sam. 23 Mar.21H00", converti en "23-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/france-allemagne-2/
-
-Date: Sam. 23 Mar.23H00
-Event: Latina Session w/ Alfredo
-Place: Ninkasi Cordeliers
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Sam. 23 Mar.23H00", converti en "23-03H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/latina-session-w-alfredo-4/
-
-Date: Dim. 24 Mar.16H00
-Event: ECOLE DE MUSIQUE DE VERNAISON
-Place: Ninkasi Brignais
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Dim. 24 Mar.16H00", converti en "24-06H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/ecole-de-musique-de-vernaison-3/
-
-Date: Lun. 25 Mar.20H00
-Event: Blind Test
-Place: Ninkasi Gratte Ciel / Ninkasi La Doua / Ninkasi Grand Parilly
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Lun. 25 Mar.20H00", converti en "25-00H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/blind-test-221/
-
-Date: Lun. 25 Mar.20H30
-Event: Blind Test
-Place: Multi-lieux
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Lun. 25 Mar.20H30", converti en "25-00H30" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/blind-test-222/
-
-Date: Lun. 25 Mar.19H00
-Event: Les Lundis Salsa W/ DJ Carlos
-Place: Ninkasi Cordeliers
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Lun. 25 Mar.19H00", converti en "25-09H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/les-lundis-salsa-w-dj-carlos-4/
-
-Date: Mar. 26 Mar.21H00
-Event: France – Chili
-Place: Multi-lieux
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 26 Mar.21H00", converti en "26-21H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/france-chili/
-
-Date: Mar. 26 Mar.19H00
-Event: Soirée Apéro-Jeux
-Place: Ninkasi Champagne
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 26 Mar.19H00", converti en "26-19H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/soiree-apero-jeux-47/
-
-Date: Mar. 26 Mar.20H00
-Event: Soirée Bachata W/ Bachatown
-Place: Ninkasi Grand Parilly
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 26 Mar.20H00", converti en "26-20H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/soiree-bachata-w-bachatown-7/
-
-Date: Mer. 27 Mar.19H00
-Event: Les Mercredis Salsa
-Place: Ninkasi OL Vallée
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mer. 27 Mar.19H00", converti en "27-09H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/les-mercredis-salsa-6/
-
-Date: Jeu. 28 Mar.19H30
-Event: Disco Bingo
-Place: Ninkasi Gratte Ciel
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Jeu. 28 Mar.19H30", converti en "28-09H30" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/disco-bingo-4/
-
-Date: Jeu. 28 Mar.19H30
-Event: DJ RAVEN
-Place: Ninkasi Vaise
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Jeu. 28 Mar.19H30", converti en "28-09H30" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/dj-raven-9/
-
-Date: Jeu. 28 Mar.20H00
-Event: Hynsha DJ Set
-Place: Ninkasi OL Vallée
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Jeu. 28 Mar.20H00", converti en "28-00H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/hynsha-dj-set-22/
-
-Date: Jeu. 28 Mar.21H30
-Event: Karaokéchorale
-Place: Ninkasi Cordeliers / Ninkasi Villefranche
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Jeu. 28 Mar.21H30", converti en "28-01H30" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/karaokechorale-33/
-
-Date: Jeu. 28 Mar.20H00
-Event: OPEN MIC AVEC RIWAN & JADE
-Place: Ninkasi Saint-Paul
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Jeu. 28 Mar.20H00", converti en "28-00H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/open-mic-avec-riwan-jade/
-
-Date: Jeu. 28 Mar.21H00
-Event: SYMPHONY OF THE NIGHT
-Place: Ninkasi Saint Etienne
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Jeu. 28 Mar.21H00", converti en "28-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/symphony-of-the-night/
-
-Date: Ven. 29 Mar.21H00
-Event: DALYS
-Place: Ninkasi Crolles
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 29 Mar.21H00", converti en "29-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/dalys/
-
-Date: Ven. 29 Mar.21H00
-Event: Human Jukebox : Captain Jericho
-Place: Ninkasi Bourgoin
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 29 Mar.21H00", converti en "29-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/human-jukebox-captain-jericho-10/
-
-Date: Ven. 29 Mar.21H00
-Event: Human Jukebox : Mary Reynaud
-Place: Ninkasi Tarare
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 29 Mar.21H00", converti en "29-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/human-jukebox-mary-reynaud-9/
-
-Date: Ven. 29 Mar.21H00
-Event: JAZZ A BRIGNAIS : LILI’S BAKERS
-Place: Ninkasi Brignais
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 29 Mar.21H00", converti en "29-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/jazz-a-brignais-lilis-bakers-2/
-
-Date: Ven. 29 Mar.21H00
-Event: JAZZ À VAISE : VEGAMISSYL
-Place: Ninkasi Vaise
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 29 Mar.21H00", converti en "29-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/jazz-a-vaise-vegamissyl/
-
-Date: Ven. 29 Mar.18H00
-Event: Le Vendredi C’Est Partyyy !
-Place: Ninkasi Bourgoin
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 29 Mar.18H00", converti en "29-08H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/le-vendredi-cest-partyyy-3/
-
-Date: Ven. 29 Mar.21H00
-Event: LEO BENMASS TRIO
-Place: Ninkasi OL Vallée
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 29 Mar.21H00", converti en "29-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/leo-benmass-trio/
-
-Date: Ven. 29 Mar.22H00
-Event: Two Rivers pres. Ghetto Blaster : Madijuwon, SLMVX, Guigz & Dance Battle
-Place: Ninkasi Cordeliers
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 29 Mar.22H00", converti en "29-02H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/two-rivers/
-
-Date: Sam. 30 Mar.23H00
-Event: Latina Session w/ Alfredo
-Place: Ninkasi Cordeliers
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Sam. 30 Mar.23H00", converti en "30-03H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/latina-session-w-alfredo-5/
-
-Date: Dim. 31 Mar.21H30
-Event: Ninkasi Musik Lab x Reperkusound : Yanka
-Place: 
-city: Lyon
-country: France
-Dummy: 
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Dim. 31 Mar.21H30", converti en "31-01H30" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/musik-lab-reperkusound-yanka/
-
-Date: Lun. 01 Avr.20H00
-Event: Blind Test
-Place: Ninkasi Gratte Ciel / Ninkasi La Doua / Ninkasi Grand Parilly
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Lun. 01 Avr.20H00", converti en "01-04-00H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/blind-test-223/
-
-Date: Lun. 01 Avr.20H30
-Event: Blind Test
-Place: Multi-lieux
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Lun. 01 Avr.20H30", converti en "01-04-00H30" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/blind-test-224/
-
-Date: Lun. 01 Avr.19H00
-Event: Les Lundis Salsa W/ DJ Carlos
-Place: Ninkasi Cordeliers
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Lun. 01 Avr.19H00", converti en "01-04-09H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/les-lundis-salsa-w-dj-carlos-5/
-
-Date: Mar. 02 Avr.19H00
-Event: Soirée Apéro-Jeux
-Place: Ninkasi Champagne
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 02 Avr.19H00", converti en "02-04-09H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/soiree-apero-jeux-48/
-
-Date: Mer. 03 Avr.19H00
-Event: Les Mercredis Salsa
-Place: Ninkasi OL Vallée
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mer. 03 Avr.19H00", converti en "03-04-09H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/les-mercredis-salsa-7/
-
-Date: Jeu. 04 Avr.21H00
-Event: Human Jukebox : Fabb
-Place: Ninkasi Saint-Paul
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Jeu. 04 Avr.21H00", converti en "04-04-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/human-jukebox-fabb-14/
-
-Date: Jeu. 04 Avr.20H00
-Event: Hynsha DJ Set
-Place: Ninkasi OL Vallée
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Jeu. 04 Avr.20H00", converti en "04-04-00H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/hynsha-dj-set-23/
-
-Date: Jeu. 04 Avr.21H00
-Event: ISAAC’S MOOD
-Place: Ninkasi Saint Etienne
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Jeu. 04 Avr.21H00", converti en "04-04-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/isaacs-mood-2/
-
-Date: Ven. 05 Avr.21H00
-Event: BABASS & MANU DRUMS
-Place: Ninkasi Part Dieu
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 05 Avr.21H00", converti en "05-04-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/babass-manu-drums/
-
-Date: Ven. 05 Avr.21H00
-Event: CLEBSON DUO
-Place: Ninkasi Brignais
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 05 Avr.21H00", converti en "05-04-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/clebson-duo/
-
-Date: Ven. 05 Avr.22H00
-Event: Club Furie : Psycho Weazel DJ Set, Furie Sndstm, Lily Of The Valley
-Place: Ninkasi Cordeliers
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 05 Avr.22H00", converti en "05-04-02H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/furie-club/
-
-Date: Ven. 05 Avr.19H00
-Event: Human Jukebox : Delisle
-Place: Ninkasi La Soie
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 05 Avr.19H00", converti en "05-04-09H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/human-jukebox-delisle-29/
-
-Date: Ven. 05 Avr.21H00
-Event: Human Jukebox : Galou
-Place: Ninkasi Bourgoin
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 05 Avr.21H00", converti en "05-04-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/human-jukebox-galou-19/
-
-Date: Ven. 05 Avr.21H00
-Event: Human Jukebox : Mister Mellow
-Place: Ninkasi Tarare
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 05 Avr.21H00", converti en "05-04-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/human-jukebox-mister-mellow-12/
-
-Date: Ven. 05 Avr.20H00
-Event: Hynsha DJ Set
-Place: Ninkasi OL Vallée
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 05 Avr.20H00", converti en "05-04-00H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/hynsha-dj-set-24/
-
-Date: Ven. 05 Avr.21H00
-Event: JAZZ À VAISE : CARBÀN
-Place: Ninkasi Vaise
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 05 Avr.21H00", converti en "05-04-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/jazz-a-vaise-carban/
-
-Date: Ven. 05 Avr.18H00
-Event: Le Vendredi C’Est Partyyy !
-Place: Ninkasi Bourgoin
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 05 Avr.18H00", converti en "05-04-08H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/le-vendredi-cest-partyyy-4/
-
-Date: Ven. 05 Avr.21H00
-Event: LITTLE WAX
-Place: Ninkasi Crolles
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 05 Avr.21H00", converti en "05-04-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/little-wax/
-
-Date: Ven. 05 Avr.21H00
-Event: NICHOLAS SUTTON
-Place: Ninkasi Guillotière
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 05 Avr.21H00", converti en "05-04-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/nicholas-sutton-13/
-
-Date: Ven. 05 Avr.21H00
-Event: NIRMANIA · TRIBUTE TO NIRVANA
-Place: Ninkasi Villefranche
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 05 Avr.21H00", converti en "05-04-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/nirmania-%c2%b7-tribute-to-nirvana/
-
-Date: Sam. 06 Avr.21H00
-Event: HELLOAGAIN
-Place: Ninkasi OL Vallée
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Sam. 06 Avr.21H00", converti en "06-04-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/helloagain/
-
-Date: Sam. 06 Avr.21H00
-Event: Human Jukebox : Leon Dans Ton Salon
-Place: Ninkasi Mâcon
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Sam. 06 Avr.21H00", converti en "06-04-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/human-jukebox-leon-dans-ton-salon-26/
-
-Date: Dim. 07 Avr.16H30
-Event: Salsahora Social Club
-Place: Ninkasi Rouen
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Dim. 07 Avr.16H30", converti en "07-04-06H30" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/salsahora-social-club-12/
-
-Date: Dim. 07 Avr.18H30
-Event: Session Danse Au Ninkasi Brignais
-Place: Ninkasi Brignais
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Dim. 07 Avr.18H30", converti en "07-04-08H30" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/session-danse-au-ninkasi-brignais/
-
-Date: Lun. 08 Avr.20H00
-Event: Blind Test
-Place: Ninkasi Gratte Ciel / Ninkasi La Doua / Ninkasi Grand Parilly
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Lun. 08 Avr.20H00", converti en "08-04-00H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/blind-test-225/
-
-Date: Lun. 08 Avr.20H30
-Event: Blind Test
-Place: Multi-lieux
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Lun. 08 Avr.20H30", converti en "08-04-00H30" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/blind-test-226/
-
-Date: Lun. 08 Avr.19H00
-Event: Les Lundis Salsa W/ DJ Carlos
-Place: Ninkasi Cordeliers
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Lun. 08 Avr.19H00", converti en "08-04-09H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/les-lundis-salsa-w-dj-carlos-6/
-
-Date: Mar. 09 Avr.19H00
-Event: Soirée Apéro-Jeux
-Place: Ninkasi Champagne
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 09 Avr.19H00", converti en "09-04-09H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/soiree-apero-jeux-49/
-
-Date: Mer. 10 Avr.19H00
-Event: Atelier Biérologie
-Place: Ninkasi Saint-Paul
-city: Lyon
-country: France
-Dummy: 
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mer. 10 Avr.19H00", converti en "10-04-09H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/atelier-bierologie-64/
-
-Date: Mer. 10 Avr.19H30
-Event: Le Pop Quiz de Printemps
-Place: Ninkasi Crolles
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mer. 10 Avr.19H30", converti en "10-04-09H30" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/le-pop-quiz-de-printemps/
-
-Date: Mer. 10 Avr.19H00
-Event: Les Mercredis Salsa
-Place: Ninkasi OL Vallée
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mer. 10 Avr.19H00", converti en "10-04-09H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/les-mercredis-salsa-8/
-
-Date: Jeu. 11 Avr.19H00
-Event: La Fete Des Voisins : The French Goose + Pop Quiz
-Place: Ninkasi Gorge de Loup
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Jeu. 11 Avr.19H00", converti en "11-04-09H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/la-fete-des-voisins-the-french-goose-pop-quiz/
-
-Date: Jeu. 11 Avr.19H30
-Event: Le Pop Quiz de Printemps
-Place: Multi-lieux
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Jeu. 11 Avr.19H30", converti en "11-04-09H30" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/le-pop-quiz-de-printemps-2/
-
-Date: Jeu. 11 Avr.20H00
-Event: Les Jeudis De La Salsa
-Place: Ninkasi Tarare
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Jeu. 11 Avr.20H00", converti en "11-04-00H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/les-jeudis-de-la-salsa-26/
-
-Date: Ven. 12 Avr.21H00
-Event: ALMOST
-Place: Ninkasi La Soie
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 12 Avr.21H00", converti en "12-04-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/almost/
-
-Date: Ven. 12 Avr.18H00
-Event: Le Vendredi C’Est Partyyy !
-Place: Ninkasi Bourgoin
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 12 Avr.18H00", converti en "12-04-08H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/le-vendredi-cest-partyyy-5/
-
-Date: Ven. 12 Avr.21H00
-Event: LUNCHBOX
-Place: Ninkasi Villefranche
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 12 Avr.21H00", converti en "12-04-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/lunchbox-3/
-
-Date: Ven. 12 Avr.22H00
-Event: Wicked #1 — UK Garage Night : Smoky Bubblin’B & more
-Place: Ninkasi Cordeliers
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 12 Avr.22H00", converti en "12-04-02H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/physical-tool/
-
-Date: Sam. 13 Avr.21H00
-Event: DJ Artokss
-Place: Ninkasi Crolles
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Sam. 13 Avr.21H00", converti en "13-04-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/dj-artokss-5/
-
-Date: Sam. 13 Avr.20H00
-Event: Hynsha DJ Set
-Place: Ninkasi OL Vallée
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Sam. 13 Avr.20H00", converti en "13-04-00H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/hynsha-dj-set-25/
-
-Date: Sam. 13 Avr.23H00
-Event: Latina Session w/ Alfredo
-Place: Ninkasi Cordeliers
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Sam. 13 Avr.23H00", converti en "13-04-03H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/latina-session-w-alfredo-8/
-
-Date: Dim. 14 Avr.15H00
-Event: Dimanches Latino · Cours De Salsa
-Place: Ninkasi Saint Etienne
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Dim. 14 Avr.15H00", converti en "14-04-05H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/dimanches-latino-%c2%b7-cours-de-salsa-32/
-
-Date: Dim. 14 Avr.18H00
-Event: IRISH SESSION
-Place: Ninkasi Rouen
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Dim. 14 Avr.18H00", converti en "14-04-08H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/irish-session-3/
-
-Date: Lun. 15 Avr.20H00
-Event: Blind Test
-Place: Ninkasi Gratte Ciel / Ninkasi La Doua / Ninkasi Grand Parilly
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Lun. 15 Avr.20H00", converti en "15-04-00H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/blind-test-227/
-
-Date: Lun. 15 Avr.20H30
-Event: Blind Test
-Place: Multi-lieux
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Lun. 15 Avr.20H30", converti en "15-04-00H30" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/blind-test-228/
-
-Date: Lun. 15 Avr.19H00
-Event: Les Lundis Salsa W/ DJ Carlos
-Place: Ninkasi Cordeliers
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Lun. 15 Avr.19H00", converti en "15-04-09H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/les-lundis-salsa-w-dj-carlos-7/
-
-Date: Mar. 16 Avr.19H00
-Event: Soirée Apéro-Jeux
-Place: Ninkasi Champagne
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 16 Avr.19H00", converti en "16-04-09H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/soiree-apero-jeux-50/
-
-Date: Mer. 17 Avr.19H00
-Event: Les Mercredis Salsa
-Place: Ninkasi OL Vallée
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mer. 17 Avr.19H00", converti en "17-04-09H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/les-mercredis-salsa-9/
-
-Date: Jeu. 18 Avr.21H00
-Event: AFTERWORK LIVE : FOL
-Place: Ninkasi Rouen
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Jeu. 18 Avr.21H00", converti en "18-04-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/afterwork-live-fol/
-
-Date: Jeu. 18 Avr.21H00
-Event: FOLSOM PRISONERS
-Place: Ninkasi Saint Etienne
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Jeu. 18 Avr.21H00", converti en "18-04-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/folsom-prisoners/
-
-Date: Jeu. 18 Avr.21H30
-Event: Karaokéchorale du Soleil
-Place: Ninkasi Champagne
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Jeu. 18 Avr.21H30", converti en "18-04-01H30" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/karaokechorale-du-soleil-2/
-
-Date: Jeu. 18 Avr.20H00
-Event: OPEN MIC AVEC RIWAN & JADE
-Place: Ninkasi Saint-Paul
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Jeu. 18 Avr.20H00", converti en "18-04-00H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/open-mic-avec-riwan-jade-2/
-
-Date: Ven. 19 Avr.22H00
-Event: Crush w/ Louis Romeo & Friends
-Place: Ninkasi Cordeliers
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 19 Avr.22H00", converti en "19-04-02H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/crush-w-louis-romeo-friends/
-
-Date: Ven. 19 Avr.21H00
-Event: DR. DO
-Place: Ninkasi Vaise
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 19 Avr.21H00", converti en "19-04-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/dr-do/
-
-Date: Ven. 19 Avr.21H00
-Event: EMPIRE
-Place: Ninkasi OL Vallée
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 19 Avr.21H00", converti en "19-04-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/empire/
-
-Date: Ven. 19 Avr.21H00
-Event: GROOVY FOLKS
-Place: Ninkasi Crolles
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 19 Avr.21H00", converti en "19-04-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/groovy-folks/
-
-Date: Ven. 19 Avr.21H00
-Event: Human Jukebox : Mary Reynaud
-Place: Ninkasi Brignais
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 19 Avr.21H00", converti en "19-04-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/human-jukebox-mary-reynaud-10/
-
-Date: Ven. 19 Avr.21H00
-Event: Human Jukebox : Riwan
-Place: Ninkasi Gratte Ciel
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 19 Avr.21H00", converti en "19-04-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/human-jukebox-riwan-27/
-
-Date: Ven. 19 Avr.21H00
-Event: Human Jukebox : Trafalgar
-Place: Ninkasi Villefranche
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 19 Avr.21H00", converti en "19-04-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/human-jukebox-trafalgar-31/
-
-Date: Ven. 19 Avr.21H00
-Event: LADY C
-Place: Ninkasi Tarare
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 19 Avr.21H00", converti en "19-04-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/lady-c-9/
-
-Date: Ven. 19 Avr.18H00
-Event: Le Vendredi C’Est Partyyy !
-Place: Ninkasi Bourgoin
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 19 Avr.18H00", converti en "19-04-08H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/le-vendredi-cest-partyyy-6/
-
-Date: Ven. 19 Avr.21H00
-Event: LETS ROCK
-Place: Ninkasi Bourgoin
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 19 Avr.21H00", converti en "19-04-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/lets-rock-2/
-
-Date: Ven. 19 Avr.19H00
-Event: Soirée Danse W/ Onda Latina · Salsa, Sbk, Rock
-Place: Ninkasi Mâcon
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 19 Avr.19H00", converti en "19-04-09H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/soiree-danse-w-onda-latina-%c2%b7-salsa-sbk-rock-16/
-
-Date: Sam. 20 Avr.20H00
-Event: Hynsha DJ Set
-Place: Ninkasi OL Vallée
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Sam. 20 Avr.20H00", converti en "20-04-00H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/hynsha-dj-set-26/
-
-Date: Sam. 20 Avr.23H00
-Event: Latina Session w/ Alfredo
-Place: Ninkasi Cordeliers
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Sam. 20 Avr.23H00", converti en "20-04-03H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/latina-session-w-alfredo-6/
-
-Date: Dim. 21 Avr.15H00
-Event: Dimanches Latino · Cours De Salsa
-Place: Ninkasi Saint Etienne
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Dim. 21 Avr.15H00", converti en "21-04-05H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/dimanches-latino-%c2%b7-cours-de-salsa-33/
-
-Date: Dim. 21 Avr.18H30
-Event: Session Danse Au Ninkasi Brignais
-Place: Ninkasi Brignais
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Dim. 21 Avr.18H30", converti en "21-04-08H30" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/session-danse-au-ninkasi-brignais-2/
-
-Date: Lun. 22 Avr.20H00
-Event: Blind Test
-Place: Ninkasi Gratte Ciel / Ninkasi La Doua / Ninkasi Grand Parilly
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Lun. 22 Avr.20H00", converti en "22-04-00H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/blind-test-229/
-
-Date: Lun. 22 Avr.20H30
-Event: Blind Test
-Place: Multi-lieux
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Lun. 22 Avr.20H30", converti en "22-04-00H30" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/blind-test-230/
-
-Date: Lun. 22 Avr.19H00
-Event: Les Lundis Salsa W/ DJ Carlos
-Place: Ninkasi Cordeliers
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Lun. 22 Avr.19H00", converti en "22-04-09H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/les-lundis-salsa-w-dj-carlos-8/
-
-Date: Mar. 23 Avr.19H00
-Event: Soirée Apéro-Jeux
-Place: Ninkasi Champagne
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 23 Avr.19H00", converti en "23-04-09H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/soiree-apero-jeux-51/
-
-Date: Mer. 24 Avr.19H00
-Event: Les Mercredis Salsa
-Place: Ninkasi OL Vallée
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mer. 24 Avr.19H00", converti en "24-04-09H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/les-mercredis-salsa-10/
-
-Date: Jeu. 25 Avr.21H30
-Event: Karaokéchorale du Soleil
-Place: Multi-lieux
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Jeu. 25 Avr.21H30", converti en "25-04-01H30" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/karaokechorale-du-soleil/
-
-Date: Jeu. 25 Avr.20H00
-Event: SOIRÉE LATINO W/ LOS CARLOS
-Place: Ninkasi Champagne
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Jeu. 25 Avr.20H00", converti en "25-04-00H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/soiree-latino-w-los-carlos/
-
-Date: Jeu. 25 Avr.20H00
-Event: Super Bingo w/ Des Gens Cool
-Place: Ninkasi Cordeliers
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Jeu. 25 Avr.20H00", converti en "25-04-00H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/disco-bingo-des-gens-cool/
-
-Date: Ven. 26 Avr.22H00
-Event: 2SIK!
-Place: Ninkasi Cordeliers
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 26 Avr.22H00", converti en "26-04-02H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/2sik/
-
-Date: Ven. 26 Avr.19H00
-Event: ECOLE DE MUSIQUE DE PONT DE CHÉRUY
-Place: Ninkasi Tignieu-Jameyzieu
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 26 Avr.19H00", converti en "26-04-09H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/ecole-de-musique-de-pont-de-cheruy-4/
-
-Date: Ven. 26 Avr.21H00
-Event: Human Jukebox : Captain Jericho
-Place: Ninkasi Part Dieu
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 26 Avr.21H00", converti en "26-04-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/human-jukebox-captain-jericho-11/
-
-Date: Ven. 26 Avr.21H00
-Event: Human Jukebox : Faik
-Place: Ninkasi Vaise
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 26 Avr.21H00", converti en "26-04-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/human-jukebox-faik-9/
-
-Date: Ven. 26 Avr.20H00
-Event: Hynsha DJ Set
-Place: Ninkasi OL Vallée
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 26 Avr.20H00", converti en "26-04-00H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/hynsha-dj-set-27/
-
-Date: Ven. 26 Avr.18H00
-Event: Le Vendredi C’Est Partyyy !
-Place: Ninkasi Bourgoin
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 26 Avr.18H00", converti en "26-04-08H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/le-vendredi-cest-partyyy-7/
-
-Date: Ven. 26 Avr.21H00
-Event: Music Game
-Place: Ninkasi Bourgoin
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 26 Avr.21H00", converti en "26-04-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/music-game-15/
-
-Date: Ven. 26 Avr.21H00
-Event: ROOMTCHACK
-Place: Ninkasi Crolles
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 26 Avr.21H00", converti en "26-04-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/roomtchack/
-
-Date: Ven. 26 Avr.21H00
-Event: SUPER5
-Place: Ninkasi Saint-Paul
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 26 Avr.21H00", converti en "26-04-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/super5/
-
-Date: Ven. 26 Avr.21H00
-Event: SUPERNOVA · TRIBUTE TO OASIS
-Place: Ninkasi Rouen
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 26 Avr.21H00", converti en "26-04-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/supernova-%c2%b7-tribute-to-oasis/
-
-Date: Sam. 27 Avr.21H00
-Event: DJ Artokss
-Place: Ninkasi Crolles
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Sam. 27 Avr.21H00", converti en "27-04-01H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/dj-artokss-6/
-
-Date: Sam. 27 Avr.23H00
-Event: Latina Session w/ Alfredo
-Place: Ninkasi Cordeliers
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Sam. 27 Avr.23H00", converti en "27-04-03H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/latina-session-w-alfredo-7/
-
-Date: Dim. 28 Avr.15H00
-Event: Dimanches Latino · Cours De Salsa
-Place: Ninkasi Saint Etienne
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Dim. 28 Avr.15H00", converti en "28-04-05H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/dimanches-latino-%c2%b7-cours-de-salsa-34/
 
-Date: Lun. 29 Avr.20H00
-Event: Blind Test
-Place: Ninkasi Gratte Ciel / Ninkasi La Doua / Ninkasi Grand Parilly
+Date: mardi 21 janvier
+Event: Créer une association : du projet associatif aux démarches administratives (2/3)
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 18h30 > 21h
+MultiName: 
+										Créer une association : du projet associatif aux démarches administratives (2/3)									,
+										Atelier numérique 1.3 : Ne plus jamais oublier son mot de passe									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Lun. 29 Avr.20H00", converti en "29-04-00H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 21 janvier", converti en "21-01" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/blind-test-231/
+https://larayonne.org/evenement/creer-une-association-du-projet-associatif-aux-demarches-admin-2/
 
-Date: Lun. 29 Avr.20H30
-Event: Blind Test
-Place: Multi-lieux
+Date: jeudi 23 janvier
+Event: Bagarre + Dombrance
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 19h
+MultiName: 
+										Bagarre + Dombrance									,
+										Créer une association : du projet associatif aux démarches administratives (3/3)									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Lun. 29 Avr.20H30", converti en "29-04-00H30" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 23 janvier", converti en "23-01" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/blind-test-232/
+https://larayonne.org/evenement/bagarre-dombrance/
 
-Date: Lun. 29 Avr.19H00
-Event: Les Lundis Salsa W/ DJ Carlos
-Place: Ninkasi Cordeliers
+Date: vendredi 24 janvier
+Event: Les Sheriff + Poésie Zero + Supermunk
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 19h
+MultiName: 
+										Les Sheriff + Poésie Zero + Supermunk									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Lun. 29 Avr.19H00", converti en "29-04-09H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "vendredi 24 janvier", converti en "24-01" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/les-lundis-salsa-w-dj-carlos-9/
+https://larayonne.org/evenement/les-sheriff-poesie-zero-supermunk/
 
-Date: Mar. 30 Avr.20H00
-Event: JAZZ DAY : ADLANE ALIOUCHE & MARIUS KIKTEFF (DUO ORGANIQUE)
-Place: Ninkasi Grand Parilly
+Date: samedi 25 janvier
+Event: Rolling Quartz
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 19h
+MultiName: 
+										Rolling Quartz									,
+										Réunion publique : "L’élection de Trump va accélérer la décomposition du capitalisme" par le CCI									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 30 Avr.20H00", converti en "30-04-00H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "samedi 25 janvier", converti en "25-01" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/jazz-day-adlane-aliouche-marius-kikteff-duo-organique/
+https://larayonne.org/evenement/rolling-quartz/
 
-Date: Mar. 30 Avr.20H00
-Event: JAZZ DAY : ALTÉA TRIO
-Place: Ninkasi Saint-Paul
+Date: dimanche 26 janvier
+Event: 2ème Vinyl Pop-Up Market de Lyon avec Pit Samprass
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 10h
+MultiName: 
+										2ème Vinyl Pop-Up Market de Lyon avec Pit Samprass									,
+										Stage intensif d’Afrocubain avec MC Dance									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 30 Avr.20H00", converti en "30-04-00H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "dimanche 26 janvier", converti en "26-01" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/jazz-day-altea-trio/
+https://larayonne.org/evenement/2eme-vinyl-pop-up-market-de-lyon/
 
-Date: Mar. 30 Avr.20H00
-Event: JAZZ DAY : BAROSSI, OLIVEIRA & DESIDERIO TRIO
-Place: Ninkasi St Romain en Gal
+Date: mardi 28 janvier
+Event: Stick To Your Guns + Body Snatcher + Elwood Stray + No Cure
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 18h
+MultiName: 
+										Stick To Your Guns + Body Snatcher + Elwood Stray + No Cure									,
+										Les différentes formes juridiques pour entreprendre dans l'ESS									,
+										Atelier numérique 1.4 : Personnaliser son téléphone									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 30 Avr.20H00", converti en "30-04-00H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 28 janvier", converti en "28-01" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/jazz-day-barossi-oliveira-desiderio-trio/
+https://larayonne.org/evenement/stick-to-your-guns/
 
-Date: Mar. 30 Avr.20H00
-Event: JAZZ DAY : BIG CHIEFS
-Place: Ninkasi OL Vallée
+Date: mercredi 29 janvier
+Event: [COMPLET] ATELIER // Bien remplir sa demande de subvention Etat (exemple du FDVA 2)
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 18h30 > 21h
+MultiName: 
+										[COMPLET] ATELIER // Bien remplir sa demande de subvention Etat (exemple du FDVA 2)									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 30 Avr.20H00", converti en "30-04-00H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "mercredi 29 janvier", converti en "29-01" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/jazz-day-big-chiefs/
+https://larayonne.org/evenement/bien-remplir-sa-demande-de-subvention-etat/
 
-Date: Mar. 30 Avr.20H00
-Event: JAZZ DAY : COLLECTIF JAZZ MANOUCHE
-Place: Ninkasi Tignieu-Jameyzieu
+Date: jeudi 30 janvier
+Event: The Wanton Bishop + Dubinski
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 19h
+MultiName: 
+										The Wanton Bishop + Dubinski									,
+										La responsabilité des dirigeants associatifs et de l'association									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 30 Avr.20H00", converti en "30-04-00H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 30 janvier", converti en "30-01" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/jazz-day-collectif-jazz-manouche/
+https://larayonne.org/evenement/the-wanton-bishop/
 
-Date: Mar. 30 Avr.20H00
-Event: JAZZ DAY : DJOUKIL
-Place: Ninkasi La Soie
+Date: vendredi 31 janvier
+Event: 23:59 w/ The Collectors (USH b2b SLVL) + Veseli + Mahtal
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 23h30 > 05h
+MultiName: 
+										23:59 w/ The Collectors (USH b2b SLVL) + Veseli + Mahtal									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 30 Avr.20H00", converti en "30-04-00H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "vendredi 31 janvier", converti en "31-01" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/jazz-day-djoukil/
+https://larayonne.org/evenement/2359-w-the-collectors-ush-b2b-slvl-veseli-mahtal/
 
-Date: Mar. 30 Avr.20H00
-Event: JAZZ DAY : DRIFTIN’
-Place: Ninkasi La Doua
+Date: samedi 01 février
+Event: NOGENDER : Notre Sang
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 22h30 > 05h
+MultiName: 
+										NOGENDER : Notre Sang									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 30 Avr.20H00", converti en "30-04-00H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "samedi 01 février", converti en "01-02" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/jazz-day-driftin-2/
+https://larayonne.org/evenement/nogender-notre-sang/
 
-Date: Mar. 30 Avr.20H00
-Event: JAZZ DAY : EXPLOSIVE 80
-Place: Ninkasi Crolles
+Date: dimanche 02 février
+Event: T.N.T - AC/DC Tribute Band
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 19h
+MultiName: 
+										T.N.T - AC/DC Tribute Band									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 30 Avr.20H00", converti en "30-04-00H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "dimanche 02 février", converti en "02-02" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/jazz-day-explosive-80/
+https://larayonne.org/evenement/tnt-ac-dc-tribute-band/
 
-Date: Mar. 30 Avr.20H00
-Event: JAZZ DAY : GIPSY GROOVE GANG
-Place: Ninkasi Mâcon
+Date: mardi 04 février
+Event: [COMPLET] Mettre en place une comptabilité pour les petites associations
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 17h30 > 20h30
+MultiName: 
+										[COMPLET] Mettre en place une comptabilité pour les petites associations									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 30 Avr.20H00", converti en "30-04-00H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 04 février", converti en "04-02" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/jazz-day-gipsy-groove-gang-2/
+https://larayonne.org/evenement/mettre-en-place-une-comptabilite-pour-les-petites-assos/
 
-Date: Mar. 30 Avr.20H00
-Event: JAZZ DAY : GOLDEN PALACE
-Place: Ninkasi Saint Etienne
+Date: mercredi 05 février
+Event: Cattle Decapitation & Shadow Of Intent + Revocation + Vulvodynia
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 18h
+MultiName: 
+										Cattle Decapitation & Shadow Of Intent + Revocation + Vulvodynia									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 30 Avr.20H00", converti en "30-04-00H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "mercredi 05 février", converti en "05-02" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/jazz-day-golden-palace/
+https://larayonne.org/evenement/cattle-decapitation-shadow-of-intent/
 
-Date: Mar. 30 Avr.20H00
-Event: JAZZ DAY : ISAAC’S MOOD
-Place: Ninkasi Vaise
+Date: vendredi 07 février
+Event: Amadeus
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 19h
+MultiName: 
+										Amadeus									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 30 Avr.20H00", converti en "30-04-00H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "vendredi 07 février", converti en "07-02" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/jazz-day-isaacs-mood/
+https://larayonne.org/evenement/amadeus/
 
-Date: Mar. 30 Avr.20H00
-Event: JAZZ DAY : LAZY BIRDS SWING BAND
-Place: Ninkasi Brignais
+Date: samedi 08 février
+Event: Groov & Beat #5 w/ Luche + Statek + Sevenum Six + Utk
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 23h30 > 05h
+MultiName: 
+										Groov & Beat #5 w/ Luche + Statek + Sevenum Six + Utk									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 30 Avr.20H00", converti en "30-04-00H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "samedi 08 février", converti en "08-02" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/jazz-day-lazy-birds-swing-band/
+https://larayonne.org/evenement/groov-beat-5/
 
-Date: Mar. 30 Avr.20H00
-Event: JAZZ DAY : LGM TRIO
-Place: Ninkasi Part Dieu
+Date: dimanche 09 février
+Event: Stage intensif de kizomba avec MC Dance
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 13h30 > 16h30
+MultiName: 
+										Stage intensif de kizomba avec MC Dance									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 30 Avr.20H00", converti en "30-04-00H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "dimanche 09 février", converti en "09-02" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/jazz-day-lgm-trio-3/
+https://larayonne.org/evenement/stage-intensif-de-kizomba-avec-mc-dance-2/
 
-Date: Mar. 30 Avr.20H00
-Event: JAZZ DAY : LILI’S BAKERS
-Place: Ninkasi Villefranche
+Date: lundi 10 février
+Event: Présenter et mettre en valeur son projet à l'oral
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 18h30 > 21h
+MultiName: 
+										Présenter et mettre en valeur son projet à l'oral									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 30 Avr.20H00", converti en "30-04-00H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "lundi 10 février", converti en "10-02" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/jazz-day-lilis-bakers/
+https://larayonne.org/evenement/presenter-et-mettre-en-valeur-son-projet-a-loral-2/
 
-Date: Mar. 30 Avr.20H00
-Event: JAZZ DAY : MODERN SWINGTET TRIO
-Place: Ninkasi Guillotière
+Date: vendredi 14 février
+Event: EURODANCE - Édition EUROLOVE
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 23h30 > 05h
+MultiName: 
+										EURODANCE - Édition EUROLOVE									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 30 Avr.20H00", converti en "30-04-00H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "vendredi 14 février", converti en "14-02" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/jazz-day-modern-swingtet-trio/
+https://larayonne.org/evenement/eurodance-edition-eurolove/
 
-Date: Mar. 30 Avr.20H00
-Event: JAZZ DAY : NAIMA
-Place: Ninkasi Bourgoin
+Date: samedi 15 février
+Event: Reperku Tour : Roland Cristal + DJ Salle Défaite
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 19h
+MultiName: 
+										Reperku Tour : Roland Cristal + DJ Salle Défaite									,
+										23:59 invite AREA ØNE + KØZLØV + Sopik									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 30 Avr.20H00", converti en "30-04-00H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "samedi 15 février", converti en "15-02" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/jazz-day-naima/
+https://larayonne.org/evenement/roland-cristal/
 
-Date: Mar. 30 Avr.20H00
-Event: JAZZ DAY : ORNELLA LOUX & THOMAS BLAISEL
-Place: Ninkasi Gratte Ciel
+Date: dimanche 16 février
+Event: Stage intensif d’Afrocubain avec MC Dance
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 13h30 > 16h30
+MultiName: 
+										Stage intensif d’Afrocubain avec MC Dance									,
+										PAIN + OCEANS									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 30 Avr.20H00", converti en "30-04-00H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "dimanche 16 février", converti en "16-02" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/jazz-day-ornella-lou-thomas-blaisel/
+https://larayonne.org/evenement/stage-intensif-dafrocubain-avec-mc-dance-4/
 
-Date: Mar. 30 Avr.20H00
-Event: JAZZ DAY : RÉMY VARAINE & DAVID LOCATELLI
-Place: Ninkasi Gorge de Loup
+Date: mercredi 19 février
+Event: ATELIER D'INTELLIGENCE COLLECTIVE // Présenter et mettre en valeur son projet à l'oral
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 14h > 17h
+MultiName: 
+										ATELIER D'INTELLIGENCE COLLECTIVE // Présenter et mettre en valeur son projet à l'oral									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 30 Avr.20H00", converti en "30-04-00H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "mercredi 19 février", converti en "19-02" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/jazz-day-remy-varaine-david-locatelli/
+https://larayonne.org/evenement/atelier-dintelligence-collective-presenter-et-mettre-en-valeur-son-projet-a-loral/
 
-Date: Mar. 30 Avr.20H00
-Event: Jazz Day : Sampling Is Beautiful, Shibuuya!
-Place: Ninkasi Cordeliers
+Date: jeudi 20 février
+Event: La fiscalité des associations
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 18h > 21h
+MultiName: 
+										La fiscalité des associations									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 30 Avr.20H00", converti en "30-04-00H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 20 février", converti en "20-02" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/jazz-day-sampling-is-beautiful-shibuuya/
+https://larayonne.org/evenement/la-fiscalite-des-associations-2/
 
-Date: Mar. 30 Avr.20H00
-Event: JAZZ DAY : STATERA
-Place: Ninkasi Champagne
+Date: jeudi 27 février
+Event: Svinkels : hommage à Nikus Pokus
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 19h
+MultiName: 
+										Svinkels : hommage à Nikus Pokus									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 30 Avr.20H00", converti en "30-04-00H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 27 février", converti en "27-02" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/jazz-day-statera/
+https://larayonne.org/evenement/svinkels/
 
-Date: Mar. 30 Avr.20H00
-Event: JAZZ DAY : SWING 276
-Place: Ninkasi Rouen
+Date: vendredi 28 février
+Event: Dynazty + Nanowar Of Steel
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 19h
+MultiName: 
+										Dynazty + Nanowar Of Steel									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 30 Avr.20H00", converti en "30-04-00H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "vendredi 28 février", converti en "28-02" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/jazz-day-swing-276/
+https://larayonne.org/evenement/dynazty/
 
-Date: Mar. 30 Avr.20H00
-Event: JAZZ DAY : TRAFIK
-Place: Ninkasi Andrézieux
+Date: samedi 01 mars
+Event: The Silencers
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 19h
+MultiName: 
+										The Silencers									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 30 Avr.20H00", converti en "30-04-00H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "samedi 01 mars", converti en "01-03" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/jazz-day-trafik/
+https://larayonne.org/evenement/the-silencers/
 
-Date: Mar. 30 Avr.19H00
-Event: Soirée Apéro-Jeux
-Place: Ninkasi Champagne
+Date: jeudi 06 mars
+Event: REPORTÉ // Soviet Suprem
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 19h
+MultiName: 
+										REPORTÉ // Soviet Suprem									
 isCancelled: true
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 30 Avr.19H00", converti en "30-04-09H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 06 mars", converti en "06-03" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/soiree-apero-jeux-52/
+https://larayonne.org/evenement/soviet-suprem/
 
-Date: Mer. 01 Mai.19H00
-Event: Les Mercredis Salsa
-Place: Ninkasi OL Vallée
+Date: samedi 08 mars
+Event: Freak Kitchen
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 19h
+MultiName: 
+										Freak Kitchen									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mer. 01 Mai.19H00", converti en "01-19H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "samedi 08 mars", converti en "08-03" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/les-mercredis-salsa-11/
+https://larayonne.org/evenement/freak-kitchen/
 
-Date: Ven. 03 Mai.20H30
-Event: JAM SESSION JAZZ · LINKS TRIO
-Place: Ninkasi Saint-Paul
+Date: mercredi 12 mars
+Event: Godspeed You! Black Emperor
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 19h
+MultiName: 
+										Godspeed You! Black Emperor									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 03 Mai.20H30", converti en "03-20H30" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "mercredi 12 mars", converti en "12-03" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/jam-session-jazz-%c2%b7-links-trio-4/
+https://larayonne.org/evenement/godspeed-you-black-emperor/
 
-Date: Ven. 03 Mai.18H00
-Event: Le Vendredi C’Est Partyyy !
-Place: Ninkasi Bourgoin
+Date: jeudi 13 mars
+Event: Panorama des financements dans l'ESS
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 18h30 > 20h30
+MultiName: 
+										Panorama des financements dans l'ESS									,
+										The Dead Daisies + The Treatment									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 03 Mai.18H00", converti en "03-18H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 13 mars", converti en "13-03" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/le-vendredi-cest-partyyy-8/
+https://larayonne.org/evenement/panorama-des-financements-dans-less/
 
-Date: Ven. 03 Mai.22H00
-Event: Soul Train Fever : DJ Sly, MC Sacha, Soul Dancers
-Place: Ninkasi Cordeliers
+Date: vendredi 14 mars
+Event: Hadra x Dub Camp : Dub To Trance
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 23h30 > 05h
+MultiName: 
+										Hadra x Dub Camp : Dub To Trance									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 03 Mai.22H00", converti en "03-22H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "vendredi 14 mars", converti en "14-03" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/soul-train-fever-dj-sly-mc-sacha-soul-dancers/
+https://larayonne.org/evenement/hadra-x-dub-camp-dub-to-trance/
 
-Date: Dim. 05 Mai.15H00
-Event: Dimanches Latino · Cours De Salsa
-Place: Ninkasi Saint Etienne
+Date: samedi 15 mars
+Event: XLR Events pres. Losless + Abstraal + Catiba
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 23h59 > 05h
+MultiName: 
+										XLR Events pres. Losless + Abstraal + Catiba									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Dim. 05 Mai.15H00", converti en "05-15H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "samedi 15 mars", converti en "15-03" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/dimanches-latino-%c2%b7-cours-de-salsa-35/
+https://larayonne.org/evenement/xlr-events-pres-losless-abstraal-catiba/
 
-Date: Dim. 05 Mai.16H30
-Event: Salsahora Social Club
-Place: Ninkasi Rouen
+Date: dimanche 16 mars
+Event: Stage intensif d’Afrocubain avec MC Dance
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 13h30 > 16h30
+MultiName: 
+										Stage intensif d’Afrocubain avec MC Dance									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Dim. 05 Mai.16H30", converti en "05-16H30" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "dimanche 16 mars", converti en "16-03" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/salsahora-social-club-13/
+https://larayonne.org/evenement/stage-intensif-dafrocubain-avec-mc-dance-5/
 
-Date: Dim. 05 Mai.18H30
-Event: Session Danse Au Ninkasi Brignais
-Place: Ninkasi Brignais
+Date: lundi 17 mars
+Event: Bloodywood
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 18h30
+MultiName: 
+										Bloodywood									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Dim. 05 Mai.18H30", converti en "05-18H30" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "lundi 17 mars", converti en "17-03" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/session-danse-au-ninkasi-brignais-3/
+https://larayonne.org/evenement/bloodywood/
 
-Date: Dim. 05 Mai.16H00
-Event: Urban Steady Groove : 20 ans !
-Place: Ninkasi Cordeliers
+Date: mardi 18 mars
+Event: Demander des subventions pour le théâtre et les arts de la rue (1/2)
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 18h30 > 20h30
+MultiName: 
+										Demander des subventions pour le théâtre et les arts de la rue (1/2)									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Dim. 05 Mai.16H00", converti en "05-16H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 18 mars", converti en "18-03" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/urban-steady-groove-20-ans/
+https://larayonne.org/evenement/demander-des-subventions-pour-le-theatre-et-les-arts-de-la-rue-1/
 
-Date: Lun. 06 Mai.20H00
-Event: Blind Test
-Place: Ninkasi Gratte Ciel / Ninkasi La Doua / Ninkasi Grand Parilly
+Date: mercredi 19 mars
+Event: H JeuneCrack
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 19h
+MultiName: 
+										H JeuneCrack									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Lun. 06 Mai.20H00", converti en "06-20H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "mercredi 19 mars", converti en "19-03" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/blind-test-233/
+https://larayonne.org/evenement/h-jeunecrack/
 
-Date: Lun. 06 Mai.20H30
-Event: Blind Test
-Place: Multi-lieux
+Date: jeudi 20 mars
+Event: Blaiz Fayah + DJ Thomm
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 19h
+MultiName: 
+										Blaiz Fayah + DJ Thomm									,
+										Demander des subventions pour le théâtre et les arts de la rue (2/2)									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Lun. 06 Mai.20H30", converti en "06-20H30" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 20 mars", converti en "20-03" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/blind-test-234/
+https://larayonne.org/evenement/blaiz-fayah/
 
-Date: Mar. 07 Mai.19H00
-Event: Soirée Apéro-Jeux
-Place: Ninkasi Champagne
+Date: vendredi 21 mars
+Event: Reperku Tour : Billx + Neko + Mighty Spiritz + Le B
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 00h > 05h
+MultiName: 
+										Reperku Tour : Billx + Neko + Mighty Spiritz + Le B									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 07 Mai.19H00", converti en "07-19H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "vendredi 21 mars", converti en "21-03" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/soiree-apero-jeux-53/
+https://larayonne.org/evenement/billx-neko-mighty-spiritz-le-b/
 
-Date: Mer. 08 Mai.19H00
-Event: Atelier Biérologie
-Place: Ninkasi Saint-Paul
+Date: samedi 22 mars
+Event: Spider ZED + 2TH
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: 
+Dummy: à partir de 19h
+MultiName: 
+										Spider ZED + 2TH									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mer. 08 Mai.19H00", converti en "08-19H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "samedi 22 mars", converti en "22-03" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/atelier-bierologie-65/
+https://larayonne.org/evenement/spider-zed-2th/
 
-Date: Mer. 08 Mai.19H00
-Event: Les Mercredis Salsa
-Place: Ninkasi OL Vallée
+Date: mardi 25 mars
+Event: RENCONTRE // Les principales solutions d’accompagnement et de financement proposées par Rhône Développement Initiative
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 18h30 > 20h30
+MultiName: 
+										RENCONTRE // Les principales solutions d’accompagnement et de financement proposées par Rhône Développement Initiative									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mer. 08 Mai.19H00", converti en "08-19H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 25 mars", converti en "25-03" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/les-mercredis-salsa-12/
+https://larayonne.org/evenement/les-principales-solutions-daccompagnement-et-de-financement-proposees-par-rdi/
 
-Date: Jeu. 09 Mai.20H00
-Event: Les Jeudis De La Salsa
-Place: Ninkasi Tarare
+Date: mercredi 26 mars
+Event: The Last Internationale
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 19h
+MultiName: 
+										The Last Internationale									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Jeu. 09 Mai.20H00", converti en "09-20H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "mercredi 26 mars", converti en "26-03" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/les-jeudis-de-la-salsa-28/
+https://larayonne.org/evenement/the-last-internationale/
 
-Date: Ven. 10 Mai.18H00
-Event: Le Vendredi C’Est Partyyy !
-Place: Ninkasi Bourgoin
+Date: jeudi 27 mars
+Event: Dēportivo
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 19h
+MultiName: 
+										Dēportivo									,
+										ATELIER // Bien remplir sa demande de subvention pour la Ville de Villeurbanne									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 10 Mai.18H00", converti en "10-18H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 27 mars", converti en "27-03" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/le-vendredi-cest-partyyy-9/
+https://larayonne.org/evenement/deportivo/
 
-Date: Dim. 12 Mai.15H00
-Event: Dimanches Latino · Cours De Salsa
-Place: Ninkasi Saint Etienne
+Date: vendredi 28 mars
+Event: Jahneration + Bijo
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 19h
+MultiName: 
+										Jahneration + Bijo									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Dim. 12 Mai.15H00", converti en "12-15H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "vendredi 28 mars", converti en "28-03" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/dimanches-latino-%c2%b7-cours-de-salsa-36/
+https://larayonne.org/evenement/jahneration/
 
-Date: Lun. 13 Mai.20H00
-Event: Blind Test
-Place: Ninkasi Gratte Ciel / Ninkasi La Doua / Ninkasi Grand Parilly
+Date: samedi 29 mars
+Event: ATELIER // Pourquoi s’engager (ou pas) ?
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 13h30 > 17h30
+MultiName: 
+										ATELIER // Pourquoi s’engager (ou pas) ?									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Lun. 13 Mai.20H00", converti en "13-20H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "samedi 29 mars", converti en "29-03" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/blind-test-235/
+https://larayonne.org/evenement/atelier-pourquoi-sengager-ou-pas/
 
-Date: Lun. 13 Mai.20H30
-Event: Blind Test
-Place: Multi-lieux
+Date: dimanche 30 mars
+Event: Zeal & Ardor
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 19h
+MultiName: 
+										Zeal & Ardor									,
+										Stage intensif de kizomba avec MC Dance									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Lun. 13 Mai.20H30", converti en "13-20H30" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "dimanche 30 mars", converti en "30-03" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/blind-test-236/
+https://larayonne.org/evenement/zeal-ardor/
 
-Date: Mar. 14 Mai.19H00
-Event: Soirée Apéro-Jeux
-Place: Ninkasi Champagne
+Date: mardi 01 avril
+Event: ATELIER // Les bases sur les droits d'auteur dans la musique
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 18h > 20h
+MultiName: 
+										ATELIER // Les bases sur les droits d'auteur dans la musique									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 14 Mai.19H00", converti en "14-19H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 01 avril", converti en "01-04" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/soiree-apero-jeux-54/
+https://larayonne.org/evenement/les-bases-sur-les-droits-dauteur-dans-la-musique/
 
-Date: Mer. 15 Mai.19H30
-Event: L’Italo Disco Bingo
-Place: Ninkasi Crolles
+Date: mercredi 02 avril
+Event: Carbonne
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 19h
+MultiName: 
+										Carbonne									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mer. 15 Mai.19H30", converti en "15-19H30" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "mercredi 02 avril", converti en "02-04" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/litalo-disco-bingo-4/
+https://larayonne.org/evenement/carbonne/
 
-Date: Mer. 15 Mai.19H00
-Event: Les Mercredis Salsa
-Place: Ninkasi OL Vallée
+Date: vendredi 04 avril
+Event: Mairo
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 19h
+MultiName: 
+										Mairo									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mer. 15 Mai.19H00", converti en "15-19H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "vendredi 04 avril", converti en "04-04" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/les-mercredis-salsa-13/
+https://larayonne.org/evenement/mairo/
 
-Date: Jeu. 16 Mai.20H00
-Event: Ninkasi Musik Lab : Anzu, Yanka
-Place: Ninkasi Cordeliers
+Date: dimanche 06 avril
+Event: Stage intensif de kizomba avec MC Dance
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 13h30 > 16h30
+MultiName: 
+										Stage intensif de kizomba avec MC Dance									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Jeu. 16 Mai.20H00", converti en "16-20H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "dimanche 06 avril", converti en "06-04" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/ninkasi-musik-lab-anzu-yanka/
+https://larayonne.org/evenement/stage-intensif-de-kizomba-avec-mc-dance-4/
 
-Date: Ven. 17 Mai.18H00
-Event: Le Vendredi C’Est Partyyy !
-Place: Ninkasi Bourgoin
+Date: lundi 07 avril
+Event: CO-FORMATION // Mettre en place une gouvernance partagée
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 18h30 > 21h
+MultiName: 
+										CO-FORMATION // Mettre en place une gouvernance partagée									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 17 Mai.18H00", converti en "17-18H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "lundi 07 avril", converti en "07-04" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/le-vendredi-cest-partyyy-10/
+https://larayonne.org/evenement/co-formation-mettre-en-place-une-gouvernance-partagee/
 
-Date: Ven. 17 Mai.19H00
-Event: Soirée Danse W/ Onda Latina · Salsa, Sbk, Rock
-Place: Ninkasi Mâcon
+Date: mercredi 09 avril
+Event: ATELIER D'INTELLIGENCE COLLECTIVE // Mettre en place une gouvernance partagée
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 14h > 17h
+MultiName: 
+										ATELIER D'INTELLIGENCE COLLECTIVE // Mettre en place une gouvernance partagée									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 17 Mai.19H00", converti en "17-19H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "mercredi 09 avril", converti en "09-04" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/soiree-danse-w-onda-latina-%c2%b7-salsa-sbk-rock-17/
+https://larayonne.org/evenement/atelier-mettre-en-place-une-gouvernance-partagee/
 
-Date: Dim. 19 Mai.15H00
-Event: Dimanches Latino · Cours De Salsa
-Place: Ninkasi Saint Etienne
+Date: jeudi 10 avril
+Event: Eisbrecher + Heldmaschine
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 19h
+MultiName: 
+										Eisbrecher + Heldmaschine									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Dim. 19 Mai.15H00", converti en "19-15H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 10 avril", converti en "10-04" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/dimanches-latino-%c2%b7-cours-de-salsa-37/
+https://larayonne.org/evenement/eisbrecher-heldmaschine/
 
-Date: Dim. 19 Mai.18H30
-Event: Session Danse Au Ninkasi Brignais
-Place: Ninkasi Brignais
+Date: vendredi 11 avril
+Event: Marcel et son Orchestre + Davide Lafore
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 19h
+MultiName: 
+										Marcel et son Orchestre + Davide Lafore									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Dim. 19 Mai.18H30", converti en "19-18H30" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "vendredi 11 avril", converti en "11-04" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/session-danse-au-ninkasi-brignais-4/
+https://larayonne.org/evenement/marcel-et-son-orchestre/
 
-Date: Lun. 20 Mai.20H00
-Event: Blind Test
-Place: Ninkasi Gratte Ciel / Ninkasi La Doua / Ninkasi Grand Parilly
+Date: dimanche 13 avril
+Event: Stage intensif d’Afrocubain avec MC Dance
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 13h30 > 16h30
+MultiName: 
+										Stage intensif d’Afrocubain avec MC Dance									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Lun. 20 Mai.20H00", converti en "20-20H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "dimanche 13 avril", converti en "13-04" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/blind-test-237/
+https://larayonne.org/evenement/stage-intensif-dafrocubain-avec-mc-dance-6/
 
-Date: Lun. 20 Mai.20H30
-Event: Blind Test
-Place: Multi-lieux
+Date: lundi 14 avril
+Event: CO-FORMATION // S'initier aux techniques d'animation participative
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 18h30 > 21h
+MultiName: 
+										CO-FORMATION // S'initier aux techniques d'animation participative									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Lun. 20 Mai.20H30", converti en "20-20H30" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "lundi 14 avril", converti en "14-04" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/blind-test-238/
+https://larayonne.org/evenement/co-formation-sinitier-aux-techniques-danimation-participative/
 
-Date: Mar. 21 Mai.19H00
-Event: Soirée Apéro-Jeux
-Place: Ninkasi Champagne
+Date: mardi 15 avril
+Event: Les fondamentaux du mécénat auprès des entreprises et fondations
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 18h > 20h30
+MultiName: 
+										Les fondamentaux du mécénat auprès des entreprises et fondations									,
+										Lordi									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 21 Mai.19H00", converti en "21-19H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 15 avril", converti en "15-04" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/soiree-apero-jeux-55/
+https://larayonne.org/evenement/les-fondamentaux-du-mecenat-aupres-des-entreprises-et-fondations-2/
 
-Date: Mer. 22 Mai.19H00
-Event: Atelier Whisky
-Place: Ninkasi Saint-Paul
+Date: jeudi 17 avril
+Event: Construire un budget et un plan de trésorerie
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: 
+Dummy: 18h > 21h
+MultiName: 
+										Construire un budget et un plan de trésorerie									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mer. 22 Mai.19H00", converti en "22-19H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 17 avril", converti en "17-04" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/atelier-whisky-7/
+https://larayonne.org/evenement/construire-un-budget-et-un-plan-de-tresorerie/
 
-Date: Mer. 22 Mai.20H00
-Event: HORSE FIELD FESTIVAL x NINKASI : THE CAVEMEN, KILLER KIN
-Place: Ninkasi Cordeliers
+Date: samedi 19 avril
+Event: Still Fresh
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 19h
+MultiName: 
+										Still Fresh									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mer. 22 Mai.20H00", converti en "22-20H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "samedi 19 avril", converti en "19-04" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/horse-field-festival-x-ninkasi-the-cavemen-killer-kin/
+https://larayonne.org/evenement/still-fresh/
 
-Date: Mer. 22 Mai.19H00
-Event: Les Mercredis Salsa
-Place: Ninkasi OL Vallée
+Date: mercredi 23 avril
+Event: ATELIER D'INTELLIGENCE COLLECTIVE // S'initier aux techniques d'animation participative
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 14h > 17h
+MultiName: 
+										ATELIER D'INTELLIGENCE COLLECTIVE // S'initier aux techniques d'animation participative									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mer. 22 Mai.19H00", converti en "22-19H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "mercredi 23 avril", converti en "23-04" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/les-mercredis-salsa-14/
+https://larayonne.org/evenement/atelier-dintelligence-collective-sinitier-aux-techniques-danimation-participative/
 
-Date: Ven. 24 Mai.18H00
-Event: Le Vendredi C’Est Partyyy !
-Place: Ninkasi Bourgoin
+Date: vendredi 25 avril
+Event: Feldup
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 19h
+MultiName: 
+										Feldup									,
+										VOULEZ-VOUS by MOSIMANN + guests									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 24 Mai.18H00", converti en "24-18H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "vendredi 25 avril", converti en "25-04" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/le-vendredi-cest-partyyy-11/
+https://larayonne.org/evenement/feldup/
 
-Date: Dim. 26 Mai.15H00
-Event: Dimanches Latino · Cours De Salsa
-Place: Ninkasi Saint Etienne
+Date: samedi 26 avril
+Event: Halfpipe Records Pres. Nollie In The Club
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 23h30 > 05h
+MultiName: 
+										Halfpipe Records Pres. Nollie In The Club									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Dim. 26 Mai.15H00", converti en "26-15H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "samedi 26 avril", converti en "26-04" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/dimanches-latino-%c2%b7-cours-de-salsa-38/
+https://larayonne.org/evenement/halfpipe-records-pres-nollie-in-the-club/
 
-Date: Lun. 27 Mai.20H00
-Event: Blind Test
-Place: Ninkasi Gratte Ciel / Ninkasi La Doua / Ninkasi Grand Parilly
+Date: mardi 29 avril
+Event: ten56. + guests
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 19h
+MultiName: 
+										ten56. + guests									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Lun. 27 Mai.20H00", converti en "27-20H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 29 avril", converti en "29-04" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/blind-test-239/
+https://larayonne.org/evenement/ten56/
 
-Date: Lun. 27 Mai.20H30
-Event: Blind Test
-Place: Multi-lieux
+Date: vendredi 02 mai
+Event: Sowulo + ElektroShaman
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 19h
+MultiName: 
+										Sowulo + ElektroShaman									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Lun. 27 Mai.20H30", converti en "27-20H30" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "vendredi 02 mai", converti en "02-05" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/blind-test-240/
+https://larayonne.org/evenement/sowulo/
 
-Date: Mar. 28 Mai.20H30
-Event: Getdown Services + Under 45
-Place: Ninkasi Cordeliers
+Date: lundi 05 mai
+Event: CO-FORMATION // Animer les conflits au sein de son association
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 18h30 > 21h
+MultiName: 
+										CO-FORMATION // Animer les conflits au sein de son association									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 28 Mai.20H30", converti en "28-20H30" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "lundi 05 mai", converti en "05-05" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/getdown-services-under-45/
+https://larayonne.org/evenement/co-formation-animer-les-conflits-au-sein-de-son-association/
 
-Date: Mar. 28 Mai.19H00
-Event: Soirée Apéro-Jeux
-Place: Ninkasi Champagne
+Date: jeudi 08 mai
+Event: Amenra
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 19h
+MultiName: 
+										Amenra									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 28 Mai.19H00", converti en "28-19H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 08 mai", converti en "08-05" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/soiree-apero-jeux-56/
+https://larayonne.org/evenement/amenra/
 
-Date: Mer. 29 Mai.19H00
-Event: Les Mercredis Salsa
-Place: Ninkasi OL Vallée
+Date: dimanche 11 mai
+Event: Stage intensif de kizomba avec MC Dance
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 13h30 > 16h30
+MultiName: 
+										Stage intensif de kizomba avec MC Dance									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mer. 29 Mai.19H00", converti en "29-19H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "dimanche 11 mai", converti en "11-05" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/les-mercredis-salsa-15/
+https://larayonne.org/evenement/stage-intensif-de-kizomba-avec-mc-dance-5/
 
-Date: Ven. 31 Mai.18H00
-Event: Le Vendredi C’Est Partyyy !
-Place: Ninkasi Bourgoin
+Date: mercredi 14 mai
+Event: ATELIER D'INTELLIGENCE COLLECTIVE // Animer les conflits au sein de son association
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 14h > 17h
+MultiName: 
+										ATELIER D'INTELLIGENCE COLLECTIVE // Animer les conflits au sein de son association									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 31 Mai.18H00", converti en "31-18H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "mercredi 14 mai", converti en "14-05" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/le-vendredi-cest-partyyy-12/
+https://larayonne.org/evenement/atelier-dintelligence-collective-animer-les-conflits-au-sein-de-son-association/
 
-Date: Dim. 02 Juin.15H00
-Event: Dimanches Latino · Cours De Salsa
-Place: Ninkasi Saint Etienne
+Date: dimanche 18 mai
+Event: Stage intensif d’Afrocubain avec MC Dance
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 13h30 > 16h30
+MultiName: 
+										Stage intensif d’Afrocubain avec MC Dance									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Dim. 02 Juin.15H00", converti en "02-15H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "dimanche 18 mai", converti en "18-05" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/dimanches-latino-%c2%b7-cours-de-salsa-39/
+https://larayonne.org/evenement/stage-intensif-dafrocubain-avec-mc-dance-7/
 
-Date: Dim. 02 Juin.18H30
-Event: Session Danse Au Ninkasi Brignais
-Place: Ninkasi Brignais
+Date: mardi 20 mai
+Event: Mettre en place une stratégie de communication (hors réseaux sociaux) - Niveau débutant
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 18h30 > 20h30
+MultiName: 
+										Mettre en place une stratégie de communication (hors réseaux sociaux) - Niveau débutant									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Dim. 02 Juin.18H30", converti en "02-18H30" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 20 mai", converti en "20-05" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/session-danse-au-ninkasi-brignais-5/
+https://larayonne.org/evenement/mettre-en-place-une-strategie-de-communication-hors-reseaux-sociaux-niveau-debutant/
 
-Date: Lun. 03 Juin.20H00
-Event: Blind Test
-Place: Ninkasi Gratte Ciel / Ninkasi La Doua / Ninkasi Grand Parilly
+Date: mardi 27 mai
+Event: Mettre en place une stratégie de communication (hors réseaux sociaux) - Niveau avancé
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 18h30 > 20h30
+MultiName: 
+										Mettre en place une stratégie de communication (hors réseaux sociaux) - Niveau avancé									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Lun. 03 Juin.20H00", converti en "03-20H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 27 mai", converti en "27-05" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/blind-test-241/
+https://larayonne.org/evenement/mettre-en-place-une-strategie-de-communication-hors-reseaux-sociaux-niveau-avance/
 
-Date: Lun. 03 Juin.20H30
-Event: Blind Test
-Place: Multi-lieux
+Date: dimanche 01 juin
+Event: Stage intensif de kizomba avec MC Dance
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 13h30 > 16h30
+MultiName: 
+										Stage intensif de kizomba avec MC Dance									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Lun. 03 Juin.20H30", converti en "03-20H30" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "dimanche 01 juin", converti en "01-06" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/blind-test-242/
+https://larayonne.org/evenement/stage-intensif-de-kizomba-avec-mc-dance-6/
 
-Date: Mar. 04 Juin.19H00
-Event: Soirée Apéro-Jeux
-Place: Ninkasi Champagne
+Date: mardi 03 juin
+Event: Mettre en place une stratégie de communication sur les réseaux sociaux - Niveau débutant
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 18h30 > 20h30
+MultiName: 
+										Mettre en place une stratégie de communication sur les réseaux sociaux - Niveau débutant									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 04 Juin.19H00", converti en "04-19H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 03 juin", converti en "03-06" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/soiree-apero-jeux-57/
+https://larayonne.org/evenement/mettre-en-place-une-strategie-de-communication-sur-les-reseaux-sociaux-niveau-debutant/
 
-Date: Mer. 05 Juin.19H00
-Event: Les Mercredis Salsa
-Place: Ninkasi OL Vallée
+Date: jeudi 05 juin
+Event: ATELIER PRATIQUE // Réseaux sociaux - Niveau débutant
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 18h30 > 20h30
+MultiName: 
+										ATELIER PRATIQUE // Réseaux sociaux - Niveau débutant									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mer. 05 Juin.19H00", converti en "05-19H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 05 juin", converti en "05-06" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/les-mercredis-salsa-16/
+https://larayonne.org/evenement/atelier-pratique-reseaux-sociaux-niveau-debutant/
 
-Date: Ven. 07 Juin.18H00
-Event: Le Vendredi C’Est Partyyy !
-Place: Ninkasi Bourgoin
+Date: jeudi 12 juin
+Event: Construire le cahier des charges de son site internet
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 18h30 > 20h30
+MultiName: 
+										Construire le cahier des charges de son site internet									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 07 Juin.18H00", converti en "07-18H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 12 juin", converti en "12-06" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/le-vendredi-cest-partyyy-13/
+https://larayonne.org/evenement/construire-le-cahier-des-charges-de-son-site-internet-2/
 
-Date: Dim. 09 Juin.15H00
-Event: Dimanches Latino · Cours De Salsa
-Place: Ninkasi Saint Etienne
+Date: lundi 16 juin
+Event: Mettre en place une stratégie de communication sur les réseaux sociaux - Niveau avancé
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 18h30 > 20h30
+MultiName: 
+										Mettre en place une stratégie de communication sur les réseaux sociaux - Niveau avancé									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Dim. 09 Juin.15H00", converti en "09-15H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "lundi 16 juin", converti en "16-06" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/dimanches-latino-%c2%b7-cours-de-salsa-40/
+https://larayonne.org/evenement/mettre-en-place-une-strategie-de-communication-sur-les-reseaux-sociaux-niveau-avance/
 
-Date: Dim. 09 Juin.16H30
-Event: Salsahora Social Club
-Place: Ninkasi Rouen
+Date: mardi 17 juin
+Event: Mettre en place une comptabilité pour les petites associations
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 17h30 > 20h30
+MultiName: 
+										Mettre en place une comptabilité pour les petites associations									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Dim. 09 Juin.16H30", converti en "09-16H30" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 17 juin", converti en "17-06" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/salsahora-social-club-14/
+https://larayonne.org/evenement/mettre-en-place-une-comptabilite-pour-les-petites-assos-3/
 
-Date: Lun. 10 Juin.20H00
-Event: Blind Test
-Place: Ninkasi Gratte Ciel / Ninkasi La Doua / Ninkasi Grand Parilly
+Date: jeudi 19 juin
+Event: ATELIER PRATIQUE // Réseaux sociaux - Niveau avancé
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 18h30 > 20h30
+MultiName: 
+										ATELIER PRATIQUE // Réseaux sociaux - Niveau avancé									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Lun. 10 Juin.20H00", converti en "10-20H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 19 juin", converti en "19-06" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/blind-test-243/
+https://larayonne.org/evenement/atelier-pratique-reseaux-sociaux-niveau-avance/
 
-Date: Lun. 10 Juin.20H30
-Event: Blind Test
-Place: Multi-lieux
+Date: lundi 23 juin
+Event: ATELIER PRATIQUE // Créer un visuel avec Canva - Niveau débutant
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 18h30 > 20h30
+MultiName: 
+										ATELIER PRATIQUE // Créer un visuel avec Canva - Niveau débutant									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Lun. 10 Juin.20H30", converti en "10-20H30" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "lundi 23 juin", converti en "23-06" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/blind-test-244/
+https://larayonne.org/evenement/atelier-pratique-creer-un-visuel-avec-canva-niveau-debutant/
 
-Date: Mar. 11 Juin.19H00
-Event: Soirée Apéro-Jeux
-Place: Ninkasi Champagne
+Date: dimanche 29 juin
+Event: Stage intensif d’Afrocubain avec MC Dance
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 13h30 > 16h30
+MultiName: 
+										Stage intensif d’Afrocubain avec MC Dance									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 11 Juin.19H00", converti en "11-19H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "dimanche 29 juin", converti en "29-06" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/soiree-apero-jeux-58/
+https://larayonne.org/evenement/stage-intensif-dafrocubain-avec-mc-dance-8/
 
-Date: Mer. 12 Juin.19H30
-Event: L’Euro Disco Bingo
-Place: Ninkasi Crolles
+Date: jeudi 03 juillet
+Event: ATELIER PRATIQUE // Créer un visuel avec Canva - Niveau avancé
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 18h30 > 20h30
+MultiName: 
+										ATELIER PRATIQUE // Créer un visuel avec Canva - Niveau avancé									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mer. 12 Juin.19H30", converti en "12-19H30" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 03 juillet", converti en "03-07" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/leuro-disco-bingo/
+https://larayonne.org/evenement/atelier-pratique-creer-un-visuel-avec-canva-niveau-avance/
 
-Date: Mer. 12 Juin.19H00
-Event: Les Mercredis Salsa
-Place: Ninkasi OL Vallée
+Date: mardi 08 juillet
+Event: Construire un budget et un plan de trésorerie
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 18h > 21h
+MultiName: 
+										Construire un budget et un plan de trésorerie									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mer. 12 Juin.19H00", converti en "12-19H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 08 juillet", converti en "08-07" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/les-mercredis-salsa-17/
+https://larayonne.org/evenement/construire-un-budget-et-un-plan-de-tresorerie-2/
 
-Date: Jeu. 13 Juin.19H30
-Event: L’Euro Disco Bingo
-Place: Multi-lieux
+Date: jeudi 10 juillet
+Event: ATELIER // Créer un site vitrine avec Odoo (1/2)
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 18h30 > 20h30
+MultiName: 
+										ATELIER // Créer un site vitrine avec Odoo (1/2)									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Jeu. 13 Juin.19H30", converti en "13-19H30" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 10 juillet", converti en "10-07" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/leuro-disco-bingo-2/
+https://larayonne.org/evenement/atelier-creer-un-site-vitrine-avec-odoo-1-2/
 
-Date: Jeu. 13 Juin.20H00
-Event: Les Jeudis De La Salsa
-Place: Ninkasi Tarare
+Date: jeudi 18 septembre
+Event: Créer un premier emploi, pourquoi ? À quoi penser ? Que faire ?
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 18h > 21h
+MultiName: 
+										Créer un premier emploi, pourquoi ? À quoi penser ? Que faire ?									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Jeu. 13 Juin.20H00", converti en "13-20H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 18 septembre", converti en "18-09" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/les-jeudis-de-la-salsa-27/
+https://larayonne.org/evenement/creer-un-premier-emploi-pourquoi-a-quoi-penser-que-faire/
 
-Date: Ven. 14 Juin.18H00
-Event: Le Vendredi C’Est Partyyy !
-Place: Ninkasi Bourgoin
+Date: mardi 23 septembre
+Event: Comprendre les principales aides à l’emploi
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 18h30 > 20h30
+MultiName: 
+										Comprendre les principales aides à l’emploi									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 14 Juin.18H00", converti en "14-18H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 23 septembre", converti en "23-09" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/le-vendredi-cest-partyyy-14/
+https://larayonne.org/evenement/comprendre-les-principales-aides-a-lemploi/
 
-Date: Ven. 14 Juin.19H00
-Event: Soirée Danse W/ Onda Latina · Salsa, Sbk, Rock
-Place: Ninkasi Mâcon
+Date: jeudi 25 septembre
+Event: ATELIER // Créer un site vitrine avec Odoo (2/2)
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 18h30 > 20h30
+MultiName: 
+										ATELIER // Créer un site vitrine avec Odoo (2/2)									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 14 Juin.19H00", converti en "14-19H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 25 septembre", converti en "25-09" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/soiree-danse-w-onda-latina-%c2%b7-salsa-sbk-rock-18/
+https://larayonne.org/evenement/atelier-creer-un-site-vitrine-avec-odoo-2-2/
 
-Date: Dim. 16 Juin.15H00
-Event: Dimanches Latino · Cours De Salsa
-Place: Ninkasi Saint Etienne
+Date: mardi 30 septembre
+Event: Bleed From Within + After The Burial + Great American Ghost
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 18h
+MultiName: 
+										Bleed From Within + After The Burial + Great American Ghost									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Dim. 16 Juin.15H00", converti en "16-15H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 30 septembre", converti en "30-09" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/dimanches-latino-%c2%b7-cours-de-salsa-41/
+https://larayonne.org/evenement/bleed-from-within/
 
-Date: Lun. 17 Juin.20H00
-Event: Blind Test
-Place: Ninkasi Gratte Ciel / Ninkasi La Doua / Ninkasi Grand Parilly
+Date: vendredi 03 octobre
+Event: Faun + Ye Banished Privateers
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 18h
+MultiName: 
+										Faun + Ye Banished Privateers									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Lun. 17 Juin.20H00", converti en "17-20H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "vendredi 03 octobre", converti en "03-10" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/blind-test-245/
+https://larayonne.org/evenement/faun/
 
-Date: Lun. 17 Juin.20H30
-Event: Blind Test
-Place: Multi-lieux
+Date: mardi 07 octobre
+Event: L'emploi dans le spectacle vivant
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 18h30 > 20h30
+MultiName: 
+										L'emploi dans le spectacle vivant									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Lun. 17 Juin.20H30", converti en "17-20H30" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 07 octobre", converti en "07-10" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/blind-test-246/
+https://larayonne.org/evenement/lemploi-dans-le-spectacle-vivant/
 
-Date: Mar. 18 Juin.19H00
-Event: Soirée Apéro-Jeux
-Place: Ninkasi Champagne
+Date: jeudi 09 octobre
+Event: Les obligations des associations employeuses
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 18h30 > 20h30
+MultiName: 
+										Les obligations des associations employeuses									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 18 Juin.19H00", converti en "18-19H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 09 octobre", converti en "09-10" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/soiree-apero-jeux-59/
+https://larayonne.org/evenement/les-obligations-des-associations-employeuses-2/
 
-Date: Mer. 19 Juin.19H00
-Event: Les Mercredis Salsa
-Place: Ninkasi OL Vallée
+Date: mardi 14 octobre
+Event: God Is An Astronaut + Jo Quail
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 19h
+MultiName: 
+										God Is An Astronaut + Jo Quail									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mer. 19 Juin.19H00", converti en "19-19H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 14 octobre", converti en "14-10" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/les-mercredis-salsa-18/
+https://larayonne.org/evenement/god-is-an-astronaut-jo-quail/
 
-Date: Dim. 23 Juin.15H00
-Event: Dimanches Latino · Cours De Salsa
-Place: Ninkasi Saint Etienne
+Date: jeudi 16 octobre
+Event: Mettre en place une comptabilité pour les petites associations
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 17h30 > 20h30
+MultiName: 
+										Mettre en place une comptabilité pour les petites associations									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Dim. 23 Juin.15H00", converti en "23-15H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 16 octobre", converti en "16-10" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/dimanches-latino-%c2%b7-cours-de-salsa-42/
+https://larayonne.org/evenement/mettre-en-place-une-comptabilite-pour-les-petites-associations-4/
 
-Date: Lun. 24 Juin.20H00
-Event: Blind Test
-Place: Ninkasi Gratte Ciel / Ninkasi La Doua / Ninkasi Grand Parilly
+Date: vendredi 17 octobre
+Event: Wind Rose + Orden Ogan + Angus McSix
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 19h
+MultiName: 
+										Wind Rose + Orden Ogan + Angus McSix									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Lun. 24 Juin.20H00", converti en "24-20H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "vendredi 17 octobre", converti en "17-10" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/blind-test-247/
+https://larayonne.org/evenement/wind-rose/
 
-Date: Lun. 24 Juin.20H30
-Event: Blind Test
-Place: Multi-lieux
+Date: mardi 21 octobre
+Event: La gestion de la paie dans le spectacle vivant
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 18h30 > 20h30
+MultiName: 
+										La gestion de la paie dans le spectacle vivant									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Lun. 24 Juin.20H30", converti en "24-20H30" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 21 octobre", converti en "21-10" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/blind-test-248/
+https://larayonne.org/evenement/la-gestion-de-la-paie-dans-le-spectacle-vivant/
 
-Date: Mar. 25 Juin.19H00
-Event: Soirée Apéro-Jeux
-Place: Ninkasi Champagne
+Date: lundi 03 novembre
+Event: Cycle diffusion : La stratégie de diffusion d’un projet artistique (1/4)
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 18h30 > 21h
+MultiName: 
+										Cycle diffusion : La stratégie de diffusion d’un projet artistique (1/4)									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mar. 25 Juin.19H00", converti en "25-19H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "lundi 03 novembre", converti en "03-11" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/soiree-apero-jeux-60/
+https://larayonne.org/evenement/cycle-diffusion-la-strategie-de-diffusion-dun-projet-artistique/
 
-Date: Mer. 26 Juin.19H00
-Event: Les Mercredis Salsa
-Place: Ninkasi OL Vallée
+Date: jeudi 06 novembre
+Event: Construire un budget et un plan de trésorerie
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 18h > 21h
+MultiName: 
+										Construire un budget et un plan de trésorerie									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Mer. 26 Juin.19H00", converti en "26-19H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 06 novembre", converti en "06-11" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/les-mercredis-salsa-19/
+https://larayonne.org/evenement/construire-un-budget-et-un-plan-de-tresorerie-3/
 
-Date: Ven. 28 Juin.18H00
-Event: Le Vendredi C’Est Partyyy !
-Place: Ninkasi Bourgoin
+Date: mercredi 12 novembre
+Event: Cycle diffusion : Élaborer un dossier de diffusion (2/4)
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 18h30 > 21h
+MultiName: 
+										Cycle diffusion : Élaborer un dossier de diffusion (2/4)									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 28 Juin.18H00", converti en "28-18H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "mercredi 12 novembre", converti en "12-11" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/le-vendredi-cest-partyyy-15/
+https://larayonne.org/evenement/cycle-diffusion-elaborer-un-dossier-de-diffusion/
 
-Date: Dim. 30 Juin.15H00
-Event: Dimanches Latino · Cours De Salsa
-Place: Ninkasi Saint Etienne
+Date: jeudi 13 novembre
+Event: REPORTÉ // Popa Chubby
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Dim. 30 Juin.15H00", converti en "30-15H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/dimanches-latino-%c2%b7-cours-de-salsa-43/
-
-Date: Dim. 07 Juil.16H30
-Event: Salsahora Social Club
-Place: Ninkasi Rouen
-city: Lyon
-country: France
-Dummy: En savoir plus
-isCancelled: false
+Dummy: à partir de 19h
+MultiName: 
+										REPORTÉ // Popa Chubby									
+isCancelled: true
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Dim. 07 Juil.16H30", converti en "07-07-06H30" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 13 novembre", converti en "13-11" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/salsahora-social-club-15/
+https://larayonne.org/evenement/popa-chubby/
 
-Date: Ven. 19 Juil.19H00
-Event: Soirée Danse W/ Onda Latina · Salsa, Sbk, Rock
-Place: Ninkasi Mâcon
+Date: lundi 17 novembre
+Event: Cycle diffusion : Formaliser sa production artistique (3/4)
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: 18h30 > 20h30
+MultiName: 
+										Cycle diffusion : Formaliser sa production artistique (3/4)									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 19 Juil.19H00", converti en "19-07-09H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "lundi 17 novembre", converti en "17-11" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/soiree-danse-w-onda-latina-%c2%b7-salsa-sbk-rock-7/
+https://larayonne.org/evenement/cycle-diffusion-formaliser-sa-production-artistique/
 
-Date: Ven. 02 Août.19H00
-Event: Soirée Danse W/ Onda Latina · Salsa, Sbk, Rock
-Place: Ninkasi Mâcon
+Date: jeudi 20 novembre
+Event: The Inspector Cluzo
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 19h
+MultiName: 
+										The Inspector Cluzo									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 02 Août.19H00", converti en "02-19H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 20 novembre", converti en "20-11" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/soiree-danse-w-onda-latina-%c2%b7-salsa-sbk-rock-19/
+https://larayonne.org/evenement/the-inspector-cluzo/
 
-Date: Ven. 23 Août.19H00
-Event: Soirée Danse W/ Onda Latina · Salsa, Sbk, Rock
-Place: Ninkasi Mâcon
+Date: samedi 22 novembre
+Event: Rakoon
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: En savoir plus
+Dummy: à partir de 19h
+MultiName: 
+										Rakoon									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 23 Août.19H00", converti en "23-19H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "samedi 22 novembre", converti en "22-11" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/soiree-danse-w-onda-latina-%c2%b7-salsa-sbk-rock-20/
+https://larayonne.org/evenement/rakoon/
 
-Date: Jeu. 29 Août.19H00
-Event: Woodstower x Ninkasi Musik Lab : Yanka
-Place: 
+Date: lundi 24 novembre
+Event: Cycle diffusion : Construire le budget de son projet artistique (4/4)
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: 
+Dummy: 18h30 > 21h
+MultiName: 
+										Cycle diffusion : Construire le budget de son projet artistique (4/4)									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Jeu. 29 Août.19H00", converti en "29-19H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "lundi 24 novembre", converti en "24-11" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/woodstower-x-ninkasi-musik-lab-yanka/
+https://larayonne.org/evenement/cycle-diffusion-construire-le-budget-de-son-projet-artistique/
 
-Date: Ven. 30 Août.19H00
-Event: Woodstower x Ninkasi Musik Lab : Jey Khemeya
-Place: 
+Date: mercredi 26 novembre
+Event: ATELIER // Gérer sa tournée dans les musiques actuelles
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: 
+Dummy: 18h > 20h
+MultiName: 
+										ATELIER // Gérer sa tournée dans les musiques actuelles									
 isCancelled: false
 DetailedStyle: 
 Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Ven. 30 Août.19H00", converti en "30-19H00" (attendu "dd-MM-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "mercredi 26 novembre", converti en "26-11" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://www.ninkasi.fr/agenda/woodstower-x-ninkasi-musik-lab-jey-khemeya/
+https://larayonne.org/evenement/atelier-gerer-sa-tournee-dans-les-musiques-actuelles/
 
-Date: Sam. 31 Août.19H00
-Event: Woodstower x Ninkasi Musik Lab : Jasual Cazz
-Place: 
+Date: jeudi 18 décembre
+Event: Sinclair
+Place: La Rayonne
 city: Lyon
 country: France
-Dummy: 
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: [object Object]
-errorLog: Format de date invalide pour Ninkasi. Reçu "Sam. 31 Août.19H00", converti en "31-19H00" (attendu "dd-MM-HH:mm")
-unixDate: 0
-https://www.ninkasi.fr/agenda/woodstower-x-ninkasi-musik-lab-jasual-cazz/
-
-Date: M a r 0 7 T h u
-Event: Koolkiz
-Place: Savage
-city: Hanoi
-country: Vietnam
-Style: House Techno
-isCancelled: false
-DetailedStyle: House Techno
-source: [object Object]
-errorLog: Format de date invalide pour Likdo. Reçu "M a r 0 7 T h u", converti en "00-07" (attendu "dd-MM")
-unixDate: 0
-https://likdo.asia/event/1148
-
-Date: M a r 0 7 T h u
-Event: IYAAKI 4th page
-Place: Nyapi
-city: Hanoi
-country: Vietnam
-Style: Live
-isCancelled: false
-DetailedStyle: 
-source: [object Object]
-errorLog: Format de date invalide pour Likdo. Reçu "M a r 0 7 T h u", converti en "00-07" (attendu "dd-MM")
-unixDate: 0
-https://likdo.asia/event/1173
-
-Date: M a r 0 8 F r i
-Event: Savage Night
-Place: Savage
-city: Hanoi
-country: Vietnam
-Style: House Techno
-isCancelled: false
-DetailedStyle: House Techno
-source: [object Object]
-errorLog: Format de date invalide pour Likdo. Reçu "M a r 0 8 F r i", converti en "00-08" (attendu "dd-MM")
-unixDate: 0
-https://likdo.asia/event/1149
-
-Date: M a r 0 8 F r i
-Event: Hard-O International Women Day
-Place: Arcan
-city: Hanoi
-country: Vietnam
-Style: Live
-isCancelled: false
-DetailedStyle: 
-source: [object Object]
-errorLog: Format de date invalide pour Likdo. Reçu "M a r 0 8 F r i", converti en "00-08" (attendu "dd-MM")
-unixDate: 0
-https://likdo.asia/event/1158
-
-Date: M a r 0 8 F r i
-Event: HILLS&EUROPA 3Y ANNIVERSARY EVE PARTY
-Place: Nyapi
-city: Hanoi
-country: Vietnam
-Style: Live
-isCancelled: false
-DetailedStyle: 
-source: [object Object]
-errorLog: Format de date invalide pour Likdo. Reçu "M a r 0 8 F r i", converti en "00-08" (attendu "dd-MM")
-unixDate: 0
-https://likdo.asia/event/1174
-
-Date: M a r 0 8 F r i
-Event: Unmute with BongBongQuayQuay, Vynni, AiLien
-Place: Unmute
-city: Hanoi
-country: Vietnam
-Style: House Techno
-isCancelled: false
-DetailedStyle: House Techno
-source: [object Object]
-errorLog: Format de date invalide pour Likdo. Reçu "M a r 0 8 F r i", converti en "00-08" (attendu "dd-MM")
-unixDate: 0
-https://likdo.asia/event/1193
-
-Date: M a r 0 8 F r i
-Event: WHY pres.Romy Mats
-Place: CLUB WHY
-city: Hanoi
-country: Vietnam
-Style: DnB/Bass Breaks
-isCancelled: false
-DetailedStyle: DnB/Bass Breaks
-source: [object Object]
-errorLog: Format de date invalide pour Likdo. Reçu "M a r 0 8 F r i", converti en "00-08" (attendu "dd-MM")
-unixDate: 0
-https://likdo.asia/event/1201
-
-Date: M a r 0 8 F r i
-Event: ON AIR #2: haanhtuan
-Place: Blank Sky Lounge
-city: Hanoi
-country: Vietnam
-Style: House Disco
+Dummy: à partir de 19h
+MultiName: 
+										Sinclair									
 isCancelled: false
-DetailedStyle: House Disco
-source: [object Object]
-errorLog: Format de date invalide pour Likdo. Reçu "M a r 0 8 F r i", converti en "00-08" (attendu "dd-MM")
-unixDate: 0
-https://likdo.asia/event/1202
-
-Date: M a r 0 9 S a t
-Event: RXP+ pres. Peter Van Hoesen (LIVE) (Time To Express, BXL)
-Place: REXPERIENCE KL
-city: Hanoi
-country: Vietnam
-Style: Electronica Live
-isCancelled: false
-DetailedStyle: Electronica Live
-source: [object Object]
-errorLog: Format de date invalide pour Likdo. Reçu "M a r 0 9 S a t", converti en "00-09" (attendu "dd-MM")
-unixDate: 0
-https://likdo.asia/event/1145
-
-Date: M a r 0 9 S a t
-Event: Offlander • Red River Cruise w/ Mesmé • 10 Year Anniversary
-Place: Mirage
-city: Hanoi
-country: Vietnam
-Style: Festival
-isCancelled: false
-DetailedStyle: Festival
-source: [object Object]
-errorLog: Format de date invalide pour Likdo. Reçu "M a r 0 9 S a t", converti en "00-09" (attendu "dd-MM")
-unixDate: 0
-https://likdo.asia/event/1146
-
-Date: M a r 0 9 S a t
-Event: Savage Invites Kamma & Masalo
-Place: Savage
-city: Hanoi
-country: Vietnam
-Style: House Techno
-isCancelled: false
-DetailedStyle: House Techno
-source: [object Object]
-errorLog: Format de date invalide pour Likdo. Reçu "M a r 0 9 S a t", converti en "00-09" (attendu "dd-MM")
-unixDate: 0
-https://likdo.asia/event/1150
-
-Date: M a r 0 9 S a t
-Event: THE LIGHTHOUSE TAKEOVER
-Place: Happy Buddha Club
-city: Hanoi
-country: Vietnam
-Style: Live
-isCancelled: false
-DetailedStyle: 
-source: [object Object]
-errorLog: Format de date invalide pour Likdo. Reçu "M a r 0 9 S a t", converti en "00-09" (attendu "dd-MM")
-unixDate: 0
-https://likdo.asia/event/1152
-
-Date: M a r 0 9 S a t
-Event: Bình Thạnh Boiz Take Over
-Place: Arcan
-city: Hanoi
-country: Vietnam
-Style: Live
-isCancelled: false
-DetailedStyle: 
-source: [object Object]
-errorLog: Format de date invalide pour Likdo. Reçu "M a r 0 9 S a t", converti en "00-09" (attendu "dd-MM")
-unixDate: 0
-https://likdo.asia/event/1159
-
-Date: M a r 0 9 S a t
-Event: DANCAHOLIC
-Place: Nyapi
-city: Hanoi
-country: Vietnam
-Style: Live
-isCancelled: false
 DetailedStyle: 
-source: [object Object]
-errorLog: Format de date invalide pour Likdo. Reçu "M a r 0 9 S a t", converti en "00-09" (attendu "dd-MM")
-unixDate: 0
-https://likdo.asia/event/1175
-
-Date: M a r 0 9 S a t
-Event: Bungl0n Takeover
-Place: Unmute
-city: Hanoi
-country: Vietnam
-Style: House Techno
-isCancelled: false
-DetailedStyle: House Techno
-source: [object Object]
-errorLog: Format de date invalide pour Likdo. Reçu "M a r 0 9 S a t", converti en "00-09" (attendu "dd-MM")
-unixDate: 0
-https://likdo.asia/event/1194
-
-Date: A p r 0 5 F r i
-Event: Equation 2024
-Place: 
-city: Hanoi
-country: Vietnam
-Style: Festival
-isCancelled: false
-DetailedStyle: Festival
-source: [object Object]
-errorLog: Format de date invalide pour Likdo. Reçu "A p r 0 5 F r i", converti en "00-05" (attendu "dd-MM")
-unixDate: 0
-https://likdo.asia/event/902
-
-Date: A p r 0 6 S a t
-Event: Outlook Festival
-Place: Birdcage
-city: Hanoi
-country: Vietnam
-Style: DnB/Bass Live
-isCancelled: false
-DetailedStyle: DnB/Bass Live
-source: [object Object]
-errorLog: Format de date invalide pour Likdo. Reçu "A p r 0 6 S a t", converti en "00-06" (attendu "dd-MM")
-unixDate: 0
-https://likdo.asia/event/1200
-
-Date: M a r 0 7 T h u
-Event: Mainroom: JAEL CHINA TOUR 2024 Shenzhen
-Place: Oil
-city: Hanoi
-country: Vietnam
 Style: Live
-isCancelled: false
-DetailedStyle: 
-source: [object Object]
-errorLog: Format de date invalide pour Likdo. Reçu "M a r 0 7 T h u", converti en "00-07" (attendu "dd-MM")
-unixDate: 0
-https://likdo.asia/event/1211
-
-Date: M a r 0 8 F r i
-Event: Sam Futura, 1DAN, MyHero, Anh Vy, Datodeo
-Place: The Observatory
-city: Hanoi
-country: Vietnam
-Style: House Techno
-isCancelled: false
-DetailedStyle: House Techno
 source: [object Object]
-errorLog: Format de date invalide pour Likdo. Reçu "M a r 0 8 F r i", converti en "00-08" (attendu "dd-MM")
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 18 décembre", converti en "18-12" (attendu "dd-MM-HH:mm")
 unixDate: 0
-https://likdo.asia/event/1185
+https://larayonne.org/evenement/sinclair/
 

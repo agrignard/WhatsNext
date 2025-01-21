@@ -5,19 +5,19 @@
     "country": "France",
     "url": "https://le-sucre.eu/agenda/",
     "baseURL": "https://le-sucre.eu/agenda/",
-    "eventsDelimiterTag": "DIV.pureg.agendalist.puregg A.pureu11.pureumd12.pureulg14.pureug.agendacard",
+    "eventsDelimiterTag": "div.pureg.agendalist.puregg>a.pureu11.pureumd12.pureulg14.pureug.agendacard",
     "defaultStyle": "Electro",
     "comments": "après avoir utilisé analex, enlever t5410 de la classe de la balise qui délimite les events",
     "mainPage": {
       "eventNameTags": [
-        "DIV.labels:eq(0) DIV.titre:eq(0)",
-        "DIV.artistes:eq(0) DIV"
+        "div.labels:eq(0)>div.titre:eq(0)",
+        "div.artistes:eq(0)>div:not([class])"
       ],
       "eventDateTags": [
-        "DIV.infos:eq(0) DIV.date:eq(0)"
+        "div.infos:eq(0)>div.date:eq(0)"
       ],
       "eventStyleTags": [
-        "DIV.infos:eq(0) DIV.type:eq(0)"
+        "div.infos:eq(0)>div.type:eq(0)"
       ]
     },
     "eventURLIndex": 0,
@@ -43,26 +43,25 @@
     "country": "France",
     "url": "https://www.lpslyon.fr/evenements-le-petit-salon/",
     "baseURL": "https://www.lpslyon.fr/evenements-le-petit-salon/",
-    "eventsDelimiterTag": "DIV.row.flexxlnowrap DIV.events__item.item.colmd4.offsetxl1",
+    "eventsDelimiterTag": "div.events__item.item.colmd4",
     "mainPage": {
       "eventNameTags": [
-        "H2.item__title:eq(0)"
+        "h2.item__title:eq(0)"
       ],
       "eventDateTags": [
-        "DIV.item__date.dxlnone:eq(0) SPAN:eq(1)"
+        "div.item__date.dxlnone:eq(0)>span:not([class]):eq(0)"
       ],
       "eventStyleTags": [
-        "DIV.item__text:eq(0)"
+        "div.item__text:eq(0)>p:not([class]):eq(1)"
+      ],
+      "eventURLTags": [
+        "a.item__link:eq(0)"
       ]
     },
-    "eventURLIndex": -1,
+    "eventURLIndex": 1,
     "dateFormat": "dd-MM",
-    "linkedPage": {
-      "eventDateTags": [
-        "B:eq(0)"
-      ]
-    },
-    "linkedPageDateFormat": "dd-MM-yyyy-HH:mm",
+    "linkedPage": {},
+    "linkedPageDateFormat": "",
     "ID": "Le Petit Salon|Lyon|France",
     "comments": "essai"
   },
@@ -132,16 +131,16 @@
     "city": "Lyon",
     "country": "France",
     "url": "https://www.periscope-lyon.com/concerts/",
-    "eventsDelimiterTag": "DIV.smallcontent.ukwidth14m.ukgridmargin DIV A",
+    "eventsDelimiterTag": "div.smallcontent.ukwidth14m.ukgridmargin>div:not([class])>a:not([class])",
     "dateFormat": "dd-MM",
     "defaultStyle": "Jazz",
     "baseURL": "https://www.periscope-lyon.com/concerts/",
     "mainPage": {
       "eventNameTags": [
-        "DIV.scct:eq(0) H3:eq(0)"
+        "div.scct:eq(0)>h3:not([class]):eq(0)"
       ],
       "eventDateTags": [
-        "DIV.scc:eq(0) H5:eq(0)"
+        "div.scc:eq(0)>h5:not([class]):eq(0)"
       ]
     },
     "eventURLIndex": 0,
@@ -263,14 +262,14 @@
     "baseURL": "https://www.halle-tony-garnier.com/fr/",
     "mainPage": {
       "eventNameTags": [
-        "DIV.blocsquare__infos:eq(0) DIV.blocsquare__title:eq(0)"
+        "div.blocsquare__infos:eq(0)>div.blocsquare__title:eq(0)"
       ],
       "eventDateTags": [
-        "DIV.blocsquare__infos:eq(0) DIV.blocsquare__date:eq(0)",
-        "DIV.blocsquare__infos:eq(0) DIV.blocsquare__heure:eq(0)"
+        "div.blocsquare__infos:eq(0)>div.blocsquare__date:eq(0)",
+        "div.blocsquare__infos:eq(0)>div.blocsquare__heure:eq(0)"
       ]
     },
-    "eventsDelimiterTag": "DIV.grid.gridcols1.mdgridcols2.lggridcols4.gap2.py8.px4.lgpx0 A.blocsquare.types",
+    "eventsDelimiterTag": "div.grid.gridcols1.mdgridcols2.lggridcols4.gap2.py8.px4.lgpx0>a.blocsquare.types",
     "eventURLIndex": 0,
     "dateFormat": "dd-MM-yy-HH:mm",
     "ID": "Halle Tony Garnier|Lyon|France"
@@ -307,12 +306,12 @@
     "city": "Lyon",
     "country": "France",
     "url": "https://villemorte.fr/agenda/",
-    "eventsDelimiterTag": " DIV.tribe_events.typetribe_events.statuspublish.hentry H3.tribeeventsmontheventtitle A.url",
+    "eventsDelimiterTag": "div.tribeeventscategorymusique.tribe_events.typetribe_events.statuspublish.hentry.tribe_events_catmusique.cat_musique>h3.tribeeventsmontheventtitle>a.url",
     "dateFormat": "dd MM",
     "baseURL": "https://villemorte.fr/agenda/",
     "mainPage": {
       "eventNameTags": [
-        "BODY"
+        "html:not([class])>body:not([class]):eq(0)"
       ]
     },
     "multiPages": {
@@ -417,7 +416,31 @@
       "CCO La Rayonne",
       "La Rayonne a villeurbanne"
     ],
-    "ID": "La Rayonne|Lyon|France"
+    "ID": "La Rayonne|Lyon|France",
+    "mainPage": {
+      "eventNameTags": [
+        "div.agendaeventtitle:eq(0)"
+      ],
+      "eventDateTags": [
+        "div.agendajourlabel:eq(0)",
+        "div.agendahoraires:eq(0)"
+      ],
+      "eventDummyTags": [
+        "div.agendahoraires:eq(0)"
+      ],
+      "eventMultiNameTags": [
+        "div.agendaeventtitle"
+      ],
+      "eventMultiDateTags": [
+        "div.agendajourlabel",
+        "div.agendahoraires"
+      ]
+    },
+    "url": "https://larayonne.org/agenda/",
+    "baseURL": "https://larayonne.org/agenda/",
+    "eventsDelimiterTag": "div.agendajour",
+    "eventURLIndex": 1,
+    "dateFormat": "dd-MM-HH:mm"
   },
   {
     "name": "Bizarre!",
@@ -489,16 +512,6 @@
       "Opéra de Lyon"
     ],
     "ID": "Opéra National de Lyon|Lyon|France"
-  },
-  {
-    "name": "Les SUBS",
-    "country": "France",
-    "city": "Lyon",
-    "aliases": [
-      "Les Subsistances",
-      "Les Subs"
-    ],
-    "ID": "Les SUBS|Lyon|France"
   },
   {
     "name": "LDLC Arena",
@@ -793,12 +806,96 @@
     "name": "Noise Hanoi",
     "city": "Hanoi",
     "country": "Vietnam",
-    "mainPage": {},
+    "mainPage": {
+      "eventDateTags": [
+        "div.makeStylesgiTime33:eq(0)>div.makeStylesgiDay34:eq(0)",
+        "div.makeStylesgiTime33:eq(0)>div.makeStylesgiDate35:eq(0)"
+      ],
+      "eventMultiNameTags": [
+        "div.makeStyleseventWrapper13>div.makeStyleseventName14"
+      ],
+      "eventMultiStyleTags": [
+        "div.makeStyleseventWrapper13>div.makeStyleseventExtraInfo15"
+      ],
+      "eventMultiDateTags": [
+        "div.makeStyleseventInfo16>div.makeStyleseventTime17"
+      ],
+      "eventMultiURLTags": [
+        "div.makeStyleseventMoreInfo20>a.makeStyleseventMoreInfoText21"
+      ],
+      "eventMultiPlaceTags": [
+        "div.makeStyleseventInfo16>a.makeStyleseventVenueLink19"
+      ]
+    },
     "url": "https://www.noisehanoi.com/gigs",
     "ID": "Noise Hanoi|Hanoi|Vietnam",
     "multiPages": {
       "nbPages": "5",
       "scroll": true
-    }
+    },
+    "baseURL": "https://www.noisehanoi.com/",
+    "eventsDelimiterTag": "div:not([class])>div.makeStylesgiWrapper32",
+    "dateFormat": "",
+    "eventURLIndex": 1
+  },
+  {
+    "name": "Shotgun",
+    "city": "Lyon",
+    "country": "France",
+    "url": "https://shotgun.live/fr/cities/lyon",
+    "ID": "Shotgun|Lyon|France",
+    "mainPage": {
+      "eventNameTags": [
+        "div.mt2.lineclamp2.textlg.fontbold.leadingtight:eq(0)"
+      ],
+      "eventDateTags": [
+        "time.textaccentforeground:eq(0)",
+        "div.flex.h6.shrink0.itemscenter.gapx3.leadingtight:eq(0)>div.flex.gap1:eq(0)>div.flex.gap1:eq(0)"
+      ],
+      "eventStyleTags": [
+        "div.inlineflex.itemscenter.whitespacenowrap.roundedfull.border.px25.py05.fontmedium.uppercase.trackingwider.textmutedforeground.borderborder.text2xs.h6:eq(0)"
+      ],
+      "eventPlaceTags": [
+        "div.textmutedforeground.lineclamp1.textsm.leadingtight:eq(0)"
+      ],
+      "eventDummyTags": [
+        "div:not([class]):eq(0)>span.textforeground:eq(0)"
+      ]
+    },
+    "baseURL": "https://shotgun.live/fr/cities/",
+    "eventsDelimiterTag": "div.gap.grid.gapx4.smgridcols2.lggridcols3.lggapx8.gapy0>a:not([class])",
+    "eventURLIndex": 0,
+    "dateFormat": "dd-MM-HH:mm"
+  },
+  {
+    "name": "Les SUBS",
+    "city": "Lyon",
+    "country": "France",
+    "mainPage": {
+      "eventNameTags": [
+        "p.leadingtight.uppercase.fontbold.text20.ltext24.dtext28.mb2:eq(0)"
+      ],
+      "eventDateTags": [
+        "li.tmin.text12.dtext14"
+      ],
+      "eventStyleTags": [
+        "p.uppercase.text11.mb1:eq(0)"
+      ],
+      "eventDummyTags": [
+        "p.fontmedium.uppercase.text14.mb2.tmb5:eq(0)",
+        "p.textthin.mb2.tmb5.dmb10:eq(0)"
+      ]
+    },
+    "aliases": [
+      "Les Subsistances",
+      "Les Subs"
+    ],
+    "url": "https://www.les-subs.com/agenda/",
+    "linkedPage": {},
+    "ID": "Les SUBS|Lyon|France",
+    "baseURL": "https://www.les-subs.com/agenda/",
+    "eventsDelimiterTag": "div.jseventsmonthitem.relative>div.jscardevent.cardevent.flex1.flex.flexcol.relative.border2.bordervar.group.wfull.hfull",
+    "eventURLIndex": 1,
+    "dateFormat": "dd-MM-HH:mm"
   }
 ]

@@ -40,7 +40,7 @@ let currentPage = 'mainPage';
 let detailedScrapView = true;
 let scrapInfoTooOld; // if scrap info is from a too old event, the linked page does not correspond to the tag
 
-const keyNames = ['Name','Dummy','Date','Style','Place','URL','MultiName'];
+const keyNames = ['Name','Dummy','Date','Style','Place','URL','MultiName','MultiDate','MultiStyle','MultiPlace','MultiURL'];
 const colorClassList = ['SCRPXhighlightName','SCRPXhighlightDate','SCRPXhighlightStyle',
                         'SCRPXhighlightPlace','SCRPXhighlightURL','SCRPXhighlightDummy'];
 const easyButtonClassList = ['easyButtonName','easyButtonDate','easyButtonStyle','easyButtonPlace','easyButtonURL','easyButtonDummy'];
@@ -267,8 +267,8 @@ delimiterTagField.addEventListener('input'||'change',event =>{
   if (mainTagCandidates.length > 0){
     clearTags();
     mainTag = mainTagCandidates[0];
-    mainTagAbsolutePath = getTagLocalization(mainTag,$page,false,stringsToFind);
-    delimiterTag = reduceTag(getTagLocalization(mainTag,$page,true,stringsToFind),$page);
+    mainTagAbsolutePath = getTagLocalization($page(mainTag),$page,false);
+    delimiterTag = reduceTag(getTagLocalization($page(mainTag),$page,true),$page);
     nbEvents.main = computeEventsNumber();
     adjustedDelimiterTag = undefined;
     nbEvents.adjusted = undefined;
@@ -543,7 +543,6 @@ function copyToTextBox(target){
       textCopy = textCopy.replace(/\n/g,'');
     }
     textCopy = textCopy.replace(/(\s*\n\s*)+/g,'\n').replace(/^\n/,'').replace(/\n$/,'');// remove blank lines
-    console.log('X'+target.innerHTML+'X');
     populateField(target, textCopy, true);
     console.log(target.innerHTML);
     stringTextBoxUpdate(target);
@@ -850,35 +849,56 @@ function loadLinkedPageContent(){
 
 function clearTags(){
   const classes = colorClassList
-    .concat(['SCRPXhighlightMultiName','SCRPXmainTag','SCRPXeventBlock','SCRPXeventBlockInvalid']);
+    .concat(['SCRPXhighlightMultiName','SCRPXhighlightMultiDate','SCRPXhighlightMultiStyle','SCRPXhighlightMultiPlace','SCRPXhighlightMultiURL',
+              'SCRPXmainTag','SCRPXeventBlock','SCRPXeventBlockInvalid']);
   classes.forEach(el => {
     const tags = $page('.'+el);
     tags.each(function(index, element) {
       $page(this).removeClass(el);
-      // Appliquer une fonction à chaque élément
-      // console.log($page(this).text()); // Affiche le texte de l'élément
+      if (!/\S/.test($page(this).attr('class'))){
+        $page(this).removeAttr('class');
+      }
     });
   });
 }
 
 function gotoTag(ctag,tagString){
+  // const $2 = cheerio.load(ctag.html());
+  // // console.log($2(tagString).length);
+  // let truc = [];
+  // $2(tagString).each((index,tg)=> truc.push(tg));
+  // console.log(truc.length);
+  // return truc;
   let currentTag = [ctag];
-  tagString.split(' ').forEach(el =>{
-    currentTag = currentTag.map(ct => $page(ct.find(el))).flat();
+  
+  tagString.split('\>').forEach(el =>{
+    // if (currentTag.length > 0){
+      currentTag.forEach(ct => console.log(el,$page(ct.children(el)).length,$page(ct.children(el)).text()));
+    // }
+    
+    currentTag = currentTag.map(ct => $page(ct.children(el))).flat();
+    // currentTag = currentTag.map(ct => $page(ct.find(el))).flat();
   });
   return currentTag;
 }
 
 
-function applyTagForKey(keyName, dtag, event){
+function applyTagForKey(keyName, dtag, event){// tags application should be delayed and stored in a list, to avoid
+  // interferences from adding classes to node (problem with :Not([class]))
   const key = 'event'+keyName+'Tags';
+  const tagsToApply = [];
   if (venue[currentPage].hasOwnProperty(key)){
     let string = "";
+    console.log('\n\n','début',keyName,$page(dtag).html());
     venue[currentPage][key].forEach(tag =>{
       const ntag = gotoTag($page(dtag),tag);
       ntag.forEach(el => {
+        // if (keyName==='Date'){
+        //   console.log(keyName,ntag.length,$page(el).text());
+        //   // console.log($page(tag).text());
+        // }
         string += $page(el).text();
-        $page(el).addClass('SCRPXhighlight'+keyName);
+        tagsToApply.push([$page(el),'SCRPXhighlight'+keyName]);
       });
     });
     if (keyName.includes('Name')){
@@ -888,20 +908,29 @@ function applyTagForKey(keyName, dtag, event){
       event.eventDate = event.eventDate?event.eventDate+string:string;
     }
   }
+  return tagsToApply;
 }
 
 
 function applyTags(renderURL){
   function fillTags(dtag){
     const event = {};
+    let tagsToApply = [];
     keyNames.forEach(keyName =>{
-      applyTagForKey(keyName, dtag, event);
+      tagsToApply = tagsToApply.concat(applyTagForKey(keyName, dtag, event));
+    });
+    tagsToApply.forEach(el => {
+      el[0].addClass(el[1]);
     });
     return event;
   }
 
   if (currentPage === 'mainPage'){
-    $page(mainTagAbsolutePath).addClass('SCRPXmainTag');
+    // clearTags();
+    // div.site>div.contentarea:eq(0)>main.sitemain.wrap_agenda.allconcerts:eq(0)>div:not([class]):eq(1)>div:not([class]):eq(1)>div.smallcontent.ukwidth14m.ukgridmargin:eq(8)>div:not([class]):eq(0)>a:not([class]):eq(0)
+    const mainTagBlock = $page(mainTagAbsolutePath);
+    mainTagBlock.addClass('SCRPXmainTag');
+    mainTagBlock.addClass('SCRPXeventBlock');
     $page(venue.eventsDelimiterTag).each((index, dTag) => {
       const event = fillTags(dTag);
       if (isValidEvent(event, venue)){
@@ -954,6 +983,7 @@ function loadPage(){
     for(i=mainTagCandidates.length-1;i>=0;i--){
       const text = $page(mainTagCandidates[i]).text();
       const containStrings = !stringsToFind.some(str => !text.includes(str));
+      // console.log('to find',stringsToFind,'\n',text);
       if (containStrings){
         break;
       }
@@ -965,8 +995,10 @@ function loadPage(){
       scrapInfoTooOld = false;
     }
     mainTag = mainTagCandidates[i];
-    mainTagAbsolutePath = getTagLocalization(mainTag,$page,false,stringsToFind);
-    delimiterTag = reduceTag(getTagLocalization(mainTag,$page,true,stringsToFind),$page);
+    mainTagAbsolutePath = getTagLocalization($page(mainTag),$page,false);
+    // console.log('MTAP: ',mainTagAbsolutePath);
+    delimiterTag = reduceTag(getTagLocalization($page(mainTag),$page,true),$page);
+    // console.log('tct:',$page(mainTagAbsolutePath).text());
     nbEvents.main = computeEventsNumber(delimiterTag);
     [adjustedDelimiterTag, nbEvents.adjusted] = adjustMainTag(delimiterTag,$page,venue,nbEvents.main);
     if (adjustedDelimiterTag === venue.eventsDelimiterTag){
@@ -976,10 +1008,10 @@ function loadPage(){
     }
   }
   computeMissingLinks();
-  applyTags(true);
   if (validateDelimiterTags()){
     computeDateFormat();
   }
+  applyTags(true);
 }
 
 function computeMissingLinks(){
@@ -1145,17 +1177,17 @@ function computeDelimiterTag(renderURL){// renderURL forces to update the URL in
       }
     }
     const oldTag = mainTagAbsolutePath;
-    mainTagAbsolutePath = getTagLocalization(mainTag,$page,false,stringsToFind);
-    console.log('maintag:',$page(mainTag).text());
-    console.log(mainTagAbsolutePath,$page(mainTagAbsolutePath.replace(/\s/g,'\>')).text());
-    const truc = getPath(mainTag).replace(/div/g,'DIV');
-    console.log('path', truc);
-    const essai = $page(truc);
-    console.log('txc',$page(truc).text());
+    mainTagAbsolutePath = getTagLocalization(mainTag,$page,false);
+
+    console.log('*** verif ***',oldTag === mainTagAbsolutePath);
+    console.log(mainTagAbsolutePath);
+    // console.log('abs',mainTagAbsolutePath); 
+    // console.log('maintag:',$page(mainTag).text());
     tagsFromStrings(cheerio.load($page(mainTag).html()));
     if (oldTag !== mainTagAbsolutePath){
-      delimiterTag = reduceTag(getTagLocalization(mainTag,$page,true,stringsToFind),$page);
+      delimiterTag = reduceTag(getTagLocalization(mainTag,$page,true),$page,false);
       nbEvents.main = computeEventsNumber();
+      // console.log('deli',delimiterTag);
       if (autoAdjustCheckbox.checked === true){
         [adjustedDelimiterTag, nbEvents.adjusted] = adjustMainTag(delimiterTag,$page,venue,nbEvents.main);
         setEventPanel(nbEvents.adjusted);
@@ -1182,8 +1214,6 @@ function computeDelimiterTag(renderURL){// renderURL forces to update the URL in
       renderEventURLPanel();
     }
     applyTags();
-
-    console.log('classes',delimiterTagField.classList);
   }
 }
 
@@ -1207,7 +1237,6 @@ function computeTags(renderURL){
       applyTags(renderURL);
     }
   }else{
-    console.log('eeee');
     venue[currentPage] = addJSONBlock(venueScrapInfo[currentPage],$page, showLog);
     // tagsFromStrings($page);
     // console.log(venueScrapInfo[currentPage]);
@@ -1227,8 +1256,7 @@ function computeDateFormat(){
   }
   // lastDateList keeps memory of computation. If no new dates to analyze, no need to perform 
   // again a search for the best format
-  if (lastDateList === undefined || lastDateList.join('') !== dates.join('')){
-    console.log('analyse des dates');
+  if (lastDateList === undefined || lastDateList.join('') !== dates.join('')){;
     lastDateList = dates;
     if (dates.length > 0){
       let formatRes;
@@ -1342,8 +1370,14 @@ function setRows(textBox) {
 
 function isValidTag(tag){
   try{
-    const nbTags = $page(tag).length;
-    return (!nbTags || nbTags===0)?false:true;
+    let tagExists = $page(tag).length > 0;
+    if (tagExists === false && tag.endsWith(':not([class])')){
+      const tagsAlt = [tag.replace(/:not\(\[class\]\)$/,'.SCRPXeventBlock'), 
+                       tag.replace(/:not\(\[class\]\)$/,'.SCRPXmainTag'),
+                       tag.replace(/:not\(\[class\]\)$/,'.SCRPXeventBlockInvalid')];
+      tagExists = tagsAlt.some(el => $page(el).length > 0);
+    }
+    return tagExists;
   }catch(err){
     return false;
   }
@@ -1361,7 +1395,6 @@ function validateDelimiterTags(){
 }
 
 function initScrapTextStrings(){
-  console.log('inint');
   for(let i = 0; i < eventStringsBoxes.length; i++){
     const textBox = eventStringsBoxes[i];
     populateField(textBox, getValue(venueScrapInfo[currentPage],textBox.id));

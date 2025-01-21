@@ -10,7 +10,21 @@ const {cleanPage, removeBlanks, extractBody, simplify} = require('./stringUtilit
 
 module.exports = {fetchLink, fetchAndRecode, fetchWithRetry, loadLinkedPages, saveToJSON, 
                     saveToCSV, getVenuesFromArguments,getFilesContent, getFilesNumber, 
-                    getModificationDate, getPageByPuppeteer};
+                    getModificationDate, getPageByPuppeteer, minimalizeFile};
+
+// minimalize file and save to output directory
+async function minimalizeFile(file){
+    console.log("minimalizing file "+file);
+
+    //const venueSourcePath = sourcePath+venue.country+'/'+venue.city+'/'+venue.name+'/';
+}
+
+// minimalize file and return content
+async function minimalizeFile(file){
+    console.log("minimalizing file "+file);
+
+    //const venueSourcePath = sourcePath+venue.country+'/'+venue.city+'/'+venue.name+'/';
+}
 
 async function getPageByPuppeteer(pageURL){
     const browser = await puppeteer.launch({
