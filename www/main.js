@@ -3,7 +3,7 @@ import * as dataUtils from './dataUtils.js';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiYWdyaWduYXJkIiwiYSI6ImNqdWZ6ZjJ5MDBoenczeXBkYWU3bTk5ajYifQ.SXiCzAGs4wbMlw3RHRvxhw';
 
-var devMode = false;
+var devMode = true;
 var showAllValueDiv = devMode ? true : false;
 export var city="lyon";
 processCityBasedOnUrl();
@@ -67,7 +67,7 @@ function jsonCallback(err, data) {
 
     map.style.stylesheet.layers.forEach(function(layer) {
         if (layer.type === 'symbol') {
-            map.removeLayer(layer.id);
+            //map.removeLayer(layer.id);
         }
     });
 
@@ -104,8 +104,10 @@ async function chartIt(){
     const todayInformation = await dataUtils.getTodayEvents(currentDate);
     const canvas1 = document.getElementById('chart1');
     const canvas2 = document.getElementById('chart2');
+    const canvas3 = document.getElementById('chart3');
     const ctx1 = canvas1.getContext('2d');
     const ctx2 = canvas2.getContext('2d');
+    const ctx3 = canvas3.getContext('2d');
     if(devMode){
         canvas1.style.display = 'block';
         const eventInformation = await dataUtils.getSortedNbEventPerPlaceMap(currentDate);
@@ -115,26 +117,26 @@ async function chartIt(){
         }
         });
         const myChart = new Chart(ctx1, {
-        type: 'bar',
-        data: {
-            labels:Array.from(eventInformation.keys()),
-            datasets: [{
-            label: '(Places with more than 2 events: ' + eventInformation.size + " - Event: " + dataUtils.nbActiveEvent + " )",
-            data:Array.from(eventInformation.values()),
-            borderWidth: 1
-            }]
-        },
-        options: {
-          scales: {
-              x: {
-                  ticks: {
-                      maxRotation: 90,
-                      minRotation: 90,
-                  },
-                  fontSize: 5
-              }
-          }
-      }
+            type: 'bar',
+            data: {
+                labels:Array.from(eventInformation.keys()),
+                datasets: [{
+                label: '(Places with more than 2 events: ' + eventInformation.size + " - Event: " + dataUtils.nbActiveEvent + " )",
+                data:Array.from(eventInformation.values()),
+                borderWidth: 1
+                }]
+            },
+            options: {
+            scales: {
+                x: {
+                    ticks: {
+                        maxRotation: 90,
+                        minRotation: 90,
+                    },
+                    fontSize: 5
+                }
+            }
+            }
         });
         canvas2.style.display = 'block';
         const eventbydateInformation = await dataUtils.getSortedNbEventPerDayMap(currentDate);
@@ -158,75 +160,106 @@ async function chartIt(){
             }
         }
         });
+        canvas3.style.display = 'block';
+        const eventStyleInformation = await dataUtils.getSortedNbEventPerStyleMap(currentDate);
+        eventStyleInformation.forEach((value, key) => {
+        if (value < 2) {
+            eventStyleInformation.delete(key);
+        }
+        });
+        const myChart3 = new Chart(ctx3, {
+            type: 'bar',
+            data: {
+                labels:Array.from(eventStyleInformation.keys()),
+                datasets: [{
+                label: '(Number of events per Style: ' + eventStyleInformation.size + " - Event: " + dataUtils.nbActiveEvent + " )",
+                data:Array.from(eventStyleInformation.values()),
+                borderWidth: 1
+                }]
+            },
+            options: {
+            scales: {
+                x: {
+                    ticks: {
+                        maxRotation: 90,
+                        minRotation: 90,
+                    },
+                    fontSize: 5
+                }
+            }
+            }
+        });
+        
     }else{
         canvas1.style.display = 'none'; 
         canvas2.style.display = 'none'; 
+        canvas3.style.display = 'none'; 
     } 
 }
 
 async function updateCircleLegend(){
 
-// Get the canvas element and its 2d rendering context
-const canvas = document.getElementById('myCircleCanvas');
-const ctx = canvas.getContext('2d');
+    // Get the canvas element and its 2d rendering context
+    const canvas = document.getElementById('myCircleCanvas');
+    //canvas.style.display= "none";
+    const ctx = canvas.getContext('2d');
 
 
-let i = 0;
-// Iterate over categoryColors object
-for (const category in mapUtils.categoryColors) {
-  if (mapUtils.categoryColors.hasOwnProperty(category)) {
-      // Add circle object to circles array
-      circles.push({
-          x: 17 + i * 36, // Adjust the x-coordinate as needed
-          y: 25,
-          radius: 17,
-          value: category,
-          color: mapUtils.getCategoryColorRGBA(category),
-          active:true
-      });
-  }
-  i++;
-}
-
-
-canvas.addEventListener('click', function (event) {
-  const rect = canvas.getBoundingClientRect();
-  const mouseX = event.clientX - rect.left;
-  const mouseY = event.clientY - rect.top;
-  circles.forEach(circle => {
-    const dx = mouseX - circle.x;
-    const dy = mouseY - circle.y;
-    const distance = Math.sqrt(dx * dx + dy * dy);
-    if (distance <= circle.radius) {
-      circle.active = !circle.active;
-      mapUtils.filterByStyles(map,circles.filter(circle => circle.active),appDate.valueOf());
-      drawCircles();
+    let i = 0;
+    // Iterate over categoryColors object
+    for (const category in mapUtils.categoryColors) {
+    if (mapUtils.categoryColors.hasOwnProperty(category)) {
+        // Add circle object to circles array
+        circles.push({
+            x: 20 + i * 42, // Adjust the x-coordinate as needed
+            y: 25,
+            radius: 20,
+            value: category,
+            color: mapUtils.getCategoryColorRGBA(category),
+            active:true
+        });
     }
-  });
-});
+    i++;
+    }
 
-function drawCircles() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  circles.forEach(circle => {
-    ctx.beginPath();
-    ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
-    ctx.fillStyle = circle.active ? circle.color : 'gray';
-    ctx.fill();
-    ctx.strokeStyle = circle.color;
-    ctx.lineWidth = 1;
-    ctx.stroke();
-    ctx.closePath();
-    ctx.font = '8px Arial';
-    ctx.fillStyle = "black";
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(circle.value, circle.x, circle.y);
-  });
-}
+    canvas.addEventListener('click', function (event) {
+    const rect = canvas.getBoundingClientRect();
+    const mouseX = event.clientX - rect.left;
+    const mouseY = event.clientY - rect.top;
+    circles.forEach(circle => {
+        const dx = mouseX - circle.x;
+        const dy = mouseY - circle.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        if (distance <= circle.radius) {
+        circle.active = !circle.active;
+        mapUtils.filterByStyles(map,circles.filter(circle => circle.active),appDate.valueOf());
+        drawCircles();
+        }
+    });
+    });
 
-// Initial drawing of circles
-drawCircles();
+    function drawCircles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    circles.forEach(circle => {
+        ctx.beginPath();
+        ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
+        ctx.fillStyle = circle.active ? circle.color : 'gray';
+        ctx.fill();
+        ctx.strokeStyle = circle.color;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+        ctx.closePath();
+        ctx.font = '10px Arial';
+        ctx.fillStyle = "black";
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(circle.value, circle.x, circle.y);
+    });
+    }
+
+    // Initial drawing of circles
+    drawCircles();
 }
 
 

@@ -1,5 +1,4 @@
-
-body { margin: 0; padding: 0; }
+body { margin: 0; padding: 0; touch-action: pan-y; }
 #map { position:absolute; top:0; bottom:0; width:100%; }
 
     .legend label,
@@ -14,8 +13,8 @@ body { margin: 0; padding: 0; }
     }
     .slider{
         position:relative;
-        padding-left:20px;
-        padding-right:20px;
+        padding-left:30px;
+        padding-right:30px;
     }    
 
 
