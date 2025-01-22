@@ -736,5 +736,35 @@
     "eventsDelimiterTag": "DIV.nqcgrid.jslistingajax DIV.nqceventMiniature.jseventsajaxitem.nqcgriditem",
     "dateFormat": "dd-MM-HH:mm",
     "eventURLIndex": 1
+  },
+  {
+    "name": "Les Subs",
+    "city": "Lyon",
+    "country": "France",
+    "mainPage": {
+      "eventNameTags": [
+        "p.leadingtight.uppercase.fontbold.text20.ltext24.dtext28.mb2:eq(0)"
+      ],
+      "eventDateTags": [
+        "li.tmin.text12.dtext14:eq(0)"
+      ],
+      "eventStyleTags": [
+        "span.inlineblock.mr2:eq(0)"
+      ]
+    },
+    "url": "https://www.les-subs.com/agenda/",
+    "ID": "Les Subs|Lyon|France",
+    "baseURL": "https://www.les-subs.com/agenda/",
+    "eventsDelimiterTag": "div.jseventsmonthitem.relative.theatre.gratuit>div.jscardevent.cardevent.flex1.flex.flexcol.relative.border2.bordervar.group.wfull.hfull",
+    "eventURLIndex": 1,
+    "dateFormat": "dd-MM-HH:mm"
+  },
+  {
+    "name": "Shotgun",
+    "city": "Lyon",
+    "country": "France",
+    "mainPage": {},
+    "url": "https://shotgun.live/fr/cities/lyon",
+    "ID": "Shotgun|Lyon|France"
   }
 ]

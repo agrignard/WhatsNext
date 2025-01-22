@@ -370,5 +370,18 @@
         "18h30"
       ]
     }
+  },
+  "Les Subs|Lyon|France": {
+    "mainPage": {
+      "eventNameStrings": [
+        "TOXXIC"
+      ],
+      "eventDateStrings": [
+        "23 Jan"
+      ],
+      "eventStyleStrings": [
+        "Théâtre"
+      ]
+    }
   }
 }

@@ -80,9 +80,9 @@ async function downloadVenue(venue,filePath){
       outputFile = filePath+venue.name+pageIndex+".html";
     }
 
-    fs.writeFileSync(outputFile, htmlContent, 'utf8', (erreur) => {
-      if (erreur) {
-        console.error("\x1b[31mCannot write local file \'%s\'\x1b[0m: %s",outputFile, erreur);
+    fs.writeFileSync(outputFile, htmlContent, 'utf8', (err) => {
+      if (err) {
+        console.error("\x1b[31mCannot write local file \'%s\'\x1b[0m: %s",outputFile, err);
       } else {
         console.log("\'"+venue.name + "\'" + " file downloaded to " + outputFile);
       }
