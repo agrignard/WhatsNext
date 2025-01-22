@@ -24,7 +24,6 @@ Docks Circus,45.73833810382409,4.814858623384977,https://www.dockscircus.fr/,mus
 Epicerie Moderne,45.67369894892874,4.858404399962919,https://epiceriemoderne.com/,music
 Espace Albert Camus,45.72743250538055,4.919582121982419,https://pole-en-scenes.com/,music
 Espace Tonkin,45.77585500283178,4.86330530363784,https://www.espacetonkin.fr/,music
-Farmer,45.771548686174434,4.827795820436171,,music
 Groom,45.770615465336434,4.836937077519969,https://www.groomlyon.com/,music
 Groupama Stadium,45.765334091684046,4.982036878412183,https://www.olvallee.fr/,music
 Grrrnd Zéro,45.765862217056274,4.9267125190686905,https://www.grrrndzero.org/,music
@@ -34,7 +33,7 @@ Kraspek Myzik,45.771294137807615,4.835775421944657,http://kraspekmyzik.com/,musi
 La Marquise,45.759096281231706,4.840057922862742,http://www.marquise.net/,music
 La Plateforme,45.76182849637386,4.840403461890766,https://cafe-oz.com/,music
 LDLC Arena,45.76865757266265,4.978658041447684,https://www.olvallee.fr/lieux/ldlc-arena/,music
-Chromatique,45.750819488952686,4.847040160142772,https://www.lesirius.com/,music
+Chromatique,45.750819488952686,4.847040160142772,https://www.chromatique.art/
 Matmut Stadium de Gerland,45.72375112024588,4.832137062735327,,music
 Jack Jack,45.742338170768804,4.908581917764821,https://mjcbron.fr/,music
 MJC Bonneterre,45.76175040275761,4.885933617945258,https://www.mjc-villeurbanne.org/,music
@@ -54,7 +53,7 @@ La Passagère,45.76059076681801,4.840247992216044,,music
 Maison M,45.76855453010177,4.829935621383864,https://mmlyon.com/,music
 Terminal Club,45.769498439406306,4.8314741316218965,https://www.terminal-club.com/,music
 Salle 3000,45.78517456739005,4.85806177180337,https://www.ccc-lyon.com/,music
-Chapelle de la Trinité,45.76539214472852,4.837015480468372,https://www.lesgrandsconcerts.com/concerts,music
+Chapelle De La Trinité,45.76539214472852,4.837015480468372,https://www.lesgrandsconcerts.com/concerts,music
 Livestation DIY,45.75322219394572,4.83995960793735,https://livestationdiy.com/,music
 Plouf Bateau mousse,45.75963938169328,4.840153803366476,,music
 L'ambassade,45.76056517146233,4.8363720708467985,,music
@@ -102,3 +101,8 @@ Centre culturel Charlie Chaplin,45.77780935200682, 4.920604555703305,http://www.
 Imhotep,45.75859047616694, 4.825372428795784,https://www.imhotep-bar.fr/,music
 La Fabuleuse Cantine,45.74578458374735, 4.836297109848818,https://lyon7.lafabuleusecantine.fr/,music
 La Fourmilière,45.75226286114482, 4.839665847202402,https://www.lafourmilierecafe.fr/,music
+La Pente, 45.771548686174434,4.827795820436171, https://www.lapente.fr/
+Selcius,45.73890911709652, 4.814844366517448, https://selciusrestaurant.fr/
+L'agend'arts,45.776240538975124, 4.835001547204626,https://agendarts.wordpress.com/
+Maison Du Peuple De Pierre Benite, 45.70406573392333, 4.8230004523845045, https://pierrebenitemdp.fr/
+Theatre De La Renaissance,45.716478059199815, 4.811053647290437, https://www.theatrelarenaissance.com/

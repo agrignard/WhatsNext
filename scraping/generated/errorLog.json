@@ -1,22 +1,218 @@
 [
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "Le Sonic",
     "city": "Lyon",
     "country": "France",
-    "eventName": "",
-    "eventDate": "lundi 20 janvier",
-    "eventDummy": "",
-    "eventMultiName": [],
+    "eventName": "Rien Virgule + Michel Chemin",
+    "eventDate": "mars 2",
+    "eventStyle": "Rock",
     "isCancelled": false,
-    "eventURL": "",
+    "eventURL": "https://sonic-lyon.fr/facebook-event/rien-virgule/",
     "eventDetailedStyle": "",
-    "eventStyle": "Live",
     "source": {
-      "name": "La Rayonne",
+      "name": "Le Sonic",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"lundi 20 janvier\", converti en \"20-01\" (attendu \"dd-MM-HH:mm\")",
+    "errorLog": "Format de date invalide pour Le Sonic. Reçu \"mars 2\", converti en \"03-02\" (attendu \"MM-dd-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Le Sonic",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "The Underground Youth",
+    "eventDate": "mai 17",
+    "eventStyle": "Rock",
+    "isCancelled": false,
+    "eventURL": "https://sonic-lyon.fr/facebook-event/the-underground-youth/",
+    "eventDetailedStyle": "",
+    "source": {
+      "name": "Le Sonic",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Sonic. Reçu \"mai 17\", converti en \"05-17\" (attendu \"MM-dd-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Auditorium de Lyon",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Chaplin with a smile",
+    "eventDate": "22 janvier et 23 janvier à 20h",
+    "eventStyle": "Ciné Concert",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-312606-chaplin-with-a-smile.html",
+    "eventDetailedStyle": "Ciné Concert",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"22 janvier et 23 janvier à 20h\", converti en \"22-01-23-20:00\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Auditorium de Lyon",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Le chant de la terre",
+    "eventDate": "Du 30 janvier au 1 février 2025, jeudi à 20h, samedi à 18h",
+    "eventStyle": "Classique",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-312609-le-chant-de-la-terre.html",
+    "eventDetailedStyle": "Classique & Lyrique",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Du 30 janvier au 1 février 2025, jeudi à 20h, samedi à 18h\", converti en \"30-01-01-02-2025-20:18:00\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "TNG-VAISE",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "De et par la possibilité éventuelle des devenirs envisageables",
+    "eventDate": "21 mars et 22 mars à 19h",
+    "eventStyle": "Classique",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-311702-de-et-par-la-possibilite-eventuelle-des-devenirs-envisageables.html",
+    "eventDetailedStyle": "Classique & Lyrique",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"21 mars et 22 mars à 19h\", converti en \"21-03-22-19:00\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Opéra National de Lyon",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Peter Grimes",
+    "eventDate": "Du 9 au 21 mai 2025, à 20h sauf dimanche à 16h, relâche les 10, 12, 14, 16, 18 ",
+    "eventStyle": "Classique",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-312754-peter-grimes.html",
+    "eventDetailedStyle": "Classique & Lyrique / Opéra",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Du 9 au 21 mai 2025, à 20h sauf dimanche à 16h, relâche les 10, 12, 14, 16, 18 \", converti en \"09-21-05-2025-20:16:10-12-14-16-18\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Opéra National de Lyon",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Peter Grimes",
+    "eventDate": "Du 9 au 21 mai 2025, à 20 janvier",
+    "eventStyle": "Classique",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-312754-peter-grimes.html",
+    "eventDetailedStyle": "Classique & Lyrique / Opéra",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Du 9 au 21 mai 2025, à 20 janvier\", converti en \"09-21-05-2025-20-01\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Théâtre antique de Vienne",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Jazz à Vienne",
+    "eventDate": "Du 26 juin au 11 juillet 2025, de 10h à minuit",
+    "eventStyle": "Jazz",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-310713-jazz-a-vienne.html",
+    "eventDetailedStyle": "Jazz",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Du 26 juin au 11 juillet 2025, de 10h à minuit\", converti en \"26-06-11-07-2025-10:00\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Parc de Gerland",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Woodstower",
+    "eventDate": "Du 17 au 20 juillet 2025, horaires à venir",
+    "eventStyle": "Electro",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-310639-woodstower.html",
+    "eventDetailedStyle": "Musiques Electroniques",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Du 17 au 20 juillet 2025, horaires à venir\", converti en \"17-20-07-2025\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Espace Gerson",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "LUCIE CARBONE",
+    "eventURL": "https://www.infoconcert.com/ticket/concert-lucie-carbone-lyon/1715565.html",
+    "eventDate": " Mercredi 05 Février 2025 à 20h30 (Reporté avec billet non-valide ) ",
+    "isCancelled": false,
+    "eventDetailedStyle": "",
+    "eventStyle": "Theatre",
+    "source": {
+      "name": "Infoconcert",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Infoconcert. Reçu \" Mercredi 05 Février 2025 à 20h30 (Reporté avec billet non-valide ) \", converti en \"05-02-2025-20:30-)\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Espace Gerson",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "LUCIE CARBONE",
+    "eventURL": "https://www.infoconcert.com/ticket/concert-lucie-carbone-lyon/1715565.html",
+    "eventDate": " Jeudi 06 Février 2025 à 20h30 (Reporté avec billet non-valide ) ",
+    "isCancelled": false,
+    "eventDetailedStyle": "",
+    "eventStyle": "Theatre",
+    "source": {
+      "name": "Infoconcert",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Infoconcert. Reçu \" Jeudi 06 Février 2025 à 20h30 (Reporté avec billet non-valide ) \", converti en \"06-02-2025-20:30-)\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Espace Gerson",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "LUCIE CARBONE",
+    "eventURL": "https://www.infoconcert.com/ticket/concert-lucie-carbone-lyon/1715565.html",
+    "eventDate": " Samedi 08 Février 2025 à 21h15 (Reporté avec billet non-valide ) ",
+    "isCancelled": false,
+    "eventDetailedStyle": "",
+    "eventStyle": "Theatre",
+    "source": {
+      "name": "Infoconcert",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Infoconcert. Reçu \" Samedi 08 Février 2025 à 21h15 (Reporté avec billet non-valide ) \", converti en \"08-02-2025-21:15-)\" (attendu \"dd-MM-yyyy-HH:mm\")",
     "unixDate": 0
   },
   {
@@ -2276,6 +2472,2532 @@
       "country": "France"
     },
     "errorLog": "Format de date invalide pour La Rayonne. Reçu \"jeudi 18 décembre\", converti en \"18-12\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "La Clef de Voûte",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "17H30 – THE SUNSET SESSION",
+    "eventDate": "31 décembre 2024 | 17h30",
+    "isCancelled": false,
+    "eventURL": "https://www.laclefdevoute.fr/series/soiree-speciale-31-decembre-2022-jazz-a-lyon/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "La Clef de Voûte",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour La Clef de Voûte. Reçu \"31 décembre 2024 | 17h30\", converti en \"31-12-2024-17:30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi OL Vallée",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Hypnose Close-Up",
+    "eventDate": "Mer. 22 Jan.20H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/hypnose-close-up-4/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Mer. 22 Jan.20H00\", converti en \"22-01-00H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Villefranche",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Blind Test",
+    "eventDate": "Jeu. 23 Jan.20H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/blind-test-332/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Jeu. 23 Jan.20H30\", converti en \"23-01-00H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Multi-lieux",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Karaokéchorale Anti-Déprime",
+    "eventDate": "Jeu. 23 Jan.21H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/karaokechorale-anti-deprime-7/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Jeu. 23 Jan.21H30\", converti en \"23-01-01H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi La Doua",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Karaokéchorale Anti-Déprime",
+    "eventDate": "Jeu. 23 Jan.20H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/karaokechorale-anti-deprime-9/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Jeu. 23 Jan.20H30\", converti en \"23-01-00H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Crolles",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "BLACK DOGS",
+    "eventDate": "Ven. 24 Jan.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/black-dogs/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 24 Jan.21H00\", converti en \"24-01-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Part Dieu",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Human Jukebox : Mister Mellow",
+    "eventDate": "Ven. 24 Jan.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/human-jukebox-mister-mellow-18/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 24 Jan.21H00\", converti en \"24-01-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi OL Vallée",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Hynsha DJ set",
+    "eventDate": "Ven. 24 Jan.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": true,
+    "eventURL": "https://www.ninkasi.fr/agenda/hynsha-dj-set-58/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 24 Jan.21H00\", converti en \"24-01-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi La Soie",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "JAM SESSION JAZZ · LINKS TRIO",
+    "eventDate": "Ven. 24 Jan.20H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/jam-session-jazz-%c2%b7-links-trio-7/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 24 Jan.20H30\", converti en \"24-01-00H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Vaise",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "JAZZ A VAISE : MODERN SWINGTET",
+    "eventDate": "Ven. 24 Jan.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/modern-swingtet-2/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 24 Jan.21H00\", converti en \"24-01-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Brignais",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Karaokéchorale Anti-Déprime",
+    "eventDate": "Ven. 24 Jan.21H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/karaokechorale-anti-deprime-10/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 24 Jan.21H30\", converti en \"24-01-01H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Villefranche",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "LARADJI",
+    "eventDate": "Ven. 24 Jan.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/laradji/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 24 Jan.21H00\", converti en \"24-01-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Cordeliers",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Maquis Sale : Jlise, Kwilu, Jaf, Commandant DG",
+    "eventDate": "Ven. 24 Jan.22H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/maquis-sale/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 24 Jan.22H00\", converti en \"24-01-02H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Montpellier",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "PETIT VINCE TRIO",
+    "eventDate": "Ven. 24 Jan.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/petit-vince-trio/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 24 Jan.21H00\", converti en \"24-01-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Bourgoin",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "TREVOR KING",
+    "eventDate": "Ven. 24 Jan.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/trevor-king-5/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 24 Jan.21H00\", converti en \"24-01-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Lille-Lezennes",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "BROKEN BACK DADDY",
+    "eventDate": "Sam. 25 Jan.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/broken-back-daddy/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Sam. 25 Jan.21H00\", converti en \"25-01-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Cordeliers",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Dj Terror Mike",
+    "eventDate": "Sam. 25 Jan.23H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/dj-terror-mike/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Sam. 25 Jan.23H00\", converti en \"25-01-03H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Crolles",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Karaokéchorale Anti-Déprime",
+    "eventDate": "Sam. 25 Jan.21H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/karaokechorale-anti-deprime-8/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Sam. 25 Jan.21H30\", converti en \"25-01-01H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Montpellier",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Karaokéchorale Gourmand",
+    "eventDate": "Sam. 25 Jan.21H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/karaokechorale-gourmand-3/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Sam. 25 Jan.21H30\", converti en \"25-01-01H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Cordeliers",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Sheesh! by DJ Andria",
+    "eventDate": "Sam. 25 Jan.23H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": true,
+    "eventURL": "https://www.ninkasi.fr/agenda/sheesh-by-dj-andria-13/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Sam. 25 Jan.23H00\", converti en \"25-01-03H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Lille-Lezennes",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Blind Test",
+    "eventDate": "Lun. 27 Jan.19H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/blind-test-404/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Lun. 27 Jan.19H30\", converti en \"27-01-09H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Multi-lieux",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Blind Test Spécial Bouffe & Gourmandise",
+    "eventDate": "Lun. 27 Jan.20H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/blind-test-333/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Lun. 27 Jan.20H30\", converti en \"27-01-00H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Gratte Ciel / Ninkasi La Doua / Ninkasi Grand Parilly",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Blind Test Spécial Bouffe & Gourmandise",
+    "eventDate": "Lun. 27 Jan.20H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/blind-test-334/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Lun. 27 Jan.20H00\", converti en \"27-01-00H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Cordeliers",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Les Lundis Salsa By Dj Carlos",
+    "eventDate": "Lun. 27 Jan.20H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/les-lundis-salsa-by-dj-carlos-30/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Lun. 27 Jan.20H00\", converti en \"27-01-00H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Guillotière",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Atelier Whisky",
+    "eventDate": "Mar. 28 Jan.19H00",
+    "eventDummy": "",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/atelier-whisky-9/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Mar. 28 Jan.19H00\", converti en \"28-01-09H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Multi-lieux",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Billig Jean : le Disco Bingo de la Chandeleur",
+    "eventDate": "Jeu. 30 Jan.19H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/billig-jean-le-disco-bingo-de-la-chandeleur/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Jeu. 30 Jan.19H30\", converti en \"30-01-09H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Saint Etienne / Ninkasi Crolles",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Billig Jean : le Disco Bingo de la Chandeleur",
+    "eventDate": "Jeu. 30 Jan.19H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/billig-jean-le-disco-bingo-de-la-chandeleur-2/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Jeu. 30 Jan.19H30\", converti en \"30-01-09H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi La Doua",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Billig Jean : le Disco Bingo de la Chandeleur",
+    "eventDate": "Jeu. 30 Jan.18H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/billig-jean-le-disco-bingo-de-la-chandeleur-3/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Jeu. 30 Jan.18H30\", converti en \"30-01-08H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Villefranche",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Blind Test",
+    "eventDate": "Jeu. 30 Jan.20H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/blind-test-335/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Jeu. 30 Jan.20H30\", converti en \"30-01-00H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Saint Etienne",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "LOUIS MEZZASOMA",
+    "eventDate": "Jeu. 30 Jan.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/louis-mezzasoma-3/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Jeu. 30 Jan.21H00\", converti en \"30-01-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Vaise",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Human Jukebox : Captain Jericho",
+    "eventDate": "Ven. 31 Jan.19H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/human-jukebox-captain-jericho-15/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 31 Jan.19H00\", converti en \"31-01-09H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Gorge de Loup",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Human Jukebox : Fabb",
+    "eventDate": "Ven. 31 Jan.19H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/human-jukebox-fabb-18/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 31 Jan.19H00\", converti en \"31-01-09H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Besançon",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Karaokéchorale Gourmand",
+    "eventDate": "Ven. 31 Jan.21H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/karaokechorale-gourmand/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 31 Jan.21H30\", converti en \"31-01-01H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi La Soie",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "LES DIRTBAGS",
+    "eventDate": "Ven. 31 Jan.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/les-dirtbags/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 31 Jan.21H00\", converti en \"31-01-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Lille-Lezennes",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Pop Quiz de la Chandeleur",
+    "eventDate": "Ven. 31 Jan.19H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/pop-quiz-de-la-chandeleur-4/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 31 Jan.19H00\", converti en \"31-01-09H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Cordeliers",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Romanesque Festival",
+    "eventDate": "Ven. 31 Jan.22H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/romanesque-festival/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 31 Jan.22H00\", converti en \"31-01-02H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Cordeliers",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Sheesh! by DJ Andria",
+    "eventDate": "Sam. 01 Fév.23H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/sheesh-by-dj-andria-14/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Sam. 01 Fév.23H00\", converti en \"01-02-03H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Multi-lieux",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Olympico Om – Ol",
+    "eventDate": "Dim. 02 Fév.20H45",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/olympico-om-ol/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Dim. 02 Fév.20H45\", converti en \"02-02-00H45\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Multi-lieux",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Pop Quiz de la Chandeleur",
+    "eventDate": "Dim. 02 Fév.19H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/pop-quiz-de-la-chandeleur-3/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Dim. 02 Fév.19H00\", converti en \"02-02-09H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Multi-lieux",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Blind Test",
+    "eventDate": "Lun. 03 Fév.20H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/blind-test-336/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Lun. 03 Fév.20H30\", converti en \"03-02-00H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Gratte Ciel / Ninkasi La Doua / Ninkasi Grand Parilly",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Blind Test",
+    "eventDate": "Lun. 03 Fév.20H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/blind-test-337/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Lun. 03 Fév.20H00\", converti en \"03-02-00H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Lille-Lezennes",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Blind Test",
+    "eventDate": "Lun. 03 Fév.19H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/blind-test-405/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Lun. 03 Fév.19H30\", converti en \"03-02-09H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Cordeliers",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Les Lundis Salsa By Dj Carlos",
+    "eventDate": "Lun. 03 Fév.20H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/les-lundis-salsa-by-dj-carlos-31/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Lun. 03 Fév.20H00\", converti en \"03-02-00H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Guillotière",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Atelier Biérologie",
+    "eventDate": "Mer. 05 Fév.19H00",
+    "eventDummy": "",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/atelier-bierologie-72/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Mer. 05 Fév.19H00\", converti en \"05-02-09H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Vaise",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "DJ Raven",
+    "eventDate": "Mer. 05 Fév.19H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/raven-dj-set/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Mer. 05 Fév.19H30\", converti en \"05-02-09H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Multi-lieux",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Unboared – Soirée Jeux",
+    "eventDate": "Mer. 05 Fév.19H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/unboared-soiree-jeux-17/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Mer. 05 Fév.19H00\", converti en \"05-02-09H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Villefranche",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Blind Test",
+    "eventDate": "Jeu. 06 Fév.20H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/blind-test-338/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Jeu. 06 Fév.20H30\", converti en \"06-02-00H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi La Doua",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Pop Quiz de la Chandeleur",
+    "eventDate": "Jeu. 06 Fév.18H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/pop-quiz-de-la-chandeleur-6/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Jeu. 06 Fév.18H00\", converti en \"06-02-08H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Multi-lieux",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Unboared – Soirée Jeux",
+    "eventDate": "Jeu. 06 Fév.19H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/unboared-soiree-jeux-18/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Jeu. 06 Fév.19H00\", converti en \"06-02-09H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Cordeliers",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "10 ans de bmk /undergroove",
+    "eventDate": "Ven. 07 Fév.22H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/10-ans-de-bmk-undergroove/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 07 Fév.22H00\", converti en \"07-02-02H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Crolles",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "DJANGO SWING",
+    "eventDate": "Ven. 07 Fév.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/django-swing/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 07 Fév.21H00\", converti en \"07-02-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi La Soie",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Human Jukebox : Delisle",
+    "eventDate": "Ven. 07 Fév.19H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/human-jukebox-delisle-36/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 07 Fév.19H00\", converti en \"07-02-09H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Bourgoin",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Human Jukebox : Mary Reynaud",
+    "eventDate": "Ven. 07 Fév.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/human-jukebox-mary-reynaud-13/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 07 Fév.21H00\", converti en \"07-02-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Guillotière",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Human Jukebox : Mister Mellow",
+    "eventDate": "Ven. 07 Fév.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/human-jukebox-mister-mellow-19/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 07 Fév.21H00\", converti en \"07-02-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Gratte Ciel",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Human Jukebox : The French Goose",
+    "eventDate": "Ven. 07 Fév.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/human-jukebox-the-french-goose-15/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 07 Fév.21H00\", converti en \"07-02-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Besançon",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "JUST4FUN",
+    "eventDate": "Ven. 07 Fév.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/just4fun/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 07 Fév.21H00\", converti en \"07-02-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Villefranche",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "LAYOFF + SOLID",
+    "eventDate": "Ven. 07 Fév.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/layoff-solid/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 07 Fév.21H00\", converti en \"07-02-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Montpellier",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "MELLOW",
+    "eventDate": "Ven. 07 Fév.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/mellow-2/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 07 Fév.21H00\", converti en \"07-02-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Vaise",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "MELLOW PILLS",
+    "eventDate": "Ven. 07 Fév.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/mellow-pills/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 07 Fév.21H00\", converti en \"07-02-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Part Dieu",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "NICHOLAS SUTTON",
+    "eventDate": "Ven. 07 Fév.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/nicholas-sutton-20/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 07 Fév.21H00\", converti en \"07-02-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Montpellier",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "OSCAR ET SA GUITARE",
+    "eventDate": "Ven. 07 Fév.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": true,
+    "eventURL": "https://www.ninkasi.fr/agenda/oscar-et-sa-guitare/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 07 Fév.21H00\", converti en \"07-02-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Brignais",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "SOF",
+    "eventDate": "Ven. 07 Fév.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/sof-3/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 07 Fév.21H00\", converti en \"07-02-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Brignais",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Pop Quiz de la Chandeleur",
+    "eventDate": "Dim. 09 Fév.18H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/pop-quiz-de-la-chandeleur-7/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Dim. 09 Fév.18H00\", converti en \"09-02-08H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Montpellier",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "south comedy club",
+    "eventDate": "Dim. 09 Fév.19H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/south-comedy-club-4/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Dim. 09 Fév.19H30\", converti en \"09-02-09H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Lille-Lezennes",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Blind Test",
+    "eventDate": "Lun. 10 Fév.19H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/blind-test-406/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Lun. 10 Fév.19H30\", converti en \"10-02-09H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Multi-lieux",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Blind Test De L’Amouuur",
+    "eventDate": "Lun. 10 Fév.20H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/blind-test-339/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Lun. 10 Fév.20H30\", converti en \"10-02-00H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Gratte Ciel / Ninkasi La Doua / Ninkasi Grand Parilly",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Blind Test De L’Amouuur",
+    "eventDate": "Lun. 10 Fév.20H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/blind-test-340/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Lun. 10 Fév.20H00\", converti en \"10-02-00H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Cordeliers",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Les Lundis Salsa By Dj Carlos",
+    "eventDate": "Lun. 10 Fév.19H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/les-lundis-salsa-by-dj-carlos-32/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Lun. 10 Fév.19H00\", converti en \"10-02-09H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi La Soie",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Pop Quiz de la Chandeleur",
+    "eventDate": "Mar. 11 Fév.19H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/pop-quiz-de-la-chandeleur-5/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Mar. 11 Fév.19H00\", converti en \"11-02-09H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Cordeliers",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "SUPER BINGO W/ DES GENS COOL",
+    "eventDate": "Mar. 11 Fév.20H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/super-bingo-w-des-gens-cool-4/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Mar. 11 Fév.20H30\", converti en \"11-02-00H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Cordeliers",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "111 RELEASE PARTY + SALUT L’ORAGE",
+    "eventDate": "Mer. 12 Fév.20H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/111-release-party-salut-lorage/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Mer. 12 Fév.20H00\", converti en \"12-02-00H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Saint Etienne",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "21 GRAMMES",
+    "eventDate": "Jeu. 13 Fév.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/21-grammes-3/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Jeu. 13 Fév.21H00\", converti en \"13-02-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Villefranche",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Blind Test",
+    "eventDate": "Jeu. 13 Fév.20H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/blind-test-341/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Jeu. 13 Fév.20H30\", converti en \"13-02-00H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Multi-lieux",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Karaokéchorale de l’Amouuur",
+    "eventDate": "Jeu. 13 Fév.21H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/karaokechorale-de-lamouuur-6/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Jeu. 13 Fév.21H30\", converti en \"13-02-01H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Montpellier",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "DRIFTWOOD",
+    "eventDate": "Ven. 14 Fév.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/driftwood/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 14 Fév.21H00\", converti en \"14-02-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Lille-Lezennes",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "ELOUHAN",
+    "eventDate": "Ven. 14 Fév.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/elouhan/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 14 Fév.21H00\", converti en \"14-02-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Vaise",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Human Jukebox : Riwan",
+    "eventDate": "Ven. 14 Fév.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/human-jukebox-riwan-33/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 14 Fév.21H00\", converti en \"14-02-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Crolles",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "JAMMIN ROCKETS",
+    "eventDate": "Ven. 14 Fév.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/jammin-rockets/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 14 Fév.21H00\", converti en \"14-02-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Saint Etienne",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Karaokéchorale de l’Amouuur",
+    "eventDate": "Ven. 14 Fév.21H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/karaokechorale-de-lamouuur-7/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 14 Fév.21H30\", converti en \"14-02-01H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi La Soie",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "RETRO HASARD",
+    "eventDate": "Ven. 14 Fév.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/retro-hasard/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 14 Fév.21H00\", converti en \"14-02-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Rouen",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "THE BEATLES ARTIFACT",
+    "eventDate": "Ven. 14 Fév.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/the-beatles-artifact-2/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 14 Fév.21H00\", converti en \"14-02-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Bourgoin",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "THE MIDNIGHT BLUES",
+    "eventDate": "Ven. 14 Fév.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/the-midnight-blues-2/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 14 Fév.21H00\", converti en \"14-02-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Cordeliers",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "WICKED #4 x REPERKU TOUR",
+    "eventDate": "Ven. 14 Fév.22H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/wicked-4-x-reperku-tour/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 14 Fév.22H00\", converti en \"14-02-02H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Lille-Lezennes",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "ANTENOX",
+    "eventDate": "Sam. 15 Fév.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/antenox/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Sam. 15 Fév.21H00\", converti en \"15-02-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Mâcon",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Human Jukebox : Fabien Benoit",
+    "eventDate": "Sam. 15 Fév.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/human-jukebox-fabien-benoit-26/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Sam. 15 Fév.21H00\", converti en \"15-02-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Cordeliers",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Sheesh! by DJ Andria",
+    "eventDate": "Sam. 15 Fév.23H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/sheesh-by-dj-andria-16/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Sam. 15 Fév.23H00\", converti en \"15-02-03H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Montpellier",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Soirée Latino w/ DJ Monera",
+    "eventDate": "Sam. 15 Fév.19H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/soiree-latino-w-dj-monera-2/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Sam. 15 Fév.19H00\", converti en \"15-02-09H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Multi-lieux",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Blind Test",
+    "eventDate": "Lun. 17 Fév.20H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/blind-test-342/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Lun. 17 Fév.20H30\", converti en \"17-02-00H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Gratte Ciel / Ninkasi La Doua / Ninkasi Grand Parilly",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Blind Test",
+    "eventDate": "Lun. 17 Fév.20H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/blind-test-343/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Lun. 17 Fév.20H00\", converti en \"17-02-00H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Lille-Lezennes",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Blind Test",
+    "eventDate": "Lun. 17 Fév.19H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/blind-test-407/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Lun. 17 Fév.19H30\", converti en \"17-02-09H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Cordeliers",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Les Lundis Salsa By Dj Carlos",
+    "eventDate": "Lun. 17 Fév.20H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/les-lundis-salsa-by-dj-carlos-33/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Lun. 17 Fév.20H00\", converti en \"17-02-00H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Guillotière",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Atelier Biérologie",
+    "eventDate": "Mar. 18 Fév.19H00",
+    "eventDummy": "",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/atelier-bierologie-73/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Mar. 18 Fév.19H00\", converti en \"18-02-09H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Crolles",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Unboared – Soirée Jeux",
+    "eventDate": "Mar. 18 Fév.20H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/unboared-soiree-jeux-15/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Mar. 18 Fév.20H30\", converti en \"18-02-00H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Bourgoin / Ninkasi Saint Etienne / Ninkasi Cordeliers",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Cheese the One : le Disco Bingo fromager",
+    "eventDate": "Mer. 19 Fév.19H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/cheese-the-one-le-disco-bingo-fromager-2/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Mer. 19 Fév.19H30\", converti en \"19-02-09H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Cordeliers",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "NINKASI MUSIK LAB : SHIBUUYA! + BOUKI",
+    "eventDate": "Mer. 19 Fév.20H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/ninkasi-musik-lab-shibuuya-bouki/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Mer. 19 Fév.20H00\", converti en \"19-02-00H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Vaise",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Raclette party & disco bingo fromager",
+    "eventDate": "Mer. 19 Fév.19H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/raclette-party-disco-bingo-fromager/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Mer. 19 Fév.19H30\", converti en \"19-02-09H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Villefranche",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Blind Test",
+    "eventDate": "Jeu. 20 Fév.20H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/blind-test-344/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Jeu. 20 Fév.20H30\", converti en \"20-02-00H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Multi-lieux",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Cheese the One : le Disco Bingo fromager",
+    "eventDate": "Jeu. 20 Fév.19H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/cheese-the-one-le-disco-bingo-fromager/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Jeu. 20 Fév.19H30\", converti en \"20-02-09H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Saint Etienne",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "CRAZY LITTLE CHILLS",
+    "eventDate": "Jeu. 20 Fév.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/crazy-little-chills/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Jeu. 20 Fév.21H00\", converti en \"20-02-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Bourgoin",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "soirée catch impro",
+    "eventDate": "Jeu. 20 Fév.20H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/soiree-catch-impro-3/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Jeu. 20 Fév.20H00\", converti en \"20-02-00H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Rouen",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "C-GEM & LE SOUL MOONRISE",
+    "eventDate": "Ven. 21 Fév.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/swamp-moonrise-2/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 21 Fév.21H00\", converti en \"21-02-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Crolles",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "DUSTY RODEO",
+    "eventDate": "Ven. 21 Fév.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/dusty-rodeo/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 21 Fév.21H00\", converti en \"21-02-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Villefranche",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Human Jukebox : Fabien Benoit",
+    "eventDate": "Ven. 21 Fév.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/human-jukebox-fabien-benoit-25/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 21 Fév.21H00\", converti en \"21-02-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Gorge de Loup",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Human Jukebox : Trafalgar",
+    "eventDate": "Ven. 21 Fév.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/human-jukebox-trafalgar-41/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 21 Fév.21H00\", converti en \"21-02-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Brignais",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Human Jukebox : Yoann Gallant",
+    "eventDate": "Ven. 21 Fév.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/human-jukebox-yoann-gallant/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 21 Fév.21H00\", converti en \"21-02-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Vaise",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "JAZZ À VAISE : PLATANE 4TET",
+    "eventDate": "Ven. 21 Fév.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/jazz-a-vaise-platane-4tet/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 21 Fév.21H00\", converti en \"21-02-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Montpellier",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "JON WP",
+    "eventDate": "Ven. 21 Fév.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/jon-wp/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 21 Fév.21H00\", converti en \"21-02-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Part Dieu",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "NÊVA",
+    "eventDate": "Ven. 21 Fév.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/neva-2/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 21 Fév.21H00\", converti en \"21-02-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi La Soie",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "OPEN MIC AVEC RIWAN",
+    "eventDate": "Ven. 21 Fév.20H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/open-mic-avec-riwan/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 21 Fév.20H00\", converti en \"21-02-00H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Bourgoin",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "PAPERBOARD",
+    "eventDate": "Ven. 21 Fév.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/paperboard/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 21 Fév.21H00\", converti en \"21-02-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Mâcon",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Soirée Danse W/ Onda Latina · Salsa, Sbk, Rock",
+    "eventDate": "Ven. 21 Fév.19H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/soiree-danse-w-onda-latina-%c2%b7-salsa-sbk-rock-32/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 21 Fév.19H00\", converti en \"21-02-09H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi OL Vallée",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "THE DOBEAT’SHOW",
+    "eventDate": "Ven. 21 Fév.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/the-dobeatshow-13/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Ven. 21 Fév.21H00\", converti en \"21-02-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Rouen",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Salsahora Social Club",
+    "eventDate": "Sam. 22 Fév.20H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/salsahora-social-club-20/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Sam. 22 Fév.20H00\", converti en \"22-02-00H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Cordeliers",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Sheesh! by DJ Andria",
+    "eventDate": "Sam. 22 Fév.23H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/sheesh-by-dj-andria-17/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Sam. 22 Fév.23H00\", converti en \"22-02-03H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Multi-lieux",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Ol – Psg",
+    "eventDate": "Dim. 23 Fév.20H45",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/ol-psg-3/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Dim. 23 Fév.20H45\", converti en \"23-02-00H45\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Multi-lieux",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Blind Test",
+    "eventDate": "Lun. 24 Fév.20H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/blind-test-345/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Lun. 24 Fév.20H30\", converti en \"24-02-00H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Gratte Ciel / Ninkasi La Doua / Ninkasi Grand Parilly",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Blind Test",
+    "eventDate": "Lun. 24 Fév.20H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/blind-test-346/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Lun. 24 Fév.20H00\", converti en \"24-02-00H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Lille-Lezennes",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Blind Test",
+    "eventDate": "Lun. 24 Fév.19H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/blind-test-408/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Lun. 24 Fév.19H30\", converti en \"24-02-09H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Cordeliers",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Les Lundis Salsa By Dj Carlos",
+    "eventDate": "Lun. 24 Fév.20H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/les-lundis-salsa-by-dj-carlos-34/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Lun. 24 Fév.20H00\", converti en \"24-02-00H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Vaise",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Cocktail Factory",
+    "eventDate": "Mar. 25 Fév.18H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/cocktail-factory-55/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Mar. 25 Fév.18H30\", converti en \"25-02-08H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Vaise",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "DJ Raven",
+    "eventDate": "Mer. 26 Fév.19H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/dj-raven-10/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Mer. 26 Fév.19H30\", converti en \"26-02-09H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Cordeliers",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "SAMPLING IS BEAUTIFUL RELEASE PARTY",
+    "eventDate": "Mer. 26 Fév.20H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/sampling-is-beautiful-release-party/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Mer. 26 Fév.20H00\", converti en \"26-02-00H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Villefranche",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Blind Test",
+    "eventDate": "Jeu. 27 Fév.20H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/blind-test-347/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Jeu. 27 Fév.20H30\", converti en \"27-02-00H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Crolles",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Cheese the One : le Disco Bingo fromager",
+    "eventDate": "Jeu. 27 Fév.19H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/cheese-the-one-le-disco-bingo-fromager-3/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Jeu. 27 Fév.19H30\", converti en \"27-02-09H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Multi-lieux",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Karaokéchorale Gourmand",
+    "eventDate": "Jeu. 27 Fév.21H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/karaokechorale-gourmand-2/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Jeu. 27 Fév.21H30\", converti en \"27-02-01H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Montpellier",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Carnaval Party : Dj Ricardo",
+    "eventDate": "Sam. 01 Mar.21H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/carnaval-party-dj-ricardo/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Sam. 01 Mar.21H00\", converti en \"01-01H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Gorge de Loup / Ninkasi Saint Etienne / Ninkasi Crolles",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Karaokéchorale Gourmand",
+    "eventDate": "Sam. 01 Mar.21H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/karaokechorale-gourmand-4/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Sam. 01 Mar.21H30\", converti en \"01-01H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Cordeliers",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Sheesh! by DJ Andria",
+    "eventDate": "Sam. 01 Mar.23H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/sheesh-by-dj-andria-18/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Sam. 01 Mar.23H00\", converti en \"01-03H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Multi-lieux",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Blind Test",
+    "eventDate": "Lun. 03 Mar.20H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/blind-test-348/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Lun. 03 Mar.20H30\", converti en \"03-00H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Gratte Ciel / Ninkasi La Doua / Ninkasi Grand Parilly",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Blind Test",
+    "eventDate": "Lun. 03 Mar.20H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/blind-test-349/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Lun. 03 Mar.20H00\", converti en \"03-00H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Lille-Lezennes",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Blind Test",
+    "eventDate": "Lun. 03 Mar.19H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/blind-test-409/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Lun. 03 Mar.19H30\", converti en \"03-09H30\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Ninkasi Cordeliers",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Les Lundis Salsa By Dj Carlos",
+    "eventDate": "Lun. 03 Mar.20H00",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/les-lundis-salsa-by-dj-carlos-35/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Lun. 03 Mar.20H00\", converti en \"03-00H00\" (attendu \"dd-MM-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Multi-lieux",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Groovy Mardi : le Disco Bingo du Mardi Gras",
+    "eventDate": "Mar. 04 Mar.19H30",
+    "eventDummy": "En savoir plus",
+    "isCancelled": false,
+    "eventURL": "https://www.ninkasi.fr/agenda/groovy-mardi-le-disco-bingo-du-mardi-gras/",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "Ninkasi",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Ninkasi. Reçu \"Mar. 04 Mar.19H30\", converti en \"04-19H30\" (attendu \"dd-MM-HH:mm\")",
     "unixDate": 0
   }
 ]
