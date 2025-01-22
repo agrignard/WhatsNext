@@ -331,25 +331,6 @@
       ]
     }
   },
-  "Les SUBS|Lyon|France": {
-    "mainPage": {
-      "eventNameStrings": [
-        "Le performeur et la performance"
-      ],
-      "eventDateStrings": [
-        "lun. 20",
-        "mer. 22"
-      ],
-      "eventStyleStrings": [
-        "DanseAtelierPerformance"
-      ],
-      "eventDummyStrings": [
-        "Akène Lenoir & Marco Mary",
-        "Akène, danseur et chorégraphe, rencontre Marco, danseur et sociologue, pour une exploration inédite où la sociologie et le mouvement s’entrelacent.…"
-      ]
-    },
-    "linkedPage": {}
-  },
   "La Rayonne|Lyon|France": {
     "mainPage": {
       "eventNameStrings": [
@@ -372,15 +353,18 @@
     }
   },
   "Les Subs|Lyon|France": {
+
     "mainPage": {
       "eventNameStrings": [
         "TOXXIC"
       ],
       "eventDateStrings": [
         "23 Jan"
+
       ],
       "eventStyleStrings": [
         "Théâtre"
+
       ]
     }
   }
