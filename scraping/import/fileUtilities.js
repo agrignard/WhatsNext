@@ -2,7 +2,7 @@
 /*  utilities to deal with the files  */
 /**************************************/
 
-const outputFormat = 'basic';// for tests, to be removed
+const outputFormat = 'text';// for tests, to be removed
 
 const puppeteer = require('puppeteer');
 const fs = require('fs');

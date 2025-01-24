@@ -802,13 +802,9 @@
     },
     "url": "https://shotgun.live/fr/cities/lyon",
     "ID": "Shotgun|Lyon|France",
-<<<<<<< Updated upstream
-    "baseURL": "https://shotgun.live/fr/cities/"
-=======
     "baseURL": "https://shotgun.live/fr/cities/",
     "eventsDelimiterTag": "div.grid.gapx4.smgridcols2.lggridcols3.lggapx8.gapy0>a:not([class])",
     "eventURLIndex": 0,
     "dateFormat": "dd-MM"
->>>>>>> Stashed changes
   }
 ]

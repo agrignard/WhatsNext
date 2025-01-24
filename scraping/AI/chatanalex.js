@@ -125,7 +125,7 @@ async function askClaude(question) {
         model: "claude-3-5-sonnet-20241022",
         max_tokens: 4000,
         temperature: 0,
-        system: "Provide the result as a json with fields name, place, date, time, style, price, url.",
+        system: "Provide the result as a json with fields name, place, date, time, style, price, url. Be exhaustive.",
         messages: [
             {
                 "role": "user",
