@@ -5,15 +5,14 @@
 
 const rootPath = '..'
 
-// const axios = require('axios');
+require('dotenv').config();
 const { default: Anthropic } = require('@anthropic-ai/sdk');
-
-
-
 const fs = require('fs');
 // const { default: ollama } = require('ollama');
 
-const API_KEY = '';
+
+const API_KEY = process.env.ANTHROPIC_KEY;
+
 
 // const {removeDoubles, makeURL, cleanPage, extractBody} = require('./import/stringUtilities.js');
 const {getVenuesFromArguments} = require(rootPath+'/import/fileUtilities.js');
