@@ -103,6 +103,7 @@ function extractBody(content){
 function cleanPage(content){
   let cleanedContent = cleanScripts(content);
   cleanedContent = removeBRTags(cleanedContent);
+  cleanedContent = removeUselessTags(cleanedContent);
   cleanedContent = cleanHtml(cleanedContent);
   cleanedContent = removeForms(cleanedContent);
   cleanedContent = fixTags(cleanedContent);
@@ -120,11 +121,20 @@ function cleanScripts(content){
 // replace paragraph breaks with a real tag (opening and closing) (and add a tag to the text before
 // the first <br>)
 function removeBRTags(content){
-  // return content;
   return content.replace(/(?<!br)>([^>]*?)<br>/gi, '><p class="addedTag">$1</p><br>')
     .replace(/<br>([^]*?)(?=<)/gi, '<p class="addedTag">$1</p>');// replace br tags by p tags
   // return content.replace(/<br>([^]*?)(?=<)/gi, '<div class="addedTag">$1</div>');// replace br tags by p tags
   // return content.replace(/<br>([^]*?)</gi, (_,p) => '<p class="addedTag">'+p+'</p><');// remove scripts
+}
+
+// replace tags that do not provide useful information, and make html hard to read or cause errors, such as <path>
+function removeUselessTags(content){
+  tagList = ['path'];
+  tagList.forEach(el => {
+    let regex = new RegExp("<[\s\t\n]*"+el+"[^>]*>(.*?)<[\s\t\n]*\/"+el+"[\s\t\n]*>","gi");
+    content = content.replace(regex, '$1');
+  });
+  return content;
 }
 
 // remove forms from an html content
@@ -151,7 +161,8 @@ function cleanHtml(content){
   }
 
   function findClasses(match,p,offset,string) {
-    return '<'+p.replace(/([^"]*)("[^"]*")/g,replaceClass)+'>';// find the classes within the tags and apply replaceClass
+    return '<'+p.replace(/class[\s\t\n]*=[\s\t\n]*([^"]*)("[^"]*")/g,replaceClass)+'>';// find the classes within the tags and apply replaceClass
+    // return '<'+p.replace(/([^"]*)("[^"]*")/g,replaceClass)+'>';// find the classes within the tags and apply replaceClass
   }
   return content.replace(/<([^<>]*)>/g, findClasses); // find the tag contents and apply findClasses
 }

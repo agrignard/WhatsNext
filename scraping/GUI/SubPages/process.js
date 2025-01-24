@@ -603,7 +603,7 @@ for(let i = 0; i < eventStringsBoxes.length; i++){
 function stringTextBoxUpdate(textBox){
   venueScrapInfo[currentPage][textBox.id] = getValueFromBox(textBox);//getArray(textBox.value);
   if (!freezeDelimiter && currentPage ==='mainPage'){
-    console.log(textBox.id);
+    // console.log(textBox.id);
     const renderURL = textBox.id === 'eventURLStrings';
     computeDelimiterTag(renderURL);
   }else{
@@ -873,11 +873,12 @@ function gotoTag(ctag,tagString){
   
   tagString.split('\>').forEach(el =>{
     // if (currentTag.length > 0){
-      currentTag.forEach(ct => console.log(el,$page(ct.children(el)).length,$page(ct.children(el)).text()));
+      // currentTag.forEach(ct => console.log(el,$page(ct.children(el)).length,$page(ct.children(el)).text()));
     // }
     
-    currentTag = currentTag.map(ct => $page(ct.children(el))).flat();
-    // currentTag = currentTag.map(ct => $page(ct.find(el))).flat();
+    // 
+    // currentTag = currentTag.map(ct => $page(ct.children(el))).flat();
+    currentTag = currentTag.map(ct => $page(ct.find(el))).flat();// this was commented. Why did I once put children instead of find ?
   });
   return currentTag;
 }
@@ -889,14 +890,17 @@ function applyTagForKey(keyName, dtag, event){// tags application should be dela
   const tagsToApply = [];
   if (venue[currentPage].hasOwnProperty(key)){
     let string = "";
-    console.log('\n\n','début',keyName,$page(dtag).html());
+    // console.log('\n\n','début',keyName,$page(dtag).html());
     venue[currentPage][key].forEach(tag =>{
+      //  console.log(tag);
       const ntag = gotoTag($page(dtag),tag);
+      // console.log($page(ntag).html());
       ntag.forEach(el => {
         // if (keyName==='Date'){
         //   console.log(keyName,ntag.length,$page(el).text());
         //   // console.log($page(tag).text());
         // }
+        // console.log(key,$page(el).text());
         string += $page(el).text();
         tagsToApply.push([$page(el),'SCRPXhighlight'+keyName]);
       });
@@ -919,6 +923,7 @@ function applyTags(renderURL){
     keyNames.forEach(keyName =>{
       tagsToApply = tagsToApply.concat(applyTagForKey(keyName, dtag, event));
     });
+    // console.log(tagsToApply);
     tagsToApply.forEach(el => {
       el[0].addClass(el[1]);
     });
@@ -931,7 +936,9 @@ function applyTags(renderURL){
     const mainTagBlock = $page(mainTagAbsolutePath);
     mainTagBlock.addClass('SCRPXmainTag');
     mainTagBlock.addClass('SCRPXeventBlock');
+    fillTags(mainTagBlock);
     $page(venue.eventsDelimiterTag).each((index, dTag) => {
+      // console.log($page(dTag).text());
       const event = fillTags(dTag);
       if (isValidEvent(event, venue)){
         $page(dTag).addClass('SCRPXeventBlock');
@@ -945,6 +952,9 @@ function applyTags(renderURL){
         e.preventDefault(); 
       });
     });
+
+    mainTagBlock.addClass('SCRPXmainTag');
+    mainTagBlock.addClass('SCRPXeventBlock');
   
     if (localPage){
       if (renderURL === true){
@@ -956,6 +966,7 @@ function applyTags(renderURL){
   
     const focusedElement = document.getElementsByClassName("SCRPXmainTag")[0];
     focusTo(focusedElement);
+    // console.log($page.html());
   }else{
     fillTags($page('BODY'));
     rightPanel.innerHTML = $page.html();
@@ -1179,7 +1190,7 @@ function computeDelimiterTag(renderURL){// renderURL forces to update the URL in
     const oldTag = mainTagAbsolutePath;
     mainTagAbsolutePath = getTagLocalization(mainTag,$page,false);
 
-    console.log('*** verif ***',oldTag === mainTagAbsolutePath);
+    // console.log('*** verif ***',oldTag === mainTagAbsolutePath);
     console.log(mainTagAbsolutePath);
     // console.log('abs',mainTagAbsolutePath); 
     // console.log('maintag:',$page(mainTag).text());

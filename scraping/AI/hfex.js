@@ -5,9 +5,7 @@
 
 const rootPath = '..'
 
-// const axios = require('axios');
-const { default: Anthropic } = require('@anthropic-ai/sdk');
-
+// const fetch = require('node-fetch');
 
 
 const fs = require('fs');
@@ -32,7 +30,7 @@ const venueList = loadVenuesJSONFile();
 // const maxTokens = 128000;
 
 console.log('\n\n*****************************************');
-console.log('********   Using model Claude   ********');
+console.log('********   Using model HF NER   ********');
 console.log('*****************************************\n\n');
 
 //const API_KEY = 
@@ -98,7 +96,27 @@ async function analyseContent(content){
     // const conversationHistory = [];
 
     // const result = await askTheLlama(question,conversationHistory);
-    const result = await askClaude(question);
+    const result = await askHF(content);
+
+    console.log('Résultat brut de NER:', result);
+
+  const events = [];
+  let currentEvent = {};
+
+  result.forEach(entity => {
+    if (entity.entity_group === 'PER') currentEvent.artiste = entity.word;
+    if (entity.entity_group === 'DATE') currentEvent.date = entity.word;
+    if (entity.entity_group === 'LOC') currentEvent.lieu = entity.word;
+
+    // Si un événement est complet, ajoutez-le à la liste
+    if (currentEvent.artiste && currentEvent.date && currentEvent.lieu) {
+      events.push(currentEvent);
+      currentEvent = {};
+    }
+  });
+
+  console.log('Événements extraits :', events);
+
 
    
 
@@ -108,38 +126,66 @@ async function analyseContent(content){
     
     // // console.log(result.response);
     // const cleanResult = result.message.content.replace(/^[^\[]*\[/,'\[').replace(/\][^\]]*$/,'\]');
-    const cleanResult = result.replace(/^[^\[]*\[/,'\[').replace(/\][^\]]*$/,'\]');
-    console.log('\n\nsous forme JSON:\n\n');
-    const eventJSON = JSON.parse(cleanResult);
+    // const cleanResult = result.replace(/^[^\[]*\[/,'\[').replace(/\][^\]]*$/,'\]');
+    // console.log('\n\nsous forme JSON:\n\n');
+    // const eventJSON = JSON.parse(cleanResult);
 
-    console.log(eventJSON);
+    // console.log(eventJSON);
 }
 
 
-async function askClaude(question) {
-    const anthropic = new Anthropic({
-        apiKey: API_KEY
-    });
+async function askHF(question) {
+    const fetch = (await import('node-fetch')).default;
 
-    const msg = await anthropic.messages.create({
-        model: "claude-3-5-sonnet-20241022",
-        max_tokens: 4000,
-        temperature: 0,
-        system: "Provide the result as a json with fields name, place, date, time, style, price, url.",
-        messages: [
-            {
-                "role": "user",
-                "content": [
-                    {
-                        "type": "text",
-                        "text": question
-                    }
-                ]
-            }
-        ]
-    });
-    console.log(msg);
-    console.log("Request complete.\nstop reason: "+msg.stop_reason);
-    console.log('Usage: '+msg.usage);
-    return msg.content[0].text;
-  }
+    const HUGGINGFACE_API_KEY = ''; // Remplacez par votre clé
+
+    // URL du modèle NER (exemple : CamemBERT pour le français)
+    //  const MODEL_URL = 'https://api-inference.huggingface.co/models/Jean-Baptiste/camembert-ner';
+    const MODEL_URL = 'https://api-inference.huggingface.co/models/dbmdz/bert-large-cased-finetuned-conll03-english';
+
+    async function checkModelAccess() {
+        try {
+          const response = await fetch(MODEL_URL, {
+            method: 'GET',
+            headers: {
+              Authorization: `Bearer ${HUGGINGFACE_API_KEY}`,
+            },
+          });
+      
+          if (response.status === 200) {
+            console.log('Accès au modèle réussi!');
+          } else {
+            console.log(`Erreur d'accès au modèle : ${response.statusText}`);
+          }
+        } catch (error) {
+          console.error('Erreur lors de la vérification de l\'accès au modèle :', error);
+        }
+      }
+      
+      checkModelAccess();
+
+    // Fonction pour appeler l'API Hugging Face
+    // try {
+        const response = await fetch(MODEL_URL, {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${HUGGINGFACE_API_KEY}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ inputs: question }),
+        });
+    
+        if (!response.ok) {
+          throw new Error(`Erreur : ${response.statusText}`);
+        }
+    
+        const data = await response.json();
+        // console.log(data);
+        return data;
+    //   } catch (error) {
+    //     console.error('Erreur lors de l\'appel à Hugging Face:', error);
+    // }
+}
+
+
+

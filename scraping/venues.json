@@ -5,28 +5,32 @@
     "country": "France",
     "url": "https://le-sucre.eu/agenda/",
     "baseURL": "https://le-sucre.eu/agenda/",
-    "eventsDelimiterTag": "div.pureg.agendalist.puregg>a.pureu11.pureumd12.pureulg14.pureug.agendacard",
+    "eventsDelimiterTag": "a.pureu11.pureumd12.pureulg14.pureug.agendacard",
     "defaultStyle": "Electro",
     "comments": "après avoir utilisé analex, enlever t5410 de la classe de la balise qui délimite les events",
     "mainPage": {
       "eventNameTags": [
-        "div.labels:eq(0)>div.titre:eq(0)",
+        "div.titre:eq(0)",
         "div.artistes:eq(0)>div:not([class])"
       ],
       "eventDateTags": [
-        "div.infos:eq(0)>div.date:eq(0)"
+        "div.date:eq(0)"
       ],
       "eventStyleTags": [
-        "div.infos:eq(0)>div.type:eq(0)"
+        "div.type:eq(0)"
       ]
     },
     "eventURLIndex": 0,
     "dateFormat": "dd-MM",
     "linkedPage": {
       "eventDateTags": [
-        "DIV.date:eq(0) DIV.journum:eq(0)",
-        "DIV.date:eq(0) DIV.mois:eq(0)",
-        "DIV.pureu11.pureumd12.pureulg524.infos:eq(0) DIV.horaires:eq(0)"
+        "div.journum:eq(0)",
+        "div.mois:eq(0)",
+        "div.horaires:eq(0)"
+      ],
+      "eventNameTags": [
+        "div.pureu11.titre:eq(0)>h1:not([class]):eq(0)",
+        "a.nom"
       ]
     },
     "linkedPageDateFormat": "dd-MM-HH:mm",
@@ -422,25 +426,21 @@
         "div.agendaeventtitle:eq(0)"
       ],
       "eventDateTags": [
-        "div.agendajourlabel:eq(0)",
-        "div.agendahoraires:eq(0)"
-      ],
-      "eventDummyTags": [
-        "div.agendahoraires:eq(0)"
+        "div.agendahoraires:eq(0)",
+        "div.agendajourlabel:eq(0)"
       ],
       "eventMultiNameTags": [
-        "div.agendaeventtitle"
+        "a.agendaevent>div.agendaeventtitle"
       ],
       "eventMultiDateTags": [
-        "div.agendajourlabel",
-        "div.agendahoraires"
+        "a.agendaevent>div.agendaeventinfos>div.agendahoraires"
       ]
     },
     "url": "https://larayonne.org/agenda/",
     "baseURL": "https://larayonne.org/agenda/",
     "eventsDelimiterTag": "div.agendajour",
     "eventURLIndex": 1,
-    "dateFormat": "dd-MM-HH:mm"
+    "dateFormat": "HH:mm-dd-MM"
   },
   {
     "name": "Bizarre!",
@@ -789,9 +789,26 @@
     "name": "Shotgun",
     "city": "Lyon",
     "country": "France",
-    "mainPage": {},
+    "mainPage": {
+      "eventNameTags": [
+        "div.mt2.lineclamp2.textlg.fontbold.leadingtight:eq(0)"
+      ],
+      "eventDateTags": [
+        "time.textaccentforeground:eq(0)"
+      ],
+      "eventPlaceTags": [
+        "div.textmutedforeground.lineclamp1.textsm.leadingtight:eq(0)"
+      ]
+    },
     "url": "https://shotgun.live/fr/cities/lyon",
     "ID": "Shotgun|Lyon|France",
+<<<<<<< Updated upstream
     "baseURL": "https://shotgun.live/fr/cities/"
+=======
+    "baseURL": "https://shotgun.live/fr/cities/",
+    "eventsDelimiterTag": "div.grid.gapx4.smgridcols2.lggridcols3.lggapx8.gapy0>a:not([class])",
+    "eventURLIndex": 0,
+    "dateFormat": "dd-MM"
+>>>>>>> Stashed changes
   }
 ]

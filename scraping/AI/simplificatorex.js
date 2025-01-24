@@ -5,11 +5,13 @@
 
 const rootPath = '..'
 const fs = require('fs');
+
+
 // const {removeDoubles, makeURL, cleanPage, extractBody} = require('./import/stringUtilities.js');
 const {loadLinkedPages,getVenuesFromArguments,minimalizeHtmlFile} = require(rootPath+'/import/fileUtilities.js');
 const {loadVenuesJSONFile, saveToVenuesJSON, isAlias, initializeVenue} = require(rootPath+'/import/jsonUtilities.js');
 // const {getURLListFromPattern} = require('./import/dateUtilities.js');
-// const cheerio = require('cheerio');
+
 
 //const {parseDocument} =require('htmlparser2');
 

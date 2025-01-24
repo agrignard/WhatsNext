@@ -2,22 +2,30 @@
   "Le Sucre|Lyon|France": {
     "mainPage": {
       "eventNameStrings": [
-        "mini club x BRK",
-        "Otto von Schirach (live)",
-        "Ato"
+        "Nava WIP Lyon",
+        "abel31",
+        "amne",
+        "sanderscore",
+        "Vilhelm.",
+        "Yev."
       ],
       "eventDateStrings": [
-        "29 mars"
+        "vend. 24 jan."
       ],
       "eventStyleStrings": [
-        "Club"
+        "| Club"
       ]
     },
     "linkedPage": {
       "eventDateStrings": [
-        "29",
-        "mars",
+        "24",
+        "jan",
         "23:00"
+      ],
+      "eventNameStrings": [
+        "Nava",
+        "abel",
+        "amne"
       ]
     }
   },
@@ -314,41 +322,30 @@
   "Shotgun|Lyon|France": {
     "mainPage": {
       "eventNameStrings": [
-        "The Late Jam #4 - Tribute To Stevie Wonder"
+        "Maison"
       ],
       "eventDateStrings": [
-        "mar. 21 janv.",
-        "|20:00"
-      ],
-      "eventStyleStrings": [
-        "funk"
+        "23 janv"
       ],
       "eventPlaceStrings": [
-        "LA PENTE"
-      ],
-      "eventDummyStrings": [
-        "Gratuit"
+        "La Maison"
       ]
     }
   },
   "La Rayonne|Lyon|France": {
     "mainPage": {
       "eventNameStrings": [
-        "Créer une association : du projet associatif aux démarches administratives (2/3)"
+        "Créer une association :"
       ],
       "eventDateStrings": [
-        "mardi 21 janvier",
-        "18h30"
-      ],
-      "eventDummyStrings": [
-        "18h30 > 21h"
+        "18h30 > 21h",
+        "mardi 21 janvie"
       ],
       "eventMultiNameStrings": [
-        "association"
+        "Atelier numérique 1.3 : Ne plus jamais"
       ],
       "eventMultiDateStrings": [
-        "mardi 21 janvier",
-        "18h30"
+        "17h > 19h"
       ]
     }
   },

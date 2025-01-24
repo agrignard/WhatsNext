@@ -2,6 +2,8 @@
 /*  utilities to deal with the files  */
 /**************************************/
 
+const outputFormat = 'basic';// for tests, to be removed
+
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const cheerio = require('cheerio');
@@ -16,116 +18,105 @@ module.exports = {fetchLink, fetchAndRecode, fetchWithRetry, loadLinkedPages, sa
 async function minimalizeHtmlFile(fileName, inputPath, outputPath){
     console.log("minimalizing file "+fileName);
     console.log(outputPath);
-    htmlContent = minimalizeHtml(inputPath+fileName);
+    htmlContent = minimalizeHtml(inputPath+fileName, outputFormat);
     saveToFile(htmlContent, fileName, outputPath);
 }
 
-function minimalizeHtml(file){
+// function to reduce the size of the html.
+function minimalizeHtml(file, action = "basic"){    //option: 'basic' (default) to have a more compact file, 
+                                                    //'compact': basic+replace classes names with more compact one
+                                                    //'minimal': keep html structure with only basic information (tags...)
+                                                    //'text': to keep only the text
     console.log("opening "+file);
     let content = fs.readFileSync(file, 'utf-8');
+
+    let regex;
+
+    // remove head information
     content = content.replace(/<head[^]*?<\/head>/g,'<head></head>');
+
     // remove useless tags
     tagsToRemove = ["path","header","svg","video","option","button","footer","nav"];
     tagsToRemove.forEach(el => {
-        let regex = new RegExp("<"+el+"[^]*?<\/"+el+">","g");
+        regex = new RegExp("<"+el+"[^]*?<\/"+el+">","g");
         content = content.replace(regex,'');
     });
+
     // remove images
     content = content.replace(/<img[^]*?\/>/g,'');
-    content = content.replace(/<head[^]*?<\/head>/g,'<head></head>');
 
     // remove useless attributes
     attrToRemove = ["style","alt","decoding","srcSet","src","sizes","rel","target","aria-label",
         "aria-haspopup","aria-expanded","aria-current","aria-hidden","aria-disabled","aria-controls",
-        "data-state","class"];
+        "data-state"];
+    if (action === 'minimal'){
+        attrToRemove.push('class');
+    }
+    
     attrToRemove.forEach(el => {
         regex = new RegExp(el+"[ ]*=[ ]*\"[^]*?\"","g");
         content = content.replace(regex,'');
     });
-    //remove all tags
-    content = content.replace(/<[\/]*div[\t\s]*>/g,'');
-    content = content.replace(/<[\/]*span[\t\s]*>/g,'');
-    content = content.replace(/<[\/]*h1[\t\s]*>/g,'');
-    content = content.replace(/<[\/]*h2[\t\s]*>/g,'');
-    content = content.replace(/<\/time[\t\s]*>/g,'');
-    content = content.replace(/<time[^]*?>/g,'time: ');
+
+    // remove all tags
+    if (action === 'text'){
+        content = content.replace(/<\/time[^>]*>/g,'\n');
+        content = content.replace(/<time[^>]*>/g,' ');
+        content = content.replace(/<![^>]*>/g,'');
+
+        const endTagReplacements = {
+            ['\n']: ['div', 'h1', 'h2','body','head','html','section'],
+            ' ': ['span'],
+        };
+
+        Object.keys(endTagReplacements).forEach(key =>{
+            endTagReplacements[key].forEach(el =>{
+                // remove opening tag
+                regex = new RegExp("<[\s\t\n]*"+el+"[^>]*>","g");
+                content = content.replace(regex,'');
+                // replace closing tag with key
+                regex = new RegExp("<\/[\s\t\n]*"+el+"[^>]*>","g");
+                content = content.replace(regex,key);
+            });
+        })  
+
+        // remove <a> tags but keep the link
+        content = content.replace(/<[\s\t\n]*a\s[^>]*href[\s\t\n]*=[\s\t\n]*"([^"]+)"[^>]*>/g, (match, url) => {
+            return ` lien web : https://www.shotgun.fr${url}`;});// base url to be replaced
+            content = content.replace(/<[\s\t\n]*\/a[\s\t\n]*>/g,'');
 
 
+    }
 
-
-
+   
     // // compact class names
-    // regex = /class[\s\t]*=[\s\t]*"([^"]+)"/g;
-    // let correspondance;
-    // const classes = [];
-    // // find all the unique classes
-    // while ((correspondance = regex.exec(content)) !== null) {
-    //   classes.push(...correspondance[1].split(" "));
-    // }
-    // const classesUniques = [...new Set(classes)];
-    // const mapRangs = {};
-    // classesUniques.forEach((classe, index) => {
-    //     mapRangs[classe] = "c"+(index + 1); 
-    // });
-    // // console.log(classesUniques);
-    // content = content.replace(/class[\s\t]*=[\s\t]*"([^"]+)"/g, (_, classContent) => {
-    //     // console.log(classContent);
-    //     const classWithRank = classContent
-    //       .split(" ")
-    //       .map(classe => mapRangs[classe]) 
-    //       .join(" ");
-    //     return `class="${classWithRank}"`;
-    //   });
-    // remove line jumps
-    content = content.replace(/\n[\s\t]*\n/g,'\n');
+    if (action === 'compact'){
+        regex = /class[\s\t]*=[\s\t]*"([^"]+)"/g;
+        let correspondance;
+        const classes = [];
+        // find all the unique classes
+        while ((correspondance = regex.exec(content)) !== null) {
+        classes.push(...correspondance[1].split(" "));
+        }
+        const uniqueClasses = [...new Set(classes)];
+        const mapRangs = {};
+        uniqueClasses.forEach((classe, index) => {
+            mapRangs[classe] = "c"+(index + 1); 
+        });
+        content = content.replace(/class[\s\t]*=[\s\t]*"([^"]+)"/g, (_, classContent) => {
+            const classWithRank = classContent
+            .split(" ")
+            .map(classe => mapRangs[classe]) 
+            .join(" ");
+            return `class="${classWithRank}"`;
+        });
+    }  
+
+    //remove extra line breaks
+    // content = content.replace(/\n[\s\t]*\n/g,'\n');
     return content;
 }
 
-// minimalize file and return content
-// function minimalizeHtml(file){
-//     console.log("opening "+file);
-//     let content = fs.readFileSync(file, 'utf-8');
-//     content = content.replace(/<head[^]*?<\/head>/g,'<head></head>');
-//     // remove useless tags
-//     tagsToRemove = ["path","header","svg","video","option","button","footer","nav"];
-//     tagsToRemove.forEach(el => {
-//         let regex = new RegExp("<"+el+"[^]*?<\/"+el+">","g");
-//         content = content.replace(regex,'');
-//     });
-//     // remove useless attributes
-//     attrToRemove = ["style","alt","decoding","srcSet","src","sizes","rel","target","aria-label",
-//         "aria-haspopup","aria-expanded","aria-current","aria-hidden","aria-disabled","aria-controls",
-//         "data-state"];
-//     attrToRemove.forEach(el => {
-//         regex = new RegExp(el+"[ ]*=[ ]*\"[^]*?\"","g");
-//         content = content.replace(regex,'');
-//     });
-//     // compact class names
-//     regex = /class[\s\t]*=[\s\t]*"([^"]+)"/g;
-//     let correspondance;
-//     const classes = [];
-//     // find all the unique classes
-//     while ((correspondance = regex.exec(content)) !== null) {
-//       classes.push(...correspondance[1].split(" "));
-//     }
-//     const classesUniques = [...new Set(classes)];
-//     const mapRangs = {};
-//     classesUniques.forEach((classe, index) => {
-//         mapRangs[classe] = "c"+(index + 1); 
-//     });
-//     // console.log(classesUniques);
-//     content = content.replace(/class[\s\t]*=[\s\t]*"([^"]+)"/g, (_, classContent) => {
-//         // console.log(classContent);
-//         const classWithRank = classContent
-//           .split(" ")
-//           .map(classe => mapRangs[classe]) 
-//           .join(" ");
-//         return `class="${classWithRank}"`;
-//       });
-//     // remove line jumps
-//     content = content.replace(/\n[\s\t]*\n/g,'\n');
-//     return content;
-// }
 
 function saveToFile(content,fileName, path){
     // console.log(path);
