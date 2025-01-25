@@ -84,8 +84,8 @@ async function analyseContent(content){
         const question = 'Voici un document d\'information sur des événements à venir:\n\n'
         + content
         + '\n\nPeux-tu trouver tous les événements contenus dans ce document ? Je ne veux garder que ceux dont la date est renseignée.';
-        + ' Présente les résultats sous la forme d\'une liste avec une ligne par événement qui contient dans l\'ordre suivant date, nom, lieu, heure, style et prix.';
-        // +' Présente les résultats sous la forme d\'un json avec pour chaque événement les champs suivants: nom, lieu, date, heure, prix, style.';
+        +' Présente les résultats sous la forme d\'une liste avec une ligne par événement qui contient dans l\'ordre suivant date, nom, lieu, heure, style et prix.';
+        //' Présente les résultats sous la forme d\'un json avec pour chaque événement les champs suivants: nom, lieu, date, heure, prix, style.';
 
     // console.log(content);
 
@@ -120,7 +120,7 @@ async function askTheLlama (question) {
         prompt: question,
         stream: false,
         max_tokens: 4096,
-        // temperature: 0.7,
+        temperature: 0.0,
         // presence_penalty: 0.5,
         // frequency_penalty: 0.5
       });

@@ -2,15 +2,13 @@
   "Le Sucre|Lyon|France": {
     "mainPage": {
       "eventNameStrings": [
-        "Nava WIP Lyon",
-        "abel31",
-        "amne",
-        "sanderscore",
-        "Vilhelm.",
-        "Yev."
+        "S. society",
+        "JKS",
+        "Nuage Rose",
+        "KUSS"
       ],
       "eventDateStrings": [
-        "vend. 24 jan."
+        "dim. 26 jan."
       ],
       "eventStyleStrings": [
         "| Club"
@@ -60,14 +58,14 @@
   "Transbordeur|Lyon|France": {
     "mainPage": {
       "eventNameStrings": [
-        "23:59 x blackworks : aphøtic + dexphase +..."
+        "MATCH"
       ],
       "eventDateStrings": [
-        "sam. 13 avril 24",
-        "23:30"
+        "dimanche 26 janv. 2025",
+        "16:00"
       ],
       "eventStyleStrings": [
-        "hard techno"
+        "IMPROVISATION"
       ]
     },
     "linkedPage": {
@@ -350,18 +348,15 @@
     }
   },
   "Les Subs|Lyon|France": {
-
     "mainPage": {
       "eventNameStrings": [
         "TOXXIC"
       ],
       "eventDateStrings": [
         "23 Jan"
-
       ],
       "eventStyleStrings": [
         "Théâtre"
-
       ]
     }
   }

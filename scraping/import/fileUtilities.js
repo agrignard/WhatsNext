@@ -64,9 +64,14 @@ function minimalizeHtml(file, action = "basic"){    //option: 'basic' (default) 
         content = content.replace(/<time[^>]*>/g,' ');
         content = content.replace(/<![^>]*>/g,'');
 
+        // remove <a> tags but keep the link
+        content = content.replace(/<[\s\t\n]*a\s[^>]*href[\s\t\n]*=[\s\t\n]*"([^"]+)"[^>]*>/g, (match, url) => {
+            return ` lien web : https://www.shotgun.fr${url}`;});// base url to be replaced
+        // content = content.replace(/<[\s\t\n]*\/a[\s\t\n]*>/g,'');
+
         const endTagReplacements = {
             ['\n']: ['div', 'h1', 'h2','body','head','html','section'],
-            ' ': ['span'],
+            ' ': ['span','a','select'],
         };
 
         Object.keys(endTagReplacements).forEach(key =>{
@@ -80,11 +85,8 @@ function minimalizeHtml(file, action = "basic"){    //option: 'basic' (default) 
             });
         })  
 
-        // remove <a> tags but keep the link
-        content = content.replace(/<[\s\t\n]*a\s[^>]*href[\s\t\n]*=[\s\t\n]*"([^"]+)"[^>]*>/g, (match, url) => {
-            return ` lien web : https://www.shotgun.fr${url}`;});// base url to be replaced
-            content = content.replace(/<[\s\t\n]*\/a[\s\t\n]*>/g,'');
 
+        content = content.replace();
 
     }
 
