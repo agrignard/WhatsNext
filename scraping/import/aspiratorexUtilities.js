@@ -155,7 +155,6 @@ async function downloadLinkedPages(venue, filePath, pageList, verbose = false){
       if (failedDownloads === 0){
         console.log('All linked pages successfully downloaded and saved for \x1b[36m%s\x1b[0m.',venue.name);;
       }else{  
-        // console.log('to do: ',hrefList.length,'done: ',Object.keys(hrefJSON).length);
         console.log('\x1b[31mVenue: \x1b[36m%s\x1b[0m: %s/%s\x1b[31m links downloaded. \x1b[36m'
           +'(%s) new links downloaded this run. ',
           +'Run aspiratorex again\x1b[31m to load remaining links.\x1b[0m',
