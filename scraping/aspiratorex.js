@@ -67,7 +67,7 @@ if (filteredVenues.length === 0){
           erasePreviousHtmlFiles(path)
           .then(() => {
             downloadVenue(venue,path);
-            venueLog += '\x1b[31mEssaid URL for '+venue.name+'.x1b[0m';
+            venueLog += '\x1b[31mEssai d\'URL for '+venue.name+'.x1b[0m';
           })
       } 
     }catch(err){

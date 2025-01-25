@@ -23,13 +23,13 @@ module.exports = {downloadVenue, erasePreviousHtmlFiles, getHrefListFrom, downlo
 /*       main function        */
 /******************************/
 
-async function downloadVenue(venue,filePath){
+async function downloadVenue(venue, filePath, verbose=false){
   let URLlist = [];
-  let failedDownloads;
+  // let failedDownloads;
   if (venue.hasOwnProperty('multiPages')){
     if (venue.multiPages.hasOwnProperty('pattern')){
       URLlist = getURLListFromPattern(venue.url,venue.multiPages.pattern,venue.multiPages.nbPages);
-      console.log(URLlist);
+      // console.log(URLlist);
     }else if (/\{index\}/.test(venue.url) || venue.multiPages.hasOwnProperty('startPage')){
       if (venue.multiPages.hasOwnProperty('startPage') && venue.multiPages.hasOwnProperty('nbPages')){
         let increment = (venue.multiPages.hasOwnProperty('increment'))?venue.multiPages.increment:1;
@@ -58,6 +58,9 @@ async function downloadVenue(venue,filePath){
   }else{
     URLlist = [venue.url];
   }
+  if (verbose){
+    console.log(URLlist);
+  }
   
   async function getPage(page,pageIndex){
     let htmlContent;
@@ -65,7 +68,7 @@ async function downloadVenue(venue,filePath){
       if (venue.hasOwnProperty('multiPages') && venue.multiPages.hasOwnProperty('scroll')){
         htmlContent = cleanPage(await getPageByPuppeteer(page));
       }else{
-        console.log('files',URLlist);
+        // console.log('files',URLlist);
         htmlContent = cleanPage(await fetchWithRetry(page,2,2000));
       }
     }catch(err){
@@ -104,17 +107,27 @@ async function downloadVenue(venue,filePath){
 /*       aux functions        */
 /******************************/
 
-async function downloadLinkedPages(venue, filePath, pageList){
+async function downloadLinkedPages(venue, filePath, pageList, verbose = false){
   // if event tags are defined and contain URLs, download the URLs. Otherwise, ask to run an analyze 
   if (venue.mainPage.hasOwnProperty('eventsURLTags')||
     (venue.hasOwnProperty('eventsDelimiterTag') && venue.hasOwnProperty('eventURLIndex') && venue.eventURLIndex !== -1)){
     const hrefList = getHrefListFrom(pageList,venue);
-    console.log('First entries:',shortList(hrefList));
+    if (verbose){
+      console.log('First entries:',shortList(hrefList));
+    }
     // check the URLS that already exist
     const linkedFileContent = fs.existsSync(filePath+'linkedPages.json')?loadLinkedPages(filePath):[];
     const existingLinks = hrefList.filter(el => Object.keys(linkedFileContent).includes(el));
     const linksToDownload = hrefList.filter(el => !Object.keys(linkedFileContent).includes(el));
-    console.log('Loading linked pages for venue %s. Found %s links: %s already exist and won\'t be downloaded, %s will be downloaded.',venue.name,hrefList.length, existingLinks.length,linksToDownload.length);
+    if (linksToDownload.length === 0){
+      console.log('All links (%s) already downloaded for venue \x1b[36m%s\x1b[0m.',hrefList.length,venue.name);
+    }else{
+      console.log('Loading linked pages for venue \x1b[36m%s\x1b[0m. '
+        +'Found %s links: %s already exist and won\'t be downloaded, '
+        +'downloading %s links...',venue.name,hrefList.length, existingLinks.length,
+        linksToDownload.length);
+    }
+    
     // put the existing links in a new JSON object
     let hrefJSON = {};
     existingLinks.forEach(key => {
@@ -125,9 +138,9 @@ async function downloadLinkedPages(venue, filePath, pageList){
     try{
       hrefContents = (await Promise.all(linksToDownload.map(el => fetchLink(el,nbFetchTries))));
     }catch(err){
-      console.log("\x1b[36mNetwork error, cannot load linked page for \'%s\'\x1b[0m: %s",venue.name,err);
+      console.log("\x1b[31mNetwork error, cannot load linked page for \'%s\'\x1b[0m: %s",venue.name,err);
     }
-    linksToDownload.forEach((href,index) =>hrefJSON[href]=hrefContents[index]);
+    linksToDownload.forEach((href,index) => hrefJSON[href]=hrefContents[index]);
 
     try{
       const jsonString = JSON.stringify(hrefJSON, null, 2); 
@@ -138,11 +151,17 @@ async function downloadLinkedPages(venue, filePath, pageList){
     }, 0);
 
     // test if all downloads are successful
-    if (failedDownloads === 0){
-      console.log('All linked pages successfully downloaded and saved for %s.',venue.name);;
-    }else{
-      console.log('to do: ',hrefList.length,'done: ',Object.keys(hrefJSON).length);
-      console.log('\x1b[31mVenue: %s: \x1b[0m%s/%s\x1b[31m links downloaded. \x1b[36mRun aspiratorex again\x1b[31m to load remaining links.\x1b[0m',venue.name,hrefList.length-failedDownloads, hrefList.length);
+    if (linksToDownload.length !== 0){
+      if (failedDownloads === 0){
+        console.log('All linked pages successfully downloaded and saved for \x1b[36m%s\x1b[0m.',venue.name);;
+      }else{  
+        // console.log('to do: ',hrefList.length,'done: ',Object.keys(hrefJSON).length);
+        console.log('\x1b[31mVenue: \x1b[36m%s\x1b[0m: %s/%s\x1b[31m links downloaded. \x1b[36m'
+          +'(%s) new links downloaded this run. ',
+          +'Run aspiratorex again\x1b[31m to load remaining links.\x1b[0m',
+          venue.name,hrefList.length-failedDownloads, hrefList.length,
+          hrefList.length-failedDownloads-existingLinks.length);
+      }
     }
     }catch(err){
       console.log('\x1b[31mCannot save links to file \'linkedPages.json\' %s\x1b[0m',err);

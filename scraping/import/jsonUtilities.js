@@ -239,11 +239,13 @@ function saveToScrapInfoJSON(jsonList){
     }
 }
 
-function saveToVenuesJSON(jsonList){
+function saveToVenuesJSON(jsonList, verbose=false){
     try{
         const jsonString = JSON.stringify(jsonList, null, 2); 
         fs.writeFileSync(venuesListJSONFile, jsonString);
-        console.log('Saved to in %s',venuesListJSONFile);
+        if (verbose){
+            console.log('Saved to in %s',venuesListJSONFile);
+        }
     }catch(err){
         console.log('\x1b[31mError saving to .json: \'%s\' %s\x1b[0m',venuesListJSONFile,err);
     }

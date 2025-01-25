@@ -190,15 +190,19 @@ async function fetchLink(page, nbFetchTries){
     }
 }
   
-function fetchWithRetry(page, tries, timeOut) {
+function fetchWithRetry(page, tries, timeOut, verbose = false) {
     return fetchAndRecode(page)
         .catch(error => {
         if (tries > 1){
-            console.log('Download failed (%s). Trying again in %ss (%s %s left).',page,timeOut/1000,tries-1,tries ===2?'attempt':'attempts');
+            if (verbose) {
+                console.log('Download failed (%s). Trying again in %ss (%s %s left).',page,timeOut/1000,tries-1,tries ===2?'attempt':'attempts');
+            }
             return new Promise(resolve => setTimeout(resolve, timeOut))
             .then(() => fetchWithRetry(page,tries-1,timeOut));
         }else{
-            console.log('Download failed (%s). Aborting (too many tries).',page);
+            if (verbose){
+                console.log('Download failed (%s). Aborting (too many tries).',page);
+            }
             throw error;
         }
     });
