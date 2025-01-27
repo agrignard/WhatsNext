@@ -142,7 +142,7 @@ function verifyPath(path){
     }
 }
 
-async function getPageByPuppeteer(pageURL, venueName, multipagesOptions, verbose = true){
+async function getPageByPuppeteer(pageURL, venueName, multipagesOptions, verbose = false){
     const browser = await puppeteer.launch({
         // headless: false
     });
