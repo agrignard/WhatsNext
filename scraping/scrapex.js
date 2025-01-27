@@ -356,9 +356,9 @@ function getStyle(string, eventLanguages){
 function  displayEventLog(eventInfo){
   console.log('Event : %s (%s, %s)%s',eventInfo.eventName,eventInfo.city,eventInfo.country,eventInfo.isCancelled?' (cancelled)':'');
   Object.keys(eventInfo).forEach(key => {
-      if (!['eventName', 'eventDate', 'eventURL', 'unixDate', 'eventDummy', 'source','city','country','isCancelled'].includes(key)
-          && eventInfo[key.replace('Tags','')] !== ''){
-        console.log(key.replace('event','')+': %s',eventInfo[key.replace('Tags','')]);
+    if (!['eventName', 'eventDate', 'eventURL', 'unixDate', 'eventDummy', 'source','city','country','isCancelled'].includes(key)
+        && eventInfo[key.replace('Tags','')] !== ''){
+      console.log(key.replace('event','')+': %s',eventInfo[key.replace('Tags','')]);
     }
   });
   console.log((eventInfo.eventURL)+'\n');

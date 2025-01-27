@@ -242,22 +242,24 @@ background-color: lightblue;
   background-color: darkgray;
 }
 
-.processContainer {
+#processContainer {
+  font-family: sans-serif;
   display: flex; /* Utiliser Flexbox pour le positionnement */
-  height: 100vh; /* Hauteur de la fenêtre visible */
+  height: 100vh;
+  overflow-y: auto;
 }
 
-.leftPanel {
-  width: 35%; /* Largeur de la partie gauche */
-  background-color: #f0f0f0; /* Couleur de fond */
-  overflow: auto; /* Ajouter un défilement si le contenu est plus long que la zone */
+/* .leftPanel { 
+  width: 35%; 
+  background-color: #f0f0f0; 
+  overflow: auto; 
 }
 
 .rightPanel {
-  width: 65%; /* Largeur de la partie droite */
-  background-color: #d0d0d0; /* Couleur de fond */
-  overflow-y: auto; /* Ajouter un défilement vertical si le contenu est plus long que la zone */
-}
+  width: 65%; 
+  background-color: #d0d0d0; 
+  overflow-y: auto; 
+} */
   
 
 .encadre {
@@ -268,4 +270,53 @@ background-color: lightblue;
 
 .mainTag {
   background-color: rgb(255, 107, 107);
+}
+
+
+/* css for list scrolling in venues and cities */
+
+.scrollable-list {
+  width: 300px;
+  height: 500px;
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+  padding: 10px;
+  list-style: none; /* Supprime les puces de la liste */
+  width: 50ch;
+}
+
+.scrollable-list li {
+  line-height: 20px;
+  padding: 5px;
+  background-color: #eaedf1;
+  cursor: pointer; /* Montre que les éléments sont cliquables */
+  user-select: none; /* Désactive la sélection du texte par défaut */
+  
+}
+
+/* Style pour les éléments sélectionnés */
+.scrollable-list li.selected {
+  background-color: #007bff; /* Couleur de fond pour la sélection */
+  color: white; /* Texte en blanc pour contraste */
+}
+
+
+.leftPanel {
+  flex: 0 0 35%; /* Largeur de la partie gauche */
+  max-width: 300px;
+  background-color: rgb(155, 176, 239);
+  text-align: left;
+  overflow: auto; /* Ajouter un défilement si le contenu est plus long que la zone */
+}
+
+.rightPanel {
+  flex: 1; /* Largeur de la partie droite */
+  background-color: #cedbf0; /* Couleur de fond */
+  overflow-y: auto; /* Ajouter un défilement vertical si le contenu est plus long que la zone */
+}
+
+.panels {
+  line-height: 30px;
+  border: 1px solid #ccc;
+  padding: 20px;
 }

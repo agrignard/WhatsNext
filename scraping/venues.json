@@ -716,22 +716,6 @@
     "linkedPage": {}
   },
   {
-    "name": "google",
-    "city": "Lyon",
-    "country": "France",
-    "url": "https://www.google.com/search?q=lyon+%C3%A9v%C3%A9nements&client=firefox-b-d&sca_esv=ed313d50f24d50b8&sxsrf=ACQVn0-ZmP4Si44IDZrpd01wLIM1xJGiRw%3A1709830776141&ei=ePLpZf6fCJWP2roPja6V4AU&ved=0ahUKEwj-u6aA0OKEAxWVh1YBHQ1XBVwQ4dUDCBA&uact=5&oq=lyon+%C3%A9v%C3%A9nements&gs_lp=Egxnd3Mtd2l6LXNlcnAiEWx5b24gw6l2w6luZW1lbnRzMgoQIxiABBiKBRgnMgUQABiABDIFEAAYgAQyBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHkijHVCsBVj6G3ACeAGQAQCYAbICoAG0F6oBBzAuOS41LjG4AQPIAQD4AQGYAhGgAv4YwgIKEAAYRxjWBBiwA8ICDRAAGIAEGIoFGEMYsAPCAhkQLhiABBiKBRhDGMcBGNEDGMgDGLAD2AEBwgIEECMYJ8ICFhAuGIAEGIoFGEMYsQMYgwEYxwEY0QPCAhAQABiABBiKBRhDGLEDGIMBwgILEC4YgwEYsQMYgATCAhEQLhiABBixAxiDARjHARjRA8ICCxAAGIAEGLEDGIMBwgILEC4YgAQYsQMYgwHCAggQLhiABBixA8ICCBAAGIAEGLEDwgIOEAAYgAQYigUYsQMYgwHCAhoQLhiABBixAxiDARiXBRjcBBjeBBjgBNgBAsICCBAuGLEDGIAEwgIUEC4YgAQYigUYsQMYgwEYxwEY0QPCAgUQLhiABMICCxAuGIAEGMcBGK8BwgIOEC4YFhgeGMcBGK8BGArCAggQABgWGB4YD5gDAIgGAZAGEroGBggBEAEYCLoGBggCEAEYFJIHBzIuNy43LjGgB92hAQ&sclient=gws-wiz-serp",
-    "ID": "google|Lyon|France",
-    "mainPage": {
-      "eventPlaceTags": [
-        "DIV.TCYkdd.FozYP:eq(0) SPAN:eq(0)"
-      ]
-    },
-    "baseURL": "https://www.google.com/",
-    "eventsDelimiterTag": "",
-    "dateFormat": "dd-MM-HH:mm",
-    "eventURLIndex": 0
-  },
-  {
     "name": "Ninkasi",
     "city": "Lyon",
     "country": "France",
@@ -802,7 +786,52 @@
     "dateFormat": "dd-MM",
     "multiPages": {
       "nextButton": "Voir plus",
-      "maxPages": 3
+      "maxPages": 2
+    }
+  },
+  {
+    "name": "Likdo",
+    "city": "Hanoi",
+    "country": "Vietnam",
+    "mainPage": {
+      "eventDateTags": [
+        "DIV.datetop2.evnt.lp:eq(0) H1.day2:eq(0)",
+        "DIV.datetop2.evnt.lp:eq(0) H1.day2:eq(1)",
+        "DIV.datetop2.evnt.lp:eq(0) H1.day2:eq(2)",
+        "DIV.numberwrapper:eq(0) H1.number2:eq(0)",
+        "DIV.numberwrapper:eq(0) H1.number2:eq(1)",
+        "DIV.monthwrwpper:eq(0) H1.month2.llp:eq(0)",
+        "DIV.monthwrwpper:eq(0) H1.month2.llp:eq(1)",
+        "DIV.monthwrwpper:eq(0) H1.month2.llp:eq(2)"
+      ],
+      "eventNameTags": [
+        "DIV.cardtextwrap:eq(0) H4.cerdheader:eq(0)"
+      ],
+      "eventPlaceTags": [
+        "DIV.eventcardlocationwrapper:eq(0) DIV.eventcardtext:eq(0)"
+      ],
+      "eventStyleTags": [
+        "DIV.tag:eq(0) DIV:eq(0)",
+        "DIV.tag:eq(1) DIV:eq(0)"
+      ]
+    },
+    "url": "https://likdo.asia/event/all/",
+    "ID": "Likdo|Hanoi|Vietnam",
+    "baseURL": "https://likdo.asia/event/all/",
+    "eventsDelimiterTag": " DIV.wlayoutgrid.evetscollectionsectionheader.blackbg.recom.artist A.cardwrapper.winlineblock",
+    "dateFormat": "dd-MM",
+    "eventURLIndex": 0
+  },
+  {
+    "name": "Noise Hanoi",
+    "city": "Hanoi",
+    "country": "Vietnam",
+    "mainPage": {},
+    "url": "https://www.noisehanoi.com/gigs",
+    "ID": "Noise Hanoi|Hanoi|Vietnam",
+    "multiPages": {
+      "nbPages": "5",
+      "scroll": true
     }
   }
 ]

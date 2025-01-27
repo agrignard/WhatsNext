@@ -3,21 +3,24 @@ const imports = '../../import/';
 
 const fs = require('fs');
 const { ipcRenderer } = require('electron');
-const {getLanguages, getAvailableLanguages} = require(imports+'jsonUtilities.js');
+const { populate } = require('dotenv');
+const {getLanguages, getAvailableLanguages, loadVenuesJSONFile, saveToVenuesJSON} = require(imports+'jsonUtilities.js');
 
 const languagesJSON = getLanguages();
 const availableLanguages = getAvailableLanguages();
 
 let currentLanguages = [];
 
-const messageContainer = document.getElementById('message-container');
+let venues = loadVenuesJSONFile();
+
+// const messageContainer = document.getElementById('message-container');
 
 // Créez un élément de paragraphe pour le message
 const messageParagraph = document.createElement('p');
 messageParagraph.textContent = 'Essai !!';
 
 // Ajoutez le paragraphe à l'élément conteneur
-messageContainer.appendChild(messageParagraph);
+// messageContainer.appendChild(messageParagraph);
 
 
 let countriesDropdown = document.getElementById('countriesDropdown');
@@ -45,6 +48,7 @@ countriesDropdown.addEventListener('change', (event) => {
     currentLanguages = languagesIn(selectedCountry);
     updateContainer(languagesContainer, currentLanguages);
     checkLanguageAvailability();
+    populateVenuesMenu();
 });
 
 // button to add country and city
@@ -125,13 +129,99 @@ document.getElementById('cityConfirmBtn').addEventListener('click', () => {
 });
 
 
+// venues removal form
+
+const venuesList = document.getElementById('venuesList');
+populateVenuesMenu();
+let removeMode = false;
+
+const removeVenuesModeButton = document.getElementById('removeVenuesModeButton');
+const removeVenuesButton = document.getElementById('removeVenuesButton');
+
+removeVenuesModeButton.addEventListener('click', (event) => {
+    removeMode = !removeMode;
+    removeVenuesModeButton.textContent = removeMode ? "Close remove mode":"Activate remove mode";
+    removeVenuesButton.style.display = removeMode ? 'inline':'none';
+    venuesList.style.display = removeMode ? 'block':'none';
+    venuesList.querySelectorAll('.selected').forEach(el => el.classList.remove('selected'));
+    removeVenuesButton.disabled = true;
+});
 
 
 
+function populateVenuesMenu(){
+    const currentCountry = countriesDropdown.value;
+    const currentCity = citiesDropdown.value;
+    const venuesFromSameCity = venues.filter(v => v.country === currentCountry && v.city === currentCity)
+                                    .map(el => el.name);
+    venuesList.innerHTML = '';
+    const innerHtml = venuesFromSameCity.sort((a,b) => a.localeCompare(b))
+                .map(el => '<li>'+el+'</li>').join('');
+    venuesList.innerHTML = innerHtml;
+}
+
+citiesDropdown.addEventListener('change', (event) => {
+    populateVenuesMenu();
+});
 
 
+venuesList.addEventListener('click', (event) => {
+    const target = event.target;
 
+    // Vérifier si l'utilisateur a cliqué sur un élément de la liste
+    if (target.tagName === 'LI') {
+        if (event.ctrlKey || event.metaKey) {
+            // Ctrl+clic (ou Cmd+clic sur Mac) : Ajouter ou retirer l'élément de la sélection
+            target.classList.toggle('selected');
+        } else {
+            // Clic simple : Désélectionner tous les autres et sélectionner uniquement l'élément cliqué
+            const alreadySelected = target.classList.contains('selected');
+            venuesList.querySelectorAll('.selected').forEach(el => el.classList.remove('selected'));
+            if (!alreadySelected){
+                target.classList.add('selected');
+            }
+        }
+        if (venuesList.querySelectorAll('.selected').length > 0){
+            removeVenuesButton.disabled = false;
+        }else{
+            removeVenuesButton.disabled = true;
+        }
+    }
+});
 
+// get selected items from the list
+const getSelectedItems = () => {
+    const selectedElements = venuesList.querySelectorAll('.selected');
+    const selectedTexts = Array.from(selectedElements).map(el => el.textContent.trim());
+    return selectedTexts;
+};
+
+// Gestionnaire du bouton pour afficher les éléments sélectionnés
+
+removeVenuesButton.addEventListener('click', () => {
+    const selectedItems = getSelectedItems();
+    if (confirm("Deleting the following venues :\n\n- "+selectedItems.join('\n- ')+'\n\nProceed ?')) {
+        removeItems(selectedItems);
+      }
+    // alert('Éléments sélectionnés : ' + selectedItems.join(', '));
+});
+
+function removeItems(list){
+    list.forEach(element => {
+        const venue = venues.find(v => element===v.name);
+        const path = webSources+'/'+venue.country+'/'+venue.city+'/'+venue.name;
+        if (fs.existsSync(path)) {
+            fs.rm(path, { recursive: true, force: true }, (err) => {
+                if (err) {
+                  console.error("Error while removing files from path:"+path+". ", err);
+                }
+            });
+        } 
+        venues = venues.filter(el => !(el.name === venue.name && el.city === venue.city && el.country === venue.country))
+        saveToVenuesJSON(venues);
+    });
+    populateVenuesMenu();
+}
 
 //countriesDropdown.dispatchEvent(new Event('change', {target:{value:'France'}}));
 

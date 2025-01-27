@@ -174,10 +174,7 @@ async function getPageByPuppeteer(pageURL, venueName, multipagesOptions, verbose
 
             while (hasMoreContent) {
                 count++;
-                console.log(count);
-                console.log(multipagesOptions.maxPages);
-                // console.log(multipagesOptions.hasOwnProperty('maxPages'));
-                console.log(multipagesOptions.hasOwnProperty('maxPages') && count === multipagesOptions.maxPages);
+                if (verbose) {console.log(count);}
                  // stop clicking if a max number of pages has been set
                 if (multipagesOptions.hasOwnProperty('maxPages') && count === multipagesOptions.maxPages){
                     console.log('Download successful for venue \x1b[36m%s\x1b[0m: %s clicks were performed. Stopped because the maximum number of clicks has been reached.', venueName, multipagesOptions.maxPages);

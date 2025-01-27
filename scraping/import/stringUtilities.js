@@ -107,9 +107,17 @@ function cleanPage(content){
   cleanedContent = cleanHtml(cleanedContent);
   cleanedContent = removeForms(cleanedContent);
   cleanedContent = fixTags(cleanedContent);
+  cleanedContent = fixImages(cleanedContent);
  // cleanedContent = removeImages(cleanedContent);
   return cleanedContent;
 }
+
+// fix image sizes that are too large in electron
+function fixImages(content){
+  let res = content.replace(/(<img[^>]*style[\s\t\n]*=[\s\t\n]*"[^"]*position[\s\t\n]*:[\s\t\n]*)absolute/g,'$1XXXXXXXX');// remove scripts
+  return res;
+}
+
 
 // remove scripts from an html file
 function cleanScripts(content){

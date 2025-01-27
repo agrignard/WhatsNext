@@ -14,7 +14,7 @@ function createWindow() {
             nodeIntegration: true,
             contextIsolation: false, // Désactive l'isolation de contexte pour l'utilisation de require dans le rendu (si nécessaire)
             devTools: true  
-        }
+        },
     });
    mainWindow.loadFile('index.html');
    makeMenu(subFolder, mainWindow, true);

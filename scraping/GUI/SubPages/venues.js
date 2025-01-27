@@ -11,6 +11,7 @@ const lineHeightPx = document.getElementById('textURL').offsetHeight;
 
 let hideAliases = true;
 
+
 let venues = loadVenuesJSONFile();
 const styleList = [''].concat(getStyleList().filter(el => el !=='')).concat(['Other']);
 //let currentMode = 'show';
@@ -40,14 +41,15 @@ if (hideAliases){
 hideAliasesCheckbox.addEventListener('change', () => {
     hideAliases = !hideAliases;
     populateVenuesMenu();
+    venuesDropdown.selectedIndex = getKeyFromStorage('venue name',venuesDropdown);
 });
 
 // button to process
 const processButton = document.getElementById('processBtn');
 processButton.addEventListener('click', () => {
+    localStorage.setItem('currentVenueId', getCurrentVenue().ID);
     ipcRenderer.send('openProcessPage');
 });
-
 
 let countriesDropdown = document.getElementById('countriesDropdown');
 let citiesDropdown = document.getElementById('citiesDropdown');
@@ -72,35 +74,37 @@ citiesDropdown.selectedIndex = getKeyFromStorage('city',citiesDropdown);
 let currentCity = citiesDropdown.value;
 let currentVenues = getVenuesFromSameCity();
 populateVenuesMenu();
+venuesDropdown.selectedIndex = getKeyFromStorage('venue name',venuesDropdown);
 let currentName = venuesDropdown.value;
-//let venue = getCurrentVenue();
+saveToLocalStorage();
 updateVenueInfo('show');
 
 // load cities menu when country changed
 countriesDropdown.addEventListener('change', (event) => {
     currentCountry = event.target.value;
-    sessionStorage.setItem('country', currentCountry);
     addToMenu(webSources+ '/' + currentCountry,citiesDropdown);
-    citiesDropdown.dispatchEvent(new Event('change'));
+    citiesDropdown.dispatchEvent(new CustomEvent('change', {detail: {history: 'history|'+currentCountry}}));
 });
 
 
-citiesDropdown.addEventListener('change', (event) => {
+citiesDropdown.addEventListener('change', (event) => {   
     currentCity = event.target.value;
-    sessionStorage.setItem('city', currentCountry);
-    currentVenues = getVenuesFromSameCity();
+    if (event.detail !== undefined && event.detail.history !== undefined){
+        citiesDropdown.selectedIndex = getKeyFromStorage(event.detail.history,citiesDropdown);
+        currentCity = citiesDropdown.value;
+    }
     populateVenuesMenu();
-    venuesDropdown.dispatchEvent(new Event('change'));
+    venuesDropdown.dispatchEvent(new CustomEvent('change', {detail: {history: 'history|'+currentCountry+'|'+currentCity}}));
 });
 
 venuesDropdown.addEventListener('change', (event) => {
-    //const venueName = event.target.value;
     currentName = event.target.value;
-//     sessionStorage.setItem('venue|'+currentCity+'|'+currentCountry,currentName);
-//    // sessionStorage.setItem('currentVenue', JSON.stringify(getCurrentVenue()));
-//     sessionStorage.setItem('currentVenue', getCurrentVenue().ID);
-    localStorage.setItem('currentVenue', getCurrentVenue().ID);
-    localStorage.setItem('venue|'+currentCity+'|'+currentCountry,currentName);
+    if (event.detail !== undefined && event.detail.history !== undefined){
+        venuesDropdown.selectedIndex = getKeyFromStorage(event.detail.history,venuesDropdown);
+        currentName = venuesDropdown.value;
+    }
+
+    saveToLocalStorage();
     updateVenueInfo('show');
 });
 
@@ -148,7 +152,7 @@ function populateVenuesMenu(){
         }
         venuesDropdown.add(option);
     });
-    venuesDropdown.selectedIndex = getKeyFromStorage('venue|'+currentCity+'|'+currentCountry,venuesDropdown);;
+    // venuesDropdown.selectedIndex = getKeyFromStorage('venue name',venuesDropdown);
 }
 
 function getVenuesFromSameCity(){
@@ -164,7 +168,7 @@ function aliasAlreadyExists(name){
 }
 
 function getCurrentVenue(){
-    return res = venues.find(v => v.country === currentCountry && v.city === currentCity && v.name === currentName);
+    return venues.find(v => v.country === currentCountry && v.city === currentCity && v.name === currentName)||undefined;
 }
 
 function updateVenueInfo(mode){
@@ -183,7 +187,6 @@ function updateVenueInfo(mode){
  
     if (venue){
         if (mode === 'show'){
-            //console.log(venue);
             venueShowPanel.style.display = 'block';
             // name      
             const divName = document.getElementById('venueName');
@@ -586,13 +589,12 @@ function updateVenueInfo(mode){
                         }
                     }
                     currentName = venue.name;
-                    sessionStorage.setItem('venue|'+currentCity+'|'+currentCountry,currentName);
+                    saveToLocalStorage();
+                    venuesDropdown.selectedIndex = getKeyFromStorage('venue name',venuesDropdown);
                 }
                 saveToVenuesJSON(venues);
-                sessionStorage.setItem('currentVenue', getCurrentVenue().ID);
                 toggleMenuesAction('on');
                 updateVenueInfo('show');
-                //console.log(venue);
             });
             // add cancel button
             const cancelButton = document.getElementById('cancelVenue');
@@ -708,8 +710,6 @@ function splitArray(list){
 }
 
 function getKeyFromStorage(key, dropDown){
-    // const value = sessionStorage.getItem(key);
-    // if (value === null){return 0;}
     let value = localStorage.getItem(key) || 0;
     const list = [];
     for(i=0;i<dropDown.length;i++){
@@ -773,5 +773,13 @@ function getCaretPosition(element) {
       selection.removeAllRanges();
       selection.addRange(range);
     }
+}
+
+function saveToLocalStorage(){
+    localStorage.setItem('country', currentCountry);
+    localStorage.setItem('city', currentCity);
+    localStorage.setItem('venue name', currentName);
+    localStorage.setItem('history|'+currentCountry, currentCity);
+    localStorage.setItem('history|'+currentCountry+'|'+currentCity, currentName);
 }
   

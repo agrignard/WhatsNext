@@ -74,7 +74,7 @@ function getPathTo(element) {
 
 // get venue JSON
 const venues = loadVenuesJSONFile();
-const venueID = sessionStorage.getItem('currentVenue');
+const venueID = localStorage.getItem('currentVenueId');
 const venue = loadVenueJSON(venueID,venues);
 if (!venue.hasOwnProperty('mainPage')){
   venue.mainPage = {};

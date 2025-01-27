@@ -7,38 +7,55 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- country management -->
-    <div class="countries">
-        country:
-        <div class="subCountries">
-            <select id="countriesDropdown"></select>
-            <button id="addcountryBtn">Add country</button>
-            <div id="countryDialog" style="display: none;">
-                <input type="text" id="newCountryNameInput">
-                <button id="countryConfirmBtn">Confirm</button>
+    <div id="processContainer">
+        <!-- country management -->
+        <div class="leftPanel panels">
+            <div class="countries">
+                country:
+                <div class="subCountries">
+                    <select id="countriesDropdown"></select>
+                    <button id="addcountryBtn">Add country</button>
+                    <div id="countryDialog" style="display: none;">
+                        <input type="text" id="newCountryNameInput">
+                        <button id="countryConfirmBtn">Confirm</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- city management -->
+            <div class="cities">
+                cities:
+                <div class="subCities">
+                    <select id="citiesDropdown"></select>
+                    <button id="addcityBtn">Add city</button>
+                    <div id="cityDialog" style="display: none;">
+                        <input type="text" id="newCityNameInput">
+                        <button id="cityConfirmBtn">Confirm</button>
+                    </div>
+                </div>      
+            </div>
+            <!-- languages management -->
+            <div> Languages:
+                <div id="languagesContainer">
+                    <button class="languageItem" data-value="option1">Langue 1</button>
+                </div>               
             </div>
         </div>
-    </div>
-
-    <!-- city management -->
-    <div class="cities">
-        cities:
-        <div class="subCities">
-            <select id="citiesDropdown"></select>
-            <button id="addcityBtn">Add city</button>
-            <div id="cityDialog" style="display: none;">
-                <input type="text" id="newCityNameInput">
-                <button id="cityConfirmBtn">Confirm</button>
+        <div class="rightPanel panels">
+            <div class ="removeButtons">
+                <button id="removeVenuesModeButton" style="display: inline;">Activate remove mode</button>
+                <button id="removeVenuesButton" style="display: none;">Remove selected venues</button>
             </div>
-        </div>      
+ 
+            <ul class="scrollable-list" id="venuesList" style="display: none;">
+                <li>Élément 1</li>
+                <li>Élément 2</li>
+                <li>Élément 3</li>
+            </ul>
+
+        </div>
+    <!-- div id="message-container"-->
     </div>
-    <!-- languages management -->
-    <div> Languages:
-        <div id="languagesContainer">
-            <button class="languageItem" data-value="option1">Langue 1</button>
-        </div>               
-    </div>
-    <div id="message-container"></div>
    
     <script src="citiesAndCountries.js"></script>
 </body>
