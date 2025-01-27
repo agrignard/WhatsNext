@@ -32,7 +32,7 @@
         
         <div class="topMargin">Aliases:</div>
             <textarea id="textAlias" class="VenueTextArea" rows="1" cols="30" placeholder="Enter alias" style ="display: inline; border: 1px solid #ccc;"></textarea>
-        
+            <div id = "aliasAlert" class="alertBlock" style ="display: inline;"></div>
         <div class="topMargin">URL of agenda page:</div>
         <div id="textURL" contenteditable="true" class="bottomMargin"></div>
         <div id="downloadPanel" class="topMargin" style="display: inline-block;  width:60%;">
@@ -45,6 +45,7 @@
                             <option value="Index">Index</option>
                             <option value="Pattern">Pattern</option>
                             <option value="Scroll">Scroll</option>
+                            <option value="ClickButton">Click Button</option>
                             <option value="PageList">Page List</option>
                         </select>
                     </div>
@@ -71,6 +72,24 @@
                     </div>
                     <div class="divMPPattern">
                         <input type="text" id="MPPattern"  placeholder="yyyy-MM" style ="width: 10ch">
+                    </div>
+                    <div class="divMPClickButton">
+                        Button text
+                    </div>
+                    <div class="divMPClickButton">
+                        <input type="text" id="MPClickButtonText"  placeholder="See more" style ="width: 20ch">
+                    </div>
+                    <div class="divMPClickButton">
+                        Page limit
+                    </div>
+                    <div class="divMPClickButton">
+                        <input type="checkbox" id="pageLimitCheckbox" value="false">
+                    </div>
+                    <div class="divMPClickButton maxPageField">
+                        Max pages to load
+                    </div>
+                    <div class="divMPClickButton maxPageField">
+                        <input type="number" id="ClickButtonMaxPages" min="2" step="1" value="3" style ="width: 6ch;">
                     </div>
                     <div class="leftMargin divMPPageList">
                         Page list:

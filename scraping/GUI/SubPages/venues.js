@@ -16,7 +16,6 @@ const styleList = [''].concat(getStyleList().filter(el => el !=='')).concat(['Ot
 //let currentMode = 'show';
 
 
-
 //const venueInfo = document.getElementById('venue-info');
 const messageContainer = document.getElementById('message-container');
 
@@ -54,6 +53,15 @@ let countriesDropdown = document.getElementById('countriesDropdown');
 let citiesDropdown = document.getElementById('citiesDropdown');
 let venuesDropdown = document.getElementById('venuesDropdown');
 
+// max page selection for puppeteer
+const maxPageSelection = document.querySelectorAll(".maxPageField");
+const pageLimitCheckbox = document.getElementById('pageLimitCheckbox');
+pageLimitCheckbox.addEventListener('change', (event) => {
+    maxPageSelection.forEach(el => {
+        el.style.display = event.target.checked ? 'block' : 'none';
+    });
+});
+
 
 // load countries dropdown menu
 addToMenu(webSources,countriesDropdown);
@@ -62,7 +70,7 @@ let currentCountry = countriesDropdown.value;
 addToMenu(webSources+ '/' + countriesDropdown.value,citiesDropdown);
 citiesDropdown.selectedIndex = getKeyFromStorage('city',citiesDropdown);
 let currentCity = citiesDropdown.value;
-let currentVenues = getCurrentVenues();
+let currentVenues = getVenuesFromSameCity();
 populateVenuesMenu();
 let currentName = venuesDropdown.value;
 //let venue = getCurrentVenue();
@@ -80,7 +88,7 @@ countriesDropdown.addEventListener('change', (event) => {
 citiesDropdown.addEventListener('change', (event) => {
     currentCity = event.target.value;
     sessionStorage.setItem('city', currentCountry);
-    currentVenues = getCurrentVenues();
+    currentVenues = getVenuesFromSameCity();
     populateVenuesMenu();
     venuesDropdown.dispatchEvent(new Event('change'));
 });
@@ -88,9 +96,11 @@ citiesDropdown.addEventListener('change', (event) => {
 venuesDropdown.addEventListener('change', (event) => {
     //const venueName = event.target.value;
     currentName = event.target.value;
-    sessionStorage.setItem('venue|'+currentCity+'|'+currentCountry,currentName);
-   // sessionStorage.setItem('currentVenue', JSON.stringify(getCurrentVenue()));
-    sessionStorage.setItem('currentVenue', getCurrentVenue().ID);
+//     sessionStorage.setItem('venue|'+currentCity+'|'+currentCountry,currentName);
+//    // sessionStorage.setItem('currentVenue', JSON.stringify(getCurrentVenue()));
+//     sessionStorage.setItem('currentVenue', getCurrentVenue().ID);
+    localStorage.setItem('currentVenue', getCurrentVenue().ID);
+    localStorage.setItem('venue|'+currentCity+'|'+currentCountry,currentName);
     updateVenueInfo('show');
 });
 
@@ -124,7 +134,7 @@ function addToMenu(directory, menu){
 }
 
 function populateVenuesMenu(){
-    currentVenues = getCurrentVenues();
+    currentVenues = getVenuesFromSameCity();
     venuesDropdown.innerHTML = '';
     const venueMenuWidth = Math.max(...(currentVenues.map(el => el.name.length)));
     venuesDropdown.style.width = venueMenuWidth+'ch';
@@ -141,8 +151,16 @@ function populateVenuesMenu(){
     venuesDropdown.selectedIndex = getKeyFromStorage('venue|'+currentCity+'|'+currentCountry,venuesDropdown);;
 }
 
-function getCurrentVenues(){
+function getVenuesFromSameCity(){
     return res = venues.filter(v => v.country === currentCountry && v.city === currentCity);
+}
+
+function aliasAlreadyExists(name){
+    return venues.filter(v => v.country === currentCountry && v.city === currentCity)
+            .map(el => el.aliases)
+            .filter(el => el !== undefined)
+            .flat()
+            .some(el => simplify(el) === simplify(name));
 }
 
 function getCurrentVenue(){
@@ -198,7 +216,9 @@ function updateVenueInfo(mode){
             if (isMultipages(venue)){
                 divMultipages.style.display = 'block';
                 if (venue.multiPages.hasOwnProperty('scroll')){
-                    divMultipages.textContent = 'Page will be scrolled by puppeteer.';
+                    divMultipages.textContent = 'Page will be scrolled to get all events.';
+                }else if (venue.multiPages.hasOwnProperty('nextButton')){
+                    divMultipages.textContent = 'Puppeteer will click on button \''+venue.multiPages.nextButton+'\' to load the entire page.';
                 }else{
                     divMultipages.textContent =  'Multiple pages: will scrap '+venue.multiPages.nbPages+' pages.';
                     if (venue.multiPages.hasOwnProperty('pattern')){
@@ -252,6 +272,7 @@ function updateVenueInfo(mode){
             button.addEventListener('click', function() {
                 updateVenueInfo('edit');
             });
+            
         //*************************/
         /*        edit mode       */
         //*************************/
@@ -274,9 +295,27 @@ function updateVenueInfo(mode){
             textAlias.value =  venue.hasOwnProperty('aliases')?venue.aliases.join('\n'):'';
             textAlias.setAttribute('rows', venue.hasOwnProperty('aliases')?venue.aliases.length:1);
             textAlias.addEventListener('input', function(event) {
-                const nbLines = textAlias.value.split('\n').length;
+                const aliasList = textAlias.value.split('\n');
+                const nbLines = aliasList.length;
                 textAlias.setAttribute('rows', nbLines);
+                if (aliasList.some(al => currentVenues.some(el => simplify(el.name) === simplify(al)))){
+                    divAliasAlert.textContent = 'A venue with the same name already exists';
+                    divAliasAlert.style.display = 'inline';
+                    saveButton.disabled = true;
+                }else if (aliasList.some(el => aliasAlreadyExists(el))){
+                    divAliasAlert.textContent = 'An alias is already in use for another venue';
+                    divAliasAlert.style.display = 'inline';
+                    saveButton.disabled = true;
+                }else{
+                    divAliasAlert.textContent = '';
+                    divAliasAlert.style.display = 'none';
+                    if (simplify(inputNameField.value) !== '' && divAlert.style.display === 'none'){
+                        saveButton.disabled = false;
+                    }
+                }
             }); 
+            const divAliasAlert = document.getElementById('aliasAlert');
+            divAliasAlert.style.display = 'none';
             // url
             textURL.textContent =  venue.hasOwnProperty('url')?venue.url:'';
             function updateTextarea() {
@@ -330,6 +369,17 @@ function updateVenueInfo(mode){
                 if (venue.multiPages.hasOwnProperty('nbPages')){
                     nbPagesToScrap.value = String(venue.multiPages.nbPages);
                 }
+                if (venue.multiPages.hasOwnProperty('nextButton')){
+                    MPClickButtonText.value = venue.multiPages.nextButton;
+                }
+                if (venue.multiPages.hasOwnProperty('maxPages')){
+                    pageLimitCheckbox.checked = true;
+                    ClickButtonMaxPages.value = venue.multiPages.maxPages;
+                    maxPageSelection.forEach(el => {
+                        el.style.display =  'block';
+                    });
+                }
+                
             }
             const selectMPFields = document.getElementById('selectMPFields');
             if (hasMP){
@@ -337,8 +387,10 @@ function updateVenueInfo(mode){
                     selectMPFields.selectedIndex = 1;
                 }else if(venue.multiPages.hasOwnProperty('scroll')){
                     selectMPFields.selectedIndex = 2;
-                }else if(venue.multiPages.hasOwnProperty('pageList')){
+                }else if(venue.multiPages.hasOwnProperty('nextButton')){
                     selectMPFields.selectedIndex = 3;
+                }else if(venue.multiPages.hasOwnProperty('pageList')){
+                    selectMPFields.selectedIndex = 4;
                 }
             }else{
                 selectMPFields.selectedIndex = 0;
@@ -360,12 +412,13 @@ function updateVenueInfo(mode){
                 venue.multiPages.pageList.join('\n'):'';
             const divMPInfo = document.getElementById('divMPInfo');
             checkIndexWarning();
-            const MPElements = document.querySelectorAll(".divMPIndex, .divMPPattern, .divMPPageList");
+            const MPElements = document.querySelectorAll(".divMPIndex, .divMPPattern, .divMPPageList, .divMPClickButton");
             setVisibility(MPElements,selectMPFields.value);
             selectMPFields.addEventListener('change', function(event) {
                 setVisibility(MPElements,selectMPFields.value);
                 checkIndexWarning();
             });
+
             MPButton.addEventListener('click', function() {
                 hasMP = !hasMP;
                 MPButton.textContent = hasMP?'Disable multiple pages':'Enable multiple pages';
@@ -375,6 +428,7 @@ function updateVenueInfo(mode){
             function checkIndexWarning(){
                 divMPInfo.style.display =   selectMPFields.value === 'Scroll' ||
                                             selectMPFields.value === 'PageList' ||
+                                            selectMPFields.value === 'ClickButton' ||
                                             /\{index\}/.test(textURL.textContent) ? 'none':'inline';
             }
             textURL.addEventListener('input', function() {
@@ -467,7 +521,11 @@ function updateVenueInfo(mode){
                 // multipages
                 if (hasMP){
                     venue.multiPages = {};
-                    venue.multiPages.nbPages = nbPagesToScrap.value;
+                    
+                    if (selectMPFields.selectedIndex < 2){ 
+                        venue.multiPages.nbPages = nbPagesToScrap.value;
+                    }
+
                     // if (venue.multiPages.hasOwnProperty('pattern')){delete venue.multiPages.pattern;}
                     // if (venue.multiPages.hasOwnProperty('scroll')){delete venue.multiPages.scroll;}
                     // if (venue.multiPages.hasOwnProperty('startIndex')){delete venue.multiPages.startIndex;}
@@ -478,6 +536,11 @@ function updateVenueInfo(mode){
                         venue.multiPages.pattern = MPPatternInput.value;
                     }else if (selectMPFields.selectedIndex === 2){                          
                         venue.multiPages.scroll = true;
+                    }else if (selectMPFields.selectedIndex === 3){                          
+                        venue.multiPages.nextButton = document.getElementById('MPClickButtonText').value;
+                        if (pageLimitCheckbox.checked){
+                            venue.multiPages.maxPages = Number(ClickButtonMaxPages.value);
+                        }
                     }else{
                         venue.multiPages.pageList = splitArray(MPPageListInput.value);
                     }        
@@ -545,6 +608,10 @@ function updateVenueInfo(mode){
                     divAlert.textContent = 'A venue with the same name already exists';
                     divAlert.style.display = 'inline';
                     saveButton.disabled = true;
+                }else if (aliasAlreadyExists(inputNameField.value)){
+                    divAlert.textContent = 'A venue with the same alias already exists';
+                    divAlert.style.display = 'inline';
+                    saveButton.disabled = true;
                 }else if (simplify(inputNameField.value) === ''){
                     divAlert.textContent = 'Empty name';
                     divAlert.style.display = 'inline';
@@ -552,7 +619,9 @@ function updateVenueInfo(mode){
                 }else{
                     divAlert.textContent = '';
                     divAlert.style.display = 'none';
-                    saveButton.disabled = false;
+                    if (divAliasAlert.style.display === 'none'){
+                        saveButton.disabled = false;
+                    }
                 }
             });
         }else{
@@ -617,13 +686,17 @@ function setVisibility(list, value){
     });
     const nbPagesPanel = document.getElementsByClassName('divMPnbPages');
     for(let i = 0; i < nbPagesPanel.length;i++){
-        if (value === 'Scroll' || value === 'PageList'){
+        if (value === 'Scroll' || value === 'PageList' || value === 'ClickButton'){
             nbPagesPanel[i].style.display = 'none';
         }else{
             nbPagesPanel[i].style.display = 'block';
         }
     }
-    
+    if (value === 'ClickButton'){
+        maxPageSelection.forEach(el => {
+            el.style.display = pageLimitCheckbox.checked ? 'block' : 'none';
+        });
+    }
 }
 
 function isNotBlank(string){
@@ -635,8 +708,9 @@ function splitArray(list){
 }
 
 function getKeyFromStorage(key, dropDown){
-    const value = sessionStorage.getItem(key);
-    if (value === null){return 0;}
+    // const value = sessionStorage.getItem(key);
+    // if (value === null){return 0;}
+    let value = localStorage.getItem(key) || 0;
     const list = [];
     for(i=0;i<dropDown.length;i++){
         list.push(dropDown.options[i].textContent);

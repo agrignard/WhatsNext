@@ -142,19 +142,84 @@ function verifyPath(path){
     }
 }
 
-async function getPageByPuppeteer(pageURL){
+async function getPageByPuppeteer(pageURL, venueName, multipagesOptions, verbose = true){
     const browser = await puppeteer.launch({
         // headless: false
     });
     const page = await browser.newPage();
-    await page.goto(pageURL);
+    await page.goto(pageURL, { waitUntil: 'networkidle2' });
     await page.setViewport({
         width: 1200,
         height: 800
     });
 
-    await autoScroll(page);
+    if (multipagesOptions.hasOwnProperty('scroll') && multipagesOptions.scroll === true){
+        if (verbose) {console.log('scrolling...');}
+        await autoScroll(page);
+        if (verbose) {console.log('fin scrolling');}
+    }
 
+    try{
+        if (multipagesOptions.hasOwnProperty('nextButton')){
+            if (verbose) {
+                console.log("Start clicking...");
+                page.on('console', (msg) => {
+                    console.log('Message du navigateur :'+msg.text());
+                });
+            }
+
+            let hasMoreContent = true;
+            count = 0;
+            const buttonText = multipagesOptions.nextButton;
+
+            while (hasMoreContent) {
+                count++;
+                console.log(count);
+                console.log(multipagesOptions.maxPages);
+                // console.log(multipagesOptions.hasOwnProperty('maxPages'));
+                console.log(multipagesOptions.hasOwnProperty('maxPages') && count === multipagesOptions.maxPages);
+                 // stop clicking if a max number of pages has been set
+                if (multipagesOptions.hasOwnProperty('maxPages') && count === multipagesOptions.maxPages){
+                    console.log('Download successful for venue \x1b[36m%s\x1b[0m: %s clicks were performed. Stopped because the maximum number of clicks has been reached.', venueName, multipagesOptions.maxPages);
+                    break;
+                }
+                hasMoreContent = await page.evaluate((buttonText, count, verbose) => { 
+                    const buttons = Array.from(document.querySelectorAll('button')); 
+
+                    // count the number of buttons that match the description
+                    // const test = buttons.filter(btn => btn.textContent.trim() === 'Voir plus');
+                    // console.log('length',test.length);
+
+                    const button = buttons.find(
+                        btn => btn.textContent.trim() === buttonText
+                    );
+                    if (button) {
+                        if (verbose) {console.log("click",count)};
+                        button.click();
+                        return true;
+                    }else{
+                        if (count == 1){
+                            return 'buttonNotFound';
+                        }
+                        return false;
+                    }
+                },buttonText,count, verbose);
+                if (hasMoreContent === 'buttonNotFound'){
+                    console.log('\x1b[31mWarning: button \x1b[0m\'%s\'\x1b[31m not found\x1b[0m for venue \x1b[36m%s\x1b[0m.',buttonText,venueName);
+                    break;
+                }
+                if (hasMoreContent === false){
+                    console.log('Download successful for venue \x1b[36m%s\x1b[0m: %s clicks were performed.', venueName, multipagesOptions.maxPages);
+                }
+                await new Promise(resolve => setTimeout(resolve, 2000));
+            }
+        }
+
+    
+    } catch (err) {
+        console.log('\x1b[31mError in puppeteer: \x1b[0m',err);
+    }
+    
     const content = await page.content();
     await browser.close();
 

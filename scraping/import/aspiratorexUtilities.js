@@ -46,7 +46,7 @@ async function downloadVenue(venue, filePath, verbose=false){
         console.log("\x1b[31mAttribute \'startPage\' and \'nbPages' are mandatory for multipages if there is a placeholder \'index\' in the URL. No page loaded\x1b[0m.");
         URLlist = [];
       }
-    }else if(venue.multiPages.hasOwnProperty('scroll')){
+    }else if(venue.multiPages.hasOwnProperty('scroll') || venue.multiPages.hasOwnProperty('nextButton')){
       URLlist = [venue.url];
     }else if(venue.multiPages.hasOwnProperty('pageList')){
         venue.multiPages.pageList.forEach(el => URLlist.push(venue.url+el));
@@ -65,8 +65,8 @@ async function downloadVenue(venue, filePath, verbose=false){
   async function getPage(page,pageIndex){
     let htmlContent;
     try{
-      if (venue.hasOwnProperty('multiPages') && venue.multiPages.hasOwnProperty('scroll')){
-        htmlContent = cleanPage(await getPageByPuppeteer(page));
+      if (venue.hasOwnProperty('multiPages') && (venue.multiPages.hasOwnProperty('scroll') || venue.multiPages.hasOwnProperty('nextButton'))){
+        htmlContent = cleanPage(await getPageByPuppeteer(page,venue.name,venue.multiPages));
       }else{
         // console.log('files',URLlist);
         htmlContent = cleanPage(await fetchWithRetry(page,2,2000));
@@ -77,19 +77,32 @@ async function downloadVenue(venue, filePath, verbose=false){
     }
 
     let outputFile;
-    if (!venue.hasOwnProperty('multiPages') || venue.multiPages.hasOwnProperty('scroll')){
+    if (!venue.hasOwnProperty('multiPages') || venue.multiPages.hasOwnProperty('scroll') || venue.multiPages.hasOwnProperty('nextButton')){
       outputFile = filePath+venue.name+".html";
     }else{
       outputFile = filePath+venue.name+pageIndex+".html";
     }
 
-    fs.writeFileSync(outputFile, htmlContent, 'utf8', (err) => {
+    // fs.writeFileSync(outputFile, htmlContent, 'utf8', (err) => {
+    //   if (err) {
+    //     console.log('dyr');
+    //     console.error("\x1b[31mCannot write local file \'%s\'\x1b[0m: %s",outputFile, err);
+    //   } else {
+    //     console.error("\x1b[31mCae local file \'%s\'\x1b[0m: %s",outputFile, err);
+    //     console.log("\'"+venue.name + "\'" + " file downloaded to " + outputFile);
+    //   }
+    // });
+    fs.writeFile(outputFile, htmlContent, 'utf8', (err) => {
       if (err) {
-        console.error("\x1b[31mCannot write local file \'%s\'\x1b[0m: %s",outputFile, err);
+        console.error("\x1b[31mCannot write local file \'%s\'\x1b[0m: %s", outputFile, err);
       } else {
-        console.log("\'"+venue.name + "\'" + " file downloaded to " + outputFile);
+        if (verbose){
+          console.log("File downloaded for venue \x1b[36m" + venue.name  + "\x1b[0m to " + outputFile);
+        } 
       }
     });
+
+
     return htmlContent;
   }
 

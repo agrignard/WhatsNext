@@ -71,9 +71,6 @@
   },
   {
     "name": "Transbordeur",
-    "aliases": [
-      "Le Transbordeur"
-    ],
     "city": "Lyon",
     "country": "France",
     "url": "https://www.transbordeur.fr/agenda/",
@@ -92,18 +89,12 @@
       ]
     },
     "eventURLIndex": 0,
-    "linkedPage": {
-      "eventNameTags": [
-        "DIV.span4:eq(1) DIV:eq(0) DIV.cscdefault:eq(2) H1:eq(2) SPAN:eq(0)",
-        "DIV.span4:eq(1) DIV:eq(0) DIV.cscdefault:eq(2) H1:eq(0) SPAN:eq(0)"
-      ]
-    },
     "linkedPageDateFormat": "dd-MM-yyyy-HH:mm",
     "ID": "Transbordeur|Lyon|France",
     "baseURL": "https://www.transbordeur.fr/agenda/",
     "multiPages": {
-      "nbPages": "5",
-      "scroll": true
+      "nextButton": "Voir plus",
+      "maxPages": 2
     }
   },
   {
@@ -808,6 +799,10 @@
     "baseURL": "https://shotgun.live/fr/cities/",
     "eventsDelimiterTag": "div.grid.gapx4.smgridcols2.lggridcols3.lggapx8.gapy0>a:not([class])",
     "eventURLIndex": 0,
-    "dateFormat": "dd-MM"
+    "dateFormat": "dd-MM",
+    "multiPages": {
+      "nextButton": "Voir plus",
+      "maxPages": 3
+    }
   }
 ]
