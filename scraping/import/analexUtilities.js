@@ -42,6 +42,7 @@ function regroupTags(tagList){
 
 function adjustMainTag(delimiterTag,$,venue, currentEventNumber){
     delimiterTag = delimiterTag.replace(/\s*$/,'');
+    console.log(delimiterTag);
     const mainTagEventsNumber = currentEventNumber?currentEventNumber:countNonEmptyEvents(delimiterTag,$,venue);//$(delimiterTag).length;
     let currentNumber = mainTagEventsNumber;
     // console.log('start number', currentNumber, delimiterTag);
@@ -176,7 +177,7 @@ function getTagsForKey(object,key,cheerioSource, showLog){
     const tagList = tagStrings.map(string2 => findTag(cheerioSource,string2));
     if (string[1] === 'Date'){
         const truc = getTagLocalization(cheerioSource(tagList[0]),cheerioSource,false);
-        console.log(tagStrings[0],truc);
+        // console.log(tagStrings[0],truc);
     }
     // const truc = reduceTag(getTagLocalization(cheerioSource(tagList[0]),cheerioSource,false),cheerioSource);
     // console.log(tagStrings[0],truc);

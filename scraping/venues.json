@@ -5,7 +5,7 @@
     "country": "France",
     "url": "https://le-sucre.eu/agenda/",
     "baseURL": "https://le-sucre.eu/agenda/",
-    "eventsDelimiterTag": "a.pureu11.pureumd12.pureulg14.t5410.pureug.agendacard",
+    "eventsDelimiterTag": "a.pureu11.pureumd12.pureulg14.pureug.agendacard",
     "defaultStyle": "Electro",
     "comments": "après avoir utilisé analex, enlever t5410 de la classe de la balise qui délimite les events",
     "mainPage": {
@@ -283,18 +283,8 @@
     "url": "https://www.trokson.com/shows",
     "defaultStyle": "Rock",
     "baseURL": "https://www.trokson.com/",
-    "mainPage": {
-      "eventNameTags": [
-        "DIV.yuONQy:eq(0)"
-      ],
-      "eventDummyTags": [
-        "DIV.kKuXKf:eq(0)"
-      ],
-      "eventDateTags": [
-        "DIV.I_kVM1:eq(0)"
-      ]
-    },
-    "eventsDelimiterTag": "DIV.j2Owzh.Wprg5l",
+    "mainPage": {},
+    "eventsDelimiterTag": "",
     "eventURLIndex": -1,
     "dateFormat": "dd-MM-yyyy-HH:mm",
     "delimiterAddLevels": 0,
@@ -417,25 +407,21 @@
     ],
     "ID": "La Rayonne|Lyon|France",
     "mainPage": {
-      "eventNameTags": [
-        "div.agendaeventtitle:eq(0)"
-      ],
       "eventDateTags": [
-        "div.agendahoraires:eq(0)",
         "div.agendajourlabel:eq(0)"
       ],
       "eventMultiNameTags": [
-        "a.agendaevent>div.agendaeventtitle"
+        "div.agendaeventtitle"
       ],
-      "eventMultiDateTags": [
-        "a.agendaevent>div.agendaeventinfos>div.agendahoraires"
+      "eventNameTags": [
+        "div.agendaeventtitle:eq(0)"
       ]
     },
     "url": "https://larayonne.org/agenda/",
     "baseURL": "https://larayonne.org/agenda/",
     "eventsDelimiterTag": "div.agendajour",
     "eventURLIndex": 1,
-    "dateFormat": "HH:mm-dd-MM"
+    "dateFormat": "dd-MM"
   },
   {
     "name": "Bizarre!",
@@ -701,16 +687,16 @@
     "country": "France",
     "mainPage": {
       "eventNameTags": [
-        "H3.tribeeventscalendarmonthmobileevents__mobileeventtitle.tribecommonh7:eq(0) A.tribeeventscalendarmonthmobileevents__mobileeventtitlelink.tribecommonanchor:eq(0)"
+        "a.tribeeventscalendarlist__eventtitlelink.tribecommonanchorthin:eq(0)"
       ],
       "eventDateTags": [
-        "TIME:eq(0) SPAN.tribeeventdatestart:eq(0)"
+        "time.tribeeventscalendarlist__eventdatetime:eq(0)"
       ]
     },
     "url": "https://www.laclefdevoute.fr/concerts-de-jazz-a-lyon/",
     "ID": "La Clef de Voûte|Lyon|France",
     "baseURL": "https://www.laclefdevoute.fr/concerts-de-jazz-a-lyon/",
-    "eventsDelimiterTag": " ARTICLE.tribeeventscalendarmonthmobileevents__mobileevent.tribe_events.typetribe_events.statuspublish.haspostthumbnail.hentry DIV.tribeeventscalendarmonthmobileevents__mobileeventdetails",
+    "eventsDelimiterTag": "article.tribeeventscalendarlist__event.tribecommongrow.tribecommongrowgutters.tribe_events.typetribe_events.statuspublish.haspostthumbnail.hentry>div.tribeeventscalendarlist__eventdetails.tribecommongcol>header.tribeeventscalendarlist__eventheader",
     "dateFormat": "dd-MM-HH:mm",
     "eventURLIndex": 1,
     "linkedPage": {}

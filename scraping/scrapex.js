@@ -77,7 +77,7 @@ async function scrapFiles(venues) {
   // *** post processing ***
 
   // merge duplicate events
-  console.log('*** Merging duplicate events ***\n');
+  // console.log('*** Merging duplicate events ***\n');
   totalEventList = mergeEvents(totalEventList,showFullMergeLog);
 
   // provide local URLs for alias venues

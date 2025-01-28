@@ -46,9 +46,10 @@ function mergeEvents(eventList,showFullMergeLog){
    // return newList;
     // merge process
     let res = [];
-    newList.filter(el => el.hasOwnProperty('mergeCandidates')).forEach(el=> {
-        res = res.concat(merge(el));
-    });
+    newList.filter(el => el.hasOwnProperty('mergeCandidates'))
+        .forEach(el=> {
+            res = res.concat(merge(el));
+        });
     console.log(mergeLog);
     return res;
 
@@ -57,10 +58,8 @@ function mergeEvents(eventList,showFullMergeLog){
     // merge function. The problematic here is to find if there are different time schedule for a same event, it is
 // legit (several event times like afternoon and evening shows) or if it is a mistake from one of the sources
   
-    function merge(event){
-        // if (event.eventName.includes('nalog')){
-        //     console.log(event);
-        // }
+    function merge(event){   
+            // console.log(event);
         if (!event.hasOwnProperty('mergeCandidates')){// if there is no candidate to merge, return the event
             return [event];
         }
@@ -183,7 +182,11 @@ function createEvent(d,event){
     }
     
     singleEvent.eventDate = candidateList[0].eventDate;
-    singleEvent.altURLs = removeDoubles(candidateList.map(el => el.eventURL));
+    singleEvent.altURLs = removeDoubles(candidateList.map(el => el.eventURL))
+                            .filter(el => !(el === singleEvent.eventURL));
+    if (singleEvent.altURLs.length === 0){
+        delete(singleEvent.altURLs);
+    }
     singleEvent.unixDate = d;
     singleEvent.source = candidateList[0].source;// ensure that if there is a local source,  this local source is assigned to the event as a reference
     delete singleEvent.mergeCandidates;

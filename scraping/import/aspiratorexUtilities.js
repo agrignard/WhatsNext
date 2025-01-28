@@ -168,9 +168,9 @@ async function downloadLinkedPages(venue, filePath, pageList, verbose = false){
       if (failedDownloads === 0){
         console.log('All linked pages successfully downloaded and saved for \x1b[36m%s\x1b[0m.',venue.name);;
       }else{  
-        console.log('\x1b[31mVenue: \x1b[36m%s\x1b[0m: %s/%s\x1b[31m links downloaded. \x1b[36m'
-          +'(%s) new links downloaded this run. ',
-          +'Run aspiratorex again\x1b[31m to load remaining links.\x1b[0m',
+        console.log('\x1b[31mVenue \x1b[36m%s: \x1b[31m%s\x1b[0m/%s links downloaded. '
+          +'(%s) new links downloaded this run. '
+          +'\x1b[31mRun aspiratorex again to load remaining links.\x1b[0m',
           venue.name,hrefList.length-failedDownloads, hrefList.length,
           hrefList.length-failedDownloads-existingLinks.length);
       }

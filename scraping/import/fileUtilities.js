@@ -153,6 +153,9 @@ async function getPageByPuppeteer(pageURL, venueName, multipagesOptions, verbose
         height: 800
     });
 
+    // const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    // await delay(5000);
+
     if (multipagesOptions.hasOwnProperty('scroll') && multipagesOptions.scroll === true){
         if (verbose) {console.log('scrolling...');}
         await autoScroll(page);
@@ -229,7 +232,7 @@ async function autoScroll(page){
     await page.evaluate(async () => {
         await new Promise((resolve) => {
             var totalHeight = 0;
-            var distance = 100;
+            var distance = 100; // old value: 100
             var timer = setInterval(() => {
                 var scrollHeight = document.body.scrollHeight;
                 window.scrollBy(0, distance);

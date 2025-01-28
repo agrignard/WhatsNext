@@ -40,7 +40,7 @@ let currentPage = 'mainPage';
 let detailedScrapView = true;
 let scrapInfoTooOld; // if scrap info is from a too old event, the linked page does not correspond to the tag
 
-const keyNames = ['Name','Dummy','Date','Style','Place','URL','MultiName','MultiDate','MultiStyle','MultiPlace','MultiURL'];
+const keyNames = ['Dummy','Name','Date','Style','Place','URL','MultiName','MultiDate','MultiStyle','MultiPlace','MultiURL'];
 const colorClassList = ['SCRPXhighlightName','SCRPXhighlightDate','SCRPXhighlightStyle',
                         'SCRPXhighlightPlace','SCRPXhighlightURL','SCRPXhighlightDummy'];
 const easyButtonClassList = ['easyButtonName','easyButtonDate','easyButtonStyle','easyButtonPlace','easyButtonURL','easyButtonDummy'];
@@ -277,7 +277,6 @@ delimiterTagField.addEventListener('input'||'change',event =>{
   freezeDelimiterButton.textContent = "Unfreeze";
   delimiterTagField.classList.add('inactive');
   computeTags(true);
-  // computeEventsNumber();
 });
 
 const freezeDelimiterButton = document.getElementById('freezeDelimiterButton');
@@ -1191,13 +1190,14 @@ function computeDelimiterTag(renderURL){// renderURL forces to update the URL in
     mainTagAbsolutePath = getTagLocalization(mainTag,$page,false);
 
     // console.log('*** verif ***',oldTag === mainTagAbsolutePath);
-    console.log(mainTagAbsolutePath);
+    // console.log(mainTagAbsolutePath);
     // console.log('abs',mainTagAbsolutePath); 
     // console.log('maintag:',$page(mainTag).text());
     tagsFromStrings(cheerio.load($page(mainTag).html()));
     if (oldTag !== mainTagAbsolutePath){
       delimiterTag = reduceTag(getTagLocalization(mainTag,$page,true),$page,false);
-      nbEvents.main = computeEventsNumber();
+      console.log('delimit');
+      nbEvents.main = computeEventsNumber(delimiterTag);
       // console.log('deli',delimiterTag);
       if (autoAdjustCheckbox.checked === true){
         [adjustedDelimiterTag, nbEvents.adjusted] = adjustMainTag(delimiterTag,$page,venue,nbEvents.main);
@@ -1515,9 +1515,12 @@ function setEventPanel(n){
 // of events for the given tag
 function computeEventsNumber(tag){
   if (tag === undefined){
+    console.log('comptage');
     tag = venue.eventsDelimiterTag;
   }
+  console.log('Tag: ',tag);
   const count = countNonEmptyEvents(tag,$page,venue);
+  console.log('compté: ',count);
   setEventPanel(count);
   return count;
 }
