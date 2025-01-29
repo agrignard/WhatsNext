@@ -9,10 +9,41 @@ const fs = require('fs');
 const cheerio = require('cheerio');
 const {cleanPage, removeBlanks, extractBody, simplify} = require('./stringUtilities.js');
 
+class BrowserPool {
+    constructor(maxConcurrent = 3) {
+        this.maxConcurrent = maxConcurrent;
+        this.activeBrowsers = new Set();
+    }
+
+    async acquire() {
+        while (this.activeBrowsers.size >= this.maxConcurrent) {
+            await new Promise(resolve => setTimeout(resolve, 100));
+        }
+        const browser = await puppeteer.launch({
+            // headless: false,
+            args: ['--no-sandbox', '--disable-setuid-sandbox']
+        });
+        this.activeBrowsers.add(browser);
+        return browser;
+    }
+
+    async release(browser) {
+        if (browser && this.activeBrowsers.has(browser)) {
+            await browser.close();
+            this.activeBrowsers.delete(browser);
+        }
+    }
+}
 
 module.exports = {fetchLink, fetchAndRecode, fetchWithRetry, loadLinkedPages, saveToJSON, 
                     saveToCSV, getVenuesFromArguments,getFilesContent, getFilesNumber, 
-                    getModificationDate, getPageByPuppeteer, minimalizeHtmlFile};
+                    getModificationDate, getPageByPuppeteer, minimalizeHtmlFile, BrowserPool};
+
+
+/*******************************/
+/***        functions        ***/
+/*******************************/
+
 
 // minimalize file and save to output directory
 async function minimalizeHtmlFile(fileName, inputPath, outputPath){
@@ -142,10 +173,17 @@ function verifyPath(path){
     }
 }
 
-async function getPageByPuppeteer(pageURL, venueName, multipagesOptions, verbose = false){
-    const browser = await puppeteer.launch({
-        // headless: false
-    });
+
+
+async function getPageByPuppeteer(pageURL, venueName, multipagesOptions, browserPool, verbose = false){
+    let browser = null;
+
+    // browser = await puppeteer.launch({
+    //     // headless: false
+    // });
+
+    browser = await browserPool.acquire();
+
     const page = await browser.newPage();
     await page.goto(pageURL, { waitUntil: 'networkidle2' });
     await page.setViewport({
@@ -163,68 +201,77 @@ async function getPageByPuppeteer(pageURL, venueName, multipagesOptions, verbose
     }
 
     try{
-        if (multipagesOptions.hasOwnProperty('nextButton')){
-            if (verbose) {
-                console.log("Start clicking...");
-                page.on('console', (msg) => {
-                    console.log('Message du navigateur :'+msg.text());
-                });
-            }
-
-            let hasMoreContent = true;
-            count = 0;
-            const buttonText = multipagesOptions.nextButton;
-
-            while (hasMoreContent) {
-                count++;
-                if (verbose) {console.log(count);}
-                 // stop clicking if a max number of pages has been set
-                if (multipagesOptions.hasOwnProperty('maxPages') && count === multipagesOptions.maxPages){
-                    console.log('Download successful for venue \x1b[36m%s\x1b[0m: %s clicks were performed. Stopped because the maximum number of clicks has been reached.', venueName, multipagesOptions.maxPages);
-                    break;
+        try{
+            if (multipagesOptions.hasOwnProperty('nextButton')){
+                if (verbose) {
+                    console.log("Start clicking...");
+                    page.on('console', (msg) => {
+                        console.log('Message du navigateur :'+msg.text());
+                    });
                 }
-                hasMoreContent = await page.evaluate((buttonText, count, verbose) => { 
-                    const buttons = Array.from(document.querySelectorAll('button')); 
 
-                    // count the number of buttons that match the description
-                    // const test = buttons.filter(btn => btn.textContent.trim() === 'Voir plus');
-                    // console.log('length',test.length);
+                let hasMoreContent = true;
+                count = 0;
+                const buttonText = multipagesOptions.nextButton;
 
-                    const button = buttons.find(
-                        btn => btn.textContent.trim() === buttonText
-                    );
-                    if (button) {
-                        if (verbose) {console.log("click",count)};
-                        button.click();
-                        return true;
-                    }else{
-                        if (count == 1){
-                            return 'buttonNotFound';
-                        }
-                        return false;
+                while (hasMoreContent) {
+                    count++;
+                    if (verbose) {console.log(count);}
+                    // stop clicking if a max number of pages has been set
+                    if (multipagesOptions.hasOwnProperty('maxPages') && count === multipagesOptions.maxPages){
+                        console.log('Download successful for venue \x1b[36m%s\x1b[0m: %s clicks were performed. Stopped because the maximum number of clicks has been reached.', venueName, multipagesOptions.maxPages);
+                        break;
                     }
-                },buttonText,count, verbose);
-                if (hasMoreContent === 'buttonNotFound'){
-                    console.log('\x1b[31mWarning: button \x1b[0m\'%s\'\x1b[31m not found\x1b[0m for venue \x1b[36m%s\x1b[0m.',buttonText,venueName);
-                    break;
+                    hasMoreContent = await page.evaluate((buttonText, count, verbose) => { 
+                        const buttons = Array.from(document.querySelectorAll('button')); 
+
+                        // count the number of buttons that match the description
+                        // const test = buttons.filter(btn => btn.textContent.trim() === 'Voir plus');
+                        // console.log('length',test.length);
+
+                        const button = buttons.find(
+                            btn => btn.textContent.trim() === buttonText
+                        );
+                        if (button) {
+                            if (verbose) {console.log("click",count)};
+                            button.click();
+                            return true;
+                        }else{
+                            if (count == 1){
+                                return 'buttonNotFound';
+                            }
+                            return false;
+                        }
+                    },buttonText,count, verbose);
+                    if (hasMoreContent === 'buttonNotFound'){
+                        console.log('\x1b[31mWarning: button \x1b[0m\'%s\'\x1b[31m not found\x1b[0m for venue \x1b[36m%s\x1b[0m.',buttonText,venueName);
+                        break;
+                    }
+                    if (hasMoreContent === false){
+                        console.log('Download successful for venue \x1b[36m%s\x1b[0m: %s clicks were performed.', venueName, multipagesOptions.maxPages);
+                    }
+                    await new Promise(resolve => setTimeout(resolve, 2000));
                 }
-                if (hasMoreContent === false){
-                    console.log('Download successful for venue \x1b[36m%s\x1b[0m: %s clicks were performed.', venueName, multipagesOptions.maxPages);
-                }
-                await new Promise(resolve => setTimeout(resolve, 2000));
             }
+
+        
+        } catch (err) {
+            console.log('\x1b[31mError in puppeteer: \x1b[0m',err);
         }
+        
+        const content = await page.content();
+        await browser.close();
 
-    
-    } catch (err) {
-        console.log('\x1b[31mError in puppeteer: \x1b[0m',err);
+        // fs.writeFileSync('page.html', content);
+        return content;
+    }catch (error) {
+        console.error(`Error processing ${pageURL}: ${error.message}`);
+        throw error;
+    } finally {
+        if (browser) {
+            await browserPool.release(browser);
+        }
     }
-    
-    const content = await page.content();
-    await browser.close();
-
-    // fs.writeFileSync('page.html', content);
-    return content;
 };
 
 

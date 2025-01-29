@@ -6,7 +6,7 @@
 //const path = require('path');
 const fs = require('fs');
 const {removeDoubles, makeURL, cleanPage} = require('./stringUtilities.js');
-const {loadLinkedPages, fetchWithRetry, fetchLink, getPageByPuppeteer} = require('./fileUtilities.js');
+const {loadLinkedPages, fetchWithRetry, fetchLink, getPageByPuppeteer, BrowserPool} = require('./fileUtilities.js');
 //const {loadVenuesJSONFile, saveToVenuesJSON, isAlias, initializeVenue} = require('./jsonUtilities.js');
 const {getURLListFromPattern} = require('./dateUtilities.js');
 const cheerio = require('cheerio');
@@ -66,7 +66,7 @@ async function downloadVenue(venue, filePath, verbose=false){
     let htmlContent;
     try{
       if (venue.hasOwnProperty('multiPages') && (venue.multiPages.hasOwnProperty('scroll') || venue.multiPages.hasOwnProperty('nextButton'))){
-        htmlContent = cleanPage(await getPageByPuppeteer(page,venue.name,venue.multiPages));
+        htmlContent = cleanPage(await getPageByPuppeteer(page,venue.name,venue.multiPages, browserPool));
       }else{
         // console.log('files',URLlist);
         htmlContent = cleanPage(await fetchWithRetry(page,2,2000));
@@ -107,6 +107,7 @@ async function downloadVenue(venue, filePath, verbose=false){
   }
 
   // read the pages and save them to local files
+  const browserPool = new BrowserPool(3);
   let pageList = (await Promise.all(URLlist.map((page,pageIndex)=>getPage(page,pageIndex)))).flat();
   
   // get linked pages

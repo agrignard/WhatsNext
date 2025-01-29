@@ -42,7 +42,7 @@ function regroupTags(tagList){
 
 function adjustMainTag(delimiterTag,$,venue, currentEventNumber){
     delimiterTag = delimiterTag.replace(/\s*$/,'');
-    console.log(delimiterTag);
+    // console.log(delimiterTag);
     const mainTagEventsNumber = currentEventNumber?currentEventNumber:countNonEmptyEvents(delimiterTag,$,venue);//$(delimiterTag).length;
     let currentNumber = mainTagEventsNumber;
     // console.log('start number', currentNumber, delimiterTag);
