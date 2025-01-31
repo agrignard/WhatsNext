@@ -5,35 +5,30 @@
 
 const rootPath = '..'
 
+const fs = require('fs');
 require('dotenv').config();
 const { default: Anthropic } = require('@anthropic-ai/sdk');
-const fs = require('fs');
-// const { default: ollama } = require('ollama');
-
 
 const API_KEY = process.env.ANTHROPIC_KEY;
 
-
 // const {removeDoubles, makeURL, cleanPage, extractBody} = require('./import/stringUtilities.js');
-const {getVenuesFromArguments} = require(rootPath+'/import/fileUtilities.js');
-const {loadVenuesJSONFile, saveToVenuesJSON, isAlias, initializeVenue} = require(rootPath+'/import/jsonUtilities.js');
+const {getVenuesFromArguments, minimalizeHtml} = require(rootPath+'/import/fileUtilities.js');
+const {loadVenuesJSONFile, saveToVenuesJSON, isAlias, initializeVenue, 
+    getDateConversionPatterns, fromLanguages, getCommonDateFormats} = require(rootPath+'/import/jsonUtilities.js');
+const {analyze} = require(rootPath+'/import/analexUtilities.js');
 
 
-const sourcePath = './webSources/';
+const sourcePath = '../webSources/';
 const venueList = loadVenuesJSONFile();
-// const modelList = [ 'llama3', //0
-//                     'llama3.1:8b', //1
-//                     'llama3.3:70b',  //2
-//                     'deepseek-coder-v2', //3
-//                     'mistral-nemo' //4
-//                 ]
-// const model = modelList[1];
-// const maxTokens = 128000;
 
-console.log('\n\n*****************************************');
-console.log('********   Using model Claude   ********');
-console.log('*****************************************\n\n');
+const maxTokens = 128000;
 
+const notVenues = ['Shotgun','Infoconcert', 'Le Petit Bulletin', 'L\'agend\'arts', 'Ninkasi', 'Likdo'];
+const knownStyle = ['concert','live','club','techno','jazz','rock','pop','classique','théâtre','conférence'];
+
+console.log('\n\n******************************************');
+console.log('********    Using model Claude    ********');
+console.log('******************************************\n\n');
 //const API_KEY = 
 
 let venues = venueList;
@@ -53,8 +48,9 @@ if (process.argv.length >2){
         //  console.log(inputFileList);
             inputFileList.forEach(element => {
                 let content = fs.readFileSync(venueSourcePath+element, 'utf-8');
+                content = minimalizeHtml(content, 'text');
                 // console.log(content);
-                analyseContent(content);
+                analyseContent(content, el);            
             });
                 
         } catch (err) {
@@ -65,57 +61,97 @@ if (process.argv.length >2){
     console.log("No input venue");
 }
 
-async function analyseContent(content){
+async function analyseContent(content, venue) {
+    try {
+        const isNotAVenue = notVenues.includes(venue.name);
 
-    // const question = 'Voici un code html:\n\n'
-    // + content
-    // + '\n\nPeux-tu trouver tous les événements contenus dans ce code ?' 
-    // + 'Je souhaite avoir le résultat sous forme de liste, avec les informations suivantes: nom, lieu, date, heure, prix, style,'
-    // + 'et lien url vers l\'événement.';
+        console.log('\x1b[36mLe chat\x1b[0m va analexer la page suivante: \x1b[36m'+venue.name+'\x1b[0m.'); 
 
-    
-    // const question = 'Voici un code html:\n\n'
-    //     + content
-    //     + '\n\nPeux-tu trouver tous les événements contenus dans ce code ?' 
-    //     + 'Je souhaite avoir le résultat sous forme de liste, avec les informations suivantes: nom, lieu, date, heure, prix, style,'
-    //     + 'et lien url vers l\'événement.';
-    //     + 'Renvoie le résultat sous la forme d\'un json'
-    //     + 'Je veux les informations suivantes: nom, lieu, date, heure, prix, style,'
-    //     + 'et lien url vers l\'événement'
-    //     + 'Si un des champs n\'est pas spécifié, la valeur de l\'attribut sera \'\'.'
-    //     + 'Les catégories json se nommeront respectivement '
-    //     + ' nom, lieu, date, heure, prix, style, url.';
+        let loadingComplete = false;
+        let dots = "";
+        const interval = setInterval(() => {
+            dots += ".";
+            process.stdout.write(`\r\x1b[36mLe Chat\x1b[0m réfléchit${dots}`);
+            if (loadingComplete){
+                clearInterval(interval);
+            }else{
+                dots += ".";
+                process.stdout.write(`\r\x1b[36mLe Chat\x1b[0m réfléchit${dots}`);
+                if (dots.length > 10) {
+                    dots = "            ";
+                    process.stdout.write(`\r\x1b[36mLe Chat\x1b[0m réfléchit${dots}`);
+                    dots = "";
+                }
+            }           
+        }, 500);
 
-        const question = 'Voici un document d\'information sur des événements à venir:\n\n'
-        + content
-        + '\n\nPeux-tu trouver tous les événements contenus dans ce document ?';
-        // + ' Présente les résultats sous la forme d\'une liste avec une ligne par événement qui contient dans l\'ordre suivant date, nom, lieu, heure, style et prix.';
-        // +' Présente les résultats sous la forme d\'un json avec pour chaque événement les champs suivants: nom, lieu, date, heure, prix, style.';
+        // // console.log('Is not a venue: ', isNotAVenue);
+        const event = await extractEvent(content, isNotAVenue);
+        // console.log(event);
+        const eventJSON = JSON.parse(event);
 
-    // console.log(content);
+        // const eventJSON = {
+        //     name: [ 'mini club' ],
+        //     date: [ 'vend. 31 jan.' ],
+        //     style: [ 'Club' ],
+        //     price: [],
+        //     other: [ 'Sha Ru', 'Islyz', 'De Grandi' ]
+        // };
+        loadingComplete = true;
+        console.log('\n\n\x1b[36mLe chat\x1b[0m a trouvé les informations suivantes:\n'); 
+        console.log(eventJSON);
 
-    // const conversationHistory = [];
+        const tmp = {
+            eventNameStrings: eventJSON.name,
+            eventDateStrings: eventJSON.date,
+            eventStyleStrings: eventJSON.style
+        }
 
-    // const result = await askTheLlama(question,conversationHistory);
-    const result = await askClaude(question);
+        const scrapJSON = {
+            mainPage: tmp,
+        }
+        console.log('\n\x1b[36mLe chat\x1b[0m commence à chercher les tags.\n'); 
+        // console.log(scrapJSON);
 
-   
+        analyze(venue, scrapJSON, '../webSources/', venueList, false);
 
-    console.log('\n\nSortie :\n\n');
-    // console.log(result.message.content);
-    // console.log(result.response);
-    
-    // // console.log(result.response);
-    // const cleanResult = result.message.content.replace(/^[^\[]*\[/,'\[').replace(/\][^\]]*$/,'\]');
-    const cleanResult = result.replace(/^[^\[]*\[/,'\[').replace(/\][^\]]*$/,'\]');
-    console.log('\n\nsous forme JSON:\n\n');
-    const eventJSON = JSON.parse(cleanResult);
-
-    console.log(eventJSON);
+        console.log('\x1b[36mLe Chat\x1b[0m a fini d\'analexer ! Lancez scrapex pour vérifier qu\'il bien taffé.');
+        
+    } catch (error) {
+        console.error('Erreur dans analyseContent:', error);
+    }
 }
 
 
-async function askClaude(question) {
+async function extractEvent(text, isNotAVenue) {
+    // const systemPrompt = "Provide the result as a json with fields name, date, style and text. Syntax must be exactly the same than in the document."
+    //     +" The text is the exact copy of the block corresponding to the event in the document.";
+
+    // const question = 'Voici un document d\'information sur des événements à venir:\n\n'
+    //     + text
+    //     + '\n\nPeux-tu trouver un événement contenu dans ce document ? Indentify les lignes qui correspondent à';
+
+    const systemPrompt = "Provide the result as a json with fields name, date, style, price and other, with a list of strings for each field." 
+    +" For each line of the event block in the document, add it the the most suitable field. Syntax must be exactly the same than in the document.\n"
+    +"Only provide the json, with no comment before or after.";
+    // +" The text is the exact copy of the block corresponding to the event in the document.";
+
+    const question = 'Voici un document d\'information sur des événements à venir:\n\n'
+    + text
+    + '\n\nPeux-tu trouver un événement contenu dans ce document ? ';
+
+    try {
+        const result = await askClaude(question, systemPrompt);
+        // console.log(result);
+        return result;
+    } catch (error) {
+        console.error('Erreur lors de l\'extraction des concerts:', error);
+        return [];
+    }
+}
+
+
+async function askClaude(question, systemPrompt) {
     const anthropic = new Anthropic({
         apiKey: API_KEY
     });
@@ -124,7 +160,7 @@ async function askClaude(question) {
         model: "claude-3-5-sonnet-20241022",
         max_tokens: 4000,
         temperature: 0,
-        system: "Provide the result as a json with fields name, place, date, time, style, price, url. Be exhaustive.",
+        system: systemPrompt,
         messages: [
             {
                 "role": "user",
@@ -137,8 +173,10 @@ async function askClaude(question) {
             }
         ]
     });
-    console.log(msg);
-    console.log("Request complete.\nstop reason: "+msg.stop_reason);
-    console.log('Usage: '+msg.usage);
+    // console.log(msg);
+    // console.log("Request complete.\nstop reason: "+msg.stop_reason);
+    // console.log('Usage: '+msg.usage);
     return msg.content[0].text;
   }
+
+

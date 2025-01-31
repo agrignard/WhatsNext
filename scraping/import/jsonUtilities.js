@@ -242,6 +242,7 @@ function saveToScrapInfoJSON(jsonList){
 function saveToVenuesJSON(jsonList, verbose=false){
     try{
         const jsonString = JSON.stringify(jsonList, null, 2); 
+        // console.log(jsonString);
         fs.writeFileSync(venuesListJSONFile, jsonString);
         if (verbose){
             console.log('Saved to in %s',venuesListJSONFile);

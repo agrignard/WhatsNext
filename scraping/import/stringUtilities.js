@@ -108,8 +108,43 @@ function cleanPage(content){
   cleanedContent = removeForms(cleanedContent);
   cleanedContent = fixTags(cleanedContent);
   cleanedContent = fixImages(cleanedContent);
+  cleanedContent = addDepthTag(cleanedContent);
  // cleanedContent = removeImages(cleanedContent);
   return cleanedContent;
+}
+
+function addDepthTag(content){
+  const cheerio = require('cheerio');
+
+  const $ = cheerio.load(content);
+
+  // search for existing class in order to set a depthPrefix that does not conflict with existing classes
+  const classes = new Set();
+  $('*').each((_, element) => {
+    const classAttr = $(element).attr('class');
+    if (classAttr) {
+      classAttr.split(/\s+/).forEach(cls => classes.add(cls)); // return unique classes
+    }
+  });
+
+  const classeList = [...classes];
+  let depthPrefix = 'depth';
+  // while(classes.has(depthPrefix)){
+  while(classeList.some(item => item.startsWith(depthPrefix))){
+    depthPrefix = depthPrefix+'X';
+  }
+
+  function addDepthClass(element, depth = 0) {
+    
+    $(element).addClass(depthPrefix+depth);
+    $(element).children().each((_, child) => {
+      addDepthClass(child, depth + 1);
+    });
+  }
+  
+  addDepthClass($('html'));
+  
+  return $.html();
 }
 
 // fix image sizes that are too large in electron
@@ -137,11 +172,18 @@ function removeBRTags(content){
 
 // replace tags that do not provide useful information, and make html hard to read or cause errors, such as <path>
 function removeUselessTags(content){
-  tagList = ['path'];
+  // remove tags but keep content
+  let tagList = ['path'];
   tagList.forEach(el => {
     let regex = new RegExp("<[\s\t\n]*"+el+"[^>]*>(.*?)<[\s\t\n]*\/"+el+"[\s\t\n]*>","gi");
     content = content.replace(regex, '$1');
   });
+  // remove tags and content
+  tagList = ["header","svg","video","option","footer","nav","select"];
+  tagList.forEach(el => {
+        regex = new RegExp("<"+el+"[^]*?<\/"+el+">","g");
+        content = content.replace(regex,'');
+    });
   return content;
 }
 

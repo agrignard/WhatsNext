@@ -37,7 +37,7 @@ class BrowserPool {
 
 module.exports = {fetchLink, fetchAndRecode, fetchWithRetry, loadLinkedPages, saveToJSON, 
                     saveToCSV, getVenuesFromArguments,getFilesContent, getFilesNumber, 
-                    getModificationDate, getPageByPuppeteer, minimalizeHtmlFile, BrowserPool};
+                    getModificationDate, getPageByPuppeteer, minimalizeHtmlFile, minimalizeHtml, BrowserPool};
 
 
 /*******************************/
@@ -47,35 +47,46 @@ module.exports = {fetchLink, fetchAndRecode, fetchWithRetry, loadLinkedPages, sa
 
 // minimalize file and save to output directory
 async function minimalizeHtmlFile(fileName, inputPath, outputPath){
-    console.log("minimalizing file "+fileName);
-    console.log(outputPath);
-    htmlContent = minimalizeHtml(inputPath+fileName, outputFormat);
+    console.log("minimalizing file \x1b[36m"+fileName+"\x1b[0m and saving to \x1b[36m"+outputPath+"\x1b[0m.");
+    // console.log(outputPath);
+    const file = inputPath+fileName;
+    // console.log("opening "+file);
+    let content = fs.readFileSync(file, 'utf-8');
+    htmlContent = minimalizeHtml(content, outputFormat);
     saveToFile(htmlContent, fileName, outputPath);
 }
 
 // function to reduce the size of the html.
-function minimalizeHtml(file, action = "basic"){    //option: 'basic' (default) to have a more compact file, 
+function minimalizeHtml(content, action = "basic"){    //option: 'basic' (default) to have a more compact file, 
                                                     //'compact': basic+replace classes names with more compact one
                                                     //'minimal': keep html structure with only basic information (tags...)
                                                     //'text': to keep only the text
-    console.log("opening "+file);
-    let content = fs.readFileSync(file, 'utf-8');
+                                                    //'parenthesis': replace tags by 
 
     let regex;
 
     // remove head information
-    content = content.replace(/<head[^]*?<\/head>/g,'<head></head>');
+    content = content.replace(/<head[^]*?<\/head>/g,'');
 
     // remove useless tags
-    tagsToRemove = ["path","header","svg","video","option","button","footer","nav"];
+    tagsToRemove = ["path","header","svg","video","option","button","footer","nav","select"];
     tagsToRemove.forEach(el => {
         regex = new RegExp("<"+el+"[^]*?<\/"+el+">","g");
         content = content.replace(regex,'');
     });
 
     // remove images
-    content = content.replace(/<img[^]*?\/>/g,'');
+    content = content.replace(/<img[^]*?>/g,'');
 
+    if (action === 'parenthesis'){
+        console.log('fddsfds');
+        // remove blanks and new line
+        content = content.replace(/>[\n\s\t]*</g,'><');
+        content = content.replace(/<\/[^>]*>/g,']');
+        content = content.replace(/<[^>]*>/g,'[');
+        return content;
+    }
+  
     // remove useless attributes
     attrToRemove = ["style","alt","decoding","srcSet","src","sizes","rel","target","aria-label",
         "aria-haspopup","aria-expanded","aria-current","aria-hidden","aria-disabled","aria-controls",
@@ -91,18 +102,21 @@ function minimalizeHtml(file, action = "basic"){    //option: 'basic' (default) 
 
     // remove all tags
     if (action === 'text'){
+        // remove blanks and new line
+        content = content.replace(/>[\n\s\t]*</g,'><');
+
         content = content.replace(/<\/time[^>]*>/g,'\n');
         content = content.replace(/<time[^>]*>/g,' ');
         content = content.replace(/<![^>]*>/g,'');
 
         // remove <a> tags but keep the link
         content = content.replace(/<[\s\t\n]*a\s[^>]*href[\s\t\n]*=[\s\t\n]*"([^"]+)"[^>]*>/g, (match, url) => {
-            return ` lien web : https://www.shotgun.fr${url}`;});// base url to be replaced
+            return `lien web : https://www.shotgun.fr${url}\n`;});// base url to be replaced
         // content = content.replace(/<[\s\t\n]*\/a[\s\t\n]*>/g,'');
 
         const endTagReplacements = {
-            ['\n']: ['div', 'h1', 'h2','body','head','html','section'],
-            ' ': ['span','a','select'],
+            ['\n']: ['div', 'h1', 'h2','body','head','html','section', 'li','p','ul'],
+            ' ': ['span','a','strong','b'],
         };
 
         Object.keys(endTagReplacements).forEach(key =>{
@@ -443,6 +457,7 @@ function filterFromArguments(args){
 
 // return the content of the files
 function getFilesContent(sourcePath, maxPages){
+    console.log(sourcePath);
     let inputFileList;
     try {
         inputFileList = fs.readdirSync(sourcePath)
