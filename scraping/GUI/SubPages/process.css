@@ -23,7 +23,10 @@ body, html {
 }
 
 #pageManagerDetailsPanel{
-  padding: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 5px;
+  padding-bottom: 2px;
 }
 
 
@@ -54,6 +57,16 @@ body, html {
   padding: 0;
 }
 
+.easyButton.inactive{
+  background-color: rgb(187, 196, 227);
+}
+
+.easyButton.inactive:hover{
+  /* background-color: rgb(134, 134, 134); */
+  background-color: rgb(187, 196, 227);
+  cursor: default;
+}
+
 .easyButton:hover{
   cursor: pointer;
 }
@@ -73,25 +86,43 @@ body, html {
 .normalButton{
   background-color: lightgray;
   border: none;
+}
+
+.activeButton:hover {
+  background-color: darkgray;
   cursor: pointer;
 }
 
-.normalButton:hover {
+.activeGroupTagButton:hover {
   background-color: darkgray;
 }
+
 
 .scrapElement .input-row button {
   /* flex: 0 0 auto;  */
   margin-right: 5px; /* Marge entre les éléments */
 }
 
-#easyPanelCopyButton{
+#groupTagsButton{
 position: absolute;
 right: 5px;
 padding: 2px 6px;
 }
 
+.panelHeader{
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  width: 100%;
+}
 
+.headerButtons{
+  display: flex;
+    gap: 2px; 
+    flex-wrap: nowrap; /* Empêche les éléments de passer à la ligne */
+    min-width: 0;
+    overflow: hidden;
+}
 
 .copyButton {
 position: absolute;
@@ -147,10 +178,6 @@ padding: 2px 6px;
 background-color: lightblue;
 }
 
-.SCRPXhighlightDummy{
-  background-color: rgb(149, 165, 166);
-}
-
 .SCRPXhighlightName {
   background-color: rgb(52, 152, 219);
 }
@@ -169,6 +196,17 @@ background-color: lightblue;
 
 .SCRPXhighlightURL{
   background-color: rgb(241, 196, 15);
+}
+
+
+.SCRPXhighlightURLOverlay{
+  background-image: repeating-linear-gradient(
+    45deg,        /* Angle des rayures */
+    rgb(241, 196, 15) 0px,  /* Couleur des rayures semi-transparentes */
+    rgb(241, 196, 15) 10px,
+    transparent 10px,  /* Espace transparent */
+    transparent 20px  /* Largeur totale d’un cycle */
+  );
 }
 
 
@@ -211,10 +249,6 @@ background-color: lightblue;
 
 .easyButtonURL:hover{
   background-color: rgb(241, 196, 15);
-}
-
-.easyButtonDummy:hover{
-    background-color: rgb(149, 165, 166);
 }
 
 .easyRemoveButton{
@@ -314,10 +348,14 @@ background-color: lightblue;
 }
 
 
+
 #scrapOptionsPanel{
   background-color: rgb(71, 169, 234);
 }
 
+#autoAdjustGroup{
+  margin-right: 30px;
+}
 
 
 #processContainer {
@@ -357,7 +395,7 @@ background-color: lightblue;
 
 .title{
     font-weight: bold;
-    margin-bottom: 5px;
+    /* margin-bottom: 5px; */
 }
 
 
@@ -381,14 +419,9 @@ background-color: lightblue;
 }
 
 
-.scrapTextBoxStrings{
-  background-color: rgb(107, 224, 180);
-  padding: 2px 5px;
-  min-height: 30px;
-}
-
 .scrapTextBox{
-  width: calc(100% - 40px);
+  width: calc(100% - 10px);
+  /* width: 100%; */
   border: none;
   padding: 2px 5px;
   background-color: white;
@@ -396,7 +429,8 @@ background-color: lightblue;
   font-size: 85%;
   resize: none;
   margin-bottom: 5px;
-  min-height: calc(1ch + 10px);
+  margin-right: 5px;
+  /* min-height: calc(1ch + 10px); */
 }
 
 .urlPanel{
@@ -412,8 +446,9 @@ background-color: lightblue;
 }
 
 .rightPanel {
+  padding: 20px;
   width: 65%; /* Largeur de la partie droite */
-  background-color: #d0d0d0; /* Couleur de fond */
+  background-color: #e2d9cd; /* Couleur de fond */
   overflow-y: auto; /* Ajouter un défilement vertical si le contenu est plus long que la zone */
 }
   
@@ -429,6 +464,7 @@ background-color: lightblue;
   padding: 10px; 
   display: inline-block; /* Permet à l'élément de s'ajuster à la largeur du contenu */
   margin: 1px;
+  background-color: rgba(231, 76, 60, 0.2);
 }
 
 .focusedOn {
@@ -445,6 +481,7 @@ background-color: lightblue;
 
 .delimiterTagInput {
   width: calc(100%); /* Largeur ajustée en fonction de la marge */
+  box-sizing: border-box;
   margin-top: 5px; 
   border: none;
   padding: 4px 5px;
@@ -482,12 +519,20 @@ background-color: lightblue;
 }
 
 #eventSelectorPanel{
-  position: relative;
-  background-color: rgb(61, 80, 100);
-  padding: 5px;
+  background-color: rgb(242, 91, 75);
+  padding: 5px 5px;
+  margin: 0px 0px;
 }
 
+#delimiterPanelHeader{
+  width: calc(100%);
+  box-sizing: border-box;
+  padding: 0px;
+}  
+
 #eventSelectorIndex{
+  box-sizing: border-box;
+  max-width: 100%;
   border: none;
 }
 
@@ -548,4 +593,9 @@ background-color: lightblue;
 .selectedTab{
   background-color: rgb(61, 80, 100);
   color: white;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield; /* Forcer l'affichage sur Firefox */
+  appearance: auto; /* Forcer sur Chrome/Electron */
 }

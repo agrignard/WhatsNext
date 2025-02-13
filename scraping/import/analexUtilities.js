@@ -232,19 +232,20 @@ function getMostUsedTagClassSets($, topN = 10) {
 
 
 // if several tags only differ by the equation number, the equation number is removed
-function regroupTags(tagList){
+
+function regroupTags(tagList, isTest = false){
     tagList = tagList.filter(el => el !== undefined);
     if (tagList.length < 2){
         return tagList;
     }
     let regex = /(.*)(:eq\(\d+\))(?!.*:eq\(\d+\))/;
-    let toProcess = tagList.slice();
+    let toProcess = tagList.slice(); // make a copy of the array tagList
     const res = [];
     while(toProcess.length >0){
         const tag = toProcess.pop();
-        const shortTag = tag.replace(regex,(match, p1, p2, p3) => p1);
+        const shortTag = tag.replace(regex,(match, p1, p2, p3) => p1); // compute a tag without eq(XX)
         const oldLength = toProcess.length;
-        toProcess= toProcess.filter(el => el.replace(regex,(match, p1, p2, p3) => p1) !== shortTag);
+        toProcess= toProcess.filter(el => el.replace(regex,(match, p1, p2, p3) => p1) !== shortTag); // filter the tags that would have the same tag
         if (toProcess.length < oldLength){
             res.push(shortTag);
         }else{
@@ -324,7 +325,7 @@ function countNonEmptyEvents(delimiterTag,$,venue){
 }
 
 
-
+// get the list of dates in all the events. If several date tags are found for one event, the results are concatenated
 function getAllDates(mainTag,dateTags,source){
     let events = [];
     let dates = [];

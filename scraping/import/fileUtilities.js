@@ -115,8 +115,8 @@ function minimalizeHtml(content, action = "basic"){    //option: 'basic' (defaul
         // content = content.replace(/<[\s\t\n]*\/a[\s\t\n]*>/g,'');
 
         const endTagReplacements = {
-            ['\n']: ['div', 'h1', 'h2','body','head','html','section', 'li','p','ul'],
-            ' ': ['span','a','strong','b'],
+            ['\n']: ['div', 'h1', 'h2','h3','h4','body','head','html','section', 'li','p','ul'],
+            ' ': ['span','a','strong','b','em'],
         };
 
         Object.keys(endTagReplacements).forEach(key =>{
@@ -130,8 +130,15 @@ function minimalizeHtml(content, action = "basic"){    //option: 'basic' (defaul
             });
         })  
 
+        // test if some tags have been forgotten
+        const errors = content.match(/<[\s\t\n]*(\w+)[^>]*>.*?<\/\1>/g);
+        if (errors){
+            const unlistedTags = [...new Set(errors.map(e => e.match(/<[\s\t\n]*(\w+)/)[1]))];
+            unlistedTags.forEach(e => console.log('\x1b[31mWarning: tag \x1b[0m'+e+'\x1b[31m found in html that was '
+                                  +'not in minimalizeHtml fileUtilities.js.\x1b[0m'));
+        } 
 
-        content = content.replace();
+        content = content.replace(); /// ????
 
     }
 

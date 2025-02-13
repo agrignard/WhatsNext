@@ -5,8 +5,13 @@
 
 const rootPath = '..'
 
+require('dotenv').config();
+const { default: Anthropic } = require('@anthropic-ai/sdk');
 const fs = require('fs');
-const { default: ollama } = require('ollama');
+// const { default: ollama } = require('ollama');
+
+
+const API_KEY = process.env.ANTHROPIC_KEY;
 
 
 // const {removeDoubles, makeURL, cleanPage, extractBody} = require('./import/stringUtilities.js');
@@ -16,17 +21,17 @@ const {loadVenuesJSONFile, saveToVenuesJSON, isAlias, initializeVenue} = require
 
 const sourcePath = './webSources/';
 const venueList = loadVenuesJSONFile();
-const modelList = [ 'llama3', //0
-                    'llama3.1:8b', //1
-                    'llama3.3:70b',  //2
-                    'deepseek-coder-v2', //3
-                    'mistral-nemo' //4
-                ]
-const model = modelList[1];
-const maxTokens = 128000;
+// const modelList = [ 'llama3', //0
+//                     'llama3.1:8b', //1
+//                     'llama3.3:70b',  //2
+//                     'deepseek-coder-v2', //3
+//                     'mistral-nemo' //4
+//                 ]
+// const model = modelList[1];
+// const maxTokens = 128000;
 
 console.log('\n\n*****************************************');
-console.log('******** Using model '+model+' ********');
+console.log('********   Using model Claude   ********');
 console.log('*****************************************\n\n');
 
 //const API_KEY = 
@@ -83,80 +88,57 @@ async function analyseContent(content){
 
         const question = 'Voici un document d\'information sur des événements à venir:\n\n'
         + content
-        + '\n\nPeux-tu trouver tous les événements contenus dans ce document ? Je ne veux garder que ceux dont la date est renseignée.';
-        +' Présente les résultats sous la forme d\'une liste avec une ligne par événement qui contient dans l\'ordre suivant date, nom, lieu, heure, style et prix.';
-        //' Présente les résultats sous la forme d\'un json avec pour chaque événement les champs suivants: nom, lieu, date, heure, prix, style.';
+        + '\n\nPeux-tu trouver tous les événements contenus dans ce document ?';
+        // + ' Présente les résultats sous la forme d\'une liste avec une ligne par événement qui contient dans l\'ordre suivant date, nom, lieu, heure, style et prix.';
+        // +' Présente les résultats sous la forme d\'un json avec pour chaque événement les champs suivants: nom, lieu, date, heure, prix, style.';
 
     // console.log(content);
 
     // const conversationHistory = [];
 
     // const result = await askTheLlama(question,conversationHistory);
-    const result = await askTheLlama(question);
+    const result = await askClaude(question);
 
-    // const q2 = "Quels sont les événements qui restent ?";
-    // const res2 = await askTheLlama(q2,conversationHistory);
+   
 
     console.log('\n\nSortie :\n\n');
     // console.log(result.message.content);
-    console.log(result.response);
+    // console.log(result.response);
     
     // // console.log(result.response);
     // const cleanResult = result.message.content.replace(/^[^\[]*\[/,'\[').replace(/\][^\]]*$/,'\]');
-    // const cleanResult = result.response.replace(/^[^\[]*\[/,'\[').replace(/\][^\]]*$/,'\]');
-    // console.log('\n\nsous forme JSON:\n\n');
-    // const eventJSON = JSON.parse(cleanResult);
+    const cleanResult = result.replace(/^[^\[]*\[/,'\[').replace(/\][^\]]*$/,'\]');
+    console.log('\n\nsous forme JSON:\n\n');
+    const eventJSON = JSON.parse(cleanResult);
 
-    // console.log(eventJSON);
-
-    // console.log('\n\n\nEnsuite:\n\n\n');
-    // console.log(res2);
+    console.log(eventJSON);
 }
 
-// version with generate
-async function askTheLlama (question) {
-    const response = await ollama.generate({
-        model: model,
-        prompt: question,
-        stream: false,
-        max_tokens: 4096,
-        temperature: 0.0,
-        // presence_penalty: 0.5,
-        // frequency_penalty: 0.5
-      });
-    // for await (const part of response) {
-    //   process.stdout.write(part)
-    // }
-    return response;
-}
 
-// version with chat and history
-// async function askTheLlama (question,conversationHistory) {
-//     const message = { role: 'user', content: question};
-//     conversationHistory.push(message);
-//     const response = await ollama.chat({ 
-//         model: model, 
-//         messages: conversationHistory, 
-//         stream: false, 
-//         max_tokens: 40000});
-//     // for await (const part of response) {
-//     //   process.stdout.write(part.message.content)
-//     // };
-//     const assistantMessage = { role: 'assistant', content: response.message.content };
-//     conversationHistory.push(assistantMessage);
-//     return response;
-// }
+async function askClaude(question) {
+    const anthropic = new Anthropic({
+        apiKey: API_KEY
+    });
 
-// // version with chat
-// async function askTheLlama (question) {
-//     const message = { role: 'user', content: question}
-//     const response = await ollama.chat({ 
-//         model: model, 
-//         messages: [message], 
-//         stream: false, 
-//         max_tokens: 128000})
-//     // for await (const part of response) {
-//     //   process.stdout.write(part.message.content)
-//     // }
-//     return response;
-// }
+    const msg = await anthropic.messages.create({
+        model: "claude-3-5-sonnet-20241022",
+        max_tokens: 4000,
+        temperature: 0,
+        system: "Provide the result as a json with fields name, place, date, time, style, price, url.",
+        messages: [
+            {
+                "role": "user",
+                "content": [
+                    {
+                        "type": "text",
+                        "text": question
+                    }
+                ]
+            }
+        ]
+    });
+    console.log(msg);
+    console.log("Request complete.\nstop reason: "+msg.stop_reason);
+    console.log('Usage: '+msg.usage);
+    return msg.content[0].text;
+  }

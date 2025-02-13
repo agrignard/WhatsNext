@@ -2,15 +2,19 @@ const webSources = '../webSources';
 const imports = '../../import/';
 
 const fs = require('fs');
+const { shell } = require('electron');
+
 const {app, Menu, ipcRenderer} = require('electron');
 const {loadVenuesJSONFile, getStyleList, makeID, isAlias, saveToVenuesJSON} = require(imports+'jsonUtilities.js');
 const {simplify, removeBlanks} = require(imports+'stringUtilities.js');
+const {to2digits} = require(imports+'dateUtilities.js');
 
 const midnightHourOptions = ['none','sameday','previousday'];
 const lineHeightPx = document.getElementById('textURL').offsetHeight;
 
 let hideAliases = true;
 
+let urlToFollow;
 
 let venues = loadVenuesJSONFile();
 const styleList = [''].concat(getStyleList().filter(el => el !=='')).concat(['Other']);
@@ -109,7 +113,19 @@ venuesDropdown.addEventListener('change', (event) => {
 });
 
 
+// URL buttons
 
+const urlButton = document.getElementById('venueURL');
+urlButton.addEventListener('click',function(){
+    shell.openExternal(urlToFollow);
+});
+
+const urlButton2 = document.getElementById('followURLButton2');
+
+urlButton2.addEventListener('click',function(){
+    const url = textURL.textContent;
+    shell.openExternal(url);
+});
 
 
 
@@ -211,8 +227,37 @@ function updateVenueInfo(mode){
             const divURL = document.getElementById('venueURL');
             if (venue.hasOwnProperty('url')){
                 divURL.textContent =  venue.url;
+                urlToFollow = venue.url;
+                if (venue.hasOwnProperty('multiPages')){
+                    if (venue.multiPages.hasOwnProperty('pattern')){
+                        const date = new Date();
+                        const year = date.getFullYear(); 
+                        const month = date.getMonth() + 1; 
+                        const day = date.getDate();
+                        const pattern = venue.multiPages.pattern.replace(/MM|mm/,to2digits(String(month)))
+                                            .replace(/M|mm/,month).replace(/yyyy/,year)
+                                            .replace(/yy/,year-Math.round(year/100)*100)
+                                            .replace('dd',day);
+                        if ((/\{index\}/.test(urlToFollow))){
+                            urlToFollow = urlToFollow.replace('\{index\}',pattern);
+                        }else{
+                            urlToFollow = urlToFollow+pattern;
+                        }
+                        
+                    }
+                    if (venue.multiPages.hasOwnProperty('startPage')){
+                        if ((/\{index\}/.test(urlToFollow))){
+                            urlToFollow = urlToFollow.replace('\{index\}',venue.multiPages.startPage);
+                        }else{
+                            urlToFollow = urlToFollow+venue.multiPages.startPage;
+                        }
+                        
+                    }
+                    // console.log(urlToFollow);
+                }
             }else{
                 divURL.textContent = '';
+                urlToFollow = undefined;
             }
             
             const divMultipages = document.getElementById('divMultipages');
@@ -282,7 +327,6 @@ function updateVenueInfo(mode){
         }else if (mode === 'edit' || mode === 'newVenue'){// if in edit mode
             venueEditPanel.style.display = 'block';
             toggleMenuesAction('off'); // prevent any action before changes have been saved or cancelled
-
             // name
             const nameText = document.getElementById('editVenueNameText');
             const inputNameField = document.getElementById('inputNameField');
@@ -386,6 +430,7 @@ function updateVenueInfo(mode){
             }
             const selectMPFields = document.getElementById('selectMPFields');
             if (hasMP){
+                selectMPFields.selectedIndex = 0;
                 if (venue.multiPages.hasOwnProperty('pattern')){
                     selectMPFields.selectedIndex = 1;
                 }else if(venue.multiPages.hasOwnProperty('scroll')){

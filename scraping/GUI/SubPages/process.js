@@ -3,17 +3,20 @@ const imports = '../../import/';
 
 const fs = require('fs');
 const cheerio = require('cheerio');
+const { shell } = require('electron');
+
+
 const {parseDocument} = require('htmlparser2');
 const {app, Menu, ipcRenderer} = require('electron');
-const {loadVenuesJSONFile, loadVenueJSON, loadScrapInfoFile, initializeVenue, saveToVenuesJSON, saveToScrapInfoJSON,
+const {loadVenuesJSONFile, loadVenueJSON, initializeVenue, saveToVenuesJSON,
         fromLanguages, getLanguages, isValidEvent} = require(imports+'jsonUtilities.js');
 const {simplify, removeBlanks, extractBody, convertToLowerCase, removeDoubles,
-      makeURL} = require(imports+'stringUtilities.js');
+      makeURL, isValidURL} = require(imports+'stringUtilities.js');
 const {getFilesContent, getModificationDate, loadLinkedPages, getFilesNumber} = require(imports+'fileUtilities.js');
 const {downloadVenue, erasePreviousHtmlFiles, getHrefListFrom, downloadLinkedPages} = require(imports+'aspiratorexUtilities.js');
 const {getTagLocalization, tagContainsAllStrings, getTagContainingAllStrings,
   splitAndLowerCase, addJSONBlock, reduceTag, getAllDates, getBestDateFormat,
-  adjustMainTag, countNonEmptyEvents, regroupTags} = require(imports+'analexUtilities.js');
+  adjustMainTag, countNonEmptyEvents, regroupTags, getMostUsedTagClassSets} = require(imports+'analexUtilities.js');
 const {getDateConversionPatterns} =require(imports+'dateUtilities.js');
 const {getText} =require(imports+'scrapexUtilities.js');
 
@@ -24,52 +27,67 @@ let stopCounter = false;
 var localPage, $page, mainTag;
 var nbEvents = {main:undefined, adjusted:undefined};
 var delimiterTag, adjustedDelimiterTag, lastDateList;
-let freezeDelimiter = false;
 let pageManagerReduced = false;
 let log ='';
-let mustIncludeURL  = true;
+let mustIncludeURL  = false;
 let mainTagAbsolutePath;
 let nbPagesToShow = 5;
 let nbPages = 0;
-let easyPanelInfo = {
-  stringList:[],
-  indexList:[],
-}
-const defaultIndex = 5;
 let currentPage = 'mainPage';
-let detailedScrapView = true;
-let scrapInfoTooOld; // if scrap info is from a too old event, the linked page does not correspond to the tag
 
-const keyNames = ['Dummy','Name','Date','Style','Place','URL','MultiName','MultiDate','MultiStyle','MultiPlace','MultiURL'];
+// const keyNames = ['Dummy','Name','Date','Style','Place','URL','MultiName','MultiDate','MultiStyle','MultiPlace','MultiURL'];
+
+const keyNames = ['Name','Date','Style','Place','URL'];
 const colorClassList = ['SCRPXhighlightName','SCRPXhighlightDate','SCRPXhighlightStyle',
-                        'SCRPXhighlightPlace','SCRPXhighlightURL','SCRPXhighlightDummy'];
-const easyButtonClassList = ['easyButtonName','easyButtonDate','easyButtonStyle','easyButtonPlace','easyButtonURL','easyButtonDummy'];
-const easyConvert = {'eventNameStrings':0,'eventDateStrings':1,'eventStyleStrings':2,'eventPlaceStrings':3,'eventURLStrings':4,'eventDummyStrings':5};
+                        'SCRPXhighlightPlace','SCRPXhighlightURL','SCRPXhighlightURLOverlay'];
+const reservedClassList = colorClassList.concat(['SCRPXhighlightMultiName','SCRPXhighlightMultiDate','SCRPXhighlightMultiStyle','SCRPXhighlightMultiPlace','SCRPXhighlightMultiURL',
+  'SCRPXmainTag','SCRPXeventBlock','SCRPXeventBlockInvalid']);
+const easyButtonClassList = ['easyButtonName','easyButtonDate','easyButtonStyle','easyButtonPlace','easyButtonURL'];
 
+const inlineTags = ['b','i','em','u','span','code','small','strong','sub','sup','del', 'ins','mark'];
+
+let autoAdjustLevel = 0;
+const defautAutoAdjustLevel = 2;
+let lastConfig = {
+  autoAdjustLevel: defautAutoAdjustLevel,
+  urlCheck: true,
+  setup:''
+}
+
+const customTagName = 'custom-a';
+// custom tag class to replace <a> tags that conflict with click events
+class customA extends HTMLElement {
+  constructor() {
+    super(); 
+    this.style.color = "blue";       // Texte en bleu
+    this.style.textDecoration = "underline";
+    this.style.display = "block"; // Comportement similaire à une <div>
+    this.style.padding = "5px";
+  }
+}
+
+// Enregistrer la balise personnalisée
+customElements.define(customTagName, customA);
+
+// global variables 
+
+
+
+let subTags = {
+  'mainPage': null,
+  'linkedPage': null
+};
+let urlTags = [];
+let candidatePrincipalTag;
+let principalTagIndex;
+let principalTag;
+let eventTagList;
+let urlTag;
+let depthPrefix;
 
 /*****************************/
 /*         initialize        */
 /*****************************/
-
-// document.addEventListener('click', function(event) {
-//   var element = event.target;
-//   var tagName = element.tagName;
-//   var tagText = element.textContent;
-//   console.log("Balise de l'élément cliqué : " + tagName);
-//   console.log(getPathTo(element));
-// });
-
-function getPathTo(element) {
-  var path = '';
-  while (element) {
-      var nodeName = element.nodeName.toLowerCase();
-      var id = element.id ? '#' + element.id : '';
-      var className = element.className ? '.' + element.className.replace(/\s+/g, '.') : '';
-      path = nodeName + id + className + (path ? '>' + path : '');
-      element = element.parentNode;
-  }
-  return path;
-}
 
 
 // get venue JSON
@@ -91,16 +109,6 @@ initializeVenue(venue,webSources);
 const languages = getLanguages();
 const dateConversionPatterns = fromLanguages(getDateConversionPatterns(),languages[venue.country]);
 
-// get scrap info
-const scrapInfo = loadScrapInfoFile();
-const venueScrapInfo = scrapInfo.hasOwnProperty(venueID)?{...scrapInfo[venueID]}:{};
-if (!venueScrapInfo.hasOwnProperty('mainPage')){
-  venueScrapInfo.mainPage = {};
-}
-if (venue.hasOwnProperty('linkedPage') && !venueScrapInfo.hasOwnProperty('linkedPage')){
-  venueScrapInfo.linkedPage = {};
-}
-
 // get file if it exists
 const sourcePath = webSources+'/'+venue.country+'/'+venue.city+'/'+venue.name+'/'
 const multiPageManager = document.getElementById('multiPageManager');
@@ -117,6 +125,188 @@ if (lastModified){
 
 
 const rightPanel = document.getElementById('scrapEnDirexRightPanel');
+
+rightPanel.addEventListener('click', (event) => {
+  behaviourSetup('automaticLastSetup');
+  event.preventDefault();
+  event.stopPropagation();
+   
+  // provide visual effects to show what happens
+  const clickedElement = event.target;
+  // console.log('Tag clicked :', clickedElement.tagName);
+  const previousBackground = clickedElement.style.backgroundColor;
+  clickedElement.style.border = '2px solid red';
+  clickedElement.style.backgroundColor = 'red';
+
+  setTimeout(() => {
+    clickedElement.style.border = '';
+    clickedElement.style.backgroundColor = previousBackground;
+  }, 200);
+
+  makePrincipalTag(clickedElement);
+}, {
+  capture: true,    // Use capture phase
+  passive: false    // Allow preventDefault
+});
+
+
+/*****************************************/
+/*             compute tags              */
+/*****************************************/
+
+
+// compute the delimiter tag, starting from the selected one 'initialTag'. 
+// the value of 'initialTag is provided when clicking on the page, and its value is stored in the global variable
+// 'candidateTag'. If a checkbox is changed, the value passed should be this 'candidateTag' in order to recompute the delimiter tags.
+function makePrincipalTag(initialTag){
+  console.log("\x1b[43m\x1b[30mComputing main tag\x1b[0m");
+
+  // remove old tags
+  clearAllTags();
+  
+  if (!initialTag){
+    delimiterTagField.classList.add('invalid');
+    eventTagList = [];
+  }else{
+    const mainTagHasChanged = principalTag === undefined || initialTag !== principalTag;
+    delimiterTagField.classList.remove('invalid');
+    // compute new principal tag
+    candidatePrincipalTag = initialTag;
+
+    // extend the tag until an URL is found
+    principalTag = candidatePrincipalTag;
+
+    // extend delimiter tag to include at least one url
+    if (mustIncludeURL){
+      principalTag = getAncestorWithUrl(principalTag) || principalTag;
+    }
+
+
+    // adjust principal tag by removing classes that limit the number of events
+    [cleanPath, eventTagList] = adjustPrincipalTag(principalTag);
+
+    // compute other event tags and highlight them
+   
+    const newEventTagList = findTagsFromPath(rightPanel,cleanPath);
+
+    // if the new event list and the old one have elements in common, keep track of some information
+    // such as URL index or URL tag. Otherwise, make a clean sheet
+    let hasCommonElement = newEventTagList.some(item => eventTagList.includes(item));
+    if (hasCommonElement){
+
+    }else{
+      if (venue.mainPage.hasOwnProperty('eventURLTags')){
+        delete venue.mainPage.eventURLTags; 
+      }
+      if (venue.mainPage.hasOwnProperty('eventURLIndex')){
+        delete venue.mainPage.eventURLIndex;
+      }
+    }
+  
+    principalTagIndex = eventTagList.findIndex(el => el === principalTag);
+    delimiterTagField.value = cleanPath;
+    // console.log('Main tag registered :', principalTag.tagName);
+
+    // find sub tags corresponding to each line
+    subTags[currentPage] = getSubTags(principalTag);
+
+    if (mainTagHasChanged){
+      populateEasyPanel();
+    }else{// some tags may have change, for example if there are more events in eventTagList
+      applyTags();
+    }
+    
+  }
+
+  // draw the delimiter panel
+  setDelimiterPanel(countEvents(eventTagList));
+  renderEventURLPanel();
+}
+
+
+/*****************************************/
+/*             aux functions              */
+/*****************************************/
+
+
+function countEvents(eventTagList){
+  return eventTagList.length;
+}
+
+// remove classes that are too specific (like 't5410' that is associated to concerts for 'Le Sucre') which cause losing events
+// such as 'concert' events ('t5411')
+// returns [bestInfo, currentTagList]:  bestInfo: best tag info [tagName, classList]
+//                                      currentTagList: the list of tag matching the same tagName and classList
+// adjustLevel indicates how many classes may be dropped. Having a number too high may cause an overselection
+//
+// this version of the function assumes that a tag delimiter is only defined by the last tag (type, class) and not a chain of
+// successors since a depth level is defined. Should be ajusted if this does not work (see adjustMainTag in analexUtilities.js)
+// for a way to do it.
+
+function adjustPrincipalTag(principalTag){
+  let tagName = principalTag.tagName;
+  let classes = Array.from(principalTag.classList);
+  let bestInfo = [tagName, classes];
+
+  eventTagList = findTagsFromPath(rightPanel, tagName+'.'+classes.join('.'));
+  // const mainTagEventsNumber = countEvents();
+  let currentNumber = countEvents(eventTagList);
+  let currentTagList = eventTagList;
+  // console.log('start number', currentNumber);
+
+  // console.log(classes);
+  const depthClassName = classes.find(el => el.startsWith(depthPrefix));
+  if (depthClassName === undefined){
+    console.log("\x1b[33m Warning:\x1b[0m 'depth' class not found. Html file is too old. Run again aspiratorex.");
+  }
+  classes = classes.filter(item => item !== depthClassName);
+ 
+  const adjustLevel = Math.min(autoAdjustLevel, classes.length -1);
+
+  for(let i = 1;i <= adjustLevel;i++){
+    // check if a better solution exists for i class removal
+    let comboList = generateCombinationsByRemoval(classes,i);
+    comboList.forEach(combo =>{
+      const newClassList = depthClassName?combo.concat(depthClassName):combo;
+      const path = tagName+'.'+newClassList.join('.');
+      const newEventList = findTagsFromPath(rightPanel,path);  
+      if (countEvents(newEventList) > currentNumber){
+        currentNumber = newEventList.length;
+        currentTagList = newEventList;
+        bestInfo = [tagName, newClassList];
+      }
+    })
+  }
+  // console.log(currentNumber);
+  bestInfo[0] = bestInfo[0].toLowerCase()===customTagName?'A':bestInfo[0];
+
+  const tagPathString = bestInfo[0]+'.'+bestInfo[1].join('.');
+  return [tagPathString, currentTagList];
+  // return [bestInfo, currentTagList];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////////
+
 //const leftPanel = document.getElementById('letPanel');
 const analyzePanel = document.getElementById('analyzePanel');
 
@@ -148,22 +338,27 @@ pageManagerButton.addEventListener('click',function(){
 
 // save Button
 saveButton.addEventListener('click',function(){
-  toLog("saved.");
+  venue.eventsDelimiterTag = delimiterTagField.value;
+
+  // remove regexp keys if the corresponding regex are not active
+  if (venue.hasOwnProperty('regexp')){
+    regexKeys.forEach(key => {
+      if (!regexElements[key].isActive){
+        delete venue.regexp[key];
+      }
+    });
+  }
+  // remove accidental blank lines from the fields
   removeEmptyFields(venue);
+  // remove regex if it does not contain any key
   if (venue.hasOwnProperty('regexp')){
     if (Object.keys(venue.regexp).length === 0){
       delete venue.regexp;
     }
   }
-  toLog("venue.json:");
+  toLog("Saved to venue.json:");
   toLog(JSON.stringify(venue));
   saveToVenuesJSON(venues);
-  removeEmptyFields(venueScrapInfo);
-  scrapInfo[venueID] = venueScrapInfo;
-  toLog("\nvenueSrapInfo.json:");
-  toLog(JSON.stringify(venueScrapInfo)+'\n');
-  saveToScrapInfoJSON(scrapInfo);
-  console.log(venueScrapInfo);
 });
 
 
@@ -187,6 +382,9 @@ downloadButton.addEventListener('click', function() {
       loadPage();
       downloadButton.disabled = false;
       missingLinksButton.disabled = false;
+      makePrincipalTag(candidatePrincipalTag);
+      focusTo(principalTag);
+      ProcessRegex();
     })
   })
 });
@@ -206,51 +404,8 @@ missingLinksButton.addEventListener('click', function(){
       setSwitchStatus();
     })
 });
-// tabs panel
-const scrapElementPanels = document.getElementsByClassName('scrapPanelToHideWhenRegex');
-const regexpPanels = document.getElementsByClassName('regexpPanel');
-const eventSelectorPanel = document.getElementById('eventSelectorPanel');
-const subtitles = document.getElementsByClassName('subtitle');
-const multipleEventsPanels = document.getElementsByClassName('multipleEventsPanel')
-tabList = document.getElementsByClassName('tab');
 
-for(let i=0;i < regexpPanels.length; i++){
-  regexpPanels[i].style.display = 'none';
-}
-for(let i=0;i < multipleEventsPanels.length; i++){
-  multipleEventsPanels[i].style.display = 'none';
-}
 
-for (let iTab = 0; iTab<tabList.length; iTab++){
-  tabList[iTab].addEventListener('click',function(){
-    currentTab = this.id;
-    for (let i = 0; i < tabList.length; i++){
-      tabList[i].classList.remove('selectedTab');
-    }
-    this.classList.add('selectedTab');
-    const visibility = {scrapTab:'none', multipleEventsTab:'none', regexpTag:'none'};
-    visibility[currentTab] = 'block';
-    for(let i = 0; i < scrapElementPanels.length; i++){scrapElementPanels[i].style.display = visibility.scrapTab;};
-    for(let i = 0; i < regexpPanels.length; i++){regexpPanels[i].style.display = visibility.regexpTag;};
-    for(let i = 0; i < multipleEventsPanels.length; i++){multipleEventsPanels[i].style.display = visibility.multipleEventsTab;};
-    if (currentTab === 'regexpTag'){
-      applyRegexp();
-      setSubtitles('(regex)');
-    }else if (currentTab === 'scrapTab'){
-      setSubtitles('');
-    }else{
-      setSubtitles('(multiple events)')
-    }
-  });
-}
-let currentTab = tabList[0].id;
-tabList[0].classList.add('selectedTab');
-
-function setSubtitles(string){
-  for(let i=0; i < subtitles.length; i++){
-    subtitles[i].textContent = string;
-  }
-}
 
 
 // delimiter panel
@@ -259,307 +414,310 @@ const delimiterPanel = document.getElementById('delimiterPanel');
 const DelimiterTitle = document.getElementById('DelimiterTitle');
 const eventURLPanel = document.getElementById('eventURLPanel');
 var delimiterTagField = document.getElementById('delimiterTagField');
-delimiterTagField.value = venue.hasOwnProperty('eventsDelimiterTag')?venue.eventsDelimiterTag:'';
 delimiterTagField.addEventListener('input'||'change',event =>{
-  venue.eventsDelimiterTag = delimiterTagField.value.trim();//replace(/\s*$/,'');
-  const stringsToFind = [].concat(...Object.values(splitAndLowerCase(venueScrapInfo)[currentPage]));
-  const mainTagCandidates = $page(venue.eventsDelimiterTag+stringsToFind.map(el=>':contains('+el+')').join(''));
-  if (mainTagCandidates.length > 0){
-    clearTags();
-    mainTag = mainTagCandidates[0];
-    mainTagAbsolutePath = getTagLocalization($page(mainTag),$page,false);
-    delimiterTag = reduceTag(getTagLocalization($page(mainTag),$page,true),$page);
-    nbEvents.main = computeEventsNumber();
-    adjustedDelimiterTag = undefined;
-    nbEvents.adjusted = undefined;
-  }
-  freezeDelimiter = true;
-  freezeDelimiterButton.textContent = "Unfreeze";
-  delimiterTagField.classList.add('inactive');
-  computeTags(true);
+  behaviourSetup('manual');
+  eventTagList = findTagsFromPath(rightPanel, delimiterTagField.value);
+  candidatePrincipalTag = eventTagList[0];
+  makePrincipalTag(candidatePrincipalTag);
 });
 
-const freezeDelimiterButton = document.getElementById('freezeDelimiterButton');
-freezeDelimiterButton.addEventListener('click', function() {
-  freezeDelimiter = !freezeDelimiter;
-  if (freezeDelimiter){
-    freezeDelimiterButton.textContent = "Unfreeze";
-    delimiterTagField.classList.add('inactive');
-  }else{
-    delimiterTagField.classList.remove('inactive');
-    freezeDelimiterButton.textContent = "Freeze";
-  }
+
+const autoAdjustIndex = document.getElementById('autoAdjustIndex');
+autoAdjustIndex.addEventListener('change', function(){
+  autoAdjustIndexChange();
 });
+ 
+function autoAdjustIndexChange(){
+  autoAdjustLevel = autoAdjustIndex.value;
+  makePrincipalTag(candidatePrincipalTag);
+  
+}
+
 const eventURLPanelWarning = document.getElementById('eventURLPanelWarning');
-// adjust tag check box
-const autoAdjustCheckbox = document.getElementById('autoAdjustCheckbox');
-autoAdjustCheckbox.checked = true;
-autoAdjustCheckbox.addEventListener('change',()=>{
-  let hasChanged;
-  if (autoAdjustCheckbox.checked === true){
-    if (adjustedDelimiterTag === undefined){
-      [adjustedDelimiterTag, nbEvents.adjusted] = adjustMainTag(delimiterTag,$page,venue);
-    }
-    hasChanged = delimiterTagField.value !== adjustedDelimiterTag;
-    delimiterTagField.value = adjustedDelimiterTag;
-    venue.eventsDelimiterTag = adjustedDelimiterTag;
-    setEventPanel(nbEvents.adjusted);
-  }else{
-    hasChanged = delimiterTagField.value !== delimiterTag;
-    delimiterTagField.value = delimiterTag;
-    venue.eventsDelimiterTag = delimiterTag;
-    setEventPanel(nbEvents.main);
-  }
-  computeTags(hasChanged);
-});
+
 // adjust url check box
 const adjustURLCheckbox = document.getElementById('adjustURLCheckbox');
-adjustURLCheckbox.checked = mustIncludeURL;
 adjustURLCheckbox.addEventListener('change',()=>{
   mustIncludeURL = adjustURLCheckbox.checked;
-  computeDelimiterTag();
+  makePrincipalTag(candidatePrincipalTag);
 });
 
 
 /*****************************/
-/*          Fields           */
+/*          grouping         */
 /*****************************/
 
-// group tags check box
-const regroupTagsCheckbox = document.getElementById('regroupTagsCheckbox');
-regroupTagsCheckbox.checked = true;
-regroupTagsCheckbox.addEventListener('change',()=>{
-  computeTags(false);
-});
+// group tags button
+const groupTagsButtons = document.getElementsByClassName('groupTagsButton');
 
-const inputRows = document.getElementsByClassName('hideWhenEasyPanel');
-const detailedScrapViewCheckbox = document.getElementById('detailedScrapViewCheckbox');
-detailedScrapViewCheckbox.checked = detailedScrapView;
-detailedScrapViewCheckbox.addEventListener('change',()=>{
-  detailedScrapView = !detailedScrapView;
-  renderDetailedView();
-});
+let groupTags = {};
 
-function renderDetailedView(){
-  if (detailedScrapView === true){
-    easyPanel.style.display = 'none';
-    for (i=0;i<inputRows.length;i++){
-      inputRows[i].style.display = 'block';
-    };
+
+for(const button of groupTagsButtons) {
+ 
+  const key = 'event'+button.id.replace('groupTagsButton','')+'Tags';
+  button.title = "Cliquer désactiver le groupage de balises";
+
+  // tests if the tags contained in venue for a given key have been explicitly ungrouped.
+  // if it is the case, some lines should be the same, but with different eq(XX) label.
+  // after grouping, the number of tag strings will decrease
+  if (venue[currentPage].hasOwnProperty(key)){
+    const afterGrouping = regroupTags(venue[currentPage][key]);
+    const groupingPreventionDetected = afterGrouping.length < venue[currentPage][key].length;
+
+    groupTags[key] = !groupingPreventionDetected;
   }else{
-    populateEasyPanel();
-    easyPanel.style.display = 'block';
-    for (i=0;i<inputRows.length;i++){
-      inputRows[i].style.display = 'none';
-    };
+    groupTags[key] = true;
+  }
+
+  // initialize the active/inactive state of the button
+  setGroupButtonActivity(button, groupTags[key]);
+  
+
+  button.addEventListener('click',()=>{
+    // set the new value for grouping
+    groupTags[key] = !groupTags[key];
+    // change the appearance of the button
+    setGroupButtonActivity(button, groupTags[key]);
+    computeTags();
+  })
+}
+
+// change the appearance of the button
+function setGroupButtonActivity(button, isActive){
+  if (isActive === true){
+    button.classList.add('activeGroupTagButton');
+    button.classList.remove('inactive');
+    button.title = "Cliquez pour désactiver le groupage de balises";
+  }else{
+    button.classList.remove('activeGroupTagButton');
+    button.classList.add('inactive');
+    button.title = "Cliquez pour activer le groupage de balises:\nles balises similaires seront regroupées sous une balise générique";
   }
 }
+
+
+
 
 /*****************************/
 /*        easy panel         */
 /*****************************/
 
 const easyPanelFields = document.getElementById('easyPanelFields');
-const easyPanelAddButton = document.getElementById('easyPanelAddButton');
-easyPanelAddButton.addEventListener('click', function (){
-  newEasyLine('');
-});
-const easyPanelCopyButton = document.getElementById('easyPanelCopyButton');
-easyPanelCopyButton.addEventListener('click',function(){
-  const selection = window.getSelection();
-  let textCopy = selection.toString();
-  if (textCopy) {
-    textCopy = textCopy.replace(/(\n\s*)*$/,'').replace(/\n(\s*\n)*/g,'\n').replace(/^(\s*\n)*/,'');// remove blank lines
-    const stringsToAdd = textCopy.split('\n');
-    stringsToAdd.forEach(el => {
-      newEasyLine(el.trim());
-    });
-    getStringsFromEasyField();
-    if (!freezeDelimiter && currentPage ==='mainPage'){
-      computeDelimiterTag();
-    }else{
-      computeTags(false);
-    }
-  }
-});
-
-
 
 function populateEasyPanel(){
-  easyPanelInfo = {
-    stringList:[],
-    indexList:[],
-  }
+  console.log("\x1b[43m\x1b[30mpopulating Easy Panel\x1b[0m");
+  let markFirstURL = true;
   easyPanelFields.innerHTML = '';
-  Object.keys(venueScrapInfo[currentPage]).forEach(key => {
-    const typeIndex = easyConvert[key];
-    venueScrapInfo[currentPage][key].forEach(el =>{
-      newEasyLine(el,typeIndex);
-    });
+  // create a new line in the panel for each tag
+  subTags[currentPage].forEach(tag => {
+    markFirstURL = newEasyLine(tag,markFirstURL);
   });
+  computeTags();
+  computeDateFormat();
 }
 
-function getStringsFromEasyField(){
-  Object.keys(easyConvert).forEach(key => {
-    const catIndex = easyConvert[key];
-    const newStrings = easyPanelInfo.stringList.filter((el,i)=> easyPanelInfo.indexList[i]===catIndex);
-    populateField(stringTextBoxes[catIndex], newStrings.join('\n'));
-    venueScrapInfo[currentPage][stringTextBoxes[catIndex].id] = newStrings;
-  });
-}
-
-function newEasyLine(text, typeIndex){
-  const index = easyPanelInfo.stringList.length;
-  easyPanelInfo.stringList.push(text);
-  if (typeIndex === undefined){
-    easyPanelInfo.indexList.push(defaultIndex);// by default, select dummyString
-  }else{
-    easyPanelInfo.indexList.push(typeIndex);
+// This function is used to verify if a tag may be used as information for an URL link. If the tag itself is no a link
+// it will find if an ancestor can be. The reason is that some links are not at the top level of tags, and thus not listed
+// in the easy panel.
+function findAncestorWithURL(tag){
+  if (tag.tagName.toLowerCase() === 'body'){// tag with URL not found
+    return null;
   }
-  // easyPanelInfo.oldValuesList.push(text);
+  if (principalTag && tag === principalTag){// the first ancestor found with an URL is the principal tag. This tag is not candidate for being a tag.
+    return null;
+  }
+  if (tag.hasAttribute('href')){
+    return tag;
+  }
+  return findAncestorWithURL(tag.parentElement);
+}
+
+// create new line in the easy panel. If several tags are marked as URL tags, only keep the first one
+function newEasyLine(tag, markFirstURL = true){
+  const text = tag.textContent.trim().replace(/[\n\s\t]{1,}/g,' ');
+  const index = easyPanelFields.getElementsByClassName('easyField').length; //count the lines already existing
+
+  // create html div panel for the line
   let newDiv = document.createElement('div');
   newDiv.classList.add('easyPanelLine');
-  newDiv.id = 'easyPanelLine'+index;
+
+  // add tag text to the line
   let inputElement = document.createElement('input');
-  inputElement.id = 'easyInput'+index;
+  inputElement.readOnly = true;
   inputElement.classList.add('easyField');
   inputElement.setAttribute('type', 'text');
   inputElement.value = text;
-  validateString(inputElement);
-  inputElement.addEventListener('input',function(){
-    const lineIndex = parseInt(this.id.match(/\d+$/));
-    easyPanelInfo.stringList[lineIndex] = this.value.trim();
-    validateString(this);
-    getStringsFromEasyField();
-    const renderURL = easyPanelInfo.indexList[lineIndex] === easyConvert['eventURLStrings'];
-    if (!freezeDelimiter && currentPage ==='mainPage'){
-      computeDelimiterTag(renderURL);
-    }else{
-      computeTags(renderURL);
-    }
-  })
   newDiv.appendChild(inputElement);
-  for(i=0;i<5;i++){
-    let newButton = document.createElement('button');
-    newButton.classList.add('easyButton');
-    newButton.classList.add('easyField'+index);
-    newButton.classList.add(easyButtonClassList[i]);
-    newButton.id="easyButton"+index+"-"+i;
-    if (i === typeIndex){
-      newButton.classList.add(colorClassList[typeIndex]);
+
+  // create buttons for changing field type (name, date, ...)
+  for(i=0;i<keyNames.length;i++){
+    let newEasyButton = document.createElement('button');
+    newEasyButton.classList.add('easyButton'); // for css
+    newEasyButton.classList.add(easyButtonClassList[i]); // add class easybutton for css (coloring, hoovering)
+    newEasyButton.classList.add('easyLine'+index); // used to identify buttons on the same line
+    newEasyButton.eventTagType = 'event'+keyNames[i]+'Tags'; // set the corresponding tag field
+    newEasyButton.colorClass = colorClassList[i]; // set the color class when active
+    newEasyButton.title = easyButtonClassList[i].replace('easyButton','');
+    
+    // if the type (name, date, ...) is the same than the current button, make it active
+    if (tag.desc === newEasyButton.eventTagType){
+      newEasyButton.classList.add(newEasyButton.colorClass);
     }
-    newButton.addEventListener('click',function() {
-      const buttonList = document.getElementsByClassName('easyField'+index);
-      for(j=0;j<buttonList.length;j++){
-        buttonList[j].classList.remove(colorClassList[j]);
-      }
-      const lineIndex =  parseInt(this.id.match(/\d+-/));
-      const typeIndex = parseInt(this.id.charAt(this.id.length - 1));
-      const renderURL = easyPanelInfo.indexList[lineIndex] === easyConvert['eventURLStrings'] 
-                        || typeIndex === easyConvert['eventURLStrings'] ;
-      if (typeIndex === easyPanelInfo.indexList[lineIndex]){// set to default value (dummy)
-        easyPanelInfo.indexList[lineIndex] = defaultIndex;
+    if (markFirstURL && newEasyButton.eventTagType === 'eventURLTags' && tag.isURL){
+      newEasyButton.classList.add(newEasyButton.colorClass);
+      markFirstURL = false;
+    }
+
+    // if the tag and ancestors have no url link, deactivate the button
+    if (keyNames[i] === 'URL'){
+      if (!findAncestorWithURL(tag)){
+        newEasyButton.classList.add('inactive');
       }else{
-        easyPanelInfo.indexList[lineIndex] = typeIndex;
-        newButton.classList.add(colorClassList[typeIndex]);
+        newEasyButton.title = 'URL: '+findAncestorWithURL(tag).getAttribute('href');
+        // URL switch button 
+        newEasyButton.addEventListener('click',function() {
+          if (tag.isURL){
+              // turn button off when clicking on an active button
+              this.classList.remove(this.colorClass);
+              tag.isURL = false;
+          }else{
+            // turn of all other URL button and remove isURL marker (there can be only one URL)
+            subTags[currentPage].forEach(tag => { 
+              tag.isURL = false;
+            });
+            const easyButtons = easyPanelFields.getElementsByClassName('easyButton');
+            for (button of easyButtons){
+              if (button.eventTagType === 'eventURLTags'){
+                button.classList.remove(this.colorClass);
+              }
+            }
+            // activate the current button
+            tag.isURL = true;
+            this.classList.add(this.colorClass);
+          }
+          computeTags();
+          renderEventURLPanel();
+        });
       }
-      getStringsFromEasyField();
-      computeTags(renderURL);// if url is changed
-    });
-    newDiv.appendChild(newButton);
-  }
-  const newButton = document.createElement('button');
-  newButton.id = 'removeButton'+index;
-  newButton.classList.add('easyButton');
-  newButton.classList.add('easyRemoveButton');
-  newButton.textContent = '✖';
-  newButton.addEventListener('click', function(){
-    const lineIndex = parseInt(this.id.match(/\d+$/));
-    const renderURL = easyPanelInfo.indexList[lineIndex] === easyConvert['eventURLStrings'];
-    let lineToRemove = document.getElementById('easyPanelLine'+lineIndex);
-    easyPanelInfo.stringList[lineIndex] = undefined;
-    easyPanelInfo.indexList[lineIndex] = undefined;
-    lineToRemove.remove();
-    getStringsFromEasyField();
-    if (!freezeDelimiter && currentPage ==='mainPage'){
-      computeDelimiterTag(renderURL);
     }else{
-      computeTags(renderURL);
+      // new button for keyName !== URL
+      newEasyButton.addEventListener('click',function() {
+        // when clicking on the button, make all buttons of the line inactive
+        const buttonList = easyPanelFields.getElementsByClassName('easyLine'+index);
+        for(j=0;j<buttonList.length;j++){
+          if (keyNames[j] !== 'URL'){
+            buttonList[j].classList.remove(colorClassList[j]);
+          }
+        }
+        if (tag.desc === this.eventTagType){
+            // turn button of when clicking on an active button
+            tag.desc = undefined;
+        }else{
+          // activate the current button
+          tag.desc = this.eventTagType;
+          this.classList.add(this.colorClass);
+          // tag.classList.add(this.colorClass);
+        }
+        computeTags();
+        computeDateFormat();
+      });
+    }
+    newDiv.appendChild(newEasyButton);
+  }
+  // const newButton = document.createElement('button');
+  // newButton.id = 'removeButton'+index;
+  // newButton.classList.add('easyButton');
+  // newButton.classList.add('easyRemoveButton');
+  // newButton.textContent = '✖';
+  // newButton.addEventListener('click', function(){
+  //   const lineIndex = parseInt(this.id.match(/\d+$/));
+  //   const renderURL = easyPanelInfo.indexList[lineIndex] === easyConvert['eventURLTags'];
+  //   let lineToRemove = document.getElementById('easyPanelLine'+lineIndex);
+  //   easyPanelInfo.indexList[lineIndex] = undefined;
+  //   lineToRemove.remove();
+  //   // getStringsFromEasyField();
+  //   if (currentPage ==='mainPage'){
+  //     // computeDelimiterTag(renderURL);
+  //   }else{
+  //    
+  //   }
+  // });
+  // newDiv.appendChild(newButton);
+  easyPanelFields.appendChild(newDiv);
+  return markFirstURL;
+}
+
+function computeTags(){
+  console.log('\x1b[43m\x1b[30mComputing tags\x1b[0m');
+  clearAllTags();
+  venue[currentPage] = {};
+  
+  // get the tag strings and put them in venue
+  subTags[currentPage].forEach(tag => {
+    if (tag.desc){
+      if (!venue[currentPage].hasOwnProperty(tag.desc)){
+        venue[currentPage][tag.desc] = [];
+      }
+      venue[currentPage][tag.desc].push(removeCustomTags(getPath(principalTag,tag)));
+    }
+    if (tag.isURL){
+      venue[currentPage].eventURLTags = [removeCustomTags(getPath(principalTag,tag))];
     }
   });
-  newDiv.appendChild(newButton);
-  easyPanelFields.appendChild(newDiv);
+  // console.log('venue data',venue[currentPage]);
+
+  // propagate tags to other events in the list. Does not propagate tags that will be selected
+  // due to grouping. Does not put color css in the document (should be done after grouping)
+  applyTags(true);
+
+  // group tags and put the new tag strings to venue
+  if(Object.keys(groupTags).some(key => groupTags[key] === true)){
+    console.log('\x1b[42m\x1b[30mGrouping tags\x1b[0m');
+  }
+
+  Object.keys(groupTags).forEach(key => {
+    if (groupTags[key] === true && venue[currentPage].hasOwnProperty(key)){
+      venue[currentPage][key] = regroupTags(venue[currentPage][key]);
+    }
+  });
+  
+  // update tag fields on the GUI
+  for(let i = 0; i < eventTagsBoxes.length; i++){
+    const textBox = eventTagsBoxes[i];
+    textBox.value = getValue(venue[currentPage],textBox.id);
+    setRows(textBox);
+  }
+  
+  // Add the color css to the document
+  applyTags();
 }
 
 
 
 
 // scrap panels
-const eventNameStrings = document.getElementById('eventNameStrings');
-const eventDateStrings = document.getElementById('eventDateStrings');
-const eventStyleStrings = document.getElementById('eventStyleStrings');
-const eventPlaceStrings = document.getElementById('eventPlaceStrings');
-const eventURLStrings = document.getElementById('eventURLStrings');
-const eventDummyStrings = document.getElementById('eventDummyStrings');
-const stringTextBoxes = [eventNameStrings, eventDateStrings, eventStyleStrings, eventPlaceStrings, eventURLStrings,eventDummyStrings];
+
 const dateFormatText = document.getElementById('dateFormatText');
-const eventURLTags = document.getElementById('eventURLTags');
-const eventDummyPanel = document.getElementById('eventDummy');
+const eventURLTagBox = document.getElementById('eventURLTags');
 const eventTagsBoxes = document.getElementsByClassName('eventTags');
-const eventStringsBoxes = document.getElementsByClassName('eventStrings');
 
-
-
-eventURLStrings.addEventListener("keydown", function(event) {// prevents field URL tag to have more than one line
-  if (event.key === "Enter") {
-      event.preventDefault();
-  }
-});
-eventURLTags.addEventListener("keydown", function(event) {
+eventURLTagBox.addEventListener("keydown", function(event) {
   if (event.key === "Enter") {
       event.preventDefault();
   }
 });
 
-const copyButtons = document.getElementsByClassName('copyButton');
-for(let i = 0; i < copyButtons.length; i++){
-  const button = copyButtons[i];
-  const targetID = button.id.replace('CopyButton','');
-  const target = document.getElementById(targetID);
-  button.addEventListener("click", event =>{
-    copyToTextBox(target);
-  });
-}
-
-function copyToTextBox(target){
-  const selection = window.getSelection();
-  let textCopy = selection.toString();
-  // const myNode = getParentElement(selection.anchorNode);
-  // console.log(myNode);
-  // console.log(getPathTo(myNode));
-  if (textCopy) {
-    if (target.classList.contains("eventURLgroup")){// prevents field URL tag to have more than one line
-      textCopy = textCopy.replace(/\n/g,'');
-    }
-    textCopy = textCopy.replace(/(\s*\n\s*)+/g,'\n').replace(/^\n/,'').replace(/\n$/,'');// remove blank lines
-    populateField(target, textCopy, true);
-    console.log(target.innerHTML);
-    stringTextBoxUpdate(target);
-  }
-}
-
-function getParentElement(node) {
-  while (node) {
-      if (node.nodeType === Node.ELEMENT_NODE) {
-          return node;
-      }
-      node = node.parentNode;
-  }
-  return null;
-}
 
 const eventURLPanelMessage = document.getElementById('eventURLPanelMessage');
+const eventURLSelectPanel = document.getElementById('eventURLSelectPanel');
 const eventURLSelect = document.getElementById('eventURLSelect');
+const followURLButton = document.getElementById('followURLButton');
+
+followURLButton.addEventListener('click',function(){
+    const url = makeURL(venue.baseURL,eventURL);
+    shell.openExternal(url);
+});
 
 // initialize scraptextboxes for tags
 for(let i = 0; i < eventTagsBoxes.length; i++){
@@ -571,173 +729,194 @@ for(let i = 0; i < eventTagsBoxes.length; i++){
 }
 
 function tagTextBoxUpdate(textBox){
+  // prevent grouping 
+  groupTags[textBox.id] = false;
+  const button = Array.from(groupTagsButtons).find(el => el.id.endsWith(textBox.id.replace('event','').replace('Tags','')));
+  setGroupButtonActivity(button, groupTags[textBox.id]);
   setRows(textBox);
   venue[currentPage][textBox.id] = getArray(textBox.value);
-  clearTags();
-  applyTags(textBox.id === 'eventURLTags');
-}
-
-// initialize scraptextboxes for strings
-for(let i = 0; i < eventStringsBoxes.length; i++){
-  const textBox = eventStringsBoxes[i];
-  textBox.addEventListener('input',function(){
-    if(!/[^\s\t\n]/.test(this.textContent)){// remove unwanted divs if they contain no text
-      this.innerHTML = '';
-    }
-    if (!this.innerHTML.includes('<div') && this.innerHTML !== ''){
-      this.innerHTML = '<div type="text">'+this.innerHTML+'</div>';
-      const newSelection = window.getSelection();
-      const range = document.createRange();
-      range.setStart(this.childNodes[0], 1);
-      newSelection.removeAllRanges();
-      newSelection.addRange(range);
-    }
-    const divsChildren = textBox.querySelectorAll('div');
-    highlightStringsNotFound(divsChildren);
-    stringTextBoxUpdate(textBox);
-  });
+  clearAllTags(true);
+  // successively mark the tags and apply the colors
+  applyTags(true);
+  applyTags(false);
+  // applyTags(textBox.id === 'eventURLTags');
+  renderEventURLPanel();
 }
 
 
-function stringTextBoxUpdate(textBox){
-  venueScrapInfo[currentPage][textBox.id] = getValueFromBox(textBox);//getArray(textBox.value);
-  if (!freezeDelimiter && currentPage ==='mainPage'){
-    // console.log(textBox.id);
-    const renderURL = textBox.id === 'eventURLStrings';
-    computeDelimiterTag(renderURL);
-  }else{
-    computeTags(textBox.id === 'eventURLStrings');
-  }
-}
+// event selectors panel
 
-// initialize regexp panels
-
-const regexpTextBeforeList = document.getElementsByClassName('regexpTextBefore');
-const regexpTextAfterList = document.getElementsByClassName('regexpTextAfter');
-const regexpMatchList = document.getElementsByClassName('regexpMatch');
-const regexpButtonList = document.getElementsByClassName('regexpButton');
-const regexpReplaceList = document.getElementsByClassName('regexpReplace');
-const regexpResultPanels = document.getElementsByClassName('regexpResult');
-let regexButtonShow = Array(regexpButtonList.length).fill(false);
-
-const eventSelectorMainTag = document.getElementById('eventSelectorMainTag');
+const eventSelectorPanel = document.getElementById('eventSelectorPanel');
 const eventSelectorIndex = document.getElementById('eventSelectorIndex');
-const eventSelectorPrevious = document.getElementById('eventSelectorPrevious');
-const eventSelectorNext = document.getElementById('eventSelectorNext');
-
-eventSelectorPrevious.addEventListener('click', function(){
-  if (eventSelectorIndex.value===''){
-    eventSelectorIndex.value = getMainTagIndex();
-  }
-  eventSelectorIndex.value = parseInt(eventSelectorIndex.value) - 1;
-  selectorIndexChange();
-});
-
-eventSelectorNext.addEventListener('click', function(){
-  if (eventSelectorIndex.value===''){
-    eventSelectorIndex.value = getMainTagIndex();
-  }
-  eventSelectorIndex.value = parseInt(eventSelectorIndex.value) + 1;
-  selectorIndexChange();
-});
 
 eventSelectorIndex.addEventListener('change', function(){
- selectorIndexChange();
-});
-
-function selectorIndexChange(){
-  if (eventSelectorIndex.value > $page(venue.eventsDelimiterTag).length){
+  if (eventSelectorIndex.value >= eventTagList.length){
     eventSelectorIndex.value = 1;
   }
   if (eventSelectorIndex.value < 1){
-    eventSelectorIndex.value = $page(venue.eventsDelimiterTag).length;
+    eventSelectorIndex.value = eventTagList.length;
   }
-  const tag = $page(venue.eventsDelimiterTag)[parseInt(eventSelectorIndex.value)];
-  $page('.focusedOn').each(function(index, element) {
-    $page(element).removeClass('focusedOn');
-  });
-  $page(tag).addClass('focusedOn');
-  rightPanel.innerHTML = $page.html();
-  focusTo(document.getElementsByClassName('focusedOn')[0]);
-  renderEventURLPanel(eventSelectorIndex.value);
-  applyRegexp();
-}
+  principalTag.classList.remove('SCRPXmainTag');
+  principalTagIndex = eventSelectorIndex.value-1;
+  principalTag = eventTagList[principalTagIndex];
 
+  subTags[currentPage] = getSubTags(principalTag);
 
-
-
-eventSelectorMainTag.addEventListener('click', function(){
-  eventSelectorIndex.value = '';
-  console.log('reset');
-  $page('.focusedOn').each(function(index, element) {
-    console.log('t',index);
-    $page(element).removeClass('focusedOn');
-  });
-  rightPanel.innerHTML = $page.html();
-  focusTo(document.getElementsByClassName('SCRPXmainTag')[0]);
+  populateEasyPanel();
+  principalTag.classList.add('SCRPXmainTag');
+  focusTo(principalTag);
   renderEventURLPanel();
-  applyRegexp();
+  ProcessRegex();
 });
 
-const regexpKeyList = [];
-for (let i = 0; i < regexpMatchList.length; i++) {
-  regexpKeyList.push(regexpMatchList[i].id.replace('RegexpInput',''));
-  regexpMatchList[i].addEventListener('input', function(){
-    applyChangeRegexField(i);
+
+/**************************************/
+/*      initialize regexp panels      */
+/**************************************/
+
+
+// regexp buttons and panels
+
+const regexElements = {};
+const regexKeys = Array.from(document.getElementsByClassName('regexpPanel')).map(el => el.id.replace('RegexpPanel',''));
+
+regexKeys.forEach(key => {
+  const element = {
+    key: key,
+    isActive: false,
+    isActiveButton: document.getElementById(key+'RegexActivateButton'),
+    panel: document.getElementById(key+'RegexpPanel'),
+    textBefore: document.getElementById(key+'RegexpTextBefore'),
+    match: document.getElementById(key+'RegexpInput'),
+    replaceButton: document.getElementById(key+'RegexpButton'),
+    showReplace: false,
+    replace: document.getElementById(key+'RegexpReplace'),
+    textAfter: document.getElementById(key+'RegexpTextAfter'),
+  };
+
+  regexElements[key] = element;
+  element.panel.style.display = 'none';
+  element.replace.style.display = 'none';
+
+  element.isActiveButton.title = "Cliquez pour activer un filtre regex";
+
+  // set visibility handler
+  element.isActiveButton.addEventListener('click',()=>{
+    element.isActive = !element.isActive;
+    // change the appearance of the button
+    if (element.isActive){
+      element.isActiveButton.classList.add('activeGroupTagButton');
+      element.isActiveButton.classList.remove('inactive');
+      element.panel.style.display = 'block';
+      element.isActiveButton.title = "Cliquez pour désactiver le filtre regex";
+      // store again the values of the field to venue.regexp. Is used when the user has clicked on save after removing regexp
+      // (venue.regexp field has been removed doing that), then turn it back on 
+      computeVenueRegexField(element);
+    }else{
+      element.isActiveButton.classList.remove('activeGroupTagButton');
+      element.isActiveButton.classList.add('inactive');
+      element.panel.style.display = 'none';
+      element.isActiveButton.title = "Cliquez pour activer un filtre regex";
+    }
+
+    // handlers for match and replace inputs
+    element.match.addEventListener('input', function(){
+      computeVenueRegexField(element);
+    });
+    element.replace.addEventListener('input', function(){
+      computeVenueRegexField(element);
+    });
   });
-  regexpReplaceList[i].addEventListener('input', function(){
-    applyChangeRegexField(i);
+
+  // set replace button action
+  element.replaceButton.addEventListener('click', function (){
+    element.showReplace = !element.showReplace;
+    if (element.showReplace){
+      element.replace.style.display = 'inline';
+    }else{
+      element.replace.style.display = 'none';
+    }
+    computeVenueRegexField(element);
+  });
+});
+
+// initialize regexp fields from venue info
+
+if (venue.hasOwnProperty('regexp')){
+  Object.keys(venue.regexp).forEach(key => {
+    const element = regexElements[key];
+    // make the regexp panel visible
+    element.panel.style.display = 'block';
+    element.isActive = true;
+    element.isActiveButton.classList.add('activeGroupTagButton');
+    element.isActiveButton.classList.remove('inactive');
+
+    // fill the corresponding fields
+    element.match.value = venue.regexp[key][0];
+    if (venue.regexp[key].length > 1){
+      element.replace.value = venue.regexp[key][1];
+      element.showReplace = true;
+      element.replace.style.display = 'inline';
+    }
   });
 }
 
-function applyChangeRegexField(i){
-  const txt = regexpMatchList[i].value;
-  if (txt === ''){
-    delete venue.regexp[regexpKeyList[i]];
+function computeVenueRegexField(element){
+  if (!element.isActive || element.match.value === ''){
+    delete venue.regexp[element.key];
   }else{
     if (!venue.hasOwnProperty('regexp')){
       venue.regexp = {};
     }
-    if (regexButtonShow[i] === true){
-      venue.regexp[regexpKeyList[i]] = [txt,regexpReplaceList[i].value];
+    if (element.showReplace){
+      venue.regexp[element.key] = [element.match.value, element.replace.value];
     }else{
-      venue.regexp[regexpKeyList[i]] = txt;
+      venue.regexp[element.key] = [element.match.value];
     }
   }
-  applyRegexp();
+  applyRegexp(element);
 }
 
 
-if (venue.hasOwnProperty('regexp')){
-  Object.keys(venue.regexp).forEach(key => {
-    const fieldMatch = document.getElementById(key+'RegexpInput');
-    if (typeof venue.regexp.key === 'string'){
-      fieldMatch.value = venue.regexp[key];
-    }else{
-      fieldMatch.value = venue.regexp[key][0];
-      const fieldReplace = document.getElementById(key+'RegexpReplace');
-      fieldReplace.value = venue.regexp[key][1];
-      const index = regexpKeyList.indexOf(key);
-      regexButtonShow[index] = true;
-    }
-  });
-}
+function applyRegexp(element){
 
-for (let i = 0; i < regexpButtonList.length; i++){
-  if (regexButtonShow[i] === false){
-    regexpReplaceList[i].style.display = 'none';
+  // not tag to analyze
+  if (!principalTag){
+    element.textBefore.style.display = 'none';
+    element.textAfter.style.display = 'none';
+    // Array.from(regexpResultPanels).forEach(el => el.style.display = 'none');
+    return;
   }
-  regexpButtonList[i].addEventListener('click', function (){
-    regexButtonShow[i] = ! regexButtonShow[i];
-    // const key = this.id.match(/event(.*?)Regexp/)[1];
-    if (regexButtonShow[i]){
-      regexpReplaceList[i].style.display = 'inline';
+  if (element.isActive){
+    element.textBefore.style.display = 'block';
+    element.textAfter.style.display = 'block';
+    element.textBefore.textContent = venue[currentPage][element.key+'Tags']
+                    .flatMap(path => findTagsFromPath(principalTag,path))
+                    .map(el => el.textContent).join(' ');
+    const regex = new RegExp(element.match.value);
+    if (element.showReplace){
+      element.textAfter.textContent = element.textBefore.textContent.replace(regex,element.replace.value);
     }else{
-      regexpReplaceList[i].style.display = 'none';
+      element.textAfter.textContent = element.textBefore.textContent.match(regex);
     }
-    applyChangeRegexField(i);
-  });
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // log text
@@ -764,20 +943,16 @@ if (!venue.hasOwnProperty('linkedPage')){
   switchPageButton.style.display = 'none';
 }
 switchPageButton.addEventListener('click',() =>{
-  scrapInfo[venueID] = venueScrapInfo;
   if (currentPage === 'mainPage'){
     currentPage = 'linkedPage';
     switchPageButton.textContent = '< Switch to main page';
     delimiterPanel.style.display = 'none';
-    eventDummyPanel.style.display = 'none';
   }else{
     currentPage = 'mainPage';
     switchPageButton.textContent = 'Switch to linked page >';
     delimiterPanel.style.display = 'block';
-    eventDummyPanel.style.display = 'block';
   }
   initializeInterface();
-  tabList[0].dispatchEvent(new Event('click'));
 });
 
 /*****************************/
@@ -792,7 +967,9 @@ function initializeInterface(){
   if (currentPage === 'mainPage'){
     if (lastModified){// if the file exists
       loadPage();
-      applyRegexp();
+      makePrincipalTag(candidatePrincipalTag);
+      focusTo(principalTag);
+      ProcessRegex();
     }else{
       rightPanel.textContent = 'Content not downloaded yet';
       analyzePanel.style.display = 'none';
@@ -801,10 +978,9 @@ function initializeInterface(){
   }else{
     loadLinkedPageContent();
   }
-  initScrapTextStrings();
-  initScrapTextTags();
-  populateEasyPanel();
-  renderDetailedView();
+  // initScrapTextStrings();
+  // initScrapTextTags();
+  
 }
 
 
@@ -846,187 +1022,188 @@ function loadLinkedPageContent(){
 /*    auxiliary functions    */
 /*****************************/
 
-function clearTags(){
-  const classes = colorClassList
-    .concat(['SCRPXhighlightMultiName','SCRPXhighlightMultiDate','SCRPXhighlightMultiStyle','SCRPXhighlightMultiPlace','SCRPXhighlightMultiURL',
-              'SCRPXmainTag','SCRPXeventBlock','SCRPXeventBlockInvalid']);
-  classes.forEach(el => {
-    const tags = $page('.'+el);
-    tags.each(function(index, element) {
-      $page(this).removeClass(el);
-      if (!/\S/.test($page(this).attr('class'))){
-        $page(this).removeAttr('class');
-      }
-    });
+
+function clearAllTags(clearOnlySubTags = false){
+  (clearOnlySubTags?colorClassList:reservedClassList).forEach(el => {
+    rightPanel.querySelectorAll('.'+el).forEach(tag => {
+      tag.classList.remove(el);
+    })
   });
 }
 
-function gotoTag(ctag,tagString){
-  // const $2 = cheerio.load(ctag.html());
-  // // console.log($2(tagString).length);
-  // let truc = [];
-  // $2(tagString).each((index,tg)=> truc.push(tg));
-  // console.log(truc.length);
-  // return truc;
-  let currentTag = [ctag];
-  
-  tagString.split('\>').forEach(el =>{
-    // if (currentTag.length > 0){
-      // currentTag.forEach(ct => console.log(el,$page(ct.children(el)).length,$page(ct.children(el)).text()));
-    // }
-    
-    // 
-    // currentTag = currentTag.map(ct => $page(ct.children(el))).flat();
-    currentTag = currentTag.map(ct => $page(ct.find(el))).flat();// this was commented. Why did I once put children instead of find ?
+function clearTag(tag){
+  colorClassList.forEach(el => {
+      tag.classList.remove(el);
+    });
+}
+
+
+
+// marktag: true: only mark the tags for history (run before grouping)
+// marktag: false: add classes to highlight the tags
+function applyTags(markTags = false){
+
+  if (!markTags){
+    console.log('\x1b[43m\x1b[30mapplying tags\x1b[0m');
+    eventTagList.forEach(el => {
+      el.classList.add('SCRPXeventBlock');
+    });
+    principalTag.classList.add('SCRPXmainTag');
+  }
+
+
+  Object.keys(venue[currentPage]).forEach(key => {
+    className = 'SCRPXhighlight'+key.replace('event','').replace('Tags','');
+    venue[currentPage][key].forEach(path =>{
+      eventTagList.forEach(rootTag =>{
+        const tags = findTagsFromPath(rootTag,path);
+        tags.forEach(tag => {
+          if (markTags){
+            tag.isURL = false; 
+            if (key === 'eventURLTags'){
+              // console.log('marking URL');
+              tag.isURL = true;
+            }else{
+              tag.desc = key;
+            }
+          }else{
+            if (key === 'eventURLTags' && tag.desc){// add a striped overlay if the tag has also another key
+              tag.classList.add('SCRPXhighlightURLOverlay');
+            }else{
+              tag.classList.add(className);
+            }
+          }
+        });
+      });
+    })
   });
-  return currentTag;
-}
-
-
-function applyTagForKey(keyName, dtag, event){// tags application should be delayed and stored in a list, to avoid
-  // interferences from adding classes to node (problem with :Not([class]))
-  const key = 'event'+keyName+'Tags';
-  const tagsToApply = [];
-  if (venue[currentPage].hasOwnProperty(key)){
-    let string = "";
-    // console.log('\n\n','début',keyName,$page(dtag).html());
-    venue[currentPage][key].forEach(tag =>{
-      //  console.log(tag);
-      const ntag = gotoTag($page(dtag),tag);
-      // console.log($page(ntag).html());
-      ntag.forEach(el => {
-        // if (keyName==='Date'){
-        //   console.log(keyName,ntag.length,$page(el).text());
-        //   // console.log($page(tag).text());
-        // }
-        // console.log(key,$page(el).text());
-        string += $page(el).text();
-        tagsToApply.push([$page(el),'SCRPXhighlight'+keyName]);
-      });
-    });
-    if (keyName.includes('Name')){
-      event.eventName = event.eventName?event.eventName+string:string;
-    }
-    if (keyName.includes('Date')){
-      event.eventDate = event.eventDate?event.eventDate+string:string;
-    }
-  }
-  return tagsToApply;
-}
-
-
-function applyTags(renderURL){
-  function fillTags(dtag){
-    const event = {};
-    let tagsToApply = [];
-    keyNames.forEach(keyName =>{
-      tagsToApply = tagsToApply.concat(applyTagForKey(keyName, dtag, event));
-    });
-    // console.log(tagsToApply);
-    tagsToApply.forEach(el => {
-      el[0].addClass(el[1]);
-    });
-    return event;
-  }
-
-  if (currentPage === 'mainPage'){
-    // clearTags();
-    // div.site>div.contentarea:eq(0)>main.sitemain.wrap_agenda.allconcerts:eq(0)>div:not([class]):eq(1)>div:not([class]):eq(1)>div.smallcontent.ukwidth14m.ukgridmargin:eq(8)>div:not([class]):eq(0)>a:not([class]):eq(0)
-    const mainTagBlock = $page(mainTagAbsolutePath);
-    mainTagBlock.addClass('SCRPXmainTag');
-    mainTagBlock.addClass('SCRPXeventBlock');
-    fillTags(mainTagBlock);
-    $page(venue.eventsDelimiterTag).each((index, dTag) => {
-      // console.log($page(dTag).text());
-      const event = fillTags(dTag);
-      if (isValidEvent(event, venue)){
-        $page(dTag).addClass('SCRPXeventBlock');
-      }else{
-        $page(dTag).addClass('SCRPXeventBlockInvalid');
-      }
-    });
-    rightPanel.innerHTML = $page.html();
-    rightPanel.querySelectorAll('a'||'select').forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault(); 
-      });
-    });
-
-    mainTagBlock.addClass('SCRPXmainTag');
-    mainTagBlock.addClass('SCRPXeventBlock');
   
-    if (localPage){
-      if (renderURL === true){
-        renderEventURLPanel();
-      }
-    }else{
-      analyzePanel.style.display = 'none';
-    }
+  // if (currentPage === 'mainPage'){
+  //   // div.site>div.contentarea:eq(0)>main.sitemain.wrap_agenda.allconcerts:eq(0)>div:not([class]):eq(1)>div:not([class]):eq(1)>div.smallcontent.ukwidth14m.ukgridmargin:eq(8)>div:not([class]):eq(0)>a:not([class]):eq(0)
+  //   const mainTagBlock = $page(mainTagAbsolutePath);
+  //   mainTagBlock.addClass('SCRPXmainTag');
+  //   mainTagBlock.addClass('SCRPXeventBlock');
+  //   fillTags(mainTagBlock);
+  //   $page(venue.eventsDelimiterTag).each((index, dTag) => {
+  //     // console.log($page(dTag).text());
+  //     const event = fillTags(dTag);
+  //     if (isValidEvent(event, venue)){
+  //       $page(dTag).addClass('SCRPXeventBlock');
+  //     }else{
+  //       $page(dTag).addClass('SCRPXeventBlockInvalid');
+  //     }
+  //   });
+  //   // rightPanel.innerHTML = $page.html();
+  //   rightPanel.querySelectorAll('a'||'select').forEach(link => {
+  //     link.addEventListener('click', e => {
+  //       e.preventDefault(); 
+  //     });
+  //   });
+
+  //   mainTagBlock.addClass('SCRPXmainTag');
+  //   mainTagBlock.addClass('SCRPXeventBlock');
   
-    const focusedElement = document.getElementsByClassName("SCRPXmainTag")[0];
-    focusTo(focusedElement);
-    // console.log($page.html());
-  }else{
-    fillTags($page('BODY'));
-    rightPanel.innerHTML = $page.html();
-    rightPanel.querySelectorAll('a'||'select').forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault(); 
-      });
-    });
-  }
+  //   if (localPage){
+  //     if (renderURL === true){
+  //       // renderEventURLPanel();
+  //     }
+  //   }else{
+  //     analyzePanel.style.display = 'none';
+  //   }
+  
+  //   const focusedElement = document.getElementsByClassName("SCRPXmainTag")[0];
+  //   focusTo(focusedElement);
+  //   // console.log($page.html());
+  // }else{
+  //   fillTags($page('BODY'));
+  //   // rightPanel.innerHTML = $page.html();
+  //   rightPanel.querySelectorAll('a'||'select').forEach(link => {
+  //     link.addEventListener('click', e => {
+  //       e.preventDefault(); 
+  //     });
+  //   });
+  // }
 }
+
 
 
 
 function loadPage(){
+  
   analyzePanel.style.display = 'block';
   localPage = reduceImgSize(getFilesContent(sourcePath, nbPagesToShow));
+  // replace <a> tags with something that is not conflicting with click events for right panel
+  localPage = localPage.replace(/<[\s\n\t]*a /gi,'<'+customTagName+' ').replace(/<[\s\n\t]*\/a[\s\n\t]*>/gi,'</'+customTagName+'>');
   $page = cheerio.load(parseDocument(localPage));
+  setDepthPrefix($page);
+
+  rightPanel.innerHTML = $page.html();
+  const linkTags = rightPanel.querySelectorAll(customTagName);
+  for(tag of linkTags){
+    tag.title = makeURL(venue.baseURL,tag.getAttribute('href'));
+  }
+  // console.log(rightPanel.innerHTML);
+
+  // autosuggest
+  // const cl = getMostUsedTagClassSets($page);
+  // console.log(cl);
   
   // find the tag from eventsDelimiterTag, with the text in the strings. If not found, get the first tag
   // that matches eventsDelimiterTag
+  // venue.eventsDelimiterTag = 'a.pureu11.pureumd12.truc>div>a.truc2.truc3';
+  // a.pureu11.pureumd12.pureulg14.t5410.pureug.agendacard
+  // venue.eventsDelimiterTag = 'a.pureu11.pureumd12.pureulg14.t5410.pureug.agendacard';
+  behaviourSetup('automaticDefault');
+  
   if (venue.hasOwnProperty('eventsDelimiterTag')){
-    const stringsToFind = [].concat(...Object.values(splitAndLowerCase(venueScrapInfo)[currentPage]));
-    const mainTagCandidates = $page(venue.eventsDelimiterTag);
-    let i;
-    for(i=mainTagCandidates.length-1;i>=0;i--){
-      const text = $page(mainTagCandidates[i]).text();
-      const containStrings = !stringsToFind.some(str => !text.includes(str));
-      // console.log('to find',stringsToFind,'\n',text);
-      if (containStrings){
-        break;
-      }
-    }
-    if (i===-1){
-      i=0;
-      scrapInfoTooOld = true;
+    delimiterTagField.value = venue.eventsDelimiterTag;
+    candidatePrincipalTag = findTagsFromPath(rightPanel, venue.eventsDelimiterTag)[0];
+    // eventTagList = findTagsFromPath(rightPanel, venue.eventsDelimiterTag);
+    // candidatePrincipalTag = eventTagList[0];
+    if (!candidatePrincipalTag){// start with default setup for automatic 
+      behaviourSetup('automaticDefault');
     }else{
-      scrapInfoTooOld = false;
+      behaviourSetup('initialize');
     }
-    mainTag = mainTagCandidates[i];
-    mainTagAbsolutePath = getTagLocalization($page(mainTag),$page,false);
-    // console.log('MTAP: ',mainTagAbsolutePath);
-    delimiterTag = reduceTag(getTagLocalization($page(mainTag),$page,true),$page);
-    // console.log('tct:',$page(mainTagAbsolutePath).text());
-    nbEvents.main = computeEventsNumber(delimiterTag);
-    [adjustedDelimiterTag, nbEvents.adjusted] = adjustMainTag(delimiterTag,$page,venue,nbEvents.main);
-    if (adjustedDelimiterTag === venue.eventsDelimiterTag){
-      setEventPanel(nbEvents.adjusted);
-    }else{
-      autoAdjustCheckbox.checked = false;
-    }
+    
+    // console.log(eventTagList);
+    // console.log(venue.eventsDelimiterTag);
+    // eventTagList = rightPanel.querySelectorAll('a.pureu11.pureumd12.pureulg14.t5410.pureug.agendacard');
+    // console.log(eventTagList);
+    // la suite à filtrer et enlever
+    
+    // const mainTagCandidates = $page(venue.eventsDelimiterTag);
+    // let i;
+    // for(i=mainTagCandidates.length-1;i>=0;i--){
+    //   const text = $page(mainTagCandidates[i]).text();
+    //   const containStrings = !stringsToFind.some(str => !text.includes(str));
+    //   // console.log('to find',stringsToFind,'\n',text);
+    //   if (containStrings){
+    //     break;
+    //   }
+    // }
+  
+    // mainTag = mainTagCandidates[i];
+    // mainTagAbsolutePath = getTagLocalization($page(mainTag),$page,false);
+    // delimiterTag = reduceTag(getTagLocalization($page(mainTag),$page,true),$page);
+    // // nbEvents.main = computeEventsNumber(delimiterTag);
+    // [adjustedDelimiterTag, nbEvents.adjusted] = adjustMainTag(delimiterTag,$page,venue,nbEvents.main);
+    
   }
+
+
   computeMissingLinks();
-  if (validateDelimiterTags()){
-    computeDateFormat();
-  }
-  applyTags(true);
+  // if (validateDelimiterTags()){
+  // }
+  // applyTags(true);
 }
 
 function computeMissingLinks(){
   linkedFileContent = fs.existsSync(sourcePath+'linkedPages.json')?loadLinkedPages(sourcePath):[];
-  const hrefList = getHrefListFrom([localPage],venue);
+  // console.log(linkedFileContent);
+  // console.log(venue, venueWithCustomTags(venue));
+  const hrefList = getHrefListFrom([localPage],venueWithCustomTags(venue));
+  console.log(hrefList);
   const existingLinks = hrefList.filter(el => Object.keys(linkedFileContent).includes(el));
   const linksToDownload = hrefList.filter(el => !Object.keys(linkedFileContent).includes(el));
   const missingLinksPanel = document.getElementById('missingLinksPanel');
@@ -1115,31 +1292,19 @@ function showDate(date){
 function getValue(source, key){
   if (source.hasOwnProperty(key)){
     const object = source[key];
-    if (typeof(object)==="string"){
-      return object;
-    }else{
-      return object.join('\n');
-    }
+    // if (typeof(object)==="string"){
+    //   return object;
+    // }else{
+    return object.join('\n');
+    // }
   }else{
     return '';
   }
 }
 
 function getArray(string){
-  return string.split('\n');//.filter(el => el !== '');
-}
-
-function containsURL(tag){
-  if (tag.is('a[href]')){//}.prop('tagName') == A){
-    return true;
-  }
-  const $eventBlock = cheerio.load($page(tag).html());
-  const hrefs = $eventBlock('a[href]');
-  if (hrefs.length > 0){
-    return true;
-  }else{
-    return false;
-  }
+  return  string.split('\n')
+                .filter(line => line.trim().length > 0);
 }
 
 
@@ -1172,98 +1337,23 @@ function getPath(element) {
 }
 
 
-function computeDelimiterTag(renderURL){// renderURL forces to update the URL in the delimiter tag. If false or undefined, the panel will be rendered only if the main tag has changed.
-  clearTags();
-  const stringsToFind = [].concat(...Object.values(splitAndLowerCase(venueScrapInfo)[currentPage])).filter(el => el !== '');
-  const tagsCandidates =  getTagContainingAllStrings($page,stringsToFind);
-  if (tagsCandidates.length === 0){
-    setEventPanel(0);
-  }else{
-    mainTag = tagsCandidates.last();
-    scrapInfoTooOld = false;
-    if (mustIncludeURL){// extend delimiter tag to include at least one url
-      while(!containsURL(mainTag)){
-        mainTag = mainTag.parent();
-      }
-    }
-    const oldTag = mainTagAbsolutePath;
-    mainTagAbsolutePath = getTagLocalization(mainTag,$page,false);
-
-    // console.log('*** verif ***',oldTag === mainTagAbsolutePath);
-    // console.log(mainTagAbsolutePath);
-    // console.log('abs',mainTagAbsolutePath); 
-    // console.log('maintag:',$page(mainTag).text());
-    tagsFromStrings(cheerio.load($page(mainTag).html()));
-    if (oldTag !== mainTagAbsolutePath){
-      delimiterTag = reduceTag(getTagLocalization(mainTag,$page,true),$page,false);
-      console.log('delimit');
-      nbEvents.main = computeEventsNumber(delimiterTag);
-      // console.log('deli',delimiterTag);
-      if (autoAdjustCheckbox.checked === true){
-        [adjustedDelimiterTag, nbEvents.adjusted] = adjustMainTag(delimiterTag,$page,venue,nbEvents.main);
-        setEventPanel(nbEvents.adjusted);
-        delimiterTagField.value = adjustedDelimiterTag;
-        venue.eventsDelimiterTag = adjustedDelimiterTag;
-      }else{
-        delimiterTagField.value = delimiterTag;
-        venue.eventsDelimiterTag = delimiterTag;
-        adjustedDelimiterTag = undefined;
-      }
-    }else{
-      if (autoAdjustCheckbox.checked === true){
-        if (adjustedDelimiterTag === undefined){
-          [adjustedDelimiterTag, nbEvents.adjusted] = adjustMainTag(delimiterTag,$page,venue);
-        }
-        setEventPanel(nbEvents.adjusted);
-      }else{
-        setEventPanel(nbEvents.main);
-      }
-    }
-    computeDateFormat();
-    initScrapTextTags();
-    if (renderURL === true || oldTag !== mainTagAbsolutePath){
-      renderEventURLPanel();
-    }
-    applyTags();
-  }
-}
-
-function tagsFromStrings(source){
-  // let $eventBlock = cheerio.load($page(mainTag).html());
-  venue[currentPage] = addJSONBlock(venueScrapInfo[currentPage],source, showLog);
-  if (regroupTagsCheckbox.checked){
-    Object.keys(venue[currentPage]).forEach(key =>{
-      venue[currentPage][key] = regroupTags(venue[currentPage][key]); 
-    });
-  }
-}
-
-function computeTags(renderURL){
-  clearTags();
-  if (currentPage === 'mainPage'){
-    if (validateDelimiterTags()){
-      tagsFromStrings(cheerio.load($page(mainTag).html()));
-      computeDateFormat();
-      initScrapTextTags();
-      applyTags(renderURL);
-    }
-  }else{
-    venue[currentPage] = addJSONBlock(venueScrapInfo[currentPage],$page, showLog);
-    // tagsFromStrings($page);
-    // console.log(venueScrapInfo[currentPage]);
-    computeDateFormat();
-    initScrapTextTags();
-    applyTags(false);
-  }
-}
-
-
 function computeDateFormat(){
-  let dates;
+  console.log('\x1b[42m\x1b[30mComputing date format\x1b[0m');
+  let dates = [];
   if (currentPage === 'mainPage'){
-    dates = getAllDates(venue.eventsDelimiterTag,venue[currentPage]['eventDateTags'],$page);
+    if (eventTagList && venue.mainPage.hasOwnProperty('eventDateTags')){
+      // for every event, get the date strings corresponding to the date tags and concatenate them.
+      eventTagList.forEach(eventTag => {
+        const dateString = venue.mainPage['eventDateTags'].flatMap(dateTag => findTagsFromPath(eventTag,dateTag))
+                                                  .map(tag => tag.textContent).join(' ');
+        dates.push(dateString);
+      });
+    }
   }else{
-    dates = getAllDates("BODY",venue[currentPage]['eventDateTags'],$page);
+    const dates = [venue.linkedPage['eventDateTags'].flatMap(dateTag => findTagsFromPath(eventTag,dateTag))
+                                                  .map(tag => tag.textContent).join(' ')];
+
+    // dates = getAllDates("BODY",venue[currentPage]['eventDateTags'],$page);
   }
   // lastDateList keeps memory of computation. If no new dates to analyze, no need to perform 
   // again a search for the best format
@@ -1290,137 +1380,144 @@ function computeDateFormat(){
   
 }
 
-function renderEventURLPanel(eventIndex){
-  if (venue.eventsDelimiterTag === undefined || venue.eventsDelimiterTag === ''){
-    eventURLPanel.style.display = 'none';
+function renderEventURLPanel(){
+
+  // console.log('url render');
+  eventURL = undefined;
+
+  if (!eventTagList || eventTagList.length === 0){
+    // eventURLPanel.style.display = 'none';
+    setSwitchStatus();
     return;
   }
-  if (!validateDelimiterTags()){
-    eventURLSelect.style.display = 'none';
-    eventURLPanelWarning.style.display = 'none';
-    eventURLPanelMessage.textContent = 'Invalid tag, cannot find URL.';
-    return;
-  }
-  let tag;
   eventURLPanel.style.display = 'block';
-  if (eventIndex){
-    tag = $page(venue.eventsDelimiterTag)[eventIndex];
-  }else if (scrapInfoTooOld === true){
+
+  if (!containsURL(principalTag)){
+    eventURLSelectPanel.style.display = 'none';
     eventURLPanelWarning.style.display = 'block';
-    tag = $page(venue.eventsDelimiterTag).first();
-  }else{
-    eventURLPanelWarning.style.display = 'none';
-    tag = mainTag;
+    eventURLPanelWarning.textContent = 'Cannot find any URL in the event block.';
+    eventURLPanelMessage.style.display = 'none';
+    setSwitchStatus();
+    return;
   }
 
+  eventURLPanelWarning.style.display = 'none';
+
+  // if eventURLTags, is defined, try to extract the URL
   if (venue.mainPage.hasOwnProperty('eventURLTags')){
-    const $eventBlock = cheerio.load($page(tag).html());
-    eventURL = $eventBlock(venue.mainPage.eventURLTags[0]).attr('href');
-    eventURLPanelMessage.textContent = 'URL from tag: '+ eventURL;
-    eventURLSelect.style.display = 'none';
-  }else{
-    const urlList = findURLs($page(tag));
-    // console.log($page(tag).html());
-    const index = urlList.findIndex(function(element) {
-      return typeof element !== 'undefined';
-    });
-    venue.eventURLIndex = index;
-    const definedURLs = urlList.filter(el => el !== undefined);
-    const nbURLs = removeDoubles(definedURLs).length;
-    if (definedURLs.length === 0){
-      eventURLPanelMessage.textContent = 'No URL found.';
-      eventURLSelect.style.display = 'none';
-    } else if (nbURLs === 1){
-      eventURL = urlList[index];
-      eventURLPanelMessage.textContent = 'URL found: '+ eventURL;
-      eventURLSelect.style.display = 'none';
-    } else {
-      eventURLPanelMessage.textContent = 'Choose URL to keep: ';
-      eventURLSelect.innerHTML='';
-      definedURLs.forEach(url => {
+    // console.log('url tag found in venue');
+    urlTag = findTagsFromPath(principalTag,venue.mainPage.eventURLTags[0])[0];
+    eventURL = getAncestorWithUrl(urlTag).getAttribute('href');
+    // console.log(venue.mainPage.eventURLTags[0]);
+    // console.log(findTagsFromPath(principalTag,venue.mainPage.eventURLTags[0]));
+    // console.log(urlTag.tagName);
+    eventURLSelectPanel.style.display = 'none';
+    if (eventURL){
+      eventURLPanelMessage.textContent = 'URL from tag: '+ eventURL;
+      eventURLPanelMessage.style.display = 'block';
+      setSwitchStatus();
+      return;
+    }else{
+      eventURLPanelWarning.style.display = 'block';
+      eventURLPanelWarning.textContent = 'URL tag found, but it does not contain a URL reference. Set another tag or choose a link from the list';
+    }
+  }
+
+  // if no eventURL is present, or if it doesn't provide a valid URL, try to find the URLs contained in the block
+  
+  eventURLPanelMessage.style.display = 'block';
+  
+  urlTags = findURLTags(principalTag);
+  // const index = urlList.findIndex(function(element) {
+  //   return typeof element !== 'undefined';
+  // });
+  let index = 0;
+  if (venue.mainPage.hasOwnProperty('eventURLIndex') && venue.mainPage.eventURLIndex != undefined){
+    index = venue.eventURLIndex;
+    if (index >= urlTags.length){
+      index = 0;
+    }
+  }
+  venue.eventURLIndex = index;
+
+  // console.log('URLs found: '+urlTags.length);
+  eventURLPanelMessage.style.display = 'block';
+  
+  eventURL = urlTags[index].getAttribute('href');
+  if (urlTags.length === 1) {
+    eventURLPanelMessage.textContent = 'URL found: ' + eventURL;
+    eventURLSelectPanel.style.display = 'none';
+    if (venue.mainPage.hasOwnProperty('eventURLTags')){
+      delete venue.mainPage.eventURLTags;
+    }
+  } else {
+    eventURLPanelMessage.textContent = 'Choose URL to keep: ';
+    eventURLSelect.innerHTML = '';
+    urlTags.forEach((tag, ind) => {
+      // console.log('adding '+ind);
+      if (isValidURL(tag.getAttribute('href'))){
         const option = document.createElement('option');
-        option.text = url;  
+        option.text = tag.getAttribute('href');
+        option.value = ind;
         eventURLSelect.appendChild(option);
-      });
-      eventURLSelect.style.display = 'inline';
-      eventURLSelect.addEventListener('change', event =>{
-        venue.mainPage.eventURLIndex = eventURLSelect - index;
-        eventURL = eventURLSelect.value;
-      });
+      }
+    });
+    eventURLSelectPanel.style.display = 'inline';
+    eventURLSelect.selectedIndex = index;
+    eventURLSelect.addEventListener('click', event => {
+      urlSelectAction();
+    });
+    eventURLSelect.addEventListener('change', event => {
+      urlSelectAction();
+    });
+
+    function urlSelectAction(){
+      venue.mainPage.eventURLIndex = eventURLSelect.selectedIndex;
+      eventURL = eventURLSelect.options[eventURLSelect.selectedIndex].text;
+      venue.mainPage.eventURLIndex =  eventURLSelect.value;
+      eventURLPanelWarning.style.display = 'none';
+      if (venue.mainPage.hasOwnProperty('eventURLTags')){
+        delete venue.mainPage.eventURLTags;
+      }
+      setSwitchStatus();
     }
   }
   setSwitchStatus();
+  
 }
 
 
 //aux functions
 
 function setSwitchStatus(){
+  // console.log('\x1b[44mSetting switch status\x1b[0m');
   const linkURL = makeURL(venue.baseURL,eventURL);
   if (!linkedFileContent){
+    switchPageButton.classList.remove('activeButton');
     switchPageButton.classList.add('inactive');
     switchPageButton.disabled = true;
     return;
   }
   linkedPage = linkedFileContent[linkURL];
   if (linkedPage){
+    switchPageButton.classList.add('activeButton');
     switchPageButton.classList.remove('inactive');
     switchPageButton.disabled = false;
   }else{
+    switchPageButton.classList.remove('activeButton');
     switchPageButton.classList.add('inactive');
     switchPageButton.disabled = true;
   }
 }
 
 function setRows(textBox) {
-  // const nbLines = textBox.value.split('\n').length;
-  // textBox.setAttribute('rows', nbLines);
-  // textBox.setAttribute('rows', textBox.scrollHeight / 24);
-  textBox.setAttribute('rows', 5);
+  textBox.style.height = "auto"; 
+  textBox.style.height = textBox.scrollHeight + "px";
+  // textBox.setAttribute('rows', 3);
 } 
 
-function isValidTag(tag){
-  try{
-    let tagExists = $page(tag).length > 0;
-    if (tagExists === false && tag.endsWith(':not([class])')){
-      const tagsAlt = [tag.replace(/:not\(\[class\]\)$/,'.SCRPXeventBlock'), 
-                       tag.replace(/:not\(\[class\]\)$/,'.SCRPXmainTag'),
-                       tag.replace(/:not\(\[class\]\)$/,'.SCRPXeventBlockInvalid')];
-      tagExists = tagsAlt.some(el => $page(el).length > 0);
-    }
-    return tagExists;
-  }catch(err){
-    return false;
-  }
-}
 
 
-function validateDelimiterTags(){
-  if (isValidTag(delimiterTagField.value)){
-    delimiterTagField.classList.remove('invalid');
-    return true;
-  }else{
-    delimiterTagField.classList.add('invalid');
-    return false;
-  }
-}
-
-function initScrapTextStrings(){
-  for(let i = 0; i < eventStringsBoxes.length; i++){
-    const textBox = eventStringsBoxes[i];
-    populateField(textBox, getValue(venueScrapInfo[currentPage],textBox.id));
-    const divsChildren = textBox.querySelectorAll('div');
-    highlightStringsNotFound(divsChildren);
-  }
-}
-
-function initScrapTextTags(){
-  for(let i = 0; i < eventTagsBoxes.length; i++){
-    const textBox = eventTagsBoxes[i];
-    textBox.value = getValue(venue[currentPage],textBox.id);
-    setRows(textBox);
-  }
-}
 
 function populateField(textBox, strings, append){
   if (append === undefined || append === false){
@@ -1444,23 +1541,15 @@ function getValueFromBox(textBox){
 
 
 
-function findURLs(ctag){
-  const $eventBlock = cheerio.load(ctag.html());
-  let links;
-  try{
-    links = ctag.prop('tagName')=='A'?[ctag.attr('href')]:[undefined];
-  }catch{
-    links = [];
-  }
-  const hrefs = $eventBlock('a[href]');
-  hrefs.each((index, element) => {
-    const href = $eventBlock(element).attr('href');
-    links.push(href);
-  });   
+function findURLTags(tag){
+
+  let links = [];
+  if (tag.hasAttribute('href')) {
+    links.push(tag);
+  } 
+  links = links.concat(Array.from(tag.querySelectorAll(customTagName)));
   return links;
 }
-
-
 
 
 // console.log = function() {
@@ -1502,26 +1591,23 @@ function reduceImgSize(html){
   return html.replace(regexImg,replace);
 }
 
-function setEventPanel(n){
+function setDelimiterPanel(n){
   DelimiterTitle.textContent = "Delimiter tag (found "+n+" events)";
-  if (n>0){
-    eventSelectorPanel.style.display = 'block';
-  }else{
-    eventSelectorPanel.style.display = 'none';
-  }
+  eventSelectorPanel.style.display = n>0?'block':'none';
+  eventSelectorIndex.disabled = n>0?false:true;
 }
 
 // by default, return the number of events with the eventDelimiter in venue. Otherwise, count the number
 // of events for the given tag
 function computeEventsNumber(tag){
   if (tag === undefined){
-    console.log('comptage');
+    // console.log('comptage');
     tag = venue.eventsDelimiterTag;
   }
-  console.log('Tag: ',tag);
+  // console.log('Tag: ',tag);
   const count = countNonEmptyEvents(tag,$page,venue);
-  console.log('compté: ',count);
-  setEventPanel(count);
+  // console.log('compté: ',count);
+  setDelimiterPanel(count);
   return count;
 }
 
@@ -1548,7 +1634,7 @@ selectNbPages.addEventListener('change', ()=>{
 });
 
 function removeEmptyFields(object){
-  fieldsToCheck = ['linkedPage','mainPage','regexp'];
+  fieldsToCheck = ['linkedPage','mainPage'];
   fieldsToCheck.forEach(field => {
     if (object.hasOwnProperty(field)){
       Object.keys(object[field]).forEach(key =>{
@@ -1561,86 +1647,23 @@ function removeEmptyFields(object){
   });
 }
 
-function applyRegexp(){
-  let $eventBlock;
-  // console.log('mt',mainTag);
-  // console.log('ht',$page(mainTag).html());
-  if (!mainTag){
-    for(let i=0; i < regexpTextBeforeList.length; i++){
-      regexpTextBeforeList[i].style.display = 'none';
-      regexpResultPanels[i].style.display = 'none';
-      regexpTextAfterList[i].style.display = 'none';
-    }
-    return;
-  }
-  if (eventSelectorIndex.value === ''){
-    $eventBlock = cheerio.load($page(mainTag).html());
-  }else{
-    const index = parseInt(eventSelectorIndex.value);
-    const tag = $page(venue.eventsDelimiterTag)[index];
-    $eventBlock = cheerio.load($page(tag).html());
-  }
-  for(let i=0; i < regexpTextBeforeList.length; i++){
-    const key = regexpKeyList[i];
-    if (venue[currentPage].hasOwnProperty(key+'Tags')){
-      const str = getText(key+'Tags', venue[currentPage], $eventBlock);
-      regexpTextBeforeList[i].textContent = str;
-      regexpTextBeforeList[i].style.display = 'block';
-      regexpResultPanels[i].style.display = 'block';
-    }else{
-      regexpTextBeforeList[i].style.display = 'none';
-      regexpResultPanels[i].style.display = 'none';
-    }
-    regexpTextAfterList[i].style.display = 'none';
-  }
-  if (venue.hasOwnProperty('regexp')){
-    // console.log(venue.regexp);
-    Object.keys(venue.regexp).forEach(key => {
-      // const fieldMatch = document.getElementById(key+'RegexpInput');
-      const source = document.getElementById(key+'RegexpTextBefore');
-      const target = document.getElementById(key+'RegexpTextAfter');
-      target.style.display = 'block';
-      if (typeof venue.regexp[key] === 'string'){// a string, regexp is used for a match
-        target.textContent = source.textContent.match(new RegExp(venue.regexp[key]));
-      }else if (venue.regexp[key].length === 2){// a list of two elements. replace pattern (1st) with (2nd)
-        target.textContent = source.textContent.replace(new RegExp(venue.regexp[key][0]),venue.regexp[key][1]);
-      }
-    });
-  }
-}
 
 
 function focusTo(element){
   if (element){
-    element.scrollIntoView({ behavior: 'auto', block: 'start' });
-    rightPanel.scrollBy({top: -100, behavior: 'auto'});
-   // rightPanel.scrollBy({top: -rightPanel.offsetHeight/2+focusedElement.offsetHeight/2, behavior: 'auto'});
+    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 }
-
-function getMainTagIndex(){
-  const delimiterList = $page(venue.eventsDelimiterTag);
-  let j;
-  const pageRef = $page(mainTag).text();
-  for(j=0;j<delimiterList.length;j++){
-    if ($page(delimiterList[j]).text()===pageRef){
-      break;
-    }
-  }
-  return j;
-}
-
-
 
 // for easyfield, put font in red if the string is not in the document
-function validateString(box){
-  if ($page.text().includes(box.value.trim())){
-    box.classList.remove('redFont');
-  }else{
-    box.classList.add('redFont');
-  }
+// function validateString(box){
+//   if ($page.text().includes(box.value.trim())){
+//     box.classList.remove('redFont');
+//   }else{
+//     box.classList.add('redFont');
+//   }
 
-}
+// }
 
 function highlightStringsNotFound(divsChildren){
   divsChildren.forEach(myDiv =>{
@@ -1650,4 +1673,349 @@ function highlightStringsNotFound(divsChildren){
       myDiv.classList.add('redFont');
     }
   });
+}
+
+
+///////////////////////////////////////////////
+// new functions
+///////////////////////////////////////////////
+
+// if a tag or successors contains an href attribute
+function containsURL(tag){
+  if (tag.hasAttribute('href')) {
+    return true;
+  } 
+  const successors = tag.querySelectorAll('*');
+  for (const el of successors) {
+    if (el.hasAttribute('href')) {
+        return true;
+    }   
+  }
+  return false;
+  // const successors = Array.from(tag.querySelectorAll('*'));
+  // return (successors.some(el => el.hasAttribute('href')));
+}
+
+function getAncestorWithUrl(tag) {
+  if (containsURL(tag)) {// if a tag or successors contains an href attribute
+    return tag;
+  } 
+  
+  // else try the parent
+
+  const parentTag = tag.parentElement;
+  if (parentTag && parentTag.id !== 'scrapEnDirexRightPanel') {
+    return getAncestorWithUrl(parentTag);
+  } else {
+    console.log('Warning: ancestor with URL not found.');
+    return null;
+  }
+  
+}
+
+// find depth class prefix added by aspiratorex to avoid empty classes. Should be the last class of the first tag encountered <...>
+function setDepthPrefix($page) {
+  let firstElementClassArray = $page('*').first().attr('class')?.split(' ') || [];
+  depthPrefix = (firstElementClassArray.length > 0) ? firstElementClassArray.at(-1).replace(/[0-9]/g, '') : null;
+}
+
+// generate all combination of lists by removing n elements
+function generateCombinationsByRemoval(list, n) {
+  // If n is 0, return the original list as a single combination
+  if (n === 0) {
+      return [list];
+  }
+  
+  // If n equals list length, return empty list
+  if (n === list.length) {
+      return [[]];
+  }
+  
+  // If n is greater than list length, return empty result
+  if (n > list.length) {
+      return [];
+  }
+
+  const combinations = [];
+
+  // Helper function to generate combinations
+  function generateCombinations(currentList, start, elementsToRemove, currentCombination = []) {
+      // If we've removed enough elements, add this combination
+      if (elementsToRemove === 0) {
+          combinations.push([...currentCombination]);
+          return;
+      }
+
+      // For each position, try removing the element at that position
+      for (let i = start; i <= currentList.length - elementsToRemove; i++) {
+          // Take elements before i and after i
+          const newCombination = [
+              ...currentList.slice(0, i),
+              ...currentList.slice(i + 1)
+          ];
+          generateCombinations(
+              newCombination, 
+              i, 
+              elementsToRemove - 1,
+              newCombination
+          );
+      }
+  }
+
+  // Start the recursive process
+  generateCombinations(list, 0, n);
+  return combinations;
+}
+
+function behaviourSetup(string){
+  if(string === 'automaticDefault'){
+    autoAdjustLevel = defautAutoAdjustLevel;
+    mustIncludeURL = true;
+  }else if (string === 'automaticLastSetup'){
+    if (!lastConfig.setup.startsWith('automatic')){
+      autoAdjustLevel = lastConfig.autoAdjustLevel;
+      mustIncludeURL = lastConfig.urlCheck;
+    }
+  }else if (string === 'manual'){
+    lastConfig.autoAdjustLevel = autoAdjustLevel;
+    lastConfig.urlCheck = mustIncludeURL;
+    autoAdjustLevel = 0;
+    mustIncludeURL = false;
+  }else if (string === 'initialize'){
+    lastConfig.autoAdjustLevel = autoAdjustLevel;
+    lastConfig.urlCheck = mustIncludeURL;
+    autoAdjustLevel = 0;
+    mustIncludeURL = false;
+    // when loading, try to find the autoadjust level that corresponds best to the string in venue
+    let candidatePrincipalTagClassList = Array.from(candidatePrincipalTag.classList);
+    const classListFromVenue = venue.eventsDelimiterTag.split('.').slice(1);
+    while(autoAdjustLevel < autoAdjustIndex.max && candidatePrincipalTagClassList.some(el => !classListFromVenue.includes(el))){
+      autoAdjustLevel++;
+      const [cleanPath] = adjustPrincipalTag(candidatePrincipalTag);
+      candidatePrincipalTagClassList = cleanPath.split('.').slice(1);
+    }
+  }else{
+    error.log('unknown mode: ', string);
+  }
+  lastConfig.setup = string;
+  autoAdjustIndex.value = autoAdjustLevel;
+  adjustURLCheckbox.checked = mustIncludeURL;
+}
+
+
+
+// for tag, find the description 'eventXXXTags' that corresponds to it if it is registered in venue.json
+function getDescFromJSON(tag){
+  Object.keys(venue[currentPage]).forEach(key => {
+    venue[currentPage][key].forEach(path =>{
+      const tags = findTagsFromPath(principalTag,path);
+      if (tags.some(t => t === tag)){
+        if (key === 'eventURLTags'){
+          tag.isURL = true;
+        }else{
+          tag.desc = key;
+        }
+      }
+    });
+  })
+}
+
+
+
+function getSubTags(tag){
+  const descendants = Array.from(tag.children);
+  // count if there are children that are not inline tags. This is to address the following cases:
+  // <div> hello <span> world</span></div> should return ['hello word']
+  // <div><div> hello </div><div> world</div></div> should return ['hello', 'word']
+  // <div><div> hello </div><span> world</span></div> should return ['hello', 'word']
+  const nbNonInlineTags=descendants.filter(el => !inlineTags.some(t => t === el.tagName.toLowerCase())).length;
+
+  if (nbNonInlineTags === 0){
+    // delete tag.desc; // don't delete, keep track of previous categories
+    if (tag.textContent.trim() !== ''){
+      getDescFromJSON(tag);
+      return [tag];
+    }else{
+      return [];
+    }
+    
+  }
+  const selectedTags = descendants.flatMap(el => getSubTags(el));
+
+  // badly nested divs: this part processes badly nested divs by keeping a text for the whole tag 
+  //<div> hello <div> world</div></div> should return ['hello world', 'word'] ???
+  
+  let parentText = tag.textContent;
+  descendants.forEach(function(div) {
+    // For each nested <div>, its text is removed from the parent text. 
+    parentText = parentText.replace(div.textContent.trim(), '').trim();
+  });
+
+  if (parentText.length > 0){
+    console.log("\x1b[33mWarning: badly nested divs found in tag \x1b[36m'"+tag.tagName+"'\x1b[0m: "+tag.textContent
+      +'. \x1b[33mBadly nested text:\x1b[0m '+parentText
+    );
+    // descendants.forEach(el => console.log(el.tagName, el.textContent));
+    selectedTags.push(tag);
+  }
+  // selectedTags.forEach(el => console.log(el.tagName,el.textContent));
+  return selectedTags;
+}
+
+
+
+// used to find the tags that are successors of root tag that match the infos from the string path
+// subfunction fromCheerioSyntax introduces an intermediate object
+// infoList (list of list) which is a list of info [[tagName1, classList1, eq1],[tagName2, classList2, e2],...]
+// where eqn is the is nth element if only a specific element has to be returned (optional)
+// such that the resulting tags follow a chain of successors (not just children) with tagName n and classList n
+// returns a list of tags filling the conditions
+
+function findTagsFromPath(rootTag, path) {
+
+  // intermediate function for easier manipulation
+  function fromCheerioSyntax(string){
+    let res = [];
+    string.split('>').map(tagString => {
+      const splittedTagString = tagString.split(':');
+      const classes = splittedTagString[0].split('.');
+      let tmp = [classes[0], classes.slice(1)];
+      if (tmp[0].toLowerCase() === 'a'){
+        tmp[0] = customTagName;
+      }
+      // remove the last class if it is empty
+      if (tmp[1][tmp[1].length-1] === ''){
+        tmp[1] = tmp[1].slice(0, tmp[1].length-1);
+      }
+      if (splittedTagString.length > 1){
+        const match = splittedTagString[1].match(/\((\d+)\)/);
+        tmp = tmp.concat(parseInt(match[1], 10));
+      }
+      res = res.concat([tmp]);
+    });
+    return res;
+  }
+
+  const infoList = fromCheerioSyntax(path);
+  // let currentElements = [rootTag]; // start with root tag
+
+  // for (const [tagName, classes, numero] of infoList) {
+  //   let nextElements = [];
+  //   currentElements.forEach(parent => {
+  //     let selector = tagName + (classes.length > 0 ? '.' + classes.join('.') : '');
+  //     let foundElements = Array.from(parent.querySelectorAll(selector));
+  //     if (numero !== undefined) {
+  //       if (numero >= 0 && numero < foundElements.length) {
+  //         nextElements.push(foundElements[numero]);
+  //       }
+  //     } else {
+  //       nextElements.push(...foundElements);
+  //     }
+  //   });
+
+  //     currentElements = nextElements;
+  // }
+
+  let currentElements = [rootTag];  // start with root tag
+
+  for (const [tagName, classes, numero] of infoList) {
+      let nextElements = [];
+      for (const parent of currentElements) {
+          let selector = tagName + (classes.length > 0 ? '.' + classes.join('.') : '');
+          let foundElements = parent.querySelectorAll(selector); 
+          if (numero !== undefined) {
+              if (numero >= 0 && numero < foundElements.length) {
+                  nextElements.push(foundElements[numero]);
+              }
+          } else {
+              for (const el of foundElements) { 
+                  nextElements.push(el);
+              }
+          }
+      }
+
+      currentElements = nextElements;
+  }
+  return currentElements; // final list of elements
+}
+
+// function getInfoFromTag(rootTag, tag){
+//   // console.log(Array.from(tag.classList));
+//   if (tag === rootTag){
+//     return [];
+//   }
+//   const parent = tag.parentElement;
+//   const infoList = getInfoFromTag(rootTag, parent);
+//   const index = Array.from(parent.children).findIndex(ch => ch === tag);
+//   infoList.push([tag.tagName, Array.from(tag.classList), index]);
+//   // console.log(Array.from(tag.classList));
+//   return infoList;
+// }
+
+
+function getPath(rootTag, tag) {
+  if (tag === rootTag){
+    return '';
+  }
+  const parent = tag.parentElement;
+  let path = getPath(rootTag, parent);
+  let tagClasses = Array.from(tag.classList);
+  const index = Array.from(parent.children)
+                .filter(child => child.tagName = tag.tagName) // filter the tags with the same name
+                .filter(child => tagClasses.every(cls => child.classList.contains(cls))) // filter tags which contain the same classes. Need this code to avoid pb with === 
+              //   .filter(child => {                         
+              //     let chClasses = Array.from(ch.classList).sort();
+              //     return chClasses.length === tagClasses.length && 
+              //            chClasses.every((cls, i) => cls === tagClasses[i]);
+              // })
+                .findIndex(ch => ch === tag);
+  path = (path.length>0?path+'>':'') + tag.tagName +'.'+ Array.from(tag.classList).join('.') + ':eq('+index+')';
+  return path;
+}
+
+function removeCustomTags(path){
+  const regex = new RegExp(customTagName,"gi");
+  return path.replace(regex,'A');
+}
+
+function replaceWithCustomTags(path){
+  return path.replace(/(?:^|>)(a)(?=$|>|\.)/gi, customTagName);
+}
+
+
+function ProcessRegex(){
+  Object.keys(regexElements).forEach(key => applyRegexp(regexElements[key]));
+}
+
+// function toCheerioSyntax(infoList){
+//   return infoList.map(infos =>  (infos[0].toLowerCase() === customTagName.toLocaleLowerCase()?'a':infos[0].toLowerCase())
+//                                 +(infos[1].length>0?'.'+infos[1].join('.'):'')
+//                                 +(infos[2]?'eq('+infos[2]+')':'')).join('>');
+// }
+
+
+// replace tags with custom tags
+// just process tags for urls, may need improvement
+function venueWithCustomTags(v){
+  const v2 = {};
+    if (v.hasOwnProperty('eventsDelimiterTag')){
+      v2.eventsDelimiterTag = replaceWithCustomTags(v.eventsDelimiterTag);
+    }
+    if (v.hasOwnProperty('eventURLIndex')){
+      v2.eventURLIndex = v.eventURLIndex;
+    }
+    if (v.hasOwnProperty('mainPage')){
+      v2.mainPage = {};
+      Object.keys(v.mainPage).forEach(key => {
+        v2.mainPage[key] = v.mainPage[key].map(el => replaceWithCustomTags(el));
+      })
+    }
+    if (v.hasOwnProperty('linkedPage')){
+      v2.linkedPage = {};
+      Object.keys(v.linkedPage).forEach(key => {
+        v2.linkedPage[key] = v.linkedPage[key].map(el => replaceWithCustomTags(el));
+      })
+    }
+
+  return v2;
 }

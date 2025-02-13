@@ -9,13 +9,13 @@ const fs = require('fs');
 require('dotenv').config();
 const { default: Anthropic } = require('@anthropic-ai/sdk');
 
-const API_KEY = process.env.ANTHROPIC_KEY;
 
 // const {removeDoubles, makeURL, cleanPage, extractBody} = require('./import/stringUtilities.js');
 const {getVenuesFromArguments, minimalizeHtml} = require(rootPath+'/import/fileUtilities.js');
 const {loadVenuesJSONFile, saveToVenuesJSON, isAlias, initializeVenue, 
     getDateConversionPatterns, fromLanguages, getCommonDateFormats} = require(rootPath+'/import/jsonUtilities.js');
 const {analyze} = require(rootPath+'/import/analexUtilities.js');
+const {askClaude} = require(rootPath+'/import/aiUtilities.js');
 
 
 const sourcePath = '../webSources/';
@@ -29,7 +29,7 @@ const knownStyle = ['concert','live','club','techno','jazz','rock','pop','classi
 console.log('\n\n******************************************');
 console.log('********    Using model Claude    ********');
 console.log('******************************************\n\n');
-//const API_KEY = 
+ 
 
 let venues = venueList;
 if (process.argv.length >2){
@@ -138,7 +138,7 @@ async function extractEvent(text, isNotAVenue) {
 
     const question = 'Voici un document d\'information sur des événements à venir:\n\n'
     + text
-    + '\n\nPeux-tu trouver un événement contenu dans ce document ? ';
+    + '\n\nPeux-tu trouver un (et un seul) événement contenu dans ce document ? ';
 
     try {
         const result = await askClaude(question, systemPrompt);
@@ -151,32 +151,6 @@ async function extractEvent(text, isNotAVenue) {
 }
 
 
-async function askClaude(question, systemPrompt) {
-    const anthropic = new Anthropic({
-        apiKey: API_KEY
-    });
 
-    const msg = await anthropic.messages.create({
-        model: "claude-3-5-sonnet-20241022",
-        max_tokens: 4000,
-        temperature: 0,
-        system: systemPrompt,
-        messages: [
-            {
-                "role": "user",
-                "content": [
-                    {
-                        "type": "text",
-                        "text": question
-                    }
-                ]
-            }
-        ]
-    });
-    // console.log(msg);
-    // console.log("Request complete.\nstop reason: "+msg.stop_reason);
-    // console.log('Usage: '+msg.usage);
-    return msg.content[0].text;
-  }
 
 

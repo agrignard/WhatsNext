@@ -14,7 +14,7 @@ const cheerio = require('cheerio');
 const nbFetchTries = 2; // number of tries in case of internet connection time outs
 
 
-module.exports = {downloadVenue, erasePreviousHtmlFiles, getHrefListFrom, downloadLinkedPages};
+module.exports = {downloadVenue, erasePreviousHtmlFiles, getHrefListFrom, downloadLinkedPages, getHrefFromAncestor};
 
 
     
@@ -191,7 +191,8 @@ function getManualLinksFromPage(page,delimiter,atag){
   $(delimiter).each(function () {
     const block = $(this).html();
     const $b = cheerio.load(block);
-    const href = $b(atag).attr('href');
+    const href = getHrefFromAncestor(atag);
+    // const href = $b(atag).attr('href');
     res.push(href);
   });
   return res;
@@ -199,10 +200,14 @@ function getManualLinksFromPage(page,delimiter,atag){
   
 function getLinksFromPage(page,delimiter,index){
   const $ = cheerio.load(page);
+  // console.log($.html());
   let res = [];
   if (index == 0){// the URL is in A href 
+    console.log('ici',delimiter);
     $(delimiter).each(function () {
-      const href = $(this).attr('href');
+      console.log('geg',$(this).html());
+      // const href = $(this).attr('href');
+      const href = getHrefFromAncestor($(this));
       res.push(href);
     });
   }else{// URL is in inner tags
@@ -266,6 +271,13 @@ function getHrefListFrom(pageList,venue){
   hrefList = removeDoubles(hrefList.filter(el => el !== undefined));
   hrefList = hrefList.map((el) => makeURL(venue.baseURL,el));
   return hrefList;
+}
+
+function getHrefFromAncestor(tag){
+  if (tag.attr('href')){
+    return tag.attr('href');
+  }
+  return getHrefFromAncestor(tag.parent());
 }
 
 

@@ -5,19 +5,19 @@
     "country": "France",
     "url": "https://le-sucre.eu/agenda/",
     "baseURL": "https://le-sucre.eu/agenda/",
-    "eventsDelimiterTag": "a.pureu11.pureumd12.pureulg14.pureug.agendacard",
+    "eventsDelimiterTag": "A.pureu11.pureumd12.pureulg14.pureug.agendacard.depth6",
     "defaultStyle": "Electro",
     "comments": "après avoir utilisé analex, enlever t5410 de la classe de la balise qui délimite les events",
     "mainPage": {
-      "eventNameTags": [
-        "div.titre:eq(0)",
-        "div.artistes:eq(0)>div:not([class])"
-      ],
       "eventDateTags": [
-        "div.date:eq(0)"
+        "DIV.infos.depth7:eq(0)>DIV.date.depth8:eq(0)"
       ],
       "eventStyleTags": [
-        "div.type:eq(0)"
+        "DIV.infos.depth7:eq(0)>DIV.type.depth8:eq(0)"
+      ],
+      "eventNameTags": [
+        "DIV.vignette.depth7:eq(0)>DIV.labels.depth8:eq(0)>DIV.titre.depth9:eq(0)",
+        "DIV.vignette.depth7:eq(0)>DIV.labels.depth8:eq(0)>DIV.artistes.depth9:eq(0)>DIV.depth10"
       ]
     },
     "eventURLIndex": 0,
@@ -29,7 +29,7 @@
         "div.horaires:eq(0)"
       ],
       "eventNameTags": [
-        "div.pureu11.titre:eq(0)>h1:not([class]):eq(0)",
+        "div.pureu11.titre:eq(0)>h1:eq(0)",
         "a.nom"
       ]
     },
@@ -37,7 +37,8 @@
     "ID": "Le Sucre|Lyon|France",
     "regexp": {
       "eventStyle": [
-        "\\| "
+        "\\|",
+        ""
       ]
     }
   },
@@ -53,10 +54,10 @@
         "h2.item__title:eq(0)"
       ],
       "eventDateTags": [
-        "div.item__date.dxlnone:eq(0)>span:not([class]):eq(0)"
+        "div.item__date.dxlnone:eq(0)>span:eq(0)"
       ],
       "eventStyleTags": [
-        "div.item__text:eq(0)>p:not([class]):eq(1)"
+        "div.item__text:eq(0)>p:eq(1)"
       ],
       "eventURLTags": [
         "a.item__link:eq(0)"
@@ -102,20 +103,23 @@
     "city": "Lyon",
     "country": "France",
     "url": "https://www.terminal-club.com/evenements/",
-    "eventsDelimiterTag": "DIV MAIN DIV.contentarea.pagewrapper DIV.row.rowmain DIV.large12.col DIV.colinner DIV.tribecommon.tribeevents.tribeeventsview.tribeeventsviewphoto.alignwide.tribeeventsviewshortcode.tribeeventsviewshortcodeb6439857.tribeeventspro DIV.tribecommonlcontainer.tribeeventslcontainer DIV.tribeeventsprophoto.col DIV.row.largecolumns6.mediumcolumns4.smallcolumns2 DIV.col.postitem DIV.colinner",
+    "eventsDelimiterTag": "DIV.colinner.depth13",
     "dateFormat": "dd-MM",
-    "eventURLIndex": 1,
+    "eventURLIndex": 0,
     "defaultStyle": "Electro",
     "midnightHour": "sameday",
     "baseURL": "https://www.terminal-club.com/evenements/",
     "mainPage": {
-      "eventNameTags": [
-        "DIV.boxtextinner.blogpostinner:eq(0) H5.posttitle.islarge.uppercase:eq(0)"
-      ],
       "eventDateTags": [
-        "TIME.tribeeventsprophoto__eventdatetagdatetime:eq(0) DIV.nomargin.nopadding:eq(0)",
-        "TIME.tribeeventsprophoto__eventdatetagdatetime:eq(0) DIV.eventphotodate.nomargin.nopadding:eq(0)",
-        "TIME.tribeeventsprophoto__eventdatetagdatetime:eq(0) DIV.nomargin.nopadding:eq(2)"
+        "DIV.tribeeventsprophoto__eventdatetag.tribecommongcol.depth14:eq(0)>TIME.tribeeventsprophoto__eventdatetagdatetime.depth15:eq(0)>DIV.nomargin.nopadding.depth16:eq(0)",
+        "DIV.tribeeventsprophoto__eventdatetag.tribecommongcol.depth14:eq(0)>TIME.tribeeventsprophoto__eventdatetagdatetime.depth15:eq(0)>DIV.eventphotodate.nomargin.nopadding.depth16:eq(0)",
+        "DIV.tribeeventsprophoto__eventdatetag.tribecommongcol.depth14:eq(0)>TIME.tribeeventsprophoto__eventdatetagdatetime.depth15:eq(0)>DIV.nomargin.nopadding.depth16:eq(2)"
+      ],
+      "eventNameTags": [
+        "A.plain.depth14:eq(0)>DIV.box.boxoverlay.dark.boxtextbottom.boxblogpost.hashover.depth15:eq(0)>DIV.boxtext.textcenter.issmall.depth16:eq(0)>DIV.boxtextinner.blogpostinner.depth17:eq(0)>H5.posttitle.islarge.uppercase.depth18:eq(0)"
+      ],
+      "eventURLTags": [
+        "A.plain.depth14:eq(0)>DIV.box.boxoverlay.dark.boxtextbottom.boxblogpost.hashover.depth15:eq(0)>DIV.boxtext.textcenter.issmall.depth16:eq(0)>DIV.boxtextinner.blogpostinner.depth17:eq(0)>H5.posttitle.islarge.uppercase.depth18:eq(0)"
       ]
     },
     "ID": "Terminal Club|Lyon|France",
@@ -130,16 +134,16 @@
     "city": "Lyon",
     "country": "France",
     "url": "https://www.periscope-lyon.com/concerts/",
-    "eventsDelimiterTag": "div.smallcontent.ukwidth14m.ukgridmargin>div:not([class])>a:not([class])",
+    "eventsDelimiterTag": "A.depth9",
     "dateFormat": "dd-MM",
     "defaultStyle": "Jazz",
     "baseURL": "https://www.periscope-lyon.com/concerts/",
     "mainPage": {
       "eventNameTags": [
-        "div.scct:eq(0)>h3:not([class]):eq(0)"
+        "DIV.scc.depth10:eq(0)>DIV.scct.depth11:eq(0)>H3.depth12:eq(0)"
       ],
       "eventDateTags": [
-        "div.scc:eq(0)>h5:not([class]):eq(0)"
+        "DIV.scc.depth10:eq(0)>H5.depth11:eq(0)"
       ]
     },
     "eventURLIndex": 0,
@@ -300,7 +304,7 @@
     "baseURL": "https://villemorte.fr/agenda/",
     "mainPage": {
       "eventNameTags": [
-        "html:not([class])>body:not([class]):eq(0)"
+        "html>body:eq(0)"
       ]
     },
     "multiPages": {
@@ -687,18 +691,21 @@
     "country": "France",
     "mainPage": {
       "eventNameTags": [
-        "a.tribeeventscalendarlist__eventtitlelink.tribecommonanchorthin:eq(0)"
+        "H3.tribeeventscalendarmonth__calendareventtitle.tribecommonh8.tribecommonhalt.depth18:eq(0)>CUSTOM-A.tribeeventscalendarmonth__calendareventtitlelink.tribecommonanchorthin.depth19:eq(0)"
       ],
       "eventDateTags": [
-        "time.tribeeventscalendarlist__eventdatetime:eq(0)"
+        "DIV.tribeeventscalendarmonth__calendareventtooltiptemplate.tribecommona11yhidden.depth18:eq(0)>DIV.tribeeventscalendarmonth__calendareventtooltip.depth19:eq(0)>DIV.tribeeventscalendarmonth__calendareventtooltipdatetime.depth20:eq(0)>TIME.depth21:eq(0)"
+      ],
+      "eventURLTags": [
+        "DIV.tribeeventscalendarmonth__calendareventtooltiptemplate.tribecommona11yhidden.depth18:eq(0)>DIV.tribeeventscalendarmonth__calendareventtooltip.depth19:eq(0)>H3.tribeeventscalendarmonth__calendareventtooltiptitle.tribecommonh7.depth20:eq(0)>CUSTOM-A.tribeeventscalendarmonth__calendareventtooltiptitlelink.tribecommonanchorthin.depth21:eq(0)"
       ]
     },
     "url": "https://www.laclefdevoute.fr/concerts-de-jazz-a-lyon/",
     "ID": "La Clef de Voûte|Lyon|France",
     "baseURL": "https://www.laclefdevoute.fr/concerts-de-jazz-a-lyon/",
-    "eventsDelimiterTag": "article.tribeeventscalendarlist__event.tribecommongrow.tribecommongrowgutters.tribe_events.typetribe_events.statuspublish.haspostthumbnail.hentry>div.tribeeventscalendarlist__eventdetails.tribecommongcol>header.tribeeventscalendarlist__eventheader",
+    "eventsDelimiterTag": "DIV.tribeeventscalendarmonth__calendareventdetails.depth17",
     "dateFormat": "dd-MM-HH:mm",
-    "eventURLIndex": 1,
+    "eventURLIndex": 0,
     "linkedPage": {}
   },
   {
@@ -767,7 +774,7 @@
     "url": "https://shotgun.live/fr/cities/lyon",
     "ID": "Shotgun|Lyon|France",
     "baseURL": "https://shotgun.live/fr/cities/",
-    "eventsDelimiterTag": "div.grid.gapx4.smgridcols2.lggridcols3.lggapx8.gapy0>a:not([class])",
+    "eventsDelimiterTag": "div.grid.gapx4.smgridcols2.lggridcols3.lggapx8.gapy0>a",
     "eventURLIndex": 0,
     "dateFormat": "dd-MM",
     "multiPages": {

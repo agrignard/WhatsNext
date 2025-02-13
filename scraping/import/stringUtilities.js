@@ -3,10 +3,17 @@
 /**************************************/
 
 module.exports = { simplify, removeAccents, removeBlanks, removeDoubles,
-  makeURL,convertToLowerCase, removeImages, extractBody, cleanPage, fixString };
+  makeURL,convertToLowerCase, removeImages, extractBody, cleanPage, fixString, isValidURL};
 
 
 // if a string has a non standard character, look in a candidate list if there is a corresponding match
+
+function isValidURL(url){
+  if (url === undefined || url === '#'){
+    return false;
+  }
+  return true;
+}
 
 function fixString(string,replacementList){
   const regexString = string.replace(/[^\x00-\x7F]/g,'.');

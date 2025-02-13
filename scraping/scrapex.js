@@ -10,8 +10,16 @@ const {loadLinkedPages, saveToJSON, saveToCSV, getVenuesFromArguments,
 const {samePlace, getAliases, getStyleConversions, loadVenuesJSONFile, 
         loadCancellationKeywords, writeToLog, isAlias, geAliasesToURLMap,
         getLanguages, fromLanguages, checkLanguages, unique} = require('./import/jsonUtilities.js');
-const { mergeEvents} = require('./import/mergeUtilities.js');
-const { getText} = require('./import/scrapexUtilities.js');
+const {mergeEvents} = require('./import/mergeUtilities.js');
+const {getText} = require('./import/scrapexUtilities.js');
+const {getHrefFromAncestor} = require('./import/aspiratorexUtilities.js');
+
+const useAI = false;
+if (useAI){ 
+  var {isOllamaActive, getCurrentLlamaModel, getStyleInfo, extractStyle} = require('./import/aiUtilities.js');
+}
+
+
 // Chemin vers le fichier à lire
 const sourcePath = './webSources/';
 
@@ -41,6 +49,7 @@ if (venues.length === 0){
 } 
 
 async function scrap(venues){
+  await testLlamaServer(useAI);
   await scrapFiles(venues.filter(el => !isAlias(el)));
   const venuesToSkip = venues.filter(el => isAlias(el)).map(el => el.name+' ('+el.city+', '+el.country+')');
   if (venuesToSkip.length>0){
@@ -74,7 +83,7 @@ async function scrapFiles(venues) {
       console.log('\x1b[31mEntrée %s non traitée.\x1b[0m', venue.name);
     }
   }
-  // *** post processing ***
+  // *** post processing *** 
 
   // merge duplicate events
   // console.log('*** Merging duplicate events ***\n');
@@ -129,24 +138,39 @@ async function analyseFile(venue) {
   // build event list and analyze the events
   //const [eventBlockList, hrefInDelimiterList] = await extractEvents(inputFileList,venue);
   const [eventBlockList, hrefInDelimiterList] = await extractEvents(fileContent,venue);
-  let eventList = analyseEvents(eventBlockList, hrefInDelimiterList, venue);
+  let eventList = await analyseEvents(eventBlockList, hrefInDelimiterList, venue);
   eventList = unique(eventList);
+
+
+    // // find the style with AI
+
+    // for (ev of eventList) {
+    //   const $linkedBlock = cheerio.load(linkedFileContent[ev.eventURL]);
+    //   ev.ChatStyle = await getStyleInfo($linkedBlock.html());
+    //   console.log(ev);
+    // };
+
   console.log('Found %s events for %s.\n\n',eventList.length,venue.name);
   return eventList;
 
 
 
-  function analyseEvents(eventBlockList, hrefInDelimiterList, venue){
+  async function analyseEvents(eventBlockList, hrefInDelimiterList, venue){
     let eventList = [];
     const dateFormat = (venue.hasOwnProperty('linkedPage') && venue.linkedPage.hasOwnProperty('eventDateTags'))?venue.linkedPageDateFormat:venue.dateFormat; 
     const eventLanguages = languages[venue.country]; 
     const localDateConversionPatterns = fromLanguages(dateConversionPatterns,eventLanguages);
     // parsing each event
     try{
-      eventBlockList.forEach((eve,eveIndex) =>{
+      // eventBlockList.forEach((eve,eveIndex) =>{
+      for (let eveIndex = 0; eveIndex < eventBlockList.length; eveIndex++) {
+        let eve = eventBlockList[eveIndex];
         let $eventBlock = cheerio.load(eve);
-        let eventInfo = {'eventPlace':venue.name, 'city':venue.city, 'country':venue.country};
         
+       
+        
+        let eventInfo = {'eventPlace':venue.name, 'city':venue.city, 'country':venue.country};
+
         // **** event data extraction ****/
         Object.keys(venue.mainPage).forEach(key => eventInfo[key.replace('Tags','')] = getText(key,venue.mainPage,$eventBlock));
 
@@ -175,7 +199,7 @@ async function analyseFile(venue) {
               }
             }
           }else{ // if a delimiter for the URL has been defined
-            eventURL = makeURL(venue.baseURL,$eventBlock(venue.mainPage.eventURLTags[0]).attr('href'));
+            eventURL = makeURL(venue.baseURL,getHrefFromAncestor($eventBlock(venue.mainPage.eventURLTags[0])));
             eventInfo.eventURL = eventURL;
           }
         }catch(err){
@@ -191,8 +215,12 @@ async function analyseFile(venue) {
               Object.keys(venue.linkedPage).forEach(key => eventInfo[key.replace('Tags','')] = getText(key,venue.linkedPage,$linkedBlock));  
               // look for cancellation keywords. Leave commented since it appears that linkedpages do not contain appropriate information about cancellation 
               // eventInfo.iscancelled = eventInfo.iscancelled || isCancelled($linkedBlock.text(),cancellationKeywords[venue.country]);
-            }catch{
-              writeToLog('error',eventInfo,['\x1b[31mImpossible de lire la page liée pour l\'événement \'%s\'. Erreur lors du téléchargement ?\x1b[0m', eventInfo.eventName],true);
+              if (useAI){
+                eventInfo.chatStyleComment = await getStyleInfo($linkedBlock.html());
+                eventInfo.chatStyle = extractStyle(eventInfo.chatStyleComment);
+              }
+            }catch(err){
+              writeToLog('error',eventInfo,['\x1b[31mImpossible de lire la page liée pour l\'événement \'%s\'. Erreur lors du téléchargement ?\x1b[0m +err', eventInfo.eventName],true);
             }
             // if the url in the linked is empty, replace by the main page one
             if (!eventInfo.hasOwnProperty('eventURL') || eventInfo.eventURL === undefined || eventInfo.eventURL.length === 0){
@@ -259,7 +287,7 @@ async function analyseFile(venue) {
           });
          
         }
-      }); 
+      }; 
       
     }catch(error){
       console.log("Unknown error while processing "+venue.name,error);
@@ -356,7 +384,7 @@ function getStyle(string, eventLanguages){
 function  displayEventLog(eventInfo){
   console.log('Event : %s (%s, %s)%s',eventInfo.eventName,eventInfo.city,eventInfo.country,eventInfo.isCancelled?' (cancelled)':'');
   Object.keys(eventInfo).forEach(key => {
-    if (!['eventName', 'eventDate', 'eventURL', 'unixDate', 'eventDummy', 'source','city','country','isCancelled'].includes(key)
+    if (!['eventName', 'eventDate', 'eventURL', 'unixDate', 'eventDummy', 'source','city','country','isCancelled','chatStyleComment'].includes(key)
         && eventInfo[key.replace('Tags','')] !== ''){
       console.log(key.replace('event','')+': %s',eventInfo[key.replace('Tags','')]);
     }
@@ -436,6 +464,7 @@ function checkMultiDates(eventInfo){
 
 function applyRegexp(event, rulesSet){
   Object.keys(rulesSet).forEach(key =>{
+    console.log('Applying regex', key);
     if (typeof rulesSet[key] === 'string'){// a string, regexp is used for a match
       event[key] = event[key].match(new RegExp(rulesSet[key]));
     }else if (rulesSet[key].length === 2){// a list of two elements. replace pattern (1st) with (2nd)
@@ -503,4 +532,18 @@ function fixAliasURLs(events, venueToURL){
     }
   });
   return events;
+}
+
+
+async function testLlamaServer(useAI){
+  if (!useAI){
+    return;
+  }
+  const res = await isOllamaActive();
+  if (res){
+    console.log('\n\n\x1b[36m***** Llama server active, using model \x1b[0m'+getCurrentLlamaModel()+'\x1b[36m. *****\x1b[0m\n\n');
+  }else{
+    console.log('\x1b[31mError: Llama server not active.\x1b[0m');
+  }
+  
 }

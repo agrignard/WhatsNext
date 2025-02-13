@@ -186,14 +186,16 @@ function to2digits(dateString){
 function getURLListFromPattern(url,pattern,nbPages){
   let res = [];
   const currentDate = new Date();
+  const day = currentDate.getDate();
   let month = currentDate.getMonth() + 1; 
   let year = currentDate.getFullYear();
   //const week = currentDate.getWeek();
   for(let i = 0; i<nbPages; i++){
-    let d = pattern.replace(/MM|mm/,to2digits(String(month))).replace(/M|mm/,month);
-    d = d.replace(/yyyy/,year).replace(/yy/,year-Math.round(year/100)*100);
-    if (/{index}/.test(url)){
-      res.push(url.replace(/{index}/,d));
+    let d = pattern.replace(/MM|mm/,to2digits(String(month))).replace(/M|m/,month)
+                    .replace(/yyyy/,year).replace(/yy/,year-Math.round(year/100)*100)
+                    .replace(/DD/i,to2digits(String(day))).replace(/d/i,day);
+    if (/\{index\}/.test(url)){
+      res.push(url.replace(/\{index\}/,d));
     } else{
       res.push(url+d);
     }

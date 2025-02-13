@@ -18,17 +18,26 @@ body, html {
   font-size: 85%;
 }
 
-#downloadPanel{
+.bigPanel{
   margin: 0px;
   padding: 10px 10px;
 }
 
-.downLoadPanelOn{
-  background-color: rgb(238, 240, 241);
+.panelHeader{
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  width: 100%;
 }
 
+.downLoadPanelOn{
+  background-color: rgb(211, 227, 232);
+  /* background-color: rgb(238, 240, 241); */
+}
+
+
 .downLoadPanelOff{
-  background-color: rgb(228, 237, 240);;
+  background-color: rgb(228, 237, 240);
 }
 
 /* Style pour les boutons des options */
@@ -150,9 +159,23 @@ background-color: lightblue;
 }
 
 #textURL {
-  width: 60ch; 
+  /* width: 60ch;  */
   border: 1px solid #ccc; 
   background-color: white;
+  padding: 5px 10px;
+}
+
+#textURL:focus, input:focus {
+  outline: 2px solid rgb(189, 195, 199); 
+}
+
+.subWidth{
+  width:60%;
+  min-width: 400px;
+}
+
+#URLPanel{
+  background-color: rgb(211, 227, 232);
 }
 
 #addVenueBtn{
@@ -211,7 +234,7 @@ background-color: lightblue;
 }
 
 .miniBottomMargin{
-  margin-bottom: 1px;
+  margin-bottom: 5px;
 }
 
 .leftMargin{
@@ -239,6 +262,10 @@ background-color: lightblue;
 }
 
 .compact-button:hover {
+  background-color: darkgray;
+}
+
+.normal-button:hover {
   background-color: darkgray;
 }
 
@@ -319,4 +346,20 @@ background-color: lightblue;
   line-height: 30px;
   border: 1px solid #ccc;
   padding: 20px;
+}
+
+
+#venueURL{
+  background-color: rgb(202, 223, 229);
+}
+
+#venueURL:hover{
+  cursor: pointer;
+  color:rgb(49, 107, 125);
+}
+
+.auto-width {
+  width: max-content;
+  background-color: rgb(202, 223, 229);
+  padding: 5px 10px;
 }

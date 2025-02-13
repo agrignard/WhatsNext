@@ -2,28 +2,15 @@
   "Le Sucre|Lyon|France": {
     "mainPage": {
       "eventNameStrings": [
-        "mini club",
-        "Sha Ru",
-        "Islyz",
-        "De Grandi"
+        "S. society x Anetha Residency",
+        "Anetha",
+        "Christian Coiffure"
       ],
       "eventDateStrings": [
-        "vend. 31 jan"
+        "dim. 16 fév."
       ],
       "eventStyleStrings": [
-        "| Club"
-      ]
-    },
-    "linkedPage": {
-      "eventDateStrings": [
-        "24",
-        "jan",
-        "23:00"
-      ],
-      "eventNameStrings": [
-        "Nava",
-        "abel",
-        "amne"
+        "Club"
       ]
     }
   },

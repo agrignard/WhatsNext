@@ -1,255 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ScrapEnDirex</title>
     <link rel="stylesheet" href="process.css">
 </head>
+
 <body>
     <div id="processContainer">
         <div id="leftPanel" class="leftPanel">
             <!-- page manager panel -->
             <div id="pageManager">
                 <div id="venueInfo"></div>
-                <button id="saveButton" class="normalButton">Save</button>
-                <button id="pageManagerButton" class="compact-button normalButton topRightButton">_</button>
-                <div id="pageManagerDetailsPanel"> 
-                    <button id="downloadButton" class="normalButton venueInfoButton verySmallBottomMargin">Download Page</button>
-                    <div id="lastScrapped" style ="display: inline;"></div>
-                    <div id="missingLinksPanel" class = "verySmallBottomMargin">
-                        <button id="missingLinksButton" style ="display: inline;" class="normalButton venueInfoButton">Get links</button>
-                       <div id="missingLinksText" style ="display: inline;" class="normalPadding"></div>
-                     </div>
+                <button id="saveButton" class="normalButton activeButton">Save</button>
+                <button id="pageManagerButton" class="compact-button normalButton activeButton topRightButton">_</button>
+                <div id="pageManagerDetailsPanel">
+                    <button id="downloadButton" class="normalButton activeButton venueInfoButton verySmallBottomMargin">Download
+                        Page</button>
+                    <div id="lastScrapped" style="display: inline;"></div>
+                    <div id="missingLinksPanel" class="verySmallBottomMargin">
+                        <button id="missingLinksButton" style="display: inline;"
+                            class="normalButton activeButton venueInfoButton">Get links</button>
+                        <div id="missingLinksText" style="display: inline;" class="normalPadding"></div>
+                    </div>
                 </div>
                 <div id="multiPageManager" class="normalPadding">
-                    <div style ="display: inline;">Pages to display</div>
-                    <select id="selectNbPages" style ="display: inline;"></select>
-                </div>
-            </div>
-            <!-- event selector panel-->
-                <div id="eventSelectorPanel">
-                    <div id="eventSelectorText" style ="display: inline;">Event index</div>
-                    <button id="eventSelectorPrevious" class="normalButton">&lt;</button>
-                    <input type="number" id="eventSelectorIndex"  min="0" step="1" value="" style ="width: 12ch" placeholder="Main event">
-                    <button id="eventSelectorNext" class="normalButton">&gt;</button>
-                    <button id="eventSelectorMainTag" class="normalButton">Reset</button>
-                </div>
-            <!-- current tab panel-->
-            <div id="currentTabSelector">
-                <div id="scrapTab" class="tab">
-                    Scrap
-                </div>
-                <div id="multipleEventsTab" class="tab">
-                    Sub-events
-                </div>
-                <div id="regexpTag" class="tab">
-                    Regexp
+                    <div style="display: inline;">Pages to display</div>
+                    <select id="selectNbPages" style="display: inline;"></select>
                 </div>
             </div>
             <!-- delimiter panel -->
-            <div id="analyzePanel">   
+            <div id="analyzePanel">
                 <div id="delimiterPanel">
-                    <div id="DelimiterTitle" class="title">Delimiter tag</div>
-                    <button id="freezeDelimiterButton" class="topRightButton normalButton">Freeze</button>
-                    <input type="text" id="delimiterTagField" class="delimiterTagInput" placeholder="Will be filled automatically" size="50">
-                    <div id="eventURLPanel">
-                        <div id="eventURLPanelWarning"  class="urlPanel warning">Warning: no event match the strings, url link is not accurate (event too old?)</div>
-                        <div id="eventURLPanelMessage" class="urlPanel"></div>
-                        <select id="eventURLSelect"></select>
+                    <div id="delimiterPanelHeader" class="panelHeader">
+                        <div id="DelimiterTitle" class="title">Delimiter tag</div>
+                        <div id="eventSelectorPanel" class="headerButtons">
+                            <div id="eventSelectorText" style="display: inline;">Event index</div>
+                            <input type="number" id="eventSelectorIndex" min="0" step="1" value="1" style="width: 6ch">
+                        </div>
                     </div>
-                    <div id="optionsPanel">
-                        <div style ="display: inline;">Options:</div>
-                        <label id="autoAdjustText" for="autoAdjustCheckbox" style ="display: inline;">auto adjust</label>
-                        <input type="checkbox" id="autoAdjustCheckbox" style ="display: inline;">
-                        <label id="adjustURL" for="adjustURLCheckbox" style ="display: inline;">Must include an URL</label>
-                        <input type="checkbox" id="adjustURLCheckbox" style ="display: inline;">
-                   </div>
-                </div>
-                <!-- options-->
-                <div id="scrapOptionsPanel" class="normalPadding">
-                    <div style ="display: inline;">Options:</div>
-                    <div class="rightJustif" style ="display: inline;">
-                        <label id="regroupTagsLabel" for="regroupTagsCheckbox" style ="display: inline;">Group tags</label>
-                        <input type="checkbox" id="regroupTagsCheckbox" style ="display: inline;">
-                        <label id="detailedScrapViewLabel" for="detailedScrapViewCheckbox" style ="display: inline;">Detail view</label>
-                        <input type="checkbox" id="detailedScrapViewCheckbox" style ="display: inline;">    
+                    <input type="text" id="delimiterTagField" class="delimiterTagInput smallBottomMargin"
+                        placeholder="Will be filled automatically" size="50">
+                    <div id="optionsPanel">   
+                        <div id="autoAdjustGroup" style="display: inline;">
+                            <div id="autoAdjustText" style="display: inline;">Adjust level</div>
+                            <input type="number" id="autoAdjustIndex" min="0" step="1" max="6" value="0" style="width: 4ch"
+                                placeholder="2">
+                        </div>
+                        <div id="adjustURLGroup" style="display: inline;">
+                            <label id="adjustURL" for="adjustURLCheckbox" style="display: inline;">Must include an URL</label>
+                            <input type="checkbox" id="adjustURLCheckbox" style="display: inline;">
+                        </div>
+                    </div>
+                    <div id="eventURLPanel">
+                        <div id="eventURLPanelWarning" class="urlPanel warning">Warning: no event match the strings, url
+                            link is not accurate</div>
+                        <div id="eventURLPanelMessage" class="urlPanel"></div>
+                        <div id="eventURLSelectPanel" style="display: none;">
+                            <select id="eventURLSelect"></select>
+                            <button id="followURLButton" class="normalButton activeButton">Open</button>
+                        </div>
                     </div>
                 </div>
                 <!-- easy panel -->
                 <div class="scrapPanelToHideWhenRegex">
-                    <div id="easyPanel" class="normalPadding">
+                    <div id="easyPanel" style="display: block" class="normalPadding">
                         <div class="smallBottomMargin">
-                            <div class="title" style ="display: inline;">All strings</div>
-                            <button id="easyPanelCopyButton" class="normalButton">&lt;</button>
+                            <div class="title" style="display: inline;">Event content</div>
                         </div>
                         <div id="easyPanelFields">
-
+                            <!-- lines with text and button will be populated here -->
                         </div>
-                        <button id="easyPanelAddButton" class="normalButton">Add field</button>
                     </div>
                 </div>
                 <!-- scrap panels -->
                 <div id="scrapInfos">
                     <!-- event name -->
                     <div id="eventName" class="scrapElement SCRPXhighlightName">
-                        <div class="title">Event Name 
-                            <div class="subtitle" style="display:inline"></div>
+                        <div class="verySmallBottomMargin panelHeader">
+                            <div class="title" style="display: inline;">Name and description</div>  
+                            <div class="headerButtons">
+                                <button id="groupTagsButtonName" class="groupTagsButton normalButton activeGroupTagButton">G</button>
+                                <button id="eventNameRegexActivateButton" class="regexActivateButton regexButton normalButton inactive">R</button>
+                            </div>                         
                         </div>
-                        <div class="scrapPanelToHideWhenRegex">
-                            <div class="input-row hideWhenEasyPanel">
-                                <div id="eventNameStrings" class="eventStrings scrapTextBox" style="display:inline-block;" placeholder="Copy event name here" contenteditable="true"></div>
-                                <button id="eventNameStringsCopyButton" class="copyButton normalButton">&lt;</button>
-                            </div>
-                            <textarea  id="eventNameTags" class="eventTags scrapTextBox" placeholder="Tags will be filled automatically"></textarea>
-                        </div>
-                        <!-- multiple events -->
-                        <div class="multipleEventsPanel">
-                            <div class="input-row">
-                                <div id="eventMultiNameStrings" class="eventStrings scrapTextBox" style="display:inline-block;" placeholder="Copy event name here" contenteditable="true"></div>
-                                <button id="eventMultiNameStringsCopyButton" class="copyButton normalButton">&lt;</button>
-                            </div>
-                            <textarea  id="eventMultiNameTags" class="eventTags scrapTextBox" placeholder="Tags will be filled automatically"></textarea>
-                        </div>
+                        <textarea id="eventNameTags" class="eventTags scrapTextBox"
+                            placeholder="Tags will be filled automatically"></textarea>
                         <!-- regex  -->
                         <div id="eventNameRegexpPanel" class="regexpPanel SCRPXhighlightName normalPadding">
                             <div id="eventNameRegexpTextBefore" class="regexpTextBefore verySmallBottomMargin">text</div>
                             <div class="regexpResult">
                                 <input type="text" id="eventNameRegexpInput" class="regexpInput regexpMatch verySmallBottomMargin" placeholder="Enter Regex" size="30">
-                                <button id="eventNameRegexpButton" class="regexpButton normalButton">R</button>
-                                <input type="text" id="eventNameRegexpReplace" class="regexpInput  regexpReplace verySmallBottomMargin" size="10">
-                                <div id="eventNameRegexpTextAfter" class="regexpTextAfter">text</div>   
-                            </div>       
-                        </div>   
+                                <button id="eventNameRegexpButton" class="regexpButton normalButton activeButton">&gt;</button>
+                                <input type="text" id="eventNameRegexpReplace" class="regexpInput  regexpReplace verySmallBottomMargin" size="10" >
+                                <div id="eventNameRegexpTextAfter" class="regexpTextAfter">text</div>
+                            </div>
+                        </div>
                     </div>
                     <!-- event date -->
                     <div id="eventDate" class="scrapElement SCRPXhighlightDate">
-                        <div class="title">Event Date 
-                            <div class="subtitle" style="display:inline"></div>
+                        <div class="verySmallBottomMargin panelHeader">
+                            <div class="title" style="display: inline;">Date and time</div>
+                            <div class="headerButtons">
+                                <button id="groupTagsButtonDate" class="groupTagsButton normalButton activeGroupTagButton">G</button>
+                                <button id="eventDateRegexActivateButton" class="regexActivateButton normalButton inactive">R</button>
+                            </div>   
                         </div>
                         <div class="scrapPanelToHideWhenRegex">
-                            <div class="input-row hideWhenEasyPanel">
-                                <div id="eventDateStrings" class="eventStrings scrapTextBox" style="display:inline-block;" rows="1" cols="50" placeholder="Copy event date here" contenteditable="true"></div>
-                                <button id="eventDateStringsCopyButton" class="normalButton copyButton">&lt;</button>
-                            </div>
-                            <textarea  id="eventDateTags" class="eventTags scrapTextBox verySmallBottomMargin" rows="1" cols="50" placeholder="Tags will be filled automatically"></textarea>
+                            <textarea id="eventDateTags" class="eventTags scrapTextBox verySmallBottomMargin" rows="1"
+                                cols="50" placeholder="Tags will be filled automatically"></textarea>
                             <div id="dateFormatPanel">
                                 <div id="dateFormatText"></div>
                             </div>
-                        </div>                        
-                        <div class="multipleEventsPanel">
-                            <div class="input-row">
-                                <div id="eventMultiDateStrings" class="eventStrings scrapTextBox" style="display:inline-block;" placeholder="Copy event name here" contenteditable="true"></div>
-                                <button id="eventMultiDateStringsCopyButton" class="copyButton normalButton">&lt;</button>
-                            </div>
-                            <textarea  id="eventMultiDateTags" class="eventTags scrapTextBox" placeholder="Tags will be filled automatically"></textarea>
                         </div>
                         <div id="eventDateRegexpPanel" class="regexpPanel SCRPXhighlightDate normalPadding">
-                            <div id="eventDateRegexpTextBefore" class="regexpTextBefore verySmallBottomMargin">text</div>
+                            <div id="eventDateRegexpTextBefore" class="regexpTextBefore verySmallBottomMargin">text
+                            </div>
                             <div class="regexpResult">
-                                <input type="text" id="eventDateRegexpInput" class="regexpInput regexpMatch verySmallBottomMargin" placeholder="Enter Regex" size="30">
-                                <button id="eventDateRegexpButton" class="regexpButton normalButton">R</button>
-                                <input type="text" id="eventDateRegexpReplace" class="regexpInput regexpReplace verySmallBottomMargin" size="10">
-                                <div id="eventDateRegexpTextAfter" class="regexpTextAfter">text</div>    
-                            </div>      
-                        </div> 
+                                <input type="text" id="eventDateRegexpInput"
+                                    class="regexpInput regexpMatch verySmallBottomMargin" placeholder="Enter Regex"
+                                    size="30">
+                                <button id="eventDateRegexpButton" class="regexpButton normalButton activeButton">&gt;</button>
+                                <input type="text" id="eventDateRegexpReplace"
+                                    class="regexpInput regexpReplace verySmallBottomMargin" size="10">
+                                <div id="eventDateRegexpTextAfter" class="regexpTextAfter">text</div>
+                            </div>
+                        </div>
                     </div>
                     <!-- event style -->
-                    <div id="eventStyle" class="scrapElement SCRPXhighlightStyle">       
-                        <div class="title">Event Style 
-                            <div class="subtitle" style="display:inline"></div>
+                    <div id="eventStyle" class="scrapElement SCRPXhighlightStyle">
+                        <div class="verySmallBottomMargin panelHeader">
+                            <div class="title">Style</div>
+                            <div class="headerButtons">
+                                <button id="groupTagsButtonStyle" class="groupTagsButton normalButton activeGroupTagButton">G</button>
+                                <button id="eventStyleRegexActivateButton" class="regexActivateButton normalButton inactive">R</button>
+                            </div>  
                         </div>
                         <div class="scrapPanelToHideWhenRegex">
-                            <div class="input-row  hideWhenEasyPanel">
-                                <div id="eventStyleStrings" class="eventStrings scrapTextBox" style="display:inline-block;" rows="1" cols="50" placeholder="Copy event style here" contenteditable="true"></div>
-                                <button id="eventStyleStringsCopyButton" class="normalButton copyButton">&lt;</button>
-                            </div>
-                            <textarea  id="eventStyleTags" class="eventTags scrapTextBox" rows="1" cols="50" placeholder="Tags will be filled automatically"></textarea>
-                        </div>
-                        <div class="multipleEventsPanel">
-                            <div class="input-row">
-                                <div id="eventMultiStyleStrings" class="eventStrings scrapTextBox" style="display:inline-block;" placeholder="Copy event name here" contenteditable="true"></div>
-                                <button id="eventMultiStyleStringsCopyButton" class="copyButton normalButton">&lt;</button>
-                            </div>
-                            <textarea  id="eventMultiStyleTags" class="eventTags scrapTextBox" placeholder="Tags will be filled automatically"></textarea>
+                            <textarea id="eventStyleTags" class="eventTags scrapTextBox" rows="1" cols="50"
+                                placeholder="Tags will be filled automatically"></textarea>
                         </div>
                         <div id="eventStyleRegexpPanel" class="regexpPanel SCRPXhighlightStyle normalPadding">
-                            <div id="eventStyleRegexpTextBefore" class="regexpTextBefore verySmallBottomMargin">text</div>
+                            <div id="eventStyleRegexpTextBefore" class="regexpTextBefore verySmallBottomMargin">text
+                            </div>
                             <div class="regexpResult">
-                                <input type="text" id="eventStyleRegexpInput" class="regexpInput regexpMatch verySmallBottomMargin" placeholder="Enter Regex" size="30">
-                                <button id="eventStyleRegexpButton" class="regexpButton normalButton">R</button>
-                                <input type="text" id="eventStyleRegexpReplace" class="regexpInput regexpReplace verySmallBottomMargin" size="10">
-                                <div id="eventStyleRegexpTextAfter"  class="regexpTextAfter">text</div>   
-                            </div>  
-                        </div> 
+                                <input type="text" id="eventStyleRegexpInput"
+                                    class="regexpInput regexpMatch verySmallBottomMargin" placeholder="Enter Regex"
+                                    size="30">
+                                <button id="eventStyleRegexpButton" class="regexpButton normalButton activeButton">&gt;</button>
+                                <input type="text" id="eventStyleRegexpReplace"
+                                    class="regexpInput regexpReplace verySmallBottomMargin" size="10">
+                                <div id="eventStyleRegexpTextAfter" class="regexpTextAfter">text</div>
+                            </div>
+                        </div>
                     </div>
                     <!-- event place -->
                     <div id="eventPlace" class="scrapElement SCRPXhighlightPlace">
-                        <div class="title">Event Place 
-                            <div class="subtitle" style="display:inline"></div>
-                        </div>
+                        <div class="verySmallBottomMargin panelHeader">
+                            <div class="title">Place</div>
+                            <div class="headerButtons">
+                                <button id="groupTagsButtonPlace" class="groupTagsButton normalButton activeGroupTagButton">G</button>
+                                <button id="eventPlaceRegexActivateButton" class="regexActivateButton normalButton inactive">R</button>
+                            </div>  
+                        </div>   
                         <div class="scrapPanelToHideWhenRegex">
-                            <div class="input-row hideWhenEasyPanel">
-                                <div id="eventPlaceStrings" class="eventStrings scrapTextBox" style="display:inline-block;" rows="1" cols="50" placeholder="Leave blank if not applicable" contenteditable="true"></div>
-                                <button id="eventPlaceStringsCopyButton" class="normalButton copyButton">&lt;</button>
-                            </div>
-                            <textarea  id="eventPlaceTags" class="eventTags scrapTextBox" rows="1" cols="50" placeholder="Tags will be filled automatically"></textarea>
-                        </div>
-                        <div class="multipleEventsPanel">
-                            <div class="input-row">
-                                <div id="eventMultiPlaceStrings" class="eventStrings scrapTextBox" style="display:inline-block;" placeholder="Copy event name here" contenteditable="true"></div>
-                                <button id="eventMultiPlaceStringsCopyButton" class="copyButton normalButton">&lt;</button>
-                            </div>
-                            <textarea  id="eventMultiPlaceTags" class="eventTags scrapTextBox" placeholder="Tags will be filled automatically"></textarea>
+                            <textarea id="eventPlaceTags" class="eventTags scrapTextBox" rows="1" cols="50"
+                                placeholder="Tags will be filled automatically"></textarea>
                         </div>
                         <div id="eventPlaceRegexpPanel" class="regexpPanel SCRPXhighlightPlace normalPadding">
-                            <div id="eventPlaceRegexpTextBefore" class="regexpTextBefore verySmallBottomMargin">text</div>
+                            <div id="eventPlaceRegexpTextBefore" class="regexpTextBefore verySmallBottomMargin">text
+                            </div>
                             <div class="regexpResult">
-                                <input type="text" id="eventPlaceRegexpInput" class="regexpInput regexpMatch verySmallBottomMargin" placeholder="Enter Regex" size="30">
-                                <button id="eventPlaceRegexpButton" class="regexpButton normalButton">R</button>
-                                <input type="text" id="eventPlaceRegexpReplace" class="regexpInput regexpReplace verySmallBottomMargin" size="10">
-                                <div id="eventPlaceRegexpTextAfter" class="regexpTextAfter">text</div>  
-                            </div>        
-                        </div> 
+                                <input type="text" id="eventPlaceRegexpInput"
+                                    class="regexpInput regexpMatch verySmallBottomMargin" placeholder="Enter Regex"
+                                    size="30">
+                                <button id="eventPlaceRegexpButton" class="regexpButton normalButton activeButton">&gt;</button>
+                                <input type="text" id="eventPlaceRegexpReplace"
+                                    class="regexpInput regexpReplace verySmallBottomMargin" size="10">
+                                <div id="eventPlaceRegexpTextAfter" class="regexpTextAfter">text</div>
+                            </div>
+                        </div>
                     </div>
                     <!-- event url -->
                     <div id="eventURL" class="scrapElement SCRPXhighlightURL">
-                        <div class="title">Event url 
+                        <div class="title">URL to the event page
                             <div class="subtitle" style="display:inline"></div>
                         </div>
                         <div class="scrapPanelToHideWhenRegex">
-                            <div class="input-row hideWhenEasyPanel">
-                                <div id="eventURLStrings" class="eventStrings scrapTextBox eventURLgroup" style="display:inline-block;" rows="1" cols="50" placeholder="Leave blank if not applicable" contenteditable="true"></div>
-                                <button id="eventURLStringsCopyButton" class="normalButton copyButton">&lt;</button>
-                            </div>
-                            <textarea  id="eventURLTags" class="eventTags scrapTextBox eventURLgroup" rows="1" cols="50" placeholder="Tags will be filled automatically"></textarea>
-                        </div>
-                        <div class="multipleEventsPanel">
-                            <div class="input-row">
-                                <div id="eventMultiURLStrings" class="eventStrings scrapTextBox" style="display:inline-block;" placeholder="Copy event name here" contenteditable="true"></div>
-                                <button id="eventMultiURLStringsCopyButton" class="copyButton normalButton">&lt;</button>
-                            </div>
-                            <textarea  id="eventMultiURLTags" class="eventTags scrapTextBox" placeholder="Tags will be filled automatically"></textarea>
-                        </div>
-                        <div id="eventURLRegexpPanel" class="regexpPanel SCRPXhighlightURL normalPadding">
-                            <div id="eventURLRegexpTextBefore" class="regexpTextBefore verySmallBottomMargin">text</div>
-                            <div class="regexpResult">
-                                <input type="text" id="eventURLRegexpInput" class="regexpInput regexpMatch verySmallBottomMargin" placeholder="Enter Regex" size="30">
-                                <button id="eventURLRegexpButton" class="regexpButton normalButton">R</button>
-                                <input type="text" id="eventURLRegexpReplace" class="regexpInput regexpReplace verySmallBottomMargin" size="10">
-                                <div id="eventURLRegexpTextAfter" class="regexpTextAfter">text</div>  
-                            </div>        
-                        </div> 
-                    </div>
-                    <!-- event dummy -->
-                    <div id="eventDummy" class="scrapElement SCRPXhighlightDummy">
-                        <div class="scrapPanelToHideWhenRegex">
-                            <div class="title">Dummy filler</div>
-                            <div class="input-row">
-                                <div id="eventDummyStrings" class="eventStrings scrapTextBox" rows="1" cols="50" style="display:inline-block;" placeholder="Leave blank if not applicable" contenteditable="true"></div>
-                                <button id="eventDummyStringsCopyButton" class="normalButton copyButton">&lt;</button>
-                            </div>
-                            <textarea  id="eventDummyTags" class="eventTags scrapTextBox" rows="1" cols="50" placeholder="Tags will be filled automatically"></textarea>
+                            <textarea id="eventURLTags" class="eventTags scrapTextBox eventURLgroup" rows="1" cols="50"
+                                placeholder="Tags will be filled automatically"></textarea>
                         </div>
                     </div>
                 </div>
@@ -257,18 +198,18 @@
             <!-- log panel -->
             <div id="logPanel">
                 <div class="smallBottomMargin">Log</div>
-                <button id="logButton" class="compact-button normalButton topRightButton">_</button>
-                <div id="logTextPanel" style ="display: none;">
+                <button id="logButton" class="compact-button normalButton activeButton topRightButton">_</button>
+                <div id="logTextPanel" style="display: none;">
                     <textarea id="logText" readonly></textarea>
                 </div>
-            </div>   
+            </div>
         </div>
-        <button id="switchPageButton" class="normalButton">Switch to linked Page &gt;</button>
-        <div id= "scrapEnDirexRightPanel"class="rightPanel">    
+        <button id="switchPageButton" class="normalButton activeButton">Switch to linked Page &gt;</button>
+        <div id="scrapEnDirexRightPanel" class="rightPanel">
             Loading...
         </div>
     </div>
-      
     <script src="process.js"></script>
 </body>
+
 </html>
