@@ -466,6 +466,11 @@ background-color: lightblue;
   background-color: rgba(231, 76, 60, 0.2);
 }
 
+.SCRPXeventBlockWithURL{
+  outline: 4px dashed rgb(241, 196, 15);  /* Bordure en tirets rouge */
+  outline-offset: -4px;
+}
+
 .focusedOn {
   border: 2px dashed rgb(231, 76, 60);; 
   padding: 10px; 

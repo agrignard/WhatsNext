@@ -41,7 +41,7 @@ const keyNames = ['Name','Date','Style','Place','URL'];
 const colorClassList = ['SCRPXhighlightName','SCRPXhighlightDate','SCRPXhighlightStyle',
                         'SCRPXhighlightPlace','SCRPXhighlightURL','SCRPXhighlightURLOverlay'];
 const reservedClassList = colorClassList.concat(['SCRPXhighlightMultiName','SCRPXhighlightMultiDate','SCRPXhighlightMultiStyle','SCRPXhighlightMultiPlace','SCRPXhighlightMultiURL',
-  'SCRPXmainTag','SCRPXeventBlock','SCRPXeventBlockInvalid']);
+  'SCRPXmainTag','SCRPXeventBlock','SCRPXeventBlockInvalid','SCRPXeventBlockWithURL']);
 const easyButtonClassList = ['easyButtonName','easyButtonDate','easyButtonStyle','easyButtonPlace','easyButtonURL'];
 
 const inlineTags = ['b','i','em','u','span','code','small','strong','sub','sup','del', 'ins','mark'];
@@ -1064,6 +1064,9 @@ function applyTags(markTags = false){
     console.log('\x1b[43m\x1b[30mapplying tags\x1b[0m');
     eventTagList.forEach(el => {
       el.classList.add('SCRPXeventBlock');
+      if (!venue[currentPage].eventURLTags){
+        el.classList.add('SCRPXeventBlockWithURL');
+      }
     });
     principalTag.classList.add('SCRPXmainTag');
   }
@@ -1654,6 +1657,7 @@ function removeEmptyFields(object){
   fieldsToCheck = ['linkedPage','mainPage'];
   fieldsToCheck.forEach(field => {
     if (object.hasOwnProperty(field)){
+      console.log([].filter(el =>  /\S/.test(el)));
       Object.keys(object[field]).forEach(key =>{
         object[field][key] = object[field][key].filter(el =>  /\S/.test(el));
         if (object[field][key].length === 0){
@@ -1939,15 +1943,24 @@ function findTagsFromPath(rootTag, path) {
       let nextElements = [];
       for (const parent of currentElements) {
           let selector = tagName + (classes.length > 0 ? '.' + classes.join('.') : '');
-          let foundElements = parent.querySelectorAll(selector); 
-          if (numero !== undefined) {
-              if (numero >= 0 && numero < foundElements.length) {
-                  nextElements.push(foundElements[numero]);
-              }
-          } else {
-              for (const el of foundElements) { 
-                  nextElements.push(el);
-              }
+          try{
+            let foundElements = parent.querySelectorAll(selector); 
+          
+          
+            if (numero !== undefined) {
+                if (numero >= 0 && numero < foundElements.length) {
+                    nextElements.push(foundElements[numero]);
+                }
+            } else {
+                for (const el of foundElements) { 
+                    nextElements.push(el);
+                }
+            }
+          }catch(err){
+            console.log('selector',selector);
+            console.log('path',path);
+            console.log(infoList);
+            console.log(err);
           }
       }
 
@@ -1977,7 +1990,6 @@ function getPath(rootTag, tag) {
   const parent = tag.parentElement;
   let path = getPath(rootTag, parent);
   let tagClasses = Array.from(tag.classList);
-  console.log(tag.textContent, Array.from(parent.children));
   const index = Array.from(parent.children)
                 .filter(child => child.tagName === tag.tagName) // filter the tags with the same name
                 .filter(child => tagClasses.every(cls => child.classList.contains(cls))) // filter tags which contain the same classes. Need this code to avoid pb with === 
@@ -1997,7 +2009,8 @@ function removeCustomTags(path){
 }
 
 function replaceWithCustomTags(path){
-  return path.replace(/(?:^|>)(a)(?=$|>|\.)/gi, customTagName);
+  // return path.replace(/(?:^|\>)(a)(?=$|>|\.)/gi, customTagName);
+  return path.replace(/(>?)a(?=$|>|\.)/gi, '$1'+customTagName);
 }
 
 

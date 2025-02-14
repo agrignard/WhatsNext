@@ -191,7 +191,9 @@ function getManualLinksFromPage(page,delimiter,atag){
   $(delimiter).each(function () {
     const block = $(this).html();
     const $b = cheerio.load(block);
-    const href = getHrefFromAncestor($(atag));
+    console.log('ici',block);
+    console.log(atag);
+    const href = getHrefFromAncestor($b(atag));
     // const href = $b(atag).attr('href');
     res.push(href);
   });
@@ -274,10 +276,15 @@ function getHrefListFrom(pageList,venue){
 }
 
 function getHrefFromAncestor(tag){
-  console.log(tag);
+  if (tag.length === 0){
+    console.log("\x1b[31mtag not found (null) in getHrefFromAncestor (aspiratorexUtilities.js).\x1b[0m");
+    return null;
+  }
+  // console.log(tag);
   if (tag.attr('href')){
     return tag.attr('href');
   }
+  // console.log(tag.parent());
   return getHrefFromAncestor(tag.parent());
 }
 
