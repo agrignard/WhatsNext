@@ -191,7 +191,7 @@ function getManualLinksFromPage(page,delimiter,atag){
   $(delimiter).each(function () {
     const block = $(this).html();
     const $b = cheerio.load(block);
-    const href = getHrefFromAncestor(atag);
+    const href = getHrefFromAncestor($(atag));
     // const href = $b(atag).attr('href');
     res.push(href);
   });
@@ -274,6 +274,7 @@ function getHrefListFrom(pageList,venue){
 }
 
 function getHrefFromAncestor(tag){
+  console.log(tag);
   if (tag.attr('href')){
     return tag.attr('href');
   }

@@ -520,18 +520,28 @@ function populateEasyPanel(){
 // This function is used to verify if a tag may be used as information for an URL link. If the tag itself is no a link
 // it will find if an ancestor can be. The reason is that some links are not at the top level of tags, and thus not listed
 // in the easy panel.
+// if the tag is the principalTag, then it returns principalTag if it contains an URL, or null otherwise
+// if the tag is not the principalTag, it will find an ancestor that is not principal tag, containing an URL
 function findAncestorWithURL(tag){
+
   if (tag.tagName.toLowerCase() === 'body'){// tag with URL not found
     return null;
   }
-  if (principalTag && tag === principalTag){// the first ancestor found with an URL is the principal tag. This tag is not candidate for being a tag.
-    return null;
+  if (principalTag && tag === principalTag){// the tag is principal tag. Checks if it contains href
+    return principalTag.hasAttribute('href')?principalTag:null;
   }
+  // else find the first ancestor found with an URL if it can be found before the principal tag.
   if (tag.hasAttribute('href')){
     return tag;
   }
-  return findAncestorWithURL(tag.parentElement);
+  if (tag.parentElement && tag.parentElement !== principalTag){
+    return findAncestorWithURL(tag.parentElement);
+  }else{
+    return null;
+  }
 }
+
+
 
 // create new line in the easy panel. If several tags are marked as URL tags, only keep the first one
 function newEasyLine(tag, markFirstURL = true){
@@ -550,80 +560,87 @@ function newEasyLine(tag, markFirstURL = true){
   inputElement.value = text;
   newDiv.appendChild(inputElement);
 
+  if (tag === principalTag){
+    inputElement.value = 'event tag';
+    inputElement.classList.add('easyPanelMainTag');
+  }
+
   // create buttons for changing field type (name, date, ...)
   for(i=0;i<keyNames.length;i++){
-    let newEasyButton = document.createElement('button');
-    newEasyButton.classList.add('easyButton'); // for css
-    newEasyButton.classList.add(easyButtonClassList[i]); // add class easybutton for css (coloring, hoovering)
-    newEasyButton.classList.add('easyLine'+index); // used to identify buttons on the same line
-    newEasyButton.eventTagType = 'event'+keyNames[i]+'Tags'; // set the corresponding tag field
-    newEasyButton.colorClass = colorClassList[i]; // set the color class when active
-    newEasyButton.title = easyButtonClassList[i].replace('easyButton','');
-    
-    // if the type (name, date, ...) is the same than the current button, make it active
-    if (tag.desc === newEasyButton.eventTagType){
-      newEasyButton.classList.add(newEasyButton.colorClass);
-    }
-    if (markFirstURL && newEasyButton.eventTagType === 'eventURLTags' && tag.isURL){
-      newEasyButton.classList.add(newEasyButton.colorClass);
-      markFirstURL = false;
-    }
+    if (tag !== principalTag || keyNames[i].toLowerCase() === 'url'){
+      let newEasyButton = document.createElement('button');
+      newEasyButton.classList.add('easyButton'); // for css
+      newEasyButton.classList.add(easyButtonClassList[i]); // add class easybutton for css (coloring, hoovering)
+      newEasyButton.classList.add('easyLine'+index); // used to identify buttons on the same line
+      newEasyButton.eventTagType = 'event'+keyNames[i]+'Tags'; // set the corresponding tag field
+      newEasyButton.colorClass = colorClassList[i]; // set the color class when active
+      newEasyButton.title = easyButtonClassList[i].replace('easyButton','');
+      
+      // if the type (name, date, ...) is the same than the current button, make it active
+      if (tag.desc === newEasyButton.eventTagType){
+        newEasyButton.classList.add(newEasyButton.colorClass);
+      }
+      if (markFirstURL && newEasyButton.eventTagType === 'eventURLTags' && tag.isURL){
+        newEasyButton.classList.add(newEasyButton.colorClass);
+        markFirstURL = false;
+      }
 
-    // if the tag and ancestors have no url link, deactivate the button
-    if (keyNames[i] === 'URL'){
-      if (!findAncestorWithURL(tag)){
-        newEasyButton.classList.add('inactive');
-      }else{
-        newEasyButton.title = 'URL: '+findAncestorWithURL(tag).getAttribute('href');
-        // URL switch button 
-        newEasyButton.addEventListener('click',function() {
-          if (tag.isURL){
-              // turn button off when clicking on an active button
-              this.classList.remove(this.colorClass);
-              tag.isURL = false;
-          }else{
-            // turn of all other URL button and remove isURL marker (there can be only one URL)
-            subTags[currentPage].forEach(tag => { 
-              tag.isURL = false;
-            });
-            const easyButtons = easyPanelFields.getElementsByClassName('easyButton');
-            for (button of easyButtons){
-              if (button.eventTagType === 'eventURLTags'){
-                button.classList.remove(this.colorClass);
+      // if the tag and ancestors have no url link, deactivate the button
+      if (keyNames[i] === 'URL'){
+        if (!findAncestorWithURL(tag)){
+          newEasyButton.classList.add('inactive');
+        }else{
+          newEasyButton.title = 'URL: '+findAncestorWithURL(tag).getAttribute('href');
+          // URL switch button 
+          newEasyButton.addEventListener('click',function() {
+            if (tag.isURL){
+                // turn button off when clicking on an active button
+                this.classList.remove(this.colorClass);
+                tag.isURL = false;
+            }else{
+              // turn of all other URL button and remove isURL marker (there can be only one URL)
+              subTags[currentPage].forEach(tag => { 
+                tag.isURL = false;
+              });
+              const easyButtons = easyPanelFields.getElementsByClassName('easyButton');
+              for (button of easyButtons){
+                if (button.eventTagType === 'eventURLTags'){
+                  button.classList.remove(this.colorClass);
+                }
               }
+              // activate the current button
+              tag.isURL = true;
+              this.classList.add(this.colorClass);
             }
+            computeTags();
+            renderEventURLPanel();
+          });
+        }
+      }else{
+        // new button for keyName !== URL
+        newEasyButton.addEventListener('click',function() {
+          // when clicking on the button, make all buttons of the line inactive
+          const buttonList = easyPanelFields.getElementsByClassName('easyLine'+index);
+          for(j=0;j<buttonList.length;j++){
+            if (keyNames[j] !== 'URL'){
+              buttonList[j].classList.remove(colorClassList[j]);
+            }
+          }
+          if (tag.desc === this.eventTagType){
+              // turn button of when clicking on an active button
+              tag.desc = undefined;
+          }else{
             // activate the current button
-            tag.isURL = true;
+            tag.desc = this.eventTagType;
             this.classList.add(this.colorClass);
+            // tag.classList.add(this.colorClass);
           }
           computeTags();
-          renderEventURLPanel();
+          computeDateFormat();
         });
       }
-    }else{
-      // new button for keyName !== URL
-      newEasyButton.addEventListener('click',function() {
-        // when clicking on the button, make all buttons of the line inactive
-        const buttonList = easyPanelFields.getElementsByClassName('easyLine'+index);
-        for(j=0;j<buttonList.length;j++){
-          if (keyNames[j] !== 'URL'){
-            buttonList[j].classList.remove(colorClassList[j]);
-          }
-        }
-        if (tag.desc === this.eventTagType){
-            // turn button of when clicking on an active button
-            tag.desc = undefined;
-        }else{
-          // activate the current button
-          tag.desc = this.eventTagType;
-          this.classList.add(this.colorClass);
-          // tag.classList.add(this.colorClass);
-        }
-        computeTags();
-        computeDateFormat();
-      });
+      newDiv.appendChild(newEasyButton);
     }
-    newDiv.appendChild(newEasyButton);
   }
   // const newButton = document.createElement('button');
   // newButton.id = 'removeButton'+index;
