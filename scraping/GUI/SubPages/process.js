@@ -727,8 +727,6 @@ eventURLTagBox.addEventListener("keydown", function(event) {
 
 
 const eventURLPanelMessage = document.getElementById('eventURLPanelMessage');
-const eventURLSelectPanel = document.getElementById('eventURLSelectPanel');
-const eventURLSelect = document.getElementById('eventURLSelect');
 const followURLButton = document.getElementById('followURLButton');
 
 followURLButton.addEventListener('click',function(){
@@ -1401,109 +1399,62 @@ function computeDateFormat(){
 }
 
 function renderEventURLPanel(){
+  // venue.eventURLIndex = -1; -> no URL found or no URL to use for the events
+  // venue.eventURLIndex = 0; -> URL is eventDelimiter will be used
+  // venue.eventURLIndex = n; -> not in use in the GUI
 
-  // console.log('url render');
+  console.log('url render');
   eventURL = undefined;
+  followURLButton.style.display = 'none';
 
   if (!eventTagList || eventTagList.length === 0){
-    // eventURLPanel.style.display = 'none';
+    eventURLPanel.style.display = 'none';
     setSwitchStatus();
     return;
   }
   eventURLPanel.style.display = 'block';
 
+  // 1st case: no URL can be found in the event block
   if (!containsURL(principalTag)){
-    eventURLSelectPanel.style.display = 'none';
-    eventURLPanelWarning.style.display = 'block';
+    eventURLPanelWarning.style.display = 'inline';
     eventURLPanelWarning.textContent = 'Cannot find any URL in the event block.';
     eventURLPanelMessage.style.display = 'none';
+    venue.eventURLIndex = -1;
+    setSwitchStatus();
+    return;
+  }
+    
+  venue.eventURLIndex = 0;
+  eventURLPanelWarning.style.display = 'none';
+
+  
+  // if eventURLTags, is defined, try to extract the URL
+  if (venue.mainPage.hasOwnProperty('eventURLTags')){
+    urlTag = findTagsFromPath(principalTag,venue.mainPage.eventURLTags[0])[0];
+    eventURL = getAncestorWithUrl(urlTag).getAttribute('href');
+    if (eventURL){
+      eventURLPanelMessage.textContent = 'URL from tag: '+ eventURL;
+      eventURLPanelMessage.style.display = 'inline';
+      followURLButton.style.display = 'inline';
+    }else{
+      eventURLPanelWarning.style.display = 'inline';
+      eventURLPanelWarning.textContent = 'URL tag found, but it does not contain a URL reference. Set another tag or choose a link from the list';
+    }
     setSwitchStatus();
     return;
   }
 
-  eventURLPanelWarning.style.display = 'none';
+  eventURLPanelMessage.style.display = 'inline';
 
-  // if eventURLTags, is defined, try to extract the URL
-  if (venue.mainPage.hasOwnProperty('eventURLTags')){
-    // console.log('url tag found in venue');
-    urlTag = findTagsFromPath(principalTag,venue.mainPage.eventURLTags[0])[0];
-    eventURL = getAncestorWithUrl(urlTag).getAttribute('href');
-    // console.log(venue.mainPage.eventURLTags[0]);
-    // console.log(findTagsFromPath(principalTag,venue.mainPage.eventURLTags[0]));
-    // console.log(urlTag.tagName);
-    eventURLSelectPanel.style.display = 'none';
-    if (eventURL){
-      eventURLPanelMessage.textContent = 'URL from tag: '+ eventURL;
-      eventURLPanelMessage.style.display = 'block';
-      setSwitchStatus();
-      return;
-    }else{
-      eventURLPanelWarning.style.display = 'block';
-      eventURLPanelWarning.textContent = 'URL tag found, but it does not contain a URL reference. Set another tag or choose a link from the list';
-    }
-  }
-
-  // if no eventURL is present, or if it doesn't provide a valid URL, try to find the URLs contained in the block
-  
-  eventURLPanelMessage.style.display = 'block';
-  
-  urlTags = findURLTags(principalTag);
-  // const index = urlList.findIndex(function(element) {
-  //   return typeof element !== 'undefined';
-  // });
-  let index = 0;
-  if (venue.mainPage.hasOwnProperty('eventURLIndex') && venue.mainPage.eventURLIndex != undefined){
-    index = venue.eventURLIndex;
-    if (index >= urlTags.length){
-      index = 0;
-    }
-  }
-  venue.eventURLIndex = index;
-
-  // console.log('URLs found: '+urlTags.length);
-  eventURLPanelMessage.style.display = 'block';
-  
-  eventURL = urlTags[index].getAttribute('href');
-  if (urlTags.length === 1) {
-    eventURLPanelMessage.textContent = 'URL found: ' + eventURL;
-    eventURLSelectPanel.style.display = 'none';
-    if (venue.mainPage.hasOwnProperty('eventURLTags')){
-      delete venue.mainPage.eventURLTags;
-    }
-  } else {
-    eventURLPanelMessage.textContent = 'Choose URL to keep: ';
-    eventURLSelect.innerHTML = '';
-    urlTags.forEach((tag, ind) => {
-      // console.log('adding '+ind);
-      if (isValidURL(tag.getAttribute('href'))){
-        const option = document.createElement('option');
-        option.text = tag.getAttribute('href');
-        option.value = ind;
-        eventURLSelect.appendChild(option);
-      }
-    });
-    eventURLSelectPanel.style.display = 'inline';
-    eventURLSelect.selectedIndex = index;
-    eventURLSelect.addEventListener('click', event => {
-      urlSelectAction();
-    });
-    eventURLSelect.addEventListener('change', event => {
-      urlSelectAction();
-    });
-
-    function urlSelectAction(){
-      venue.mainPage.eventURLIndex = eventURLSelect.selectedIndex;
-      eventURL = eventURLSelect.options[eventURLSelect.selectedIndex].text;
-      venue.mainPage.eventURLIndex =  eventURLSelect.value;
-      eventURLPanelWarning.style.display = 'none';
-      if (venue.mainPage.hasOwnProperty('eventURLTags')){
-        delete venue.mainPage.eventURLTags;
-      }
-      setSwitchStatus();
-    }
+  // if no eventURL is present, set the URL in the main delimiter as the default URL if it exists
+  if (principalTag.hasAttribute('href')){
+    eventURL = principalTag.getAttribute('href');
+    eventURLPanelMessage.textContent = 'URL found in event block: ' + eventURL;
+    followURLButton.style.display = 'inline';
+  }else{
+    eventURLPanelMessage.textContent = 'Choose URL from tags.';
   }
   setSwitchStatus();
-  
 }
 
 
@@ -1561,6 +1512,7 @@ function getValueFromBox(textBox){
 
 
 
+// to be removed, only find the url in the main delimiter now
 function findURLTags(tag){
 
   let links = [];
@@ -1570,6 +1522,7 @@ function findURLTags(tag){
   links = links.concat(Array.from(tag.querySelectorAll(customTagName)));
   return links;
 }
+
 
 
 // console.log = function() {
