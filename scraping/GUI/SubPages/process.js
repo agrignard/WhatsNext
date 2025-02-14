@@ -1977,8 +1977,9 @@ function getPath(rootTag, tag) {
   const parent = tag.parentElement;
   let path = getPath(rootTag, parent);
   let tagClasses = Array.from(tag.classList);
+  console.log(tag.textContent, Array.from(parent.children));
   const index = Array.from(parent.children)
-                .filter(child => child.tagName = tag.tagName) // filter the tags with the same name
+                .filter(child => child.tagName === tag.tagName) // filter the tags with the same name
                 .filter(child => tagClasses.every(cls => child.classList.contains(cls))) // filter tags which contain the same classes. Need this code to avoid pb with === 
               //   .filter(child => {                         
               //     let chClasses = Array.from(ch.classList).sort();
