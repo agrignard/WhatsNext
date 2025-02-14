@@ -1893,6 +1893,9 @@ function getSubTags(tag){
 // returns a list of tags filling the conditions
 
 function findTagsFromPath(rootTag, path) {
+  if (path.trim().length === 0){
+    return [];
+  }
 
   // intermediate function for easier manipulation
   function fromCheerioSyntax(string){
