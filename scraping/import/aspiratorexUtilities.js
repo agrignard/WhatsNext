@@ -191,8 +191,6 @@ function getManualLinksFromPage(page,delimiter,atag){
   $(delimiter).each(function () {
     const block = $(this).html();
     const $b = cheerio.load(block);
-    console.log('ici',block);
-    console.log(atag);
     const href = getHrefFromAncestor($b(atag));
     // const href = $b(atag).attr('href');
     res.push(href);
