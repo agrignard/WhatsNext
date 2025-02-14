@@ -464,7 +464,6 @@ function filterFromArguments(args){
 
 // return the content of the files
 function getFilesContent(sourcePath, maxPages){
-    console.log(sourcePath);
     let inputFileList;
     try {
         inputFileList = fs.readdirSync(sourcePath)

@@ -529,7 +529,7 @@ background-color: lightblue;
   margin: 0px 0px;
 }
 
-#delimiterPanelHeader{
+.delimiterPanelHeader{
   width: calc(100%);
   box-sizing: border-box;
   padding: 0px;
@@ -552,9 +552,9 @@ background-color: lightblue;
   padding: 5px;
 }
 
-#eventURLPanel{
+/* #eventURLPanel{
   position: relative;
-}
+} */
 
 
 

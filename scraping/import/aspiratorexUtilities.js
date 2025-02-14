@@ -23,7 +23,7 @@ module.exports = {downloadVenue, erasePreviousHtmlFiles, getHrefListFrom, downlo
 /*       main function        */
 /******************************/
 
-async function downloadVenue(venue, filePath, verbose=false){
+async function downloadVenue(venue, filePath, verbose = false, syncWriting = false){
   let URLlist = [];
   // let failedDownloads;
   if (venue.hasOwnProperty('multiPages')){
@@ -92,16 +92,26 @@ async function downloadVenue(venue, filePath, verbose=false){
     //     console.log("\'"+venue.name + "\'" + " file downloaded to " + outputFile);
     //   }
     // });
-    fs.writeFile(outputFile, htmlContent, 'utf8', (err) => {
-      if (err) {
+    if (syncWriting){
+      try {
+        fs.writeFileSync(outputFile, htmlContent, 'utf8');
+        if (verbose) {
+          console.log("File downloaded for venue \x1b[36m" + venue.name + "\x1b[0m to " + outputFile);
+        }
+      } catch (err) {
         console.error("\x1b[31mCannot write local file \'%s\'\x1b[0m: %s", outputFile, err);
-      } else {
-        if (verbose){
-          console.log("File downloaded for venue \x1b[36m" + venue.name  + "\x1b[0m to " + outputFile);
-        } 
       }
-    });
-
+    }else{
+      fs.writeFile(outputFile, htmlContent, 'utf8', (err) => {
+        if (err) {
+          console.error("\x1b[31mCannot write local file \'%s\'\x1b[0m: %s", outputFile, err);
+        } else {
+          if (verbose){
+            console.log("File downloaded for venue \x1b[36m" + venue.name  + "\x1b[0m to " + outputFile);
+          } 
+        }
+      });
+    }
 
     return htmlContent;
   }
@@ -114,6 +124,7 @@ async function downloadVenue(venue, filePath, verbose=false){
   if (venue.hasOwnProperty('linkedPage')){
     await downloadLinkedPages(venue, filePath, pageList);
   }
+  
 }
   
   

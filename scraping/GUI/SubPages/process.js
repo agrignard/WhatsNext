@@ -100,6 +100,7 @@ if (!venue.hasOwnProperty('mainPage')){
 
 if (venue.hasOwnProperty('eventURLIndex') && venue.eventURLIndex === -1){
   mustIncludeURL = false;
+  adjustURLCheckbox.checked = false;
 }
 
 // initialize new venue
@@ -364,13 +365,14 @@ saveButton.addEventListener('click',function(){
 
 // download button
 downloadButton.addEventListener('click', function() {
+  console.log("\x1b[45mUsing download button\x1b[0m");
   downloadButton.disabled = true;
   missingLinksButton.disabled = true;
   stopCounter = false;
   cycleText(downloadButton);
   erasePreviousHtmlFiles(sourcePath)
   .then(() => {
-    downloadVenue(venue,sourcePath)
+    downloadVenue(venue,sourcePath, undefined, true)
     .then(() =>{
       lastModified = getModificationDate(sourcePath);
       if (lastModified){
@@ -1416,7 +1418,7 @@ function renderEventURLPanel(){
 
   // 1st case: no URL can be found in the event block
   if (!containsURL(principalTag)){
-    eventURLPanelWarning.style.display = 'inline';
+    eventURLPanelWarning.style.display = 'block';
     eventURLPanelWarning.textContent = 'Cannot find any URL in the event block.';
     eventURLPanelMessage.style.display = 'none';
     venue.eventURLIndex = -1;
@@ -1437,7 +1439,7 @@ function renderEventURLPanel(){
       eventURLPanelMessage.style.display = 'inline';
       followURLButton.style.display = 'inline';
     }else{
-      eventURLPanelWarning.style.display = 'inline';
+      eventURLPanelWarning.style.display = 'block';
       eventURLPanelWarning.textContent = 'URL tag found, but it does not contain a URL reference. Set another tag or choose a link from the list';
     }
     setSwitchStatus();
@@ -1756,10 +1758,10 @@ function behaviourSetup(string){
     autoAdjustLevel = 0;
     mustIncludeURL = false;
   }else if (string === 'initialize'){
-    lastConfig.autoAdjustLevel = autoAdjustLevel;
-    lastConfig.urlCheck = mustIncludeURL;
     autoAdjustLevel = 0;
     mustIncludeURL = false;
+    lastConfig.autoAdjustLevel = autoAdjustLevel;
+    lastConfig.urlCheck = mustIncludeURL;
     // when loading, try to find the autoadjust level that corresponds best to the string in venue
     let candidatePrincipalTagClassList = Array.from(candidatePrincipalTag.classList);
     const classListFromVenue = venue.eventsDelimiterTag.split('.').slice(1);
