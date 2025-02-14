@@ -203,7 +203,6 @@ function getLinksFromPage(page,delimiter,index){
   // console.log($.html());
   let res = [];
   if (index == 0){// the URL is in A href 
-    console.log('ici',delimiter);
     $(delimiter).each(function () {
       // console.log('geg',$(this).html());
       // const href = $(this).attr('href');
