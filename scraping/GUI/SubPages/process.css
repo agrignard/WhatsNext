@@ -481,6 +481,8 @@ background-color: lightblue;
 
 .SCRPXmainTag {
   background-color: rgb(231, 76, 60);
+  /* display: inline-block;
+  position: relative; */
 }
 
 
@@ -534,6 +536,23 @@ background-color: lightblue;
   box-sizing: border-box;
   padding: 0px;
 }  
+
+.tag-button {
+  position: absolute;
+  left: -2px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(223, 137, 127, 0.6);
+  border: 0px solid rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  padding: 5px;
+  font-size: 14px;
+  opacity: 1;
+}
+
+.tag-button:hover{
+  background-color: rgba(223, 137, 127, 1);
+}
 
 #eventSelectorIndex{
   box-sizing: border-box;
