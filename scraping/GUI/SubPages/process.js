@@ -16,7 +16,7 @@ const {getFilesContent, getModificationDate, loadLinkedPages, getFilesNumber} = 
 const {downloadVenue, erasePreviousHtmlFiles, getHrefListFrom, downloadLinkedPages} = require(imports+'aspiratorexUtilities.js');
 const {getTagLocalization, tagContainsAllStrings, getTagContainingAllStrings,
   splitAndLowerCase, addJSONBlock, reduceTag, getAllDates, getBestDateFormat,
-  adjustMainTag, countNonEmptyEvents, regroupTags, getMostUsedTagClassSets} = require(imports+'analexUtilities.js');
+  countNonEmptyEvents, regroupTags, getMostUsedTagClassSets} = require(imports+'analexUtilities.js');
 const {getDateConversionPatterns} =require(imports+'dateUtilities.js');
 const {getText} =require(imports+'scrapexUtilities.js');
 
@@ -24,16 +24,16 @@ var showLog = false;
 
 let intervalId, linkedFileContent, linkedPage, eventURL;
 let stopCounter = false;
-var localPage, $page, mainTag;
+var localPage, $page;
 var nbEvents = {main:undefined, adjusted:undefined};
 var delimiterTag, adjustedDelimiterTag, lastDateList;
 let pageManagerReduced = false;
 let log ='';
 let mustIncludeURL  = false;
-let mainTagAbsolutePath;
 let nbPagesToShow = 5;
 let nbPages = 0;
 let currentPage = 'mainPage';
+let extendButton = undefined;
 
 // const keyNames = ['Dummy','Name','Date','Style','Place','URL','MultiName','MultiDate','MultiStyle','MultiPlace','MultiURL'];
 
@@ -100,6 +100,7 @@ if (!venue.hasOwnProperty('mainPage')){
 
 if (venue.hasOwnProperty('eventURLIndex') && venue.eventURLIndex === -1){
   mustIncludeURL = false;
+  adjustURLCheckbox.checked = false;
 }
 
 // initialize new venue
@@ -127,13 +128,20 @@ if (lastModified){
 const rightPanel = document.getElementById('scrapEnDirexRightPanel');
 
 rightPanel.addEventListener('click', (event) => {
-  behaviourSetup('automaticLastSetup');
   event.preventDefault();
   event.stopPropagation();
+  const clickedElement = event.target;
+
+  // if the element clicked is the extend button, decrease one level for the principal tag
+  if (clickedElement === extendButton){
+    const target = extendButton.tagTarget;
+    makePrincipalTag(target.parentElement);
+    return;
+  }
+
+  behaviourSetup('automaticLastSetup');
    
   // provide visual effects to show what happens
-  const clickedElement = event.target;
-  // console.log('Tag clicked :', clickedElement.tagName);
   const previousBackground = clickedElement.style.backgroundColor;
   clickedElement.style.border = '2px solid red';
   clickedElement.style.backgroundColor = 'red';
@@ -161,8 +169,12 @@ rightPanel.addEventListener('click', (event) => {
 function makePrincipalTag(initialTag){
   console.log("\x1b[43m\x1b[30mComputing main tag\x1b[0m");
 
-  // remove old tags
+  // remove old tags and extendButton
   clearAllTags();
+
+  if (extendButton){
+    extendButton.remove();
+  }
   
   if (!initialTag){
     delimiterTagField.classList.add('invalid');
@@ -180,8 +192,7 @@ function makePrincipalTag(initialTag){
     if (mustIncludeURL){
       principalTag = getAncestorWithUrl(principalTag) || principalTag;
     }
-
-
+    
     // adjust principal tag by removing classes that limit the number of events
     [cleanPath, eventTagList] = adjustPrincipalTag(principalTag);
 
@@ -204,6 +215,9 @@ function makePrincipalTag(initialTag){
     }
   
     principalTagIndex = eventTagList.findIndex(el => el === principalTag);
+    eventSelectorIndex.value = principalTagIndex+1;
+    oldEventIndex = principalTagIndex+1;
+
     delimiterTagField.value = cleanPath;
     // console.log('Main tag registered :', principalTag.tagName);
 
@@ -215,7 +229,8 @@ function makePrincipalTag(initialTag){
     }else{// some tags may have change, for example if there are more events in eventTagList
       applyTags();
     }
-    
+
+    makeExtendButton(principalTag);
   }
 
   // draw the delimiter panel
@@ -249,12 +264,8 @@ function adjustPrincipalTag(principalTag){
   let bestInfo = [tagName, classes];
 
   eventTagList = findTagsFromPath(rightPanel, tagName+'.'+classes.join('.'));
-  // const mainTagEventsNumber = countEvents();
   let currentNumber = countEvents(eventTagList);
   let currentTagList = eventTagList;
-  // console.log('start number', currentNumber);
-
-  // console.log(classes);
   const depthClassName = classes.find(el => el.startsWith(depthPrefix));
   if (depthClassName === undefined){
     console.log("\x1b[33m Warning:\x1b[0m 'depth' class not found. Html file is too old. Run again aspiratorex.");
@@ -364,13 +375,14 @@ saveButton.addEventListener('click',function(){
 
 // download button
 downloadButton.addEventListener('click', function() {
+  console.log("\x1b[45mUsing download button\x1b[0m");
   downloadButton.disabled = true;
   missingLinksButton.disabled = true;
   stopCounter = false;
   cycleText(downloadButton);
   erasePreviousHtmlFiles(sourcePath)
   .then(() => {
-    downloadVenue(venue,sourcePath)
+    downloadVenue(venue,sourcePath, undefined, true)
     .then(() =>{
       lastModified = getModificationDate(sourcePath);
       if (lastModified){
@@ -764,16 +776,47 @@ function tagTextBoxUpdate(textBox){
 const eventSelectorPanel = document.getElementById('eventSelectorPanel');
 const eventSelectorIndex = document.getElementById('eventSelectorIndex');
 
-eventSelectorIndex.addEventListener('change', function(){
-  if (eventSelectorIndex.value >= eventTagList.length){
+let inverseArrowsAction = false;
+let oldEventIndex = eventSelectorIndex.value;
+
+eventSelectorIndex.addEventListener("keydown", () => {
+  inverseArrowsAction = false;
+});
+
+eventSelectorIndex.addEventListener("pointerdown", (event) => {
+  if (event.target === eventSelectorIndex) {
+      inverseArrowsAction = true;
+  }
+});
+
+eventSelectorIndex.addEventListener('input', function(){
+
+  if(!eventSelectorIndex.value){
+    return;
+  }
+
+  if (inverseArrowsAction){
+    eventSelectorIndex.value = eventSelectorIndex.value - 2 * (eventSelectorIndex.value - oldEventIndex);
+  }
+
+  if (eventSelectorIndex.value > eventTagList.length){
     eventSelectorIndex.value = 1;
   }
+
   if (eventSelectorIndex.value < 1){
     eventSelectorIndex.value = eventTagList.length;
   }
+  oldEventIndex = eventSelectorIndex.value;
+
   principalTag.classList.remove('SCRPXmainTag');
   principalTagIndex = eventSelectorIndex.value-1;
   principalTag = eventTagList[principalTagIndex];
+
+  // move the extend button
+  if (extendButton){
+    extendButton.remove();
+  }
+  
 
   subTags[currentPage] = getSubTags(principalTag);
 
@@ -782,6 +825,8 @@ eventSelectorIndex.addEventListener('change', function(){
   focusTo(principalTag);
   renderEventURLPanel();
   ProcessRegex();
+  inverseArrowsAction = false;
+  makeExtendButton(principalTag);
 });
 
 
@@ -905,15 +950,18 @@ function applyRegexp(element){
   if (element.isActive){
     element.textBefore.style.display = 'block';
     element.textAfter.style.display = 'block';
-    element.textBefore.textContent = venue[currentPage][element.key+'Tags']
-                    .flatMap(path => findTagsFromPath(principalTag,path))
-                    .map(el => el.textContent).join(' ');
-    const regex = new RegExp(element.match.value);
-    if (element.showReplace){
-      element.textAfter.textContent = element.textBefore.textContent.replace(regex,element.replace.value);
-    }else{
-      element.textAfter.textContent = element.textBefore.textContent.match(regex);
+    if (venue[currentPage].hasOwnProperty(element.key+'Tags')){
+      element.textBefore.textContent = venue[currentPage][element.key+'Tags']
+              .flatMap(path => findTagsFromPath(principalTag,path))
+              .map(el => el.textContent).join(' ');
+      const regex = new RegExp(element.match.value);
+      if (element.showReplace){
+        element.textAfter.textContent = element.textBefore.textContent.replace(regex,element.replace.value);
+      }else{
+        element.textAfter.textContent = element.textBefore.textContent.match(regex);
+      }
     }
+    
   }
 }
 
@@ -1209,7 +1257,6 @@ function loadPage(){
     
   }
 
-
   computeMissingLinks();
   // if (validateDelimiterTags()){
   // }
@@ -1221,7 +1268,7 @@ function computeMissingLinks(){
   // console.log(linkedFileContent);
   // console.log(venue, venueWithCustomTags(venue));
   const hrefList = getHrefListFrom([localPage],venueWithCustomTags(venue));
-  console.log(hrefList);
+  // console.log(hrefList);
   const existingLinks = hrefList.filter(el => Object.keys(linkedFileContent).includes(el));
   const linksToDownload = hrefList.filter(el => !Object.keys(linkedFileContent).includes(el));
   const missingLinksPanel = document.getElementById('missingLinksPanel');
@@ -1403,22 +1450,23 @@ function renderEventURLPanel(){
   // venue.eventURLIndex = 0; -> URL is eventDelimiter will be used
   // venue.eventURLIndex = n; -> not in use in the GUI
 
-  console.log('url render');
-  eventURL = undefined;
-  followURLButton.style.display = 'none';
+  // eventURL = undefined;
+  
 
   if (!eventTagList || eventTagList.length === 0){
     eventURLPanel.style.display = 'none';
+    followURLButton.style.display = 'none';
     setSwitchStatus();
     return;
   }
-  eventURLPanel.style.display = 'block';
+  eventURLPanel.style.display = 'flex';
 
   // 1st case: no URL can be found in the event block
   if (!containsURL(principalTag)){
-    eventURLPanelWarning.style.display = 'inline';
+    eventURLPanelWarning.style.display = 'block';
     eventURLPanelWarning.textContent = 'Cannot find any URL in the event block.';
     eventURLPanelMessage.style.display = 'none';
+    followURLButton.style.display = 'none';
     venue.eventURLIndex = -1;
     setSwitchStatus();
     return;
@@ -1437,7 +1485,8 @@ function renderEventURLPanel(){
       eventURLPanelMessage.style.display = 'inline';
       followURLButton.style.display = 'inline';
     }else{
-      eventURLPanelWarning.style.display = 'inline';
+      eventURLPanelWarning.style.display = 'block';
+      followURLButton.style.display = 'none';
       eventURLPanelWarning.textContent = 'URL tag found, but it does not contain a URL reference. Set another tag or choose a link from the list';
     }
     setSwitchStatus();
@@ -1453,6 +1502,7 @@ function renderEventURLPanel(){
     followURLButton.style.display = 'inline';
   }else{
     eventURLPanelMessage.textContent = 'Choose URL from tags.';
+    followURLButton.style.display = 'none';
   }
   setSwitchStatus();
 }
@@ -1610,7 +1660,6 @@ function removeEmptyFields(object){
   fieldsToCheck = ['linkedPage','mainPage'];
   fieldsToCheck.forEach(field => {
     if (object.hasOwnProperty(field)){
-      console.log([].filter(el =>  /\S/.test(el)));
       Object.keys(object[field]).forEach(key =>{
         object[field][key] = object[field][key].filter(el =>  /\S/.test(el));
         if (object[field][key].length === 0){
@@ -1756,10 +1805,11 @@ function behaviourSetup(string){
     autoAdjustLevel = 0;
     mustIncludeURL = false;
   }else if (string === 'initialize'){
+    autoAdjustLevel = 0;
+    mustIncludeURL = containsURL(candidatePrincipalTag);
+    
     lastConfig.autoAdjustLevel = autoAdjustLevel;
     lastConfig.urlCheck = mustIncludeURL;
-    autoAdjustLevel = 0;
-    mustIncludeURL = false;
     // when loading, try to find the autoadjust level that corresponds best to the string in venue
     let candidatePrincipalTagClassList = Array.from(candidatePrincipalTag.classList);
     const classListFromVenue = venue.eventsDelimiterTag.split('.').slice(1);
@@ -2005,4 +2055,25 @@ function venueWithCustomTags(v){
     }
 
   return v2;
+}
+
+
+function makeExtendButton(tag){
+
+  // does not make extend button if the parent is the right panel
+  if(tag.parentElement === rightPanel){return;}
+
+  extendButton = document.createElement("button");
+  extendButton.innerText = "◀";
+  extendButton.title = "Extend the selection";
+  extendButton.classList.add("tag-button");
+  extendButton.tagTarget = tag;
+  tag.style.position = "relative";
+  tag.prepend(extendButton);
+
+  // resizes the extendButton
+  let observer = new ResizeObserver(() => {
+    extendButton.style.height = `${tag.offsetHeight}px`;
+  });
+  observer.observe(tag);
 }

@@ -164,20 +164,21 @@
     "city": "Lyon",
     "country": "France",
     "url": "https://sonic-lyon.fr/",
-    "dateFormat": "HH:mm-dd-MM",
-    "eventsDelimiterTag": "DIV.event_details",
-    "eventURLIndex": 1,
+    "dateFormat": "MM-dd",
+    "eventsDelimiterTag": "DIV.event_details.depth14",
+    "eventURLIndex": 0,
     "defaultStyle": "Rock",
     "baseURL": "https://sonic-lyon.fr/",
     "mainPage": {
-      "eventNameTags": [
-        "DIV.event_title:eq(0)"
-      ],
       "eventDateTags": [
-        "SPAN.month:eq(0)",
-        "SPAN.date:eq(0)"
+        "A.depth15:eq(0)>DIV.event_date.depth16:eq(0)"
       ],
-      "eventStyleTags": []
+      "eventNameTags": [
+        "DIV.event_desc.depth15:eq(0)>A.depth16:eq(1)>DIV.event_title.depth17:eq(0)"
+      ],
+      "eventStyleTags": [
+        "DIV.event_desc.depth15:eq(0)>DIV.event_address.depth16:eq(0)"
+      ]
     },
     "linkedPage": {
       "eventDateTags": [

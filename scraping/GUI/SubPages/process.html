@@ -34,7 +34,7 @@
             <!-- delimiter panel -->
             <div id="analyzePanel">
                 <div id="delimiterPanel">
-                    <div id="delimiterPanelHeader" class="panelHeader">
+                    <div id="delimiterPanelHeader" class="delimiterPanelHeader panelHeader">
                         <div id="DelimiterTitle" class="title">Delimiter tag</div>
                         <div id="eventSelectorPanel" class="headerButtons">
                             <div id="eventSelectorText" style="display: inline;">Event index</div>
@@ -54,11 +54,11 @@
                             <input type="checkbox" id="adjustURLCheckbox" style="display: inline;">
                         </div>
                     </div>
-                    <div id="eventURLPanel" class="panelHeader">
-                        <div id="eventURLPanelWarning" class="urlPanel warning" style="display: inline;">Warning: no event match the strings, url
-                            link is not accurate</div>
-                        <div id="eventURLPanelMessage" class="urlPanel" style="display: inline;"></div>
-                        <button id="followURLButton" class="normalButton activeButton" style="display: inline;">Open</button>
+                    <div id="eventURLPanelWarning" class="urlPanel warning" style="display: block;">Warning: no event match the strings, url
+                        link is not accurate</div>
+                    <div id="eventURLPanel" class="delimiterPanelHeader panelHeader">
+                        <div id="eventURLPanelMessage" class="urlPanel" style="display: block;"></div>
+                        <button id="followURLButton" class="normalButton activeButton" style="display: block;">Open</button>
                     </div>
                 </div>
                 <!-- easy panel -->

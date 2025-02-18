@@ -115,7 +115,7 @@ function minimalizeHtml(content, action = "basic"){    //option: 'basic' (defaul
         // content = content.replace(/<[\s\t\n]*\/a[\s\t\n]*>/g,'');
 
         const endTagReplacements = {
-            ['\n']: ['div', 'h1', 'h2','h3','h4','body','head','html','section', 'li','p','ul'],
+            ['\n']: ['div', 'h1', 'h2','h3','h4','h5','h6','h7','body','head','html','section', 'li','p','ul'],
             ' ': ['span','a','strong','b','em'],
         };
 
@@ -464,7 +464,6 @@ function filterFromArguments(args){
 
 // return the content of the files
 function getFilesContent(sourcePath, maxPages){
-    console.log(sourcePath);
     let inputFileList;
     try {
         inputFileList = fs.readdirSync(sourcePath)
