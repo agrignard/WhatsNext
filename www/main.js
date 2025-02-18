@@ -293,4 +293,23 @@ function processCityBasedOnUrl() {
   }
 }
 
+document.getElementById("myButton").addEventListener("click", function() {
+    const modal = document.getElementById("myModal");
+    const currentURL = window.location.href; // Get current page URL
+    document.getElementById("modal-link").textContent = currentURL; // Show the link in modal
+    modal.style.display = "block"; // Show modal
+});
+
+document.querySelector(".close").addEventListener("click", function() {
+    document.getElementById("myModal").style.display = "none"; // Hide modal
+});
+
+// Hide modal when clicking outside
+window.addEventListener("click", function(event) {
+    const modal = document.getElementById("myModal");
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+});
+
 

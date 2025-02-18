@@ -262,14 +262,15 @@ export function addShareWidget(map){
         this.container = document.createElement('div');
         this.container.className = 'mapboxgl-ctrl mapboxgl-ctrl-share';
         // Add Font Awesome share icon
-        this.container.innerHTML = '<i class="fas fa-share"></i>';
+        this.container.innerHTML = '<i class="fas fa-bullhorn""></i>';
         // Add event listener for copying the current URL
         this.container.addEventListener('click', () => {
+            const appURL = window.location.origin;
             const currentURL = window.location.origin+"/?day="+parseInt(document.getElementById('slider').value,10);
             navigator.clipboard.writeText(currentURL)
             .then(() => {
-                alert('URL copied to clipboard!' + currentURL);
-                window.open("https://github.com/agrignard/WhatsNext/blob/main/www/images/qr_code.jpg", "_blank");
+                alert("🎶 No Paywall, no ads, just music. 🎶\n\n✨ After digging through the internet, we found it. Now, it's time to spread the word! ✨\n\n💡 The only price? Your feedback! Tell us what’s next at agrignard@gmail.com!\n\n📤 Share this link for the full app: " + appURL + "\n\n📤 Share this link for this specific day: " + currentURL );
+               // window.open("https://cdn.glitch.global/f7c291e5-78f1-4461-8ca2-473115b2660f/qr_code.jpg?v=1739907954203", "_blank");
             })
             .catch((error) => {
                 console.error('Unable to copy URL', error);
