@@ -269,6 +269,7 @@ export function addShareWidget(map){
             navigator.clipboard.writeText(currentURL)
             .then(() => {
                 alert('URL copied to clipboard!' + currentURL);
+                window.open("https://github.com/agrignard/WhatsNext/blob/main/www/images/qr_code.jpg", "_blank");
             })
             .catch((error) => {
                 console.error('Unable to copy URL', error);
