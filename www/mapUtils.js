@@ -440,17 +440,13 @@ export const setCategoryColors = (city) => {
 
 // Your dynamic map of categories and their colors
 export const categoryColorsLyon = {
-    'Rock': '23, 128, 251',
-    'Electro': '40, 124, 18',
-    'Jazz': '255, 255, 0',
-    'Rap': '255, 0, 0',
-    'Chanson': '0, 255, 255',
-    'Live': '144, 144, 144',
-    //'World': '224, 147, 40',
-   // 'Jam': '238, 130, 238',
-    'Classique': '127, 0, 255',
-    
-    //'Theatre': '165,42,42'
+    'Rock': '230, 0, 30',        // 🔥 Crimson Red (Raw power, passion)
+    'Electro': '0, 255, 150',    // 💚 Neon Mint Green (Futuristic, digital vibes)
+    'Jazz': '255, 140, 0',       // 🎷 Burnt Orange (Warm, classic, smoky bar feel)
+    'Rap': '111, 0, 170',        // 🎤 Deep Purple (Royal, underground, strong)
+    'Chanson': '255, 60, 120',   // 💖 Hot Magenta (Expressive, romantic)
+    'Live': '80, 80, 80',        // 🎭 Dark Gray (Gritty, real, versatile)
+    'Classique': '20, 40, 160',  // 🎻 Deep Indigo Blue (Sophisticated, elegant)
 };
 
 export const categoryColorsHanoi = {

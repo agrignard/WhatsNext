@@ -122,7 +122,7 @@ export async function getSortedNbEventPerDayMap(_date){
 
         return days;
     }
-    const yearToDisplay = 2024;
+    const yearToDisplay = 2025;
     const allDays = getDaysInYear(yearToDisplay);
 
     const valuesForDaysUnixTime = new Map();
