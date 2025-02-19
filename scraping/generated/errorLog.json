@@ -1,1 +1,890 @@
-[]
+[
+  {
+    "eventPlace": "Le Sonic",
+    "city": "Lyon",
+    "country": "France",
+    "eventDate": "Fév 18",
+    "eventName": "ADULT. + Spike Hellis",
+    "eventStyle": "Sonic Lyon",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'ADULT. + Spike Hellis'. Erreur lors du téléchargement ? +err | Format de date invalide pour Le Sonic. Reçu \"Fév 18\", converti en \"02-18\" (attendu \"MM-dd-HH:mm\")",
+    "eventDetailedStyle": "Sonic Lyon",
+    "source": {
+      "name": "Le Sonic",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Le Sonic",
+    "city": "Lyon",
+    "country": "France",
+    "eventDate": "Fév 21",
+    "eventName": "Geneva Jacuzzi + RIKI",
+    "eventStyle": "Sonic Lyon",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'Geneva Jacuzzi + RIKI'. Erreur lors du téléchargement ? +err | Format de date invalide pour Le Sonic. Reçu \"Fév 21\", converti en \"02-21\" (attendu \"MM-dd-HH:mm\")",
+    "eventDetailedStyle": "Sonic Lyon",
+    "source": {
+      "name": "Le Sonic",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Le Sonic",
+    "city": "Lyon",
+    "country": "France",
+    "eventDate": "Fév 28",
+    "eventName": "David Shaw and The Beat + Lobstery",
+    "eventStyle": "Sonic Lyon",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'David Shaw and The Beat + Lobstery'. Erreur lors du téléchargement ? +err | Format de date invalide pour Le Sonic. Reçu \"Fév 28\", converti en \"02-28\" (attendu \"MM-dd-HH:mm\")",
+    "eventDetailedStyle": "Sonic Lyon",
+    "source": {
+      "name": "Le Sonic",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Le Sonic",
+    "city": "Lyon",
+    "country": "France",
+    "eventDate": "Mar 01",
+    "eventName": "LA CHAUDIERE",
+    "eventStyle": "Sonic Lyon",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'LA CHAUDIERE'. Erreur lors du téléchargement ? +err | Format de date invalide pour Le Sonic. Reçu \"Mar 01\", converti en \"03-01\" (attendu \"MM-dd-HH:mm\")",
+    "eventDetailedStyle": "Sonic Lyon",
+    "source": {
+      "name": "Le Sonic",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Le Sonic",
+    "city": "Lyon",
+    "country": "France",
+    "eventDate": "Mar 02",
+    "eventName": "Rien Virgule + Michel Chemin",
+    "eventStyle": "Sonic Lyon",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'Rien Virgule + Michel Chemin'. Erreur lors du téléchargement ? +err | Format de date invalide pour Le Sonic. Reçu \"Mar 02\", converti en \"03-02\" (attendu \"MM-dd-HH:mm\")",
+    "eventDetailedStyle": "Sonic Lyon",
+    "source": {
+      "name": "Le Sonic",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Le Sonic",
+    "city": "Lyon",
+    "country": "France",
+    "eventDate": "Mar 06",
+    "eventName": "Housepainters + chloe éclipse",
+    "eventStyle": "Sonic Lyon",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'Housepainters + chloe éclipse'. Erreur lors du téléchargement ? +err | Format de date invalide pour Le Sonic. Reçu \"Mar 06\", converti en \"03-06\" (attendu \"MM-dd-HH:mm\")",
+    "eventDetailedStyle": "Sonic Lyon",
+    "source": {
+      "name": "Le Sonic",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Le Sonic",
+    "city": "Lyon",
+    "country": "France",
+    "eventDate": "Mar 21",
+    "eventName": "Repo Man + Sharon Tate Modern",
+    "eventStyle": "Sonic Lyon",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'Repo Man + Sharon Tate Modern'. Erreur lors du téléchargement ? +err | Format de date invalide pour Le Sonic. Reçu \"Mar 21\", converti en \"03-21\" (attendu \"MM-dd-HH:mm\")",
+    "eventDetailedStyle": "Sonic Lyon",
+    "source": {
+      "name": "Le Sonic",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Le Sonic",
+    "city": "Lyon",
+    "country": "France",
+    "eventDate": "Mar 23",
+    "eventName": "MIKE",
+    "eventStyle": "Sonic Lyon",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'MIKE'. Erreur lors du téléchargement ? +err | Format de date invalide pour Le Sonic. Reçu \"Mar 23\", converti en \"03-23\" (attendu \"MM-dd-HH:mm\")",
+    "eventDetailedStyle": "Sonic Lyon",
+    "source": {
+      "name": "Le Sonic",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Le Sonic",
+    "city": "Lyon",
+    "country": "France",
+    "eventDate": "Avr 02",
+    "eventName": "Rats on Rafts",
+    "eventStyle": "Sonic Lyon",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'Rats on Rafts'. Erreur lors du téléchargement ? +err | Format de date invalide pour Le Sonic. Reçu \"Avr 02\", converti en \"04-02\" (attendu \"MM-dd-HH:mm\")",
+    "eventDetailedStyle": "Sonic Lyon",
+    "source": {
+      "name": "Le Sonic",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Le Sonic",
+    "city": "Lyon",
+    "country": "France",
+    "eventDate": "Avr 03",
+    "eventName": "Six Organs of Admittance",
+    "eventStyle": "Sonic Lyon",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'Six Organs of Admittance'. Erreur lors du téléchargement ? +err | Format de date invalide pour Le Sonic. Reçu \"Avr 03\", converti en \"04-03\" (attendu \"MM-dd-HH:mm\")",
+    "eventDetailedStyle": "Sonic Lyon",
+    "source": {
+      "name": "Le Sonic",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Le Sonic",
+    "city": "Lyon",
+    "country": "France",
+    "eventDate": "Avr 17",
+    "eventName": "Sydney Valette",
+    "eventStyle": "Sonic Lyon",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'Sydney Valette'. Erreur lors du téléchargement ? +err | Format de date invalide pour Le Sonic. Reçu \"Avr 17\", converti en \"04-17\" (attendu \"MM-dd-HH:mm\")",
+    "eventDetailedStyle": "Sonic Lyon",
+    "source": {
+      "name": "Le Sonic",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Le Sonic",
+    "city": "Lyon",
+    "country": "France",
+    "eventDate": "Avr 24",
+    "eventName": "EggS",
+    "eventStyle": "Sonic Lyon",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement 'EggS'. Erreur lors du téléchargement ? +err | Format de date invalide pour Le Sonic. Reçu \"Avr 24\", converti en \"04-24\" (attendu \"MM-dd-HH:mm\")",
+    "eventDetailedStyle": "Sonic Lyon",
+    "source": {
+      "name": "Le Sonic",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Amphithéâtre de l'Opéra",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Célia Kameni",
+    "eventDate": "19 février et 20 février à 20h",
+    "eventStyle": "Chanson",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-313080-celia-kameni.html",
+    "eventDetailedStyle": "Chanson",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"19 février et 20 février à 20h\", converti en \"19-02-20-20:00\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Opéra National de Lyon",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "LEmpereur",
+    "eventDate": "20 février et 21 février à 20h",
+    "eventStyle": "Classique",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-313072-l-empereur.html",
+    "eventDetailedStyle": "Classique & Lyrique",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"20 février et 21 février à 20h\", converti en \"20-02-21-20:00\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Le Sonic",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Geneva Jacuzzi + Riki",
+    "eventDate": "21 février et 22 février à 20h",
+    "eventStyle": "Rock",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-313158-geneva-jacuzzi-riki.html",
+    "eventDetailedStyle": "Rock & Pop",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"21 février et 22 février à 20h\", converti en \"21-02-22-20:00\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "TNG-VAISE",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "De et par la possibilité éventuelle des devenirs envisageables",
+    "eventDate": "21 mars et 22 mars à 19h",
+    "eventStyle": "Classique",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-311702-de-et-par-la-possibilite-eventuelle-des-devenirs-envisageables.html",
+    "eventDetailedStyle": "Classique & Lyrique",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"21 mars et 22 mars à 19h\", converti en \"21-03-22-19:00\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Opéra National de Lyon",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Peter Grimes",
+    "eventDate": "Du 9 au 21 mai 2025, à 20h sauf dimanche à 16h, relâche les 10, 12, 14, 16, 18 ",
+    "eventStyle": "Classique",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-312754-peter-grimes.html",
+    "eventDetailedStyle": "Classique & Lyrique / Opéra",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Du 9 au 21 mai 2025, à 20h sauf dimanche à 16h, relâche les 10, 12, 14, 16, 18 \", converti en \"09-21-05-2025-20:16:10-12-14-16-18\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Opéra National de Lyon",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Peter Grimes",
+    "eventDate": "Du 9 au 21 mai 2025, à 20 janvier",
+    "eventStyle": "Classique",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-312754-peter-grimes.html",
+    "eventDetailedStyle": "Classique & Lyrique / Opéra",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Du 9 au 21 mai 2025, à 20 janvier\", converti en \"09-21-05-2025-20-01\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Théâtre antique de Vienne",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Jazz à Vienne",
+    "eventDate": "Du 26 juin au 11 juillet 2025, de 10h à minuit",
+    "eventStyle": "Jazz",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-310713-jazz-a-vienne.html",
+    "eventDetailedStyle": "Jazz",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Du 26 juin au 11 juillet 2025, de 10h à minuit\", converti en \"26-06-11-07-2025-10:00\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Parc de Gerland",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "Woodstower",
+    "eventDate": "Du 17 au 20 juillet 2025, horaires à venir",
+    "eventStyle": "Electro",
+    "isCancelled": false,
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-310639-woodstower.html",
+    "eventDetailedStyle": "Musiques Electroniques",
+    "source": {
+      "name": "Le Petit Bulletin",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Du 17 au 20 juillet 2025, horaires à venir\", converti en \"17-20-07-2025\" (attendu \"dd-MM-yyyy-HH:mm\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "La Clef de Voûte",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "",
+    "eventDate": "29 janvier | 20h30 - 23h30 CET",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "La Clef de Voûte",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1769715000000,
+    "eventTime": "jeudi 29 janvier à 20:30"
+  },
+  {
+    "eventPlace": "La Clef de Voûte",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "",
+    "eventDate": "30 janvier | 20h30 - 23h30 CET",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "La Clef de Voûte",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1769801400000,
+    "eventTime": "vendredi 30 janvier à 20:30"
+  },
+  {
+    "eventPlace": "La Clef de Voûte",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "",
+    "eventDate": "31 janvier | 20h30 - 23h30 CET",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "La Clef de Voûte",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1769887800000,
+    "eventTime": "samedi 31 janvier à 20:30"
+  },
+  {
+    "eventPlace": "La Clef de Voûte",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "",
+    "eventDate": "1 février | 20h30 - 23h30 CET",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "La Clef de Voûte",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1769974200000,
+    "eventTime": "dimanche 1 février à 20:30"
+  },
+  {
+    "eventPlace": "La Clef de Voûte",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "",
+    "eventDate": "2 février | 16h00 - 19h00 CET",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "La Clef de Voûte",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1770044400000,
+    "eventTime": "lundi 2 février à 16:00"
+  },
+  {
+    "eventPlace": "La Clef de Voûte",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "",
+    "eventDate": "5 février | 20h30 - 23h30 CET",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "La Clef de Voûte",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1770319800000,
+    "eventTime": "jeudi 5 février à 20:30"
+  },
+  {
+    "eventPlace": "La Clef de Voûte",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "",
+    "eventDate": "6 février | 20h30 - 23h30 CET",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "La Clef de Voûte",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1770406200000,
+    "eventTime": "vendredi 6 février à 20:30"
+  },
+  {
+    "eventPlace": "La Clef de Voûte",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "",
+    "eventDate": "7 février | 20h30 - 23h30 CET",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "La Clef de Voûte",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1770492600000,
+    "eventTime": "samedi 7 février à 20:30"
+  },
+  {
+    "eventPlace": "La Clef de Voûte",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "",
+    "eventDate": "8 février | 20h30 - 23h30 CET",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "La Clef de Voûte",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1770579000000,
+    "eventTime": "dimanche 8 février à 20:30"
+  },
+  {
+    "eventPlace": "La Clef de Voûte",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "",
+    "eventDate": "9 février | 19h30 - 22h30 CET",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "La Clef de Voûte",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1770661800000,
+    "eventTime": "lundi 9 février à 19:30"
+  },
+  {
+    "eventPlace": "La Clef de Voûte",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "",
+    "eventDate": "12 février | 20h30 - 23h30 CET",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "La Clef de Voûte",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1770924600000,
+    "eventTime": "jeudi 12 février à 20:30"
+  },
+  {
+    "eventPlace": "La Clef de Voûte",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "",
+    "eventDate": "13 février | 20h30 - 23h30 CET",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "La Clef de Voûte",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1771011000000,
+    "eventTime": "vendredi 13 février à 20:30"
+  },
+  {
+    "eventPlace": "La Clef de Voûte",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "",
+    "eventDate": "14 février | 20h30 - 23h30 CET",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "La Clef de Voûte",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1771097400000,
+    "eventTime": "samedi 14 février à 20:30"
+  },
+  {
+    "eventPlace": "La Clef de Voûte",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "",
+    "eventDate": "15 février | 20h30 - 23h30 CET",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "La Clef de Voûte",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1771183800000,
+    "eventTime": "dimanche 15 février à 20:30"
+  },
+  {
+    "eventPlace": "La Clef de Voûte",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "",
+    "eventDate": "16 février | 19h30 - 22h30 CET",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "La Clef de Voûte",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1771266600000,
+    "eventTime": "lundi 16 février à 19:30"
+  },
+  {
+    "eventPlace": "La Clef de Voûte",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "",
+    "eventDate": "19 février | 20h30 - 23h30 CET",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "La Clef de Voûte",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1739993400000,
+    "eventTime": "mercredi 19 février à 20:30"
+  },
+  {
+    "eventPlace": "La Clef de Voûte",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "",
+    "eventDate": "20 février | 20h30 - 23h30 CET",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "La Clef de Voûte",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1740079800000,
+    "eventTime": "jeudi 20 février à 20:30"
+  },
+  {
+    "eventPlace": "La Clef de Voûte",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "",
+    "eventDate": "21 février | 20h30 - 23h30 CET",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "La Clef de Voûte",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1740166200000,
+    "eventTime": "vendredi 21 février à 20:30"
+  },
+  {
+    "eventPlace": "La Clef de Voûte",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "",
+    "eventDate": "22 février | 20h30 - 23h30 CET",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "La Clef de Voûte",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1740252600000,
+    "eventTime": "samedi 22 février à 20:30"
+  },
+  {
+    "eventPlace": "La Clef de Voûte",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "",
+    "eventDate": "23 février | 19h30 - 22h30 CET",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "La Clef de Voûte",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1740335400000,
+    "eventTime": "dimanche 23 février à 19:30"
+  },
+  {
+    "eventPlace": "La Clef de Voûte",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "",
+    "eventDate": "26 février | 20h30 - 23h30 CET",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "La Clef de Voûte",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1740598200000,
+    "eventTime": "mercredi 26 février à 20:30"
+  },
+  {
+    "eventPlace": "La Clef de Voûte",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "",
+    "eventDate": "27 février | 20h30 - 23h30 CET",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "La Clef de Voûte",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1740684600000,
+    "eventTime": "jeudi 27 février à 20:30"
+  },
+  {
+    "eventPlace": "La Clef de Voûte",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "",
+    "eventDate": "28 février | 20h30 - 23h30 CET",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "La Clef de Voûte",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1740771000000,
+    "eventTime": "vendredi 28 février à 20:30"
+  },
+  {
+    "eventPlace": "La Clef de Voûte",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "",
+    "eventDate": "1 mars | 20h30 - 23h30 CET",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "La Clef de Voûte",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1740857400000,
+    "eventTime": "samedi 1 mars à 20:30"
+  },
+  {
+    "eventPlace": "La Clef de Voûte",
+    "city": "Lyon",
+    "country": "France",
+    "eventName": "",
+    "eventDate": "2 mars | 19h30 - 22h30 CET",
+    "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
+    "eventDetailedStyle": "",
+    "eventStyle": "Live",
+    "source": {
+      "name": "La Clef de Voûte",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "unixDate": 1740940200000,
+    "eventTime": "dimanche 2 mars à 19:30"
+  },
+  {
+    "eventPlace": "Savage",
+    "city": "Hanoi",
+    "country": "Vietnam",
+    "eventDate": "F e b 2 0 T h u",
+    "eventName": "Savage Thursday",
+    "eventStyle": "House",
+    "isCancelled": false,
+    "eventURL": "https://likdo.asia/event/1881",
+    "eventDetailedStyle": "House",
+    "source": {
+      "name": "Likdo",
+      "city": "Hanoi",
+      "country": "Vietnam"
+    },
+    "errorLog": "Format de date invalide pour Likdo. Reçu \"F e b 2 0 T h u\", converti en \"02-00\" (attendu \"dd-MM\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Luu Bar Saigon",
+    "city": "Hanoi",
+    "country": "Vietnam",
+    "eventDate": "F e b 2 0 T h u",
+    "eventName": "Zero Project: MLiR & DESNUAGES",
+    "eventStyle": "Live",
+    "isCancelled": false,
+    "eventURL": "https://likdo.asia/event/1933",
+    "eventDetailedStyle": "",
+    "source": {
+      "name": "Likdo",
+      "city": "Hanoi",
+      "country": "Vietnam"
+    },
+    "errorLog": "Format de date invalide pour Likdo. Reçu \"F e b 2 0 T h u\", converti en \"02-00\" (attendu \"dd-MM\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Red River Cruise",
+    "city": "Hanoi",
+    "country": "Vietnam",
+    "eventDate": "M a r 0 1 S a t",
+    "eventName": "Offlandish • Red River Cruise w/ Paperkraft, Thilini • Mirage",
+    "eventStyle": "House Disco",
+    "isCancelled": false,
+    "eventURL": "https://likdo.asia/event/1907",
+    "eventDetailedStyle": "House Disco",
+    "source": {
+      "name": "Likdo",
+      "city": "Hanoi",
+      "country": "Vietnam"
+    },
+    "errorLog": "Format de date invalide pour Likdo. Reçu \"M a r 0 1 S a t\", converti en \"00-01\" (attendu \"dd-MM\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Savage",
+    "city": "Hanoi",
+    "country": "Vietnam",
+    "eventDate": "M a r 0 1 S a t",
+    "eventName": "Electric Bazaar 5th Anniversary",
+    "eventStyle": "Live",
+    "isCancelled": false,
+    "eventURL": "https://likdo.asia/event/1923",
+    "eventDetailedStyle": "",
+    "source": {
+      "name": "Likdo",
+      "city": "Hanoi",
+      "country": "Vietnam"
+    },
+    "errorLog": "Format de date invalide pour Likdo. Reçu \"M a r 0 1 S a t\", converti en \"00-01\" (attendu \"dd-MM\")",
+    "unixDate": 0
+  },
+  {
+    "eventPlace": "Mo Luong Cave",
+    "city": "Hanoi",
+    "country": "Vietnam",
+    "eventDate": "A p r 0 4 F r i",
+    "eventName": "Equation 2025",
+    "eventStyle": "House Techno",
+    "isCancelled": false,
+    "eventURL": "https://likdo.asia/event/1736",
+    "eventDetailedStyle": "House Techno",
+    "source": {
+      "name": "Likdo",
+      "city": "Hanoi",
+      "country": "Vietnam"
+    },
+    "errorLog": "Format de date invalide pour Likdo. Reçu \"A p r 0 4 F r i\", converti en \"00-04\" (attendu \"dd-MM\")",
+    "unixDate": 0
+  }
+]
