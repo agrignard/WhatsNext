@@ -678,16 +678,6 @@
     ]
   },
   {
-    "name": "Chapelle De La Trinité",
-    "country": "France",
-    "city": "Lyon",
-    "ID": "Chapelle|Lyon|France",
-    "aliases": [
-      "Chapelle De La Trinite",
-      "Chapelle De La Trinite A Lyon"
-    ]
-  },
-  {
     "name": "Maison Du Peuple De Pierre Benite",
     "country": "France",
     "city": "Lyon",
@@ -701,20 +691,20 @@
     "city": "Lyon",
     "country": "France",
     "mainPage": {
-      "eventNameTags": [
-        "H3.tribeeventscalendarmonth__calendareventtitle.tribecommonh8.tribecommonhalt.depth18:eq(0)>CUSTOM-A.tribeeventscalendarmonth__calendareventtitlelink.tribecommonanchorthin.depth19:eq(0)"
-      ],
       "eventDateTags": [
-        "DIV.tribeeventscalendarmonth__calendareventtooltiptemplate.tribecommona11yhidden.depth18:eq(0)>DIV.tribeeventscalendarmonth__calendareventtooltip.depth19:eq(0)>DIV.tribeeventscalendarmonth__calendareventtooltipdatetime.depth20:eq(0)>TIME.depth21:eq(0)"
+        "DIV.tribeeventscalendarmonth__calendareventtooltipdatetime.depth20:eq(0)>TIME.depth21:eq(0)"
+      ],
+      "eventNameTags": [
+        "H3.tribeeventscalendarmonth__calendareventtooltiptitle.tribecommonh7.depth20:eq(0)>A.tribeeventscalendarmonth__calendareventtooltiptitlelink.tribecommonanchorthin.depth21:eq(0)"
       ],
       "eventURLTags": [
-        "DIV.tribeeventscalendarmonth__calendareventtooltiptemplate.tribecommona11yhidden.depth18:eq(0)>DIV.tribeeventscalendarmonth__calendareventtooltip.depth19:eq(0)>H3.tribeeventscalendarmonth__calendareventtooltiptitle.tribecommonh7.depth20:eq(0)>CUSTOM-A.tribeeventscalendarmonth__calendareventtooltiptitlelink.tribecommonanchorthin.depth21:eq(0)"
+        "H3.tribeeventscalendarmonth__calendareventtooltiptitle.tribecommonh7.depth20:eq(0)>A.tribeeventscalendarmonth__calendareventtooltiptitlelink.tribecommonanchorthin.depth21:eq(0)"
       ]
     },
     "url": "https://www.laclefdevoute.fr/concerts-de-jazz-a-lyon/",
     "ID": "La Clef de Voûte|Lyon|France",
     "baseURL": "https://www.laclefdevoute.fr/concerts-de-jazz-a-lyon/",
-    "eventsDelimiterTag": "DIV.tribeeventscalendarmonth__calendareventdetails.depth17",
+    "eventsDelimiterTag": "DIV.tribeeventscalendarmonth__calendareventtooltip.depth19",
     "dateFormat": "dd-MM-HH:mm",
     "eventURLIndex": 0,
     "linkedPage": {}
@@ -809,5 +799,36 @@
       "scroll": true
     },
     "baseURL": "https://www.noisehanoi.com/"
+  },
+  {
+    "name": "Chapelle De La Trinité",
+    "city": "Lyon",
+    "country": "France",
+    "mainPage": {
+      "eventDateTags": [
+        "DIV.top.depth7:eq(0)>DIV.date.depth8:eq(0)"
+      ],
+      "eventStyleTags": [
+        "DIV.top.depth7:eq(0)>DIV.tags.depth8:eq(0)>DIV.tag.depth9"
+      ],
+      "eventNameTags": [
+        "A.depth7:eq(0)>H3.artist.depth8:eq(0)",
+        "A.depth7:eq(0)>H2.depth8:eq(0)"
+      ],
+      "eventURLTags": [
+        "DIV.bottom.depth7:eq(0)>A.btn.depth8:eq(0)"
+      ]
+    },
+    "aliases": [
+      "Chapelle De La Trinite",
+      "Chapelle De La Trinite A Lyon"
+    ],
+    "url": "https://trinitelyon.com/programmation/",
+    "defaultStyle": "Classique",
+    "ID": "Chapelle De La Trinité|Lyon|France",
+    "baseURL": "https://trinitelyon.com/programmation/",
+    "eventURLIndex": 0,
+    "dateFormat": "dd-MM-yyyy",
+    "eventsDelimiterTag": "DIV.left.depth6"
   }
 ]
