@@ -87,11 +87,34 @@ async function convertEventCSVtoGeoJson(){
     // Parse the existing GeoJSON data
     const existingGeoJSON = JSON.parse(data);
 
-    const csvFilePath = 'scraping/generated/scrapexResult_'+city+'.csv';
-    const csvData = fs.readFileSync(csvFilePath, 'utf8');
-    const table = csvData.split('\n');
+    var csvFilePath = 'scraping/generated/scrapexResult_'+city+'.csv';
+    var csvData = fs.readFileSync(csvFilePath, 'utf8');
+    var table = csvData.split('\n');
+    pushTableInExistingGeoJsonFile(table,existingGeoJSON);
+    csvFilePath = 'scraping/handMade/scrapexResult_'+city+"_handMade"+'.csv';
+    csvData = fs.readFileSync(csvFilePath, 'utf8');
+    table = csvData.split('\n');
+    pushTableInExistingGeoJsonFile(table,existingGeoJSON);
 
-    table.forEach(row => {
+  
+
+    // Define the path to the modified GeoJSON file
+    const modifiedGeoJSONPath = 'www/' + city + '_event.geojson';
+    // Save the modified GeoJSON to a new file
+    fs.writeFile(modifiedGeoJSONPath, JSON.stringify(existingGeoJSON), 'utf8', (err) => {
+      if (err) {
+        console.error('Error saving modified GeoJSON:', err);
+      } else {
+        console.log('Modified GeoJSON saved to', modifiedGeoJSONPath);
+      }
+    });
+    console.log("in convertEventCSVtoGeoJson(): " + existingGeoJSON.features.length + " events");
+  });
+}
+
+
+function pushTableInExistingGeoJsonFile(_table,_existingGeoJSON){
+    _table.forEach(row => {
       const columns = row.split(';'); 
       const place=columns[0];
       const title=columns[1];
@@ -121,24 +144,9 @@ async function convertEventCSVtoGeoJson(){
               "description":url
           },
           };
-        existingGeoJSON.features.push(newFeature);
+          _existingGeoJSON.features.push(newFeature);
       } 
   })
-
-
-
-    // Define the path to the modified GeoJSON file
-    const modifiedGeoJSONPath = 'www/' + city + '_event.geojson';
-    // Save the modified GeoJSON to a new file
-    fs.writeFile(modifiedGeoJSONPath, JSON.stringify(existingGeoJSON), 'utf8', (err) => {
-      if (err) {
-        console.error('Error saving modified GeoJSON:', err);
-      } else {
-        console.log('Modified GeoJSON saved to', modifiedGeoJSONPath);
-      }
-    });
-    console.log("in convertEventCSVtoGeoJson(): " + existingGeoJSON.features.length + " events");
-  });
 }
 
 //printEachEvent();

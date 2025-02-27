@@ -1,0 +1,210 @@
+Date: Vendredi 21 février 2025 à 19h
+Event: Kalash
+Place: Transbordeur
+city: Lyon
+country: France
+Style: Reggae
+isCancelled: false
+DetailedStyle: Reggae
+source: [object Object]
+unixDate: 1740160800000
+Time: vendredi 21 février à 19:00
+mergeCandidates: [object Object],[object Object],[object Object]
+warningLog: Inconsistent times for Kalash (Transbordeur). Found 19:00,20:00,00:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-216694-kalash.html
+
+Date: Vendredi 21 février 2025 à 23h30
+Event: Club Béguin
+Place: Transbordeur
+city: Lyon
+country: France
+Style: Electro
+isCancelled: false
+DetailedStyle: Musiques Electroniques
+source: [object Object]
+unixDate: 1740177000000
+Time: vendredi 21 février à 23:30
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Club Béguin (Transbordeur). Found 23:30,00:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-313032-club-beguin.html
+
+Date: Lundi 24 février 2025 à 19h
+Event: Nada Surf
+Place: Transbordeur
+city: Lyon
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Rock & Pop
+source: [object Object]
+unixDate: 1740420000000
+Time: lundi 24 février à 19:00
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Nada Surf (Transbordeur). Found 19:00,20:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-313034-nada-surf.html
+
+Date: Jeudi 27 février 2025 à 19h
+Event: Electro Deluxe
+Place: Transbordeur
+city: Lyon
+country: France
+Style: Jazz
+isCancelled: false
+DetailedStyle: Soul & funk
+source: [object Object]
+unixDate: 1740679200000
+Time: jeudi 27 février à 19:00
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Electro Deluxe (Transbordeur). Found 19:00,20:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-313036-electro-deluxe.html
+
+Date: Vendredi 28 février 2025 à 19h
+Event: Dali
+Place: Transbordeur
+city: Lyon
+country: France
+Style: Rap
+isCancelled: false
+DetailedStyle: Rap
+source: [object Object]
+unixDate: 1740765600000
+Time: vendredi 28 février à 19:00
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Dali (Transbordeur). Found 19:00,20:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-313037-dali.html
+
+Date: Samedi 1 mars 2025 à 19h
+Event: Théodort
+Place: Transbordeur
+city: Lyon
+country: France
+Style: World
+isCancelled: false
+DetailedStyle: Sono Mondiale
+source: [object Object]
+unixDate: 1740852000000
+Time: samedi 1 mars à 19:00
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Théodort (Transbordeur). Found 19:00,20:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-313038-theodort.html
+
+Date: Mercredi 5 mars 2025 à 19h
+Event: Polo & Pan
+Place: Transbordeur
+city: Lyon
+country: France
+Style: Electro
+isCancelled: false
+DetailedStyle: Musiques Electroniques
+source: [object Object]
+unixDate: 1741197600000
+Time: mercredi 5 mars à 19:00
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Polo & Pan (Transbordeur). Found 19:00,19:30. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-313255-polo-pan.html
+
+Date: Jeudi 6 mars 2025 à 19h
+Event: Skunk Anansie
+Place: Transbordeur
+city: Lyon
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Rock & Pop
+source: [object Object]
+unixDate: 1741284000000
+Time: jeudi 6 mars à 19:00
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Skunk Anansie (Transbordeur). Found 19:00,20:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-313256-skunk-anansie.html
+
+Date: Jeudi 13 mars 2025 à 19h
+Event: Ade
+Place: Transbordeur
+city: Lyon
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Rock & Pop
+source: [object Object]
+unixDate: 1741888800000
+Time: jeudi 13 mars à 19:00
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Ade (Transbordeur). Found 19:00,19:30. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-313260-ade.html
+
+Date: Jeudi 13 Mars 2025 à 20h00
+Event: Oracle Sisters
+Place: Epicerie Moderne
+city: Lyon
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Rock & Pop / Pop-folk
+source: [object Object]
+unixDate: 1741892400000
+Time: jeudi 13 mars à 20:30
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Oracle Sisters (Epicerie Moderne). Found 20:30,20:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-313286-oracle-sisters.html
+
+Date: Dimanche 16 mars 2025 à 19h
+Event: MAXENCE (MAXENSS)
+Place: Transbordeur
+city: Lyon
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Rock & Pop / Pop
+source: [object Object]
+unixDate: 1742148000000
+Time: dimanche 16 mars à 19:00
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for MAXENCE (MAXENSS) (Transbordeur). Found 19:00,20:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-286889-maxence.html
+
+Date: Mercredi 26 mars 2025 à 19h
+Event: Benjamin Clementine
+Place: Transbordeur
+city: Lyon
+country: France
+Style: Jazz
+isCancelled: false
+DetailedStyle: Soul & funk
+source: [object Object]
+unixDate: 1743012000000
+Time: mercredi 26 mars à 19:00
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Benjamin Clementine (Transbordeur). Found 19:00,20:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-289467-benjamin-clementine.html
+
+Date: Lundi 7 avril 2025 à 19h
+Event: Tom McRae + Augusta
+Place: Transbordeur
+city: Lyon
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Rock & Pop / Folk
+source: [object Object]
+unixDate: 1744045200000
+Time: lundi 7 avril à 19:00
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Tom McRae + Augusta (Transbordeur). Found 19:00,20:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-312751-tom-mcrae-augusta.html
+
+Date: Vendredi 18 avril 2025 à 19h
+Event: Adèle Castillon
+Place: Transbordeur
+city: Lyon
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Rock & Pop
+source: [object Object]
+unixDate: 1744995600000
+Time: vendredi 18 avril à 19:00
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Adèle Castillon (Transbordeur). Found 19:00,20:00. Consider merging or discarding.
+https://www.petit-bulletin.fr/lyon/agenda-308829-adele-castillon.html
+

@@ -262,13 +262,15 @@ export function addShareWidget(map){
         this.container = document.createElement('div');
         this.container.className = 'mapboxgl-ctrl mapboxgl-ctrl-share';
         // Add Font Awesome share icon
-        this.container.innerHTML = '<i class="fas fa-share"></i>';
+        this.container.innerHTML = '<i class="fas fa-bullhorn""></i>';
         // Add event listener for copying the current URL
         this.container.addEventListener('click', () => {
+            const appURL = window.location.origin;
             const currentURL = window.location.origin+"/?day="+parseInt(document.getElementById('slider').value,10);
             navigator.clipboard.writeText(currentURL)
             .then(() => {
-                alert('URL copied to clipboard!' + currentURL);
+                alert("🎶 No Paywall, no ads, just music. 🎶\n\n✨ After digging through the internet, we found it. Now, it's time to spread the word! ✨\n\n💡 The only price? Your feedback! Tell us what’s next at agrignard@gmail.com!\n\n📤 Share this link for the full app: " + appURL + "\n\n📤 Share this link for this specific day: " + currentURL );
+               // window.open("https://cdn.glitch.global/f7c291e5-78f1-4461-8ca2-473115b2660f/qr_code.jpg?v=1739907954203", "_blank");
             })
             .catch((error) => {
                 console.error('Unable to copy URL', error);
@@ -438,17 +440,13 @@ export const setCategoryColors = (city) => {
 
 // Your dynamic map of categories and their colors
 export const categoryColorsLyon = {
-    'Rock': '23, 128, 251',
-    'Electro': '40, 124, 18',
-    'Jazz': '255, 255, 0',
-    'Rap': '255, 0, 0',
-    'Chanson': '0, 255, 255',
-    'Live': '144, 144, 144',
-    //'World': '224, 147, 40',
-   // 'Jam': '238, 130, 238',
-    'Classique': '127, 0, 255',
-    
-    //'Theatre': '165,42,42'
+    'Rock': '230, 0, 30',        // 🔥 Crimson Red (Raw power, passion)
+    'Electro': '0, 255, 150',    // 💚 Neon Mint Green (Futuristic, digital vibes)
+    'Jazz': '255, 140, 0',       // 🎷 Burnt Orange (Warm, classic, smoky bar feel)
+    'Rap': '111, 0, 170',        // 🎤 Deep Purple (Royal, underground, strong)
+    'Chanson': '255, 60, 120',   // 💖 Hot Magenta (Expressive, romantic)
+    'Live': '80, 80, 80',        // 🎭 Dark Gray (Gritty, real, versatile)
+    'Classique': '20, 40, 160',  // 🎻 Deep Indigo Blue (Sophisticated, elegant)
 };
 
 export const categoryColorsHanoi = {

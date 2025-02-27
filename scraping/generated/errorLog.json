@@ -1,1938 +1,890 @@
 [
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "Le Sonic",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h30\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tReperku Tour : Roland Cristal + DJ Salle Défaite\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tReperku Tour : Roland Cristal + DJ Salle Défaite\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventDate": "Fév 18",
+    "eventName": "ADULT. + Spike Hellis",
+    "eventStyle": "Sonic Lyon",
     "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h30\t\t\t\t\t\t\t\t\t\t\t\", converti en \"19:30\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 13h30 > 16h30\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tStage intensif d’Afrocubain avec MC Dance\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tStage intensif d’Afrocubain avec MC Dance\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 13h30 > 16h30\t\t\t\t\t\t\t\t\t\t\t\", converti en \"13:30\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 17h > 19h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tAtelier 4.2 : C'est quoi une I.A ?\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tAtelier 4.2 : C'est quoi une I.A ?\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 17h > 19h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"17:19:00\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 14h > 17h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tATELIER D'INTELLIGENCE COLLECTIVE // Présenter et mettre en valeur son projet à l'oral\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tATELIER D'INTELLIGENCE COLLECTIVE // Présenter et mettre en valeur son projet à l'oral\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 14h > 17h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"14:17:00\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 18h > 21h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tLa fiscalité des associations\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tLa fiscalité des associations\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 18h > 21h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"18:21:00\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 23h > 05h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tSAVAGE x Epicure w/ Don Woezik + Jan Vercauteren + Ktk & Sunt\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tSAVAGE x Epicure w/ Don Woezik + Jan Vercauteren + Ktk & Sunt\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 23h > 05h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"23:05:00\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tWorking Class Heroes : Slaughter & The Dogs + Shoot The Dogs + Sunday Panic + PERDU!\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tWorking Class Heroes : Slaughter & The Dogs + Shoot The Dogs + Sunday Panic + PERDU!\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"19:00\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 17h > 19h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tAtelier 4.3 : L'I.A comme outil du quotidien\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tAtelier 4.3 : L'I.A comme outil du quotidien\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 17h > 19h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"17:19:00\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tSvinkels : hommage à Nikus Pokus\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tSvinkels : hommage à Nikus Pokus\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"19:00\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tDynazty + Nanowar Of Steel\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tDynazty + Nanowar Of Steel\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"19:00\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tThe Silencers\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tThe Silencers\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"19:00\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tSoviet Suprem\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tSoviet Suprem\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"19:00\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 23h > 05h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tDUB VIBES w/ Vibronics + Sanga Mama Africa feat. Black Omolo + Kara’Basse Sound System\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tDUB VIBES w/ Vibronics + Sanga Mama Africa feat. Black Omolo + Kara’Basse Sound System\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 23h > 05h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"23:05:00\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tFreak Kitchen + Fanalo\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tFreak Kitchen + Fanalo\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"19:00\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 13h30 > 16h30\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tStage intensif de LadyStyling Timba avec MC Dance\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tStage intensif de LadyStyling Timba avec MC Dance\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 13h30 > 16h30\t\t\t\t\t\t\t\t\t\t\t\", converti en \"13:30\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tGodspeed You! Black Emperor\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tGodspeed You! Black Emperor\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"19:00\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\t[COMPLET] Panorama des financements dans l'ESS\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\t[COMPLET] Panorama des financements dans l'ESS\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t\", converti en \"18:30\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 23h30 > 05h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tHadra x Dub Camp : Dub To Trance\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tHadra x Dub Camp : Dub To Trance\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 23h30 > 05h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"23:30\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 23h59 > 05h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tXLR Events pres. Losless + Abstraal + Catiba\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tXLR Events pres. Losless + Abstraal + Catiba\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 23h59 > 05h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"23:59\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 18h30\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tBloodywood + Demonic Resurrection + Calva Louise\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tBloodywood + Demonic Resurrection + Calva Louise\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 18h30\t\t\t\t\t\t\t\t\t\t\t\", converti en \"18:30\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tDemander des subventions pour le théâtre et les arts de la rue (1/2)\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tDemander des subventions pour le théâtre et les arts de la rue (1/2)\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t\", converti en \"18:30\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tH JeuneCrack\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tH JeuneCrack\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"19:00\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tBlaiz Fayah + DJ Thomm\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tBlaiz Fayah + DJ Thomm\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"19:00\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 00h > 05h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tReperku Tour : Billx + Neko + Mighty Spiritz + Le B\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tReperku Tour : Billx + Neko + Mighty Spiritz + Le B\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 00h > 05h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"00:05:00\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tSpider ZED + 2TH\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tSpider ZED + 2TH\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"19:00\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tRENCONTRE // Les principales solutions d’accompagnement et de financement proposées par Rhône Développement Initiative\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tRENCONTRE // Les principales solutions d’accompagnement et de financement proposées par Rhône Développement Initiative\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t\", converti en \"18:30\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tThe Last Internationale\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tThe Last Internationale\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"19:00\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tDēportivo\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tDēportivo\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"19:00\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tJahneration + Bijo\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tJahneration + Bijo\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"19:00\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 13h30 > 17h30\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tATELIER // Pourquoi s’engager (ou pas) ?\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tATELIER // Pourquoi s’engager (ou pas) ?\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 13h30 > 17h30\t\t\t\t\t\t\t\t\t\t\t\", converti en \"13:30\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tZeal & Ardor + Dom Zły\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tZeal & Ardor + Dom Zły\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"19:00\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 18h > 20h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tATELIER // Les bases sur les droits d'auteur dans la musique\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tATELIER // Les bases sur les droits d'auteur dans la musique\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 18h > 20h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"18:20:00\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tCarbonne\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tCarbonne\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"19:00\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tMairo\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tMairo\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"19:00\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 13h30 > 16h30\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tStage intensif de kizomba avec MC Dance\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tStage intensif de kizomba avec MC Dance\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 13h30 > 16h30\t\t\t\t\t\t\t\t\t\t\t\", converti en \"13:30\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 21h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tCO-FORMATION // Mettre en place une gouvernance partagée\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tCO-FORMATION // Mettre en place une gouvernance partagée\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
+    "errorLog": "Impossible de lire la page liée pour l'événement 'ADULT. + Spike Hellis'. Erreur lors du téléchargement ? +err | Format de date invalide pour Le Sonic. Reçu \"Fév 18\", converti en \"02-18\" (attendu \"MM-dd-HH:mm\")",
+    "eventDetailedStyle": "Sonic Lyon",
     "source": {
-      "name": "La Rayonne",
+      "name": "Le Sonic",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 21h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"18:30\" (attendu \"dd-MM\")",
     "unixDate": 0
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "Le Sonic",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 14h > 17h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tATELIER D'INTELLIGENCE COLLECTIVE // Mettre en place une gouvernance partagée\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tATELIER D'INTELLIGENCE COLLECTIVE // Mettre en place une gouvernance partagée\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventDate": "Fév 21",
+    "eventName": "Geneva Jacuzzi + RIKI",
+    "eventStyle": "Sonic Lyon",
     "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
+    "errorLog": "Impossible de lire la page liée pour l'événement 'Geneva Jacuzzi + RIKI'. Erreur lors du téléchargement ? +err | Format de date invalide pour Le Sonic. Reçu \"Fév 21\", converti en \"02-21\" (attendu \"MM-dd-HH:mm\")",
+    "eventDetailedStyle": "Sonic Lyon",
     "source": {
-      "name": "La Rayonne",
+      "name": "Le Sonic",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 14h > 17h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"14:17:00\" (attendu \"dd-MM\")",
     "unixDate": 0
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "Le Sonic",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tEisbrecher + Heldmaschine\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tEisbrecher + Heldmaschine\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventDate": "Fév 28",
+    "eventName": "David Shaw and The Beat + Lobstery",
+    "eventStyle": "Sonic Lyon",
     "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
+    "errorLog": "Impossible de lire la page liée pour l'événement 'David Shaw and The Beat + Lobstery'. Erreur lors du téléchargement ? +err | Format de date invalide pour Le Sonic. Reçu \"Fév 28\", converti en \"02-28\" (attendu \"MM-dd-HH:mm\")",
+    "eventDetailedStyle": "Sonic Lyon",
     "source": {
-      "name": "La Rayonne",
+      "name": "Le Sonic",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"19:00\" (attendu \"dd-MM\")",
     "unixDate": 0
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "Le Sonic",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tMarcel et son Orchestre + Davide Lafore\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tMarcel et son Orchestre + Davide Lafore\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventDate": "Mar 01",
+    "eventName": "LA CHAUDIERE",
+    "eventStyle": "Sonic Lyon",
     "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
+    "errorLog": "Impossible de lire la page liée pour l'événement 'LA CHAUDIERE'. Erreur lors du téléchargement ? +err | Format de date invalide pour Le Sonic. Reçu \"Mar 01\", converti en \"03-01\" (attendu \"MM-dd-HH:mm\")",
+    "eventDetailedStyle": "Sonic Lyon",
     "source": {
-      "name": "La Rayonne",
+      "name": "Le Sonic",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"19:00\" (attendu \"dd-MM\")",
     "unixDate": 0
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "Le Sonic",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 21h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\t[COMPLET] CO-FORMATION // S'initier aux techniques d'animation participative\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\t[COMPLET] CO-FORMATION // S'initier aux techniques d'animation participative\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventDate": "Mar 02",
+    "eventName": "Rien Virgule + Michel Chemin",
+    "eventStyle": "Sonic Lyon",
     "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
+    "errorLog": "Impossible de lire la page liée pour l'événement 'Rien Virgule + Michel Chemin'. Erreur lors du téléchargement ? +err | Format de date invalide pour Le Sonic. Reçu \"Mar 02\", converti en \"03-02\" (attendu \"MM-dd-HH:mm\")",
+    "eventDetailedStyle": "Sonic Lyon",
     "source": {
-      "name": "La Rayonne",
+      "name": "Le Sonic",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 21h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"18:30\" (attendu \"dd-MM\")",
     "unixDate": 0
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "Le Sonic",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 18h > 20h30\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\t[COMPLET] Les fondamentaux du mécénat auprès des entreprises et fondations\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\t[COMPLET] Les fondamentaux du mécénat auprès des entreprises et fondations\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventDate": "Mar 06",
+    "eventName": "Housepainters + chloe éclipse",
+    "eventStyle": "Sonic Lyon",
     "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
+    "errorLog": "Impossible de lire la page liée pour l'événement 'Housepainters + chloe éclipse'. Erreur lors du téléchargement ? +err | Format de date invalide pour Le Sonic. Reçu \"Mar 06\", converti en \"03-06\" (attendu \"MM-dd-HH:mm\")",
+    "eventDetailedStyle": "Sonic Lyon",
     "source": {
-      "name": "La Rayonne",
+      "name": "Le Sonic",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 18h > 20h30\t\t\t\t\t\t\t\t\t\t\t\", converti en \"18:20:30\" (attendu \"dd-MM\")",
     "unixDate": 0
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "Le Sonic",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 18h > 21h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\t[COMPLET] Construire un budget et un plan de trésorerie\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\t[COMPLET] Construire un budget et un plan de trésorerie\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventDate": "Mar 21",
+    "eventName": "Repo Man + Sharon Tate Modern",
+    "eventStyle": "Sonic Lyon",
     "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
+    "errorLog": "Impossible de lire la page liée pour l'événement 'Repo Man + Sharon Tate Modern'. Erreur lors du téléchargement ? +err | Format de date invalide pour Le Sonic. Reçu \"Mar 21\", converti en \"03-21\" (attendu \"MM-dd-HH:mm\")",
+    "eventDetailedStyle": "Sonic Lyon",
     "source": {
-      "name": "La Rayonne",
+      "name": "Le Sonic",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 18h > 21h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"18:21:00\" (attendu \"dd-MM\")",
     "unixDate": 0
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "Le Sonic",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tStill Fresh\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tStill Fresh\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventDate": "Mar 23",
+    "eventName": "MIKE",
+    "eventStyle": "Sonic Lyon",
     "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
+    "errorLog": "Impossible de lire la page liée pour l'événement 'MIKE'. Erreur lors du téléchargement ? +err | Format de date invalide pour Le Sonic. Reçu \"Mar 23\", converti en \"03-23\" (attendu \"MM-dd-HH:mm\")",
+    "eventDetailedStyle": "Sonic Lyon",
     "source": {
-      "name": "La Rayonne",
+      "name": "Le Sonic",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"19:00\" (attendu \"dd-MM\")",
     "unixDate": 0
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "Le Sonic",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 14h > 17h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tATELIER D'INTELLIGENCE COLLECTIVE // S'initier aux techniques d'animation participative\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tATELIER D'INTELLIGENCE COLLECTIVE // S'initier aux techniques d'animation participative\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventDate": "Avr 02",
+    "eventName": "Rats on Rafts",
+    "eventStyle": "Sonic Lyon",
     "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
+    "errorLog": "Impossible de lire la page liée pour l'événement 'Rats on Rafts'. Erreur lors du téléchargement ? +err | Format de date invalide pour Le Sonic. Reçu \"Avr 02\", converti en \"04-02\" (attendu \"MM-dd-HH:mm\")",
+    "eventDetailedStyle": "Sonic Lyon",
     "source": {
-      "name": "La Rayonne",
+      "name": "Le Sonic",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 14h > 17h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"14:17:00\" (attendu \"dd-MM\")",
     "unixDate": 0
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "Le Sonic",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tFeldup\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tFeldup\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventDate": "Avr 03",
+    "eventName": "Six Organs of Admittance",
+    "eventStyle": "Sonic Lyon",
     "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
+    "errorLog": "Impossible de lire la page liée pour l'événement 'Six Organs of Admittance'. Erreur lors du téléchargement ? +err | Format de date invalide pour Le Sonic. Reçu \"Avr 03\", converti en \"04-03\" (attendu \"MM-dd-HH:mm\")",
+    "eventDetailedStyle": "Sonic Lyon",
     "source": {
-      "name": "La Rayonne",
+      "name": "Le Sonic",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"19:00\" (attendu \"dd-MM\")",
     "unixDate": 0
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "Le Sonic",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 23h30 > 05h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tHalfpipe Records Pres. Nollie In The Club\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tHalfpipe Records Pres. Nollie In The Club\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventDate": "Avr 17",
+    "eventName": "Sydney Valette",
+    "eventStyle": "Sonic Lyon",
     "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
+    "errorLog": "Impossible de lire la page liée pour l'événement 'Sydney Valette'. Erreur lors du téléchargement ? +err | Format de date invalide pour Le Sonic. Reçu \"Avr 17\", converti en \"04-17\" (attendu \"MM-dd-HH:mm\")",
+    "eventDetailedStyle": "Sonic Lyon",
     "source": {
-      "name": "La Rayonne",
+      "name": "Le Sonic",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 23h30 > 05h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"23:30\" (attendu \"dd-MM\")",
     "unixDate": 0
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "Le Sonic",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tten56. + guests\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tten56. + guests\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventDate": "Avr 24",
+    "eventName": "EggS",
+    "eventStyle": "Sonic Lyon",
     "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
+    "errorLog": "Impossible de lire la page liée pour l'événement 'EggS'. Erreur lors du téléchargement ? +err | Format de date invalide pour Le Sonic. Reçu \"Avr 24\", converti en \"04-24\" (attendu \"MM-dd-HH:mm\")",
+    "eventDetailedStyle": "Sonic Lyon",
     "source": {
-      "name": "La Rayonne",
+      "name": "Le Sonic",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"19:00\" (attendu \"dd-MM\")",
     "unixDate": 0
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "Amphithéâtre de l'Opéra",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tSowulo + ElektroShaman\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tSowulo + ElektroShaman\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventName": "Célia Kameni",
+    "eventDate": "19 février et 20 février à 20h",
+    "eventStyle": "Chanson",
     "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-313080-celia-kameni.html",
+    "eventDetailedStyle": "Chanson",
     "source": {
-      "name": "La Rayonne",
+      "name": "Le Petit Bulletin",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"19:00\" (attendu \"dd-MM\")",
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"19 février et 20 février à 20h\", converti en \"19-02-20-20:00\" (attendu \"dd-MM-yyyy-HH:mm\")",
     "unixDate": 0
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "Opéra National de Lyon",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 21h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\t[COMPELT] CO-FORMATION // Animer les conflits au sein de son association\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\t[COMPELT] CO-FORMATION // Animer les conflits au sein de son association\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventName": "LEmpereur",
+    "eventDate": "20 février et 21 février à 20h",
+    "eventStyle": "Classique",
     "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-313072-l-empereur.html",
+    "eventDetailedStyle": "Classique & Lyrique",
     "source": {
-      "name": "La Rayonne",
+      "name": "Le Petit Bulletin",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 21h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"18:30\" (attendu \"dd-MM\")",
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"20 février et 21 février à 20h\", converti en \"20-02-21-20:00\" (attendu \"dd-MM-yyyy-HH:mm\")",
     "unixDate": 0
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "Le Sonic",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tAmenra\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tAmenra\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventName": "Geneva Jacuzzi + Riki",
+    "eventDate": "21 février et 22 février à 20h",
+    "eventStyle": "Rock",
     "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-313158-geneva-jacuzzi-riki.html",
+    "eventDetailedStyle": "Rock & Pop",
     "source": {
-      "name": "La Rayonne",
+      "name": "Le Petit Bulletin",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"19:00\" (attendu \"dd-MM\")",
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"21 février et 22 février à 20h\", converti en \"21-02-22-20:00\" (attendu \"dd-MM-yyyy-HH:mm\")",
     "unixDate": 0
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "TNG-VAISE",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 23h > 05h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tEchoes Of The Bass\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tEchoes Of The Bass\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventName": "De et par la possibilité éventuelle des devenirs envisageables",
+    "eventDate": "21 mars et 22 mars à 19h",
+    "eventStyle": "Classique",
     "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-311702-de-et-par-la-possibilite-eventuelle-des-devenirs-envisageables.html",
+    "eventDetailedStyle": "Classique & Lyrique",
     "source": {
-      "name": "La Rayonne",
+      "name": "Le Petit Bulletin",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 23h > 05h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"23:05:00\" (attendu \"dd-MM\")",
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"21 mars et 22 mars à 19h\", converti en \"21-03-22-19:00\" (attendu \"dd-MM-yyyy-HH:mm\")",
     "unixDate": 0
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "Opéra National de Lyon",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 14h > 17h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tATELIER D'INTELLIGENCE COLLECTIVE // Animer les conflits au sein de son association\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tATELIER D'INTELLIGENCE COLLECTIVE // Animer les conflits au sein de son association\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventName": "Peter Grimes",
+    "eventDate": "Du 9 au 21 mai 2025, à 20h sauf dimanche à 16h, relâche les 10, 12, 14, 16, 18 ",
+    "eventStyle": "Classique",
     "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-312754-peter-grimes.html",
+    "eventDetailedStyle": "Classique & Lyrique / Opéra",
     "source": {
-      "name": "La Rayonne",
+      "name": "Le Petit Bulletin",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 14h > 17h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"14:17:00\" (attendu \"dd-MM\")",
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Du 9 au 21 mai 2025, à 20h sauf dimanche à 16h, relâche les 10, 12, 14, 16, 18 \", converti en \"09-21-05-2025-20:16:10-12-14-16-18\" (attendu \"dd-MM-yyyy-HH:mm\")",
     "unixDate": 0
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "Opéra National de Lyon",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 23h30 > 05h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tO.Z.O.R.A. : One Day in France\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tO.Z.O.R.A. : One Day in France\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventName": "Peter Grimes",
+    "eventDate": "Du 9 au 21 mai 2025, à 20 janvier",
+    "eventStyle": "Classique",
     "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-312754-peter-grimes.html",
+    "eventDetailedStyle": "Classique & Lyrique / Opéra",
     "source": {
-      "name": "La Rayonne",
+      "name": "Le Petit Bulletin",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 23h30 > 05h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"23:30\" (attendu \"dd-MM\")",
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Du 9 au 21 mai 2025, à 20 janvier\", converti en \"09-21-05-2025-20-01\" (attendu \"dd-MM-yyyy-HH:mm\")",
     "unixDate": 0
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "Théâtre antique de Vienne",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tMettre en place une stratégie de communication (hors réseaux sociaux) - Niveau débutant\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tMettre en place une stratégie de communication (hors réseaux sociaux) - Niveau débutant\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventName": "Jazz à Vienne",
+    "eventDate": "Du 26 juin au 11 juillet 2025, de 10h à minuit",
+    "eventStyle": "Jazz",
     "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-310713-jazz-a-vienne.html",
+    "eventDetailedStyle": "Jazz",
     "source": {
-      "name": "La Rayonne",
+      "name": "Le Petit Bulletin",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t\", converti en \"18:30\" (attendu \"dd-MM\")",
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Du 26 juin au 11 juillet 2025, de 10h à minuit\", converti en \"26-06-11-07-2025-10:00\" (attendu \"dd-MM-yyyy-HH:mm\")",
     "unixDate": 0
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "Parc de Gerland",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tMettre en place une stratégie de communication (hors réseaux sociaux) - Niveau avancé\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tMettre en place une stratégie de communication (hors réseaux sociaux) - Niveau avancé\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventName": "Woodstower",
+    "eventDate": "Du 17 au 20 juillet 2025, horaires à venir",
+    "eventStyle": "Electro",
     "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
+    "eventURL": "https://www.petit-bulletin.fr/lyon/agenda-310639-woodstower.html",
+    "eventDetailedStyle": "Musiques Electroniques",
     "source": {
-      "name": "La Rayonne",
+      "name": "Le Petit Bulletin",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t\", converti en \"18:30\" (attendu \"dd-MM\")",
+    "errorLog": "Format de date invalide pour Le Petit Bulletin. Reçu \"Du 17 au 20 juillet 2025, horaires à venir\", converti en \"17-20-07-2025\" (attendu \"dd-MM-yyyy-HH:mm\")",
     "unixDate": 0
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "La Clef de Voûte",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 18h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tBorn Of Osiris + Ingested + Entheos + The Voynich Code\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tBorn Of Osiris + Ingested + Entheos + The Voynich Code\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventName": "",
+    "eventDate": "29 janvier | 20h30 - 23h30 CET",
     "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
     "eventDetailedStyle": "",
     "eventStyle": "Live",
     "source": {
-      "name": "La Rayonne",
+      "name": "La Clef de Voûte",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 18h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"18:00\" (attendu \"dd-MM\")",
-    "unixDate": 0
+    "unixDate": 1769715000000,
+    "eventTime": "jeudi 29 janvier à 20:30"
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "La Clef de Voûte",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tMettre en place une stratégie de communication sur les réseaux sociaux - Niveau débutant\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tMettre en place une stratégie de communication sur les réseaux sociaux - Niveau débutant\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventName": "",
+    "eventDate": "30 janvier | 20h30 - 23h30 CET",
     "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
     "eventDetailedStyle": "",
     "eventStyle": "Live",
     "source": {
-      "name": "La Rayonne",
+      "name": "La Clef de Voûte",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t\", converti en \"18:30\" (attendu \"dd-MM\")",
-    "unixDate": 0
+    "unixDate": 1769801400000,
+    "eventTime": "vendredi 30 janvier à 20:30"
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "La Clef de Voûte",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tATELIER PRATIQUE // Réseaux sociaux - Niveau débutant\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tATELIER PRATIQUE // Réseaux sociaux - Niveau débutant\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventName": "",
+    "eventDate": "31 janvier | 20h30 - 23h30 CET",
     "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
     "eventDetailedStyle": "",
     "eventStyle": "Live",
     "source": {
-      "name": "La Rayonne",
+      "name": "La Clef de Voûte",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t\", converti en \"18:30\" (attendu \"dd-MM\")",
-    "unixDate": 0
+    "unixDate": 1769887800000,
+    "eventTime": "samedi 31 janvier à 20:30"
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "La Clef de Voûte",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tConstruire le cahier des charges de son site internet\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tConstruire le cahier des charges de son site internet\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventName": "",
+    "eventDate": "1 février | 20h30 - 23h30 CET",
     "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
     "eventDetailedStyle": "",
     "eventStyle": "Live",
     "source": {
-      "name": "La Rayonne",
+      "name": "La Clef de Voûte",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t\", converti en \"18:30\" (attendu \"dd-MM\")",
-    "unixDate": 0
+    "unixDate": 1769974200000,
+    "eventTime": "dimanche 1 février à 20:30"
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "La Clef de Voûte",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tMettre en place une stratégie de communication sur les réseaux sociaux - Niveau avancé\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tMettre en place une stratégie de communication sur les réseaux sociaux - Niveau avancé\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventName": "",
+    "eventDate": "2 février | 16h00 - 19h00 CET",
     "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
     "eventDetailedStyle": "",
     "eventStyle": "Live",
     "source": {
-      "name": "La Rayonne",
+      "name": "La Clef de Voûte",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t\", converti en \"18:30\" (attendu \"dd-MM\")",
-    "unixDate": 0
+    "unixDate": 1770044400000,
+    "eventTime": "lundi 2 février à 16:00"
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "La Clef de Voûte",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 17h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tMettre en place une comptabilité pour les petites associations\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tMettre en place une comptabilité pour les petites associations\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventName": "",
+    "eventDate": "5 février | 20h30 - 23h30 CET",
     "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
     "eventDetailedStyle": "",
     "eventStyle": "Live",
     "source": {
-      "name": "La Rayonne",
+      "name": "La Clef de Voûte",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 17h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t\", converti en \"17:30\" (attendu \"dd-MM\")",
-    "unixDate": 0
+    "unixDate": 1770319800000,
+    "eventTime": "jeudi 5 février à 20:30"
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "La Clef de Voûte",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tATELIER PRATIQUE // Réseaux sociaux - Niveau avancé\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tATELIER PRATIQUE // Réseaux sociaux - Niveau avancé\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventName": "",
+    "eventDate": "6 février | 20h30 - 23h30 CET",
     "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
     "eventDetailedStyle": "",
     "eventStyle": "Live",
     "source": {
-      "name": "La Rayonne",
+      "name": "La Clef de Voûte",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t\", converti en \"18:30\" (attendu \"dd-MM\")",
-    "unixDate": 0
+    "unixDate": 1770406200000,
+    "eventTime": "vendredi 6 février à 20:30"
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "La Clef de Voûte",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tATELIER PRATIQUE // Créer un visuel avec Canva - Niveau débutant\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tATELIER PRATIQUE // Créer un visuel avec Canva - Niveau débutant\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventName": "",
+    "eventDate": "7 février | 20h30 - 23h30 CET",
     "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
     "eventDetailedStyle": "",
     "eventStyle": "Live",
     "source": {
-      "name": "La Rayonne",
+      "name": "La Clef de Voûte",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t\", converti en \"18:30\" (attendu \"dd-MM\")",
-    "unixDate": 0
+    "unixDate": 1770492600000,
+    "eventTime": "samedi 7 février à 20:30"
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "La Clef de Voûte",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tRussian Circles + Ultha\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tRussian Circles + Ultha\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventName": "",
+    "eventDate": "8 février | 20h30 - 23h30 CET",
     "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
     "eventDetailedStyle": "",
     "eventStyle": "Live",
     "source": {
-      "name": "La Rayonne",
+      "name": "La Clef de Voûte",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"19:00\" (attendu \"dd-MM\")",
-    "unixDate": 0
+    "unixDate": 1770579000000,
+    "eventTime": "dimanche 8 février à 20:30"
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "La Clef de Voûte",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tATELIER PRATIQUE // Créer un visuel avec Canva - Niveau avancé\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tATELIER PRATIQUE // Créer un visuel avec Canva - Niveau avancé\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventName": "",
+    "eventDate": "9 février | 19h30 - 22h30 CET",
     "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
     "eventDetailedStyle": "",
     "eventStyle": "Live",
     "source": {
-      "name": "La Rayonne",
+      "name": "La Clef de Voûte",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t\", converti en \"18:30\" (attendu \"dd-MM\")",
-    "unixDate": 0
+    "unixDate": 1770661800000,
+    "eventTime": "lundi 9 février à 19:30"
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "La Clef de Voûte",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 18h > 21h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tConstruire un budget et un plan de trésorerie\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tConstruire un budget et un plan de trésorerie\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventName": "",
+    "eventDate": "12 février | 20h30 - 23h30 CET",
     "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
     "eventDetailedStyle": "",
     "eventStyle": "Live",
     "source": {
-      "name": "La Rayonne",
+      "name": "La Clef de Voûte",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 18h > 21h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"18:21:00\" (attendu \"dd-MM\")",
-    "unixDate": 0
+    "unixDate": 1770924600000,
+    "eventTime": "jeudi 12 février à 20:30"
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "La Clef de Voûte",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tATELIER // Créer un site vitrine avec Odoo (1/2)\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tATELIER // Créer un site vitrine avec Odoo (1/2)\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventName": "",
+    "eventDate": "13 février | 20h30 - 23h30 CET",
     "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
     "eventDetailedStyle": "",
     "eventStyle": "Live",
     "source": {
-      "name": "La Rayonne",
+      "name": "La Clef de Voûte",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t\", converti en \"18:30\" (attendu \"dd-MM\")",
-    "unixDate": 0
+    "unixDate": 1771011000000,
+    "eventTime": "vendredi 13 février à 20:30"
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "La Clef de Voûte",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 18h > 21h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tCréer un premier emploi, pourquoi ? À quoi penser ? Que faire ?\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tCréer un premier emploi, pourquoi ? À quoi penser ? Que faire ?\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventName": "",
+    "eventDate": "14 février | 20h30 - 23h30 CET",
     "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
     "eventDetailedStyle": "",
     "eventStyle": "Live",
     "source": {
-      "name": "La Rayonne",
+      "name": "La Clef de Voûte",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 18h > 21h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"18:21:00\" (attendu \"dd-MM\")",
-    "unixDate": 0
+    "unixDate": 1771097400000,
+    "eventTime": "samedi 14 février à 20:30"
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "La Clef de Voûte",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tComprendre les principales aides à l’emploi\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tComprendre les principales aides à l’emploi\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventName": "",
+    "eventDate": "15 février | 20h30 - 23h30 CET",
     "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
     "eventDetailedStyle": "",
     "eventStyle": "Live",
     "source": {
-      "name": "La Rayonne",
+      "name": "La Clef de Voûte",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t\", converti en \"18:30\" (attendu \"dd-MM\")",
-    "unixDate": 0
+    "unixDate": 1771183800000,
+    "eventTime": "dimanche 15 février à 20:30"
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "La Clef de Voûte",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tATELIER // Créer un site vitrine avec Odoo (2/2)\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tATELIER // Créer un site vitrine avec Odoo (2/2)\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventName": "",
+    "eventDate": "16 février | 19h30 - 22h30 CET",
     "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
     "eventDetailedStyle": "",
     "eventStyle": "Live",
     "source": {
-      "name": "La Rayonne",
+      "name": "La Clef de Voûte",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t\", converti en \"18:30\" (attendu \"dd-MM\")",
-    "unixDate": 0
+    "unixDate": 1771266600000,
+    "eventTime": "lundi 16 février à 19:30"
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "La Clef de Voûte",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 18h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tBleed From Within + After The Burial + Great American Ghost\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tBleed From Within + After The Burial + Great American Ghost\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventName": "",
+    "eventDate": "19 février | 20h30 - 23h30 CET",
     "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
     "eventDetailedStyle": "",
     "eventStyle": "Live",
     "source": {
-      "name": "La Rayonne",
+      "name": "La Clef de Voûte",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 18h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"18:00\" (attendu \"dd-MM\")",
-    "unixDate": 0
+    "unixDate": 1739993400000,
+    "eventTime": "mercredi 19 février à 20:30"
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "La Clef de Voûte",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 18h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tFaun + Ye Banished Privateers\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tFaun + Ye Banished Privateers\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventName": "",
+    "eventDate": "20 février | 20h30 - 23h30 CET",
     "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
     "eventDetailedStyle": "",
     "eventStyle": "Live",
     "source": {
-      "name": "La Rayonne",
+      "name": "La Clef de Voûte",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 18h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"18:00\" (attendu \"dd-MM\")",
-    "unixDate": 0
+    "unixDate": 1740079800000,
+    "eventTime": "jeudi 20 février à 20:30"
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "La Clef de Voûte",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tL'emploi dans le spectacle vivant\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tL'emploi dans le spectacle vivant\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventName": "",
+    "eventDate": "21 février | 20h30 - 23h30 CET",
     "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
     "eventDetailedStyle": "",
     "eventStyle": "Live",
     "source": {
-      "name": "La Rayonne",
+      "name": "La Clef de Voûte",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t\", converti en \"18:30\" (attendu \"dd-MM\")",
-    "unixDate": 0
+    "unixDate": 1740166200000,
+    "eventTime": "vendredi 21 février à 20:30"
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "La Clef de Voûte",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tLes obligations des associations employeuses\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tLes obligations des associations employeuses\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventName": "",
+    "eventDate": "22 février | 20h30 - 23h30 CET",
     "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
     "eventDetailedStyle": "",
     "eventStyle": "Live",
     "source": {
-      "name": "La Rayonne",
+      "name": "La Clef de Voûte",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t\", converti en \"18:30\" (attendu \"dd-MM\")",
-    "unixDate": 0
+    "unixDate": 1740252600000,
+    "eventTime": "samedi 22 février à 20:30"
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "La Clef de Voûte",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tFredz\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tFredz\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventName": "",
+    "eventDate": "23 février | 19h30 - 22h30 CET",
     "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
     "eventDetailedStyle": "",
     "eventStyle": "Live",
     "source": {
-      "name": "La Rayonne",
+      "name": "La Clef de Voûte",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"19:00\" (attendu \"dd-MM\")",
-    "unixDate": 0
+    "unixDate": 1740335400000,
+    "eventTime": "dimanche 23 février à 19:30"
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "La Clef de Voûte",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tGod Is An Astronaut + Jo Quail\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tGod Is An Astronaut + Jo Quail\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventName": "",
+    "eventDate": "26 février | 20h30 - 23h30 CET",
     "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
     "eventDetailedStyle": "",
     "eventStyle": "Live",
     "source": {
-      "name": "La Rayonne",
+      "name": "La Clef de Voûte",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"19:00\" (attendu \"dd-MM\")",
-    "unixDate": 0
+    "unixDate": 1740598200000,
+    "eventTime": "mercredi 26 février à 20:30"
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "La Clef de Voûte",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tWind Rose + Orden Ogan + Angus McSix\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tWind Rose + Orden Ogan + Angus McSix\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventName": "",
+    "eventDate": "27 février | 20h30 - 23h30 CET",
     "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
     "eventDetailedStyle": "",
     "eventStyle": "Live",
     "source": {
-      "name": "La Rayonne",
+      "name": "La Clef de Voûte",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"19:00\" (attendu \"dd-MM\")",
-    "unixDate": 0
+    "unixDate": 1740684600000,
+    "eventTime": "jeudi 27 février à 20:30"
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "La Clef de Voûte",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tLa gestion de la paie dans le spectacle vivant\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tLa gestion de la paie dans le spectacle vivant\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventName": "",
+    "eventDate": "28 février | 20h30 - 23h30 CET",
     "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
     "eventDetailedStyle": "",
     "eventStyle": "Live",
     "source": {
-      "name": "La Rayonne",
+      "name": "La Clef de Voûte",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t\", converti en \"18:30\" (attendu \"dd-MM\")",
-    "unixDate": 0
+    "unixDate": 1740771000000,
+    "eventTime": "vendredi 28 février à 20:30"
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "La Clef de Voûte",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 21h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tCycle diffusion : La stratégie de diffusion d’un projet artistique (1/4)\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tCycle diffusion : La stratégie de diffusion d’un projet artistique (1/4)\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventName": "",
+    "eventDate": "1 mars | 20h30 - 23h30 CET",
     "isCancelled": false,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
     "eventDetailedStyle": "",
     "eventStyle": "Live",
     "source": {
-      "name": "La Rayonne",
+      "name": "La Clef de Voûte",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 21h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"18:30\" (attendu \"dd-MM\")",
-    "unixDate": 0
+    "unixDate": 1740857400000,
+    "eventTime": "samedi 1 mars à 20:30"
   },
   {
-    "eventPlace": "La Rayonne",
+    "eventPlace": "La Clef de Voûte",
     "city": "Lyon",
     "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 21h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tCycle diffusion : Élaborer un dossier de diffusion (2/4)\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tCycle diffusion : Élaborer un dossier de diffusion (2/4)\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventName": "",
+    "eventDate": "2 mars | 19h30 - 22h30 CET",
     "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 21h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"18:30\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tREPORTÉ // Popa Chubby\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tREPORTÉ // Popa Chubby\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": true,
+    "errorLog": "Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err",
     "eventDetailedStyle": "",
     "eventStyle": "Live",
     "source": {
-      "name": "La Rayonne",
+      "name": "La Clef de Voûte",
       "city": "Lyon",
       "country": "France"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"19:00\" (attendu \"dd-MM\")",
-    "unixDate": 0
+    "unixDate": 1740940200000,
+    "eventTime": "dimanche 2 mars à 19:30"
   },
   {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tCycle diffusion : Formaliser sa production artistique (3/4)\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tCycle diffusion : Formaliser sa production artistique (3/4)\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventPlace": "Savage",
+    "city": "Hanoi",
+    "country": "Vietnam",
+    "eventDate": "F e b 2 0 T h u",
+    "eventName": "Savage Thursday",
+    "eventStyle": "House",
     "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
+    "eventURL": "https://likdo.asia/event/1881",
+    "eventDetailedStyle": "House",
     "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
+      "name": "Likdo",
+      "city": "Hanoi",
+      "country": "Vietnam"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 20h30\t\t\t\t\t\t\t\t\t\t\t\", converti en \"18:30\" (attendu \"dd-MM\")",
+    "errorLog": "Format de date invalide pour Likdo. Reçu \"F e b 2 0 T h u\", converti en \"02-00\" (attendu \"dd-MM\")",
     "unixDate": 0
   },
   {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tThe Inspector Cluzo\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tThe Inspector Cluzo\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": false,
-    "eventDetailedStyle": "",
+    "eventPlace": "Luu Bar Saigon",
+    "city": "Hanoi",
+    "country": "Vietnam",
+    "eventDate": "F e b 2 0 T h u",
+    "eventName": "Zero Project: MLiR & DESNUAGES",
     "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"19:00\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tRakoon\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tRakoon\t\t\t\t\t\t\t\t\t"
-    ],
     "isCancelled": false,
+    "eventURL": "https://likdo.asia/event/1933",
     "eventDetailedStyle": "",
-    "eventStyle": "Live",
     "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
+      "name": "Likdo",
+      "city": "Hanoi",
+      "country": "Vietnam"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"19:00\" (attendu \"dd-MM\")",
+    "errorLog": "Format de date invalide pour Likdo. Reçu \"F e b 2 0 T h u\", converti en \"02-00\" (attendu \"dd-MM\")",
     "unixDate": 0
   },
   {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 21h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tCycle diffusion : Construire le budget de son projet artistique (4/4)\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tCycle diffusion : Construire le budget de son projet artistique (4/4)\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventPlace": "Red River Cruise",
+    "city": "Hanoi",
+    "country": "Vietnam",
+    "eventDate": "M a r 0 1 S a t",
+    "eventName": "Offlandish • Red River Cruise w/ Paperkraft, Thilini • Mirage",
+    "eventStyle": "House Disco",
     "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
+    "eventURL": "https://likdo.asia/event/1907",
+    "eventDetailedStyle": "House Disco",
     "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
+      "name": "Likdo",
+      "city": "Hanoi",
+      "country": "Vietnam"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 18h30 > 21h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"18:30\" (attendu \"dd-MM\")",
+    "errorLog": "Format de date invalide pour Likdo. Reçu \"M a r 0 1 S a t\", converti en \"00-01\" (attendu \"dd-MM\")",
     "unixDate": 0
   },
   {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\t 18h > 20h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tATELIER // Gérer sa tournée dans les musiques actuelles\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tATELIER // Gérer sa tournée dans les musiques actuelles\t\t\t\t\t\t\t\t\t"
-    ],
-    "isCancelled": false,
-    "eventDetailedStyle": "",
+    "eventPlace": "Savage",
+    "city": "Hanoi",
+    "country": "Vietnam",
+    "eventDate": "M a r 0 1 S a t",
+    "eventName": "Electric Bazaar 5th Anniversary",
     "eventStyle": "Live",
-    "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
-    },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\t 18h > 20h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"18:20:00\" (attendu \"dd-MM\")",
-    "unixDate": 0
-  },
-  {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tTHK\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tTHK\t\t\t\t\t\t\t\t\t"
-    ],
     "isCancelled": false,
+    "eventURL": "https://likdo.asia/event/1923",
     "eventDetailedStyle": "",
-    "eventStyle": "Live",
     "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
+      "name": "Likdo",
+      "city": "Hanoi",
+      "country": "Vietnam"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"19:00\" (attendu \"dd-MM\")",
+    "errorLog": "Format de date invalide pour Likdo. Reçu \"M a r 0 1 S a t\", converti en \"00-01\" (attendu \"dd-MM\")",
     "unixDate": 0
   },
   {
-    "eventPlace": "La Rayonne",
-    "city": "Lyon",
-    "country": "France",
-    "eventDate": "\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t",
-    "eventMultiName": [
-      "\n\t\t\t\t\t\t\t\t\t\tSinclair\t\t\t\t\t\t\t\t\t"
-    ],
-    "eventMultiURL": [
-      "\n\t\t\t\t\t\t\t\t\t\tSinclair\t\t\t\t\t\t\t\t\t"
-    ],
+    "eventPlace": "Mo Luong Cave",
+    "city": "Hanoi",
+    "country": "Vietnam",
+    "eventDate": "A p r 0 4 F r i",
+    "eventName": "Equation 2025",
+    "eventStyle": "House Techno",
     "isCancelled": false,
-    "eventDetailedStyle": "",
-    "eventStyle": "Live",
+    "eventURL": "https://likdo.asia/event/1736",
+    "eventDetailedStyle": "House Techno",
     "source": {
-      "name": "La Rayonne",
-      "city": "Lyon",
-      "country": "France"
+      "name": "Likdo",
+      "city": "Hanoi",
+      "country": "Vietnam"
     },
-    "errorLog": "Format de date invalide pour La Rayonne. Reçu \"\n\t\t\t\t\t\t\t\t\t\t\t\tà partir de 19h\t\t\t\t\t\t\t\t\t\t\t\", converti en \"19:00\" (attendu \"dd-MM\")",
+    "errorLog": "Format de date invalide pour Likdo. Reçu \"A p r 0 4 F r i\", converti en \"00-04\" (attendu \"dd-MM\")",
     "unixDate": 0
   }
 ]

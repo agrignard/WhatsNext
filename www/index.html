@@ -17,7 +17,20 @@
 <div id="map"></div>
 <div class="map-overlay top">
     <div class="map-overlay-inner">
-        <h2>WhatsNext</h2>
+        <h2>WhatsNext
+
+            <button id="myButton" style="
+            background: transparent;
+            border: 1px solid #888;
+            border-radius: 15px;
+            padding: 5px 10px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+            float: right;
+        "> 🎵 Stay Tuned
+        </button>
+        </h2>
         <div class="slider">
             <label id="dateSlider"></label>
             <input id="slider" type="range" min="0" max="200" step="1" value="0">
@@ -25,6 +38,7 @@
         <canvas id="myCircleCanvas" height="50" width="400"></canvas>
         <h1></h1>
         <input id="showAll" type="checkbox" name="showAll"/>
+       
     <canvas id="chart1" width="400" height="50"></canvas>
     <canvas id="chart2" width="400" height="50"></canvas>
     <canvas id="chart3" width="400" height="50"></canvas>
@@ -32,5 +46,18 @@
 </div>
 <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script type="module" src="main.js"></script>
+<div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h4>🎶 No Paywall, no ads—just music. 🎶</h4>
+      <img src="https://cdn.glitch.global/f7c291e5-78f1-4461-8ca2-473115b2660f/qr_code.jpg?v=1739907954203" alt="QR Code" style="width:150px;height:150px;">
+      <p></p>
+      <p><b>📍 Know a great venue for live music?</b></p>
+      <p><b>🎤 Spotted an upcoming event that should be on the map?</b></p>
+      <p><b>💡 Got feedback or ideas?</b></p>
+      <p><b>📩  Drop us a line at <a href="mailto:agrignard@gmail.com"><b>agrignard@gmail.com</b></a></p>
+      <p id="modal-link"></p>
+    </div>
+  </div>
 </body>
 </html>

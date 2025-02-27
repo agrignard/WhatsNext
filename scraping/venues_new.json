@@ -1,69 +1,28 @@
 [
   {
-    "name": "Le Sucre",
-    "city": "Lyon",
-    "country": "France",
-    "url": "https://le-sucre.eu/agenda/",
-    "baseURL": "https://le-sucre.eu/agenda/",
-    "eventsDelimiterTag": "A.pureu11.pureumd12.pureulg14.pureug.agendacard.depth6",
-    "defaultStyle": "Electro",
-    "comments": "après avoir utilisé analex, enlever t5410 de la classe de la balise qui délimite les events",
-    "mainPage": {
-      "eventDateTags": [
-        "DIV.infos.depth7:eq(0)>DIV.date.depth8:eq(0)"
-      ],
-      "eventStyleTags": [
-        "DIV.infos.depth7:eq(0)>DIV.type.depth8:eq(0)"
-      ],
-      "eventNameTags": [
-        "DIV.vignette.depth7:eq(0)>DIV.labels.depth8:eq(0)>DIV.titre.depth9:eq(0)",
-        "DIV.vignette.depth7:eq(0)>DIV.labels.depth8:eq(0)>DIV.artistes.depth9:eq(0)>DIV.depth10"
-      ]
-    },
-    "eventURLIndex": 0,
-    "dateFormat": "dd-MM",
-    "linkedPage": {
-      "eventDateTags": [
-        "div.journum:eq(0)",
-        "div.mois:eq(0)",
-        "div.horaires:eq(0)"
-      ],
-      "eventNameTags": [
-        "div.pureu11.titre:eq(0)>h1:eq(0)",
-        "a.nom"
-      ]
-    },
-    "linkedPageDateFormat": "dd-MM-HH:mm",
-    "ID": "Le Sucre|Lyon|France",
-    "regexp": {
-      "eventStyle": [
-        "\\|",
-        ""
-      ]
-    }
-  },
-  {
     "name": "Le Petit Salon",
     "city": "Lyon",
     "country": "France",
     "url": "https://www.lpslyon.fr/evenements-le-petit-salon/",
     "baseURL": "https://www.lpslyon.fr/evenements-le-petit-salon/",
-    "eventsDelimiterTag": "div.events__item.item.colmd4",
+    "eventsDelimiterTag": "DIV.events__item.item.colmd4.depth10",
     "mainPage": {
-      "eventNameTags": [
-        "h2.item__title:eq(0)"
-      ],
       "eventDateTags": [
-        "div.item__date.dxlnone:eq(0)>span:eq(0)"
+        "DIV.item__date.dxlnone.depth11:eq(0)>DIV.item__dateday.depth12:eq(0)",
+        "DIV.item__date.dxlnone.depth11:eq(0)>SPAN.depth12:eq(0)"
+      ],
+      "eventNameTags": [
+        "H2.item__title.depth11:eq(0)"
       ],
       "eventStyleTags": [
-        "div.item__text:eq(0)>p:eq(1)"
+        "DIV.item__text.depth11:eq(0)>P.depth12:eq(1)",
+        "DIV.item__text.depth11:eq(1)>P.depth12:eq(1)"
       ],
       "eventURLTags": [
-        "a.item__link:eq(0)"
+        "DIV.depth11:eq(4)>A.item__link.depth12:eq(0)"
       ]
     },
-    "eventURLIndex": 1,
+    "eventURLIndex": 0,
     "dateFormat": "dd-MM",
     "linkedPage": {},
     "linkedPageDateFormat": "",
@@ -75,18 +34,18 @@
     "city": "Lyon",
     "country": "France",
     "url": "https://www.transbordeur.fr/agenda/",
-    "eventsDelimiterTag": "a.postscontaineritem",
+    "eventsDelimiterTag": "A.postscontaineritem.depth11",
     "dateFormat": "dd-MM-yyyy-HH:mm",
     "mainPage": {
       "eventNameTags": [
-        "div.tsh3:eq(0)"
+        "DIV.postscontaineritem__contain.depth12:eq(0)>DIV.tsh3.depth13:eq(0)"
       ],
       "eventDateTags": [
-        "div.tslabel:eq(0)",
-        "div.tslabel:eq(1)"
+        "DIV.postscontaineritem__contain.depth12:eq(0)>DIV.flex.itemscenter.gaps.depth13:eq(0)>DIV.tslabel.depth14:eq(0)",
+        "DIV.postscontaineritem__contain.depth12:eq(0)>DIV.flex.itemscenter.gaps.depth13:eq(0)>DIV.tslabel.depth14:eq(1)"
       ],
       "eventStyleTags": [
-        "div.postscontaineritem__contain:eq(0)>div.tslabel:eq(2)"
+        "DIV.postscontaineritem__contain.depth12:eq(0)>DIV.tslabel.depth13:eq(0)"
       ]
     },
     "eventURLIndex": 0,
@@ -165,19 +124,16 @@
     "country": "France",
     "url": "https://sonic-lyon.fr/",
     "dateFormat": "MM-dd",
-    "eventsDelimiterTag": "DIV.event_details.depth14",
+    "eventsDelimiterTag": "DIV.event_details",
     "eventURLIndex": 0,
     "defaultStyle": "Rock",
     "baseURL": "https://sonic-lyon.fr/",
     "mainPage": {
       "eventDateTags": [
-        "A.depth15:eq(0)>DIV.event_date.depth16:eq(0)"
+        "A.:eq(0)>DIV.event_date:eq(0)"
       ],
       "eventNameTags": [
-        "DIV.event_desc.depth15:eq(0)>A.depth16:eq(1)>DIV.event_title.depth17:eq(0)"
-      ],
-      "eventStyleTags": [
-        "DIV.event_desc.depth15:eq(0)>DIV.event_address.depth16:eq(0)"
+        "DIV.event_desc:eq(0)>A.:eq(1)>DIV.event_title:eq(0)"
       ]
     },
     "linkedPage": {
@@ -193,18 +149,18 @@
     "city": "Lyon",
     "country": "France",
     "url": "https://www.petit-bulletin.fr/lyon/agenda-recherche.html?idvillepb=lyon&pageagenda=12&thema=musique-soirees&quoi=0&ou=0&quand=0&dateprecise=&qui=&p={index}",
-    "eventsDelimiterTag": "DIV.entrycontent.bodycolor.clearfix.linkcolorwrap A.term7",
+    "eventsDelimiterTag": "A.term7",
     "dateFormat": "dd-MM-yyyy-HH:mm",
     "baseURL": "https://www.petit-bulletin.fr/lyon/",
     "mainPage": {
       "eventNameTags": [
-        "H2:eq(0)"
+        "H2.:eq(0)"
+      ],
+      "eventStyleTags": [
+        "P.:eq(0)"
       ],
       "eventDateTags": [
         "P.addedTag:eq(0)"
-      ],
-      "eventStyleTags": [
-        "P:eq(0)"
       ],
       "eventPlaceTags": [
         "P.addedTag:eq(1)"
@@ -226,25 +182,22 @@
       "le marché gare"
     ],
     "url": "https://marchegare.fr/agenda?category=All&page=1",
-    "dateFormat": "dd-MM",
+    "dateFormat": "dd-MM-HH:mm",
     "baseURL": "https://marchegare.fr/",
     "mainPage": {
-      "eventNameTags": [
-        "DIV.agendatitle.headingsfontweight.uppercase.fontdisplay.fontbold.text3xl.mdtext4xl.xltext5xl.leadingnone.lgleadingnone:eq(0)  SPAN.leadingnone.lgleadingnone:eq(0)",
-        "DIV.agendasubtitle.text2xl.lgtext3xl.fontdisplay.uppercase.mt1:eq(0)"
-      ],
       "eventDateTags": [
-        "SPAN.evtdatefromdayname.evtdatedayname:eq(0)",
-        "SPAN.evtdatefromday.evtdateday:eq(0)",
-        "SPAN.evtdatefrommonth.evtdatemonth:eq(0)"
+        "DIV.agendaiteminner.mb12:eq(0)>DIV.agendaitemdate.transition.flex.text2xl.lgtext3xl.pb2:eq(0)>DIV.fontdisplay.fontbold.uppercase.inlineflex.flexwrap.evtdate.agendaevtdate:eq(0)"
       ],
       "eventStyleTags": [
-        "SPAN.uppercase.fontdisplay.textxl.lgtext2xl.nounderline.mx1.leadingnone.lgleadingnone:eq(0)",
-        "SPAN.uppercase.fontdisplay.textxl.lgtext2xl.nounderline.mx1.leadingnone.lgleadingnone:eq(1)"
+        "DIV.agendaiteminner.mb12:eq(0)>DIV.relative:eq(0)>DIV.agendaitemtext.transition:eq(0)>DIV.flex.mb1.textxl.lgtext2xl.leadingnone.lgleadingnone.justifyend.ml6:eq(0)>DIV.agendataxocontainer.inlineflex.flexwrap.justifyend.textsm.mx1.agendaevtcategories:eq(0)"
+      ],
+      "eventNameTags": [
+        "DIV.agendaiteminner.mb12:eq(0)>DIV.relative:eq(0)>DIV.agendaitemtext.transition:eq(0)>DIV.agendatitle.headingsfontweight.uppercase.fontdisplay.fontbold.text3xl.mdtext4xl.xltext5xl.leadingnone.lgleadingnone:eq(0)",
+        "DIV.agendaiteminner.mb12:eq(0)>DIV.relative:eq(0)>DIV.agendaitemtext.transition:eq(0)>DIV.agendasubtitle.text2xl.lgtext3xl.fontdisplay.uppercase.mt1:eq(0)"
       ]
     },
     "eventURLIndex": 0,
-    "eventsDelimiterTag": "A.agendaitem.nounderline.group",
+    "eventsDelimiterTag": "A.nounderline.group",
     "linkedPage": {
       "eventDateTags": [
         "SPAN.lb_sessionstartdateday:eq(0)",
@@ -265,15 +218,15 @@
     "url": "https://www.halle-tony-garnier.com/fr/programmation",
     "baseURL": "https://www.halle-tony-garnier.com/fr/",
     "mainPage": {
-      "eventNameTags": [
-        "div.blocsquare__infos:eq(0)>div.blocsquare__title:eq(0)"
-      ],
       "eventDateTags": [
-        "div.blocsquare__infos:eq(0)>div.blocsquare__date:eq(0)",
-        "div.blocsquare__infos:eq(0)>div.blocsquare__heure:eq(0)"
+        "DIV.blocsquare__infos:eq(0)>DIV.blocsquare__date:eq(0)",
+        "DIV.blocsquare__infos:eq(0)>DIV.blocsquare__heure:eq(0)"
+      ],
+      "eventNameTags": [
+        "DIV.blocsquare__infos:eq(0)>DIV.blocsquare__title:eq(0)"
       ]
     },
-    "eventsDelimiterTag": "div.grid.gridcols1.mdgridcols2.lggridcols4.gap2.py8.px4.lgpx0>a.blocsquare.types",
+    "eventsDelimiterTag": "A.blocsquare.types",
     "eventURLIndex": 0,
     "dateFormat": "dd-MM-yy-HH:mm",
     "ID": "Halle Tony Garnier|Lyon|France"
@@ -288,20 +241,10 @@
     "url": "https://www.trokson.com/shows",
     "defaultStyle": "Rock",
     "baseURL": "https://www.trokson.com/",
-    "mainPage": {
-      "eventNameTags": [
-        "DIV.depth27:eq(0)>DIV.MTyds5.depth28:eq(0)>A.DjQEyU.depth29:eq(0)"
-      ],
-      "eventDateTags": [
-        "DIV.depth27:eq(0)>DIV.pyOzT0.depth28:eq(0)>DIV.LQpUqV.AinsX6.wu0Sg9.IHq231.depth29:eq(0)>DIV.v2vbgt.pRRkmP.depth30:eq(0)"
-      ],
-      "eventURLTags": [
-        "DIV.depth27:eq(1)>A.DjQEyU.m022zm.aUkG34.depth28:eq(0)"
-      ]
-    },
-    "eventsDelimiterTag": "DIV.Y42my3.ib4N31.depth26",
-    "eventURLIndex": 0,
-    "dateFormat": "dd-MM",
+    "mainPage": {},
+    "eventsDelimiterTag": "",
+    "eventURLIndex": -1,
+    "dateFormat": "dd-MM-yyyy-HH:mm",
     "delimiterAddLevels": 0,
     "ID": "Le Trokson|Lyon|France"
   },
@@ -360,23 +303,16 @@
       "nbPages": 42
     },
     "baseURL": "https://www.infoconcert.com/concerts/",
-    "eventsDelimiterTag": " DIV.panel.paneldefault.dateline DIV.panelbody",
+    "eventsDelimiterTag": "DIV.panelbody",
     "mainPage": {
+      "eventDateTags": [
+        "DIV.row:eq(0)>DIV.colxs12.colsm3:eq(0)>DIV.date:eq(0)>TIME.:eq(0)"
+      ],
       "eventNameTags": [
-        "DIV.spectacle:eq(0) A"
+        "DIV.row:eq(0)>DIV.colxs12.colsm9.summary.infos:eq(0)>DIV.row:eq(0)>DIV.colxs12:eq(0)>DIV.spectacle:eq(0)>A.:eq(0)"
       ],
       "eventPlaceTags": [
-        "DIV.salle:eq(0) A:eq(0) SPAN:eq(0)"
-      ],
-      "eventURLTags": [
-        "DIV.colxs6.moreinfos:eq(0) A.grey:eq(0)"
-      ],
-      "eventDateTags": [
-        "TIME:eq(0) SPAN.daytitle:eq(0)",
-        "TIME:eq(0) SPAN.day:eq(0)",
-        "TIME:eq(0) SPAN.month:eq(0)",
-        "TIME:eq(0) SPAN.year:eq(0)",
-        "TIME:eq(0) SPAN.hour:eq(0)"
+        "DIV.row:eq(0)>DIV.colxs12.colsm9.summary.infos:eq(0)>DIV.row:eq(1)>DIV.colxs12.colsm6:eq(0)>DIV.location:eq(0)>DIV.salle:eq(0)>A.:eq(0)"
       ]
     },
     "regexp": {
@@ -385,7 +321,7 @@
         ""
       ]
     },
-    "eventURLIndex": 1,
+    "eventURLIndex": 0,
     "dateFormat": "dd-MM-yyyy-HH:mm",
     "linkedPage": {
       "eventDateTags": [
@@ -402,16 +338,6 @@
     "ID": "Infoconcert|Lyon|France"
   },
   {
-    "name": "Rock N Eat",
-    "country": "France",
-    "city": "Lyon",
-    "aliases": [
-      "Bar Rock'n eat",
-      "Le Rock N Eat"
-    ],
-    "ID": "Rock N Eat|Lyon|France"
-  },
-  {
     "name": "La Rayonne",
     "country": "France",
     "city": "Lyon",
@@ -423,19 +349,17 @@
     "ID": "La Rayonne|Lyon|France",
     "mainPage": {
       "eventDateTags": [
-        "div.agendajourlabel:eq(0)"
-      ],
-      "eventMultiNameTags": [
-        "div.agendaeventtitle"
+        "DIV.agendajourlabel:eq(0)",
+        "DIV.agendaouvertures:eq(0)>DIV.agendaouvertureinfo:eq(0)>DIV.agendaouvertureinfoaujourdhui:eq(0)>P.addedTag:eq(1)"
       ],
       "eventNameTags": [
-        "div.agendaeventtitle:eq(0)"
+        "DIV.agendalistevents:eq(0)>A.agendaevent:eq(0)>DIV.agendaeventtitle:eq(0)"
       ]
     },
     "url": "https://larayonne.org/agenda/",
     "baseURL": "https://larayonne.org/agenda/",
-    "eventsDelimiterTag": "div.agendajour",
-    "eventURLIndex": 1,
+    "eventsDelimiterTag": "DIV.agendajour",
+    "eventURLIndex": 0,
     "dateFormat": "dd-MM"
   },
   {
@@ -490,15 +414,6 @@
     "country": "France",
     "city": "Lyon",
     "ID": "Grrrnd Zéro|Lyon|France"
-  },
-  {
-    "name": "Hot Club",
-    "country": "France",
-    "city": "Lyon",
-    "aliases": [
-      "Hot Club de Lyon"
-    ],
-    "ID": "Hot Club|Lyon|France"
   },
   {
     "name": "Opéra National de Lyon",
@@ -678,6 +593,16 @@
     ]
   },
   {
+    "name": "Chapelle De La Trinité",
+    "country": "France",
+    "city": "Lyon",
+    "ID": "Chapelle|Lyon|France",
+    "aliases": [
+      "Chapelle De La Trinite",
+      "Chapelle De La Trinite A Lyon"
+    ]
+  },
+  {
     "name": "Maison Du Peuple De Pierre Benite",
     "country": "France",
     "city": "Lyon",
@@ -692,22 +617,48 @@
     "country": "France",
     "mainPage": {
       "eventDateTags": [
-        "DIV.tribeeventscalendarmonth__calendareventtooltipdatetime.depth20:eq(0)>TIME.depth21:eq(0)"
+        "HEADER.tribeeventscalendarlist__eventheader:eq(0)>DIV.tribeeventscalendarlist__eventdatetimewrapper.tribecommonb2:eq(0)>TIME.tribeeventscalendarlist__eventdatetime:eq(0)"
       ],
       "eventNameTags": [
-        "H3.tribeeventscalendarmonth__calendareventtooltiptitle.tribecommonh7.depth20:eq(0)>A.tribeeventscalendarmonth__calendareventtooltiptitlelink.tribecommonanchorthin.depth21:eq(0)"
-      ],
-      "eventURLTags": [
-        "H3.tribeeventscalendarmonth__calendareventtooltiptitle.tribecommonh7.depth20:eq(0)>A.tribeeventscalendarmonth__calendareventtooltiptitlelink.tribecommonanchorthin.depth21:eq(0)"
+        "HEADER.tribeeventscalendarlist__eventheader:eq(0)>H3.tribeeventscalendarlist__eventtitle.tribecommonh6.tribecommonh4minmedium:eq(0)>A.tribeeventscalendarlist__eventtitlelink.tribecommonanchorthin:eq(0)"
       ]
     },
     "url": "https://www.laclefdevoute.fr/concerts-de-jazz-a-lyon/",
     "ID": "La Clef de Voûte|Lyon|France",
     "baseURL": "https://www.laclefdevoute.fr/concerts-de-jazz-a-lyon/",
-    "eventsDelimiterTag": "DIV.tribeeventscalendarmonth__calendareventtooltip.depth19",
+    "eventsDelimiterTag": "DIV.tribecommongcol",
     "dateFormat": "dd-MM-HH:mm",
     "eventURLIndex": 0,
     "linkedPage": {}
+  },
+  {
+    "name": "Ninkasi",
+    "city": "Lyon",
+    "country": "France",
+    "mainPage": {
+      "eventNameTags": [
+        "SPAN.nqceventMiniaturebottomnametext.nqceventMiniatureHovernametext:eq(0) SPAN:eq(0)"
+      ],
+      "eventPlaceTags": [
+        "SPAN.nqceventMiniaturethumbnaillocation:eq(0) SPAN:eq(0)"
+      ],
+      "eventDateTags": [
+        "DIV.nqceventMiniaturetop:eq(0)"
+      ],
+      "eventDummyTags": [
+        "A.nqceventMiniatureHoverbutton.alone:eq(0) SPAN.text:eq(0)"
+      ]
+    },
+    "multiPages": {
+      "nbPages": "5",
+      "scroll": true
+    },
+    "url": "https://www.ninkasi.fr/agenda",
+    "ID": "Ninkasi|Lyon|France",
+    "baseURL": "https://www.ninkasi.fr/",
+    "eventsDelimiterTag": "DIV.nqcgrid.jslistingajax DIV.nqceventMiniature.jseventsajaxitem.nqcgriditem",
+    "dateFormat": "dd-MM-HH:mm",
+    "eventURLIndex": 1
   },
   {
     "name": "Les SUBS",
@@ -801,34 +752,74 @@
     "baseURL": "https://www.noisehanoi.com/"
   },
   {
-    "name": "Chapelle De La Trinité",
+    "name": "Le Sucre",
     "city": "Lyon",
     "country": "France",
     "mainPage": {
       "eventDateTags": [
-        "DIV.top.depth7:eq(0)>DIV.date.depth8:eq(0)"
+        "DIV.infos.depth7:eq(0)>DIV.date.depth8:eq(0)"
       ],
       "eventStyleTags": [
-        "DIV.top.depth7:eq(0)>DIV.tags.depth8:eq(0)>DIV.tag.depth9"
+        "DIV.infos.depth7:eq(0)>DIV.type.depth8:eq(0)"
       ],
       "eventNameTags": [
-        "A.depth7:eq(0)>H3.artist.depth8:eq(0)",
-        "A.depth7:eq(0)>H2.depth8:eq(0)"
+        "DIV.vignette.depth7:eq(0)>DIV.labels.depth8:eq(0)>DIV.titre.depth9:eq(0)",
+        "DIV.vignette.depth7:eq(0)>DIV.labels.depth8:eq(0)>DIV.artistes.depth9:eq(0)>DIV.depth10"
+      ]
+    },
+    "url": "https://le-sucre.eu/agenda/",
+    "defaultStyle": "Electro",
+    "ID": "Le Sucre|Lyon|France",
+    "baseURL": "https://le-sucre.eu/agenda/",
+    "eventsDelimiterTag": "A.pureu11.pureumd12.pureulg14.pureug.agendacard.depth6",
+    "eventURLIndex": 0,
+    "dateFormat": "dd-MM"
+  },
+  {
+    "name": "Hot Club",
+    "city": "Lyon",
+    "country": "France",
+    "mainPage": {
+      "eventNameTags": [
+        "DIV.description.depth22:eq(0)>P.desctitle.depth23:eq(0)",
+        "A.depth22:eq(0)>DIV.hovervignette.depth23:eq(0)>DIV.hoverpadding.depth24:eq(0)>DIV.hovername.depth25:eq(0)"
       ],
-      "eventURLTags": [
-        "DIV.bottom.depth7:eq(0)>A.btn.depth8:eq(0)"
+      "eventDateTags": [
+        "DIV.description.depth22:eq(0)>P.descdate.depth23:eq(0)",
+        "A.depth22:eq(0)>DIV.hovervignette.depth23:eq(0)>DIV.hoverpadding.depth24:eq(0)>DIV.hoverdate.depth25:eq(0)"
       ]
     },
     "aliases": [
-      "Chapelle De La Trinite",
-      "Chapelle De La Trinite A Lyon"
+      "Hot Club de Lyon"
     ],
-    "url": "https://trinitelyon.com/programmation/",
-    "defaultStyle": "Classique",
-    "ID": "Chapelle De La Trinité|Lyon|France",
-    "baseURL": "https://trinitelyon.com/programmation/",
+    "url": "https://www.hotclubjazzlyon.com/agenda/",
+    "ID": "Hot Club|Lyon|France",
+    "baseURL": "https://www.hotclubjazzlyon.com/agenda/",
     "eventURLIndex": 0,
-    "dateFormat": "dd-MM-yyyy",
-    "eventsDelimiterTag": "DIV.left.depth6"
+    "dateFormat": "",
+    "eventsDelimiterTag": "DIV.itemcontent.depth21"
+  },
+  {
+    "name": "Rock N Eat",
+    "city": "Lyon",
+    "country": "France",
+    "mainPage": {},
+    "aliases": [
+      "Bar Rock'n eat",
+      "Le Rock N Eat"
+    ],
+    "url": "https://www.rockneat.com/Programmation",
+    "ID": "Rock N Eat|Lyon|France"
+  },
+  {
+    "name": "La Pente",
+    "city": "Lyon",
+    "country": "France",
+    "mainPage": {},
+    "url": "https://www.lapente.fr/evenements",
+    "ID": "La Pente|Lyon|France",
+    "multiPages": {
+      "scroll": true
+    }
   }
 ]
