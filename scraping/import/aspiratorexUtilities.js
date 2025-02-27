@@ -196,50 +196,41 @@ async function downloadLinkedPages(venue, filePath, pageList, verbose = false){
 }
   
   
-function getManualLinksFromPage(page,delimiter,atag){
+// deprecated
+// function getManualLinksFromPage(page,delimiter,atag){
+//   const $ = cheerio.load(page);
+//   let res = [];
+//   $(delimiter).each(function () {
+//     const block = $(this).html();
+//     const $b = cheerio.load(block);
+//     const href = getHrefFromAncestor($b(atag));
+//     // const href = $b(atag).attr('href');
+//     res.push(href);
+//   });
+//   return res;
+// }
+  
+
+function getLinksFromPage(page,delimiter, atag){// get the URL from atag (optional), or from the delimiters if atag is not present
   const $ = cheerio.load(page);
   let res = [];
   $(delimiter).each(function () {
-    const block = $(this).html();
-    const $b = cheerio.load(block);
-    const href = getHrefFromAncestor($b(atag));
-    // const href = $b(atag).attr('href');
-    res.push(href);
+    let href;
+    if (atag){
+      const block = $(this).html();
+      const $b = cheerio.load(block);
+      href = getHrefFromAncestor($b(atag));
+    }else{
+      href = $(this).attr('href');
+    }
+    if (href){
+      res.push(href);
+    }
   });
   return res;
 }
-  
-function getLinksFromPage(page,delimiter,index){
-  const $ = cheerio.load(page);
-  // console.log($.html());
-  let res = [];
-  if (index == 0){// the URL is in A href 
-    $(delimiter).each(function () {
-      // console.log('geg',$(this).html());
-      // const href = $(this).attr('href');
-      const href = getHrefFromAncestor($(this));
-      res.push(href);
-    });
-  }else{// URL is in inner tags
-    index = index - 1;
-    let events = [];
-    $(delimiter).each((i, element) => {
-      let ev = $(element).html();
-      events.push(ev);
-    });
-    events.forEach((eve,eveIndex) =>{
-      const $eventBlock = cheerio.load(eve);
-      const tagsWithHref = $eventBlock('a[href]');
-      const hrefs = $eventBlock(tagsWithHref[index]).attr('href');
-      res = res.concat(hrefs);
-    }); 
-  }
-  //console.log(res);
-  return res;
-}
-  
-  
-  
+
+
   
 async function erasePreviousHtmlFiles(filePath){
 
@@ -272,28 +263,29 @@ function shortList(list){
 function getHrefListFrom(pageList,venue){
   let hrefList;
   if (venue.mainPage.hasOwnProperty('eventURLTags')){// URL is found manually
-    hrefList = pageList.map((page)=>getManualLinksFromPage(page,venue.eventsDelimiterTag,venue.mainPage.eventURLTags[0])).flat();
-  }else{
-    let index = venue.hasOwnProperty('eventURLIndex')?venue.eventURLIndex:0;
-    hrefList = pageList.map((page)=>getLinksFromPage(page,venue.eventsDelimiterTag,index)).flat();
+    hrefList = pageList.map((page)=>getLinksFromPage(page,venue.eventsDelimiterTag,venue.mainPage.eventURLTags[0])).flat();
+  }else{// URL is found in delimiter if it exists
+    hrefList = pageList.map((page)=>getLinksFromPage(page,venue.eventsDelimiterTag)).flat();
   }
   // get the list of URLs to download
   hrefList = removeDoubles(hrefList.filter(el => el !== undefined));
   hrefList = hrefList.map((el) => makeURL(venue.baseURL,el));
   return hrefList;
+
 }
 
 function getHrefFromAncestor(tag){
   if (tag.length === 0){
-    console.log("\x1b[31mtag not found (null) in getHrefFromAncestor (aspiratorexUtilities.js).\x1b[0m");
     return null;
   }
-  // console.log(tag);
-  if (tag.attr('href')){
-    return tag.attr('href');
+  while (tag.length > 0){
+    if (tag.attr('href')){
+      return tag.attr('href');
+    }
+    tag = tag.parent();
   }
-  // console.log(tag.parent());
-  return getHrefFromAncestor(tag.parent());
+  console.log('Error');
+  throw new Error("null tag.");
 }
 
 

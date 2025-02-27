@@ -69,13 +69,15 @@ async function scrapFiles(venues) {
       console.log('\x1b[31m%s\x1b[0m', 'Aucun délimiteur de bloc d\'événement défini pour '+venue.name);
       err = true;
     }
-    if (!venue.hasOwnProperty('mainPage') || !(venue.mainPage.hasOwnProperty('eventNameTags') || venue.mainPage.hasOwnProperty('eventNameRegex'))){
-      console.log('\x1b[31m%s\x1b[0m', 'Aucun délimiteur de nom d\'événement défini pour '+venue.name);
-      err = true;
+    if (!venue.hasOwnProperty('mainPage') 
+      || !(venue.mainPage.hasOwnProperty('eventNameTags') || venue.mainPage.hasOwnProperty('eventMultiNameTags') || venue.mainPage.hasOwnProperty('eventNameRegex'))){
+        console.log('\x1b[31m%s\x1b[0m', 'Aucun délimiteur de nom d\'événement défini pour '+venue.name);
+        err = true;
     }
-    if (!venue.hasOwnProperty('mainPage') || !(venue.mainPage.hasOwnProperty('eventDateTags') || venue.mainPage.hasOwnProperty('eventDateRegex'))){
-      console.log('\x1b[31m%s\x1b[0m', 'Aucun délimiteur de date d\'événement défini pour '+venue.name);
-      err = true;
+    if (!venue.hasOwnProperty('mainPage') 
+      || !(venue.mainPage.hasOwnProperty('eventDateTags') || venue.mainPage.hasOwnProperty('eventDateTags') || venue.mainPage.hasOwnProperty('eventDateRegex'))){
+        console.log('\x1b[31m%s\x1b[0m', 'Aucun délimiteur de date d\'événement défini pour '+venue.name);
+        err = true;
     }
     if (!err){
       totalEventList = totalEventList.concat(await analyseFile(venue));
@@ -180,28 +182,38 @@ async function analyseFile(venue) {
         //extract URL
         let eventURL;
         try{
-          if (!venue.mainPage.hasOwnProperty('eventURLTags')){
-            if (venue.hasOwnProperty('eventURLIndex') && venue.eventURLIndex === -1){
-              eventURL =venue.baseURL;
-            }else{
-              let index = venue.hasOwnProperty('eventURLIndex')?venue.eventURLIndex:0;
-              if (index == 0){// the URL is in A href
-                  eventURL = makeURL(venue.baseURL,hrefInDelimiterList[eveIndex]);
-              }else{// URL is in inner tags
-                  index = index - 1;
-                const tagsWithHref = $eventBlock('a[href]');
-                const hrefFromAttribute = $eventBlock(tagsWithHref[index]).attr('href');
-                if (hrefFromAttribute){
-                  eventURL = makeURL(venue.baseURL,hrefFromAttribute);
-                }else{
-                  eventURL = $eventBlock(tagsWithHref[index]).text();
-                }     
-              }
-            }
-          }else{ // if a delimiter for the URL has been defined
+          // simplified version, do not use eventURLIndex anymore. Tag with URL must be specified,
+          // otherwise an URL will be automatically found in the delimiter if it exists.
+          if (venue.mainPage.hasOwnProperty('eventURLTags')){// if a delimiter for the URL has been defined
             eventURL = makeURL(venue.baseURL,getHrefFromAncestor($eventBlock(venue.mainPage.eventURLTags[0])));
             eventInfo.eventURL = eventURL;
+          }else if (hrefInDelimiterList[eveIndex]){// the URL is in A href
+            eventURL = makeURL(venue.baseURL,hrefInDelimiterList[eveIndex]);
           }
+          eventInfo.eventURL = eventURL;
+          
+          // if (!venue.mainPage.hasOwnProperty('eventURLTags')){
+          //   if (venue.hasOwnProperty('eventURLIndex') && venue.eventURLIndex === -1){
+          //     eventURL =venue.baseURL;
+          //   }else{
+          //     let index = venue.hasOwnProperty('eventURLIndex')?venue.eventURLIndex:0;
+          //     if (index == 0){// the URL is in A href
+          //         eventURL = makeURL(venue.baseURL,hrefInDelimiterList[eveIndex]);
+          //     }else{// URL is in inner tags
+          //         index = index - 1;
+          //       const tagsWithHref = $eventBlock('a[href]');
+          //       const hrefFromAttribute = $eventBlock(tagsWithHref[index]).attr('href');
+          //       if (hrefFromAttribute){
+          //         eventURL = makeURL(venue.baseURL,hrefFromAttribute);
+          //       }else{
+          //         eventURL = $eventBlock(tagsWithHref[index]).text();
+          //       }     
+          //     }
+          //   }
+          // }else{ // if a delimiter for the URL has been defined
+          //   eventURL = makeURL(venue.baseURL,getHrefFromAncestor($eventBlock(venue.mainPage.eventURLTags[0])));
+          //   eventInfo.eventURL = eventURL;
+          // }
         }catch(err){
           writeToLog('error',eventInfo,["\x1b[31mErreur lors de la récupération de l\'URL.\x1b[0m",err],true);
         }
@@ -389,7 +401,12 @@ function  displayEventLog(eventInfo){
       console.log(key.replace('event','')+': %s',eventInfo[key.replace('Tags','')]);
     }
   });
-  console.log((eventInfo.eventURL)+'\n');
+  if (eventInfo.eventURL){
+    console.log((eventInfo.eventURL)+'\n');
+  }else{
+    console.log('(No URL defined.)\n');
+  }
+  
 }
 
 function  displayEventFullDetails(eventInfo){

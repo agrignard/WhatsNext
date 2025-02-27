@@ -85,15 +85,29 @@
                         </div>
                         <textarea id="eventNameTags" class="eventTags scrapTextBox"
                             placeholder="Tags will be filled automatically"></textarea>
-                        <!-- regex  -->
-                        <div id="eventNameRegexpPanel" class="regexpPanel SCRPXhighlightName normalPadding">
-                            <div id="eventNameRegexpTextBefore" class="regexpTextBefore verySmallBottomMargin">text</div>
-                            <div class="regexpResult">
-                                <input type="text" id="eventNameRegexpInput" class="regexpInput regexpMatch verySmallBottomMargin" placeholder="Enter Regex" size="30">
-                                <button id="eventNameRegexpButton" class="regexpButton normalButton activeButton">&gt;</button>
-                                <input type="text" id="eventNameRegexpReplace" class="regexpInput  regexpReplace verySmallBottomMargin" size="10" >
-                                <div id="eventNameRegexpTextAfter" class="regexpTextAfter">text</div>
-                            </div>
+                    </div>
+                    <!-- name sub event-->
+                    <div id="eventMultiName" class="scrapElement SCRPXhighlightName subEvent">
+                        <div class="verySmallBottomMargin panelHeader">
+                            <div class="title">Name (sub-event)</div>
+                            <div class="headerButtons">
+                                <button id="groupTagsButtonMultiName" class="groupTagsButton normalButton activeGroupTagButton">G</button>
+                                <button id="eventMultiNameRegexActivateButton" class="regexActivateButton normalButton inactive">R</button>
+                            </div>  
+                        </div>
+                        <div class="scrapPanelToHideWhenRegex">
+                            <textarea id="eventMultiNameTags" class="eventTags scrapTextBox" rows="1" cols="50"
+                                placeholder="Tags will be filled automatically"></textarea>
+                        </div>
+                    </div>
+                    <!-- name regex  -->
+                    <div id="eventNameRegexpPanel" class="regexpPanel SCRPXhighlightName normalPadding">
+                        <div id="eventNameRegexpTextBefore" class="regexpTextBefore verySmallBottomMargin">text</div>
+                        <div class="regexpResult">
+                            <input type="text" id="eventNameRegexpInput" class="regexpInput regexpMatch verySmallBottomMargin" placeholder="Enter Regex" size="30">
+                            <button id="eventNameRegexpButton" class="regexpButton normalButton activeButton">&gt;</button>
+                            <input type="text" id="eventNameRegexpReplace" class="regexpInput  regexpReplace verySmallBottomMargin" size="10" >
+                            <div id="eventNameRegexpTextAfter" class="regexpTextAfter">text</div>
                         </div>
                     </div>
                     <!-- event date -->
@@ -112,18 +126,36 @@
                                 <div id="dateFormatText"></div>
                             </div>
                         </div>
-                        <div id="eventDateRegexpPanel" class="regexpPanel SCRPXhighlightDate normalPadding">
-                            <div id="eventDateRegexpTextBefore" class="regexpTextBefore verySmallBottomMargin">text
+                    </div>
+                    <!-- sub event date -->
+                    <div id="eventMultiDate" class="scrapElement SCRPXhighlightDate subEvent">
+                        <div class="verySmallBottomMargin panelHeader">
+                            <div class="title" style="display: inline;">Date and time (sub-event)</div>
+                            <div class="headerButtons">
+                                <button id="groupTagsButtonMultiDate" class="groupTagsButton normalButton activeGroupTagButton">G</button>
+                                <button id="eventMultiDateRegexActivateButton" class="regexActivateButton normalButton inactive">R</button>
+                            </div>   
+                        </div>
+                        <div class="scrapPanelToHideWhenRegex">
+                            <textarea id="eventMultiDateTags" class="eventTags scrapTextBox verySmallBottomMargin" rows="1"
+                                cols="50" placeholder="Tags will be filled automatically"></textarea>
+                            <div id="MultidateFormatPanel">
+                                <div id="dateFormatText"></div>
                             </div>
-                            <div class="regexpResult">
-                                <input type="text" id="eventDateRegexpInput"
-                                    class="regexpInput regexpMatch verySmallBottomMargin" placeholder="Enter Regex"
-                                    size="30">
-                                <button id="eventDateRegexpButton" class="regexpButton normalButton activeButton">&gt;</button>
-                                <input type="text" id="eventDateRegexpReplace"
-                                    class="regexpInput regexpReplace verySmallBottomMargin" size="10">
-                                <div id="eventDateRegexpTextAfter" class="regexpTextAfter">text</div>
-                            </div>
+                        </div>
+                    </div>
+                    <!-- date regex panel -->
+                    <div id="eventDateRegexpPanel" class="regexpPanel SCRPXhighlightDate normalPadding">
+                        <div id="eventDateRegexpTextBefore" class="regexpTextBefore verySmallBottomMargin">text
+                        </div>
+                        <div class="regexpResult">
+                            <input type="text" id="eventDateRegexpInput"
+                                class="regexpInput regexpMatch verySmallBottomMargin" placeholder="Enter Regex"
+                                size="30">
+                            <button id="eventDateRegexpButton" class="regexpButton normalButton activeButton">&gt;</button>
+                            <input type="text" id="eventDateRegexpReplace"
+                                class="regexpInput regexpReplace verySmallBottomMargin" size="10">
+                            <div id="eventDateRegexpTextAfter" class="regexpTextAfter">text</div>
                         </div>
                     </div>
                     <!-- event style -->
@@ -139,18 +171,33 @@
                             <textarea id="eventStyleTags" class="eventTags scrapTextBox" rows="1" cols="50"
                                 placeholder="Tags will be filled automatically"></textarea>
                         </div>
-                        <div id="eventStyleRegexpPanel" class="regexpPanel SCRPXhighlightStyle normalPadding">
-                            <div id="eventStyleRegexpTextBefore" class="regexpTextBefore verySmallBottomMargin">text
-                            </div>
-                            <div class="regexpResult">
-                                <input type="text" id="eventStyleRegexpInput"
-                                    class="regexpInput regexpMatch verySmallBottomMargin" placeholder="Enter Regex"
-                                    size="30">
-                                <button id="eventStyleRegexpButton" class="regexpButton normalButton activeButton">&gt;</button>
-                                <input type="text" id="eventStyleRegexpReplace"
-                                    class="regexpInput regexpReplace verySmallBottomMargin" size="10">
-                                <div id="eventStyleRegexpTextAfter" class="regexpTextAfter">text</div>
-                            </div>
+                    </div>
+                    <!-- style sub event-->
+                    <div id="eventMultiStyle" class="scrapElement SCRPXhighlightStyle subEvent">
+                        <div class="verySmallBottomMargin panelHeader">
+                            <div class="title">Style (sub-event)</div>
+                            <div class="headerButtons">
+                                <button id="groupTagsButtonMultiStyle" class="groupTagsButton normalButton activeGroupTagButton">G</button>
+                                <button id="eventMultiStyleRegexActivateButton" class="regexActivateButton normalButton inactive">R</button>
+                            </div>  
+                        </div>
+                        <div class="scrapPanelToHideWhenRegex">
+                            <textarea id="eventMultiStyleTags" class="eventTags scrapTextBox" rows="1" cols="50"
+                                placeholder="Tags will be filled automatically"></textarea>
+                        </div>
+                    </div>
+                    <!-- style regex panel -->
+                    <div id="eventStyleRegexpPanel" class="regexpPanel SCRPXhighlightStyle normalPadding">
+                        <div id="eventStyleRegexpTextBefore" class="regexpTextBefore verySmallBottomMargin">text
+                        </div>
+                        <div class="regexpResult">
+                            <input type="text" id="eventStyleRegexpInput"
+                                class="regexpInput regexpMatch verySmallBottomMargin" placeholder="Enter Regex"
+                                size="30">
+                            <button id="eventStyleRegexpButton" class="regexpButton normalButton activeButton">&gt;</button>
+                            <input type="text" id="eventStyleRegexpReplace"
+                                class="regexpInput regexpReplace verySmallBottomMargin" size="10">
+                            <div id="eventStyleRegexpTextAfter" class="regexpTextAfter">text</div>
                         </div>
                     </div>
                     <!-- event place -->
@@ -166,27 +213,52 @@
                             <textarea id="eventPlaceTags" class="eventTags scrapTextBox" rows="1" cols="50"
                                 placeholder="Tags will be filled automatically"></textarea>
                         </div>
-                        <div id="eventPlaceRegexpPanel" class="regexpPanel SCRPXhighlightPlace normalPadding">
-                            <div id="eventPlaceRegexpTextBefore" class="regexpTextBefore verySmallBottomMargin">text
-                            </div>
-                            <div class="regexpResult">
-                                <input type="text" id="eventPlaceRegexpInput"
-                                    class="regexpInput regexpMatch verySmallBottomMargin" placeholder="Enter Regex"
-                                    size="30">
-                                <button id="eventPlaceRegexpButton" class="regexpButton normalButton activeButton">&gt;</button>
-                                <input type="text" id="eventPlaceRegexpReplace"
-                                    class="regexpInput regexpReplace verySmallBottomMargin" size="10">
-                                <div id="eventPlaceRegexpTextAfter" class="regexpTextAfter">text</div>
-                            </div>
+                    </div>
+                    <!-- place sub event-->
+                    <div id="eventMultiPlace" class="scrapElement SCRPXhighlightPlace subEvent">
+                        <div class="verySmallBottomMargin panelHeader">
+                            <div class="title">Place (sub-event)</div>
+                            <div class="headerButtons">
+                                <button id="groupTagsButtonMultiPlace" class="groupTagsButton normalButton activeGroupTagButton">G</button>
+                                <button id="eventMultiPlaceRegexActivateButton" class="regexActivateButton normalButton inactive">R</button>
+                            </div>  
+                        </div>
+                        <div class="scrapPanelToHideWhenRegex">
+                            <textarea id="eventMultiPlaceTags" class="eventTags scrapTextBox" rows="1" cols="50"
+                                placeholder="Tags will be filled automatically"></textarea>
+                        </div>
+                    </div>
+                    <!-- place regex panel -->
+                    <div id="eventPlaceRegexpPanel" class="regexpPanel SCRPXhighlightPlace normalPadding">
+                        <div id="eventPlaceRegexpTextBefore" class="regexpTextBefore verySmallBottomMargin">text
+                        </div>
+                        <div class="regexpResult">
+                            <input type="text" id="eventPlaceRegexpInput"
+                                class="regexpInput regexpMatch verySmallBottomMargin" placeholder="Enter Regex"
+                                size="30">
+                            <button id="eventPlaceRegexpButton" class="regexpButton normalButton activeButton">&gt;</button>
+                            <input type="text" id="eventPlaceRegexpReplace"
+                                class="regexpInput regexpReplace verySmallBottomMargin" size="10">
+                            <div id="eventPlaceRegexpTextAfter" class="regexpTextAfter">text</div>
                         </div>
                     </div>
                     <!-- event url -->
                     <div id="eventURL" class="scrapElement SCRPXhighlightURL">
-                        <div class="title">URL to the event page
-                            <div class="subtitle" style="display:inline"></div>
+                        <div class="verySmallBottomMargin panelHeader">
+                            <div class="title">Event page URL</div>
                         </div>
                         <div class="scrapPanelToHideWhenRegex">
                             <textarea id="eventURLTags" class="eventTags scrapTextBox eventURLgroup" rows="1" cols="50"
+                                placeholder="Tags will be filled automatically"></textarea>
+                        </div>
+                    </div>
+                    <!-- url sub event-->
+                    <div id="eventMultiURL" class="scrapElement SCRPXhighlightURL subEvent">
+                        <div class="title">URL (sub-event)
+                            <div class="subtitle" style="display:inline"></div>
+                        </div>
+                        <div class="scrapPanelToHideWhenRegex">
+                            <textarea id="eventMultiURLTags" class="eventTags scrapTextBox eventURLgroup" rows="1" cols="50"
                                 placeholder="Tags will be filled automatically"></textarea>
                         </div>
                     </div>

@@ -57,11 +57,23 @@ body, html {
   padding: 0;
 }
 
+/* inactive is used to prevent buttons from working*/
 .easyButton.inactive{
   background-color: rgb(187, 196, 227);
 }
 
 .easyButton.inactive:hover{
+  /* background-color: rgb(134, 134, 134); */
+  background-color: rgb(187, 196, 227);
+  cursor: default;
+}
+
+/* same than inactive ibut specific to URL button*/
+.easyButton.inactiveURL{
+  background-color: rgb(187, 196, 227);
+}
+
+.easyButton.inactiveURL:hover{
   /* background-color: rgb(134, 134, 134); */
   background-color: rgb(187, 196, 227);
   cursor: default;
@@ -160,16 +172,35 @@ padding: 2px 6px;
 }
   
 .easyPanelLine{
+  flex-grow: 1;
   display: flex;
   align-items: center;
-  margin-top: 1px;
-  margin-bottom: 1px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
+
+.easyPanelLine:has(+ .easyPanelLine) {
+  margin-bottom: 2px;
+}
+
+.subEventRightDiv{
+  display: flex;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 100%; 
+  align-items: stretch;
+  /* align-items: center; */
+  margin: 0px;
+}
+
 
 .easyField{
   border: none;
-  flex-grow: 1;
+  flex: 1 1 auto;
+  min-width: 10px;
   height: 18px;
+  width: 100%;
 }
 
 /* Style pour mettre en surbrillance l'option sélectionnée */
@@ -181,35 +212,64 @@ background-color: lightblue;
   background-color: rgb(52, 152, 219);
 }
 
+.SCRPXhighlightName.subEvent {
+  background-color: rgba(52, 152, 219,0.8);
+}
+
 .SCRPXhighlightDate {
   background-color: rgb(46, 204, 113);
+}
+
+.SCRPXhighlightDate.subEvent {
+  background-color: rgba(46, 204, 113, 0.8);
 }
 
 .SCRPXhighlightStyle {
   background-color: rgb(243, 156, 18);
 }
 
+.SCRPXhighlightStyle.subEvent {
+  background-color: rgba(243, 156, 18,0.8);
+}
+
 .SCRPXhighlightPlace{
     background-color: rgb(155, 89, 182);
 }
 
-.SCRPXhighlightURL{
+.SCRPXhighlightPlace.subEvent{
+  background-color: rgba(155, 89, 182, 0.8);
+}
+
+.SCRPXhighlightURL:not(.SCRPXhighlightName):not(.SCRPXhighlightDate):not(.SCRPXhighlightStyle):not(.SCRPXhighlightPlace){
   background-color: rgb(241, 196, 15);
 }
 
+.SCRPXhighlightURL.subEvent:not(.SCRPXhighlightName):not(.SCRPXhighlightDate):not(.SCRPXhighlightStyle):not(.SCRPXhighlightPlace){
+  background-color: rgba(241, 196, 15, 0.8);
+} */
 
-.SCRPXhighlightURLOverlay{
+.SCRPXshadow{
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+}
+
+.easyFieldBg{
+  opacity: 0.5;
+}
+
+
+.SCRPXhighlightURL{
   background-image: repeating-linear-gradient(
-    45deg,        /* Angle des rayures */
-    rgb(241, 196, 15) 0px,  /* Couleur des rayures semi-transparentes */
-    rgb(241, 196, 15) 10px,
-    transparent 10px,  /* Espace transparent */
-    transparent 20px  /* Largeur totale d’un cycle */
+    90deg,        
+    rgb(241, 196, 15) 0px,  
+    rgb(241, 196, 15) 30px,
+    transparent 30px, 
+    transparent 60px 
   );
 }
 
 
-.SCRPXhighlightMultiName {
+
+/* .SCRPXhighlightMultiName {
   border: 2px dashed rgb(42, 140, 205); 
 }
 
@@ -227,27 +287,32 @@ background-color: lightblue;
 
 .SCRPXhighlightMultiURL{
   border: 2px dashed rgb(206, 167, 12);
-}
+} */
 
 
-.easyButtonName:hover{
+.easyButtonName:not(.SCRPXhighlightName):hover{
   background-color: rgb(52, 152, 219);
+  opacity: 0.5;
 }
 
-.easyButtonDate:hover{
+.easyButtonDate:not(.SCRPXhighlightDate):hover{
   background-color: rgb(46, 204, 113);
+  opacity: 0.5;
 }
 
-.easyButtonStyle:hover{
+.easyButtonStyle:not(.SCRPXhighlightStyle):hover{
   background-color: rgb(243, 156, 18);
+  opacity: 0.5;
 }
 
-.easyButtonPlace:hover{
+.easyButtonPlace:not(.SCRPXhighlightPlace):hover{
     background-color: rgb(155, 89, 182);
+    opacity: 0.5;
 }
 
-.easyButtonURL:hover{
+.easyButtonURL:not(.SCRPXhighlightURL):hover{
   background-color: rgb(241, 196, 15);
+  opacity: 0.5;
 }
 
 .easyRemoveButton{
@@ -417,6 +482,10 @@ background-color: lightblue;
     margin-right: 5px; /* Marge entre les éléments */
 }
 
+/* .subEvent{
+  opacity: 0.8;
+} */
+
 
 .scrapTextBox{
   width: calc(100% - 10px);
@@ -427,7 +496,7 @@ background-color: lightblue;
   font-family: sans-serif;
   font-size: 85%;
   resize: none;
-  margin-bottom: 5px;
+  margin-bottom: 0px;
   margin-right: 5px;
   /* min-height: calc(1ch + 10px); */
 }
@@ -460,20 +529,45 @@ background-color: lightblue;
 }
 .SCRPXeventBlock {
   border: 2px solid black; 
-  padding: 10px; 
+  padding: 5px; 
+  padding-left: 25px;
   display: inline-block; /* Permet à l'élément de s'ajuster à la largeur du contenu */
   margin: 1px;
   background-color: rgba(231, 76, 60, 0.2);
   margin-bottom: 10px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+
+.SCRPXsubEvent{
+  border: 2px solid rgb(45, 45, 45); 
+  margin-bottom: 3px;
+}
+
+
+custom-a {
+  color: blue;
+  text-decoration: underline;
+  display: block; 
+  padding: 5px;
+}
+
+.SCRPXsubEventHeader{
+  margin: 0px;
+  padding: 1px;
+  font-size: 40%;
+  font-weight: bold;
+  text-decoration: none !important;
+  color: rgb(254, 243, 243);
+  background-color: rgb(45, 45, 45);
 }
 
 .SCRPXeventBlockWithURL{
-  outline: 4px dashed rgb(241, 196, 15);  /* Bordure en tirets rouge */
-  outline-offset: -4px;
+  outline: 4px solid rgb(241, 196, 15);  /* Bordure en tirets rouge */
+  outline-offset: -5px;
 }
 
 .focusedOn {
-  border: 2px dashed rgb(231, 76, 60);; 
+  border: 2px solid rgb(231, 76, 60);; 
   padding: 10px; 
   display: inline-block; /* Permet à l'élément de s'ajuster à la largeur du contenu */
   margin: 1px;
@@ -513,7 +607,9 @@ background-color: lightblue;
 
 .regexpPanel{
   margin: 0px;
-  padding: 0px;
+  padding: 5px;
+  padding-top: 3px;
+  padding-bottom: 3px;
 }
 
 .regexpInput {
@@ -577,8 +673,12 @@ background-color: lightblue;
 
 
 
-.scrapTextBox:focus, input:focus {
+.scrapTextBox:focus {
     outline: 2px solid rgb(189, 195, 199); 
+}
+
+input:focus {
+ outline: 0px;
 }
 
 .eventTags{
@@ -622,4 +722,108 @@ background-color: lightblue;
 input[type="number"] {
   -moz-appearance: textfield; /* Forcer l'affichage sur Firefox */
   appearance: auto; /* Forcer sur Chrome/Electron */
+}
+
+
+
+
+
+
+/* context menu */
+
+.context-menu {
+  position: absolute;
+  background: rgb(255, 255, 255);
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  padding: 2px;
+  display: none;
+  z-index: 1000;
+  font-family: sans-serif;
+}
+
+/* Boutons carrés */
+.menu-buttons {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 1px;
+  padding: 0px;
+}
+
+.menu-buttons button {
+  width: 40px;
+  height: 40px;
+  /* background: #eee;*/
+  border: 1px solid #aaa; 
+  cursor: pointer;
+  text-align: center;
+  padding: 0px;
+}
+
+/* .menu-buttons button:hover {
+  background: #ddd;
+} */
+
+/* Option "Événement multiple" */
+.multiple-event {
+  margin-top: 2px;
+  text-align: center;
+  padding: 2px;
+  background: #f0f0f0;
+  border: 1px solid #aaa;
+  cursor: pointer;
+}
+
+.multiple-event:hover {
+  background: #e0e0e0;
+}
+
+/* .multiEventEasyPanelGroup{
+  outline: 2px solid rgb(45,45,45); 
+  margin-bottom: 4px;
+  margin-top: 2px;
+  box-sizing: border-box;
+} */
+
+.multiEventEasyPanelGroup{
+  outline: 2px solid rgb(45,45,45); 
+  margin-bottom: 4px;
+  margin-top: 4px;
+  box-sizing: border-box;
+  display: flex;
+}
+
+.PanelSubEventHeader{
+  margin: 0px;
+  padding: 1px;
+  font-size: 50%;
+  font-weight: bold;
+  text-decoration: none !important;
+  color: rgb(254, 243, 243);
+  background-color: rgb(45, 45, 45);
+  justify-content: center; 
+  align-items: center;
+  text-align: center;
+  width: 10px;
+  writing-mode: vertical-lr; /* rotate text */
+  /* text-orientation: upright; */
+}
+
+/* .multiEventEasyPanelGroup:has(+ .PanelSubEventHeader) {
+  margin-bottom: 6px;
+} */
+
+.multiEventEasyPanelGroup:has(+ .multiEventEasyPanelGroup) {
+  margin-bottom: 5px;
+}
+
+.SCRPXmouseHighlight{
+  background-color: rgba(54, 54, 54, 0.1); 
+  transition: background-color 0.1s ease; 
+}
+
+.SCRPXmouseHighlight2{
+  /* background-color: rgba(218, 55, 55, 1);  */
+  opacity: 0.8;
+  transition: background-color 0.1s ease; 
 }

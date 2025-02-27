@@ -5,7 +5,6 @@ const fs = require('fs');
 const cheerio = require('cheerio');
 const { shell } = require('electron');
 
-
 const {parseDocument} = require('htmlparser2');
 const {app, Menu, ipcRenderer} = require('electron');
 const {loadVenuesJSONFile, loadVenueJSON, initializeVenue, saveToVenuesJSON,
@@ -41,7 +40,8 @@ const keyNames = ['Name','Date','Style','Place','URL'];
 const colorClassList = ['SCRPXhighlightName','SCRPXhighlightDate','SCRPXhighlightStyle',
                         'SCRPXhighlightPlace','SCRPXhighlightURL','SCRPXhighlightURLOverlay'];
 const reservedClassList = colorClassList.concat(['SCRPXhighlightMultiName','SCRPXhighlightMultiDate','SCRPXhighlightMultiStyle','SCRPXhighlightMultiPlace','SCRPXhighlightMultiURL',
-  'SCRPXmainTag','SCRPXeventBlock','SCRPXeventBlockInvalid','SCRPXeventBlockWithURL']);
+  'SCRPXmainTag','SCRPXeventBlock','SCRPXeventBlockInvalid','SCRPXeventBlockWithURL','SCRPXshadow','SCRPXsubEvent',
+  'SCRPXmouseHighlight','SCRPXmouseHighlight2']);
 const easyButtonClassList = ['easyButtonName','easyButtonDate','easyButtonStyle','easyButtonPlace','easyButtonURL'];
 
 const inlineTags = ['b','i','em','u','span','code','small','strong','sub','sup','del', 'ins','mark'];
@@ -59,10 +59,10 @@ const customTagName = 'custom-a';
 class customA extends HTMLElement {
   constructor() {
     super(); 
-    this.style.color = "blue";       // Texte en bleu
-    this.style.textDecoration = "underline";
-    this.style.display = "block"; // Comportement similaire à une <div>
-    this.style.padding = "5px";
+    // this.style.color = "blue";
+    // this.style.textDecoration = "underline";
+    // this.style.display = "block"; // 
+    // this.style.padding = "5px";
   }
 }
 
@@ -98,11 +98,6 @@ if (!venue.hasOwnProperty('mainPage')){
   venue.mainPage = {};
 }
 
-if (venue.hasOwnProperty('eventURLIndex') && venue.eventURLIndex === -1){
-  mustIncludeURL = false;
-  adjustURLCheckbox.checked = false;
-}
-
 // initialize new venue
 initializeVenue(venue,webSources);
 
@@ -127,10 +122,120 @@ if (lastModified){
 
 const rightPanel = document.getElementById('scrapEnDirexRightPanel');
 
+rightPanel.addEventListener("mouseover", (event) => {
+  const target = event.target; //
+
+  if (target && target.textContent.trim() !== "" && target !== principalTag) {
+      if (colorClassList.some(cls => target.classList.contains(cls))){
+        target.classList.add("SCRPXmouseHighlight2"); 
+      }else{
+        target.classList.add("SCRPXmouseHighlight"); 
+      }   
+  }
+});
+
+rightPanel.addEventListener("mouseout", (event) => {
+  event.target.classList.remove("SCRPXmouseHighlight","SCRPXmouseHighlight2"); 
+});
+
+/* add context menu panel */
+
+const contextMenu = document.createElement("div");
+contextMenu.classList.add("context-menu");
+contextMenu.style.display = "none";
+contextMenu.linkedTag = undefined;
+
+// Create buttons container
+const contextMenuButtonContainer = document.createElement("div");
+contextMenuButtonContainer.classList.add("menu-buttons");
+
+// Create multiple event div
+const multipleEventOption = document.createElement("div");
+multipleEventOption.classList.add("multiple-event");
+multipleEventOption.textContent = "Mark as sub event";
+multipleEventOption.addEventListener("click", () => {
+    console.log("sub event");
+    const easyline = easyLines.find(el => el.tag === contextMenu.linkedTag);
+    console.log(easyline);
+    const event = new Event("contextmenu", { bubbles: true, cancelable: true });
+    console.log(easyline.querySelector('input'));
+    easyline.querySelector('input').dispatchEvent(event);
+    closeContextMenu();
+  }
+);
+
+// Add elements to the context menu
+contextMenu.appendChild(contextMenuButtonContainer);
+contextMenu.appendChild(multipleEventOption);
+document.body.appendChild(contextMenu);
+
+
+// close the context menu and remove the css attribute of the highlighted tags
+function closeContextMenu(){
+  if (contextMenu.style.display !== "none"){
+    contextMenu.style.display = "none";
+  }
+  if (contextMenu.linkedTag){
+    contextMenu.linkedTag.classList.remove('SCRPXshadow');
+  }
+  contextMenu.linkedTag = undefined;
+}
+
+rightPanel.addEventListener("contextmenu", (event) => {
+  event.preventDefault();
+
+  const clickedElement = event.target;
+  closeContextMenu();
+
+  if (!subTags[currentPage].some(el => el === clickedElement)){
+    return;
+  }
+
+  contextMenu.linkedTag = clickedElement;
+
+  multipleEventOption.textContent = clickedElement.isMulti?"Remove sub event mark":"Mark as sub event";
+  
+  // for each button of the easypanel, create one in the context menu, and dispatch event to the original button
+  contextMenuButtonContainer.innerHTML = '';
+  const myEasyLine = easyLines.find(el => el.tag === contextMenu.linkedTag);
+  const buttons = myEasyLine.querySelectorAll('.easyButton');
+  for (const button of buttons){
+    const b = document.createElement("button");
+    b.textContent = button.eventTagType.replace('event','').replace('Tags','');
+    Array.from(button.classList).filter(el => el.startsWith('easyButton') || el.startsWith('SCRPX'))
+          .forEach(el => b.classList.add(el));
+    contextMenuButtonContainer.appendChild(b);
+    b.addEventListener("click", (event) => {
+      event.preventDefault();
+      button.dispatchEvent(new Event("click"));
+      closeContextMenu();
+    })
+  }
+
+  clickedElement.classList.add('SCRPXshadow');
+
+  contextMenu.style.top = `${event.clientY}px`;
+  contextMenu.style.left = `${event.clientX}px`;
+  contextMenu.style.display = "block";
+
+});
+
+
 rightPanel.addEventListener('click', (event) => {
   event.preventDefault();
   event.stopPropagation();
+
+  if (contextMenu.style.display !== "none"){
+    closeContextMenu();
+    return;
+  }
+  
   const clickedElement = event.target;
+
+  // do nothing if the click is on an element that has been added by scrapex
+  if (clickedElement.classList.contains('SCRPXsubEventHeader')){
+    return;
+  }
 
   // if the element clicked is the extend button, decrease one level for the principal tag
   if (clickedElement === extendButton){
@@ -209,25 +314,22 @@ function makePrincipalTag(initialTag){
       if (venue.mainPage.hasOwnProperty('eventURLTags')){
         delete venue.mainPage.eventURLTags; 
       }
-      if (venue.mainPage.hasOwnProperty('eventURLIndex')){
-        delete venue.mainPage.eventURLIndex;
-      }
     }
-  
     principalTagIndex = eventTagList.findIndex(el => el === principalTag);
     eventSelectorIndex.value = principalTagIndex+1;
     oldEventIndex = principalTagIndex+1;
 
     delimiterTagField.value = cleanPath;
-    // console.log('Main tag registered :', principalTag.tagName);
 
     // find sub tags corresponding to each line
     subTags[currentPage] = getSubTags(principalTag);
 
+    getDescFromJSON(principalTag,subTags[currentPage]);
+
     if (mainTagHasChanged){
       populateEasyPanel();
     }else{// some tags may have change, for example if there are more events in eventTagList
-      applyTags();
+      makeSubEvents();
     }
 
     makeExtendButton(principalTag);
@@ -288,28 +390,11 @@ function adjustPrincipalTag(principalTag){
       }
     })
   }
-  // console.log(currentNumber);
   bestInfo[0] = bestInfo[0].toLowerCase()===customTagName?'A':bestInfo[0];
 
   const tagPathString = bestInfo[0]+'.'+bestInfo[1].join('.');
   return [tagPathString, currentTagList];
-  // return [bestInfo, currentTagList];
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -516,16 +601,20 @@ function setGroupButtonActivity(button, isActive){
 /*****************************/
 
 const easyPanelFields = document.getElementById('easyPanelFields');
+let easyLines;
+let subEventPath;
 
 function populateEasyPanel(){
+
   console.log("\x1b[43m\x1b[30mpopulating Easy Panel\x1b[0m");
+  easyLines = [];
   let markFirstURL = true;
   easyPanelFields.innerHTML = '';
   // create a new line in the panel for each tag
-  subTags[currentPage].forEach(tag => {
-    markFirstURL = newEasyLine(tag,markFirstURL);
+  subTags[currentPage].forEach((tag,index) => {
+    markFirstURL = newEasyLine(tag,index,markFirstURL);
   });
-  computeTags();
+  makeSubEvents();
   computeDateFormat();
 }
 
@@ -554,15 +643,14 @@ function findAncestorWithURL(tag){
 }
 
 
-
 // create new line in the easy panel. If several tags are marked as URL tags, only keep the first one
-function newEasyLine(tag, markFirstURL = true){
+function newEasyLine(tag, index, markFirstURL = true){
   const text = tag.textContent.trim().replace(/[\n\s\t]{1,}/g,' ');
-  const index = easyPanelFields.getElementsByClassName('easyField').length; //count the lines already existing
-
   // create html div panel for the line
   let newDiv = document.createElement('div');
   newDiv.classList.add('easyPanelLine');
+  newDiv.tag = tag;
+  easyLines.push(newDiv);
 
   // add tag text to the line
   let inputElement = document.createElement('input');
@@ -571,11 +659,31 @@ function newEasyLine(tag, markFirstURL = true){
   inputElement.setAttribute('type', 'text');
   inputElement.value = text;
   newDiv.appendChild(inputElement);
-
-  if (tag === principalTag){
-    inputElement.value = 'event tag';
-    inputElement.classList.add('easyPanelMainTag');
+  if (tag.isMulti){
+    inputElement.classList.add('easyFieldBg');
   }
+
+  inputElement.addEventListener("contextmenu", (event) => {
+    event.preventDefault();
+    const tagPath = getPath(principalTag,tag);
+    
+    if (tag.isMulti){
+      markAndPropagateTag(tag,{
+        desc: (tag.desc?tag.desc.replace('Multi',''):undefined),
+        isMulti: null
+      });
+      inputElement.classList.remove('easyFieldBg');
+    }else{
+      markAndPropagateTag(tag,{
+        desc: (tag.desc?tag.desc.replace('event','eventMulti'):undefined),
+        isMulti: true
+      });
+      // easyLines.forEach(el => console.log(el.tag.isMulti,el.tag.textContent.replace(/[\t\n\s]{1,}/g,' ')));
+
+      inputElement.classList.add('easyFieldBg');
+    }
+    makeSubEvents();
+  });
 
   // create buttons for changing field type (name, date, ...)
   for(i=0;i<keyNames.length;i++){
@@ -584,15 +692,16 @@ function newEasyLine(tag, markFirstURL = true){
       newEasyButton.classList.add('easyButton'); // for css
       newEasyButton.classList.add(easyButtonClassList[i]); // add class easybutton for css (coloring, hoovering)
       newEasyButton.classList.add('easyLine'+index); // used to identify buttons on the same line
-      newEasyButton.eventTagType = 'event'+keyNames[i]+'Tags'; // set the corresponding tag field
+      newEasyButton.eventTagType = 'event'+(tag.isMulti?'Multi':'')+keyNames[i]+'Tags'; // set the corresponding tag field
       newEasyButton.colorClass = colorClassList[i]; // set the color class when active
       newEasyButton.title = easyButtonClassList[i].replace('easyButton','');
+      newEasyButton.inputElement = inputElement;
       
       // if the type (name, date, ...) is the same than the current button, make it active
       if (tag.desc === newEasyButton.eventTagType){
         newEasyButton.classList.add(newEasyButton.colorClass);
       }
-      if (markFirstURL && newEasyButton.eventTagType === 'eventURLTags' && tag.isURL){
+      if (markFirstURL && newEasyButton.eventTagType.replace('Multi','') === 'eventURLTags' && tag.hasAttribute('isURL')){
         newEasyButton.classList.add(newEasyButton.colorClass);
         markFirstURL = false;
       }
@@ -600,28 +709,25 @@ function newEasyLine(tag, markFirstURL = true){
       // if the tag and ancestors have no url link, deactivate the button
       if (keyNames[i] === 'URL'){
         if (!findAncestorWithURL(tag)){
-          newEasyButton.classList.add('inactive');
+          newEasyButton.classList.add('inactiveURL');
         }else{
           newEasyButton.title = 'URL: '+findAncestorWithURL(tag).getAttribute('href');
           // URL switch button 
           newEasyButton.addEventListener('click',function() {
-            if (tag.isURL){
+            if (tag.hasAttribute('isURL')){
                 // turn button off when clicking on an active button
                 this.classList.remove(this.colorClass);
-                tag.isURL = false;
+                markAndPropagateTag(tag, {isURL: null});
             }else{
               // turn of all other URL button and remove isURL marker (there can be only one URL)
-              subTags[currentPage].forEach(tag => { 
-                tag.isURL = false;
-              });
               const easyButtons = easyPanelFields.getElementsByClassName('easyButton');
               for (button of easyButtons){
-                if (button.eventTagType === 'eventURLTags'){
+                if (button.eventTagType.replace('Multi','') === 'eventURLTags'){
                   button.classList.remove(this.colorClass);
                 }
               }
               // activate the current button
-              tag.isURL = true;
+              markAndPropagateTag(tag, {isURL: true});
               this.classList.add(this.colorClass);
             }
             computeTags();
@@ -631,6 +737,10 @@ function newEasyLine(tag, markFirstURL = true){
       }else{
         // new button for keyName !== URL
         newEasyButton.addEventListener('click',function() {
+          if (newEasyButton.classList.contains('inactive')){
+            return;
+          }
+      
           // when clicking on the button, make all buttons of the line inactive
           const buttonList = easyPanelFields.getElementsByClassName('easyLine'+index);
           for(j=0;j<buttonList.length;j++){
@@ -639,13 +749,12 @@ function newEasyLine(tag, markFirstURL = true){
             }
           }
           if (tag.desc === this.eventTagType){
-              // turn button of when clicking on an active button
-              tag.desc = undefined;
+              // turn button off when clicking on an active button
+              markAndPropagateTag(tag, {desc: null});
           }else{
             // activate the current button
-            tag.desc = this.eventTagType;
+            markAndPropagateTag(tag, {desc: this.eventTagType});
             this.classList.add(this.colorClass);
-            // tag.classList.add(this.colorClass);
           }
           computeTags();
           computeDateFormat();
@@ -679,8 +788,16 @@ function newEasyLine(tag, markFirstURL = true){
 
 function computeTags(){
   console.log('\x1b[43m\x1b[30mComputing tags\x1b[0m');
+  // remove sub events divs
+  if (subEventPath){
+    rightPanel.querySelectorAll('div.SCRPXsubEventHeader').forEach(div => div.remove());
+  }
+
   clearAllTags();
   venue[currentPage] = {};
+
+  // identify sub event delimiter
+  const subEventDelimiter = findCommonAncestor(subTags[currentPage].filter(el => el.isMulti));
   
   // get the tag strings and put them in venue
   subTags[currentPage].forEach(tag => {
@@ -688,28 +805,39 @@ function computeTags(){
       if (!venue[currentPage].hasOwnProperty(tag.desc)){
         venue[currentPage][tag.desc] = [];
       }
-      venue[currentPage][tag.desc].push(removeCustomTags(getPath(principalTag,tag)));
+      if (tag.desc.includes('Multi')){
+        // remove all references to eq(xx) to the path of the sub event delimiter, and keep those
+        // refs for the path from delimiter to tags
+        const pathAfterDelimiter = removeCustomTags(getPath(subEventDelimiter,tag));
+        const newPath = [removeCustomTags(subEventPath), pathAfterDelimiter].filter(el => el && el.length>0).join('>');
+        venue[currentPage][tag.desc].push(newPath);
+      }else{
+        venue[currentPage][tag.desc].push(removeCustomTags(getPath(principalTag,tag)));
+      }
     }
-    if (tag.isURL){
-      venue[currentPage].eventURLTags = [removeCustomTags(getPath(principalTag,tag))];
+    if (tag.hasAttribute('isURL')){
+      if (subEventDelimiter &&  isAncestorOf(subEventDelimiter,tag)){
+        const pathAfterDelimiter = removeCustomTags(getPath(subEventDelimiter,tag));
+        const newPath = [removeCustomTags(subEventPath), pathAfterDelimiter].filter(el => el && el.length>0).join('>');
+        venue[currentPage].eventMultiURLTags = [newPath];
+      }else{
+        venue[currentPage].eventURLTags = [removeCustomTags(getPath(principalTag,tag))];
+      }
     }
   });
-  // console.log('venue data',venue[currentPage]);
-
-  // propagate tags to other events in the list. Does not propagate tags that will be selected
-  // due to grouping. Does not put color css in the document (should be done after grouping)
-  applyTags(true);
-
-  // group tags and put the new tag strings to venue
-  if(Object.keys(groupTags).some(key => groupTags[key] === true)){
-    console.log('\x1b[42m\x1b[30mGrouping tags\x1b[0m');
-  }
 
   Object.keys(groupTags).forEach(key => {
     if (groupTags[key] === true && venue[currentPage].hasOwnProperty(key)){
       venue[currentPage][key] = regroupTags(venue[currentPage][key]);
     }
   });
+
+  // hide and show event tags panels
+  keyNames.map(key => ['event' + key, 'eventMulti' + key]).flat()
+    .forEach(key => {
+      const panel = document.getElementById(key);
+      panel.style.display = venue[currentPage].hasOwnProperty(key + 'Tags') ? 'block' : 'none';
+    });
   
   // update tag fields on the GUI
   for(let i = 0; i < eventTagsBoxes.length; i++){
@@ -763,10 +891,8 @@ function tagTextBoxUpdate(textBox){
   setRows(textBox);
   venue[currentPage][textBox.id] = getArray(textBox.value);
   clearAllTags(true);
-  // successively mark the tags and apply the colors
-  applyTags(true);
-  applyTags(false);
-  // applyTags(textBox.id === 'eventURLTags');
+  // easypanel tags should be marked ? does not seem necessary
+  applyTags();
   renderEventURLPanel();
 }
 
@@ -819,7 +945,7 @@ eventSelectorIndex.addEventListener('input', function(){
   
 
   subTags[currentPage] = getSubTags(principalTag);
-
+  getDescFromJSON(principalTag,subTags[currentPage]);
   populateEasyPanel();
   principalTag.classList.add('SCRPXmainTag');
   focusTo(principalTag);
@@ -845,6 +971,7 @@ regexKeys.forEach(key => {
     key: key,
     isActive: false,
     isActiveButton: document.getElementById(key+'RegexActivateButton'),
+    isActiveMultiButton: document.getElementById(key.replace('event','eventMulti')+'RegexActivateButton'),
     panel: document.getElementById(key+'RegexpPanel'),
     textBefore: document.getElementById(key+'RegexpTextBefore'),
     match: document.getElementById(key+'RegexpInput'),
@@ -859,6 +986,7 @@ regexKeys.forEach(key => {
   element.replace.style.display = 'none';
 
   element.isActiveButton.title = "Cliquez pour activer un filtre regex";
+  element.isActiveMultiButton.title = "Cliquez pour activer un filtre regex";
 
   // set visibility handler
   element.isActiveButton.addEventListener('click',()=>{
@@ -878,7 +1006,8 @@ regexKeys.forEach(key => {
       element.panel.style.display = 'none';
       element.isActiveButton.title = "Cliquez pour activer un filtre regex";
     }
-
+    element.isActiveMultiButton.classList = element.isActiveButton.classList;
+    element.isActiveMultiButton.title = element.isActiveButton.title; 
     // handlers for match and replace inputs
     element.match.addEventListener('input', function(){
       computeVenueRegexField(element);
@@ -886,6 +1015,10 @@ regexKeys.forEach(key => {
     element.replace.addEventListener('input', function(){
       computeVenueRegexField(element);
     });
+  });
+
+  element.isActiveMultiButton.addEventListener('click',()=>{
+    element.isActiveButton.dispatchEvent(new Event("click"));
   });
 
   // set replace button action
@@ -923,7 +1056,9 @@ if (venue.hasOwnProperty('regexp')){
 
 function computeVenueRegexField(element){
   if (!element.isActive || element.match.value === ''){
-    delete venue.regexp[element.key];
+    if (venue.hasOwnProperty('regexp')){
+      delete venue.regexp[element.key];
+    }
   }else{
     if (!venue.hasOwnProperty('regexp')){
       venue.regexp = {};
@@ -944,16 +1079,26 @@ function applyRegexp(element){
   if (!principalTag){
     element.textBefore.style.display = 'none';
     element.textAfter.style.display = 'none';
-    // Array.from(regexpResultPanels).forEach(el => el.style.display = 'none');
     return;
   }
   if (element.isActive){
     element.textBefore.style.display = 'block';
     element.textAfter.style.display = 'block';
-    if (venue[currentPage].hasOwnProperty(element.key+'Tags')){
-      element.textBefore.textContent = venue[currentPage][element.key+'Tags']
+    if (venue[currentPage].hasOwnProperty(element.key+'Tags') 
+        || venue[currentPage].hasOwnProperty(element.key.replace('event','eventMulti')+'Tags')){
+      element.textBefore.textContent = '';
+      if (venue[currentPage].hasOwnProperty(element.key+'Tags')){
+        element.textBefore.textContent = element.textBefore.textContent 
+          +venue[currentPage][element.key+'Tags']
               .flatMap(path => findTagsFromPath(principalTag,path))
               .map(el => el.textContent).join(' ');
+      }
+      if (venue[currentPage].hasOwnProperty(element.key.replace('event','eventMulti')+'Tags')){
+        element.textBefore.textContent = element.textBefore.textContent 
+          +venue[currentPage][element.key.replace('event','eventMulti')+'Tags']
+              .flatMap(path => findTagsFromPath(principalTag,path))
+              .map(el => el.textContent).join(' ');
+      }
       const regex = new RegExp(element.match.value);
       if (element.showReplace){
         element.textAfter.textContent = element.textBefore.textContent.replace(regex,element.replace.value);
@@ -1041,9 +1186,6 @@ function initializeInterface(){
   }else{
     loadLinkedPageContent();
   }
-  // initScrapTextStrings();
-  // initScrapTextTags();
-  
 }
 
 
@@ -1056,7 +1198,7 @@ function loadLinkedPageContent(){
   }else{
     console.log('***** Error with linked page *****');
   }
-  applyTags(false);
+  applyTags();
   computeDateFormat();
 }
 
@@ -1094,56 +1236,45 @@ function clearAllTags(clearOnlySubTags = false){
   });
 }
 
-function clearTag(tag){
-  colorClassList.forEach(el => {
-      tag.classList.remove(el);
-    });
-}
+// function clearTag(tag){
+//   colorClassList.forEach(el => {
+//       tag.classList.remove(el);
+//     });
+// }
 
 
+function applyTags(){
 
-// marktag: true: only mark the tags for history (run before grouping)
-// marktag: false: add classes to highlight the tags
-function applyTags(markTags = false){
+  console.log('\x1b[43m\x1b[30mapplying tags\x1b[0m');
 
-  if (!markTags){
-    console.log('\x1b[43m\x1b[30mapplying tags\x1b[0m');
-    eventTagList.forEach(el => {
-      el.classList.add('SCRPXeventBlock');
-      if (!venue[currentPage].eventURLTags){
-        el.classList.add('SCRPXeventBlockWithURL');
-      }
-    });
-    principalTag.classList.add('SCRPXmainTag');
+  // add css classes to event blocks
+  eventTagList.forEach(el => {
+    el.classList.add('SCRPXeventBlock');
+    if (!venue[currentPage].eventURLTags && !venue[currentPage].eventMultiURLTags
+      && el.hasAttribute('href')) {
+      el.classList.add('SCRPXeventBlockWithURL');
+    }
+  });
+  principalTag.classList.add('SCRPXmainTag');
+
+  // apply tags for sub events
+  if (subEventPath) {
+    applySubEventDelimiterTags();
   }
-
+  
 
   Object.keys(venue[currentPage]).forEach(key => {
-    className = 'SCRPXhighlight'+key.replace('event','').replace('Tags','');
+    className = 'SCRPXhighlight'+key.replace('event','').replace('Tags','').replace('Multi','');
     venue[currentPage][key].forEach(path =>{
       eventTagList.forEach(rootTag =>{
         const tags = findTagsFromPath(rootTag,path);
         tags.forEach(tag => {
-          if (markTags){
-            tag.isURL = false; 
-            if (key === 'eventURLTags'){
-              // console.log('marking URL');
-              tag.isURL = true;
-            }else{
-              tag.desc = key;
-            }
-          }else{
-            if (key === 'eventURLTags' && tag.desc){// add a striped overlay if the tag has also another key
-              tag.classList.add('SCRPXhighlightURLOverlay');
-            }else{
-              tag.classList.add(className);
-            }
-          }
+          tag.classList.add(className);
         });
       });
     })
   });
-  
+
   // if (currentPage === 'mainPage'){
   //   // div.site>div.contentarea:eq(0)>main.sitemain.wrap_agenda.allconcerts:eq(0)>div:not([class]):eq(1)>div:not([class]):eq(1)>div.smallcontent.ukwidth14m.ukgridmargin:eq(8)>div:not([class]):eq(0)>a:not([class]):eq(0)
   //   const mainTagBlock = $page(mainTagAbsolutePath);
@@ -1195,7 +1326,6 @@ function applyTags(markTags = false){
 
 
 function loadPage(){
-  
   analyzePanel.style.display = 'block';
   localPage = reduceImgSize(getFilesContent(sourcePath, nbPagesToShow));
   // replace <a> tags with something that is not conflicting with click events for right panel
@@ -1204,6 +1334,10 @@ function loadPage(){
   setDepthPrefix($page);
 
   rightPanel.innerHTML = $page.html();
+  
+
+
+
   const linkTags = rightPanel.querySelectorAll(customTagName);
   for(tag of linkTags){
     tag.title = makeURL(venue.baseURL,tag.getAttribute('href'));
@@ -1224,14 +1358,22 @@ function loadPage(){
   if (venue.hasOwnProperty('eventsDelimiterTag')){
     delimiterTagField.value = venue.eventsDelimiterTag;
     candidatePrincipalTag = findTagsFromPath(rightPanel, venue.eventsDelimiterTag)[0];
-    // eventTagList = findTagsFromPath(rightPanel, venue.eventsDelimiterTag);
-    // candidatePrincipalTag = eventTagList[0];
+  
     if (!candidatePrincipalTag){// start with default setup for automatic 
       behaviourSetup('automaticDefault');
     }else{
       behaviourSetup('initialize');
     }
-    
+
+    // set URL adjust panel
+
+    if (containsURL(candidatePrincipalTag) || venue.mainPage.hasOwnProperty('eventURLTags')){
+      mustIncludeURL = true;
+      adjustURLCheckbox.checked = true;
+    }else{
+      mustIncludeURL = false;
+      adjustURLCheckbox.checked = false;
+    }
     // console.log(eventTagList);
     // console.log(venue.eventsDelimiterTag);
     // eventTagList = rightPanel.querySelectorAll('a.pureu11.pureumd12.pureulg14.t5410.pureug.agendacard');
@@ -1260,13 +1402,11 @@ function loadPage(){
   computeMissingLinks();
   // if (validateDelimiterTags()){
   // }
-  // applyTags(true);
 }
 
 function computeMissingLinks(){
   linkedFileContent = fs.existsSync(sourcePath+'linkedPages.json')?loadLinkedPages(sourcePath):[];
   // console.log(linkedFileContent);
-  // console.log(venue, venueWithCustomTags(venue));
   const hrefList = getHrefListFrom([localPage],venueWithCustomTags(venue));
   // console.log(hrefList);
   const existingLinks = hrefList.filter(el => Object.keys(linkedFileContent).includes(el));
@@ -1373,33 +1513,33 @@ function getArray(string){
 }
 
 
-function getPath(element) {
-  let path = '';
-  let currentElement = element;
+// function getPath(element) {
+//   let path = '';
+//   let currentElement = element;
 
-  while (currentElement.length) {
-      let name = currentElement.get(0).name;
-      let id = currentElement.attr('id');
-      let className = currentElement.attr('class');
-      let index = currentElement.index() + 1; // Ajout de 1 pour commencer à l'indice 1
+//   while (currentElement.length) {
+//       let name = currentElement.get(0).name;
+//       let id = currentElement.attr('id');
+//       let className = currentElement.attr('class');
+//       let index = currentElement.index() + 1; // Ajout de 1 pour commencer à l'indice 1
 
-      let node = name;
-      if (id) {
-          // node += `#${id}`;
-          node += ':eq(0)';
-      }
-      if (className) {
-          node += `.${className.replace(/\s+/g, '.')}`;
-      }
-      if (index) {
-          node += `:eq(${index - 1})`; // Retrait de 1 pour commencer à l'indice 0
-      }
+//       let node = name;
+//       if (id) {
+//           // node += `#${id}`;
+//           node += ':eq(0)';
+//       }
+//       if (className) {
+//           node += `.${className.replace(/\s+/g, '.')}`;
+//       }
+//       if (index) {
+//           node += `:eq(${index - 1})`; // Retrait de 1 pour commencer à l'indice 0
+//       }
 
-      path = node + (path ? ' ' + path : '');
-      currentElement = currentElement.parent();
-  }
-  return path;
-}
+//       path = node + (path ? ' ' + path : '');
+//       currentElement = currentElement.parent();
+//   }
+//   return path;
+// }
 
 
 function computeDateFormat(){
@@ -1446,13 +1586,12 @@ function computeDateFormat(){
 }
 
 function renderEventURLPanel(){
-  // venue.eventURLIndex = -1; -> no URL found or no URL to use for the events
-  // venue.eventURLIndex = 0; -> URL is eventDelimiter will be used
-  // venue.eventURLIndex = n; -> not in use in the GUI
+  // console.log('render URL');
 
-  // eventURL = undefined;
+  // venue.mainPage.eventURLTags -> tags to be found in specified tag
+  // nothing -> URL will be taken from delimiter if it exists
+  // otherwise no URL will be returned
   
-
   if (!eventTagList || eventTagList.length === 0){
     eventURLPanel.style.display = 'none';
     followURLButton.style.display = 'none';
@@ -1467,15 +1606,12 @@ function renderEventURLPanel(){
     eventURLPanelWarning.textContent = 'Cannot find any URL in the event block.';
     eventURLPanelMessage.style.display = 'none';
     followURLButton.style.display = 'none';
-    venue.eventURLIndex = -1;
     setSwitchStatus();
     return;
   }
     
-  venue.eventURLIndex = 0;
   eventURLPanelWarning.style.display = 'none';
 
-  
   // if eventURLTags, is defined, try to extract the URL
   if (venue.mainPage.hasOwnProperty('eventURLTags')){
     urlTag = findTagsFromPath(principalTag,venue.mainPage.eventURLTags[0])[0];
@@ -1487,7 +1623,7 @@ function renderEventURLPanel(){
     }else{
       eventURLPanelWarning.style.display = 'block';
       followURLButton.style.display = 'none';
-      eventURLPanelWarning.textContent = 'URL tag found, but it does not contain a URL reference. Set another tag or choose a link from the list';
+      eventURLPanelWarning.textContent = 'URL tag found, but it does not contain a URL reference. Maybe the format of the web page has been changed. Set another tag or choose a link from the list';
     }
     setSwitchStatus();
     return;
@@ -1495,7 +1631,7 @@ function renderEventURLPanel(){
 
   eventURLPanelMessage.style.display = 'inline';
 
-  // if no eventURL is present, set the URL in the main delimiter as the default URL if it exists
+  // if no eventURLTag is present, set the URL in the main delimiter as the default URL if it exists
   if (principalTag.hasAttribute('href')){
     eventURL = principalTag.getAttribute('href');
     eventURLPanelMessage.textContent = 'URL found in event block: ' + eventURL;
@@ -1547,7 +1683,6 @@ function populateField(textBox, strings, append){
   if (strings.length > 0){
     strings.split('\n').forEach(el =>{
       let inputElement = document.createElement('div');
-      // inputElement.classList.add(textBox.id+'Field');
       inputElement.setAttribute('type', 'text');
       inputElement.textContent = el;
       textBox.appendChild(inputElement);
@@ -1715,8 +1850,6 @@ function containsURL(tag){
     }   
   }
   return false;
-  // const successors = Array.from(tag.querySelectorAll('*'));
-  // return (successors.some(el => el.hasAttribute('href')));
 }
 
 function getAncestorWithUrl(tag) {
@@ -1826,23 +1959,79 @@ function behaviourSetup(string){
   adjustURLCheckbox.checked = mustIncludeURL;
 }
 
-
-
 // for tag, find the description 'eventXXXTags' that corresponds to it if it is registered in venue.json
-function getDescFromJSON(tag){
-  Object.keys(venue[currentPage]).forEach(key => {
-    venue[currentPage][key].forEach(path =>{
-      const tags = findTagsFromPath(principalTag,path);
-      if (tags.some(t => t === tag)){
-        if (key === 'eventURLTags'){
-          tag.isURL = true;
-        }else{
-          tag.desc = key;
-        }
-      }
+function getDescFromJSON(rootTag, subTagsList){
+
+  // for regular data (not sub event)
+  Object.keys(venue[currentPage]).filter(key => !key.includes('Multi'))
+    .forEach(key => {
+      venue[currentPage][key].forEach(path => {
+        const tags = findTagsFromPath(rootTag, path).filter(tag => subTagsList.includes(tag));
+        tags.forEach(tag => {
+          if (key === 'eventURLTags') {
+            markAndPropagateTag(tag, {isURL: true});
+          } else {
+            markAndPropagateTag(tag, {desc: key});
+          }
+        });
+      });
     });
-  })
+
+  // find the sub event delimiter path (the path string at the starts of every sub event tag)
+
+  const multiTags = Object.keys(venue[currentPage]).filter(key => key.includes('Multi'))
+    .map(key => venue[currentPage][key]).flat();
+
+  if(multiTags.length ===0){// stop here if there is no sub event
+    return;
+  }
+
+  let subEventDelimiterPath = multiTags[0];
+
+  while (multiTags.some(tagPath => !tagPath.startsWith(subEventDelimiterPath))){
+    if (!subEventDelimiterPath.includes('>')){
+      console.log('Warning, unexpected error. Tag '+subEventDelimiterPath+' does not contain \'>\'');
+      break;
+    }
+    subEventDelimiterPath = subEventDelimiterPath.replace(/>[^>]*$/,'');
+  }
+
+  const tagPathsFromSubEvent = multiTags.map(el => el.replace(subEventDelimiterPath,'').replace(/^>/,''));
+ 
+  // find the delimiter which has the most matching fields for sub events
+  const subEventDelimiters = findTagsFromPath(rootTag, subEventDelimiterPath);
+
+  // computes the number of matching fields for sub events. Use lexicographic order:
+  // count 1 for each path that have a match (weight 1), then 0.01 for each matching tag after the first 
+  function tagScore(d){
+    let count = tagPathsFromSubEvent.filter(el => findTagsFromPath(d,el).length > 0).length;
+    count = count + 0.01 * (tagPathsFromSubEvent.map(el => findTagsFromPath(d,el)).flat().length - count);
+    return count;
+  }
+
+  const selectedTag = subEventDelimiters.reduce((maxElement, currentElement) => {
+    return tagScore(currentElement) > tagScore(maxElement) ? currentElement : maxElement;
+  }, subEventDelimiters[0]);
+
+  Object.keys(venue[currentPage]).filter(key => key.includes('Multi'))
+    .forEach(key => {
+      venue[currentPage][key].forEach(path => {
+        path = path.replace(subEventDelimiterPath,'').replace(/^>/,'');
+        const tags = findTagsFromPath(selectedTag, path).filter(tag => subTagsList.includes(tag));
+        tags.forEach(tag => {
+          // tag.isMulti = true;
+          if (key === 'eventMultiURLTags') {
+            markAndPropagateTag(tag, {isURL: true, isMulti: true});
+          } else {
+            markAndPropagateTag(tag, {desc: key, isMulti: true});
+          }
+        });
+      });
+    });
+
 }
+
+
 
 
 
@@ -1854,10 +2043,9 @@ function getSubTags(tag){
   // <div><div> hello </div><span> world</span></div> should return ['hello', 'word']
   const nbNonInlineTags=descendants.filter(el => !inlineTags.some(t => t === el.tagName.toLowerCase())).length;
 
+  // if it only has inline tags, returns empty list, or [tag] 
   if (nbNonInlineTags === 0){
-    // delete tag.desc; // don't delete, keep track of previous categories
     if (tag.textContent.trim() !== ''){
-      getDescFromJSON(tag);
       return [tag];
     }else{
       return [];
@@ -1867,11 +2055,14 @@ function getSubTags(tag){
   const selectedTags = descendants.flatMap(el => getSubTags(el));
 
   // badly nested divs: this part processes badly nested divs by keeping a text for the whole tag 
-  //<div> hello <div> world</div></div> should return ['hello world', 'word'] ???
+  //<div> hello <div> world</div></div> should return ['hello world', 'world'] ???
   
+  // tests if there are badly nested divs:
+  // For each nested <div>, its text is removed from the parent text. If some text remains, it means
+  // that it is badly nested
   let parentText = tag.textContent;
   descendants.forEach(function(div) {
-    // For each nested <div>, its text is removed from the parent text. 
+
     parentText = parentText.replace(div.textContent.trim(), '').trim();
   });
 
@@ -1897,7 +2088,7 @@ function getSubTags(tag){
 
 function findTagsFromPath(rootTag, path) {
   if (path.trim().length === 0){
-    return [];
+    return [rootTag];
   }
 
   // intermediate function for easier manipulation
@@ -1924,25 +2115,7 @@ function findTagsFromPath(rootTag, path) {
   }
 
   const infoList = fromCheerioSyntax(path);
-  // let currentElements = [rootTag]; // start with root tag
-
-  // for (const [tagName, classes, numero] of infoList) {
-  //   let nextElements = [];
-  //   currentElements.forEach(parent => {
-  //     let selector = tagName + (classes.length > 0 ? '.' + classes.join('.') : '');
-  //     let foundElements = Array.from(parent.querySelectorAll(selector));
-  //     if (numero !== undefined) {
-  //       if (numero >= 0 && numero < foundElements.length) {
-  //         nextElements.push(foundElements[numero]);
-  //       }
-  //     } else {
-  //       nextElements.push(...foundElements);
-  //     }
-  //   });
-
-  //     currentElements = nextElements;
-  // }
-
+  
   let currentElements = [rootTag];  // start with root tag
 
   for (const [tagName, classes, numero] of infoList) {
@@ -1951,7 +2124,6 @@ function findTagsFromPath(rootTag, path) {
           let selector = tagName + (classes.length > 0 ? '.' + classes.join('.') : '');
           try{
             let foundElements = parent.querySelectorAll(selector); 
-          
           
             if (numero !== undefined) {
                 if (numero >= 0 && numero < foundElements.length) {
@@ -1966,7 +2138,7 @@ function findTagsFromPath(rootTag, path) {
             console.log('selector',selector);
             console.log('path',path);
             console.log(infoList);
-            console.log(err);
+            throw err;
           }
       }
 
@@ -1989,13 +2161,17 @@ function findTagsFromPath(rootTag, path) {
 // }
 
 
-function getPath(rootTag, tag) {
+function getPath(rootTag, tag, noDivNumber = false) {
+  if (!tag){
+    return null;
+  }
   if (tag === rootTag){
     return '';
   }
   const parent = tag.parentElement;
-  let path = getPath(rootTag, parent);
-  let tagClasses = Array.from(tag.classList);
+  let path = getPath(rootTag, parent, noDivNumber);
+  let tagClasses = Array.from(tag.classList)
+                        .filter(el => !reservedClassList.includes(el)); // remove SCRPX reserved names classes
   const index = Array.from(parent.children)
                 .filter(child => child.tagName === tag.tagName) // filter the tags with the same name
                 .filter(child => tagClasses.every(cls => child.classList.contains(cls))) // filter tags which contain the same classes. Need this code to avoid pb with === 
@@ -2005,7 +2181,9 @@ function getPath(rootTag, tag) {
               //            chClasses.every((cls, i) => cls === tagClasses[i]);
               // })
                 .findIndex(ch => ch === tag);
-  path = (path.length>0?path+'>':'') + tag.tagName +'.'+ Array.from(tag.classList).join('.') + ':eq('+index+')';
+  path = (path.length>0?path+'>':'') + tag.tagName 
+            +'.'+ tagClasses.join('.') 
+            + (noDivNumber?'':':eq('+index+')');
   return path;
 }
 
@@ -2015,7 +2193,6 @@ function removeCustomTags(path){
 }
 
 function replaceWithCustomTags(path){
-  // return path.replace(/(?:^|\>)(a)(?=$|>|\.)/gi, customTagName);
   return path.replace(/(>?)a(?=$|>|\.)/gi, '$1'+customTagName);
 }
 
@@ -2037,9 +2214,6 @@ function venueWithCustomTags(v){
   const v2 = {};
     if (v.hasOwnProperty('eventsDelimiterTag')){
       v2.eventsDelimiterTag = replaceWithCustomTags(v.eventsDelimiterTag);
-    }
-    if (v.hasOwnProperty('eventURLIndex')){
-      v2.eventURLIndex = v.eventURLIndex;
     }
     if (v.hasOwnProperty('mainPage')){
       v2.mainPage = {};
@@ -2076,4 +2250,238 @@ function makeExtendButton(tag){
     extendButton.style.height = `${tag.offsetHeight}px`;
   });
   observer.observe(tag);
+}
+
+
+
+// find common ancestor for tag list
+function findCommonAncestor(tags) {
+  if (tags.length === 0) return null;
+  if (tags.length === 1) return tags[0];
+
+  // Convert each element as a list of ancestors
+  let ancestors = tags.map(tag => {
+      let list = [];
+      while (tag) {
+          list.push(tag);
+          tag = tag.parentNode;
+      }
+      return list.reverse(); 
+  });
+  const candidateList = [...ancestors[0]];
+
+  // Compare ancestors paths and keep the highest level common ancestor
+  let commonAncestor = null;
+  while (commonAncestor === null){
+    candidate = candidateList.pop();
+    if (ancestors.every(tagList => tagList.includes(candidate))){
+      commonAncestor = candidate;
+    }
+  }
+  return commonAncestor;
+}
+
+// test if the candidate is an ancestor of tag
+function isAncestorOf(candidate,tag){
+  if (tag === candidate){
+    return true;
+  }
+  if (tag === rightPanel){
+    return false;
+  }
+  const parent = tag.parentNode;
+  if (!parent){
+    return false;
+  }
+  return isAncestorOf(candidate, parent);
+}
+
+
+// add classes and headers for sub event
+function applySubEventDelimiterTags(){
+  rightPanel.querySelectorAll('*').forEach(el => {
+    if (el.isSubEventDelimiter){
+      el.classList.add('SCRPXsubEvent');
+      const headerDiv = document.createElement('div');
+      headerDiv.classList.add('SCRPXsubEventHeader');
+      headerDiv.textContent = 'Sub event';
+      el.parentNode.insertBefore(headerDiv, el);
+    }
+  });
+}
+        
+
+
+// functions for sub events
+
+function groupDivs(mainDiv, groupList) {
+
+  // make a header on the left, and a div that will containt easylines on the right
+  const headerDiv = document.createElement('div');
+  headerDiv.classList.add('PanelSubEventHeader');
+  headerDiv.textContent = groupList.length>1?'Sub event':'S. evt';
+  const subEventRightDiv = document.createElement("div");
+  subEventRightDiv.classList.add('subEventRightDiv');
+  // mainDiv.insertBefore(headerDiv, groupList[0] || null);
+
+  // insert the group
+  const subEventDiv = document.createElement("div");
+  
+  subEventDiv.className = "multiEventEasyPanelGroup";
+  mainDiv.insertBefore(subEventDiv, groupList[0] || null);
+  subEventDiv.appendChild(headerDiv); 
+  subEventDiv.appendChild(subEventRightDiv); 
+  groupList.forEach(div => subEventRightDiv.appendChild(div));
+
+  // make all buttons multiTags
+  groupList.forEach(line => {
+    line.querySelectorAll('button').forEach(button => {
+      button.eventTagType = button.eventTagType.replace('event','eventMulti');
+    });
+  });
+}
+
+
+
+
+
+function ungroupDivs(mainDiv) {
+  
+  // remove group headers and css classes from html
+  rightPanel.querySelectorAll('div.SCRPXsubEventHeader').forEach(div => div.remove());
+  rightPanel.querySelectorAll('.SCRPXsubEvent').forEach(
+    el => {
+      delete el.isSubEventDelimiter;
+      el.classList.remove('SCRPXsubEvent');
+    }
+  )
+
+  // remove all "multi" references for subEvents
+  easyPanelFields.querySelectorAll('button').forEach(button => button.eventTagType = button.eventTagType.replace('Multi',''));
+
+  // reactivate all buttons
+  easyPanelFields.querySelectorAll('button.inactive').forEach(button => button.classList.remove('inactive'));
+
+  // find existing multi event groups
+  const subDivs = mainDiv.querySelectorAll(".multiEventEasyPanelGroup");
+
+  subDivs.forEach(subDiv => {
+      const subDivRight = subDiv.children[1];
+      // insert a child of subDiv before itself
+      while (subDivRight.firstChild) {
+          mainDiv.insertBefore(subDivRight.firstChild, subDiv);
+      }
+      // remove the empty subDiv
+      subDiv.remove();
+  });
+
+  // remove additional info from easypanel
+  easyPanelFields.querySelectorAll('div.PanelSubEventHeader').forEach(div => div.remove());
+  easyPanelFields.querySelectorAll('div.subEventRightDiv').forEach(div => div.remove());
+}
+
+function makeSubEvents(){
+
+  ungroupDivs(easyPanelFields);
+  
+  const commonAncestor = findCommonAncestor(subTags[currentPage].filter(el => el.isMulti));
+  subEventPath = getPath(principalTag, commonAncestor, true);
+
+  // applying grouping to all subevents
+  if (subEventPath) {
+    eventTagList.forEach(eventTag => {
+      const subEventDelimiterTagList = findTagsFromPath(eventTag, subEventPath);
+      subEventDelimiterTagList.forEach(subEventTag => {
+        // group easylines
+        if (eventTag === principalTag) {
+          const groupedList = easyLines.filter(el => isAncestorOf(subEventTag, el.tag));
+          groupDivs(easyPanelFields, groupedList);
+          // deactivate easy lines that are not the current active one that is being modified
+          if (subEventTag !== commonAncestor) {
+            groupedList.forEach(line => {
+              for (const button of line.querySelectorAll('.easyButton')) {
+                colorClassList.forEach(cl => button.classList.remove(cl));
+                button.classList.add('inactive');
+              }
+              markAndPropagateTag(line.tag, {desc: null, isURL: null});
+            });
+          }
+        }
+        subEventTag.isSubEventDelimiter = true;
+      });
+    });
+  }
+
+  computeTags();
+}
+
+
+// mark tag with with the changes in 'change' then propagate to other events
+// changes is a json object with the optional following fields:
+// desc: value is null if the desc is to be cleared
+// isURL: null/false if the field 'isURL' if the tag is not an URL tag
+// isMulti: null/false if the tag has not been marked as multi
+function markAndPropagateTag(tag, change){
+
+  desc = change.hasOwnProperty('desc')?change.desc:undefined;
+  isURL = change.hasOwnProperty('isURL')?change.isURL:undefined;  
+  isMulti = change.hasOwnProperty('isMulti')?change.isMulti:undefined;
+
+  // console.log(tag.textContent.replace(/[\s\n\t]{1,}/g," "), isMulti);
+
+  // get the path of the tag that is being modified
+  const tagPath = getPath(principalTag,tag);
+
+  
+  if (isURL){// isURL !== undefined and null: a new URL tag is set, isURL has to be removed of all other tags
+    // console.log('here',tag.textContent);
+    // rightPanel.querySelectorAll('*').forEach( t => {
+    //   if (t.isURL){
+    //     console.log('test',t.textContent.replace(/[\s\n\t]{1,}/g,''),t.isURL);
+    //     delete t.isURL;
+    //   }
+    // });
+    rightPanel.querySelectorAll('[isURL = "true"]').forEach( t => {
+      // console.log('remove',t.textContent.replace(/[\s\n\t]{1,}/g,''),t.getAttribute('isURL'));
+      t.removeAttribute('isURL');
+    });
+  }
+
+  // modify tag propagate the changes to the corresponding tags in the other events
+  eventTagList.forEach(rootTag => {
+    const similarTag = findTagsFromPath(rootTag,tagPath);
+    if (similarTag.length > 0){
+      const myTag = similarTag[0];
+      if (desc !== undefined){// the desc has to be modified
+        myTag.desc = desc; // desc or null
+      }
+      if (isMulti !== undefined){// the desc has to be modified
+        myTag.isMulti = isMulti; // desc or null
+      }
+      if (isURL !== undefined){// the isURL field has to be modified and is not null
+        if (isURL){
+          myTag.setAttribute('isURL', isURL); 
+        }else{
+          myTag.removeAttribute('isURL'); 
+        }
+      }
+    }
+  });
+}
+
+
+
+function showURLTags(txt){
+console.log('show URL '+(txt?'\x1b[46m'+txt+'\x1b[0m':''));
+  rightPanel.querySelectorAll('[isURL]')
+    .forEach(el => {
+        if (isAncestorOf(principalTag,el)){
+          console.log('\x1b[45misURL\x1b[0m', el.textContent.replace(/[\n\s\t]{1,}/g,' '));
+        }
+        
+      });
+}
+
+function showTagInfos(tag){
+  console.log(tag.textContent.replace(/[\n\t\s]{1,}/g,' '),tag.getAttribute('isURL'));
 }
