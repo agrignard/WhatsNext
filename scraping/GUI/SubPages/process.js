@@ -149,20 +149,37 @@ contextMenu.linkedTag = undefined;
 const contextMenuButtonContainer = document.createElement("div");
 contextMenuButtonContainer.classList.add("menu-buttons");
 
-// Create multiple event div
+// Create sub event div
 const multipleEventOption = document.createElement("div");
 multipleEventOption.classList.add("multiple-event");
-multipleEventOption.textContent = "Mark as sub event";
-multipleEventOption.addEventListener("click", () => {
-    console.log("sub event");
-    const easyline = easyLines.find(el => el.tag === contextMenu.linkedTag);
-    console.log(easyline);
-    const event = new Event("contextmenu", { bubbles: true, cancelable: true });
-    console.log(easyline.querySelector('input'));
-    easyline.querySelector('input').dispatchEvent(event);
-    closeContextMenu();
-  }
-);
+
+const cmlabel = document.createElement('label');
+const cminput = document.createElement('input');
+const cmspan = document.createElement('span');
+const cmicon = document.createElement('i');
+
+// make context menu line for sub events
+cmlabel.className = 'niceCheckBox';
+cmlabel.style.display = 'inline';
+
+cminput.id = 'contextMenuCheckbox';
+cminput.className = 'cb cb1';
+cminput.type = 'checkbox';
+cminput.checked = true;
+cminput.addEventListener('change',()=>{
+  const easyline = easyLines.find(el => el.tag === contextMenu.linkedTag);
+  const event = new Event("click", { bubbles: true, cancelable: true });
+  console.log(easyline.querySelector('input'));
+  easyline.querySelector('input').dispatchEvent(event);
+});
+
+cmspan.textContent = 'Is a sub-event';
+
+cmlabel.appendChild(cminput);
+cmlabel.appendChild(cmspan);
+cmlabel.appendChild(cmicon);
+
+multipleEventOption.appendChild(cmlabel); 
 
 // Add elements to the context menu
 contextMenu.appendChild(contextMenuButtonContainer);
@@ -183,7 +200,6 @@ function closeContextMenu(){
 
 rightPanel.addEventListener("contextmenu", (event) => {
   event.preventDefault();
-
   const clickedElement = event.target;
   closeContextMenu();
 
@@ -193,24 +209,45 @@ rightPanel.addEventListener("contextmenu", (event) => {
 
   contextMenu.linkedTag = clickedElement;
 
-  multipleEventOption.textContent = clickedElement.isMulti?"Remove sub event mark":"Mark as sub event";
-  
   // for each button of the easypanel, create one in the context menu, and dispatch event to the original button
   contextMenuButtonContainer.innerHTML = '';
   const myEasyLine = easyLines.find(el => el.tag === contextMenu.linkedTag);
   const buttons = myEasyLine.querySelectorAll('.easyButton');
+  const contextMenuButtons = [];
+
+
+  function updateContextMenu(){
+    contextMenuButtons.forEach(b => {
+      // clear b class list
+      while (b.classList.length > 0) {
+        b.classList.remove(b.classList.item(0));
+      }
+      Array.from(b.linkedButton.classList).filter(el => el.startsWith('easyButton') || el.startsWith('SCRPX')
+      || el === 'inactiveURL' || el === 'inactive')
+          .forEach(el => b.classList.add(el));
+    });
+    cminput.checked = contextMenu.linkedTag.isMulti;
+  }
+
+
   for (const button of buttons){
     const b = document.createElement("button");
-    b.textContent = button.eventTagType.replace('event','').replace('Tags','');
-    Array.from(button.classList).filter(el => el.startsWith('easyButton') || el.startsWith('SCRPX'))
-          .forEach(el => b.classList.add(el));
+    b.linkedButton = button;
+    b.textContent = button.eventTagType.replace('event','').replace('Tags','').replace('Multi','');
+    
+    contextMenuButtons.push(b);
     contextMenuButtonContainer.appendChild(b);
+    
     b.addEventListener("click", (event) => {
       event.preventDefault();
+      if (b.classList.contains('inactive') || b.classList.contains('inactiveURL')){
+        return;
+      }
       button.dispatchEvent(new Event("click"));
-      closeContextMenu();
+      updateContextMenu();
     })
   }
+  updateContextMenu();
 
   clickedElement.classList.add('SCRPXshadow');
 
@@ -536,6 +573,7 @@ const eventURLPanelWarning = document.getElementById('eventURLPanelWarning');
 const adjustURLCheckbox = document.getElementById('adjustURLCheckbox');
 adjustURLCheckbox.addEventListener('change',()=>{
   mustIncludeURL = adjustURLCheckbox.checked;
+  console.log(mustIncludeURL);
   makePrincipalTag(candidatePrincipalTag);
 });
 
@@ -663,7 +701,7 @@ function newEasyLine(tag, index, markFirstURL = true){
     inputElement.classList.add('easyFieldBg');
   }
 
-  inputElement.addEventListener("contextmenu", (event) => {
+  inputElement.addEventListener("click", (event) => {
     event.preventDefault();
     const tagPath = getPath(principalTag,tag);
     

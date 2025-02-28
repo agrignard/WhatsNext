@@ -423,18 +423,18 @@
     "ID": "La Rayonne|Lyon|France",
     "mainPage": {
       "eventDateTags": [
-        "div.agendajourlabel:eq(0)"
+        "DIV.agendajourlabel.depth7:eq(0)"
       ],
       "eventMultiNameTags": [
-        "div.agendaeventtitle"
+        "DIV.agendalistevents.depth7>A.agendaevent.depth8>DIV.agendaeventtitle.depth9"
       ],
-      "eventNameTags": [
-        "div.agendaeventtitle:eq(0)"
+      "eventMultiURLTags": [
+        "DIV.agendalistevents.depth7>A.agendaevent.depth8>DIV.agendaeventtitle.depth9"
       ]
     },
     "url": "https://larayonne.org/agenda/",
     "baseURL": "https://larayonne.org/agenda/",
-    "eventsDelimiterTag": "div.agendajour",
+    "eventsDelimiterTag": "DIV.agendajour.depth6",
     "eventURLIndex": 1,
     "dateFormat": "dd-MM"
   },

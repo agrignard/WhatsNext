@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
 div a {
     pointer-events: none;
 }
@@ -12,14 +14,15 @@ body, html {
 }
 
 
+
 #venueInfo{
-    font-family: sans-serif;
+  font-family: "Montserrat", sans-serif;
     font-size: 105%;
-    padding: 5px 5px;
-    font-weight: bold;
-    background-color: rgb(44, 62, 80);
-    color: rgb(236, 240, 241);
-    overflow-y: hidden;
+      padding: 5px 5px;
+      font-weight: bold;
+      background-color: rgb(44, 62, 80);
+      color: rgb(236, 240, 241);
+      overflow-y: hidden;
 }
 
 #pageManagerDetailsPanel{
@@ -58,30 +61,25 @@ body, html {
 }
 
 /* inactive is used to prevent buttons from working*/
-.easyButton.inactive{
-  background-color: rgb(187, 196, 227);
+.easyButton.inactive, .easyButton.inactiveURL{
+  background-color: rgb(187, 196, 227) !important;
+  color: rgb(210, 217, 240);
 }
 
-.easyButton.inactive:hover{
-  /* background-color: rgb(134, 134, 134); */
-  background-color: rgb(187, 196, 227);
+.easyButton.inactive:hover, .easyButton.inactiveURL:hover{
+  /* background-color: rgb(187, 196, 227);  */
   cursor: default;
 }
 
-/* same than inactive ibut specific to URL button*/
-.easyButton.inactiveURL{
-  background-color: rgb(187, 196, 227);
-}
-
-.easyButton.inactiveURL:hover{
-  /* background-color: rgb(134, 134, 134); */
-  background-color: rgb(187, 196, 227);
-  cursor: default;
-}
 
 .easyButton:hover{
   cursor: pointer;
 }
+
+.pointer:hover{
+  cursor: pointer !important;
+}
+
 
 #saveButton {
   position: absolute;
@@ -115,11 +113,20 @@ body, html {
   margin-right: 5px; /* Marge entre les éléments */
 }
 
-#groupTagsButton{
+/* #groupTagsButton{
 position: absolute;
 right: 5px;
 padding: 2px 6px;
-}
+cursor: pointer;
+} */
+
+.groupTagsButton, .regexActivateButton{
+  cursor: pointer;
+} 
+
+.groupTagsButton:hover, .regexActivateButton:hover{
+  background-color: darkgray;
+} 
 
 .panelHeader{
   display: flex;
@@ -290,27 +297,27 @@ background-color: lightblue;
 } */
 
 
-.easyButtonName:not(.SCRPXhighlightName):hover{
+.easyButtonName:not(.SCRPXhighlightName):not(.inactive):hover{
   background-color: rgb(52, 152, 219);
   opacity: 0.5;
 }
 
-.easyButtonDate:not(.SCRPXhighlightDate):hover{
+.easyButtonDate:not(.SCRPXhighlightDate):not(.inactive):hover{
   background-color: rgb(46, 204, 113);
   opacity: 0.5;
 }
 
-.easyButtonStyle:not(.SCRPXhighlightStyle):hover{
+.easyButtonStyle:not(.SCRPXhighlightStyle):not(.inactive):hover{
   background-color: rgb(243, 156, 18);
   opacity: 0.5;
 }
 
-.easyButtonPlace:not(.SCRPXhighlightPlace):hover{
+.easyButtonPlace:not(.SCRPXhighlightPlace):not(.inactive):hover{
     background-color: rgb(155, 89, 182);
     opacity: 0.5;
 }
 
-.easyButtonURL:not(.SCRPXhighlightURL):hover{
+.easyButtonURL:not(.SCRPXhighlightURL):not(.inactive):not(.inactiveURL):hover{
   background-color: rgb(241, 196, 15);
   opacity: 0.5;
 }
@@ -325,9 +332,10 @@ background-color: lightblue;
   background-color: rgb(230, 85, 109);
 }
 
-#saveButton:active {
+.effectButton:active {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
-  transition: background-color 0.3s ease;
+  color: rgb(210, 210, 210);
+  transition: background-color 0.8s ease;
 }
 
 
@@ -423,7 +431,7 @@ background-color: lightblue;
 
 
 #processContainer {
-    font-family: sans-serif;
+    font-family: "Montserrat", sans-serif;
     display: flex; /* Utiliser Flexbox pour le positionnement */
     height: 100vh;
     overflow-y: auto;
@@ -662,6 +670,7 @@ custom-a {
 }
 
 #delimiterPanel{
+  font-family: "Montserrat", sans-serif;
   position: relative;
   background-color: rgb(231, 76, 60);
   padding: 5px;
@@ -687,6 +696,36 @@ input:focus {
     resize: none; /* Désactive la redimensionnement par l'utilisateur */
     width: 100%; /* Largeur maximale */
   }
+}
+
+#adjustURLGroup{
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0px;
+  margin: 0px;
+}
+
+#optionsPanel, #autoAdjustGroup, .adjustURLCheckbox{
+  display: flex;
+  width: 100%;
+  justify-content: normal; 
+  /* align-items: center;  */
+  /* flex: 1; */
+  flex-direction: row;
+  /* flex-wrap: nowrap; */
+  white-space: nowrap;
+  gap: 0px;
+  margin: 0px;
+}
+
+.niceCheckBox{
+  display: flex;
+  align-items: center; 
+}
+
+.niceCheckBox input[type="checkbox"] {
+  margin-right: 8px; /* Espace entre la checkbox et le texte */
 }
 
 
@@ -758,6 +797,7 @@ input[type="number"] {
   cursor: pointer;
   text-align: center;
   padding: 0px;
+  margin: 0px;
 }
 
 /* .menu-buttons button:hover {
@@ -827,3 +867,75 @@ input[type="number"] {
   opacity: 0.8;
   transition: background-color 0.1s ease; 
 }
+
+
+/* checkboxes */
+
+/* fieldset {
+  display: block;
+  position: absolute; 
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+} */
+
+label.niceCheckBox {
+  font-family: "Montserrat", sans-serif;
+  cursor: pointer;
+  margin: 1em;
+  /* position: relative; */
+  /* top:0px;
+  right: 20px; */
+}
+
+  
+
+label.niceCheckBox > input {
+  display: none;
+}
+
+label.niceCheckBox > span {
+  color: #6A759B;
+  padding-right: 10px;
+}
+
+label.niceCheckBox > i {
+  display: inline-block;
+  width: 32px;
+  height: 20px;
+  border-radius: 10px;
+  vertical-align: middle;
+  transition: .25s .09s;
+  position: relative;
+  background: #deeff7;
+}
+
+label.niceCheckBox > i:after {
+  content: " ";
+  display: block;
+  width: 15px;
+  height: 15px;
+  top: 2.5px;
+  left: 2.5px;
+  border-radius: 50%;
+  background: #fff;
+  position: absolute;
+  box-shadow: 1px 2px 4px 0 rgba(#000, .4);
+  transition: .15s;
+}
+
+label.niceCheckBox>input:checked+span+i {
+  background: #1094fb;
+}
+
+label.niceCheckBox >input:checked+span+i:after {
+  transform: translateX(12.5px);
+}
+
+
+label.niceCheckBox > input:checked + span {
+  color: #29316b;
+}
+
+
+

@@ -14,10 +14,10 @@
             <!-- page manager panel -->
             <div id="pageManager">
                 <div id="venueInfo"></div>
-                <button id="saveButton" class="normalButton activeButton">Save</button>
+                <button id="saveButton" class="normalButton activeButton effectButton">Save</button>
                 <button id="pageManagerButton" class="compact-button normalButton activeButton topRightButton">_</button>
                 <div id="pageManagerDetailsPanel">
-                    <button id="downloadButton" class="normalButton activeButton venueInfoButton verySmallBottomMargin">Download
+                    <button id="downloadButton" class="normalButton activeButton venueInfoButton verySmallBottomMargin effectButton">Download
                         Page</button>
                     <div id="lastScrapped" style="display: inline;"></div>
                     <div id="missingLinksPanel" class="verySmallBottomMargin">
@@ -50,8 +50,11 @@
                                 placeholder="2">
                         </div>
                         <div id="adjustURLGroup" style="display: inline;">
-                            <label id="adjustURL" for="adjustURLCheckbox" style="display: inline;">Must include an URL</label>
-                            <input type="checkbox" id="adjustURLCheckbox" style="display: inline;">
+                            <label class="niceCheckBox" style="display: inline;">
+                                <input id="adjustURLCheckbox" class="cb cb1" type="checkbox" name="social" checked/>
+                                <span>Events must have URLs</span> 
+                                <i></i> 
+                            </label>                   
                         </div>
                     </div>
                     <div id="eventURLPanelWarning" class="urlPanel warning" style="display: block;">Warning: no event match the strings, url
