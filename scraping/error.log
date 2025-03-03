@@ -1,675 +1,1430 @@
-Date: Fév 18
-Event: ADULT. + Spike Hellis
-Place: Le Sonic
+Date: vendredi 28 février à partir de 19h
+Event: Dynazty + Nanowar Of Steel
+Place: La Rayonne
 city: Lyon
 country: France
-Style: Sonic Lyon
 isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement 'ADULT. + Spike Hellis'. Erreur lors du téléchargement ? +err | Format de date invalide pour Le Sonic. Reçu "Fév 18", converti en "02-18" (attendu "MM-dd-HH:mm")
-DetailedStyle: Sonic Lyon
+DetailedStyle: 
+Style: Live
 source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "vendredi 28 février à partir de 19h", converti en "28-02-19:00" (attendu "dd-MM")
 unixDate: 0
-undefined
+https://larayonne.org/evenement/dynazty/
 
-Date: Fév 21
-Event: Geneva Jacuzzi + RIKI
-Place: Le Sonic
+Date: vendredi 28 février à partir de 17h45
+Event: "BOZA ! Partir à l'aventure" par la compagnie Waninga
+Place: La Rayonne
 city: Lyon
 country: France
-Style: Sonic Lyon
 isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement 'Geneva Jacuzzi + RIKI'. Erreur lors du téléchargement ? +err | Format de date invalide pour Le Sonic. Reçu "Fév 21", converti en "02-21" (attendu "MM-dd-HH:mm")
-DetailedStyle: Sonic Lyon
+DetailedStyle: 
+Style: Live
 source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "vendredi 28 février à partir de 17h45", converti en "28-02-17:45" (attendu "dd-MM")
 unixDate: 0
-undefined
+https://larayonne.org/evenement/boza-partir-a-laventure-cie-waninga/
 
-Date: Fév 28
-Event: David Shaw and The Beat + Lobstery
-Place: Le Sonic
+Date: samedi 01 mars à partir de 19h30
+Event: The Silencers
+Place: La Rayonne
 city: Lyon
 country: France
-Style: Sonic Lyon
 isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement 'David Shaw and The Beat + Lobstery'. Erreur lors du téléchargement ? +err | Format de date invalide pour Le Sonic. Reçu "Fév 28", converti en "02-28" (attendu "MM-dd-HH:mm")
-DetailedStyle: Sonic Lyon
+DetailedStyle: 
+Style: Live
 source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "samedi 01 mars à partir de 19h30", converti en "01-03-19:30" (attendu "dd-MM")
 unixDate: 0
-undefined
+https://larayonne.org/evenement/the-silencers/
 
-Date: Mar 01
-Event: LA CHAUDIERE
-Place: Le Sonic
+Date: mardi 04 mars 17h > 19h
+Event: Atelier 5.1 : Photopea, Photoshop gratuit et online, découverte
+Place: La Rayonne
 city: Lyon
 country: France
-Style: Sonic Lyon
 isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement 'LA CHAUDIERE'. Erreur lors du téléchargement ? +err | Format de date invalide pour Le Sonic. Reçu "Mar 01", converti en "03-01" (attendu "MM-dd-HH:mm")
-DetailedStyle: Sonic Lyon
+DetailedStyle: 
+Style: Live
 source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 04 mars 17h > 19h", converti en "04-03-17:19:00" (attendu "dd-MM")
 unixDate: 0
-undefined
+https://larayonne.org/evenement/atelier-5-1-photopea/
 
-Date: Mar 02
-Event: Rien Virgule + Michel Chemin
-Place: Le Sonic
+Date: jeudi 06 mars à partir de 19h
+Event: Soviet Suprem
+Place: La Rayonne
 city: Lyon
 country: France
-Style: Sonic Lyon
 isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement 'Rien Virgule + Michel Chemin'. Erreur lors du téléchargement ? +err | Format de date invalide pour Le Sonic. Reçu "Mar 02", converti en "03-02" (attendu "MM-dd-HH:mm")
-DetailedStyle: Sonic Lyon
+DetailedStyle: 
+Style: Live
 source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 06 mars à partir de 19h", converti en "06-03-19:00" (attendu "dd-MM")
 unixDate: 0
-undefined
+https://larayonne.org/evenement/soviet-suprem/
 
-Date: Mar 06
-Event: Housepainters + chloe éclipse
-Place: Le Sonic
+Date: vendredi 07 mars 23h > 05h
+Event: DUB VIBES w/ Vibronics + Sanga Mama Africa feat. Black Omolo + Kara’Basse Sound System
+Place: La Rayonne
 city: Lyon
 country: France
-Style: Sonic Lyon
 isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement 'Housepainters + chloe éclipse'. Erreur lors du téléchargement ? +err | Format de date invalide pour Le Sonic. Reçu "Mar 06", converti en "03-06" (attendu "MM-dd-HH:mm")
-DetailedStyle: Sonic Lyon
+DetailedStyle: 
+Style: Live
 source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "vendredi 07 mars 23h > 05h", converti en "07-03-23:05:00" (attendu "dd-MM")
 unixDate: 0
-undefined
+https://larayonne.org/evenement/dub-vibes/
 
-Date: Mar 21
-Event: Repo Man + Sharon Tate Modern
-Place: Le Sonic
+Date: samedi 08 mars à partir de 19h
+Event: Freak Kitchen + Fanalo
+Place: La Rayonne
 city: Lyon
 country: France
-Style: Sonic Lyon
 isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement 'Repo Man + Sharon Tate Modern'. Erreur lors du téléchargement ? +err | Format de date invalide pour Le Sonic. Reçu "Mar 21", converti en "03-21" (attendu "MM-dd-HH:mm")
-DetailedStyle: Sonic Lyon
+DetailedStyle: 
+Style: Live
 source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "samedi 08 mars à partir de 19h", converti en "08-03-19:00" (attendu "dd-MM")
 unixDate: 0
-undefined
+https://larayonne.org/evenement/freak-kitchen/
 
-Date: Mar 23
-Event: MIKE
-Place: Le Sonic
+Date: dimanche 09 mars 13h30 > 16h30
+Event: Stage intensif de LadyStyling Timba avec MC Dance
+Place: La Rayonne
 city: Lyon
 country: France
-Style: Sonic Lyon
 isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement 'MIKE'. Erreur lors du téléchargement ? +err | Format de date invalide pour Le Sonic. Reçu "Mar 23", converti en "03-23" (attendu "MM-dd-HH:mm")
-DetailedStyle: Sonic Lyon
+DetailedStyle: 
+Style: Live
 source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "dimanche 09 mars 13h30 > 16h30", converti en "09-03-13:30" (attendu "dd-MM")
 unixDate: 0
-undefined
+https://larayonne.org/evenement/stage-intensif-de-ladystyling-timba-avec-mc-dance/
 
-Date: Avr 02
-Event: Rats on Rafts
-Place: Le Sonic
+Date: mardi 11 mars 17h > 19h
+Event: Atelier 5.2 : Photopea, principe de calque et détourage
+Place: La Rayonne
 city: Lyon
 country: France
-Style: Sonic Lyon
 isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement 'Rats on Rafts'. Erreur lors du téléchargement ? +err | Format de date invalide pour Le Sonic. Reçu "Avr 02", converti en "04-02" (attendu "MM-dd-HH:mm")
-DetailedStyle: Sonic Lyon
+DetailedStyle: 
+Style: Live
 source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 11 mars 17h > 19h", converti en "11-03-17:19:00" (attendu "dd-MM")
 unixDate: 0
-undefined
+https://larayonne.org/evenement/atelier-5-2-photopea/
 
-Date: Avr 03
-Event: Six Organs of Admittance
-Place: Le Sonic
+Date: mercredi 12 mars à partir de 19h
+Event: Godspeed You! Black Emperor
+Place: La Rayonne
 city: Lyon
 country: France
-Style: Sonic Lyon
 isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement 'Six Organs of Admittance'. Erreur lors du téléchargement ? +err | Format de date invalide pour Le Sonic. Reçu "Avr 03", converti en "04-03" (attendu "MM-dd-HH:mm")
-DetailedStyle: Sonic Lyon
+DetailedStyle: 
+Style: Live
 source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "mercredi 12 mars à partir de 19h", converti en "12-03-19:00" (attendu "dd-MM")
 unixDate: 0
-undefined
+https://larayonne.org/evenement/godspeed-you-black-emperor/
 
-Date: Avr 17
-Event: Sydney Valette
-Place: Le Sonic
+Date: jeudi 13 mars 18h30 > 20h30
+Event: [COMPLET] Panorama des financements dans l'ESS
+Place: La Rayonne
 city: Lyon
 country: France
-Style: Sonic Lyon
 isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement 'Sydney Valette'. Erreur lors du téléchargement ? +err | Format de date invalide pour Le Sonic. Reçu "Avr 17", converti en "04-17" (attendu "MM-dd-HH:mm")
-DetailedStyle: Sonic Lyon
+DetailedStyle: 
+Style: Live
 source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 13 mars 18h30 > 20h30", converti en "13-03-18:30" (attendu "dd-MM")
 unixDate: 0
-undefined
+https://larayonne.org/evenement/panorama-des-financements-dans-less/
 
-Date: Avr 24
-Event: EggS
-Place: Le Sonic
+Date: jeudi 13 mars à partir de 19h
+Event: The Dead Daisies + The Treatment
+Place: La Rayonne
 city: Lyon
 country: France
-Style: Sonic Lyon
 isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement 'EggS'. Erreur lors du téléchargement ? +err | Format de date invalide pour Le Sonic. Reçu "Avr 24", converti en "04-24" (attendu "MM-dd-HH:mm")
-DetailedStyle: Sonic Lyon
+DetailedStyle: 
+Style: Live
 source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 13 mars à partir de 19h", converti en "13-03-19:00" (attendu "dd-MM")
 unixDate: 0
-undefined
+https://larayonne.org/evenement/the-dead-daisies-the-treatment/
 
-Date: 19 février et 20 février à 20h
-Event: Célia Kameni
-Place: Amphithéâtre de l'Opéra
+Date: vendredi 14 mars 23h30 > 05h
+Event: Hadra x Dub Camp : Dub To Trance
+Place: La Rayonne
 city: Lyon
 country: France
-Style: Chanson
 isCancelled: false
-DetailedStyle: Chanson
+DetailedStyle: 
+Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "19 février et 20 février à 20h", converti en "19-02-20-20:00" (attendu "dd-MM-yyyy-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "vendredi 14 mars 23h30 > 05h", converti en "14-03-23:30" (attendu "dd-MM")
 unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-313080-celia-kameni.html
+https://larayonne.org/evenement/hadra-x-dub-camp-dub-to-trance/
 
-Date: 20 février et 21 février à 20h
-Event: LEmpereur
-Place: Opéra National de Lyon
+Date: samedi 15 mars 23h59 > 05h
+Event: XLR Events pres. Losless + Abstraal + Catiba
+Place: La Rayonne
 city: Lyon
 country: France
-Style: Classique
 isCancelled: false
-DetailedStyle: Classique & Lyrique
+DetailedStyle: 
+Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "20 février et 21 février à 20h", converti en "20-02-21-20:00" (attendu "dd-MM-yyyy-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "samedi 15 mars 23h59 > 05h", converti en "15-03-23:59" (attendu "dd-MM")
 unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-313072-l-empereur.html
+https://larayonne.org/evenement/xlr-events-pres-losless-abstraal-catiba/
 
-Date: 21 février et 22 février à 20h
-Event: Geneva Jacuzzi + Riki
-Place: Le Sonic
+Date: dimanche 16 mars 13h30 > 16h30
+Event: Stage intensif d’Afrocubain avec MC Dance
+Place: La Rayonne
 city: Lyon
 country: France
-Style: Rock
 isCancelled: false
-DetailedStyle: Rock & Pop
+DetailedStyle: 
+Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "21 février et 22 février à 20h", converti en "21-02-22-20:00" (attendu "dd-MM-yyyy-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "dimanche 16 mars 13h30 > 16h30", converti en "16-03-13:30" (attendu "dd-MM")
 unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-313158-geneva-jacuzzi-riki.html
+https://larayonne.org/evenement/stage-intensif-dafrocubain-avec-mc-dance-5/
 
-Date: 21 mars et 22 mars à 19h
-Event: De et par la possibilité éventuelle des devenirs envisageables
-Place: TNG-VAISE
+Date: lundi 17 mars à partir de 18h30
+Event: COMPLET // Bloodywood + Demonic Resurrection + Calva Louise
+Place: La Rayonne
 city: Lyon
 country: France
-Style: Classique
 isCancelled: false
-DetailedStyle: Classique & Lyrique
+DetailedStyle: 
+Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "21 mars et 22 mars à 19h", converti en "21-03-22-19:00" (attendu "dd-MM-yyyy-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "lundi 17 mars à partir de 18h30", converti en "17-03-18:30" (attendu "dd-MM")
 unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-311702-de-et-par-la-possibilite-eventuelle-des-devenirs-envisageables.html
+https://larayonne.org/evenement/bloodywood/
 
-Date: Du 9 au 21 mai 2025, à 20h sauf dimanche à 16h, relâche les 10, 12, 14, 16, 18 
-Event: Peter Grimes
-Place: Opéra National de Lyon
+Date: mardi 18 mars 18h30 > 20h30
+Event: Demander des subventions pour le théâtre et les arts de la rue (1/2)
+Place: La Rayonne
 city: Lyon
 country: France
-Style: Classique
 isCancelled: false
-DetailedStyle: Classique & Lyrique / Opéra
+DetailedStyle: 
+Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Du 9 au 21 mai 2025, à 20h sauf dimanche à 16h, relâche les 10, 12, 14, 16, 18 ", converti en "09-21-05-2025-20:16:10-12-14-16-18" (attendu "dd-MM-yyyy-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 18 mars 18h30 > 20h30", converti en "18-03-18:30" (attendu "dd-MM")
 unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-312754-peter-grimes.html
+https://larayonne.org/evenement/demander-des-subventions-pour-le-theatre-et-les-arts-de-la-rue-1/
 
-Date: Du 9 au 21 mai 2025, à 20 janvier
-Event: Peter Grimes
-Place: Opéra National de Lyon
+Date: mardi 18 mars 17h > 19h
+Event: Atelier 5.3 : Génération d’image par IA
+Place: La Rayonne
 city: Lyon
 country: France
-Style: Classique
 isCancelled: false
-DetailedStyle: Classique & Lyrique / Opéra
+DetailedStyle: 
+Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Du 9 au 21 mai 2025, à 20 janvier", converti en "09-21-05-2025-20-01" (attendu "dd-MM-yyyy-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 18 mars 17h > 19h", converti en "18-03-17:19:00" (attendu "dd-MM")
 unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-312754-peter-grimes.html
+https://larayonne.org/evenement/atelier-5-3-generation-dimage-par-ia/
 
-Date: Du 26 juin au 11 juillet 2025, de 10h à minuit
-Event: Jazz à Vienne
-Place: Théâtre antique de Vienne
+Date: mardi 18 mars 17h > 19h
+Event: Atelier 5.4 : Créer une affiche à l’aide d’outils numériques
+Place: La Rayonne
 city: Lyon
 country: France
-Style: Jazz
 isCancelled: false
-DetailedStyle: Jazz
+DetailedStyle: 
+Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Du 26 juin au 11 juillet 2025, de 10h à minuit", converti en "26-06-11-07-2025-10:00" (attendu "dd-MM-yyyy-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 18 mars 17h > 19h", converti en "18-03-17:19:00" (attendu "dd-MM")
 unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-310713-jazz-a-vienne.html
+https://larayonne.org/evenement/atelier-5-4-creer-une-affiche-a-laide-doutils-numeriques/
 
-Date: Du 17 au 20 juillet 2025, horaires à venir
-Event: Woodstower
-Place: Parc de Gerland
+Date: mercredi 19 mars à partir de 19h
+Event: H JeuneCrack
+Place: La Rayonne
 city: Lyon
 country: France
-Style: Electro
 isCancelled: false
-DetailedStyle: Musiques Electroniques
+DetailedStyle: 
+Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu "Du 17 au 20 juillet 2025, horaires à venir", converti en "17-20-07-2025" (attendu "dd-MM-yyyy-HH:mm")
+errorLog: Format de date invalide pour La Rayonne. Reçu "mercredi 19 mars à partir de 19h", converti en "19-03-19:00" (attendu "dd-MM")
 unixDate: 0
-https://www.petit-bulletin.fr/lyon/agenda-310639-woodstower.html
+https://larayonne.org/evenement/h-jeunecrack/
 
-Date: 29 janvier | 20h30 - 23h30 CET
-Event: 
-Place: La Clef de Voûte
+Date: jeudi 20 mars à partir de 19h
+Event: Blaiz Fayah + DJ Thomm
+Place: La Rayonne
 city: Lyon
 country: France
 isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err
 DetailedStyle: 
 Style: Live
 source: [object Object]
-unixDate: 1769715000000
-Time: jeudi 29 janvier à 20:30
-undefined
-
-Date: 30 janvier | 20h30 - 23h30 CET
-Event: 
-Place: La Clef de Voûte
-city: Lyon
-country: France
-isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err
-DetailedStyle: 
-Style: Live
-source: [object Object]
-unixDate: 1769801400000
-Time: vendredi 30 janvier à 20:30
-undefined
-
-Date: 31 janvier | 20h30 - 23h30 CET
-Event: 
-Place: La Clef de Voûte
-city: Lyon
-country: France
-isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err
-DetailedStyle: 
-Style: Live
-source: [object Object]
-unixDate: 1769887800000
-Time: samedi 31 janvier à 20:30
-undefined
-
-Date: 1 février | 20h30 - 23h30 CET
-Event: 
-Place: La Clef de Voûte
-city: Lyon
-country: France
-isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err
-DetailedStyle: 
-Style: Live
-source: [object Object]
-unixDate: 1769974200000
-Time: dimanche 1 février à 20:30
-undefined
-
-Date: 2 février | 16h00 - 19h00 CET
-Event: 
-Place: La Clef de Voûte
-city: Lyon
-country: France
-isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err
-DetailedStyle: 
-Style: Live
-source: [object Object]
-unixDate: 1770044400000
-Time: lundi 2 février à 16:00
-undefined
-
-Date: 5 février | 20h30 - 23h30 CET
-Event: 
-Place: La Clef de Voûte
-city: Lyon
-country: France
-isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err
-DetailedStyle: 
-Style: Live
-source: [object Object]
-unixDate: 1770319800000
-Time: jeudi 5 février à 20:30
-undefined
-
-Date: 6 février | 20h30 - 23h30 CET
-Event: 
-Place: La Clef de Voûte
-city: Lyon
-country: France
-isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err
-DetailedStyle: 
-Style: Live
-source: [object Object]
-unixDate: 1770406200000
-Time: vendredi 6 février à 20:30
-undefined
-
-Date: 7 février | 20h30 - 23h30 CET
-Event: 
-Place: La Clef de Voûte
-city: Lyon
-country: France
-isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err
-DetailedStyle: 
-Style: Live
-source: [object Object]
-unixDate: 1770492600000
-Time: samedi 7 février à 20:30
-undefined
-
-Date: 8 février | 20h30 - 23h30 CET
-Event: 
-Place: La Clef de Voûte
-city: Lyon
-country: France
-isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err
-DetailedStyle: 
-Style: Live
-source: [object Object]
-unixDate: 1770579000000
-Time: dimanche 8 février à 20:30
-undefined
-
-Date: 9 février | 19h30 - 22h30 CET
-Event: 
-Place: La Clef de Voûte
-city: Lyon
-country: France
-isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err
-DetailedStyle: 
-Style: Live
-source: [object Object]
-unixDate: 1770661800000
-Time: lundi 9 février à 19:30
-undefined
-
-Date: 12 février | 20h30 - 23h30 CET
-Event: 
-Place: La Clef de Voûte
-city: Lyon
-country: France
-isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err
-DetailedStyle: 
-Style: Live
-source: [object Object]
-unixDate: 1770924600000
-Time: jeudi 12 février à 20:30
-undefined
-
-Date: 13 février | 20h30 - 23h30 CET
-Event: 
-Place: La Clef de Voûte
-city: Lyon
-country: France
-isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err
-DetailedStyle: 
-Style: Live
-source: [object Object]
-unixDate: 1771011000000
-Time: vendredi 13 février à 20:30
-undefined
-
-Date: 14 février | 20h30 - 23h30 CET
-Event: 
-Place: La Clef de Voûte
-city: Lyon
-country: France
-isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err
-DetailedStyle: 
-Style: Live
-source: [object Object]
-unixDate: 1771097400000
-Time: samedi 14 février à 20:30
-undefined
-
-Date: 15 février | 20h30 - 23h30 CET
-Event: 
-Place: La Clef de Voûte
-city: Lyon
-country: France
-isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err
-DetailedStyle: 
-Style: Live
-source: [object Object]
-unixDate: 1771183800000
-Time: dimanche 15 février à 20:30
-undefined
-
-Date: 16 février | 19h30 - 22h30 CET
-Event: 
-Place: La Clef de Voûte
-city: Lyon
-country: France
-isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err
-DetailedStyle: 
-Style: Live
-source: [object Object]
-unixDate: 1771266600000
-Time: lundi 16 février à 19:30
-undefined
-
-Date: 19 février | 20h30 - 23h30 CET
-Event: 
-Place: La Clef de Voûte
-city: Lyon
-country: France
-isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err
-DetailedStyle: 
-Style: Live
-source: [object Object]
-unixDate: 1739993400000
-Time: mercredi 19 février à 20:30
-undefined
-
-Date: 20 février | 20h30 - 23h30 CET
-Event: 
-Place: La Clef de Voûte
-city: Lyon
-country: France
-isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err
-DetailedStyle: 
-Style: Live
-source: [object Object]
-unixDate: 1740079800000
-Time: jeudi 20 février à 20:30
-undefined
-
-Date: 21 février | 20h30 - 23h30 CET
-Event: 
-Place: La Clef de Voûte
-city: Lyon
-country: France
-isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err
-DetailedStyle: 
-Style: Live
-source: [object Object]
-unixDate: 1740166200000
-Time: vendredi 21 février à 20:30
-undefined
-
-Date: 22 février | 20h30 - 23h30 CET
-Event: 
-Place: La Clef de Voûte
-city: Lyon
-country: France
-isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err
-DetailedStyle: 
-Style: Live
-source: [object Object]
-unixDate: 1740252600000
-Time: samedi 22 février à 20:30
-undefined
-
-Date: 23 février | 19h30 - 22h30 CET
-Event: 
-Place: La Clef de Voûte
-city: Lyon
-country: France
-isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err
-DetailedStyle: 
-Style: Live
-source: [object Object]
-unixDate: 1740335400000
-Time: dimanche 23 février à 19:30
-undefined
-
-Date: 26 février | 20h30 - 23h30 CET
-Event: 
-Place: La Clef de Voûte
-city: Lyon
-country: France
-isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err
-DetailedStyle: 
-Style: Live
-source: [object Object]
-unixDate: 1740598200000
-Time: mercredi 26 février à 20:30
-undefined
-
-Date: 27 février | 20h30 - 23h30 CET
-Event: 
-Place: La Clef de Voûte
-city: Lyon
-country: France
-isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err
-DetailedStyle: 
-Style: Live
-source: [object Object]
-unixDate: 1740684600000
-Time: jeudi 27 février à 20:30
-undefined
-
-Date: 28 février | 20h30 - 23h30 CET
-Event: 
-Place: La Clef de Voûte
-city: Lyon
-country: France
-isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err
-DetailedStyle: 
-Style: Live
-source: [object Object]
-unixDate: 1740771000000
-Time: vendredi 28 février à 20:30
-undefined
-
-Date: 1 mars | 20h30 - 23h30 CET
-Event: 
-Place: La Clef de Voûte
-city: Lyon
-country: France
-isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err
-DetailedStyle: 
-Style: Live
-source: [object Object]
-unixDate: 1740857400000
-Time: samedi 1 mars à 20:30
-undefined
-
-Date: 2 mars | 19h30 - 22h30 CET
-Event: 
-Place: La Clef de Voûte
-city: Lyon
-country: France
-isCancelled: false
-errorLog: Impossible de lire la page liée pour l'événement ''. Erreur lors du téléchargement ? +err
-DetailedStyle: 
-Style: Live
-source: [object Object]
-unixDate: 1740940200000
-Time: dimanche 2 mars à 19:30
-undefined
-
-Date: F e b 2 0 T h u
-Event: Savage Thursday
-Place: Savage
-city: Hanoi
-country: Vietnam
-Style: House
-isCancelled: false
-DetailedStyle: House
-source: [object Object]
-errorLog: Format de date invalide pour Likdo. Reçu "F e b 2 0 T h u", converti en "02-00" (attendu "dd-MM")
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 20 mars à partir de 19h", converti en "20-03-19:00" (attendu "dd-MM")
 unixDate: 0
-https://likdo.asia/event/1881
+https://larayonne.org/evenement/blaiz-fayah/
 
-Date: F e b 2 0 T h u
-Event: Zero Project: MLiR & DESNUAGES
-Place: Luu Bar Saigon
-city: Hanoi
-country: Vietnam
-Style: Live
+Date: jeudi 20 mars 18h30 > 20h30
+Event: Demander des subventions pour le théâtre et les arts de la rue (2/2)
+Place: La Rayonne
+city: Lyon
+country: France
 isCancelled: false
 DetailedStyle: 
-source: [object Object]
-errorLog: Format de date invalide pour Likdo. Reçu "F e b 2 0 T h u", converti en "02-00" (attendu "dd-MM")
-unixDate: 0
-https://likdo.asia/event/1933
-
-Date: M a r 0 1 S a t
-Event: Offlandish • Red River Cruise w/ Paperkraft, Thilini • Mirage
-Place: Red River Cruise
-city: Hanoi
-country: Vietnam
-Style: House Disco
-isCancelled: false
-DetailedStyle: House Disco
-source: [object Object]
-errorLog: Format de date invalide pour Likdo. Reçu "M a r 0 1 S a t", converti en "00-01" (attendu "dd-MM")
-unixDate: 0
-https://likdo.asia/event/1907
-
-Date: M a r 0 1 S a t
-Event: Electric Bazaar 5th Anniversary
-Place: Savage
-city: Hanoi
-country: Vietnam
 Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 20 mars 18h30 > 20h30", converti en "20-03-18:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/demander-des-subventions-pour-le-theatre-et-les-arts-de-la-rue-2/
+
+Date: jeudi 20 mars 17h > 21h
+Event: La Fête du Printemps
+Place: La Rayonne
+city: Lyon
+country: France
 isCancelled: false
 DetailedStyle: 
+Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Likdo. Reçu "M a r 0 1 S a t", converti en "00-01" (attendu "dd-MM")
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 20 mars 17h > 21h", converti en "20-03-17:21:00" (attendu "dd-MM")
 unixDate: 0
-https://likdo.asia/event/1923
+https://larayonne.org/evenement/la-fete-du-printemps/
 
-Date: A p r 0 4 F r i
-Event: Equation 2025
-Place: Mo Luong Cave
-city: Hanoi
-country: Vietnam
-Style: House Techno
+Date: vendredi 21 mars 00h > 05h
+Event: Reperku Tour : Billx + Neko + Mighty Spiritz + Le B
+Place: La Rayonne
+city: Lyon
+country: France
 isCancelled: false
-DetailedStyle: House Techno
+DetailedStyle: 
+Style: Live
 source: [object Object]
-errorLog: Format de date invalide pour Likdo. Reçu "A p r 0 4 F r i", converti en "00-04" (attendu "dd-MM")
+errorLog: Format de date invalide pour La Rayonne. Reçu "vendredi 21 mars 00h > 05h", converti en "21-03-00:05:00" (attendu "dd-MM")
 unixDate: 0
-https://likdo.asia/event/1736
+https://larayonne.org/evenement/billx-neko-mighty-spiritz-le-b/
+
+Date: samedi 22 mars à partir de 19h
+Event: Spider ZED + 2TH
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "samedi 22 mars à partir de 19h", converti en "22-03-19:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/spider-zed-2th/
+
+Date: samedi 22 mars 23h59 > 05h
+Event: 23:59 w/ ALT8 + Arman John + Kø:lab
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "samedi 22 mars 23h59 > 05h", converti en "22-03-23:59" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/2359-alt8-arman-john-kolab/
+
+Date: samedi 22 mars 10h30 > 11h30
+Event: "Tout Petits Mais Fantastiques" avec la Conteuse Catalane
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "samedi 22 mars 10h30 > 11h30", converti en "22-03-10:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/tout-petits-mais-fantastiques/
+
+Date: mardi 25 mars 18h30 > 20h30
+Event: RENCONTRE // Les principales solutions d’accompagnement et de financement proposées par Rhône Développement Initiative
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 25 mars 18h30 > 20h30", converti en "25-03-18:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/les-principales-solutions-daccompagnement-et-de-financement-proposees-par-rdi/
+
+Date: mardi 25 mars 09h30 > 12h30
+Event: Atelier d'émergence de la demande sociale avec La Boutique des Sciences et Le Mouvement Associatif AURA
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 25 mars 09h30 > 12h30", converti en "25-03-09:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/atelier-demergence-de-la-demande-sociale-bds-lma/
+
+Date: mercredi 26 mars à partir de 19h
+Event: The Last Internationale
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "mercredi 26 mars à partir de 19h", converti en "26-03-19:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/the-last-internationale/
+
+Date: jeudi 27 mars à partir de 19h
+Event: Dēportivo
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 27 mars à partir de 19h", converti en "27-03-19:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/deportivo/
+
+Date: jeudi 27 mars 18h30 > 21h
+Event: [COMPLET] ATELIER // Bien remplir sa demande de subvention pour la Ville de Villeurbanne
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 27 mars 18h30 > 21h", converti en "27-03-18:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/bien-remplir-sa-demande-de-subvention-pour-la-ville-de-villeurbanne/
+
+Date: vendredi 28 mars à partir de 19h
+Event: Jahneration + Bijo
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "vendredi 28 mars à partir de 19h", converti en "28-03-19:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/jahneration/
+
+Date: samedi 29 mars 13h30 > 17h30
+Event: ATELIER // Pourquoi s’engager (ou pas) ?
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "samedi 29 mars 13h30 > 17h30", converti en "29-03-13:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/atelier-pourquoi-sengager-ou-pas/
+
+Date: samedi 29 mars 23h30 > 05h
+Event: Asdek & Ava Mind pres. ECLIPSE
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "samedi 29 mars 23h30 > 05h", converti en "29-03-23:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/asdek-ava-mind/
+
+Date: dimanche 30 mars à partir de 19h
+Event: Zeal & Ardor + Dom Zły
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "dimanche 30 mars à partir de 19h", converti en "30-03-19:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/zeal-ardor/
+
+Date: dimanche 30 mars 13h30 > 16h30
+Event: Stage intensif de kizomba avec MC Dance
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "dimanche 30 mars 13h30 > 16h30", converti en "30-03-13:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/stage-intensif-de-kizomba-avec-mc-dance-3/
+
+Date: mardi 01 avril 18h > 20h
+Event: ATELIER // Les bases sur les droits d'auteur dans la musique
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 01 avril 18h > 20h", converti en "01-04-18:20:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/les-bases-sur-les-droits-dauteur-dans-la-musique/
+
+Date: mercredi 02 avril à partir de 19h
+Event: Carbonne
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "mercredi 02 avril à partir de 19h", converti en "02-04-19:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/carbonne/
+
+Date: vendredi 04 avril à partir de 19h
+Event: Mairo
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "vendredi 04 avril à partir de 19h", converti en "04-04-19:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/mairo/
+
+Date: vendredi 04 avril 00h > 05h
+Event: Reperku Tour : Reperkusound x Eurodance Lyon
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "vendredi 04 avril 00h > 05h", converti en "04-04-00:05:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/reperkusound-eurodance-lyon/
+
+Date: samedi 05 avril 23h30 > 05h
+Event: Groov & Beat #6 : Dawn to Dusk
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "samedi 05 avril 23h30 > 05h", converti en "05-04-23:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/groov-beat-6-from-dusk-to-dawn/
+
+Date: dimanche 06 avril 13h30 > 16h30
+Event: Stage intensif de kizomba avec MC Dance
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "dimanche 06 avril 13h30 > 16h30", converti en "06-04-13:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/stage-intensif-de-kizomba-avec-mc-dance-4/
+
+Date: lundi 07 avril 18h30 > 21h
+Event: CO-FORMATION // Mettre en place une gouvernance partagée
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "lundi 07 avril 18h30 > 21h", converti en "07-04-18:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/co-formation-mettre-en-place-une-gouvernance-partagee/
+
+Date: mercredi 09 avril 14h > 17h
+Event: ATELIER D'INTELLIGENCE COLLECTIVE // Mettre en place une gouvernance partagée
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "mercredi 09 avril 14h > 17h", converti en "09-04-14:17:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/atelier-mettre-en-place-une-gouvernance-partagee/
+
+Date: jeudi 10 avril à partir de 19h
+Event: Eisbrecher + Heldmaschine
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 10 avril à partir de 19h", converti en "10-04-19:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/eisbrecher-heldmaschine/
+
+Date: vendredi 11 avril à partir de 19h
+Event: Marcel et son Orchestre + Davide Lafore
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "vendredi 11 avril à partir de 19h", converti en "11-04-19:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/marcel-et-son-orchestre/
+
+Date: samedi 12 avril 23h30 > 05h
+Event: 23:59 w/ Toxic Machinery + Vieze Asbak + Istigkeit
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "samedi 12 avril 23h30 > 05h", converti en "12-04-23:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/2359-w-toxic-machinery-vieze-asbak-istigkeit/
+
+Date: dimanche 13 avril 13h30 > 16h30
+Event: Stage intensif d’Afrocubain avec MC Dance
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "dimanche 13 avril 13h30 > 16h30", converti en "13-04-13:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/stage-intensif-dafrocubain-avec-mc-dance-6/
+
+Date: lundi 14 avril 18h30 > 21h
+Event: [COMPLET] CO-FORMATION // S'initier aux techniques d'animation participative
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "lundi 14 avril 18h30 > 21h", converti en "14-04-18:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/co-formation-sinitier-aux-techniques-danimation-participative/
+
+Date: mardi 15 avril 18h > 20h30
+Event: [COMPLET] Les fondamentaux du mécénat auprès des entreprises et fondations
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 15 avril 18h > 20h30", converti en "15-04-18:20:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/les-fondamentaux-du-mecenat-aupres-des-entreprises-et-fondations-2/
+
+Date: mardi 15 avril à partir de 19h
+Event: Lordi
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 15 avril à partir de 19h", converti en "15-04-19:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/lordi/
+
+Date: jeudi 17 avril 18h > 21h
+Event: [COMPLET] Construire un budget et un plan de trésorerie
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 17 avril 18h > 21h", converti en "17-04-18:21:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/construire-un-budget-et-un-plan-de-tresorerie/
+
+Date: jeudi 17 avril à partir de 19h
+Event: Sylvain Duthu
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 17 avril à partir de 19h", converti en "17-04-19:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/sylvain-duthu/
+
+Date: vendredi 18 avril 23h30 > 05h
+Event: Mamacita ON TOUR
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "vendredi 18 avril 23h30 > 05h", converti en "18-04-23:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/mamacita-on-tour/
+
+Date: samedi 19 avril à partir de 19h
+Event: Still Fresh
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "samedi 19 avril à partir de 19h", converti en "19-04-19:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/still-fresh/
+
+Date: mercredi 23 avril 14h > 17h
+Event: ATELIER D'INTELLIGENCE COLLECTIVE // S'initier aux techniques d'animation participative
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "mercredi 23 avril 14h > 17h", converti en "23-04-14:17:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/atelier-dintelligence-collective-sinitier-aux-techniques-danimation-participative/
+
+Date: vendredi 25 avril à partir de 19h
+Event: Feldup
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "vendredi 25 avril à partir de 19h", converti en "25-04-19:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/feldup/
+
+Date: vendredi 25 avril 00h > 05h
+Event: VOULEZ-VOUS by MOSIMANN + guests
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "vendredi 25 avril 00h > 05h", converti en "25-04-00:05:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/voulez-vous-mosimann-guests/
+
+Date: samedi 26 avril 23h30 > 05h
+Event: Halfpipe Records Pres. Nollie In The Club
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "samedi 26 avril 23h30 > 05h", converti en "26-04-23:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/halfpipe-records-pres-nollie-in-the-club/
+
+Date: mardi 29 avril à partir de 19h
+Event: ten56. + guests
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 29 avril à partir de 19h", converti en "29-04-19:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/ten56/
+
+Date: vendredi 02 mai à partir de 19h
+Event: Sowulo + ElektroShaman
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "vendredi 02 mai à partir de 19h", converti en "02-05-19:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/sowulo/
+
+Date: lundi 05 mai 18h30 > 21h
+Event: [COMPELT] CO-FORMATION // Animer les conflits au sein de son association
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "lundi 05 mai 18h30 > 21h", converti en "05-05-18:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/co-formation-animer-les-conflits-au-sein-de-son-association/
+
+Date: jeudi 08 mai à partir de 19h
+Event: Amenra
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 08 mai à partir de 19h", converti en "08-05-19:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/amenra/
+
+Date: samedi 10 mai 23h > 05h
+Event: Echoes Of The Bass
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "samedi 10 mai 23h > 05h", converti en "10-05-23:05:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/echoes-of-the-bass/
+
+Date: dimanche 11 mai 13h30 > 16h30
+Event: Stage intensif de kizomba avec MC Dance
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "dimanche 11 mai 13h30 > 16h30", converti en "11-05-13:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/stage-intensif-de-kizomba-avec-mc-dance-5/
+
+Date: mercredi 14 mai 14h > 17h
+Event: ATELIER D'INTELLIGENCE COLLECTIVE // Animer les conflits au sein de son association
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "mercredi 14 mai 14h > 17h", converti en "14-05-14:17:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/atelier-dintelligence-collective-animer-les-conflits-au-sein-de-son-association/
+
+Date: samedi 17 mai 23h30 > 05h
+Event: O.Z.O.R.A. : One Day in France
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "samedi 17 mai 23h30 > 05h", converti en "17-05-23:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/ozora-one-day-in-france/
+
+Date: dimanche 18 mai 13h30 > 16h30
+Event: Stage intensif d’Afrocubain avec MC Dance
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "dimanche 18 mai 13h30 > 16h30", converti en "18-05-13:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/stage-intensif-dafrocubain-avec-mc-dance-7/
+
+Date: mardi 20 mai 18h30 > 20h30
+Event: Mettre en place une stratégie de communication (hors réseaux sociaux) - Niveau débutant
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 20 mai 18h30 > 20h30", converti en "20-05-18:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/mettre-en-place-une-strategie-de-communication-hors-reseaux-sociaux-niveau-debutant/
+
+Date: mardi 27 mai 18h30 > 20h30
+Event: Mettre en place une stratégie de communication (hors réseaux sociaux) - Niveau avancé
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 27 mai 18h30 > 20h30", converti en "27-05-18:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/mettre-en-place-une-strategie-de-communication-hors-reseaux-sociaux-niveau-avance/
+
+Date: jeudi 29 mai à partir de 18h
+Event: Born Of Osiris + Ingested + Entheos + The Voynich Code
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 29 mai à partir de 18h", converti en "29-05-18:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/born-of-osiris/
+
+Date: dimanche 01 juin 13h30 > 16h30
+Event: Stage intensif de kizomba avec MC Dance
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "dimanche 01 juin 13h30 > 16h30", converti en "01-06-13:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/stage-intensif-de-kizomba-avec-mc-dance-6/
+
+Date: mardi 03 juin 18h30 > 20h30
+Event: Mettre en place une stratégie de communication sur les réseaux sociaux - Niveau débutant
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 03 juin 18h30 > 20h30", converti en "03-06-18:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/mettre-en-place-une-strategie-de-communication-sur-les-reseaux-sociaux-niveau-debutant/
+
+Date: jeudi 05 juin 18h30 > 20h30
+Event: ATELIER PRATIQUE // Réseaux sociaux - Niveau débutant
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 05 juin 18h30 > 20h30", converti en "05-06-18:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/atelier-pratique-reseaux-sociaux-niveau-debutant/
+
+Date: jeudi 12 juin 18h30 > 20h30
+Event: Construire le cahier des charges de son site internet
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 12 juin 18h30 > 20h30", converti en "12-06-18:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/construire-le-cahier-des-charges-de-son-site-internet-2/
+
+Date: lundi 16 juin 18h30 > 20h30
+Event: Mettre en place une stratégie de communication sur les réseaux sociaux - Niveau avancé
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "lundi 16 juin 18h30 > 20h30", converti en "16-06-18:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/mettre-en-place-une-strategie-de-communication-sur-les-reseaux-sociaux-niveau-avance/
+
+Date: mardi 17 juin 17h30 > 20h30
+Event: Mettre en place une comptabilité pour les petites associations
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 17 juin 17h30 > 20h30", converti en "17-06-17:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/mettre-en-place-une-comptabilite-pour-les-petites-assos-3/
+
+Date: jeudi 19 juin 18h30 > 20h30
+Event: ATELIER PRATIQUE // Réseaux sociaux - Niveau avancé
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 19 juin 18h30 > 20h30", converti en "19-06-18:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/atelier-pratique-reseaux-sociaux-niveau-avance/
+
+Date: lundi 23 juin 18h30 > 20h30
+Event: ATELIER PRATIQUE // Créer un visuel avec Canva - Niveau débutant
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "lundi 23 juin 18h30 > 20h30", converti en "23-06-18:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/atelier-pratique-creer-un-visuel-avec-canva-niveau-debutant/
+
+Date: jeudi 26 juin à partir de 19h
+Event: Russian Circles + Ultha
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 26 juin à partir de 19h", converti en "26-06-19:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/russian-circles/
+
+Date: dimanche 29 juin 13h30 > 16h30
+Event: Stage intensif d’Afrocubain avec MC Dance
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "dimanche 29 juin 13h30 > 16h30", converti en "29-06-13:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/stage-intensif-dafrocubain-avec-mc-dance-8/
+
+Date: jeudi 03 juillet 18h30 > 20h30
+Event: ATELIER PRATIQUE // Créer un visuel avec Canva - Niveau avancé
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 03 juillet 18h30 > 20h30", converti en "03-07-18:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/atelier-pratique-creer-un-visuel-avec-canva-niveau-avance/
+
+Date: mardi 08 juillet 18h > 21h
+Event: Construire un budget et un plan de trésorerie
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 08 juillet 18h > 21h", converti en "08-07-18:21:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/construire-un-budget-et-un-plan-de-tresorerie-2/
+
+Date: jeudi 10 juillet 18h30 > 20h30
+Event: ATELIER // Créer un site vitrine avec Odoo (1/2)
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 10 juillet 18h30 > 20h30", converti en "10-07-18:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/atelier-creer-un-site-vitrine-avec-odoo-1-2/
+
+Date: jeudi 18 septembre 18h > 21h
+Event: Créer un premier emploi, pourquoi ? À quoi penser ? Que faire ?
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 18 septembre 18h > 21h", converti en "18-09-18:21:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/creer-un-premier-emploi-pourquoi-a-quoi-penser-que-faire/
+
+Date: mardi 23 septembre 18h30 > 20h30
+Event: Comprendre les principales aides à l’emploi
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 23 septembre 18h30 > 20h30", converti en "23-09-18:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/comprendre-les-principales-aides-a-lemploi/
+
+Date: jeudi 25 septembre 18h30 > 20h30
+Event: ATELIER // Créer un site vitrine avec Odoo (2/2)
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 25 septembre 18h30 > 20h30", converti en "25-09-18:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/atelier-creer-un-site-vitrine-avec-odoo-2-2/
+
+Date: mardi 30 septembre à partir de 18h
+Event: Bleed From Within + After The Burial + Great American Ghost
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 30 septembre à partir de 18h", converti en "30-09-18:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/bleed-from-within/
+
+Date: vendredi 03 octobre à partir de 18h
+Event: Faun + Ye Banished Privateers
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "vendredi 03 octobre à partir de 18h", converti en "03-10-18:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/faun/
+
+Date: mardi 07 octobre 18h30 > 20h30
+Event: L'emploi dans le spectacle vivant
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 07 octobre 18h30 > 20h30", converti en "07-10-18:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/lemploi-dans-le-spectacle-vivant/
+
+Date: jeudi 09 octobre 18h30 > 20h30
+Event: Les obligations des associations employeuses
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 09 octobre 18h30 > 20h30", converti en "09-10-18:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/les-obligations-des-associations-employeuses-2/
+
+Date: dimanche 12 octobre à partir de 19h
+Event: Fredz
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "dimanche 12 octobre à partir de 19h", converti en "12-10-19:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/fredz/
+
+Date: mardi 14 octobre à partir de 19h
+Event: God Is An Astronaut + Jo Quail
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 14 octobre à partir de 19h", converti en "14-10-19:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/god-is-an-astronaut-jo-quail/
+
+Date: jeudi 16 octobre 17h30 > 20h30
+Event: Mettre en place une comptabilité pour les petites associations
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 16 octobre 17h30 > 20h30", converti en "16-10-17:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/mettre-en-place-une-comptabilite-pour-les-petites-associations-4/
+
+Date: jeudi 16 octobre à partir de 19h
+Event: Aime Simone
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 16 octobre à partir de 19h", converti en "16-10-19:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/aime-simone/
+
+Date: vendredi 17 octobre à partir de 19h
+Event: Wind Rose + Orden Ogan + Angus McSix
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "vendredi 17 octobre à partir de 19h", converti en "17-10-19:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/wind-rose/
+
+Date: mardi 21 octobre 18h30 > 20h30
+Event: La gestion de la paie dans le spectacle vivant
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "mardi 21 octobre 18h30 > 20h30", converti en "21-10-18:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/la-gestion-de-la-paie-dans-le-spectacle-vivant/
+
+Date: lundi 03 novembre 18h30 > 21h
+Event: Cycle diffusion : La stratégie de diffusion d’un projet artistique (1/4)
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "lundi 03 novembre 18h30 > 21h", converti en "03-11-18:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/cycle-diffusion-la-strategie-de-diffusion-dun-projet-artistique/
+
+Date: jeudi 06 novembre 18h > 21h
+Event: Construire un budget et un plan de trésorerie
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 06 novembre 18h > 21h", converti en "06-11-18:21:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/construire-un-budget-et-un-plan-de-tresorerie-3/
+
+Date: mercredi 12 novembre 18h30 > 21h
+Event: Cycle diffusion : Élaborer un dossier de diffusion (2/4)
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "mercredi 12 novembre 18h30 > 21h", converti en "12-11-18:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/cycle-diffusion-elaborer-un-dossier-de-diffusion/
+
+Date: jeudi 13 novembre à partir de 19h
+Event: REPORTÉ // Popa Chubby
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: true
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 13 novembre à partir de 19h", converti en "13-11-19:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/popa-chubby/
+
+Date: lundi 17 novembre 18h30 > 20h30
+Event: Cycle diffusion : Formaliser sa production artistique (3/4)
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "lundi 17 novembre 18h30 > 20h30", converti en "17-11-18:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/cycle-diffusion-formaliser-sa-production-artistique/
+
+Date: jeudi 20 novembre à partir de 19h
+Event: The Inspector Cluzo
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 20 novembre à partir de 19h", converti en "20-11-19:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/the-inspector-cluzo/
+
+Date: samedi 22 novembre à partir de 19h
+Event: Rakoon
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "samedi 22 novembre à partir de 19h", converti en "22-11-19:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/rakoon/
+
+Date: lundi 24 novembre 18h30 > 21h
+Event: Cycle diffusion : Construire le budget de son projet artistique (4/4)
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "lundi 24 novembre 18h30 > 21h", converti en "24-11-18:30" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/cycle-diffusion-construire-le-budget-de-son-projet-artistique/
+
+Date: mercredi 26 novembre 18h > 20h
+Event: ATELIER // Gérer sa tournée dans les musiques actuelles
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "mercredi 26 novembre 18h > 20h", converti en "26-11-18:20:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/atelier-gerer-sa-tournee-dans-les-musiques-actuelles/
+
+Date: jeudi 27 novembre à partir de 19h
+Event: Broken Back
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 27 novembre à partir de 19h", converti en "27-11-19:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/broken-back/
+
+Date: vendredi 28 novembre à partir de 19h
+Event: THK
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "vendredi 28 novembre à partir de 19h", converti en "28-11-19:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/thk/
+
+Date: jeudi 18 décembre à partir de 19h
+Event: Sinclair
+Place: La Rayonne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: [object Object]
+errorLog: Format de date invalide pour La Rayonne. Reçu "jeudi 18 décembre à partir de 19h", converti en "18-12-19:00" (attendu "dd-MM")
+unixDate: 0
+https://larayonne.org/evenement/sinclair/
 

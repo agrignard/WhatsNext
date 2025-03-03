@@ -17,7 +17,7 @@ const {getTagLocalization, tagContainsAllStrings, getTagContainingAllStrings,
   splitAndLowerCase, addJSONBlock, reduceTag, getAllDates, getBestDateFormat,
   countNonEmptyEvents, regroupTags, getMostUsedTagClassSets} = require(imports+'analexUtilities.js');
 const {getDateConversionPatterns} =require(imports+'dateUtilities.js');
-const {getText} =require(imports+'scrapexUtilities.js');
+// const {getText} =require(imports+'scrapexUtilities.js');
 
 var showLog = false;
 
@@ -1373,9 +1373,6 @@ function loadPage(){
 
   rightPanel.innerHTML = $page.html();
   
-
-
-
   const linkTags = rightPanel.querySelectorAll(customTagName);
   for(tag of linkTags){
     tag.title = makeURL(venue.baseURL,tag.getAttribute('href'));
@@ -1388,9 +1385,7 @@ function loadPage(){
   
   // find the tag from eventsDelimiterTag, with the text in the strings. If not found, get the first tag
   // that matches eventsDelimiterTag
-  // venue.eventsDelimiterTag = 'a.pureu11.pureumd12.truc>div>a.truc2.truc3';
-  // a.pureu11.pureumd12.pureulg14.t5410.pureug.agendacard
-  // venue.eventsDelimiterTag = 'a.pureu11.pureumd12.pureulg14.t5410.pureug.agendacard';
+  
   behaviourSetup('automaticDefault');
   
   if (venue.hasOwnProperty('eventsDelimiterTag')){
@@ -1827,6 +1822,9 @@ function renderMultiPageManager(nbPages){
 selectNbPages.addEventListener('change', ()=>{
   nbPagesToShow = selectNbPages.selectedIndex + 1;
   loadPage();
+  makePrincipalTag(candidatePrincipalTag);
+  focusTo(principalTag);
+  ProcessRegex();
 });
 
 function removeEmptyFields(object){
@@ -2017,6 +2015,7 @@ function getDescFromJSON(rootTag, subTagsList){
 
   // find the sub event delimiter path (the path string at the starts of every sub event tag)
 
+  
   const multiTags = Object.keys(venue[currentPage]).filter(key => key.includes('Multi'))
     .map(key => venue[currentPage][key]).flat();
 

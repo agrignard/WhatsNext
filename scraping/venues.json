@@ -164,20 +164,23 @@
     "city": "Lyon",
     "country": "France",
     "url": "https://sonic-lyon.fr/",
-    "dateFormat": "MM-dd",
-    "eventsDelimiterTag": "DIV.event_details.depth14",
+    "dateFormat": "",
+    "eventsDelimiterTag": "DIV.level0.depth2",
     "eventURLIndex": 0,
     "defaultStyle": "Rock",
     "baseURL": "https://sonic-lyon.fr/",
     "mainPage": {
-      "eventDateTags": [
-        "A.depth15:eq(0)>DIV.event_date.depth16:eq(0)"
-      ],
       "eventNameTags": [
-        "DIV.event_desc.depth15:eq(0)>A.depth16:eq(1)>DIV.event_title.depth17:eq(0)"
+        "DIV.level1.depth3:eq(0)>DIV.data.depth4:eq(0)"
+      ],
+      "eventDateTags": [
+        "DIV.level1.depth3:eq(0)>DIV.data.depth4:eq(1)"
       ],
       "eventStyleTags": [
-        "DIV.event_desc.depth15:eq(0)>DIV.event_address.depth16:eq(0)"
+        "DIV.level1.depth3:eq(1)>DIV.data.depth4:eq(0)"
+      ],
+      "eventPlaceTags": [
+        "DIV.level1.depth3:eq(1)>DIV.data.depth4:eq(1)"
       ]
     },
     "linkedPage": {
@@ -426,10 +429,13 @@
         "DIV.agendajourlabel.depth7:eq(0)"
       ],
       "eventMultiNameTags": [
-        "DIV.agendalistevents.depth7>A.agendaevent.depth8>DIV.agendaeventtitle.depth9"
+        "DIV.agendalistevents.depth7>A.agendaevent.depth8>DIV.agendaeventtitle.depth9:eq(0)"
       ],
       "eventMultiURLTags": [
-        "DIV.agendalistevents.depth7>A.agendaevent.depth8>DIV.agendaeventtitle.depth9"
+        "DIV.agendalistevents.depth7>A.agendaevent.depth8>DIV.agendaeventtitle.depth9:eq(0)"
+      ],
+      "eventMultiDateTags": [
+        "DIV.agendalistevents.depth7>A.agendaevent.depth8>DIV.agendaeventinfos.depth9:eq(0)>DIV.agendahoraires.depth10:eq(0)"
       ]
     },
     "url": "https://larayonne.org/agenda/",

@@ -11,7 +11,7 @@ const {samePlace, getAliases, getStyleConversions, loadVenuesJSONFile,
         loadCancellationKeywords, writeToLog, isAlias, geAliasesToURLMap,
         getLanguages, fromLanguages, checkLanguages, unique} = require('./import/jsonUtilities.js');
 const {mergeEvents} = require('./import/mergeUtilities.js');
-const {getText} = require('./import/scrapexUtilities.js');
+const {getInfo} = require('./import/scrapexUtilities.js');
 const {getHrefFromAncestor} = require('./import/aspiratorexUtilities.js');
 
 const useAI = false;
@@ -141,6 +141,7 @@ async function analyseFile(venue) {
   //const [eventBlockList, hrefInDelimiterList] = await extractEvents(inputFileList,venue);
   const [eventBlockList, hrefInDelimiterList] = await extractEvents(fileContent,venue);
   let eventList = await analyseEvents(eventBlockList, hrefInDelimiterList, venue);
+  // console.log(eventList);
   eventList = unique(eventList);
 
 
@@ -162,148 +163,134 @@ async function analyseFile(venue) {
     const dateFormat = (venue.hasOwnProperty('linkedPage') && venue.linkedPage.hasOwnProperty('eventDateTags'))?venue.linkedPageDateFormat:venue.dateFormat; 
     const eventLanguages = languages[venue.country]; 
     const localDateConversionPatterns = fromLanguages(dateConversionPatterns,eventLanguages);
+
+    //*** aux functio for post processing, show logs and save  ***//
+    function postProcess(eventInfo) {
+
+      // perform regexp
+      if (venue.hasOwnProperty('regexp')) {
+        applyRegexp(eventInfo, venue.regexp);
+      }
+
+      // match event place with existing one when the eventPlace comes from a generic site such as 'infoconcerts'
+      if (venue.mainPage.hasOwnProperty('eventPlaceTags') || (venue.hasOwnProperty('linkedPage') && venue.linkedPage.hasOwnProperty('eventPlaceTags'))) {
+        eventInfo.eventPlace = FindLocationFromAlias(eventInfo.eventPlace, venue.country, venue.city, aliasList);
+      }
+
+      // get normalized style
+      eventInfo.eventDetailedStyle = eventInfo.hasOwnProperty('eventStyle') ? eventInfo.eventStyle : '';
+      if (!eventInfo.hasOwnProperty('eventStyle') || eventInfo.eventStyle === '') {
+        const eventPlace = venueList.find(el => samePlace(el, { name: eventInfo.eventPlace, city: venue.city, country: venue.country }));
+        if (eventPlace && eventPlace.hasOwnProperty('defaultStyle')) {// if no style is found, first apply the event place default style
+          eventInfo.eventStyle = eventPlace.defaultStyle;
+        } else if (venue.hasOwnProperty('defaultStyle')) {// if no default style for the place, take the one of the scrapped site
+          eventInfo.eventStyle = venue.defaultStyle;
+        } else {// otherwise use the global style
+          eventInfo.eventStyle = globalDefaultStyle;
+        }
+      }
+      eventInfo.eventStyle = getStyle(eventInfo.eventStyle, eventLanguages);
+      eventInfo.source = { 'name': venue.name, 'city': venue.city, 'country': venue.country };
+
+      // change the date format to Unix time
+      let formatedEventDate = createDate(eventInfo.eventDate, dateFormat, localDateConversionPatterns, timeZone, modificationDate);
+      //createDate(el.eventDate,dateFormat,localDateConversionPatterns);
+      // el.date = formatedEventDate;
+      if (!isValid(formatedEventDate)) {
+        writeToLog('error', eventInfo, ['\x1b[31mFormat de date invalide pour %s. Reçu \"%s\", converti en \"%s\" (attendu \"%s\")\x1b[0m',
+          venue.name, eventInfo.eventDate, convertDate(eventInfo.eventDate, localDateConversionPatterns), dateFormat], true);
+        eventInfo.unixDate = 0;
+      } else {
+        // changer 00:00 en 23:59 si besoin
+        if (venue.hasOwnProperty('midnightHour')) {
+          formatedEventDate = changeMidnightHour(formatedEventDate, venue.midnightHour, eventInfo);
+        }
+        eventInfo.unixDate = formatedEventDate.getTime();
+        eventInfo.eventTime = eventTime(formatedEventDate, timeZone);
+        console.log(showDate(formatedEventDate));
+      }
+
+      // display
+      displayEventLog(eventInfo);
+      return eventInfo;
+    }
+
+
     // parsing each event
     try{
-      // eventBlockList.forEach((eve,eveIndex) =>{
       for (let eveIndex = 0; eveIndex < eventBlockList.length; eveIndex++) {
+
+        console.log('\n\n\n\n\n\n*********************************')
+
         let eve = eventBlockList[eveIndex];
         let $eventBlock = cheerio.load(eve);
         
-       
-        
         let eventInfo = {'eventPlace':venue.name, 'city':venue.city, 'country':venue.country};
 
-        // **** event data extraction ****/
-        Object.keys(venue.mainPage).forEach(key => eventInfo[key.replace('Tags','')] = getText(key,venue.mainPage,$eventBlock));
+        /*** extract info from main page ***/
+
+        getInfo(venue.mainPage,$eventBlock,eventInfo);
 
         // find if cancelled
         eventInfo.isCancelled = isCancelled($eventBlock.text(),cancellationKeywords[venue.country]);
 
-        //extract URL
-        let eventURL;
-        try{
-          // simplified version, do not use eventURLIndex anymore. Tag with URL must be specified,
-          // otherwise an URL will be automatically found in the delimiter if it exists.
-          if (venue.mainPage.hasOwnProperty('eventURLTags')){// if a delimiter for the URL has been defined
-            eventURL = makeURL(venue.baseURL,getHrefFromAncestor($eventBlock(venue.mainPage.eventURLTags[0])));
-            eventInfo.eventURL = eventURL;
-          }else if (hrefInDelimiterList[eveIndex]){// the URL is in A href
-            eventURL = makeURL(venue.baseURL,hrefInDelimiterList[eveIndex]);
+       
+        let eventInfoList = createMultipleEvents(eventInfo);
+        
+
+        eventInfoList = eventInfoList.filter(subEventInfo => !isEmptyEvent(subEventInfo));
+        // let eventInfoListAfterLinkedPage = []; // this second list is needed in case there are multiple events in the linked page too
+
+        for (const subEventInfo of eventInfoList){
+         
+
+           // if no URL tags have been provided, try to find an URL in the delimiter tag
+          if (!subEventInfo.hasOwnProperty('eventURL') && hrefInDelimiterList[eveIndex]){
+            subEventInfo.eventURL = hrefInDelimiterList[eveIndex];
           }
-          eventInfo.eventURL = eventURL;
-          
-          // if (!venue.mainPage.hasOwnProperty('eventURLTags')){
-          //   if (venue.hasOwnProperty('eventURLIndex') && venue.eventURLIndex === -1){
-          //     eventURL =venue.baseURL;
-          //   }else{
-          //     let index = venue.hasOwnProperty('eventURLIndex')?venue.eventURLIndex:0;
-          //     if (index == 0){// the URL is in A href
-          //         eventURL = makeURL(venue.baseURL,hrefInDelimiterList[eveIndex]);
-          //     }else{// URL is in inner tags
-          //         index = index - 1;
-          //       const tagsWithHref = $eventBlock('a[href]');
-          //       const hrefFromAttribute = $eventBlock(tagsWithHref[index]).attr('href');
-          //       if (hrefFromAttribute){
-          //         eventURL = makeURL(venue.baseURL,hrefFromAttribute);
-          //       }else{
-          //         eventURL = $eventBlock(tagsWithHref[index]).text();
-          //       }     
-          //     }
-          //   }
-          // }else{ // if a delimiter for the URL has been defined
-          //   eventURL = makeURL(venue.baseURL,getHrefFromAncestor($eventBlock(venue.mainPage.eventURLTags[0])));
-          //   eventInfo.eventURL = eventURL;
-          // }
-        }catch(err){
-          writeToLog('error',eventInfo,["\x1b[31mErreur lors de la récupération de l\'URL.\x1b[0m",err],true);
-        }
 
 
-        if (!isEmptyEvent(eventInfo)){
+          // format URL
+          if (subEventInfo.hasOwnProperty('eventURL')){
+            subEventInfo.eventURL = makeURL(venue.baseURL,subEventInfo.eventURL);
+          }
+
           // scrap info from linked page
-          if (linkedFileContent){
+          if (linkedFileContent && subEventInfo.hasOwnProperty('eventURL')){
             try{
-              const $linkedBlock = cheerio.load(linkedFileContent[eventURL]);
-              Object.keys(venue.linkedPage).forEach(key => eventInfo[key.replace('Tags','')] = getText(key,venue.linkedPage,$linkedBlock));  
+              const $linkedBlock = cheerio.load(linkedFileContent[subEventInfo.eventURL]);
+              // add info from linked page to the sub event. If subEventInfo has no information for key, create a nes entry
+              getInfo(venue.linkedPage, $linkedBlock, subEventInfo, true);
+              
               // look for cancellation keywords. Leave commented since it appears that linkedpages do not contain appropriate information about cancellation 
               // eventInfo.iscancelled = eventInfo.iscancelled || isCancelled($linkedBlock.text(),cancellationKeywords[venue.country]);
               if (useAI){
-                eventInfo.chatStyleComment = await getStyleInfo($linkedBlock.html());
-                eventInfo.chatStyle = extractStyle(eventInfo.chatStyleComment);
+                subEventInfo.chatStyleComment = await getStyleInfo($linkedBlock.html());
+                subEventInfo.chatStyle = extractStyle(subEventInfo.chatStyleComment);
               }
+              // tests if there are sub events in the linked page, and return sub events if they exist
+
+              createMultipleEvents(subEventInfo).forEach(el => {
+                eventList.push(postProcess(el));
+              });
+              eventList = eventList.concat(createMultipleEvents(subEventInfo));
             }catch(err){
               writeToLog('error',eventInfo,['\x1b[31mImpossible de lire la page liée pour l\'événement \'%s\'. Erreur lors du téléchargement ?\x1b[0m +err', eventInfo.eventName],true);
             }
-            // if the url in the linked is empty, replace by the main page one
-            if (!eventInfo.hasOwnProperty('eventURL') || eventInfo.eventURL === undefined || eventInfo.eventURL.length === 0){
-              eventInfo.eventURL = eventURL;
-            }
           }else{
-            eventInfo.eventURL = eventURL;
+            eventList.push(postProcess(subEventInfo));
           }
-
-          //*** post processing, show logs and save  ***//
-
-          // perform regexp
-          if (venue.hasOwnProperty('regexp')){
-            applyRegexp(eventInfo,venue.regexp);
-          }
-      
-          // match event place with existing one
-          if (venue.mainPage.hasOwnProperty('eventPlaceTags') || (venue.hasOwnProperty('linkedPage') && venue.linkedPage.hasOwnProperty('eventPlaceTags'))){
-            eventInfo.eventPlace = FindLocationFromAlias(eventInfo.eventPlace,venue.country,venue.city,aliasList);
-          }
-
-          // get normalized style
-          eventInfo.eventDetailedStyle = eventInfo.hasOwnProperty('eventStyle')?eventInfo.eventStyle:'';
-          if (!eventInfo.hasOwnProperty('eventStyle') || eventInfo.eventStyle ===''){
-            const eventPlace = venueList.find(el => samePlace(el,{name:eventInfo.eventPlace, city: venue.city, country:venue.country}));
-            if (eventPlace && eventPlace.hasOwnProperty('defaultStyle')){// if no style is found, first apply the event place default style
-              eventInfo.eventStyle = eventPlace.defaultStyle;
-            }else if (venue.hasOwnProperty('defaultStyle')){// if no default style for the place, take the one of the scrapped site
-              eventInfo.eventStyle = venue.defaultStyle;
-            }else{// otherwise use the global style
-              eventInfo.eventStyle = globalDefaultStyle;
-            }
-          }
-          eventInfo.eventStyle = getStyle(eventInfo.eventStyle, eventLanguages);
-          eventInfo.source = {'name':venue.name, 'city':venue.city, 'country':venue.country};
-
-          // make a list of events in case of multidate
-          const eventInfoList = createMultiEvents(eventInfo);
-         
           
-          eventInfoList.forEach(el => {
-            // change the date format to Unix time
-            let formatedEventDate = createDate(el.eventDate,dateFormat,localDateConversionPatterns,timeZone,modificationDate);
-            //createDate(el.eventDate,dateFormat,localDateConversionPatterns);
-           // el.date = formatedEventDate;
-            if (!isValid(formatedEventDate)){
-              writeToLog('error',el,['\x1b[31mFormat de date invalide pour %s. Reçu \"%s\", converti en \"%s\" (attendu \"%s\")\x1b[0m', 
-                venue.name,el.eventDate,convertDate(el.eventDate,localDateConversionPatterns),dateFormat],true);
-              el.unixDate = 0;
-            }else{
-              // changer 00:00 en 23:59 si besoin
-              if (venue.hasOwnProperty('midnightHour')){
-                formatedEventDate = changeMidnightHour(formatedEventDate,venue.midnightHour,el);
-              }
-              el.unixDate = formatedEventDate.getTime();
-              el.eventTime = eventTime(formatedEventDate,timeZone);
-              console.log(showDate(formatedEventDate));
-            }
 
+        };
 
-            // display
-            displayEventLog(el);
-            eventList.push(el);
-          });
-         
-        }
       }; 
       
     }catch(error){
       console.log("Unknown error while processing "+venue.name,error);
+      // throw error;
     }
+    // console.log(eventList);
     return eventList;
   }
 }
@@ -315,12 +302,6 @@ async function analyseFile(venue) {
 //********************************************/
 
 
-
-
-
-// function removeBlanks(s){
-//   return s.replace(/[\n\t]/g, ' ').replace(/ {2,}/g, ' ').replace(/^[ ]{1,}/,'').replace(/[ ]{1,}$/,'');
-// }
 
 async function extractEvents(fileContent, venue){
   let eventBlockList = [];
@@ -427,26 +408,56 @@ function isEmptyEvent(eventInfo){
 }
 
 
+// separate sub events and return a list of each sub event.
+// if the event does not have sub events, it returns a list with one element containing itself
 
-function createMultiEvents(eventInfo){
-  if (eventInfo.hasOwnProperty('eventMultiDate')){
-    if (eventInfo.eventMultiDate.length >0){
-    const res = [];
-    eventInfo.eventMultiDate.forEach(el =>{
-      const ei = {...eventInfo};
-      ei.eventDate = el;
-      delete ei.eventMultiDate;
-      res.push(ei);
+function createMultipleEvents(eventInfo){
+
+  // test if sub events are present
+  if (eventInfo.hasOwnProperty('subEvents')){
+    const eventList = [];
+    // create a new event for each sub event
+    eventInfo.subEvents.forEach(subEventInfo => {
+      const subEvent = {...eventInfo};
+      Object.keys(subEventInfo).forEach(field => {
+        // add a new field to the subevent if it does not exist. If field is URL, erase the exisiting URL field (there can be only one URL value)
+        if (!subEvent.hasOwnProperty(field) || field.includes('URL') || field.includes('Place')){
+          subEvent[field] = subEventInfo[field];
+        }else{
+          subEvent[field] = subEvent[field] + ' ' + subEventInfo[field];
+        } 
+      });
+      delete subEvent.subEvents;
+      eventList.push(subEvent);
     });
-    return res;
-    }else{
-      delete eventInfo.eventMultiDate;
-      return [eventInfo];
-    }
+    return eventList;
   }else{
-    return checkMultiDates(eventInfo);
+    return [eventInfo];
   }
+
+
+  // if (eventInfo.hasOwnProperty('eventMultiDate')){
+  //   if (eventInfo.eventMultiDate.length >0){
+  //   const res = [];
+  //   eventInfo.eventMultiDate.forEach(el =>{
+  //     const ei = {...eventInfo};
+  //     ei.eventDate = el;
+  //     delete ei.eventMultiDate;
+  //     res.push(ei);
+  //   });
+  //   return res;
+  //   }else{
+  //     delete eventInfo.eventMultiDate;
+  //     return [eventInfo];
+  //   }
+  // }else{
+  //   return checkMultiDates(eventInfo);
+  // }
 }
+
+
+
+
 
 function checkMultiDates(eventInfo){
   if (eventInfo.eventDate.includes('et')){
