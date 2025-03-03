@@ -75,7 +75,7 @@ function getCommonDateFormats(){
 }
 
 // create a date object from a string
-function createDate(s,dateFormat,dateConversionPatterns,timeZone,refDate) {
+function createDate(s,dateFormat,dateConversionPatterns,timeZone,refDate, verbose = false) {
   if (s.includes('tonight')){
       return new Date();
   }else{
@@ -89,8 +89,11 @@ function createDate(s,dateFormat,dateConversionPatterns,timeZone,refDate) {
       const date = moment.tz(s,dateFormat.replace(/d/g,'D').replace(/y/g,'Y'), true, timeZone);
       //console.log(date.toLocaleString());
       let tzDate = date.toDate();
-      if (refDate && !/yy/.test(dateFormat) && tzDate < refDate){// add one year if the date is past for more than one month. Useful when the year is not in the data
-          tzDate.setFullYear(tzDate.getFullYear() + 1);
+      // if (refDate && !/yy/.test(dateFormat) && tzDate < refDate){// add one year if the date is past for more than one month. Useful when the year is not in the data
+      //     tzDate.setFullYear(tzDate.getFullYear() + 1);
+      // }
+      if (verbose){
+        console.log(tzDate);
       }
       return tzDate;
   }
@@ -111,9 +114,11 @@ function createDate(s,dateFormat,dateConversionPatterns,timeZone,refDate) {
 
 // clean the date (remove unwanted characters)
 function convertDate(s,dateConversionPatterns){
+  // const s1 = s;
   s = s.normalize('NFD').replace(/[\u0300-\u036f]/g, ''); // remove accents
   s = s.replace(/[^\x00-\x7F]/g,''); //remove non standard caracters => to be improved
  
+  
   for (const key in dateConversionPatterns) {
     function replacer(match, p1, p2, p3, offset, string) {
       return ' '+key+' ';
@@ -126,15 +131,18 @@ function convertDate(s,dateConversionPatterns){
   // change some inconsistencies
   s = s.replace(/de([^]*?)[aà][^]*$/,(_,p) =>'a'+p);
 
-     //  //removing words with 2 or more letters
-    // s = s.replace(/\b[^0-9]{2,}\b/g,' ');
+  //  //removing words with 2 or more letters
+  // s = s.replace(/\b[^0-9]{2,}\b/g,' ');
  
   s = s.replace(/\b[^0-9]{2,}\b/g,' ');
-;
+  
+  // const s2 = s;
   s = to2digits(unifyCharacters(s));
+
+  // const s3 = s;
   // remove end time if present. Undo if end time is required
   s =  s.replace(/\b(\d{2}:\d{2})-\d{2}:\d{2}\b/,(_,p) => p);
-  //console.log(s);
+  // console.log(s1,'s2\n',s2,'s3\n',s3,s);
   return s;
 }
 
@@ -142,6 +150,7 @@ function convertDate(s,dateConversionPatterns){
 function numberOfInvalidDates(dateList){
   return dateList.filter(element => (!isValid(element) || !yearIsValid(element.getFullYear()))).length; 
 }
+
 
 function isAValidDate(date){
   return isValid(date) && yearIsValid(date.getFullYear());
@@ -158,8 +167,8 @@ function yearIsValid(yyyy){
 // clean the date string by removing unwanted characters
 function unifyCharacters(s){
   let string = s.replace(/[\n\t\/\-,;.]/g,' ').replace(/ {2,}/g,' ').replace(/^ /,'').replace(/ $/,'').replace(/ /g,'-');
-  string = string.replace(/h/g,':').replace(/: /g,':00').replace(/:$/g,':00');//format to correct time
-  string = string.replace(/:-+/g,':');//remove - after :
+  string = string.replace(/h/g,':').replace(/: /g,':00').replace(/:-/g,':00-').replace(/:$/g,':00');//format to correct time
+  string = string.replace(/:-+/g,':');//remove - after : ??? this is not supposed to happen...
   return string;
 }
 

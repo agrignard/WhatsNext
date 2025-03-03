@@ -14,7 +14,7 @@ const {simplify, removeBlanks, extractBody, convertToLowerCase, removeDoubles,
 const {getFilesContent, getModificationDate, loadLinkedPages, getFilesNumber} = require(imports+'fileUtilities.js');
 const {downloadVenue, erasePreviousHtmlFiles, getHrefListFrom, downloadLinkedPages} = require(imports+'aspiratorexUtilities.js');
 const {getTagLocalization, tagContainsAllStrings, getTagContainingAllStrings,
-  splitAndLowerCase, addJSONBlock, reduceTag, getAllDates, getBestDateFormat,
+  splitAndLowerCase, addJSONBlock, getAllDates, getBestDateFormat,
   countNonEmptyEvents, regroupTags, getMostUsedTagClassSets} = require(imports+'analexUtilities.js');
 const {getDateConversionPatterns} =require(imports+'dateUtilities.js');
 // const {getText} =require(imports+'scrapexUtilities.js');
@@ -1579,27 +1579,59 @@ function computeDateFormat(){
   console.log('\x1b[42m\x1b[30mComputing date format\x1b[0m');
   let dates = [];
   if (currentPage === 'mainPage'){
-    if (eventTagList && venue.mainPage.hasOwnProperty('eventDateTags')){
+    if (eventTagList && (venue.mainPage.hasOwnProperty('eventDateTags') || venue.mainPage.hasOwnProperty('eventMultiDateTags'))){
+      
       // for every event, get the date strings corresponding to the date tags and concatenate them.
+      const tagPathsFromSubEvent = (venue[currentPage]['eventMultiDateTags'] || [])
+      .map(el => replaceWithCustomTags(el))
+      .map(el => el.replace(subEventPath,'').replace(/^>/,''));
+      
       eventTagList.forEach(eventTag => {
-        const dateString = venue.mainPage['eventDateTags'].flatMap(dateTag => findTagsFromPath(eventTag,dateTag))
-                                                  .map(tag => tag.textContent).join(' ');
-        dates.push(dateString);
+        let dateString = '';
+        if ('eventDateTags' in venue.mainPage){
+          dateString += venue.mainPage['eventDateTags'].flatMap(dateTag => findTagsFromPath(eventTag,dateTag))
+          .map(tag => tag.textContent).join(' ');
+        }
+        if ('eventMultiDateTags' in venue.mainPage){
+          const subEventDelimiterTagList = findTagsFromPath(eventTag, subEventPath);
+          if (subEventDelimiterTagList.length === 0){
+            dates.push(removeBlanks(dateString));
+          }else{
+            subEventDelimiterTagList.forEach(subEventTag => {
+              // console.log(subEventTag.textContent);
+              let newDateString = dateString;
+              tagPathsFromSubEvent.forEach(path =>{
+                findTagsFromPath(subEventTag, path).forEach(tag => {
+                  newDateString += ' ' + tag.textContent;
+              });
+              });
+              dates.push(removeBlanks(newDateString));
+            });
+          }
+
+          // dateString += venue.mainPage['eventMultiDateTags'].flatMap(dateTag => findTagsFromPath(eventTag,dateTag))
+          // .map(tag => tag.textContent).join(' ');
+        }else{
+          dates.push(removeBlanks(dateString));
+        } 
       });
     }
   }else{
-    const dates = [venue.linkedPage['eventDateTags'].flatMap(dateTag => findTagsFromPath(eventTag,dateTag))
+    dates = [venue.linkedPage['eventDateTags'].flatMap(dateTag => findTagsFromPath(eventTag,dateTag))
                                                   .map(tag => tag.textContent).join(' ')];
 
     // dates = getAllDates("BODY",venue[currentPage]['eventDateTags'],$page);
   }
+
   // lastDateList keeps memory of computation. If no new dates to analyze, no need to perform 
   // again a search for the best format
+  
   if (lastDateList === undefined || lastDateList.join('') !== dates.join('')){;
     lastDateList = dates;
     if (dates.length > 0){
       let formatRes;
       [formatRes, bestScore] = getBestDateFormat(dates,venue, dateConversionPatterns);
+      // [formatRes, bestScore] = getNBestDateFormats(dates, dateConversionPatterns);
       if (currentPage === 'mainPage'){
         venue.dateFormat = formatRes;
       }else{
@@ -2230,7 +2262,7 @@ function removeCustomTags(path){
 }
 
 function replaceWithCustomTags(path){
-  return path.replace(/(>?)a(?=$|>|\.)/gi, '$1'+customTagName);
+  return path.replace(/(>?)a(?=$|>|\.)/gi, '$1'+customTagName.toUpperCase());
 }
 
 

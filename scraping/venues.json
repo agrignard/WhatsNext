@@ -442,7 +442,7 @@
     "baseURL": "https://larayonne.org/agenda/",
     "eventsDelimiterTag": "DIV.agendajour.depth6",
     "eventURLIndex": 1,
-    "dateFormat": "dd-MM"
+    "dateFormat": "dd-MM-HH:mm"
   },
   {
     "name": "Bizarre!",

@@ -220,7 +220,7 @@ async function analyseFile(venue) {
     try{
       for (let eveIndex = 0; eveIndex < eventBlockList.length; eveIndex++) {
 
-        console.log('\n\n\n\n\n\n*********************************')
+        // console.log('\n\n\n\n\n\n*********************************')
 
         let eve = eventBlockList[eveIndex];
         let $eventBlock = cheerio.load(eve);

@@ -43,7 +43,10 @@ function getText(tagName, JSONblock, $, subEventDelimiter, eventTag){
           string += ' ' + $subEv.text();
         }else{
           if (eventTag){
-            string += ' ' + $subEv.find(tagList[i]).text();
+            // string += ' ' + $subEv.find(tagList[i]).text();
+            $subEv.find(tagList[i]).each((index, descendant) => {
+              string += ' ' + $(descendant).text();
+            });
           }else{
             $(tagList[i]).each((index, element) => {
               string += ' ' +  $(element).text();

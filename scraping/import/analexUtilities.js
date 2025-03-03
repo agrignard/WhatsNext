@@ -9,7 +9,7 @@ const {removeDoubles, removeBlanks, convertToLowerCase, makeURL, simplify} = req
 const {unique, isValidEvent, getLanguages, fromLanguages, saveToVenuesJSON} = require('./jsonUtilities.js');
 const {numberOfInvalidDates, getCommonDateFormats, createDate} = require('./dateUtilities.js');
 const {loadLinkedPages, getFilesContent} = require('./fileUtilities.js');
-const {getDateConversionPatterns} =require('./dateUtilities.js');
+const {getDateConversionPatterns} = require('./dateUtilities.js');
 
 const cheerio = require('cheerio');
 const {parseDocument} =require('htmlparser2');
@@ -353,12 +353,21 @@ function getAllDates(mainTag,dateTags,source){
     return dates;
 }
 
+
+
+
 function getBestDateFormat(dates, JSON, dateConversionPatterns){
     let bestDateFormat = "";
     let bestScore = numberOfInvalidDates(dates.map(element => createDate(element,bestDateFormat,dateConversionPatterns,'Europe/Paris')));
     const dateFormatList = getCommonDateFormats();
     dateFormatList.forEach(format => {
         const formattedDateList = dates.map(element => createDate(element,format,dateConversionPatterns));
+       
+        if (format === 'dd-MM-HH:mm'){
+            // console.log(format, numberOfInvalidDates(formattedDateList));
+            const truc = dates.map(element => createDate(element,format,dateConversionPatterns,'Europe/Paris'));
+        }
+        
         if (numberOfInvalidDates(formattedDateList) < bestScore){
             bestDateFormat = format;
             bestScore = numberOfInvalidDates(formattedDateList);
@@ -367,6 +376,28 @@ function getBestDateFormat(dates, JSON, dateConversionPatterns){
     console.log("\nFound %s events. Best date format: \x1b[36m\"%s\"\x1b[0m (%s/%s invalid dates)",dates.length,bestDateFormat,bestScore,dates.length);
     return [bestDateFormat, bestScore];
 }
+
+// function getNBestDateFormats(dates, dateConversionPatterns, n){
+//     let res = {};
+//     // let bestDateFormat = "";
+//     // let bestScore = numberOfInvalidDates(dates.map(element => createDate(element,bestDateFormat,dateConversionPatterns,'Europe/Paris')));
+//     const dateFormatList = getCommonDateFormats();
+//     dateFormatList.forEach(format => {
+//         const formattedDateList = dates.map(element => createDate(element,format,dateConversionPatterns));
+//         console.log(format, numberOfInvalidDates(formattedDateList));
+//         if (numberOfInvalidDates(formattedDateList) < dates){
+//             console.log('ici',format);
+//             res[format] = numberOfInvalidDates(formattedDateList);
+//             // bestDateFormat = format;
+//             // bestScore = numberOfInvalidDates(formattedDateList);
+//         }
+//     });
+//     console.log(res);
+//     console.log(Object.values(res).sort((a,b) => a < b));
+//     // console.log("\nFound %s events. Best date format: \x1b[36m\"%s\"\x1b[0m (%s/%s invalid dates)",dates.length,bestDateFormat,bestScore,dates.length);
+//     return [Object.keys(res)[0], res[Object.keys(res)[0]]];
+//     // return [bestDateFormat, bestScore];
+// }
 
 function addJSONBlock(scrapSource,source, showLog){
     let res =  {};
