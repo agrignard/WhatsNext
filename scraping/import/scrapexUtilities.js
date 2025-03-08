@@ -30,12 +30,12 @@ function getText(tagName, JSONblock, $, subEventDelimiter, eventTag){
     if (tagName.includes('URL')){
       if (tagList[0].length > 0){
         if (eventTag){
-          string = getHrefFromAncestor($subEv.find(tagList[0]));
+          string = getHrefFromAncestor($subEv.find(tagList[0])) || '';
         }else{
-          string = getHrefFromAncestor($(tagList[0]));
+          string = getHrefFromAncestor($(tagList[0])) || '';
         }
       }else{
-        string = getHrefFromAncestor($subEv);
+        string = getHrefFromAncestor($subEv) || '';
       }
     }else{
       for (let i = 0; i <= tagList.length - 1; i++) {
@@ -60,12 +60,16 @@ function getText(tagName, JSONblock, $, subEventDelimiter, eventTag){
     console.log('\x1b[31m%s\x1b[0m', 'Erreur d\'extraction à partir des balises.\x1b[0m', tagList);
     throw err;
   }
+  // console.log('string',string);
+  // if (!string){
+  //   return null;
+  // }
   return removeBlanks(string);
 }
 
 
 // get info from the event block. for each key, if key already exists in eventInfo, append the info to eventInfo[key], otherwise 
-// create a new entry. Keys such as eventPlaceTags or eventURLTags should not be append, the value in eventInfo should be overwritten instead
+// create a new entry. Keys such as eventPlaceTags or eventURLTags should not be appended, the value in eventInfo should be overwritten instead
 // 'Multi' tags should not have an existing value, so there is no need to test if there is something to append
 // overwrite = true may be used when using linked pages, to overwrite stuff already from the main page
 
@@ -77,7 +81,15 @@ function getInfo(venueTags,$, eventInfo = {}, overwrite = false) {
   Object.keys(venueTags).filter(el => !el.includes('Multi'))
     .forEach(key => {
       const newKey = key.replace('Tags', '');
-      eventInfo[newKey] = ((keysToOverwrite.includes(key) || overwrite?'':(eventInfo[newKey] || '')) + ' ' + getText(key, venueTags, $)).trim();
+      const string = getText(key, venueTags, $);
+      if (keysToOverwrite.includes(key) || overwrite){
+        if (string && string.trim().length > 0)
+          {
+            eventInfo[newKey] = string.trim();
+          } 
+      }else{
+        eventInfo[newKey] = (eventInfo[newKey] || '') + getText(key, venueTags, $).trim();
+      }
     });
 
 

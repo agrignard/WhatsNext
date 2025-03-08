@@ -7,7 +7,7 @@
 const {removeDoubles, removeBlanks, convertToLowerCase, makeURL, simplify} = require('./stringUtilities.js');
 //const {loadLinkedPages, fetchWithRetry, fetchLink} = require('./fileUtilities.js');
 const {unique, isValidEvent, getLanguages, fromLanguages, saveToVenuesJSON} = require('./jsonUtilities.js');
-const {numberOfInvalidDates, getCommonDateFormats, createDate} = require('./dateUtilities.js');
+const {numberOfInvalidDates, getCommonDateFormats, createDate, convertDate} = require('./dateUtilities.js');
 const {loadLinkedPages, getFilesContent} = require('./fileUtilities.js');
 const {getDateConversionPatterns} = require('./dateUtilities.js');
 
@@ -154,7 +154,7 @@ function analyze(venueJSON, eventStrings, sourcePath, venuesListJSON, verbose = 
         // find most appropriate date format
 
         let dates = getAllDates(venueJSON.eventsDelimiterTag,venueJSON.mainPage['eventDateTags'],$);
-        [venueJSON.dateFormat, _] = getBestDateFormat(dates,venueJSON, dateConversionPatterns);
+        [venueJSON.dateFormat, _] = getBestDateFormat(dates, dateConversionPatterns);
         
         // find strings in linked pages
 
@@ -183,7 +183,7 @@ function analyze(venueJSON, eventStrings, sourcePath, venuesListJSON, verbose = 
                     }
                     if (venueJSON.linkedPage.hasOwnProperty('eventDateTags')){
                         let dates = getAllDates("BODY",venueJSON.linkedPage['eventDateTags'],$linked);
-                        [venueJSON.linkedPageDateFormat,_] = getBestDateFormat(dates,venueJSON.linkedPage, dateConversionPatterns);    
+                        [venueJSON.linkedPageDateFormat,_] = getBestDateFormat(dates, dateConversionPatterns);    
                     }
                 }else{
                     console.log('\x1b[31mError getting data from linked pages. Run again \x1b[0maspiratorex.js\x1b[31m ?.\x1b[0m\n');
@@ -356,16 +356,19 @@ function getAllDates(mainTag,dateTags,source){
 
 
 
-function getBestDateFormat(dates, JSON, dateConversionPatterns){
-    let bestDateFormat = "";
-    let bestScore = numberOfInvalidDates(dates.map(element => createDate(element,bestDateFormat,dateConversionPatterns,'Europe/Paris')));
+function getBestDateFormat(dates, dateConversionPatterns){
+    let bestDateFormat;// = "";
+    dates = dates.map(el => convertDate(el,dateConversionPatterns));
+    let bestScore = dates.length + 1;
+    //  numberOfInvalidDates(dates.map(element => createDate(element,bestDateFormat,'Europe/Paris')));
     const dateFormatList = getCommonDateFormats();
+
     dateFormatList.forEach(format => {
-        const formattedDateList = dates.map(element => createDate(element,format,dateConversionPatterns));
+        const formattedDateList = dates.map(element => createDate(element,format));
        
         if (format === 'dd-MM-HH:mm'){
             // console.log(format, numberOfInvalidDates(formattedDateList));
-            const truc = dates.map(element => createDate(element,format,dateConversionPatterns,'Europe/Paris'));
+            const truc = dates.map(element => createDate(element,format,'Europe/Paris'));
         }
         
         if (numberOfInvalidDates(formattedDateList) < bestScore){
@@ -377,27 +380,6 @@ function getBestDateFormat(dates, JSON, dateConversionPatterns){
     return [bestDateFormat, bestScore];
 }
 
-// function getNBestDateFormats(dates, dateConversionPatterns, n){
-//     let res = {};
-//     // let bestDateFormat = "";
-//     // let bestScore = numberOfInvalidDates(dates.map(element => createDate(element,bestDateFormat,dateConversionPatterns,'Europe/Paris')));
-//     const dateFormatList = getCommonDateFormats();
-//     dateFormatList.forEach(format => {
-//         const formattedDateList = dates.map(element => createDate(element,format,dateConversionPatterns));
-//         console.log(format, numberOfInvalidDates(formattedDateList));
-//         if (numberOfInvalidDates(formattedDateList) < dates){
-//             console.log('ici',format);
-//             res[format] = numberOfInvalidDates(formattedDateList);
-//             // bestDateFormat = format;
-//             // bestScore = numberOfInvalidDates(formattedDateList);
-//         }
-//     });
-//     console.log(res);
-//     console.log(Object.values(res).sort((a,b) => a < b));
-//     // console.log("\nFound %s events. Best date format: \x1b[36m\"%s\"\x1b[0m (%s/%s invalid dates)",dates.length,bestDateFormat,bestScore,dates.length);
-//     return [Object.keys(res)[0], res[Object.keys(res)[0]]];
-//     // return [bestDateFormat, bestScore];
-// }
 
 function addJSONBlock(scrapSource,source, showLog){
     let res =  {};

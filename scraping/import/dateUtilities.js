@@ -75,11 +75,11 @@ function getCommonDateFormats(){
 }
 
 // create a date object from a string
-function createDate(s,dateFormat,dateConversionPatterns,timeZone,refDate, verbose = false) {
+function createDate(s,dateFormat,timeZone,refDate, verbose = false) {
   if (s.includes('tonight')){
       return new Date();
   }else{
-      s = convertDate(s,dateConversionPatterns);
+      // s = convertDate(s,dateConversionPatterns);
       // const testDate = parse(s, dateFormat, new Date());// use Date to see if a date is valid, because it doesn't work with moment
       // if (!isAValidDate(testDate)){
       //   return testDate;
@@ -99,21 +99,12 @@ function createDate(s,dateFormat,dateConversionPatterns,timeZone,refDate, verbos
   }
 }
 
-// function createDate(s,dateFormat,dateConversionPatterns) {
-//   s = convertDate(s,dateConversionPatterns);
-//   if (s.includes('tonight')){
-//     return new Date();
-//   }else{
-//     let date = parse(s, dateFormat, new Date());
-//     if (date < new Date()){// add one year if the date is past. Useful when the year is not in the data
-//       date.setFullYear(date.getFullYear() + 1);
-//     }
-//     return date;
-//   }
-// }
 
 // clean the date (remove unwanted characters)
 function convertDate(s,dateConversionPatterns){
+  if (s.includes('tonight')){
+    return s;
+  }
   // const s1 = s;
   s = s.normalize('NFD').replace(/[\u0300-\u036f]/g, ''); // remove accents
   s = s.replace(/[^\x00-\x7F]/g,''); //remove non standard caracters => to be improved
@@ -132,7 +123,6 @@ function convertDate(s,dateConversionPatterns){
   s = s.replace(/de([^]*?)[aà][^]*$/,(_,p) =>'a'+p);
 
   //  //removing words with 2 or more letters
-  // s = s.replace(/\b[^0-9]{2,}\b/g,' ');
  
   s = s.replace(/\b[^0-9]{2,}\b/g,' ');
   

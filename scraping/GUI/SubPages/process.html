@@ -17,18 +17,28 @@
                 <button id="saveButton" class="normalButton activeButton effectButton">Save</button>
                 <button id="pageManagerButton" class="compact-button normalButton activeButton topRightButton">_</button>
                 <div id="pageManagerDetailsPanel">
-                    <button id="downloadButton" class="normalButton activeButton venueInfoButton verySmallBottomMargin effectButton">Download
-                        Page</button>
-                    <div id="lastScrapped" style="display: inline;"></div>
-                    <div id="missingLinksPanel" class="verySmallBottomMargin">
-                        <button id="missingLinksButton" style="display: inline;"
-                            class="normalButton activeButton venueInfoButton">Get links</button>
-                        <div id="missingLinksText" style="display: inline;" class="normalPadding"></div>
+                    <div id="pageManagerHeader" class="panelWithSlider verySmallBottomMargin">
+                        <div class="sliderLeftPanel">
+                            <div id="lastScrapped" style="display: inline;" class="rightMargin"></div>
+                            <span id="downloadButton" class="reloadSingle"></span>
+                        </div>
+                        <div id="activateLinksGroup" class="sliderCheckBox">
+                            <label class="niceCheckBox useLinks" style="display: inline;">
+                                <input id="activateLinksCheckbox" class="cb cb1" type="checkbox" name="links" checked/>
+                                <span>Use links</span> 
+                                <i></i> 
+                            </label>                   
+                        </div>
+                        <!-- <button id="downloadButton" class="loaderSingle"></button> -->
                     </div>
-                </div>
-                <div id="multiPageManager" class="normalPadding">
-                    <div style="display: inline;">Pages to display</div>
-                    <select id="selectNbPages" style="display: inline;"></select>
+                    <div id="missingLinksPanel" class="verySmallBottomMargin">
+                        <div id="missingLinksText" style="display: inline;" class="rightMargin"></div>
+                        <span id="missingLinksButton" class="reloadSingle"></span>
+                    </div>
+                    <div id="multiPageManager" class="verySmallBottomMargin" style="display: none">
+                        <div style="display: inline;">Pages to display</div>
+                        <select id="selectNbPages" style="display: inline;"></select>
+                    </div>
                 </div>
             </div>
             <!-- delimiter panel -->
@@ -43,16 +53,16 @@
                     </div>
                     <input type="text" id="delimiterTagField" class="delimiterTagInput smallBottomMargin"
                         placeholder="Will be filled automatically" size="50">
-                    <div id="optionsPanel">   
-                        <div id="autoAdjustGroup" style="display: inline;">
-                            <div id="autoAdjustText" style="display: inline;">Adjust level</div>
+                    <div id="optionsPanel" class="panelWithSlider">   
+                        <div id="autoAdjustGroup" class="sliderLeftPanel">
+                            <div id="autoAdjustText" class="rightMargin" style="display: inline;">Adjust level</div>
                             <input type="number" id="autoAdjustIndex" min="0" step="1" max="6" value="0" style="width: 4ch"
                                 placeholder="2">
                         </div>
-                        <div id="adjustURLGroup" style="display: inline;">
+                        <div id="adjustURLGroup" class="sliderCheckBox">
                             <label class="niceCheckBox" style="display: inline;">
                                 <input id="adjustURLCheckbox" class="cb cb1" type="checkbox" name="social" checked/>
-                                <span>Events must have URLs</span> 
+                                <span>Force URL</span> 
                                 <i></i> 
                             </label>                   
                         </div>
@@ -125,11 +135,8 @@
                         <div class="scrapPanelToHideWhenRegex">
                             <textarea id="eventDateTags" class="eventTags scrapTextBox verySmallBottomMargin" rows="1"
                                 cols="50" placeholder="Tags will be filled automatically"></textarea>
-                            <div id="dateFormatPanel">
-                                <div id="dateFormatText"></div>
-                            </div>
                         </div>
-                    </div>
+                    </div>    
                     <!-- sub event date -->
                     <div id="eventMultiDate" class="scrapElement SCRPXhighlightDate subEvent">
                         <div class="verySmallBottomMargin panelHeader">
@@ -142,10 +149,10 @@
                         <div class="scrapPanelToHideWhenRegex">
                             <textarea id="eventMultiDateTags" class="eventTags scrapTextBox verySmallBottomMargin" rows="1"
                                 cols="50" placeholder="Tags will be filled automatically"></textarea>
-                            <div id="MultidateFormatPanel">
-                                <div id="dateFormatText"></div>
-                            </div>
                         </div>
+                    </div>
+                    <div id="dateFormatPanel" class="scrapElement SCRPXhighlightDate">
+                        <div id="dateFormatText"></div>
                     </div>
                     <!-- date regex panel -->
                     <div id="eventDateRegexpPanel" class="regexpPanel SCRPXhighlightDate normalPadding">

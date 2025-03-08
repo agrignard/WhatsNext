@@ -27,7 +27,9 @@ module.exports = {venuesListJSONFile, isAlias, geAliasesToURLMap, getEventPlace,
 // test if an event has a name or a date if required by scrapping
 // it takes into account that for some websites, the date or the name may not be scrapped from the main page
 function isValidEvent(event, venue){
+    // console.log('la',venue.mainPage);
     if (venue.mainPage.hasOwnProperty('eventNameTags')){
+        // console.log('ici');
         if (!event.hasOwnProperty('eventName') || event.eventName === undefined || /^\s*$/.test(event.eventName)){
             return false;
         }
@@ -150,7 +152,7 @@ function getAliases(list){
     });
 }
 
-function writeToLog(type,eventInfo, messageList, display){
+function writeToLog(type, eventInfo, messageList, display = true){
     if (['error','warning'].includes(type)){
         const key = type+'Log';
         let string = messageList[0];
@@ -162,6 +164,11 @@ function writeToLog(type,eventInfo, messageList, display){
             console.log(string);
         }
         string = string.replace(/\x1b\[\d+m/g, ''); // remove color tags
+
+        if (!eventInfo){
+            return;
+        }
+        
         if (eventInfo.hasOwnProperty(key)){
           eventInfo[key] = eventInfo[key]+" | "+string;
         }else{

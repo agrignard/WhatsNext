@@ -64,26 +64,28 @@ async function scrap(venues){
 async function scrapFiles(venues) {
   let totalEventList = [];
   for (const venue of venues) {
-    let err = false;
     if (!(venue.hasOwnProperty('eventsDelimiterTag') || venue.hasOwnProperty('eventsDelimiterRegex'))){
-      console.log('\x1b[31m%s\x1b[0m', 'Aucun délimiteur de bloc d\'événement défini pour '+venue.name);
-      err = true;
+      writeToLog('error',undefined,'\x1b[31mAucun délimiteur de bloc d\'événement défini pour '+venue.name+'. Fichier non traité.\x1b[0m');
+      return;
     }
-    if (!venue.hasOwnProperty('mainPage') 
-      || !(venue.mainPage.hasOwnProperty('eventNameTags') || venue.mainPage.hasOwnProperty('eventMultiNameTags') || venue.mainPage.hasOwnProperty('eventNameRegex'))){
-        console.log('\x1b[31m%s\x1b[0m', 'Aucun délimiteur de nom d\'événement défini pour '+venue.name);
-        err = true;
+
+    if (!venue.hasOwnProperty('mainPage')) {
+      writeToLog('error',undefined,'\x1b[31mPas de page principale définie pour '+venue.name+'. Fichier non traité.\x1b[0m');
+      return;
     }
-    if (!venue.hasOwnProperty('mainPage') 
-      || !(venue.mainPage.hasOwnProperty('eventDateTags') || venue.mainPage.hasOwnProperty('eventDateTags') || venue.mainPage.hasOwnProperty('eventDateRegex'))){
-        console.log('\x1b[31m%s\x1b[0m', 'Aucun délimiteur de date d\'événement défini pour '+venue.name);
-        err = true;
+
+    const keywords = Object.keys(venue.mainPage).concat((venue.linkedPage)?Object.keys(venue.linkedPage):[]);
+    
+    if(!keywords.some(keyword => keyword.includes('Name'))){
+      writeToLog('error',undefined,'\x1b[31m%sAucun délimiteur de nom d\'événement défini pour '+venue.name+'. Fichier non traité.\x1b[0m');
+      return;
     }
-    if (!err){
-      totalEventList = totalEventList.concat(await analyseFile(venue));
-    } else{
-      console.log('\x1b[31mEntrée %s non traitée.\x1b[0m', venue.name);
+
+    if(!keywords.some(keyword => keyword.includes('Date'))){
+      writeToLog('error',undefined,'\x1b[31m%sAucun délimiteur de date d\'événement défini pour '+venue.name+'. Fichier non traité.\x1b[0m');
+      return;
     }
+    totalEventList = totalEventList.concat(await analyseFile(venue));
   }
   // *** post processing *** 
 
@@ -193,9 +195,9 @@ async function analyseFile(venue) {
       eventInfo.source = { 'name': venue.name, 'city': venue.city, 'country': venue.country };
 
       // change the date format to Unix time
-      let formatedEventDate = createDate(eventInfo.eventDate, dateFormat, localDateConversionPatterns, timeZone, modificationDate);
+      let formatedEventDate = createDate(convertDate(eventInfo.eventDate,localDateConversionPatterns), dateFormat, timeZone, modificationDate);
+      console.log(eventInfo.eventDate,convertDate(eventInfo.eventDate,localDateConversionPatterns), dateFormat);
       //createDate(el.eventDate,dateFormat,localDateConversionPatterns);
-      // el.date = formatedEventDate;
       if (!isValid(formatedEventDate)) {
         writeToLog('error', eventInfo, ['\x1b[31mFormat de date invalide pour %s. Reçu \"%s\", converti en \"%s\" (attendu \"%s\")\x1b[0m',
           venue.name, eventInfo.eventDate, convertDate(eventInfo.eventDate, localDateConversionPatterns), dateFormat], true);
@@ -219,8 +221,6 @@ async function analyseFile(venue) {
     // parsing each event
     try{
       for (let eveIndex = 0; eveIndex < eventBlockList.length; eveIndex++) {
-
-        // console.log('\n\n\n\n\n\n*********************************')
 
         let eve = eventBlockList[eveIndex];
         let $eventBlock = cheerio.load(eve);
@@ -258,10 +258,12 @@ async function analyseFile(venue) {
           // scrap info from linked page
           if (linkedFileContent && subEventInfo.hasOwnProperty('eventURL')){
             try{
+              console.log(subEventInfo);
+              // console.log('file content',subEventInfo.eventURL,linkedFileContent[subEventInfo.eventURL]);
               const $linkedBlock = cheerio.load(linkedFileContent[subEventInfo.eventURL]);
               // add info from linked page to the sub event. If subEventInfo has no information for key, create a nes entry
               getInfo(venue.linkedPage, $linkedBlock, subEventInfo, true);
-              
+
               // look for cancellation keywords. Leave commented since it appears that linkedpages do not contain appropriate information about cancellation 
               // eventInfo.iscancelled = eventInfo.iscancelled || isCancelled($linkedBlock.text(),cancellationKeywords[venue.country]);
               if (useAI){
@@ -275,7 +277,8 @@ async function analyseFile(venue) {
               });
               eventList = eventList.concat(createMultipleEvents(subEventInfo));
             }catch(err){
-              writeToLog('error',eventInfo,['\x1b[31mImpossible de lire la page liée pour l\'événement \'%s\'. Erreur lors du téléchargement ?\x1b[0m +err', eventInfo.eventName],true);
+              writeToLog('error',eventInfo,['\x1b[31mImpossible de lire la page liée pour l\'événement \'%s\'. Erreur lors du téléchargement ?\x1b[0m'+err, subEventInfo.eventName],true);
+              // throw(err);
             }
           }else{
             eventList.push(postProcess(subEventInfo));
@@ -492,7 +495,7 @@ function checkMultiDates(eventInfo){
 
 function applyRegexp(event, rulesSet){
   Object.keys(rulesSet).forEach(key =>{
-    console.log('Applying regex', key);
+    // console.log('Applying regex', key);
     if (typeof rulesSet[key] === 'string'){// a string, regexp is used for a match
       event[key] = event[key].match(new RegExp(rulesSet[key]));
     }else if (rulesSet[key].length === 2){// a list of two elements. replace pattern (1st) with (2nd)

@@ -6,6 +6,8 @@ const outputFormat = 'text';// for tests, to be removed
 
 const puppeteer = require('puppeteer');
 const fs = require('fs');
+// const fetch = require('electron-fetch').default;
+// const axios = require('axios');
 const cheerio = require('cheerio');
 const {cleanPage, removeBlanks, extractBody, simplify} = require('./stringUtilities.js');
 
@@ -329,13 +331,13 @@ function fetchWithRetry(page, tries, timeOut, verbose = false) {
     return fetchAndRecode(page)
         .catch(error => {
         if (tries > 1){
-            if (verbose) {
+            if (true) {
                 console.log('Download failed (%s). Trying again in %ss (%s %s left).',page,timeOut/1000,tries-1,tries ===2?'attempt':'attempts');
             }
             return new Promise(resolve => setTimeout(resolve, timeOut))
             .then(() => fetchWithRetry(page,tries-1,timeOut));
         }else{
-            if (verbose){
+            if (true){
                 console.log('Download failed (%s). Aborting (too many tries).',page);
             }
             throw error;
@@ -344,10 +346,33 @@ function fetchWithRetry(page, tries, timeOut, verbose = false) {
 }
 
 
-// fetch url and fix the coding when it is not in UTF-8
+// fetch url and fix the coding when it is not in UTF-8 (axios version)
+// this version does work with le sucre. Why ???
+
+// async function fetchAndRecode(url) {
+//     try {
+//     //   console.log('fetchAndRecode début');
+//     //   const response = await axios.get(url, { responseType: 'arraybuffer' });
+//       const response = await fetch(url);
+//     //   console.log('fetchAndRecode fin');
+//       const contentType = response.headers['content-type'];
+//       const encodingMatch = contentType && contentType.match(/charset=([^;]+)/i);
+//       const encoding = encodingMatch ? encodingMatch[1] : 'utf-8'; // Par défaut, utf-8
+//       const decoder = new TextDecoder(encoding);
+//       return decoder.decode(response.data);
+//     } catch (error) {
+//       console.error(`Erreur lors du téléchargement de ${url} : ${error}`);
+//       throw error;
+//     }
+//   }
+
+
+
 async function fetchAndRecode(url){
     try{
+        // console.log('fetchAndRecode debut');
         const response = await fetch(url);
+        // console.log('fetchAndRecode fin');
         const encoding = response.headers.get('content-type').split('charset=')[1]; // identify the page encoding
         if (encoding === 'utf-8'){// || encoding ==='UTF-8'){
             return await response.text();

@@ -215,6 +215,9 @@ padding: 2px 6px;
 background-color: lightblue;
 }
 
+.SCRPXhighlightUnknown{
+  background-color: rgb(120, 122, 124);
+}
 .SCRPXhighlightName {
   background-color: rgb(52, 152, 219);
 }
@@ -344,6 +347,10 @@ background-color: lightblue;
   color: red;
 }
 
+.warningFont {
+  color: rgb(225, 206, 29);
+}
+
 .greyFont {
   color: grey;
 }
@@ -396,15 +403,15 @@ background-color: lightblue;
 }
 
 .bottomMargin{
-  margin-bottom: 20px;
+  margin-bottom: 20px !important;
 }
 
 .smallBottomMargin{
-  margin-bottom: 10px;
+  margin-bottom: 10px !important;
 }
 
 .verySmallBottomMargin{
-  margin-bottom: 5px;
+  margin-bottom: 5px !important;
 }
 
 .miniBottomMargin{
@@ -413,6 +420,10 @@ background-color: lightblue;
 
 .leftMargin{
   margin-left: 20px;
+}
+
+.rightMargin{
+  margin-right: 5px;
 }
 
 .topMargin{
@@ -425,9 +436,7 @@ background-color: lightblue;
   background-color: rgb(71, 169, 234);
 }
 
-#autoAdjustGroup{
-  margin-right: 30px;
-}
+
 
 
 #processContainer {
@@ -533,6 +542,13 @@ background-color: lightblue;
   border: 2px dashed grey; 
   padding: 10px; 
   margin: 1px;
+  background: repeating-linear-gradient(
+    -45deg,        
+    transparent,      
+    transparent 10px, 
+    grey 10px, 
+    grey 12px 
+  );
   display: inline-block; /* Permet à l'élément de s'ajuster à la largeur du contenu */
 }
 .SCRPXeventBlock {
@@ -585,6 +601,10 @@ custom-a {
   background-color: rgb(231, 76, 60);
   /* display: inline-block;
   position: relative; */
+}
+
+.mainFont {
+  color: rgb(231, 76, 60);
 }
 
 
@@ -698,15 +718,24 @@ input:focus {
   }
 }
 
-#adjustURLGroup{
+.sliderCheckBox{
   flex-grow: 1;
   display: flex;
   justify-content: flex-end;
   padding: 0px;
   margin: 0px;
+  display: inline;
 }
 
-#optionsPanel, #autoAdjustGroup, .adjustURLCheckbox{
+/* .sliderLeftPanel{
+  display: inline;
+  white-space: nowrap;
+  flex: 1;
+} */
+
+
+
+.sliderLeftPanel, .panelWithSlider, .adjustURLCheckbox{
   display: flex;
   width: 100%;
   justify-content: normal; 
@@ -724,9 +753,7 @@ input:focus {
   align-items: center; 
 }
 
-.niceCheckBox input[type="checkbox"] {
-  margin-right: 8px; /* Espace entre la checkbox et le texte */
-}
+
 
 
 .invalid{
@@ -883,11 +910,13 @@ label.niceCheckBox {
   font-family: "Montserrat", sans-serif;
   cursor: pointer;
   margin: 1em;
-  /* position: relative; */
-  /* top:0px;
-  right: 20px; */
+  position: relative; 
+  left: 16px;
 }
 
+label.niceCheckBox.useLinks {
+  left: -2px !important;
+}
   
 
 label.niceCheckBox > input {
@@ -895,28 +924,38 @@ label.niceCheckBox > input {
 }
 
 label.niceCheckBox > span {
-  color: #6A759B;
-  padding-right: 10px;
+  /* color: #6A759B; */
+  color: rgb(229, 129, 118);
+  padding-right: 8px;
+}
+
+label.niceCheckBox.useLinks > span {
+  color: rgb(91, 110, 131) !important;
+}
+
+label.niceCheckBox.useLinks > input:checked + span {
+  color: rgb(236, 240, 241) !important;
 }
 
 label.niceCheckBox > i {
   display: inline-block;
-  width: 32px;
+  width: 40px;
   height: 20px;
   border-radius: 10px;
   vertical-align: middle;
   transition: .25s .09s;
   position: relative;
   background: #deeff7;
+  top: -1px;
 }
 
 label.niceCheckBox > i:after {
   content: " ";
   display: block;
-  width: 15px;
-  height: 15px;
-  top: 2.5px;
-  left: 2.5px;
+  width: 16px;
+  height: 16px;
+  top: 2px;
+  left: 3px;
   border-radius: 50%;
   background: #fff;
   position: absolute;
@@ -929,7 +968,7 @@ label.niceCheckBox>input:checked+span+i {
 }
 
 label.niceCheckBox >input:checked+span+i:after {
-  transform: translateX(12.5px);
+  transform: translateX(18px);
 }
 
 
@@ -939,3 +978,63 @@ label.niceCheckBox > input:checked + span {
 
 
 
+.loader {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #FFF;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+  }
+
+  @keyframes rotation {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+} 
+
+
+	  
+
+.reloadSingle {
+  position: relative;
+  height: 16px;
+  padding: 3px;
+  width: 16px;
+  &:before, &:after {
+    content: '';
+    display: block;
+  }
+  &:before {
+    border-color: transparent white white white;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 2px;
+    height: 12px;
+    width: 12px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  &:after {
+    border-color: transparent transparent transparent white;
+    border-style: solid;
+    border-width: 3px 0 3px 5px;
+    height: 0;
+    position: absolute;
+    top: 1.5px;
+    left: 50%;
+    width: 0;
+  }
+}
+
+.reloadSingle:hover {
+  background-color: rgb(72, 90, 109);
+  border-radius: 10px;
+  padding: 3px;
+  cursor: pointer;
+}

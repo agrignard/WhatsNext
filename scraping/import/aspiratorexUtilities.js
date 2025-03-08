@@ -16,7 +16,7 @@ const nbFetchTries = 2; // number of tries in case of internet connection time o
 
 module.exports = {downloadVenue, erasePreviousHtmlFiles, getHrefListFrom, downloadLinkedPages, getHrefFromAncestor};
 
-
+const browserPool = new BrowserPool(3);
     
 
 /******************************/
@@ -117,7 +117,6 @@ async function downloadVenue(venue, filePath, verbose = false, syncWriting = fal
   }
 
   // read the pages and save them to local files
-  const browserPool = new BrowserPool(3);
   let pageList = (await Promise.all(URLlist.map((page,pageIndex)=>getPage(page,pageIndex)))).flat();
   
   // get linked pages
@@ -132,99 +131,177 @@ async function downloadVenue(venue, filePath, verbose = false, syncWriting = fal
 /*       aux functions        */
 /******************************/
 
-async function downloadLinkedPages(venue, filePath, pageList, verbose = false){
-  // if event tags are defined and contain URLs, download the URLs. Otherwise, ask to run an analyze 
-  if (venue.mainPage.hasOwnProperty('eventsURLTags')||
-    (venue.hasOwnProperty('eventsDelimiterTag') && venue.hasOwnProperty('eventURLIndex') && venue.eventURLIndex !== -1)){
-    const hrefList = getHrefListFrom(pageList,venue);
-    if (verbose){
-      console.log('First entries:',shortList(hrefList));
-    }
-    // check the URLS that already exist
-    const linkedFileContent = fs.existsSync(filePath+'linkedPages.json')?loadLinkedPages(filePath):[];
-    const existingLinks = hrefList.filter(el => Object.keys(linkedFileContent).includes(el));
-    const linksToDownload = hrefList.filter(el => !Object.keys(linkedFileContent).includes(el));
-    if (linksToDownload.length === 0){
-      console.log('All links (%s) already downloaded for venue \x1b[36m%s\x1b[0m.',hrefList.length,venue.name);
-    }else{
-      console.log('Loading linked pages for venue \x1b[36m%s\x1b[0m. '
-        +'Found %s links: %s already exist and won\'t be downloaded, '
-        +'downloading %s links...',venue.name,hrefList.length, existingLinks.length,
-        linksToDownload.length);
-    }
+async function downloadLinkedPages(venue, filePath, pageList, verbose = false, messageTarget = undefined){
+  
+  const hrefList = getHrefListFrom(pageList,venue);
+
+  let count = 0;
+  if (messageTarget){
+    let intervalAction = setInterval(() => {
+      console.log(count++);
+      messageTarget.textContent = "essai "+count;
+      
+      if (count > 5) {
+        clearInterval(intervalAction);
+      }
+    }, 1000); 
+  }
+  
+
+  // if no URL found, abort download
+  if(!venue.mainPage.hasOwnProperty('eventsURLTags') && !venue.mainPage.hasOwnProperty('eventsMultiURLTags')
+      && hrefList.length === 0){
+    console.log('\x1b[31mTrying to download linked pages for \x1b[0m\'%s\'\x1b[31m, but no URL delimiter found. Set URL tag, then run again aspiratorex.js.\x1b[0m',venue.name)
+        return;
+  }
+ 
+  if (verbose) {
+    console.log('First entries:', shortList(hrefList));
+  }
+
+  // check the URLS that already exist
+  const linkedFileContent = fs.existsSync(filePath + 'linkedPages.json') ? loadLinkedPages(filePath) : [];
+  const existingLinks = hrefList.filter(el => Object.keys(linkedFileContent).includes(el));
+  const linksToDownload = hrefList.filter(el => !Object.keys(linkedFileContent).includes(el));
+
+  // const linksToDownload = ['https://le-sucre.eu/agenda/techno-body-music/',
+  // 'https://le-sucre.eu/agenda/warum-residency/',
+  // 'https://le-sucre.eu/agenda/s-society-99/',
+  // 'https://le-sucre.eu/agenda/mini-club-x-promesses-2/',
+  // 'https://le-sucre.eu/agenda/club-x-vel-residency/',
+  // 'https://le-sucre.eu/agenda/s-society-101/'];
+
+
+  const nbLinksToDownload = linksToDownload.length;
+  // 
+  if (linksToDownload.length === 0) {
+    console.log('All links (%s) already downloaded for venue \x1b[36m%s\x1b[0m.', hrefList.length, venue.name);
+  } else {
+    console.log('Loading linked pages for venue \x1b[36m%s\x1b[0m. '
+      + 'Found %s links: %s already exist and won\'t be downloaded, '
+      + 'downloading %s links...', venue.name, hrefList.length, existingLinks.length,
+      nbLinksToDownload);
+  }
     
-    // put the existing links in a new JSON object
-    let hrefJSON = {};
-    existingLinks.forEach(key => {
-      hrefJSON[key] = linkedFileContent[key];
-    });
-    // put the new links
-    let hrefContents;
-    try{
-      hrefContents = (await Promise.all(linksToDownload.map(el => fetchLink(el,nbFetchTries))));
-    }catch(err){
-      console.log("\x1b[31mNetwork error, cannot load linked page for \'%s\'\x1b[0m: %s",venue.name,err);
-    }
-    linksToDownload.forEach((href,index) => hrefJSON[href]=hrefContents[index]);
+  // put the existing links in a new JSON object
+  let hrefJSON = {};
+  existingLinks.forEach(key => {
+    hrefJSON[key] = linkedFileContent[key];
+  });
 
-    try{
-      const jsonString = JSON.stringify(hrefJSON, null, 2); 
-      fs.writeFileSync(filePath+'linkedPages.json', jsonString);
+  // console.log('start download');
+  const start = performance.now();
 
-      failedDownloads = hrefContents.reduce((acc, val) => {
-        return acc + (val === undefined ? 1 : 0);
+  let hrefContents;
+  try {
+    hrefContents = (await Promise.all(linksToDownload.map(el => fetchLink(el, nbFetchTries))));
+  } catch (err) {
+    console.log("\x1b[31mNetwork error, cannot load linked page for \'%s\'\x1b[0m: %s", venue.name, err);
+  }
+  linksToDownload.forEach((href, index) => hrefJSON[href] = hrefContents[index]);
+
+  let downloadedCount = 0;
+  // const downloadPromises = linksToDownload.map(async (link) => {
+  //   try {
+  //     const content = await fetchLink(link, nbFetchTries);
+  //     console.log('count: ',downloadedCount);
+  //     downloadedCount++;
+  //     // update GUI message
+  //     if (messageTarget){
+  //       console.log('test');
+  //       // messageTarget.textContent = `Links downloaded : ${downloadedCount}/${nbLinksToDownload}`;
+  //       messageTarget.textContent = `Now: ${downloadedCount}/${nbLinksToDownload}`;
+  //     }
+  //     if (true){
+  //       console.log(`Links downloaded : ${downloadedCount}/${nbLinksToDownload}`);
+  //     }
+  //     return content;
+  //   } catch (err) {
+  //     console.error(`Download error for ${link} : ${err}`);
+  //     return null;
+  //   }
+  // });
+
+  // console.log('avant');
+
+  // // wait for all promises to be resolved
+  // const results = await Promise.all(downloadPromises);
+  // hrefContents = results.map(el => el.value);
+
+  // console.log('end download');
+  const end = performance.now();
+  console.log(`Le code a mis ${(end - start)/1000}s à s'exécuter.`);
+
+  // put the new links
+  
+
+
+  linksToDownload.forEach((href, index) => hrefJSON[href] = hrefContents[index]);
+
+
+  
+
+  try {
+    const jsonString = JSON.stringify(hrefJSON, null, 2);
+    fs.writeFileSync(filePath + 'linkedPages.json', jsonString);
+
+    failedDownloads = hrefContents.reduce((acc, val) => {
+      return acc + (val === undefined ? 1 : 0);
     }, 0);
 
     // test if all downloads are successful
-    if (linksToDownload.length !== 0){
-      if (failedDownloads === 0){
-        console.log('All linked pages successfully downloaded and saved for \x1b[36m%s\x1b[0m.',venue.name);;
-      }else{  
+    if (linksToDownload.length !== 0) {
+      if (failedDownloads === 0) {
+        console.log('All linked pages successfully downloaded and saved for \x1b[36m%s\x1b[0m.', venue.name);;
+      } else {
         console.log('\x1b[31mVenue \x1b[36m%s: \x1b[31m%s\x1b[0m/%s links downloaded. '
-          +'(%s) new links downloaded this run. '
-          +'\x1b[31mRun aspiratorex again to load remaining links.\x1b[0m',
-          venue.name,hrefList.length-failedDownloads, hrefList.length,
-          hrefList.length-failedDownloads-existingLinks.length);
+          + '(%s) new links downloaded this run. '
+          + '\x1b[31mRun aspiratorex again to load remaining links.\x1b[0m',
+          venue.name, hrefList.length - failedDownloads, hrefList.length,
+          hrefList.length - failedDownloads - existingLinks.length);
       }
     }
-    }catch(err){
-      console.log('\x1b[31mCannot save links to file \'linkedPages.json\' %s\x1b[0m',err);
-    }
-  }else{
-  console.log('\x1b[31mTrying to download linked pages for \x1b[0m\'%s\'\x1b[31m, but no URL delimiter found. Run analex.js to set locate URL tag, then run again aspiratorex.js.\x1b[0m',venue.name)
+  } catch (err) {
+    console.log('\x1b[31mCannot save links to file \'linkedPages.json\' %s\x1b[0m', err);
   }
+  
 }
   
   
-// deprecated
-// function getManualLinksFromPage(page,delimiter,atag){
-//   const $ = cheerio.load(page);
-//   let res = [];
-//   $(delimiter).each(function () {
-//     const block = $(this).html();
-//     const $b = cheerio.load(block);
-//     const href = getHrefFromAncestor($b(atag));
-//     // const href = $b(atag).attr('href');
-//     res.push(href);
-//   });
-//   return res;
-// }
-  
 
-function getLinksFromPage(page,delimiter, atag){// get the URL from atag (optional), or from the delimiters if atag is not present
+function getLinksFromPage(page,delimiter, atag, subEventPath){// get the URL from atag (optional), or from the delimiters if atag is not present
   const $ = cheerio.load(page);
   let res = [];
-  $(delimiter).each(function () {
+
+  // console.log($.html());
+  $(':root').find(delimiter).each(function () {
+
+  // $(delimiter).each(function () {
     let href;
-    if (atag){
-      const block = $(this).html();
-      const $b = cheerio.load(block);
-      href = getHrefFromAncestor($b(atag));
-    }else{
+    // console.log('delimiter',$(this).text());
+    if (atag){// get the URL from tag with path atag
+      const $delimiterBlock = $(this);
+      if (subEventPath){
+        $delimiterBlock.find(subEventPath).each(function() {
+          $(this).find(atag).each(function (){
+            href = getHrefFromAncestor($(this));
+            if (href){
+              res.push(href);
+            }
+          });
+          // const href = $(this).closest('A.agendaevent.depth8').attr('href');
+        });
+      }else{
+        href = getHrefFromAncestor($delimiterBlock.find(atag));
+        if (href){
+          res.push(href);
+        }
+      }
+    }else{// the link is in the delimiter. If for any reason the link is in an ancestor of the delimiter, the next line should be modified (use also function getHrefFromAncestor ?)
       href = $(this).attr('href');
-    }
-    if (href){
-      res.push(href);
+      if (href){
+        res.push(href);
+      }
     }
   });
   return res;
@@ -262,14 +339,27 @@ function shortList(list){
   
 function getHrefListFrom(pageList,venue){
   let hrefList;
-  if (venue.mainPage.hasOwnProperty('eventURLTags')){// URL is found manually
-    hrefList = pageList.map((page)=>getLinksFromPage(page,venue.eventsDelimiterTag,venue.mainPage.eventURLTags[0])).flat();
+  if (venue.mainPage.hasOwnProperty('eventURLTags') || venue.mainPage.hasOwnProperty('eventMultiURLTags')){// URL is found manually
+    hrefList = [];
+    if (venue.mainPage.hasOwnProperty('eventURLTags')){
+      hrefList = pageList.flatMap((page)=> 
+        getLinksFromPage(page,venue.eventsDelimiterTag,venue.mainPage.eventURLTags[0])
+    )};
+    if (venue.mainPage.hasOwnProperty('eventMultiURLTags')){
+      // compute path from sub event delimiter
+      let path = venue.mainPage.eventMultiURLTags[0];
+      const subEventPath = path.split('>').filter(el => !el.endsWith(')')).join('>');
+      path = path.split('>').filter(el => el.endsWith(')')).join('>');
+      hrefList = hrefList.concat(pageList.flatMap((page)=> 
+        getLinksFromPage(page,venue.eventsDelimiterTag,path,subEventPath))
+    )};
   }else{// URL is found in delimiter if it exists
     hrefList = pageList.map((page)=>getLinksFromPage(page,venue.eventsDelimiterTag)).flat();
   }
   // get the list of URLs to download
   hrefList = removeDoubles(hrefList.filter(el => el !== undefined));
   hrefList = hrefList.map((el) => makeURL(venue.baseURL,el));
+  // console.log(hrefList.length);
   return hrefList;
 
 }
@@ -285,7 +375,7 @@ function getHrefFromAncestor(tag){
     tag = tag.parent();
   }
   console.log('Error');
-  throw new Error("null tag.");
+  throw new Error("No ancestor with URL could be found.");
 }
 
 
