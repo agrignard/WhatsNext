@@ -578,9 +578,27 @@ saveButton.addEventListener('click',function(){
     }
   }
 
-  // remove linked page if it is not in use
+  // remove linked page if it is not in use, and date format
   if (!useLinks){
     delete venue.linkedPage;
+    delete venue.linkedPageDateFormat;
+  }else{
+    if (!venue.linkedPage.hasOwnProperty('eventDateTags') && !venue.linkedPage.hasOwnProperty('eventMultiDateTags')){
+      delete venue.linkedPageDateFormat;
+    }
+  }
+
+  // remove unused date formats
+  if (!venue.mainPage.hasOwnProperty('eventDateTags') && !venue.mainPage.hasOwnProperty('eventMultiDateTags')){
+    delete venue.dateFormat;
+  }
+
+  if (!venue.hasOwnProperty('linkedPage')){
+    delete venue.linkedPageDateFormat;
+  }else{
+    if (!venue.linkedPage.hasOwnProperty('eventDateTags') && !venue.linkedPage.hasOwnProperty('eventMultiDateTags')){
+      delete venue.linkedPageDateFormat;
+    }
   }
 
   toLog("Saved to venue.json:");
@@ -1389,15 +1407,20 @@ function initializeInterface(){
 
 function loadLinkedPageContent(){
   console.log('\x1b[41mSwitching to linked page\x1b[0m');
+  const hrefList = getHrefListFrom([localPage],venueWithCustomTags(venue));
+  const linkedPagesURLs = hrefList.filter(el => Object.keys(linkedFileContent).includes(el));
+  console.log(linkedPagesURLs.length);
   analyzePanel.style.display = 'block';
   if (linkedPage){
     const parsedLinkedPage = parseDocument('<html><head></head>'
       +linkedPage.replace(/<[\s\n\t]*a /gi,'<'+customTagName+' ').replace(/<[\s\n\t]*\/a[\s\n\t]*>/gi,'</'+customTagName+'>')
       +'</html>');
     $page = cheerio.load(parsedLinkedPage);
+    // console.log(parsedLinkedPage);
 
     // load web page 
     rightPanel.innerHTML = $page.html();
+    // console.log(rightPanel.innerHTML);
     
     // find subtags and load properties for the easy panel
     subTags.linkedPage = [];
@@ -1583,9 +1606,6 @@ function loadPage(){
   }
   // console.log(rightPanel.innerHTML);
 
-  // autosuggest
-  // const cl = getMostUsedTagClassSets($page);
-  // console.log(cl);
   
   // find the tag from eventsDelimiterTag, with the text in the strings. If not found, get the first tag
   // that matches eventsDelimiterTag
@@ -1616,36 +1636,9 @@ function loadPage(){
       behaviourSetup('initialize');
     }
 
-    
-    // console.log(eventTagList);
-    // console.log(venue.eventsDelimiterTag);
-    // eventTagList = rightPanel.querySelectorAll('a.pureu11.pureumd12.pureulg14.t5410.pureug.agendacard');
-    // console.log(eventTagList);
-    // la suite à filtrer et enlever
-    
-    // const mainTagCandidates = $page(venue.eventsDelimiterTag);
-    // let i;
-    // for(i=mainTagCandidates.length-1;i>=0;i--){
-    //   const text = $page(mainTagCandidates[i]).text();
-    //   const containStrings = !stringsToFind.some(str => !text.includes(str));
-    //   // console.log('to find',stringsToFind,'\n',text);
-    //   if (containStrings){
-    //     break;
-    //   }
-    // }
   
-    // mainTag = mainTagCandidates[i];
-    // mainTagAbsolutePath = getTagLocalization($page(mainTag),$page,false);
-    // delimiterTag = reduceTag(getTagLocalization($page(mainTag),$page,true),$page);
-    // // nbEvents.main = computeEventsNumber(delimiterTag);
-    // [adjustedDelimiterTag, nbEvents.adjusted] = adjustMainTag(delimiterTag,$page,venue,nbEvents.main);
-    
   }
 
-  // computeMissingLinks();
-
-  // if (validateDelimiterTags()){
-  // }
 }
 
 function computeMissingLinks(){
@@ -2072,19 +2065,6 @@ function setDelimiterPanel(n){
   eventSelectorIndex.disabled = n>0?false:true;
 }
 
-// by default, return the number of events with the eventDelimiter in venue. Otherwise, count the number
-// of events for the given tag
-function computeEventsNumber(tag){
-  if (tag === undefined){
-    // console.log('comptage');
-    tag = venue.eventsDelimiterTag;
-  }
-  // console.log('Tag: ',tag);
-  const count = countNonEmptyEvents(tag,$page,venue);
-  // console.log('compté: ',count);
-  setDelimiterPanel(count);
-  return count;
-}
 
 function renderMultiPageManager(nbPages){
   if (nbPages <= 1){
@@ -2132,15 +2112,6 @@ function focusTo(element, behavior = 'smooth'){
   }
 }
 
-// for easyfield, put font in red if the string is not in the document
-// function validateString(box){
-//   if ($page.text().includes(box.value.trim())){
-//     box.classList.remove('redFont');
-//   }else{
-//     box.classList.add('redFont');
-//   }
-
-// }
 
 function highlightStringsNotFound(divsChildren){
   divsChildren.forEach(myDiv =>{

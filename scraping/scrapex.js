@@ -162,7 +162,8 @@ async function analyseFile(venue) {
 
   async function analyseEvents(eventBlockList, hrefInDelimiterList, venue){
     let eventList = [];
-    const dateFormat = (venue.hasOwnProperty('linkedPage') && venue.linkedPage.hasOwnProperty('eventDateTags'))?venue.linkedPageDateFormat:venue.dateFormat; 
+    const possibleDateFormats = [venue.linkedPageDateFormat, venue.dateFormat].filter(el => el);
+   
     const eventLanguages = languages[venue.country]; 
     const localDateConversionPatterns = fromLanguages(dateConversionPatterns,eventLanguages);
 
@@ -194,23 +195,35 @@ async function analyseFile(venue) {
       eventInfo.eventStyle = getStyle(eventInfo.eventStyle, eventLanguages);
       eventInfo.source = { 'name': venue.name, 'city': venue.city, 'country': venue.country };
 
-      // change the date format to Unix time
-      let formatedEventDate = createDate(convertDate(eventInfo.eventDate,localDateConversionPatterns), dateFormat, timeZone, modificationDate);
-      console.log(eventInfo.eventDate,convertDate(eventInfo.eventDate,localDateConversionPatterns), dateFormat);
-      //createDate(el.eventDate,dateFormat,localDateConversionPatterns);
-      if (!isValid(formatedEventDate)) {
-        writeToLog('error', eventInfo, ['\x1b[31mFormat de date invalide pour %s. Reçu \"%s\", converti en \"%s\" (attendu \"%s\")\x1b[0m',
-          venue.name, eventInfo.eventDate, convertDate(eventInfo.eventDate, localDateConversionPatterns), dateFormat], true);
-        eventInfo.unixDate = 0;
-      } else {
-        // changer 00:00 en 23:59 si besoin
-        if (venue.hasOwnProperty('midnightHour')) {
-          formatedEventDate = changeMidnightHour(formatedEventDate, venue.midnightHour, eventInfo);
+      // process date: change the date format to Unix time. Test all formats of possibleDateFormat until one is valid
+      let formatFound = false; 
+      for (const dateFormat of possibleDateFormats){
+        let formatedEventDate = createDate(convertDate(eventInfo.eventDate,localDateConversionPatterns), dateFormat, timeZone, modificationDate);
+        // console.log(eventInfo.eventDate,convertDate(eventInfo.eventDate,localDateConversionPatterns), dateFormat);
+  
+        if (!isValid(formatedEventDate)) {
+          eventInfo.unixDate = 0;
+        } else {
+          formatFound = true;
+          // changer 00:00 en 23:59 si besoin
+          if (venue.hasOwnProperty('midnightHour')) {
+            formatedEventDate = changeMidnightHour(formatedEventDate, venue.midnightHour, eventInfo);
+          }
+          eventInfo.unixDate = formatedEventDate.getTime();
+          eventInfo.eventTime = eventTime(formatedEventDate, timeZone);
+          // console.log(showDate(formatedEventDate));
+          break;
         }
-        eventInfo.unixDate = formatedEventDate.getTime();
-        eventInfo.eventTime = eventTime(formatedEventDate, timeZone);
-        console.log(showDate(formatedEventDate));
       }
+
+      if (!formatFound){
+        const errorString = '\x1b[31mFormat de date invalide pour '+venue.name+'. Reçu \''+eventInfo.eventDate+'\', converti en \''
+            +convertDate(eventInfo.eventDate, localDateConversionPatterns)+'\'. Formats essayés: \x1b[0m'
+            +possibleDateFormats.join('\x1b[31m, \x1b[0m');
+          
+        writeToLog('error',eventInfo, [errorString], true);
+      }
+  
 
       // display
       displayEventLog(eventInfo);
@@ -258,12 +271,11 @@ async function analyseFile(venue) {
           // scrap info from linked page
           if (linkedFileContent && subEventInfo.hasOwnProperty('eventURL')){
             try{
-              console.log(subEventInfo);
               // console.log('file content',subEventInfo.eventURL,linkedFileContent[subEventInfo.eventURL]);
               const $linkedBlock = cheerio.load(linkedFileContent[subEventInfo.eventURL]);
               // add info from linked page to the sub event. If subEventInfo has no information for key, create a nes entry
               getInfo(venue.linkedPage, $linkedBlock, subEventInfo, true);
-
+              
               // look for cancellation keywords. Leave commented since it appears that linkedpages do not contain appropriate information about cancellation 
               // eventInfo.iscancelled = eventInfo.iscancelled || isCancelled($linkedBlock.text(),cancellationKeywords[venue.country]);
               if (useAI){
