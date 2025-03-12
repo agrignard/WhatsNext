@@ -181,7 +181,7 @@
     "ID": "Le Sonic|Lyon|France",
     "linkedPage": {
       "eventDateTags": [
-        "DIV.sitewrapper.site.depth2:eq(0)>DIV.sitecontent.depth3:eq(0)>DIV.container.depth4:eq(0)>DIV.row.depth5:eq(0)>SECTION.contentarea.col12.colsm12.colmd12.collg8.colxl8.colxxl8.pushlg4.pushxl4.pushxxl4.depth6:eq(0)>MAIN.sitemain.depth7:eq(0)>DIV.postwrapper.postwrappersingle.postwrapperpost.depth8:eq(0)>ARTICLE.post5633.facebook_events.typefacebook_events.statuspublish.haspostthumbnail.hentry.facebook_categoryclub.depth9:eq(0)>DIV.entrycontent.entrycontentsingle.depth10:eq(0)>DIV.ife_eventmeta.depth11:eq(0)>DIV.organizermain.depth12:eq(0)>DIV.details.depth13:eq(0)>P.depth14:eq(0)"
+        "DIV.sitewrapper.site.depth2:eq(0)>DIV.sitecontent.depth3:eq(0)>DIV.container.depth4:eq(0)>DIV.row.depth5:eq(0)>SECTION.contentarea.col12.colsm12.colmd12.collg8.colxl8.colxxl8.pushlg4.pushxl4.pushxxl4.depth6:eq(0)>MAIN.sitemain.depth7:eq(0)>DIV.postwrapper.postwrappersingle.postwrapperpost.depth8:eq(0)>ARTICLE.facebook_events.typefacebook_events.statuspublish.haspostthumbnail.hentry.depth9:eq(0)>DIV.entrycontent.entrycontentsingle.depth10:eq(0)>DIV.ife_eventmeta.depth11:eq(0)>DIV.organizermain.depth12:eq(0)>DIV.details.depth13:eq(0)>P.depth14:eq(0)"
       ]
     },
     "linkedPageDateFormat": "MM-dd-HH:mm"

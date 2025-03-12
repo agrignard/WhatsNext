@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ScrapEnDirex</title>
-    <link rel="stylesheet" href="process.css">
+    <link rel="stylesheet" href="../css/process.css">
+    <link rel="stylesheet" href="../css/all.min.css">
 </head>
 
 <body>
@@ -13,7 +14,7 @@
         <div id="leftPanel" class="leftPanel">
             <!-- page manager panel -->
             <div id="pageManager">
-                <div id="venueInfo"></div>
+                <div id="venueInfo" class="venueInfoBgColor"></div>
                 <button id="saveButton" class="normalButton activeButton effectButton">Save</button>
                 <button id="pageManagerButton" class="compact-button normalButton activeButton topRightButton">_</button>
                 <div id="pageManagerDetailsPanel">
@@ -43,21 +44,37 @@
             </div>
             <!-- delimiter panel -->
             <div id="analyzePanel">
-                <div id="delimiterPanel">
+                <div id="delimiterPanel" class="delimiterBgColor">
                     <div id="delimiterPanelHeader" class="delimiterPanelHeader panelHeader">
                         <div id="DelimiterTitle" class="title">Delimiter tag</div>
-                        <div id="eventSelectorPanel" class="headerButtons">
-                            <div id="eventSelectorText" style="display: inline;">Event index</div>
-                            <input type="number" id="eventSelectorIndex" min="0" step="1" value="1" style="width: 6ch">
-                        </div>
+
+
+                        <div id="eventSelectorPanel" class="number-input-container niceInputContainer">
+                            <div id="eventSelectorText" class="delimiterFontColor" style="display: inline;" title="Se positionner sur l'événement x.y">
+                                Event</div>
+                            <input type="text" id="eventSelectorIndex" style="width: 7ch"
+                                class="eventInput niceInputEasyPanel delimiterFontColor delimiterLightestBgColor" placeholder="0">
+                            <div class="number-input-button-group">
+                                <button id="eventButtonUp" class="spin-button up delimiterButtonColor delimiterFontColor">▲</button>
+                                <button id="eventButtonDown" class="spin-button down delimiterButtonColor delimiterFontColor">▼</button>
+                            </div>
+                        </div>  
+
                     </div>
                     <input type="text" id="delimiterTagField" class="delimiterTagInput smallBottomMargin"
                         placeholder="Will be filled automatically" size="50">
                     <div id="optionsPanel" class="panelWithSlider">   
                         <div id="autoAdjustGroup" class="sliderLeftPanel">
-                            <div id="autoAdjustText" class="rightMargin" style="display: inline;">Adjust level</div>
-                            <input type="number" id="autoAdjustIndex" min="0" step="1" max="6" value="0" style="width: 4ch"
-                                placeholder="2">
+                            <div class="number-input-container niceInputContainer">
+                                <div id="autoAdjustText" class="delimiterFontColor" style="display: inline;" title="Tolérance: accepte une différence de n classe par tag. Plus la valeur est élevée, plus on trouve d'éléments. Si la valeur est trop élevée, des éléments non voulus peuvent être trouvés.">
+                                    Tolerance</div>
+                                <input type="number" id="autoAdjustIndex" min="0" step="1" max="6" value="0" style="width: 4ch"
+                                    class="niceInputEasyPanel delimiterFontColor delimiterLightestBgColor" placeholder="0">
+                                <div class="number-input-button-group">
+                                    <button id="autoAdjustButtonUp" class="spin-button up delimiterButtonColor delimiterFontColor">▲</button>
+                                    <button id="autoAdjustButtonDown" class="spin-button down delimiterButtonColor delimiterFontColor">▼</button>
+                                </div>
+                            </div>  
                         </div>
                         <div id="adjustURLGroup" class="sliderCheckBox">
                             <label class="niceCheckBox" style="display: inline;">
@@ -71,24 +88,50 @@
                         link is not accurate</div>
                     <div id="eventURLPanel" class="delimiterPanelHeader panelHeader">
                         <div id="eventURLPanelMessage" class="urlPanel" style="display: block;"></div>
-                        <button id="followURLButton" class="normalButton activeButton" style="display: block;">Open</button>
+                        <!-- <button id="followURLButton" class="normalButton activeButton" style="display: block;">Open</button> -->
                     </div>
                 </div>
+
+                <!--            -->
                 <!-- easy panel -->
+                <!--            -->
+
                 <div class="scrapPanelToHideWhenRegex">
-                    <div id="easyPanel" style="display: block" class="normalPadding">
-                        <div class="smallBottomMargin">
-                            <div class="title" style="display: inline;">Event content</div>
+                    <div id="easyPanel" style="display: block" class="easyPanelBgColor normalPadding">
+                        <div class="verySmallBottomMargin panelHeader">
+                            <div class="title" style="display: inline;">Event Content</div>
+                            <div class="headerButtons">
+                                <div id="tagAdjustGroup" class="">
+                                    <!-- <div id="tagAdjustText" class="rightMargin" style="display: inline;">Adjust level</div> -->
+                                    <div class="number-input-container niceAdjustTagContainer" title="Tolérance: accepte une différence de n classe par tag. Plus la valeur est élevée, plus on trouve d'éléments. Si la valeur est trop élevée, des éléments non voulus peuvent être trouvés.">
+                                        <div id="tagAdjustText" style="display: inline;">Tol.</div>
+                                        <input type="number" id="tagAdjustIndexInput" min="0" step="1" max="9" value="0" style="width: 4ch"
+                                        class="niceInputEasyPanel easyPanelFontColor easyPanelLighterBgColor" placeholder="0">
+                                        <div class="number-input-button-group">
+                                            <button id="tagAdjustButtonUp" class="spin-button up easyPanelBgColor easyPanelFontColor">▲</button>
+                                            <button id="tagAdjustButtonDown" class="spin-button down easyPanelBgColor easyPanelFontColor">▼</button>
+                                        </div>
+                                    </div>  
+                                </div>  
+                                <div class="headerButtons">
+                                    <button id="lockButton" class="lockButton easyPanelBgColor" title="Garde les tags calculés, même s'il n'y a pas de correspondance dans l'événement actuel"><i id="lockIcon" class="fas fa-lock fa-fw"></i></button>
+                                </div>  
+                            </div>                       
                         </div>
+                        
                         <div id="easyPanelFields">
                             <!-- lines with text and button will be populated here -->
                         </div>
                     </div>
                 </div>
+
+                <!--              -->
                 <!-- scrap panels -->
+                 <!--              -->
+
                 <div id="scrapInfos">
                     <!-- event name -->
-                    <div id="eventName" class="scrapElement SCRPXhighlightName">
+                    <div id="eventName" class="subPanel">
                         <div class="verySmallBottomMargin panelHeader">
                             <div class="title" style="display: inline;">Name and description</div>  
                             <div class="headerButtons">
@@ -100,7 +143,7 @@
                             placeholder="Tags will be filled automatically"></textarea>
                     </div>
                     <!-- name sub event-->
-                    <div id="eventMultiName" class="scrapElement SCRPXhighlightName subEvent">
+                    <div id="eventMultiName" class="subPanel subEvent">
                         <div class="verySmallBottomMargin panelHeader">
                             <div class="title">Name (sub-event)</div>
                             <div class="headerButtons">
@@ -114,17 +157,17 @@
                         </div>
                     </div>
                     <!-- name regex  -->
-                    <div id="eventNameRegexpPanel" class="regexpPanel SCRPXhighlightName normalPadding">
-                        <div id="eventNameRegexpTextBefore" class="regexpTextBefore verySmallBottomMargin">text</div>
+                    <div id="eventNameRegexpPanel" class="regexpPanel">
+                        <div id="eventNameRegexpTextBefore" class="regexpTextBefore">text</div>
                         <div class="regexpResult">
-                            <input type="text" id="eventNameRegexpInput" class="regexpInput regexpMatch verySmallBottomMargin" placeholder="Enter Regex" size="30">
+                            <input type="text" id="eventNameRegexpInput" class="regexpInput regexpMatch" placeholder="Enter Regex" size="30">
                             <button id="eventNameRegexpButton" class="regexpButton normalButton activeButton">&gt;</button>
-                            <input type="text" id="eventNameRegexpReplace" class="regexpInput  regexpReplace verySmallBottomMargin" size="10" >
-                            <div id="eventNameRegexpTextAfter" class="regexpTextAfter">text</div>
+                            <input type="text" id="eventNameRegexpReplace" class="regexpInput  regexpReplace" size="10" >
                         </div>
+                        <div id="eventNameRegexpTextAfter" class="regexpTextAfter">text</div>
                     </div>
                     <!-- event date -->
-                    <div id="eventDate" class="scrapElement SCRPXhighlightDate">
+                    <div id="eventDate" class="subPanel">
                         <div class="verySmallBottomMargin panelHeader">
                             <div class="title" style="display: inline;">Date and time</div>
                             <div class="headerButtons">
@@ -138,7 +181,7 @@
                         </div>
                     </div>    
                     <!-- sub event date -->
-                    <div id="eventMultiDate" class="scrapElement SCRPXhighlightDate subEvent">
+                    <div id="eventMultiDate" class="subPanel subEvent">
                         <div class="verySmallBottomMargin panelHeader">
                             <div class="title" style="display: inline;">Date and time (sub-event)</div>
                             <div class="headerButtons">
@@ -151,25 +194,24 @@
                                 cols="50" placeholder="Tags will be filled automatically"></textarea>
                         </div>
                     </div>
-                    <div id="dateFormatPanel" class="scrapElement SCRPXhighlightDate">
+                    <div id="dateFormatPanel">
                         <div id="dateFormatText"></div>
                     </div>
                     <!-- date regex panel -->
-                    <div id="eventDateRegexpPanel" class="regexpPanel SCRPXhighlightDate normalPadding">
-                        <div id="eventDateRegexpTextBefore" class="regexpTextBefore verySmallBottomMargin">text
+                    <div id="eventDateRegexpPanel" class="regexpPanel">
+                        <div id="eventDateRegexpTextBefore" class="regexpTextBefore">text
                         </div>
                         <div class="regexpResult">
                             <input type="text" id="eventDateRegexpInput"
-                                class="regexpInput regexpMatch verySmallBottomMargin" placeholder="Enter Regex"
+                                class="regexpInput regexpMatch" placeholder="Enter Regex"
                                 size="30">
                             <button id="eventDateRegexpButton" class="regexpButton normalButton activeButton">&gt;</button>
-                            <input type="text" id="eventDateRegexpReplace"
-                                class="regexpInput regexpReplace verySmallBottomMargin" size="10">
-                            <div id="eventDateRegexpTextAfter" class="regexpTextAfter">text</div>
+                            <input type="text" id="eventDateRegexpReplace" class="regexpInput regexpReplace" size="10">
                         </div>
+                        <div id="eventDateRegexpTextAfter" class="regexpTextAfter">text</div>
                     </div>
                     <!-- event style -->
-                    <div id="eventStyle" class="scrapElement SCRPXhighlightStyle">
+                    <div id="eventStyle" class="subPanel">
                         <div class="verySmallBottomMargin panelHeader">
                             <div class="title">Style</div>
                             <div class="headerButtons">
@@ -183,7 +225,7 @@
                         </div>
                     </div>
                     <!-- style sub event-->
-                    <div id="eventMultiStyle" class="scrapElement SCRPXhighlightStyle subEvent">
+                    <div id="eventMultiStyle" class="subPanel subEvent">
                         <div class="verySmallBottomMargin panelHeader">
                             <div class="title">Style (sub-event)</div>
                             <div class="headerButtons">
@@ -197,21 +239,17 @@
                         </div>
                     </div>
                     <!-- style regex panel -->
-                    <div id="eventStyleRegexpPanel" class="regexpPanel SCRPXhighlightStyle normalPadding">
-                        <div id="eventStyleRegexpTextBefore" class="regexpTextBefore verySmallBottomMargin">text
-                        </div>
+                    <div id="eventStyleRegexpPanel" class="regexpPanel">
+                        <div id="eventStyleRegexpTextBefore" class="regexpTextBefore">text</div>
                         <div class="regexpResult">
-                            <input type="text" id="eventStyleRegexpInput"
-                                class="regexpInput regexpMatch verySmallBottomMargin" placeholder="Enter Regex"
-                                size="30">
+                            <input type="text" id="eventStyleRegexpInput" class="regexpInput regexpMatch" placeholder="Enter Regex" size="30">
                             <button id="eventStyleRegexpButton" class="regexpButton normalButton activeButton">&gt;</button>
-                            <input type="text" id="eventStyleRegexpReplace"
-                                class="regexpInput regexpReplace verySmallBottomMargin" size="10">
-                            <div id="eventStyleRegexpTextAfter" class="regexpTextAfter">text</div>
+                            <input type="text" id="eventStyleRegexpReplace" class="regexpInput regexpReplace" size="10">
                         </div>
+                        <div id="eventStyleRegexpTextAfter" class="regexpTextAfter">text</div>
                     </div>
                     <!-- event place -->
-                    <div id="eventPlace" class="scrapElement SCRPXhighlightPlace">
+                    <div id="eventPlace" class="subPanel">
                         <div class="verySmallBottomMargin panelHeader">
                             <div class="title">Place</div>
                             <div class="headerButtons">
@@ -225,7 +263,7 @@
                         </div>
                     </div>
                     <!-- place sub event-->
-                    <div id="eventMultiPlace" class="scrapElement SCRPXhighlightPlace subEvent">
+                    <div id="eventMultiPlace" class="subPanel subEvent">
                         <div class="verySmallBottomMargin panelHeader">
                             <div class="title">Place (sub-event)</div>
                             <div class="headerButtons">
@@ -239,21 +277,18 @@
                         </div>
                     </div>
                     <!-- place regex panel -->
-                    <div id="eventPlaceRegexpPanel" class="regexpPanel SCRPXhighlightPlace normalPadding">
-                        <div id="eventPlaceRegexpTextBefore" class="regexpTextBefore verySmallBottomMargin">text
-                        </div>
+                    <div id="eventPlaceRegexpPanel" class="regexpPanel">
+                        <div id="eventPlaceRegexpTextBefore" class="regexpTextBefore">text</div>
                         <div class="regexpResult">
                             <input type="text" id="eventPlaceRegexpInput"
-                                class="regexpInput regexpMatch verySmallBottomMargin" placeholder="Enter Regex"
-                                size="30">
+                                class="regexpInput regexpMatch" placeholder="Enter Regex" size="30">
                             <button id="eventPlaceRegexpButton" class="regexpButton normalButton activeButton">&gt;</button>
-                            <input type="text" id="eventPlaceRegexpReplace"
-                                class="regexpInput regexpReplace verySmallBottomMargin" size="10">
-                            <div id="eventPlaceRegexpTextAfter" class="regexpTextAfter">text</div>
+                            <input type="text" id="eventPlaceRegexpReplace" class="regexpInput regexpReplace" size="10">
                         </div>
+                        <div id="eventPlaceRegexpTextAfter" class="regexpTextAfter">text</div>
                     </div>
                     <!-- event url -->
-                    <div id="eventURL" class="scrapElement SCRPXhighlightURL">
+                    <div id="eventURL" class="subPanel">
                         <div class="verySmallBottomMargin panelHeader">
                             <div class="title">Event page URL</div>
                         </div>
@@ -263,9 +298,9 @@
                         </div>
                     </div>
                     <!-- url sub event-->
-                    <div id="eventMultiURL" class="scrapElement SCRPXhighlightURL subEvent">
+                    <div id="eventMultiURL" class="subPanel subEvent">
                         <div class="title">URL (sub-event)
-                            <div class="subtitle" style="display:inline"></div>
+                            <!-- <div class="subtitle" style="display:inline"></div> -->
                         </div>
                         <div class="scrapPanelToHideWhenRegex">
                             <textarea id="eventMultiURLTags" class="eventTags scrapTextBox eventURLgroup" rows="1" cols="50"

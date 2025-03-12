@@ -1,4 +1,131 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
+/* @import url('https://fonts.googleapis.com/css?family=Montserrat'); */
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('../fonts/Montserrat-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*@font-face {
+  font-family: 'Montserrat';
+  src: url('../fonts/Montserrat-Bold.ttf');
+  font-weight: bold;
+  font-style: normal;
+} */
+
+/* bg colors*/
+
+:root {
+  --venue-info-bg-color: rgb(44, 62, 80);  
+  --pagemanager-bg-color: rgb(61, 80, 100);
+
+
+  --easy-panel-bg-color: hsl(226, 39%, 78%);
+  --easy-panel-lighter-color: hsl(226, 37%, 89%);
+  --easy-panel-font-color: hsl(226, 30%, 50%);
+
+  --easybutton-inactive-color: rgb(187, 196, 227);
+
+
+  --delimiter-bg-color: rgb(231, 76, 60);
+  --delimiter-font-color: rgb(54, 12, 7);
+  --delimiter-lighter-color: rgb(242, 91, 75);
+  --delimiter-button-color: rgb(223, 135, 125);
+  --delimiter-lightest-color: rgb(248, 213, 209);
+
+  --pagemanager-white-font: rgb(236, 240, 241);
+  --easybutton-white-bg: rgb(232, 228, 228); 
+
+  --name-bg-color: rgb(52, 152, 219);
+  --name-bg-color-a: rgba(52, 152, 219,0.8);
+
+  --date-bg-color: rgb(46, 204, 113);
+  --date-bg-color-a: rgba(46, 204, 113, 0.8);
+
+  --style-bg-color: rgb(243, 156, 18);
+  --style-bg-color-a: rgba(243, 156, 18,0.8);
+
+  --place-bg-color: rgb(155, 89, 182);
+  --place-bg-color-a: rgba(155, 89, 182, 0.8);
+
+  --url-bg-color: rgb(241, 196, 15);
+  --url-bg-color-a: rgba(241, 196, 15, 0.8);
+
+  --verydarkgrey-font-color: rgb(45, 45, 45);
+}
+
+.nameTheme{
+  --active-color: var(--category-gb-color);
+}
+
+.redFont {
+  color: red;
+}
+
+.warningFont {
+  color: rgb(225, 206, 29);
+}
+
+.subPanel {
+  border: 0px;
+  padding: 2px 5px;
+  background-color: var(--category-bg-color);
+}
+
+#dateFormatPanel{
+  border: 0px;
+  padding: 2px 5px;
+  background-color: var(--date-bg-color);
+}
+
+
+
+
+.venueInfoBgColor{
+  background-color: var(--venue-info-bg-color);
+}
+
+.easyPanelBgColor{
+  background-color: var(--easy-panel-bg-color);
+}
+
+.easyPanelFontColor{
+  color: var(--easy-panel-font-color); 
+}
+
+.easyPanelLighterBgColor{
+  background-color: var(--easy-panel-lighter-color);
+}
+
+.delimiterBgColor{
+  background-color: var(--delimiter-bg-color);
+}
+
+.delimiterFontColor{
+  color: var(--delimiter-font-color);
+}
+
+.delimiterLighterBgColor{
+  background-color: var(--delimiter-lighter-color);
+}
+
+.delimiterButtonColor{
+  background-color: var(--delimiter-button-color);
+}
+
+.delimiterLightestBgColor{
+  background-color: var(--delimiter-lightest-color);
+}
+
+.mainFont {
+  color: var(--delimiter-bg-color) !important;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
 
 div a {
     pointer-events: none;
@@ -20,8 +147,7 @@ body, html {
     font-size: 105%;
       padding: 5px 5px;
       font-weight: bold;
-      background-color: rgb(44, 62, 80);
-      color: rgb(236, 240, 241);
+      color: var(--pagemanager-white-font);
       overflow-y: hidden;
 }
 
@@ -56,21 +182,27 @@ body, html {
   height: 20px;
   margin-left: 2px;
   border: none;
-  background-color: rgb(232, 228, 228);
   padding: 0;
+  --inactive-color: var(--easybutton-inactive-color);
+  background-color: var(--category-bg-color);
 }
 
 /* inactive is used to prevent buttons from working*/
 .easyButton.inactive, .easyButton.inactiveURL{
-  background-color: rgb(187, 196, 227) !important;
-  color: rgb(210, 217, 240);
+  background-color: var(--inactive-color) !important;
+}
+
+.easyButton:not(.inactive):not(.inactiveURL):not(.activeButton):not(:hover){
+  background-color: var(--easybutton-white-bg);
+}
+
+.easyButton:not(.inactive):not(.inactiveURL):not(.activeButton):hover{
+  opacity: 0.5;
 }
 
 .easyButton.inactive:hover, .easyButton.inactiveURL:hover{
-  /* background-color: rgb(187, 196, 227);  */
   cursor: default;
 }
-
 
 .easyButton:hover{
   cursor: pointer;
@@ -98,7 +230,114 @@ body, html {
   border: none;
 }
 
-.activeButton:hover {
+.lockButton {
+  font-size: 10px;
+  border: 2px solid var(--easy-panel-font-color);
+  color: var(--easy-panel-font-color);
+  padding: 3px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.niceAdjustTagContainer{
+  border: 2px solid var(--easy-panel-font-color);
+  color: var(--easy-panel-font-color);
+  border-radius: 5px;
+  padding: 1px;
+}
+
+.niceInputEasyPanel{
+  border: 0px;
+   border-radius: 3px;
+}
+
+
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="text"].eventInput::-webkit-inner-spin-button,
+input[type="text"].eventInput::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Style du conteneur */
+.number-input-container {
+  display: flex;
+  align-items: center;
+}
+
+.number-input-button-group{
+  display: flex;
+  flex-direction: column;
+}
+
+/* Style de l'input */
+input[type="number"] {
+  padding-left: 3px;
+  position: relative;
+  left: 12px;
+  text-align: left;
+}
+
+input[type="text"].eventInput {
+  padding-left: 3px;
+  position: relative;
+  left: 12px;
+  text-align: left;
+}
+
+.roundBorder{
+  /* border: 2px solid black; */
+  border-radius: 3px;
+}
+
+/* Style des boutons personnalisés */
+.spin-button {
+  border: 1px solid #ccc;
+  padding: 0px;
+  cursor: pointer;
+  font-size: 6px;
+  width: 12px;
+  text-align: center;
+  position: relative;
+  right: 1px;
+  border-radius: 2px;
+}
+
+/* Couleur des boutons au survol */
+.spin-button.easyPanelBgColor:hover {
+  background-color: var(--easy-panel-font-color);
+  color: white;
+}
+
+.spin-button.delimiterButtonColor:hover {
+  background-color: var(--delimiter-lighter-color);
+  color: white;
+}
+
+
+/* Effet au clic sur les flèches */
+.spin-button:active {
+  background-color: darkgray;
+}
+
+
+.lockButton:hover {
+  background-color: var(--easy-panel-lighter-color);;
+}
+
+.activeLink:hover {
+  color: white;
+  background-color: var(--delimiter-lighter-color);
+  cursor: pointer;
+}
+
+.activeButton:not(.inactive):hover {
   background-color: darkgray;
   cursor: pointer;
 }
@@ -108,10 +347,6 @@ body, html {
 }
 
 
-.scrapElement .input-row button {
-  /* flex: 0 0 auto;  */
-  margin-right: 5px; /* Marge entre les éléments */
-}
 
 /* #groupTagsButton{
 position: absolute;
@@ -153,6 +388,11 @@ padding: 2px 6px;
   padding: 2px 6px;
 }
 
+.regexpResult{
+  margin: 0px;
+  padding: 0px;
+}
+
 #freezeDelimiterButton{
   padding: 1px 5px;
 }
@@ -164,6 +404,7 @@ padding: 2px 6px;
   width: 23ch;
   padding: 5px 10px;
   z-index: 9999; /*on top*/
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
 }
 
 #logButton {
@@ -174,9 +415,6 @@ padding: 2px 6px;
     height: 20px;
 }
 
-#easyPanel{
-  background-color: rgb(177, 187, 221);
-}
   
 .easyPanelLine{
   flex-grow: 1;
@@ -219,11 +457,11 @@ background-color: lightblue;
   background-color: rgb(120, 122, 124);
 }
 .SCRPXhighlightName {
-  background-color: rgb(52, 152, 219);
+  background-color: var(--name-bg-color);
 }
 
 .SCRPXhighlightName.subEvent {
-  background-color: rgba(52, 152, 219,0.8);
+  background-color: var(--name-bg-color-a);
 }
 
 .SCRPXhighlightDate {
@@ -243,19 +481,19 @@ background-color: lightblue;
 }
 
 .SCRPXhighlightPlace{
-    background-color: rgb(155, 89, 182);
+    background-color: var(--place-bg-color);
 }
 
 .SCRPXhighlightPlace.subEvent{
-  background-color: rgba(155, 89, 182, 0.8);
+  background-color: var(--place-bg-color-a);
 }
 
 .SCRPXhighlightURL:not(.SCRPXhighlightName):not(.SCRPXhighlightDate):not(.SCRPXhighlightStyle):not(.SCRPXhighlightPlace){
-  background-color: rgb(241, 196, 15);
+  background-color: var(--url-bg-color);
 }
 
 .SCRPXhighlightURL.subEvent:not(.SCRPXhighlightName):not(.SCRPXhighlightDate):not(.SCRPXhighlightStyle):not(.SCRPXhighlightPlace){
-  background-color: rgba(241, 196, 15, 0.8);
+  background-color: var(--url-bg-color-a);
 } */
 
 .SCRPXshadow{
@@ -270,60 +508,13 @@ background-color: lightblue;
 .SCRPXhighlightURL{
   background-image: repeating-linear-gradient(
     90deg,        
-    rgb(241, 196, 15) 0px,  
-    rgb(241, 196, 15) 30px,
+    var(--url-bg-color) 0px,  
+    var(--url-bg-color) 30px,
     transparent 30px, 
     transparent 60px 
   );
 }
 
-
-
-/* .SCRPXhighlightMultiName {
-  border: 2px dashed rgb(42, 140, 205); 
-}
-
-.SCRPXhighlightMultiDate {
-  border: 2px dashed rgb(31, 172, 90);
-}
-
-.SCRPXhighlightMultiStyle {
-  border: 2px dashed rgb(216, 139, 15);
-}
-
-.SCRPXhighlightMultiPlace{
-  border: 2px dashed rgb(129, 69, 152)
-}
-
-.SCRPXhighlightMultiURL{
-  border: 2px dashed rgb(206, 167, 12);
-} */
-
-
-.easyButtonName:not(.SCRPXhighlightName):not(.inactive):hover{
-  background-color: rgb(52, 152, 219);
-  opacity: 0.5;
-}
-
-.easyButtonDate:not(.SCRPXhighlightDate):not(.inactive):hover{
-  background-color: rgb(46, 204, 113);
-  opacity: 0.5;
-}
-
-.easyButtonStyle:not(.SCRPXhighlightStyle):not(.inactive):hover{
-  background-color: rgb(243, 156, 18);
-  opacity: 0.5;
-}
-
-.easyButtonPlace:not(.SCRPXhighlightPlace):not(.inactive):hover{
-    background-color: rgb(155, 89, 182);
-    opacity: 0.5;
-}
-
-.easyButtonURL:not(.SCRPXhighlightURL):not(.inactive):not(.inactiveURL):hover{
-  background-color: rgb(241, 196, 15);
-  opacity: 0.5;
-}
 
 .easyRemoveButton{
   border: none;
@@ -343,25 +534,12 @@ background-color: lightblue;
 
 
 
-.redFont {
-  color: red;
-}
 
-.warningFont {
-  color: rgb(225, 206, 29);
-}
-
-.greyFont {
-  color: grey;
-}
 
 .inactive{
   color: grey;
 }
 
-.blue-text {
-  color: blue;
-}
 
 .normalPadding{
   padding: 5px 5px;
@@ -461,8 +639,8 @@ background-color: lightblue;
 
 #pageManager {
     position: relative; 
-    background-color: rgb(61, 80, 100);
-    color: rgb(236, 240, 241);
+    background-color: var(--pagemanager-bg-color);
+    color: var(--pagemanager-white-font);
     overflow-y: hidden;
     flex: 0 0 auto;
   }
@@ -479,25 +657,6 @@ background-color: lightblue;
     /* margin-bottom: 5px; */
 }
 
-
-.scrapElement{
-    /*display: flex;
-    flex-direction: column; 
-    align-items: flex-start;*/
-    padding: 5px 5px;
-}
-
-
-.scrapElement .input-row {
-    width: 100%;
-    margin-bottom: 0px;
-    padding: 0px;
-}
-
-.scrapElement .input-row .eventStrings {
-    /* flex: 1 0 80%;  */
-    margin-right: 5px; /* Marge entre les éléments */
-}
 
 /* .subEvent{
   opacity: 0.8;
@@ -555,15 +714,27 @@ background-color: lightblue;
   border: 2px solid black; 
   padding: 5px; 
   padding-left: 25px;
-  display: inline-block; /* Permet à l'élément de s'ajuster à la largeur du contenu */
+  display: inline-block; 
   margin: 1px;
   background-color: rgba(231, 76, 60, 0.2);
   margin-bottom: 10px;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
 }
 
+
+.SCRPXlinkedPageMainBlock.SCRPXeventBlock {
+  border: 2px solid black; 
+  padding: 0px; 
+  padding-left: 0px;
+  display: inline-block; /* Permet à l'élément de s'ajuster à la largeur du contenu */
+  margin: 1px;
+  background-color: rgba(36, 165, 105, 0.2);
+  margin-bottom: 10px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+
 .SCRPXsubEvent{
-  border: 2px solid rgb(45, 45, 45); 
+  border: 2px solid var(--verydarkgrey-font-color); 
   margin-bottom: 3px;
 }
 
@@ -582,31 +753,32 @@ custom-a {
   font-weight: bold;
   text-decoration: none !important;
   color: rgb(254, 243, 243);
-  background-color: rgb(45, 45, 45);
+  background-color: var(--verydarkgrey-font-color);
+}
+
+.SCRPXlinkedPageEventHeader{
+  margin: 0px;
+  padding: 1px;
+  font-weight: bold;
+  color: rgb(254, 243, 243);
+  background-color: var(--verydarkgrey-font-color);
 }
 
 .SCRPXeventBlockWithURL{
-  outline: 4px solid rgb(241, 196, 15);  /* Bordure en tirets rouge */
+  outline: 4px solid var(--url-bg-color);  
   outline-offset: -5px;
 }
 
 .focusedOn {
-  border: 2px solid rgb(231, 76, 60);; 
+  border: 2px solid var(--delimiter-bg-color);
   padding: 10px; 
-  display: inline-block; /* Permet à l'élément de s'ajuster à la largeur du contenu */
+  display: inline-block; 
   margin: 1px;
 }
 
 .SCRPXmainTag {
-  background-color: rgb(231, 76, 60);
-  /* display: inline-block;
-  position: relative; */
+  background-color: var(--delimiter-bg-color);
 }
-
-.mainFont {
-  color: rgb(231, 76, 60);
-}
-
 
 .delimiterTagInput {
   width: calc(100%); /* Largeur ajustée en fonction de la marge */
@@ -622,27 +794,28 @@ custom-a {
   margin: 0px;
   padding: 0px;
   font-size: 80%;
-  color: rgb(45, 45, 45);
+  color: var(--verydarkgrey-font-color);
 }
 
 .regexpTextAfter{
   margin: 0px;
-  padding: 0px;
+  padding: 2px 0px;
   font-size: 80%;
   font-weight: bold;
-  color: rgb(45, 45, 45);
+  color: var(--verydarkgrey-font-color);
 }
 
 .regexpPanel{
   margin: 0px;
   padding: 5px;
-  padding-top: 3px;
-  padding-bottom: 3px;
+  padding-top: 0px;
+  padding-bottom: 2px;
+  background-color: var(--category-bg-color);
 }
 
 .regexpInput {
-  width: calc(40%); /* Largeur ajustée en fonction de la marge */
-  margin-top: 5px; 
+  width: calc(44%); /* Largeur ajustée en fonction de la marge */
+  margin-top: 2px; 
   border: none;
   padding: 2px 5px;
   background-color: white;
@@ -650,9 +823,9 @@ custom-a {
 }
 
 #eventSelectorPanel{
-  background-color: rgb(242, 91, 75);
-  padding: 5px 5px;
-  margin: 0px 0px;
+  background-color: var(--delimiter-lighter-color);
+  padding: 2px 2px;
+  border-radius: 3px;
 }
 
 .delimiterPanelHeader{
@@ -686,13 +859,12 @@ custom-a {
 
 #eventSelectorText{
   color: white;
-  margin-right: 5px;
+  margin-right: -5px;
 }
 
 #delimiterPanel{
   font-family: "Montserrat", sans-serif;
   position: relative;
-  background-color: rgb(231, 76, 60);
   padding: 5px;
 }
 
@@ -761,36 +933,12 @@ input:focus {
   color: red;
 }
 
-#currentTabSelector{
-   display: flex; 
-   flex-direction: row;
-   padding: 0px;
-}
 
-.tab{
-  padding: 5px;
-  margin: 0px;
-  flex: 1;
-  text-align: center;
-  background-color: rgb(120, 122, 124);
-}
-
-.tab:hover{
-  background-color: rgb(61, 80, 100);
-  color: white;
-}
-
-.selectedTab{
-  background-color: rgb(61, 80, 100);
-  color: white;
-}
 
 input[type="number"] {
   -moz-appearance: textfield; /* Forcer l'affichage sur Firefox */
   appearance: auto; /* Forcer sur Chrome/Electron */
 }
-
-
 
 
 
@@ -819,7 +967,6 @@ input[type="number"] {
 .menu-buttons button {
   width: 40px;
   height: 40px;
-  /* background: #eee;*/
   border: 1px solid #aaa; 
   cursor: pointer;
   text-align: center;
@@ -827,9 +974,6 @@ input[type="number"] {
   margin: 0px;
 }
 
-/* .menu-buttons button:hover {
-  background: #ddd;
-} */
 
 /* Option "Événement multiple" */
 .multiple-event {
@@ -867,7 +1011,7 @@ input[type="number"] {
   font-weight: bold;
   text-decoration: none !important;
   color: rgb(254, 243, 243);
-  background-color: rgb(45, 45, 45);
+  background-color: var(--verydarkgrey-font-color);
   justify-content: center; 
   align-items: center;
   text-align: center;
@@ -934,7 +1078,7 @@ label.niceCheckBox.useLinks > span {
 }
 
 label.niceCheckBox.useLinks > input:checked + span {
-  color: rgb(236, 240, 241) !important;
+  color: var(--pagemanager-white-font) !important;
 }
 
 label.niceCheckBox > i {
