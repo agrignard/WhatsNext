@@ -190,6 +190,7 @@ const cmicon = document.createElement('i');
 
 // make context menu line for sub events
 cmlabel.className = 'niceCheckBox';
+cmlabel.classList.add('contextMenuLabel');
 cmlabel.style.display = 'inline';
 
 cminput.id = 'contextMenuCheckbox';
@@ -253,8 +254,9 @@ rightPanel.addEventListener("contextmenu", (event) => {
         b.classList.remove(b.classList.item(0));
       }
       Array.from(b.linkedButton.classList).filter(el => el.startsWith('easyButton') || el.startsWith('SCRPX')
-      || el === 'inactiveURL' || el === 'inactive')
+      || el === 'inactiveURL' || el === 'inactive' || el === 'activeButton')
           .forEach(el => b.classList.add(el));
+      setEasyButtonDesign(b, b.classList[1].replace('easyButton',''));
     });
     cminput.checked = contextMenu.linkedTag.isMulti;
   }
@@ -1020,7 +1022,6 @@ function newEasyLine(tag, index){
         });
       }
       newDiv.appendChild(newEasyButton);
-      console.log(newEasyButton.classList);
     }
   }
 
@@ -1827,9 +1828,6 @@ function applyTags(){
 
   Object.keys(venue[currentPage]).forEach(key => {
     className = 'SCRPXhighlight'+key.replace('event','').replace('Tags','').replace('Multi','');
-    // if (className.includes('URL')){
-    //   console.log('ici', venue[currentPage][key]);
-    // }
     venue[currentPage][key].forEach(path =>{
       blocksToProcess.forEach(rootTag =>{
         const tags = findTagsFromPath(rootTag,path); 
@@ -2866,7 +2864,7 @@ function makeExtendButton(tag){
   extendButton = document.createElement("button");
   extendButton.innerText = "◀";
   extendButton.title = "Extend the selection";
-  extendButton.classList.add("tag-button");
+  extendButton.classList.add("extend-button");
   extendButton.tagTarget = tag;
   tag.style.position = "relative";
   tag.prepend(extendButton);
@@ -3278,9 +3276,7 @@ function setLeftPanelDesign(){
 
 
 function setEasyButtonDesign(button, key){
-  button.classList.add(key.toLowerCase()+'Theme');
   button.classList.add('eventTagTypeButton', 'easyButton', 'easyButton'+key); // add class easybutton for css (coloring, hoovering)
-  // newEasyButton.colorClass = colorClassList[i]; // set the color class when active
   button.title = key;
   
   const prop = "--category-bg-color".replace('category',key.toLowerCase());

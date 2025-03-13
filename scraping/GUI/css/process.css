@@ -17,25 +17,37 @@
 /* bg colors*/
 
 :root {
+
+  /* page manager color theme */
   --venue-info-bg-color: rgb(44, 62, 80);  
   --pagemanager-bg-color: rgb(61, 80, 100);
 
+  --pm-button-hover-color: rgb(72, 90, 109);
+  --pm-inactive-font-color: rgb(91, 110, 131);
 
+  /* easypanel */
   --easy-panel-bg-color: hsl(226, 39%, 78%);
   --easy-panel-lighter-color: hsl(226, 37%, 89%);
   --easy-panel-font-color: hsl(226, 30%, 50%);
 
+  --easypanel-subevent-color: rgb(45,45,45);
+
   --easybutton-inactive-color: rgb(187, 196, 227);
+  --easybutton-white-bg: rgb(232, 228, 228); 
+  --easybutton-remove-font-color: white;
 
-
+  /* delimiter panel */
   --delimiter-bg-color: rgb(231, 76, 60);
   --delimiter-font-color: rgb(54, 12, 7);
   --delimiter-lighter-color: rgb(242, 91, 75);
   --delimiter-button-color: rgb(223, 135, 125);
   --delimiter-lightest-color: rgb(248, 213, 209);
 
-  --pagemanager-white-font: rgb(236, 240, 241);
-  --easybutton-white-bg: rgb(232, 228, 228); 
+  --delimiter-inactive-font-color: hsl(6, 52%, 40%);
+
+  --dimmed-white-font: rgb(236, 240, 241);
+
+  /* keywords panels and highlights */
 
   --name-bg-color: rgb(52, 152, 219);
   --name-bg-color-a: rgba(52, 152, 219,0.8);
@@ -52,11 +64,42 @@
   --url-bg-color: rgb(241, 196, 15);
   --url-bg-color-a: rgba(241, 196, 15, 0.8);
 
-  --verydarkgrey-font-color: rgb(45, 45, 45);
-}
+  --unknown-color: rgb(120, 122, 124);
 
-.nameTheme{
-  --active-color: var(--category-gb-color);
+  /* log panel */
+
+  --logpanel-bg-color: grey;
+  --logpanel-textzone-bg-color: lightgrey;
+
+  /* colors for event blocks */
+
+  --eventblock-bg-color: rgba(231, 76, 60, 0.2);
+  --linkedpage-eventblock-bg-color: rgba(36, 165, 105, 0.2);
+
+  --extend-button-bg-color: rgba(223, 137, 127, 0.6);
+  --extend-button-hover-bg-color: rgba(223, 137, 127, 1);
+
+  /* sub events */
+
+  /* context menu */
+
+  --contextmenu-bg-color: rgb(240, 235, 235);
+  --contextmenu-border-color: #aaa;
+  --contextmenu-subevent-bg-color: #f0f0f0;
+  --contextmenu-subevent-hoover-bg-color: #e0e0e0;
+  
+  /* other colors */
+  --verydarkgrey-font-color: rgb(45, 45, 45);
+
+  --shadow-color: rgba(0, 0, 0, 0.4);
+  --light-shadow-color: rgba(0, 0, 0, 0.2);
+  --mouse-over-bg-color: rgba(54, 54, 54, 0.1);
+
+  --red-font: rgb(243, 73, 70);
+  --warning-font: rgb(225, 206, 29);
+
+  --textbox-focus-color: rgb(189, 195, 199); 
+  --default-hover-color: darkgrey;
 }
 
 .redFont {
@@ -64,7 +107,7 @@
 }
 
 .warningFont {
-  color: rgb(225, 206, 29);
+  color: var(--warning-font);
 }
 
 .subPanel {
@@ -147,7 +190,7 @@ body, html {
     font-size: 105%;
       padding: 5px 5px;
       font-weight: bold;
-      color: var(--pagemanager-white-font);
+      color: var(--dimmed-white-font);
       overflow-y: hidden;
 }
 
@@ -196,7 +239,7 @@ body, html {
   background-color: var(--easybutton-white-bg);
 }
 
-.easyButton:not(.inactive):not(.inactiveURL):not(.activeButton):hover{
+.easyButton.eventTagTypeButton:not(.inactive):not(.inactiveURL):not(.activeButton):hover{
   opacity: 0.5;
 }
 
@@ -312,16 +355,16 @@ input[type="text"].eventInput {
 /* Couleur des boutons au survol */
 .spin-button.easyPanelBgColor:hover {
   background-color: var(--easy-panel-font-color);
-  color: white;
+  color: var(--dimmed-white-font);
 }
 
 .spin-button.delimiterButtonColor:hover {
   background-color: var(--delimiter-lighter-color);
-  color: white;
+  color: var(--dimmed-white-font);
 }
 
 
-/* Effet au clic sur les flèches */
+/* Effect when clicking on the arrows */
 .spin-button:active {
   background-color: darkgray;
 }
@@ -343,7 +386,7 @@ input[type="text"].eventInput {
 }
 
 .activeGroupTagButton:hover {
-  background-color: darkgray;
+  background-color: var(--default-hover-color);
 }
 
 
@@ -404,7 +447,7 @@ padding: 2px 6px;
   width: 23ch;
   padding: 5px 10px;
   z-index: 9999; /*on top*/
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+  box-shadow: 2px 2px 5px var(--shadow-color);
 }
 
 #logButton {
@@ -448,13 +491,8 @@ padding: 2px 6px;
   width: 100%;
 }
 
-/* Style pour mettre en surbrillance l'option sélectionnée */
-.languageItem.selected {
-background-color: lightblue;
-}
-
 .SCRPXhighlightUnknown{
-  background-color: rgb(120, 122, 124);
+  background-color: var(--unknown-color);
 }
 .SCRPXhighlightName {
   background-color: var(--name-bg-color);
@@ -465,19 +503,19 @@ background-color: lightblue;
 }
 
 .SCRPXhighlightDate {
-  background-color: rgb(46, 204, 113);
+  background-color: var(--date-bg-color);
 }
 
 .SCRPXhighlightDate.subEvent {
-  background-color: rgba(46, 204, 113, 0.8);
+  background-color: var(--date-bg-color-a);
 }
 
 .SCRPXhighlightStyle {
-  background-color: rgb(243, 156, 18);
+  background-color: var(--style-bg-color);
 }
 
 .SCRPXhighlightStyle.subEvent {
-  background-color: rgba(243, 156, 18,0.8);
+  background-color: var(--style-bg-color-a);
 }
 
 .SCRPXhighlightPlace{
@@ -497,7 +535,7 @@ background-color: lightblue;
 } */
 
 .SCRPXshadow{
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+  box-shadow: 0 0 10px var(--shadow-color); 
 }
 
 .easyFieldBg{
@@ -519,16 +557,16 @@ background-color: lightblue;
 .easyRemoveButton{
   border: none;
   font-weight: bold;
-  color: white;
+  color: var(--easybutton-remove-font-color);
 }
 
 .easyRemoveButton:hover{
-  background-color: rgb(230, 85, 109);
+  background-color: var(--red-font);
 }
 
 .effectButton:active {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
-  color: rgb(210, 210, 210);
+  box-shadow: 0 0 10px var(--shadow-color); 
+  color: var(--dimmed-white-font);
   transition: background-color 0.8s ease;
 }
 
@@ -551,14 +589,14 @@ background-color: lightblue;
     font-size: 75%;
     overflow-y: scroll; 
     resize: none;
-    background-color: lightgray;
+    background-color: var(--logpanel-textzone-bg-color);
 }
 
 #logPanel {
-  position: relative; /* Position relative pour positionner le bouton à l'intérieur */
+  position: relative; 
   width: 100%;
   padding: 5px 10px;
-  background-color: grey;
+  background-color: var(--logpanel-bg-color);
   overflow: hidden;
   flex: 0 0 auto;
 }
@@ -610,13 +648,6 @@ background-color: lightblue;
 
 
 
-#scrapOptionsPanel{
-  background-color: rgb(71, 169, 234);
-}
-
-
-
-
 #processContainer {
     font-family: "Montserrat", sans-serif;
     display: flex; /* Utiliser Flexbox pour le positionnement */
@@ -640,7 +671,7 @@ background-color: lightblue;
 #pageManager {
     position: relative; 
     background-color: var(--pagemanager-bg-color);
-    color: var(--pagemanager-white-font);
+    color: var(--dimmed-white-font);
     overflow-y: hidden;
     flex: 0 0 auto;
   }
@@ -685,7 +716,7 @@ background-color: lightblue;
 }
 
 .warning{
-  color: rgb(253, 198, 111);
+  color: var(--warning-font);
   font-weight: bold;
 }
 
@@ -716,9 +747,9 @@ background-color: lightblue;
   padding-left: 25px;
   display: inline-block; 
   margin: 1px;
-  background-color: rgba(231, 76, 60, 0.2);
+  background-color: var(--eventblock-bg-color);
   margin-bottom: 10px;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+  box-shadow: 2px 2px 5px var(--shadow-color);
 }
 
 
@@ -728,9 +759,9 @@ background-color: lightblue;
   padding-left: 0px;
   display: inline-block; /* Permet à l'élément de s'ajuster à la largeur du contenu */
   margin: 1px;
-  background-color: rgba(36, 165, 105, 0.2);
+  background-color: var(--linkedpage-eventblock-bg-color);
   margin-bottom: 10px;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+  box-shadow: 2px 2px 5px var(--shadow-color);
 }
 
 .SCRPXsubEvent{
@@ -752,7 +783,7 @@ custom-a {
   font-size: 40%;
   font-weight: bold;
   text-decoration: none !important;
-  color: rgb(254, 243, 243);
+  color: var(--dimmed-white-font);
   background-color: var(--verydarkgrey-font-color);
 }
 
@@ -760,7 +791,7 @@ custom-a {
   margin: 0px;
   padding: 1px;
   font-weight: bold;
-  color: rgb(254, 243, 243);
+  color: var(--dimmed-white-font);
   background-color: var(--verydarkgrey-font-color);
 }
 
@@ -834,21 +865,21 @@ custom-a {
   padding: 0px;
 }  
 
-.tag-button {
+.extend-button {
   position: absolute;
   left: -2px;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(223, 137, 127, 0.6);
-  border: 0px solid rgba(0, 0, 0, 0.1);
+  background-color: var(--extend-button-bg-color);
+  border: 0px solid var(--light-shadow-color);
   cursor: pointer;
   padding: 5px;
   font-size: 14px;
   opacity: 1;
 }
 
-.tag-button:hover{
-  background-color: rgba(223, 137, 127, 1);
+.extend-button:hover{
+  background-color: var(--extend-button-hover-bg-color); 
 }
 
 #eventSelectorIndex{
@@ -858,7 +889,7 @@ custom-a {
 }
 
 #eventSelectorText{
-  color: white;
+  color: var(--dimmed-white-font);
   margin-right: -5px;
 }
 
@@ -875,7 +906,7 @@ custom-a {
 
 
 .scrapTextBox:focus {
-    outline: 2px solid rgb(189, 195, 199); 
+    outline: 2px solid var(--textbox-focus-color);
 }
 
 input:focus {
@@ -899,11 +930,7 @@ input:focus {
   display: inline;
 }
 
-/* .sliderLeftPanel{
-  display: inline;
-  white-space: nowrap;
-  flex: 1;
-} */
+
 
 
 
@@ -929,8 +956,8 @@ input:focus {
 
 
 .invalid{
-  background-color: rgb(241, 197, 196);
-  color: red;
+  background-color: var(--delimiter-lightest-color);
+  color: var(--red-font);
 }
 
 
@@ -947,9 +974,9 @@ input[type="number"] {
 
 .context-menu {
   position: absolute;
-  background: rgb(255, 255, 255);
-  border: 1px solid #ccc;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  background: var(--contextmenu-bg-color);
+  border: 1px solid var(--contextmenu-border-color);
+  box-shadow: 2px 2px 10px var(--light-shadow-color);
   padding: 2px;
   display: none;
   z-index: 1000;
@@ -967,37 +994,28 @@ input[type="number"] {
 .menu-buttons button {
   width: 40px;
   height: 40px;
-  border: 1px solid #aaa; 
+  border: 1px solid var(--contextmenu-border-color);
   cursor: pointer;
   text-align: center;
   padding: 0px;
   margin: 0px;
 }
 
-
-/* Option "Événement multiple" */
 .multiple-event {
   margin-top: 2px;
   text-align: center;
   padding: 2px;
-  background: #f0f0f0;
-  border: 1px solid #aaa;
+  background: var(--contextmenu-subevent-bg-color);
+  border: 1px solid var(--contextmenu-border-color);
   cursor: pointer;
 }
 
 .multiple-event:hover {
-  background: #e0e0e0;
+  background: var(--contextmenu-subevent-hoover-bg-color);
 }
 
-/* .multiEventEasyPanelGroup{
-  outline: 2px solid rgb(45,45,45); 
-  margin-bottom: 4px;
-  margin-top: 2px;
-  box-sizing: border-box;
-} */
-
 .multiEventEasyPanelGroup{
-  outline: 2px solid rgb(45,45,45); 
+  outline: 2px solid var(--easypanel-subevent-color); 
   margin-bottom: 4px;
   margin-top: 4px;
   box-sizing: border-box;
@@ -1010,7 +1028,7 @@ input[type="number"] {
   font-size: 50%;
   font-weight: bold;
   text-decoration: none !important;
-  color: rgb(254, 243, 243);
+  color: var(--dimmed-white-font);
   background-color: var(--verydarkgrey-font-color);
   justify-content: center; 
   align-items: center;
@@ -1020,21 +1038,17 @@ input[type="number"] {
   /* text-orientation: upright; */
 }
 
-/* .multiEventEasyPanelGroup:has(+ .PanelSubEventHeader) {
-  margin-bottom: 6px;
-} */
 
 .multiEventEasyPanelGroup:has(+ .multiEventEasyPanelGroup) {
   margin-bottom: 5px;
 }
 
 .SCRPXmouseHighlight{
-  background-color: rgba(54, 54, 54, 0.1); 
+  background-color: var(--mouse-over-bg-color); 
   transition: background-color 0.1s ease; 
 }
 
 .SCRPXmouseHighlight2{
-  /* background-color: rgba(218, 55, 55, 1);  */
   opacity: 0.8;
   transition: background-color 0.1s ease; 
 }
@@ -1067,18 +1081,35 @@ label.niceCheckBox > input {
   display: none;
 }
 
-label.niceCheckBox > span {
-  /* color: #6A759B; */
-  color: rgb(229, 129, 118);
+/* for the delimiter checkbox */
+
+label.niceCheckBox.delimiterCheckBox > span {
+  color: var(--delimiter-inactive-font-color);
   padding-right: 8px;
 }
 
+label.niceCheckBox.delimiterCheckBox > input:checked + span {
+  color: var(--delimiter-font-color);
+}
+
+/* for use links */
+
 label.niceCheckBox.useLinks > span {
-  color: rgb(91, 110, 131) !important;
+  color: var(--pm-inactive-font-color) !important;
 }
 
 label.niceCheckBox.useLinks > input:checked + span {
-  color: var(--pagemanager-white-font) !important;
+  color: var(--dimmed-white-font) !important;
+}
+
+/* for the context menu */
+
+label.niceCheckBox.contextMenuLabel > span {
+  color: var(--contextmenu-border-color) !important;
+}
+
+label.niceCheckBox.contextMenuLabel > input:checked + span {
+  color: var(--verydarkgrey-font-color) !important;
 }
 
 label.niceCheckBox > i {
@@ -1103,7 +1134,7 @@ label.niceCheckBox > i:after {
   border-radius: 50%;
   background: #fff;
   position: absolute;
-  box-shadow: 1px 2px 4px 0 rgba(#000, .4);
+  box-shadow: 1px 2px 4px 0 var(--shadow-color);
   transition: .15s;
 }
 
@@ -1113,11 +1144,6 @@ label.niceCheckBox>input:checked+span+i {
 
 label.niceCheckBox >input:checked+span+i:after {
   transform: translateX(18px);
-}
-
-
-label.niceCheckBox > input:checked + span {
-  color: #29316b;
 }
 
 
@@ -1155,7 +1181,7 @@ label.niceCheckBox > input:checked + span {
     display: block;
   }
   &:before {
-    border-color: transparent white white white;
+    border-color: transparent var(--dimmed-white-font) var(--dimmed-white-font) var(--dimmed-white-font);
     border-radius: 50%;
     border-style: solid;
     border-width: 2px;
@@ -1165,7 +1191,7 @@ label.niceCheckBox > input:checked + span {
     transform: rotate(45deg);
   }
   &:after {
-    border-color: transparent transparent transparent white;
+    border-color: transparent transparent transparent var(--dimmed-white-font);
     border-style: solid;
     border-width: 3px 0 3px 5px;
     height: 0;
@@ -1177,7 +1203,7 @@ label.niceCheckBox > input:checked + span {
 }
 
 .reloadSingle:hover {
-  background-color: rgb(72, 90, 109);
+  background-color: var(--pm-button-hover-color);
   border-radius: 10px;
   padding: 3px;
   cursor: pointer;
