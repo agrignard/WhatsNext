@@ -23,7 +23,7 @@ const {getDateConversionPatterns} =require(imports+'dateUtilities.js');
 var showLog = false;
 
 
-let intervalId, linkedFileContent, eventURL;
+let linkedFileContent, eventURL;
 let preventDownload = false;
 var localPage, $page;
 var lastDateList;
@@ -34,7 +34,8 @@ let nbPagesToShow = 2;
 let nbPages = 0;
 let currentPage = 'mainPage';
 let currentURLTag;
-let unusedTags = {mainPage: {}, linkedPage: {}};
+let unusedTags = {keepTrace: {mainPage: false, linkedPage: false}, mainPage: {}, linkedPage: {}};
+let linkedPageFirstLoad = true;
 let extendButton = undefined;
 let useLinks;
 let manualMode = false;
@@ -42,6 +43,7 @@ let currentSubEventIndex;
 let tagsAdjustLevel = {mainPage: 0, linkedPage: 0};
 let subEventPath;
 let venueBeforeLoading;
+let eventsMap = {};
 
 // const keyNames = ['Dummy','Name','Date','Style','Place','URL','MultiName','MultiDate','MultiStyle','MultiPlace','MultiURL'];
 
@@ -127,6 +129,8 @@ activateLinksCheckbox.addEventListener('change',()=>{
   setSwitchStatus();
 });
 
+// create color theme for the page
+createColorThemes();
 
 // initialize new venue
 initializeVenue(venue,webSources);
@@ -155,7 +159,7 @@ const rightPanel = document.getElementById('scrapEnDirexRightPanel');
 rightPanel.addEventListener("mouseover", (event) => {
   const target = event.target; //
 
-  if (target && target.textContent.trim() !== "" && target !== principalTag) {
+  if (target && target.textContent.trim() !== "" && target !== principalTag && target !== rightPanel) {
       if (colorClassList.some(cls => target.classList.contains(cls))){
         target.classList.add("SCRPXmouseHighlight2"); 
       }else{
@@ -309,50 +313,28 @@ rightPanel.addEventListener('click', (event) => {
   
   const clickedElement = event.target;
 
+  if (clickedElement === rightPanel){
+    return;
+  }
+
   // do nothing if the click is on an element that has been added by scrapex
   if (clickedElement.classList.contains('SCRPXsubEventHeader')){
     return;
   }
 
-  function isElementVisible(element) {
-    if (!element) return false;
-  
-    const rect = element.getBoundingClientRect();
-    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-   
-    return (
-      rect.top >= 0 &&
-      rect.bottom <= windowHeight
-    );
-  }
-
-  // used to move through linked page
-  function movePrincipalTag(newTag){
-    if (newTag === principalTag){return};
-    principalTag.style.display = 'none';
-    principalTag = newTag;
-    principalTag.style.display = 'block';
-    if (!isElementVisible(principalTag.parentElement.children[0])){
-      focusTo(principalTag.parentElement.children[0], 'instant', 'start');
-    }
-    
-    subTags.linkedPage = Array.from(principalTag.querySelectorAll('*')).filter(el => 
-      el.hasAttribute('isURL') || el.isMulti || el.desc);
-
-    populateEasyPanel();
-  }
-
   if (clickedElement.classList.contains('SCRPXlinkedPageMainBlock')){
-    movePrincipalTag(clickedElement.children[1]);
+    movePrincipalTagTo(clickedElement.children[1]);
     return;
   }
 
   if (clickedElement.classList.contains('SCRPXlinkedPageEventHeader')){
-    movePrincipalTag(clickedElement.parentElement.children[1]);
+    movePrincipalTagTo(clickedElement.parentElement.children[1]);
     return;
   }
 
-  
+  if (clickedElement.textContent.trim().length === 0){
+    return;
+  }
 
   if (currentPage === 'linkedPage'){
     if (subTags.linkedPage.includes(clickedElement)){
@@ -414,6 +396,7 @@ function makePrincipalTag(initialTag, firstLoad = false){
   if (!initialTag){
     delimiterTagField.classList.add('invalid');
     eventTagList = [];
+    eventsMap = {};
   }else{
     const mainTagHasChanged = principalTag === undefined || initialTag !== principalTag;
     delimiterTagField.classList.remove('invalid');
@@ -441,26 +424,6 @@ function makePrincipalTag(initialTag, firstLoad = false){
       }
     }
     
-    
-
-    // compute other event tags and highlight them
-   
-    // now useless ? uncomment if there are problems finding URL tags when modifying principal tag
-    //
-    // const newEventTagList = findTagsFromPath(rightPanel,cleanPath);
-
-    // // if the new event list and the old one have elements in common, keep track of some information
-    // // such as URL index or URL tag. Otherwise, make a clean sheet
-    // let hasCommonElement = newEventTagList.some(item => eventTagList.includes(item));
-    // if (hasCommonElement){
-
-    // }else{
-    //   if (venue.mainPage.hasOwnProperty('eventURLTags')){
-    //     delete venue.mainPage.eventURLTags; 
-    //   }
-    // }
-
-
     principalTagIndex = eventTagList.findIndex(el => el === principalTag);
   
     // find sub tags corresponding to each line
@@ -472,13 +435,15 @@ function makePrincipalTag(initialTag, firstLoad = false){
     initializeRegexFields();
 
     if (mainTagHasChanged){
-      currentSubEventIndex = undefined;
-      populateEasyPanel();
+      // remove sub event index when changing the event tag list, to prevent having an index that is larger than
+      // the number of sub events. The following test avoids removing the value when coming back from linked pages
+      if (!firstLoad){
+        currentSubEventIndex = undefined;
+      }
+      populateEasyPanel(firstLoad);
     }else{// some tags may have change, for example if there are more events in eventTagList
       makeSubEvents();
     }
-    eventSelectorIndex.value = (principalTagIndex+1).toString()+(currentSubEventIndex !== undefined?'.'+(currentSubEventIndex+1):'');
-    oldEventIndex = eventSelectorIndex.value;
     makeExtendButton(principalTag);
   }
 
@@ -534,9 +499,12 @@ function adjustPrincipalTag(principalTag){
   let classes = Array.from(principalTag.classList);
   let bestInfo = [tagName, classes];
 
-  eventTagList = findTagsFromPath(rightPanel, tagName+'.'+classes.join('.'));
-  let currentNumber = countEvents(eventTagList);
-  let currentTagList = eventTagList;
+  // eventTagList = findTagsFromPath(rightPanel, tagName+'.'+classes.join('.'));
+  // let currentNumber = countEvents(eventTagList);
+  // let currentTagList = eventTagList;
+  let currentTagList = findTagsFromPath(rightPanel, tagName+'.'+classes.join('.'));
+  let currentNumber = countEvents(currentTagList);
+
   const depthClassName = classes.find(el => el.startsWith(depthPrefix));
   if (depthClassName === undefined){
     console.log("\x1b[33m Warning:\x1b[0m 'depth' class not found. Html file is too old. Run again aspiratorex.");
@@ -574,6 +542,7 @@ function adjustPrincipalTag(principalTag){
 
 //const leftPanel = document.getElementById('letPanel');
 const analyzePanel = document.getElementById('analyzePanel');
+const delimiterLowerPanel = document.getElementById('delimiterLowerPanel');
 
 // modify left panel
 
@@ -673,6 +642,7 @@ downloadButton.addEventListener('click', function() {
   .then(() => {
     downloadVenue(venue,sourcePath, undefined, true)
     .then(() =>{
+      linkedPageFirstLoad = true;
       lastModified = getModificationDate(sourcePath);
       if (lastModified){
         nbPages = getFilesNumber(sourcePath);
@@ -683,7 +653,7 @@ downloadButton.addEventListener('click', function() {
       downloadButton.classList.add('reloadSingle');
       downloadButton.classList.remove('loader');
       loadPage();
-      makePrincipalTag(candidatePrincipalTag);
+      makePrincipalTag(candidatePrincipalTag, true);
       focusTo(principalTag, 'instant');
     })
   })
@@ -701,6 +671,7 @@ missingLinksButton.addEventListener('click', function(){
   downloadLinkedPages(venueWithCustomTags(venue),sourcePath,[localPage])
   .then(_ =>
     {
+      linkedPageFirstLoad = true;
       computeMissingLinks();
       preventDownload = false;
       console.log('Links downloaded');
@@ -715,7 +686,7 @@ missingLinksButton.addEventListener('click', function(){
 
 // delimiter panel
 
-const delimiterPanel = document.getElementById('delimiterPanel');
+
 const DelimiterTitle = document.getElementById('DelimiterTitle');
 const eventURLPanel = document.getElementById('eventURLPanel');
 var delimiterTagField = document.getElementById('delimiterTagField');
@@ -767,15 +738,15 @@ adjustURLCheckbox.addEventListener('change',()=>{
 /*****************************/
 
 // group tags button
-const groupTagsButtons = document.getElementsByClassName('groupTagsButton');
+const toggleGroupingButtons = document.getElementsByClassName('toggleGroupingButton');
 
-let groupTags = {};
+let groupTags = {mainPage: {}, linkedPage: {}};
 
 
-for(const button of groupTagsButtons) {
+for(const button of toggleGroupingButtons) {
  
-  const key = 'event'+button.id.replace('groupTagsButton','')+'Tags';
-  button.title = "Cliquer désactiver le groupage de balises";
+  const key = button.id.replace('ToggleGroupingButton','')+'Tags';
+  button.title = "Cliquer pour désactiver le groupage de balises";
 
   // tests if the tags contained in venue for a given key have been explicitly ungrouped.
   // if it is the case, some lines should be the same, but with different eq(XX) label.
@@ -784,35 +755,56 @@ for(const button of groupTagsButtons) {
     const afterGrouping = regroupTags(venue[currentPage][key]);
     const groupingPreventionDetected = afterGrouping.length < venue[currentPage][key].length;
 
-    groupTags[key] = !groupingPreventionDetected;
+    groupTags[currentPage][key] = !groupingPreventionDetected;
   }else{
-    groupTags[key] = true;
+    groupTags[currentPage][key] = true;
   }
 
   // initialize the active/inactive state of the button
-  setGroupButtonActivity(button, groupTags[key]);
+  setPanelButtonsCssProperties(button, groupTags[currentPage][key]);
   
 
   button.addEventListener('click',()=>{
     // set the new value for grouping
-    groupTags[key] = !groupTags[key];
+    groupTags[currentPage][key] = !groupTags[currentPage][key];
     // change the appearance of the button
-    setGroupButtonActivity(button, groupTags[key]);
+    setPanelButtonsCssProperties(button, groupTags[currentPage][key]);
     computeTags();
+    activateSaveButton();
   })
 }
 
 // change the appearance of the button
-function setGroupButtonActivity(button, isActive){
+function setPanelButtonsCssProperties(button, isActive){
   if (isActive === true){
-    button.classList.add('activeGroupTagButton');
-    button.classList.remove('inactive');
-    button.title = "Cliquez pour désactiver le groupage de balises";
+    button.classList.add('active');
+    if (button.id.includes('Regex')){
+      button.title = "Cliquez pour désactiver le filtre regex";
+    }else{
+      button.title = "Cliquez pour désactiver le groupage de balises";
+    }
   }else{
-    button.classList.remove('activeGroupTagButton');
-    button.classList.add('inactive');
-    button.title = "Cliquez pour activer le groupage de balises:\nles balises similaires seront regroupées sous une balise générique";
+    button.classList.remove('active');
+    if (button.id.includes('Regex')){
+      button.title = "Cliquez pour activer un filtre regex";
+    }else{
+      button.title = "Cliquez pour activer le groupage de balises:\nles balises similaires seront regroupées sous une balise générique";
+    }
   }
+
+  const key = button.id.replace('ToggleGroupingButton','')
+                       .replace('ToggleRegexButton','')
+                       .replace('event','').replace('Multi','');
+  const isMulti = button.id.includes('Multi');
+  // console.log('updating css');
+  // console.log('*******************', isMulti);
+  // if (!isMulti){
+  //   return;
+  // }
+  setVarRefForCss(button, "--category-bg-color", key, isMulti);
+  setVarRefForCss(button, "--category-font-color", key);
+  setVarRefForCss(button, "--category-lighter-color", key);
+  setVarRefForCss(button, "--category-inactive-font", key, isMulti);
 }
 
 
@@ -823,20 +815,31 @@ function setGroupButtonActivity(button, isActive){
 /*****************************/
 
 const easyPanelFields = document.getElementById('easyPanelFields');
+const missingPanelFields = document.getElementById('missingPanelFields');
 let easyLines;
 
 
 const lockButton = document.getElementById('lockButton');
 lockButton.addEventListener("click", function() {
-  const lockIcon = document.getElementById("lockIcon");
-  lockIcon.classList.toggle("fa-lock");
-  lockIcon.classList.toggle("fa-lock-open");
-  if (lockIcon.classList.contains("fa-lock")){
-    lockButton.title = "Garde les tags calculés, même s'il n'y a pas de correspondance dans l'événement actuel";
-  }else{
-    lockButton.title = "Seuls les tags présents dans l'événement actuel sont conservés";
-  }
+  unusedTags.keepTrace[currentPage] = !unusedTags.keepTrace[currentPage];
+  updateLockButton(unusedTags.keepTrace[currentPage]);
 });
+
+function updateLockButton(keepTrace){
+  const lockIcon = document.getElementById("lockIcon");
+
+  if (keepTrace){
+    lockIcon.classList.add("fa-lock");
+    lockIcon.classList.remove("fa-lock-open");
+    lockButton.title = "Garde les tags calculés, même s'il n'y a pas de correspondance dans l'événement actuel";
+    document.getElementById('missingTagsPanel').style.display = 'block';
+  }else{
+    lockIcon.classList.remove("fa-lock");
+    lockIcon.classList.add("fa-lock-open");
+    lockButton.title = "Seuls les tags présents dans l'événement actuel sont conservés";
+    document.getElementById('missingTagsPanel').style.display = 'none';
+  }
+}
 
 
 tagAdjustIndexInput = document.getElementById('tagAdjustIndexInput');
@@ -847,26 +850,37 @@ tagAdjustIndexInput.addEventListener('change', ()=>{
     tagsAdjustLevel[currentPage] = 0;
     tagAdjustIndexInput.value = 0;
   }
-  computeTags();
-  computeDateFormat();
+  adjustLevelChanged()
 });
 
 document.getElementById('tagAdjustButtonUp').addEventListener('click', () => {
   tagAdjustIndexInput.value = parseInt(tagAdjustIndexInput.value) + 1;
   tagsAdjustLevel[currentPage] = tagAdjustIndexInput.value;
-  computeTags();
-  computeDateFormat();
+  adjustLevelChanged();
 });
 
 document.getElementById('tagAdjustButtonDown').addEventListener('click', () => {
   if (tagAdjustIndexInput.value <= 0){return;}
   tagAdjustIndexInput.value = parseInt(tagAdjustIndexInput.value) - 1;
   tagsAdjustLevel[currentPage] = tagAdjustIndexInput.value;
-  computeTags();
-  computeDateFormat();
+  adjustLevelChanged();
 });
 
-function populateEasyPanel(){
+function adjustLevelChanged(){
+  // update the marking of tags
+  subTags[currentPage].forEach(tag => {
+    console.log("tag", tag.desc);
+    if (tag.desc || tag.isMulti || tag.hasAttribute('isURL')) {
+      markAndPropagateTag(tag, { desc: tag.desc, isMulti: tag.isMulti, isURL: tag.hasAttribute('isURL') });
+    }
+  });
+
+  computeTags();
+  makeEventsMap();
+  computeDateFormat();
+}
+
+function populateEasyPanel(firstLoad = false){
 
   console.log("\x1b[43m\x1b[30mpopulating Easy Panel\x1b[0m");
   easyLines = [];
@@ -884,14 +898,49 @@ function populateEasyPanel(){
     }
   }
 
+  traceMissingTagInfo(subTags, firstLoad);
+
   // create a new line in the panel for each tag
   subTags[currentPage].forEach((tag,index) => {
     newEasyLine(tag,index);
   });
+
+  missingPanelFields.innerHTML = '';
+  if (unusedTags.keepTrace[currentPage]){
+    Object.keys(unusedTags[currentPage]).forEach(key =>{
+      unusedTags[currentPage][key].forEach(tagPath => {
+        newMissingTagLine(tagPath, key);
+      });
+    })
+  }
+
   makeSubEvents();
   computeDateFormat();
 }
 
+function newMissingTagLine(tagPath, key){
+  // console.log('new missing tag', tagPath, key);
+  let newDiv = document.createElement('div');
+  newDiv.classList.add('easyPanelLine');
+  // newDiv.tagPath = tagPath;
+  let inputElement = document.createElement('input');
+  inputElement.readOnly = true;
+  inputElement.classList.add('easyPanelLine');
+  inputElement.setAttribute('type', 'text');
+  inputElement.value = 'Tag not in current event';
+  newDiv.appendChild(inputElement);
+
+  const newButton = document.createElement('button');
+  newButton.classList.add('easyRemoveButton');
+  newButton.textContent = '✖';
+  newButton.addEventListener('click', function(){
+    unusedTags[currentPage][key] = unusedTags[currentPage][key].filter(el => el !== tagPath);
+    // markAndPropagateTag(tag, {desc: null, isURL: false, isMulti: false});
+    populateEasyPanel();
+  });
+  newDiv.appendChild(newButton);
+  missingPanelFields.appendChild(newDiv);
+}
 
 // create new line in the easy panel. If several tags are marked as URL tags, only keep the first one
 function newEasyLine(tag, index){
@@ -971,10 +1020,9 @@ function newEasyLine(tag, index){
                 currentURLTag = undefined;
             }else{
               // turn of all other URL button and remove isURL marker (there can be only one URL)
-              const easyButtons = easyPanelFields.getElementsByClassName('easyButton');
+              const easyButtons = easyPanelFields.getElementsByClassName('eventTagTypeButton');
               for (button of easyButtons){
                 if (button.eventTagType.replace('Multi','') === 'eventURLTags'){
-                  // button.classList.remove(this.colorClass);
                   button.classList.remove('activeButton');
                 }
               }
@@ -985,7 +1033,8 @@ function newEasyLine(tag, index){
               this.classList.add('activeButton');
             }
             computeTags();
-            if (useLinks){
+            makeEventsMap();
+            if (currentPage === 'linkedPage' && useLinks){
               computeMissingLinks();
             }
             renderEventURLPanel();
@@ -994,7 +1043,6 @@ function newEasyLine(tag, index){
       }else{
         // new button for keyName !== URL
         newEasyButton.addEventListener('click',function() {
-          console.log('clic');
           if (newEasyButton.classList.contains('inactive')){
             return;
           }
@@ -1016,7 +1064,6 @@ function newEasyLine(tag, index){
             // this.classList.add(this.colorClass);
             this.classList.add('activeButton');
           }
-          console.log('clic2');
           computeTags();
           computeDateFormat();
         });
@@ -1026,20 +1073,16 @@ function newEasyLine(tag, index){
   }
 
   if (currentPage === 'linkedPage'){
-  const newButton = document.createElement('button');
-  // newButton.id = 'removeButton'+index;
-  newButton.classList.add('easyButton');
-  newButton.classList.add('easyRemoveButton');
-  newButton.textContent = '✖';
-  newButton.addEventListener('click', function(){
-    subTags.linkedPage = subTags.linkedPage.filter(el => el !== newDiv.tag);
-    populateEasyPanel();
-  //   const lineIndex = parseInt(this.id.match(/\d+$/));
-  //   let lineToRemove = document.getElementById('easyPanelLine'+lineIndex);
-  //   easyPanelInfo.indexList[lineIndex] = undefined;
-  //   lineToRemove.remove();
-  });
-  newDiv.appendChild(newButton);
+    const newButton = document.createElement('button');
+    newButton.classList.add('easyButton');
+    newButton.classList.add('easyRemoveButton');
+    newButton.textContent = '✖';
+    newButton.addEventListener('click', function(){
+      subTags.linkedPage = subTags.linkedPage.filter(el => el !== newDiv.tag);
+      markAndPropagateTag(tag, {desc: null, isURL: false, isMulti: false});
+      populateEasyPanel();
+    });
+    newDiv.appendChild(newButton);
   }
   
   easyPanelFields.appendChild(newDiv);
@@ -1100,8 +1143,8 @@ function computeTags(){
     }
   });
 
-  Object.keys(groupTags).forEach(key => {
-    if (groupTags[key] === true && venue[currentPage].hasOwnProperty(key)){
+  Object.keys(groupTags[currentPage]).forEach(key => {
+    if (groupTags[currentPage][key] === true && venue[currentPage].hasOwnProperty(key)){
       venue[currentPage][key] = regroupTags(venue[currentPage][key]);
     }
   });
@@ -1171,9 +1214,9 @@ for(let i = 0; i < eventTagsBoxes.length; i++){
 
 function tagTextBoxUpdate(textBox){
   // prevent grouping 
-  groupTags[textBox.id] = false;
-  const button = Array.from(groupTagsButtons).find(el => el.id.endsWith(textBox.id.replace('event','').replace('Tags','')));
-  setGroupButtonActivity(button, groupTags[textBox.id]);
+  groupTags[currentPage][textBox.id] = false;
+  const button = Array.from(toggleGroupingButtons).find(el => el.id.endsWith(textBox.id.replace('event','').replace('Tags','')));
+  setPanelButtonsCssProperties(button, groupTags[currentPage][textBox.id]);
   setRows(textBox);
   venue[currentPage][textBox.id] = getArray(textBox.value);
   clearAllTags(true);
@@ -1185,10 +1228,7 @@ function tagTextBoxUpdate(textBox){
 
 // event selectors panel
 
-// const eventSelectorPanel = document.getElementById('eventSelectorPanel');
 const eventSelectorIndex = document.getElementById('eventSelectorIndex');
-
-let oldEventIndex = eventSelectorIndex.value;
 
 document.getElementById('eventButtonUp').addEventListener('click', () => {
    updateEventIndexFromButton(false);
@@ -1199,76 +1239,24 @@ document.getElementById('eventButtonDown').addEventListener('click', () => {
 });
 
 function updateEventIndexFromButton(increaseIndex){
-  
-  let eventIndexVariation = 0;
-  if (subEventPath){
-    const nbSubEvents = countSubEvents();
-    if (increaseIndex){
-      currentSubEventIndex++;
-      if (nbSubEvents === 0 || currentSubEventIndex >= nbSubEvents){
-        eventIndexVariation = 1;
-        currentSubEventIndex = 0;
-      }
-    }else{
-      currentSubEventIndex--;
-      if (nbSubEvents === 0 || currentSubEventIndex < 0){
-        eventIndexVariation = -1;
-      }
-    }
-    // console.log(currentSubEventIndex,'/nb sub ev', nbSubEvents);
+
+  let keyIndex = getKeyIndex();
+
+  keyIndex += increaseIndex ? 1 : -1;
+  keyIndex = mod(keyIndex, Object.keys(eventsMap).length); 
+
+  changeEventIndex(Object.keys(eventsMap)[keyIndex]);
+}
+
+function getKeyIndex(){
+  let keyIndex;
+  if (currentPage === 'mainPage'){
+    keyIndex =  Object.keys(eventsMap).findIndex(key => (eventsMap[key].mainIndex === principalTagIndex) && 
+    (!currentSubEventIndex || eventsMap[key].subIndex === currentSubEventIndex));
   }else{
-    eventIndexVariation = increaseIndex?1:-1;
+    keyIndex =  Object.keys(eventsMap).findIndex(key => (eventsMap[key].linkedPageIndex === principalTagIndex));
   }
-
-  principalTagIndex += eventIndexVariation;
-
-  if (principalTagIndex > eventTagList.length-1){
-    principalTagIndex = 0;
-  }
-
-  if (principalTagIndex < 0){
-    principalTagIndex = eventTagList.length-1;
-  }
-
-  if (eventIndexVariation !== 0){
-
-    function clearPrincipalTag(){
-      principalTag.classList.remove('SCRPXmainTag');
-      if (extendButton){
-        // remove the extend button
-        extendButton.remove();
-      }
-    }
-    clearPrincipalTag();
-
-    principalTag = eventTagList[principalTagIndex];
-
-    if (currentSubEventIndex && eventIndexVariation < 0){
-      currentSubEventIndex = countSubEvents()-1;
-    }
-
-    // remove sub event header from the page
-    removeSubEventHeaders();
-    
-    subTags[currentPage] = getSubTags(principalTag);
-    
-    populateEasyPanel();
-    principalTag.classList.add('SCRPXmainTag');
-    focusTo(principalTag);
-    renderEventURLPanel();
-
-    makeExtendButton(principalTag);
-  }else{
-    removeSubEventHeaders();
-    applySubEventDelimiterTags();
-    renderEventURLPanel();
-  }
-
-  // console.log(principalTagIndex);
-  // console.log('sub',currentSubEventIndex);
-  eventSelectorIndex.value = (principalTagIndex+1).toString()
-    +(currentSubEventIndex !== undefined?'.'+(currentSubEventIndex+1).toString():'');
-  oldEventIndex = eventSelectorIndex.value;
+  return keyIndex;
 }
 
 
@@ -1278,52 +1266,67 @@ eventSelectorIndex.addEventListener('input', function(){
     return;
   }
 
-  const val = eventSelectorIndex.value.split('.');
-  let newEventIndex = val[0];
-  let newSubEventIndex = val[1];
+  eventKey = Object.keys(eventsMap).find(el => el.startsWith(eventSelectorIndex.value.trim()));
 
-  if (newEventIndex < 1 || newEventIndex > eventTagList.length){
+  if (!eventKey){
     return;
   }
 
-  // change current principal tag
-  const principalTagHasChanged = principalTagIndex !== newEventIndex-1;
-  if (principalTagHasChanged){
-    principalTag.classList.remove('SCRPXmainTag');
-    principalTagIndex = newEventIndex-1;
-    principalTag = eventTagList[principalTagIndex];
+  changeEventIndex(eventKey, false);
+});
 
+
+
+
+
+function changeEventIndex(eventKey, updateInput = true){
+  console.log(eventsMap[eventKey]);
+
+  if (currentPage === 'linkedPage'){
+    movePrincipalTagTo(eventsMap[eventKey]);
+    updateEventIndexInput();
+    return;
+  }
+
+  const oldEventIndex = principalTagIndex;
+  const oldSubEventIndex = currentSubEventIndex;
+
+  principalTagIndex = eventsMap[eventKey].mainIndex;
+  if (eventsMap[eventKey].hasOwnProperty('subIndex')){
+    currentSubEventIndex = eventsMap[eventKey].subIndex;
+  }
+
+  // change current principal tag
+  const principalTagHasChanged = principalTagIndex !== oldEventIndex;
+
+  if (principalTagHasChanged){
+
+    clearPrincipalTag();
+    
+    principalTag = eventTagList[principalTagIndex];
     subTags[currentPage] = getSubTags(principalTag);
 
-    if (subEventPath && !newSubEventIndex){
-      currentSubEventIndex = 0;
-    }
-  }
-
-  if (subEventPath && newSubEventIndex){
-    currentSubEventIndex = newSubEventIndex - 1;
-    if (currentSubEventIndex < 0){
-      currentSubEventIndex = 0;
-    }
-    currentSubEventIndex = Math.min(currentSubEventIndex,countSubEvents()-1);
-  }
-
-  //     // remove sub event header from the page
-  //     removeSubEventHeaders();
-
-  if (principalTagHasChanged){
     populateEasyPanel();
     principalTag.classList.add('SCRPXmainTag');
     focusTo(principalTag);
     renderEventURLPanel();
     makeExtendButton(principalTag);
-  }else{
+  }else if(currentSubEventIndex !== oldSubEventIndex) {
     removeSubEventHeaders();
     applySubEventDelimiterTags();
     renderEventURLPanel();
   }
-  
-});
+  if (updateInput){
+    updateEventIndexInput();
+  } 
+}
+
+// update the content of the event index input with the current coordinates of the event
+function updateEventIndexInput(){
+    const keyIndex = getKeyIndex();
+    eventSelectorIndex.value = Object.keys(eventsMap)[keyIndex];
+}
+
 
 
 /**************************************/
@@ -1340,8 +1343,8 @@ regexKeys.forEach(key => {
   const element = {
     key: key,
     isActive: false,
-    isActiveButton: document.getElementById(key+'RegexActivateButton'),
-    isActiveMultiButton: document.getElementById(key.replace('event','eventMulti')+'RegexActivateButton'),
+    isActiveButton: document.getElementById(key+'ToggleRegexButton'),
+    isActiveMultiButton: document.getElementById(key.replace('event','eventMulti')+'ToggleRegexButton'),
     panel: document.getElementById(key+'RegexpPanel'),
     textBefore: document.getElementById(key+'RegexpTextBefore'),
     match: document.getElementById(key+'RegexpInput'),
@@ -1355,29 +1358,27 @@ regexKeys.forEach(key => {
   element.panel.style.display = 'none';
   element.replace.style.display = 'none';
 
-  element.isActiveButton.title = "Cliquez pour activer un filtre regex";
-  element.isActiveMultiButton.title = "Cliquez pour activer un filtre regex";
+  // element.isActiveButton.title = "Cliquez pour activer un filtre regex";
+  // element.isActiveMultiButton.title = "Cliquez pour activer un filtre regex";
 
   // set visibility handler
   element.isActiveButton.addEventListener('click',()=>{
     element.isActive = !element.isActive;
     // change the appearance of the button
     if (element.isActive){
-      element.isActiveButton.classList.add('activeGroupTagButton');
-      element.isActiveButton.classList.remove('inactive');
+      element.isActiveButton.classList.add('active');
+      element.isActiveMultiButton.classList.add('active');
       element.panel.style.display = 'block';
-      element.isActiveButton.title = "Cliquez pour désactiver le filtre regex";
       // store again the values of the field to venue.regexp. Is used when the user has clicked on save after removing regexp
       // (venue.regexp field has been removed doing that), then turn it back on 
       computeVenueRegexField(element);
     }else{
-      element.isActiveButton.classList.remove('activeGroupTagButton');
-      element.isActiveButton.classList.add('inactive');
+      element.isActiveButton.classList.remove('active');
+      element.isActiveMultiButton.classList.remove('active');
       element.panel.style.display = 'none';
-      element.isActiveButton.title = "Cliquez pour activer un filtre regex";
     }
-    element.isActiveMultiButton.classList = element.isActiveButton.classList;
-    element.isActiveMultiButton.title = element.isActiveButton.title;
+    setPanelButtonsCssProperties(element.isActiveButton,element.isActive);
+    setPanelButtonsCssProperties(element.isActiveMultiButton,element.isActive);
   });
 
   // handlers for match and replace inputs
@@ -1414,17 +1415,10 @@ function initializeRegexFields(){
   if (venue.hasOwnProperty('regexp')){
     Object.keys(venue.regexp).forEach(key => {
       const element = regexElements[key];
-      // // make the regexp panel visible
-      // if (subTags[currentPage].some(el => el.desc && el.desc.includes(key.replace('event','').replace('Multi','')))){
-      //   element.panel.style.display = 'block';
-      // }else{
-      //   element.panel.style.display = 'none';
-      // }
       element.isActive = true;
-      element.isActiveButton.classList.add('activeGroupTagButton');
-      element.isActiveButton.classList.remove('inactive');
+      element.isActiveButton.classList.add('active');
+      element.isActiveMultiButton.classList.add('active');
       
-
       // fill the corresponding fields
       element.match.value = venue.regexp[key][0];
       if (venue.regexp[key].length > 1){
@@ -1434,6 +1428,12 @@ function initializeRegexFields(){
       }
     });
   }
+
+  Object.keys(regexElements).forEach(key => {
+    const element = regexElements[key];
+    setPanelButtonsCssProperties(element.isActiveButton,element.isActive);
+    setPanelButtonsCssProperties(element.isActiveMultiButton,element.isActive);
+  });
 }
 
 
@@ -1537,14 +1537,19 @@ switchPageButton.addEventListener('click',() =>{
   if (currentPage === 'mainPage'){
     currentPage = 'linkedPage';
     switchPageButton.textContent = '< Switch to main page';
-    delimiterPanel.style.display = 'none';
+    // delimiterPanel.style.display = 'none';
   }else{
+    const keyIndex = getKeyIndex();
+    const event = eventsMap[Object.keys(eventsMap)[keyIndex]];
+    console.log(event);
+    principalTagIndex = event.mainIndex;
+    currentSubEventIndex = event.subIndex;
     currentPage = 'mainPage';
     switchPageButton.textContent = 'Switch to linked page >';
-    delimiterPanel.style.display = 'block';
   }
   initializeInterface();
 });
+
 
 /*****************************/
 /* intialize and right panel */
@@ -1554,18 +1559,24 @@ switchPageButton.addEventListener('click',() =>{
 
 initializeInterface();
 
+
 function initializeInterface(){
+  updateLockButton(unusedTags.keepTrace[currentPage]);
   if (currentPage === 'mainPage'){
     if (lastModified){// if the file exists
       loadPage();
       makePrincipalTag(candidatePrincipalTag, true);
       focusTo(principalTag, 'instant');
+      analyzePanel.style.display = 'block';
+      delimiterLowerPanel.style.display = 'block';
     }else{
       rightPanel.textContent = 'Content not downloaded yet';
       analyzePanel.style.display = 'none';
       missingLinksPanel.style.display = 'none';
     }
   }else{
+    analyzePanel.style.display = 'block';
+    delimiterLowerPanel.style.display ='none';
     loadLinkedPageContent();
   }
 }
@@ -1576,23 +1587,22 @@ function loadLinkedPageContent(){
   const hrefList = getHrefListFrom([localPage],venueWithCustomTags(venue));
   const linkedPagesURLs = hrefList.filter(el => Object.keys(linkedFileContent).includes(el));
 
-  analyzePanel.style.display = 'block';
-  if (linkedPagesURLs.includes(eventURL)){
+  // if (linkedPagesURLs.includes(eventURL)){
+  
+  rightPanel.innerHTML = '';
+  if (Object.keys(eventsMap).some(key => eventsMap[key].url)){
 
     // get the adjust level corresponding to the mainPage
     tagAdjustIndexInput.value = tagsAdjustLevel.linkedPage;
 
-    // const parsedLinkedPage = parseDocument('<html><head></head>'
-    //   +linkedPage.replace(/<[\s\n\t]*a /gi,'<'+customTagName+' ').replace(/<[\s\n\t]*\/a[\s\n\t]*>/gi,'</'+customTagName+'>')
-    //   +'</html>');
-    // $page = cheerio.load(parsedLinkedPage);
-    // console.log(parsedLinkedPage);
-
     // load web page 
-    rightPanel.innerHTML = '';
+
+  
     const newEventTagList = [];
   
-    linkedPagesURLs.forEach(currentEventURL => {
+    Object.keys(eventsMap).forEach(key => {
+      currentEventURL = eventsMap[key].url;
+    // linkedPagesURLs.forEach((currentEventURL, index) => {
       const eventDiv = document.createElement('div');
       eventDiv.classList.add('SCRPXlinkedPageMainBlock');
       eventDiv.id = currentEventURL;
@@ -1604,9 +1614,11 @@ function loadLinkedPageContent(){
         +'</html>');
       eventDivPage.innerHTML = cheerio.load(parsedLinkedPage).html();
       eventDiv.appendChild(eventDivPage);
-      console.log(eventURL);
+      // if (currentEventURL === eventURL){
       if (currentEventURL === eventURL){
-        principalTag = eventDivPage;
+          principalTag = eventDivPage;
+          principalTagIndex = newEventTagList.length;
+          eventSelectorIndex.value = key;
       }else{
         eventDivPage.style.display = 'none';
       }
@@ -1614,6 +1626,9 @@ function loadLinkedPageContent(){
       eventDiv.appendChild(eventShowTags);
       rightPanel.appendChild(eventDiv); 
       newEventTagList.push(eventDivPage);
+      rightPanel.querySelectorAll("iframe").forEach(iframe => {
+        iframe.src = "";
+    });
     });
     eventTagList = newEventTagList;
     focusTo(principalTag.parentElement.children[0]);
@@ -1625,17 +1640,7 @@ function loadLinkedPageContent(){
     // find subtags and load properties for the easy panel
     subTags.linkedPage = [];
 
-    // Object.keys(venue.linkedPage).forEach(key =>{
-    //   venue.linkedPage[key].forEach(tagPath => {
-    //     const tags = findTagsFromPath(rightPanel, tagPath);
-    //     // const tags = rightPanel.querySelectorAll(tagPath);
-    //     tags.forEach(t => {
-    //       subTags.linkedPage.push(t);
-    //     });
-    //   });
-    // });
-
-
+   
     getDescFromJSON(principalTag);
 
     subTags.linkedPage = Array.from(principalTag.querySelectorAll('*')).filter(el => 
@@ -1655,13 +1660,12 @@ function loadLinkedPageContent(){
     focusTo(focusElement, 'instant');
     // focusElement.scrollIntoView({ behavior: 'instant', block: 'center' });
     
-    populateEasyPanel();
+    populateEasyPanel(linkedPageFirstLoad);
+    linkedPageFirstLoad = false;
     
   }else{
-    console.log('***** Error: no linked page *****');
+    rightPanel.textContent = 'No URL links found.';
   }
- 
-  // computeDateFormat();
 }
 
 // adjust tag in event by removing 'tagsAdjustLevel' classes max for each tag of the path
@@ -1796,9 +1800,10 @@ function clearAllTags(clearOnlySubTags = false){
 function applyTags(){
 
   console.log('\x1b[43m\x1b[30mapplying tags\x1b[0m');
-
+let u;
   // add css classes to event blocks
-  eventTagList.forEach(el => {
+
+  eventTagList.filter(el => el.textContent.trim().length > 0).forEach(el => {
     const block = (currentPage === 'mainPage')?el:el.parentElement;
     if(isValid(el,venue[currentPage])){
       block.classList.add('SCRPXeventBlock');
@@ -1811,6 +1816,7 @@ function applyTags(){
     }
     
   });
+ 
 
   if (currentPage === 'mainPage'){
     principalTag.classList.add('SCRPXmainTag');
@@ -1877,7 +1883,7 @@ function loadPage(){
   // keep a trace of venue JSON to see later if it has changed. Used for updating save button
   // venueBeforeLoading = JSON.parse(JSON.stringify(venue));
 
-  analyzePanel.style.display = 'block';
+
   localPage = reduceImgSize(getFilesContent(sourcePath, nbPagesToShow));
   // replace <a> tags with something that is not conflicting with click events for right panel
   localPage = localPage.replace(/<[\s\n\t]*a /gi,'<'+customTagName+' ').replace(/<[\s\n\t]*\/a[\s\n\t]*>/gi,'</'+customTagName+'>');
@@ -1929,16 +1935,72 @@ function loadPage(){
 
 }
 
+function makeEventsMap(){
+  if (currentPage !== 'mainPage'){
+    return;
+  }
+
+  console.log('\x1b[46mRecomputing Map\x1b[0m');
+
+  let eventIndex = 1;
+  let linkedPageIndex = 0;
+  const oldKeys = Object.keys(eventsMap);
+
+  eventsMap = {};
+  for (let i = 0; i < eventTagList.length; i++) {
+    // only register the current tag if it contains text
+    if (eventTagList[i].textContent.trim().length > 0){
+      if (venue.mainPage.hasOwnProperty('eventURLTags')) {
+        let k = 0;
+        let url;
+        // take the first URL found in the url tag list
+        while (!url && k < venue.mainPage.eventURLTags.length) {
+          url = getURLFromAncestor(findTagsFromPath(eventTagList[i], venue.mainPage.eventURLTags[k])[0]);
+          k++;
+        }
+        eventsMap[eventIndex.toString()] = {url: url, mainIndex: i, linkedPageIndex: eventIndex-1};
+        eventIndex++;
+      } else if (venue.mainPage.hasOwnProperty('eventMultiURLTags')) {
+        const subEvents = findTagsFromPath(eventTagList[i], subEventPath);
+        const tagPathsFromSubEvent = (venue.mainPage['eventMultiURLTags'] || [])
+              .map(el => replaceWithCustomTags(el))
+              .map(el => el.replace(subEventPath, '').replace(/^>/, ''));
+        for (let j = 0; j < subEvents.length; j++){
+          let k = 0;
+          let url;
+          while (!url && k < tagPathsFromSubEvent.length) {
+            url = getURLFromAncestor(findTagsFromPath(subEvents[j], tagPathsFromSubEvent[k])[0]);
+            k++;
+          }
+          eventsMap[eventIndex.toString()+'.'+(j+1).toString()] = {url: url, mainIndex: i, subIndex: j, linkedPageIndex: linkedPageIndex};
+          linkedPageIndex++;
+        }
+        eventIndex++;
+      } else {
+        const url = eventTagList[i].getAttribute('href');
+        eventsMap[(eventIndex).toString()] = {url: url, mainIndex: i, linkedPageIndex: eventIndex-1};
+        eventIndex++;
+      }
+    }
+  }
+
+  // update the event index input only if the keys have changed
+  if (Object.keys(eventsMap).length !== oldKeys.length || Object.keys(eventsMap).some((key, index) => key !== oldKeys[index])){
+    updateEventIndexInput();
+  }
+ 
+}
+
 function computeMissingLinks(){
   console.log('Computing missing links');
 
   linkedFileContent = fs.existsSync(sourcePath+'linkedPages.json')?loadLinkedPages(sourcePath):[];
-  const hrefList = getHrefListFrom([localPage],venueWithCustomTags(venue));
-  const existingLinks = hrefList.filter(el => Object.keys(linkedFileContent).includes(el));
-  const linksToDownload = hrefList.filter(el => !Object.keys(linkedFileContent).includes(el));
-
+  // const hrefList = getHrefListFrom([localPage],venueWithCustomTags(venue));
+  const hrefList = Object.keys(eventsMap).map(key => eventsMap[key].url).filter(el => el);
   // console.log(hrefList);
-  // console.log(Object.keys(linkedFileContent));
+  const existingLinks = hrefList.filter(el => Object.keys(linkedFileContent).includes(el));
+  const nbLinksToDownload = hrefList.length - existingLinks.length;
+
   const missingLinksPanel = document.getElementById('missingLinksPanel');
   
   // if (venue.hasOwnProperty('linkedPage') && lastModified){
@@ -1954,7 +2016,7 @@ function computeMissingLinks(){
     missingLinksText.textContent = 'No linked page references.';
   } else {
     missingLinksText.textContent = 'Links downloaded: ' + existingLinks.length + '/' + hrefList.length;
-    if (linksToDownload.length === 0) {
+    if (nbLinksToDownload === 0) {
       missingLinksText.classList.remove('redFont');
       missingLinksButton.style.display = 'none';
     } else {
@@ -2125,7 +2187,11 @@ function computeDateFormat(){
 }
 
 function renderEventURLPanel(){
-  // console.log('render URL');
+  if (currentPage === 'linkedPage'){
+    return;
+  }
+  console.log('render URL');
+
 
   eventURLPanel.classList.remove('activeLink');
   // venue.mainPage.eventURLTags || venue.mainPage.eventMultiUrlTags-> tags to be found in specified tag
@@ -2164,7 +2230,7 @@ function renderEventURLPanel(){
         .find(el => isAncestorOf(currentSubEvent,el));
       // urlTag = principalTag.querySelector('[isURL = "true"]');
     }
-    eventURL = getAncestorWithUrl(urlTag).getAttribute('href');
+    eventURL = urlTag? getURLFromAncestor(urlTag) : undefined;
     if (eventURL){
       eventURLPanelMessage.textContent = 'URL from tag: '+ eventURL;
       eventURLPanelMessage.style.display = 'inline';
@@ -2310,7 +2376,6 @@ function reduceImgSize(html){
 
 function setDelimiterPanel(n){
   DelimiterTitle.textContent = "Delimiter tag (found "+n+" events)";
-  // eventSelectorPanel.style.display = n>0?'block':'none';
   eventSelectorIndex.disabled = n>0?false:true;
 }
 
@@ -2391,7 +2456,15 @@ function containsURL(tag){
   return false;
 }
 
+
+// find ancestor with a href attribute. If tag is not specified, returns undefined
 function getAncestorWithUrl(tag) {
+
+  if (!tag){
+    console.warn('Warning: try to find an URL for an undefined tag');
+    return undefined;
+  }
+
   if (containsURL(tag)) {// if a tag or successors contains an href attribute
     return tag;
   } 
@@ -2402,11 +2475,23 @@ function getAncestorWithUrl(tag) {
   if (parentTag && parentTag.id !== 'scrapEnDirexRightPanel') {
     return getAncestorWithUrl(parentTag);
   } else {
-    console.log('Warning: ancestor with URL not found.');
+    console.xarn('Warning: ancestor with URL not found.');
     return null;
   }
-  
 }
+
+
+function getURLFromAncestor(tag) {
+
+  const ancestor = getAncestorWithUrl(tag);
+
+  if (!tag) {
+    return null;
+  } 
+  return ancestor.getAttribute('href');
+}
+
+
 
 // find depth class prefix added by aspiratorex to avoid empty classes. Should be the last class of the first tag encountered <...>
 function setDepthPrefix($page) {
@@ -2546,9 +2631,9 @@ function getDescFromJSON(rootTag, subTagsList){
         if (subTagsList){
           tags.filter(tag => subTagsList.includes(tag));
         }
-        if (tags.length === 0){// no tag found for this key
-          unusedTags[currentPage][key] = venue[currentPage][key];
-        }
+        // if (tags.length === 0){// no tag found for this key
+        //   unusedTags[currentPage][key] = venue[currentPage][key];
+        // }
         tags.forEach(tag => {
           if (key === 'eventURLTags') {
             markAndPropagateTag(tag, {isURL: true});
@@ -2587,8 +2672,8 @@ function getDescFromJSON(rootTag, subTagsList){
   const subEventDelimiters = findTagsFromPath(rootTag, subEventDelimiterPath);
 
   if(subEventDelimiters.length === 0){// no sub event found. all multi tags are unused
-    multiTags.forEach(key => unusedTags[currentPage][key] = venue[currentPage][key]);
-    console.log('There are unused tag paths in '+(currentPage==='mainPage'?'the main page':'the linked page')+' venue', unusedTags);
+    // multiTags.forEach(key => unusedTags[currentPage][key] = venue[currentPage][key]);
+    // console.log('There are unused tag paths in '+(currentPage==='mainPage'?'the main page':'the linked page')+' venue', unusedTags);
     return;
   }
 
@@ -2615,7 +2700,7 @@ function getDescFromJSON(rootTag, subTagsList){
           tags.filter(tag => subTagsList.includes(tag));
         }
         if (tags.length === 0){// no tag found for this key
-          unusedTags[currentPage][key] = venue[currentPage][key];
+          // unusedTags[currentPage][key] = venue[currentPage][key];
         }else{
           tags.forEach(tag => {
             // tag.isMulti = true;
@@ -2630,9 +2715,9 @@ function getDescFromJSON(rootTag, subTagsList){
       });
     });
 
-  if (Object.keys(unusedTags[currentPage]).length > 0){
-    console.log('There are unused tag paths in '+(currentPage==='mainPage'?'the main page':'the linked page')+' venue', unusedTags);
-  }
+  // if (Object.keys(unusedTags[currentPage]).length > 0){
+  //   console.log('There are unused tag paths in '+(currentPage==='mainPage'?'the main page':'the linked page')+' venue', unusedTags);
+  // }
 
 }
 
@@ -3019,22 +3104,24 @@ function ungroupDivs(mainDiv) {
 }
 
 function makeSubEvents(){
+  console.log('Making sub events');
 
   ungroupDivs(easyPanelFields);
   
-  const currentRootTag = currentPage === 'mainPage'?principalTag:rightPanel;
-  const blocksToProcess = currentPage === 'mainPage'?eventTagList:[rightPanel];
+  // const currentRootTag = currentPage === 'mainPage'?principalTag:rightPanel;
+  // const blocksToProcess = currentPage === 'mainPage'?eventTagList:[rightPanel];
 
   const commonAncestor = findCommonAncestor(subTags[currentPage].filter(el => el.isMulti));
-  subEventPath = getPath(currentRootTag, commonAncestor, true);
 
+  subEventPath = getPath(principalTag, commonAncestor, true);
+  
   // applying grouping to all subevents
   if (subEventPath) {
-    blocksToProcess.forEach(eventTag => {
+    eventTagList.forEach(eventTag => {
       const subEventDelimiterTagList = findTagsFromPath(eventTag, subEventPath);
       subEventDelimiterTagList.forEach(subEventTag => {
         // group easylines
-        if (eventTag === currentRootTag) {
+        if (eventTag === principalTag) {
           const groupedList = easyLines.filter(el => isAncestorOf(subEventTag, el.tag));
           groupDivs(easyPanelFields, groupedList);
           // deactivate easy lines that are not the current active one that is being modified
@@ -3060,6 +3147,10 @@ function makeSubEvents(){
   }
  
   computeTags();
+  makeEventsMap();
+
+  // refresh the map of urls
+
   if (currentPage === 'mainPage' && useLinks){
     computeMissingLinks();
   }
@@ -3083,6 +3174,9 @@ function markAndPropagateTag(tag, change){
 
   // const tagPath = currentPage === 'mainPage'?getPath(principalTag,tag):getPath(rightPanel,tag);
   let tagPath = getPath(principalTag,tag);
+
+  // adjust the path. WORKING FOR SUB EVENTS, OR ADJSUSTMENT SHOULD START AFTER subEventPath ?
+  tagPath = adjustTag(tagPath);
 
   if (isURL){// isURL !== undefined and null: a new URL tag is set, isURL has to be removed of all other tags
     rightPanel.querySelectorAll('[isURL = "true"]').forEach( t => {
@@ -3108,17 +3202,17 @@ function markAndPropagateTag(tag, change){
   }
 
   // modify tag propagate the changes to the corresponding tags in the other events
-  if (currentPage === 'mainPage'){
+  // if (currentPage === 'mainPage'){
     eventTagList.forEach(rootTag => {
-      const similarTag = findTagsFromPath(rootTag,tagPath);
-      if (similarTag.length > 0){
-        const myTag = similarTag[0];
+      const similarTags = findTagsFromPath(rootTag,tagPath);
+      if (similarTags.length > 0){
+        const myTag = similarTags[0];
         setTag(myTag);
       }
     });
-  }else{
-    setTag(tag);
-  }
+  // }else{
+  //   setTag(tag);
+  // }
   
 }
 
@@ -3162,6 +3256,8 @@ function findAncestorWithURL(tag){
 function showTagInfos(tag){
   console.log(tag.textContent.replace(/[\n\t\s]{1,}/g,' '),tag.getAttribute('isURL'));
 }
+
+
 
 
 // count the number of keys that have a match for tag.
@@ -3258,31 +3354,209 @@ function setLeftPanelDesign(){
   // console.log(analyzePanel.getElementsByClassName('subPanel'));
   // sub panels
   for (const subPanel of analyzePanel.getElementsByClassName('subPanel')){
-    // console.log(subPanel.id);
     const key = subPanel.id.replace('event','').replace('Multi','');
     const isMulti = subPanel.id.includes('Multi');
-    const prop = "--category-bg-color".replace('category',key.toLowerCase())+(isMulti?"-a":"");
-    subPanel.style.setProperty("--category-bg-color", makeVar(prop));
+    setVarRefForCss(subPanel, "--category-bg-color", key, isMulti);
   }
 
   // regexp panels
   for (const regexpPanel of analyzePanel.getElementsByClassName('regexpPanel')){
     const key = regexpPanel.id.replace('event','').replace('RegexpPanel','');
-    const prop = "--category-bg-color".replace('category',key.toLowerCase());
-    regexpPanel.style.setProperty("--category-bg-color", makeVar(prop));
+    setVarRefForCss(regexpPanel, "--category-bg-color", key);
   }
 
 }
+
+/* keep a trace of missing tags */
+
+// find tags from venue that have no match 
+function traceMissingTagInfo(subTags, firstLoad = false){
+  console.log("tracing missing tags");
+
+  // verify if previous unused tags have found a tag. If yes, remove it from unused tags,
+  // mark corresponding tags, and if it is the linked page, push the tag in subTagsList.
+  // Venue will be recomputed later in computeTags()
+
+  Object.keys(unusedTags[currentPage]).forEach(key => {
+    [...unusedTags[currentPage][key]].forEach(tagPath => {
+      let foundTags = findTagsFromPath(principalTag, tagPath);
+      if (currentPage === 'mainPage'){
+        foundTags = foundTags.filter(tag => subTags[currentPage].includes(tag));
+      }
+      console.log('path ', tagPath, foundTags.length);
+      if (foundTags.length > 0){
+        console.log('moving tag from unused');
+        unusedTags[currentPage][key] = unusedTags[currentPage][key].filter(el => el !== tagPath);
+        foundTags.forEach(tag => {
+            const desc = key.includes('URL')?undefined:key;
+            console.log(desc);
+          subTags[currentPage].push(tag);
+          markAndPropagateTag(tag,{
+            desc: (key.includes('URL')?undefined:key),
+            isMulti: key.includes('Multi'),
+            isURL: key.replace('Multi','') === 'eventURLTags'
+          });
+        });
+      }
+    });
+  });
+
+  // unusedTags[currentPage] = {};
+
+  if (!unusedTags.keepTrace[currentPage] && !firstLoad){
+    return;
+  }
+
+  Object.keys(venue[currentPage]).forEach(key => {
+    venue[currentPage][key].forEach(tagPath => {
+      let existingTags = findTagsFromPath(principalTag, tagPath)
+      if (currentPage === 'mainPage'){
+        existingTags = existingTags.filter(tag => subTags[currentPage].includes(tag));
+      }
+      if (existingTags.length === 0){
+        if (!unusedTags[currentPage].hasOwnProperty(key)){
+          unusedTags[currentPage][key] = [];
+        } 
+        unusedTags[currentPage][key].push(tagPath);
+      }
+    });
+  });
+
+  Object.keys(unusedTags[currentPage]).forEach(key => {
+    if (unusedTags[currentPage][key].length === 0){
+      delete unusedTags[currentPage][key];
+    }
+  });
+
+  if (firstLoad){
+    console.log('first load for ', currentPage);
+    if(Object.keys(unusedTags[currentPage]).length > 0){
+      unusedTags.keepTrace[currentPage] = true;
+      updateLockButton(true);
+    }
+  }
+
+  console.log('\x1b[45mThere are missing tags in '+currentPage+' \x1b[0m', unusedTags[currentPage]);
+}
+
+
+/* CSS functions */
 
 
 function setEasyButtonDesign(button, key){
   button.classList.add('eventTagTypeButton', 'easyButton', 'easyButton'+key); // add class easybutton for css (coloring, hoovering)
   button.title = key;
-  
-  const prop = "--category-bg-color".replace('category',key.toLowerCase());
-  button.style.setProperty("--category-bg-color", makeVar(prop));
+  setVarRefForCss(button, "--category-bg-color", key);
 }
 
-function makeVar(string){
-  return 'var('+string+')';
+
+// make var refering to 'key' color for css. If replaceMulti is true, use alternate color ('-alt')
+function setVarRefForCss(element, varString, key, replaceMulti = false){
+
+  const prop = 'var('+varString.replace('category',key.toLowerCase())+(replaceMulti?'-alt':'')+')';
+  // console.log(prop);
+  element.style.setProperty(varString, prop);
+}
+
+
+function adjustLightness(colorVar, variation) {
+  let color = getComputedStyle(document.documentElement).getPropertyValue(colorVar).trim();
+
+  // Extraction of H, S, L values
+  let match = color.match(/hsl\((\d+),\s*(\d+)%,\s*(\d+)%\)/);
+  if (!match) return color; // Return original color if there is a problem
+
+  let [_, h, s, l] = match.map(Number);
+  l = Math.max(Math.min(l + variation, 100),0); // keep values between 0 and 100%
+
+  return `hsl(${h}, ${s}%, ${l}%)`;
+}
+
+function createColorThemes(){
+
+  const colorVariables = getRootCSSVariables("--xxx");
+
+  keyNames.forEach(key => {
+    const refVarName = '--category-bg-color'.replace('category',key.toLowerCase());
+    colorVariables.forEach(colorVariable => {
+      const varName = colorVariable.name.replace('xxx',key.toLowerCase());
+      const variation = parseInt(colorVariable.value);
+      document.documentElement.style.setProperty(varName, adjustLightness(refVarName, variation));
+    });
+  });
+}
+
+
+function getRootCSSVariables(prefix = "") {
+  const variables = [];
+
+  for (const sheet of document.styleSheets) {
+    for (const rule of sheet.cssRules) {
+      if (rule.selectorText === ":root") {
+        const styles = rule.style;
+        for (let i = 0; i < styles.length; i++) {
+          let name = styles[i];
+          if (name.startsWith(prefix)) {
+            variables.push({ name, value: styles.getPropertyValue(name).trim() });
+          }
+        }
+      }
+    }
+  }
+  return variables;
+}
+
+
+/* aux functions for clicks on the right panel */
+
+function isElementVisible(element) {
+
+  if (!element) return false;
+
+  const rect = element.getBoundingClientRect();
+  const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+ 
+  return (
+    rect.top >= 0 &&
+    rect.bottom <= windowHeight
+  );
+}
+
+
+// used to move through linked page
+function movePrincipalTagTo(eventInfo) {
+  console.log('PI', principalTagIndex, eventInfo.linkedPageIndex);
+
+  if (eventInfo.linkedPageIndex === principalTagIndex) { return };
+
+  principalTagIndex = eventInfo.linkedPageIndex;
+ 
+  const newTag = eventTagList[principalTagIndex];
+  principalTag.style.display = 'none';
+  principalTag = newTag;
+  principalTag.style.display = 'block';
+  if (!isElementVisible(principalTag.parentElement.children[0])) {
+    focusTo(principalTag.parentElement.children[0], 'instant', 'start');
+  }
+
+  subTags.linkedPage = Array.from(principalTag.querySelectorAll('*')).filter(el =>
+    el.hasAttribute('isURL') || el.isMulti || el.desc);
+
+  populateEasyPanel();
+}
+
+
+/* for changing main tag */
+
+function clearPrincipalTag(){
+  principalTag.classList.remove('SCRPXmainTag');
+  if (extendButton){
+    // remove the extend button
+    extendButton.remove();
+  }
+}
+
+
+function mod(k, n) {
+  return ((k % n) + n) % n;
 }

@@ -231,7 +231,9 @@ function getMostUsedTagClassSets($, topN = 10) {
 }
 
 
-// if several tags only differ by the equation number, the equation number is removed
+// if several tags only differ by the equation number, the equation number is removed.
+// remove only one eq(xx) from name0.cl0:eq(x0)>...>namen.cln:eq(xn). Should be sufficient
+// now but could be improved. Test with 'Le Sucre'
 
 function regroupTags(tagList, isTest = false){
     tagList = tagList.filter(el => el !== undefined);
@@ -239,21 +241,74 @@ function regroupTags(tagList, isTest = false){
         return tagList;
     }
     let regex = /(.*)(:eq\(\d+\))(?!.*:eq\(\d+\))/;
-    let toProcess = tagList.slice(); // make a copy of the array tagList
+    let toProcess = tagList.slice().reverse(); // make a copy of the array tagList
     const res = [];
     while(toProcess.length >0){
         const tag = toProcess.pop();
-        const shortTag = tag.replace(regex,(match, p1, p2, p3) => p1); // compute a tag without eq(XX)
-        const oldLength = toProcess.length;
-        toProcess= toProcess.filter(el => el.replace(regex,(match, p1, p2, p3) => p1) !== shortTag); // filter the tags that would have the same tag
-        if (toProcess.length < oldLength){
-            res.push(shortTag);
-        }else{
-            res.push(tag);
+        const splittedTag = tag.split('>');
+        const shortTagList = [];
+        for (let i = splittedTag.length-1; i >=0; i--){
+            // console.log('current slice', i);
+            const shortTag = splittedTag.slice(0,i)
+                                .concat(splittedTag[i].split(':')[0])
+                                .concat(splittedTag.slice(i+1,splittedTag.length));
+            const oldLength = toProcess.length;
+            toProcess = toProcess.filter(el => !testSimplifiedPath(el, i, shortTag)); // filter the tags that would have the same tag
+            if (toProcess.length < oldLength) {
+                res.push(shortTag.join('>'));
+                break;
+            } 
+            if (i === 0) {
+                res.push(tag);
+            }
         }
+
+        function testSimplifiedPath(path, i, shortTag){
+            const splittedTag = path.split('>');
+            if (splittedTag.length !== shortTag.length){
+                return false;
+            }
+            for (j = splittedTag.length-1; j >=0; j--){
+                if (j === i){
+                    if (splittedTag[j].split(':')[0] !== shortTag[j]){
+                        return false;
+                    }
+                }else{
+                    if (splittedTag[j] !== shortTag[j]){
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
     }
     return res.reverse();
 }
+
+
+// function regroupTags(tagList, isTest = false){
+//     tagList = tagList.filter(el => el !== undefined);
+//     if (tagList.length < 2){
+//         return tagList;
+//     }
+//     let regex = /(.*)(:eq\(\d+\))(?!.*:eq\(\d+\))/;
+//     let toProcess = tagList.slice(); // make a copy of the array tagList
+//     const res = [];
+//     while(toProcess.length >0){
+//         const tag = toProcess.pop();
+//         const shortTag = tag.replace(regex,(match, p1, p2, p3) => p1); // compute a tag without eq(XX)
+//         // console.log(tag,shortTag);
+//         const oldLength = toProcess.length;
+//         toProcess= toProcess.filter(el => el.replace(regex,(match, p1, p2, p3) => p1) !== shortTag); // filter the tags that would have the same tag
+//         if (toProcess.length < oldLength){
+//             res.push(shortTag);
+//         }else{
+//             res.push(tag);
+//         }
+//     }
+//     return res.reverse();
+// }
 
 function adjustMainTag(delimiterTag,$,venue, currentEventNumber){
     delimiterTag = delimiterTag.replace(/\s*$/,'');

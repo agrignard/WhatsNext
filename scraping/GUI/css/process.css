@@ -49,20 +49,36 @@
 
   /* keywords panels and highlights */
 
-  --name-bg-color: rgb(52, 152, 219);
-  --name-bg-color-a: rgba(52, 152, 219,0.8);
+  --xxx-bg-color-alt: 10;
+  --xxx-font-color: -10;
+  --xxx-lighter-color: 20;
+  --xxx-inactive-font:10;
+  --xxx-inactive-font-alt: 20;
 
-  --date-bg-color: rgb(46, 204, 113);
-  --date-bg-color-a: rgba(46, 204, 113, 0.8);
 
-  --style-bg-color: rgb(243, 156, 18);
-  --style-bg-color-a: rgba(243, 156, 18,0.8);
+  --name-bg-color: hsl(204, 70%, 53%);
+  /*--name-bg-color-alt: hsl(204, 70%, 63%);  hsl: l: 53% -> 63% (+10%) relative to normal color  
+  --name-font-color: hsl(204, 70%, 38%); /-15%  
+  --name-lighter-color: hsl(204, 70%, 73%); /* +20%  
+  --name-inactive-font: hsl(204, 70%, 63%);/* +10%  
+  --name-inactive-font-alt: hsl(204, 70%, 73%);+20% */
 
-  --place-bg-color: rgb(155, 89, 182);
-  --place-bg-color-a: rgba(155, 89, 182, 0.8);
+  --date-bg-color: hsl(145, 63%, 49%);
+  /* --date-bg-color-alt: hsl(145, 63%, 59%);
+  --date-font-color: hsl(145, 63%, 34%); 
+  --date-lighter-color: hsl(145, 63%, 69%); 
+  --date-inactive-font: hsl(145, 63%, 59%);
+  --date-inactive-font-alt: hsl(145, 63%, 69%); */
 
-  --url-bg-color: rgb(241, 196, 15);
-  --url-bg-color-a: rgba(241, 196, 15, 0.8);
+
+  --style-bg-color: hsl(37, 90%, 51%);
+  --style-bg-color-alt: hsl(37, 90%, 61%);
+
+  --place-bg-color: hsl(283, 39%, 53%);
+  --place-bg-color-alt: hsl(283, 39%, 63%);
+
+  --url-bg-color: hsl(48, 89%, 50%);
+  --url-bg-color-alt: hsl(48, 89%, 60%);
 
   --unknown-color: rgb(120, 122, 124);
 
@@ -87,6 +103,12 @@
   --contextmenu-border-color: #aaa;
   --contextmenu-subevent-bg-color: #f0f0f0;
   --contextmenu-subevent-hoover-bg-color: #e0e0e0;
+
+  /* scrollbar */
+
+  --scrollbar-color: hsl(216, 22%, 61%);
+  --scrollbar-bg: var(--easybutton-white-bg);
+  --scrollbar-hover:hsl(216, 22%, 66%);
   
   /* other colors */
   --verydarkgrey-font-color: rgb(45, 45, 45);
@@ -385,26 +407,31 @@ input[type="text"].eventInput {
   cursor: pointer;
 }
 
-.activeGroupTagButton:hover {
-  background-color: var(--default-hover-color);
-}
+/* panel buttons */
 
-
-
-/* #groupTagsButton{
-position: absolute;
-right: 5px;
-padding: 2px 6px;
-cursor: pointer;
-} */
-
-.groupTagsButton, .regexActivateButton{
+.panelButton{
+  background-color: var(--category-bg-color);
+  border: 2px solid var(--category-bg-color);
+  font-weight: bold;
+  border-radius: 5px;
+  color: var( --category-inactive-font);
   cursor: pointer;
 } 
 
-.groupTagsButton:hover, .regexActivateButton:hover{
-  background-color: darkgray;
-} 
+.panelButton.active{
+  background-color: var(--category-bg-color);
+  border: 2px solid var(--category-font-color);
+  color: var(--category-font-color);
+}
+
+
+.panelButton:hover{
+  background-color: var(--category-lighter-color);
+}
+
+/* .activeGroupTagButton:hover {
+  background-color: var(--default-hover-color);
+} */
 
 .panelHeader{
   display: flex;
@@ -499,7 +526,7 @@ padding: 2px 6px;
 }
 
 .SCRPXhighlightName.subEvent {
-  background-color: var(--name-bg-color-a);
+  background-color: var(--name-bg-color-alt);
 }
 
 .SCRPXhighlightDate {
@@ -507,7 +534,7 @@ padding: 2px 6px;
 }
 
 .SCRPXhighlightDate.subEvent {
-  background-color: var(--date-bg-color-a);
+  background-color: var(--date-bg-color-alt);
 }
 
 .SCRPXhighlightStyle {
@@ -515,7 +542,7 @@ padding: 2px 6px;
 }
 
 .SCRPXhighlightStyle.subEvent {
-  background-color: var(--style-bg-color-a);
+  background-color: var(--style-bg-color-alt);
 }
 
 .SCRPXhighlightPlace{
@@ -523,7 +550,7 @@ padding: 2px 6px;
 }
 
 .SCRPXhighlightPlace.subEvent{
-  background-color: var(--place-bg-color-a);
+  background-color: var(--place-bg-color-alt);
 }
 
 .SCRPXhighlightURL:not(.SCRPXhighlightName):not(.SCRPXhighlightDate):not(.SCRPXhighlightStyle):not(.SCRPXhighlightPlace){
@@ -531,7 +558,7 @@ padding: 2px 6px;
 }
 
 .SCRPXhighlightURL.subEvent:not(.SCRPXhighlightName):not(.SCRPXhighlightDate):not(.SCRPXhighlightStyle):not(.SCRPXhighlightPlace){
-  background-color: var(--url-bg-color-a);
+  background-color: var(--url-bg-color-alt);
 } */
 
 .SCRPXshadow{
@@ -711,8 +738,8 @@ padding: 2px 6px;
 .urlPanel{
     font-weight: normal;
     font-size: 80%;
-    margin-top: 10px;
-    margin-bottom: 5px;
+    margin-top: 0px;
+    margin-bottom: 2px;
 }
 
 .warning{
@@ -898,12 +925,6 @@ custom-a {
   position: relative;
   padding: 5px;
 }
-
-/* #eventURLPanel{
-  position: relative;
-} */
-
-
 
 .scrapTextBox:focus {
     outline: 2px solid var(--textbox-focus-color);
@@ -1208,3 +1229,27 @@ label.niceCheckBox >input:checked+span+i:after {
   padding: 3px;
   cursor: pointer;
 }
+
+/* scrollbar */
+
+::-webkit-scrollbar {
+  width: 12px;  
+  /* height: 12px;  */
+}
+
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-color);
+  /* border-radius: 3px;
+  border: 0px; 
+  height: 12px; */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-hover);
+}
+

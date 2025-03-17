@@ -47,8 +47,6 @@
                 <div id="delimiterPanel" class="delimiterBgColor">
                     <div id="delimiterPanelHeader" class="delimiterPanelHeader panelHeader">
                         <div id="DelimiterTitle" class="title">Delimiter tag</div>
-
-
                         <div id="eventSelectorPanel" class="number-input-container niceInputContainer">
                             <div id="eventSelectorText" class="delimiterFontColor" style="display: inline;" title="Se positionner sur l'événement x.y">
                                 Event</div>
@@ -61,40 +59,42 @@
                         </div>  
 
                     </div>
-                    <input type="text" id="delimiterTagField" class="delimiterTagInput smallBottomMargin"
-                        placeholder="Will be filled automatically" size="50">
-                    <div id="optionsPanel" class="panelWithSlider">   
-                        <div id="autoAdjustGroup" class="sliderLeftPanel">
-                            <div class="number-input-container niceInputContainer">
-                                <div id="autoAdjustText" class="delimiterFontColor" style="display: inline;" title="Tolérance: accepte une différence de n classe par tag. Plus la valeur est élevée, plus on trouve d'éléments. Si la valeur est trop élevée, des éléments non voulus peuvent être trouvés.">
-                                    Tolerance</div>
-                                <input type="number" id="autoAdjustIndex" min="0" step="1" max="6" value="0" style="width: 4ch"
-                                    class="niceInputEasyPanel delimiterFontColor delimiterLightestBgColor" placeholder="0">
-                                <div class="number-input-button-group">
-                                    <button id="autoAdjustButtonUp" class="spin-button up delimiterButtonColor delimiterFontColor">▲</button>
-                                    <button id="autoAdjustButtonDown" class="spin-button down delimiterButtonColor delimiterFontColor">▼</button>
-                                </div>
-                            </div>  
+                    <div id="delimiterLowerPanel">
+                        <input type="text" id="delimiterTagField" class="delimiterTagInput smallBottomMargin"
+                            placeholder="Will be filled automatically" size="50">
+                        <div id="optionsPanel" class="panelWithSlider verySmallBottomMargin">   
+                            <div id="autoAdjustGroup" class="sliderLeftPanel">
+                                <div class="number-input-container niceInputContainer">
+                                    <div id="autoAdjustText" class="delimiterFontColor" style="display: inline;" title="Tolérance: accepte une différence de n classe par tag. Plus la valeur est élevée, plus on trouve d'éléments. Si la valeur est trop élevée, des éléments non voulus peuvent être trouvés.">
+                                        Tolerance</div>
+                                    <input type="number" id="autoAdjustIndex" min="0" step="1" max="6" value="0" style="width: 4ch"
+                                        class="niceInputEasyPanel delimiterFontColor delimiterLightestBgColor" placeholder="0">
+                                    <div class="number-input-button-group">
+                                        <button id="autoAdjustButtonUp" class="spin-button up delimiterButtonColor delimiterFontColor">▲</button>
+                                        <button id="autoAdjustButtonDown" class="spin-button down delimiterButtonColor delimiterFontColor">▼</button>
+                                    </div>
+                                </div>  
+                            </div>
+                            <div id="adjustURLGroup" class="sliderCheckBox">
+                                <label class="niceCheckBox delimiterCheckBox" style="display: inline;">
+                                    <input id="adjustURLCheckbox" class="cb cb1" type="checkbox" name="social" checked/>
+                                    <span>Force URL</span> 
+                                    <i></i> 
+                                </label>                   
+                            </div>
                         </div>
-                        <div id="adjustURLGroup" class="sliderCheckBox">
-                            <label class="niceCheckBox delimiterCheckBox" style="display: inline;">
-                                <input id="adjustURLCheckbox" class="cb cb1" type="checkbox" name="social" checked/>
-                                <span>Force URL</span> 
-                                <i></i> 
-                            </label>                   
+                        <div id="eventURLPanelWarning" class="urlPanel warning" style="display: block;">Warning: no event match the strings, url
+                            link is not accurate</div>
+                        <div id="eventURLPanel" class="delimiterPanelHeader panelHeader">
+                            <div id="eventURLPanelMessage" class="urlPanel" style="display: block;"></div>
+                            <!-- <button id="followURLButton" class="normalButton activeButton" style="display: block;">Open</button> -->
                         </div>
-                    </div>
-                    <div id="eventURLPanelWarning" class="urlPanel warning" style="display: block;">Warning: no event match the strings, url
-                        link is not accurate</div>
-                    <div id="eventURLPanel" class="delimiterPanelHeader panelHeader">
-                        <div id="eventURLPanelMessage" class="urlPanel" style="display: block;"></div>
-                        <!-- <button id="followURLButton" class="normalButton activeButton" style="display: block;">Open</button> -->
                     </div>
                 </div>
 
-                <!--            -->
+                <!---------------->
                 <!-- easy panel -->
-                <!--            -->
+                <!---------------->
 
                 <div class="scrapPanelToHideWhenRegex">
                     <div id="easyPanel" style="display: block" class="easyPanelBgColor normalPadding">
@@ -122,6 +122,14 @@
                         <div id="easyPanelFields">
                             <!-- lines with text and button will be populated here -->
                         </div>
+                        <div id="missingTagsPanel">
+                            <div>
+                                Tags not in delimiter
+                            </div>
+                            <div id="missingPanelFields">
+                                <!-- lines with missing tags-->
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -135,8 +143,8 @@
                         <div class="verySmallBottomMargin panelHeader">
                             <div class="title" style="display: inline;">Name and description</div>  
                             <div class="headerButtons">
-                                <button id="groupTagsButtonName" class="groupTagsButton normalButton activeGroupTagButton">G</button>
-                                <button id="eventNameRegexActivateButton" class="regexActivateButton regexButton normalButton inactive">.*</button>
+                                <button id="eventNameToggleGroupingButton" class="panelButton toggleGroupingButton active">G</button>
+                                <button id="eventNameToggleRegexButton" class="panelButton toggleRegexButton">.*</button>
                             </div>                         
                         </div>
                         <textarea id="eventNameTags" class="eventTags scrapTextBox"
@@ -147,8 +155,8 @@
                         <div class="verySmallBottomMargin panelHeader">
                             <div class="title">Name (sub-event)</div>
                             <div class="headerButtons">
-                                <button id="groupTagsButtonMultiName" class="groupTagsButton normalButton activeGroupTagButton">G</button>
-                                <button id="eventMultiNameRegexActivateButton" class="regexActivateButton normalButton inactive">.*</button>
+                                <button id="eventMultiNameToggleGroupingButton" class="panelButton toggleGroupingButton active">G</button>
+                                <button id="eventMultiNameToggleRegexButton" class="panelButton toggleRegexButton">.*</button>
                             </div>  
                         </div>
                         <div class="scrapPanelToHideWhenRegex">
@@ -171,8 +179,8 @@
                         <div class="verySmallBottomMargin panelHeader">
                             <div class="title" style="display: inline;">Date and time</div>
                             <div class="headerButtons">
-                                <button id="groupTagsButtonDate" class="groupTagsButton normalButton activeGroupTagButton">G</button>
-                                <button id="eventDateRegexActivateButton" class="regexActivateButton normalButton inactive">.*</button>
+                                <button id="eventDateToggleGroupingButton" class="panelButton toggleGroupingButton active">G</button>
+                                <button id="eventDateToggleRegexButton" class="panelButton toggleRegexButton">.*</button>
                             </div>   
                         </div>
                         <div class="scrapPanelToHideWhenRegex">
@@ -185,8 +193,8 @@
                         <div class="verySmallBottomMargin panelHeader">
                             <div class="title" style="display: inline;">Date and time (sub-event)</div>
                             <div class="headerButtons">
-                                <button id="groupTagsButtonMultiDate" class="groupTagsButton normalButton activeGroupTagButton">G</button>
-                                <button id="eventMultiDateRegexActivateButton" class="regexActivateButton normalButton inactive">.*</button>
+                                <button id="eventMultiDateToggleGroupingButton" class="panelButton toggleGroupingButton active">G</button>
+                                <button id="eventMultiDateToggleRegexButton" class="panelButton toggleRegexButton">.*</button>
                             </div>   
                         </div>
                         <div class="scrapPanelToHideWhenRegex">
@@ -215,8 +223,8 @@
                         <div class="verySmallBottomMargin panelHeader">
                             <div class="title">Style</div>
                             <div class="headerButtons">
-                                <button id="groupTagsButtonStyle" class="groupTagsButton normalButton activeGroupTagButton">G</button>
-                                <button id="eventStyleRegexActivateButton" class="regexActivateButton normalButton inactive">.*</button>
+                                <button id="eventStyleToggleGroupingButton" class="panelButton toggleGroupingButton active">G</button>
+                                <button id="eventStyleToggleRegexButton" class="panelButton toggleRegexButton">.*</button>
                             </div>  
                         </div>
                         <div class="scrapPanelToHideWhenRegex">
@@ -229,8 +237,8 @@
                         <div class="verySmallBottomMargin panelHeader">
                             <div class="title">Style (sub-event)</div>
                             <div class="headerButtons">
-                                <button id="groupTagsButtonMultiStyle" class="groupTagsButton normalButton activeGroupTagButton">G</button>
-                                <button id="eventMultiStyleRegexActivateButton" class="regexActivateButton normalButton inactive">.*</button>
+                                <button id="eventMultiStyleToggleGroupingButton" class="panelButton toggleGroupingButton active">G</button>
+                                <button id="eventMultiStyleToggleRegexButton" class="panelButton toggleRegexButton">.*</button>
                             </div>  
                         </div>
                         <div class="scrapPanelToHideWhenRegex">
@@ -253,8 +261,8 @@
                         <div class="verySmallBottomMargin panelHeader">
                             <div class="title">Place</div>
                             <div class="headerButtons">
-                                <button id="groupTagsButtonPlace" class="groupTagsButton normalButton activeGroupTagButton">G</button>
-                                <button id="eventPlaceRegexActivateButton" class="regexActivateButton normalButton inactive">.*</button>
+                                <button id="eventPlaceToggleGroupingButton" class="panelButton toggleGroupingButton active">G</button>
+                                <button id="eventPlaceToggleRegexButton" class="panelButton toggleRegexButton">.*</button>
                             </div>  
                         </div>   
                         <div class="scrapPanelToHideWhenRegex">
@@ -267,8 +275,8 @@
                         <div class="verySmallBottomMargin panelHeader">
                             <div class="title">Place (sub-event)</div>
                             <div class="headerButtons">
-                                <button id="groupTagsButtonMultiPlace" class="groupTagsButton normalButton activeGroupTagButton">G</button>
-                                <button id="eventMultiPlaceRegexActivateButton" class="regexActivateButton normalButton inactive">.*</button>
+                                <button id="eventMultiPlaceToggleGroupingButton" class="panelButton toggleGroupingButton active">G</button>
+                                <button id="eventMultiPlaceToggleRegexButton" class="panelButton toggleRegexButton">.*</button>
                             </div>  
                         </div>
                         <div class="scrapPanelToHideWhenRegex">
