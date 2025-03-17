@@ -236,7 +236,7 @@ async function downloadLinkedPages(venue, filePath, pageList, verbose = false, m
   
 
 
-  linksToDownload.forEach((href, index) => hrefJSON[href] = hrefContents[index]);
+  // linksToDownload.forEach((href, index) => hrefJSON[href] = hrefContents[index]);
 
 
   

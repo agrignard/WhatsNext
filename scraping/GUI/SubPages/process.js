@@ -44,6 +44,8 @@ let tagsAdjustLevel = {mainPage: 0, linkedPage: 0};
 let subEventPath;
 let venueBeforeLoading;
 let eventsMap = {};
+let savedLinkPage;
+let oldEventsMap;
 
 // const keyNames = ['Dummy','Name','Date','Style','Place','URL','MultiName','MultiDate','MultiStyle','MultiPlace','MultiURL'];
 
@@ -154,7 +156,7 @@ if (lastModified){
 /*****************************/
 
 
-const rightPanel = document.getElementById('scrapEnDirexRightPanel');
+let rightPanel = document.getElementById('scrapEnDirexRightPanel');
 
 rightPanel.addEventListener("mouseover", (event) => {
   const target = event.target; //
@@ -441,6 +443,7 @@ function makePrincipalTag(initialTag, firstLoad = false){
         currentSubEventIndex = undefined;
       }
       populateEasyPanel(firstLoad);
+      updateEventIndexInput();
     }else{// some tags may have change, for example if there are more events in eventTagList
       makeSubEvents();
     }
@@ -642,6 +645,7 @@ downloadButton.addEventListener('click', function() {
   .then(() => {
     downloadVenue(venue,sourcePath, undefined, true)
     .then(() =>{
+      oldEventsMap = undefined;
       linkedPageFirstLoad = true;
       lastModified = getModificationDate(sourcePath);
       if (lastModified){
@@ -671,6 +675,7 @@ missingLinksButton.addEventListener('click', function(){
   downloadLinkedPages(venueWithCustomTags(venue),sourcePath,[localPage])
   .then(_ =>
     {
+      oldEventsMap = undefined;
       linkedPageFirstLoad = true;
       computeMissingLinks();
       preventDownload = false;
@@ -1530,24 +1535,52 @@ logButton.addEventListener('click', ()=>{
 // switch button
 
 const switchPageButton = document.getElementById('switchPageButton');
+const switchPageButtonAnimation = document.getElementById('switchPageButtonAnimation');
+const switchPageButtonText = document.getElementById('switchPageButtonText');
+
 if (!venue.hasOwnProperty('linkedPage')){
   switchPageButton.style.display = 'none';
 }
 switchPageButton.addEventListener('click',() =>{
+
+  if (switchPageButton.classList.contains('inactive')){
+    return;
+  }
+
+  switchPageButton.classList.add('inactive');
+
+  // loading animation
+  switchPageButtonText.textContent = '';
+  switchPageButtonAnimation.classList.add('loader');
+
+  // keep information about main tag
+  const keyIndex = getKeyIndex();
+  const event = eventsMap[Object.keys(eventsMap)[keyIndex]];
+
   if (currentPage === 'mainPage'){
+    principalTagIndex = event.linkedPageIndex;
     currentPage = 'linkedPage';
-    switchPageButton.textContent = '< Switch to main page';
     // delimiterPanel.style.display = 'none';
   }else{
-    const keyIndex = getKeyIndex();
-    const event = eventsMap[Object.keys(eventsMap)[keyIndex]];
-    console.log(event);
     principalTagIndex = event.mainIndex;
     currentSubEventIndex = event.subIndex;
     currentPage = 'mainPage';
-    switchPageButton.textContent = 'Switch to linked page >';
+    oldEventsMap = JSON.parse(JSON.stringify(eventsMap));
   }
-  initializeInterface();
+
+  // add a small timeout so the animation can start before calling initializeInterface
+  setTimeout(() => {
+    initializeInterface();
+    switchPageButtonAnimation.classList.remove('loader');
+    switchPageButton.classList.remove('inactive');
+    if (currentPage === 'linkedPage'){
+      switchPageButtonText.textContent = '< Switch to main page';
+    }else{
+      switchPageButtonText.textContent = 'Switch to linked page >';
+    }
+
+  }, 50); 
+
 });
 
 
@@ -1582,13 +1615,53 @@ function initializeInterface(){
 }
 
 
+function makeLinksPage(){
+  Object.keys(eventsMap).forEach(key => {
+    currentEventURL = eventsMap[key].url;
+  
+    // create one div per event, with 3 parts: 1: header, 2: text, 3: tags that have been identified
+    const eventDiv = document.createElement('div');
+    eventDiv.classList.add('SCRPXlinkedPageMainBlock');
+    eventDiv.id = currentEventURL;
+    eventDiv.innerHTML = '<div class="SCRPXlinkedPageEventHeader">'+currentEventURL+'</div>';
+    const eventDivPage = document.createElement('div');
+    const currentLinkedPage = linkedFileContent[currentEventURL];
+    const parsedLinkedPage = parseDocument('<html><head></head>'
+      +currentLinkedPage.replace(/<[\s\n\t]*a /gi,'<'+customTagName+' ').replace(/<[\s\n\t]*\/a[\s\n\t]*>/gi,'</'+customTagName+'>')
+      +'</html>');
+    eventDivPage.innerHTML = cheerio.load(parsedLinkedPage).html();
+    eventDiv.appendChild(eventDivPage);
+    eventDivPage.style.display = 'none';
+    const eventShowTags = document.createElement('div');
+    eventDiv.appendChild(eventShowTags);
+    rightPanel.appendChild(eventDiv); 
+    // remove videos that may slow down the navigator
+    rightPanel.querySelectorAll("iframe").forEach(iframe => {
+      iframe.src = "";
+    });
+  });
+
+  savedLinkPage = rightPanel.innerHTML;//rightPanel.cloneNode(true); 
+}
+
+function eventsMapHasChanged(){
+
+  if (!oldEventsMap){
+    return true;
+  }
+
+  if (Object.keys(eventsMap).length !== Object.keys(oldEventsMap).length){
+    return true;
+  }
+
+  const oldKeys = Object.keys(oldEventsMap);
+  return Object.keys(eventsMap).some(key => !oldKeys.includes(key) || eventsMap[key].url !== oldEventsMap[key].url);
+}
+
+
 function loadLinkedPageContent(){
   console.log('\x1b[41mSwitching to linked page\x1b[0m');
-  const hrefList = getHrefListFrom([localPage],venueWithCustomTags(venue));
-  const linkedPagesURLs = hrefList.filter(el => Object.keys(linkedFileContent).includes(el));
-
-  // if (linkedPagesURLs.includes(eventURL)){
-  
+ 
   rightPanel.innerHTML = '';
   if (Object.keys(eventsMap).some(key => eventsMap[key].url)){
 
@@ -1597,45 +1670,23 @@ function loadLinkedPageContent(){
 
     // load web page 
 
+    const start = performance.now();
   
-    const newEventTagList = [];
-  
-    Object.keys(eventsMap).forEach(key => {
-      currentEventURL = eventsMap[key].url;
-    // linkedPagesURLs.forEach((currentEventURL, index) => {
-      const eventDiv = document.createElement('div');
-      eventDiv.classList.add('SCRPXlinkedPageMainBlock');
-      eventDiv.id = currentEventURL;
-      eventDiv.innerHTML = '<div class="SCRPXlinkedPageEventHeader">'+currentEventURL+'</div>';
-      const eventDivPage = document.createElement('div');
-      const currentLinkedPage = linkedFileContent[currentEventURL];
-      const parsedLinkedPage = parseDocument('<html><head></head>'
-        +currentLinkedPage.replace(/<[\s\n\t]*a /gi,'<'+customTagName+' ').replace(/<[\s\n\t]*\/a[\s\n\t]*>/gi,'</'+customTagName+'>')
-        +'</html>');
-      eventDivPage.innerHTML = cheerio.load(parsedLinkedPage).html();
-      eventDiv.appendChild(eventDivPage);
-      // if (currentEventURL === eventURL){
-      if (currentEventURL === eventURL){
-          principalTag = eventDivPage;
-          principalTagIndex = newEventTagList.length;
-          eventSelectorIndex.value = key;
-      }else{
-        eventDivPage.style.display = 'none';
-      }
-      const eventShowTags = document.createElement('div');
-      eventDiv.appendChild(eventShowTags);
-      rightPanel.appendChild(eventDiv); 
-      newEventTagList.push(eventDivPage);
-      rightPanel.querySelectorAll("iframe").forEach(iframe => {
-        iframe.src = "";
-    });
-    });
-    eventTagList = newEventTagList;
+    if (eventsMapHasChanged()){
+      makeLinksPage();
+    }else{
+      rightPanel.innerHTML = savedLinkPage;
+    }
+    
+    eventTagList = Array.from(rightPanel.children).map(el => el.children[1]);
+
+    principalTag = eventTagList[principalTagIndex];
+    principalTag.style.display = 'block';
+
+    // const end = performance.now();
+    // console.log(`Le code a mis ${(end - start)/1000}s à s'exécuter.`);
+    
     focusTo(principalTag.parentElement.children[0]);
-
-      // linkedPage = linkedFileContent[linkURL];
-
-    // console.log(rightPanel.innerHTML);
     
     // find subtags and load properties for the easy panel
     subTags.linkedPage = [];
@@ -1896,7 +1947,6 @@ function loadPage(){
   for(tag of linkTags){
     tag.title = makeURL(venue.baseURL,tag.getAttribute('href'));
   }
-  // console.log(rightPanel.innerHTML);
 
   // get the adjust level corresponding to the mainPage
   tagAdjustIndexInput.value = tagsAdjustLevel.mainPage;

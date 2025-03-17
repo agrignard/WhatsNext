@@ -64,21 +64,12 @@
   --name-inactive-font-alt: hsl(204, 70%, 73%);+20% */
 
   --date-bg-color: hsl(145, 63%, 49%);
-  /* --date-bg-color-alt: hsl(145, 63%, 59%);
-  --date-font-color: hsl(145, 63%, 34%); 
-  --date-lighter-color: hsl(145, 63%, 69%); 
-  --date-inactive-font: hsl(145, 63%, 59%);
-  --date-inactive-font-alt: hsl(145, 63%, 69%); */
-
 
   --style-bg-color: hsl(37, 90%, 51%);
-  --style-bg-color-alt: hsl(37, 90%, 61%);
 
   --place-bg-color: hsl(283, 39%, 53%);
-  --place-bg-color-alt: hsl(283, 39%, 63%);
 
   --url-bg-color: hsl(48, 89%, 50%);
-  --url-bg-color-alt: hsl(48, 89%, 60%);
 
   --unknown-color: rgb(120, 122, 124);
 
@@ -88,6 +79,8 @@
   --logpanel-textzone-bg-color: lightgrey;
 
   /* colors for event blocks */
+
+  --eventblock-border-color: black;
 
   --eventblock-bg-color: rgba(231, 76, 60, 0.2);
   --linkedpage-eventblock-bg-color: rgba(36, 165, 105, 0.2);
@@ -122,6 +115,8 @@
 
   --textbox-focus-color: rgb(189, 195, 199); 
   --default-hover-color: darkgrey;
+
+  --custom-tags-color: blue;
 }
 
 .redFont {
@@ -403,7 +398,8 @@ input[type="text"].eventInput {
 }
 
 .activeButton:not(.inactive):hover {
-  background-color: darkgray;
+  background-color: darkgray !important;
+  color: var(--dimmed-white-font) !important;
   cursor: pointer;
 }
 
@@ -472,6 +468,7 @@ padding: 2px 6px;
   top: 20px; 
   right: 40px; 
   width: 23ch;
+  text-align: center;
   padding: 5px 10px;
   z-index: 9999; /*on top*/
   box-shadow: 2px 2px 5px var(--shadow-color);
@@ -596,8 +593,6 @@ padding: 2px 6px;
   color: var(--dimmed-white-font);
   transition: background-color 0.8s ease;
 }
-
-
 
 
 
@@ -769,7 +764,7 @@ padding: 2px 6px;
   display: inline-block; /* Permet à l'élément de s'ajuster à la largeur du contenu */
 }
 .SCRPXeventBlock {
-  border: 2px solid black; 
+  border: 2px solid var(--eventblock-border-color); 
   padding: 5px; 
   padding-left: 25px;
   display: inline-block; 
@@ -781,7 +776,7 @@ padding: 2px 6px;
 
 
 .SCRPXlinkedPageMainBlock.SCRPXeventBlock {
-  border: 2px solid black; 
+  border: 2px solid var(--eventblock-border-color); 
   padding: 0px; 
   padding-left: 0px;
   display: inline-block; /* Permet à l'élément de s'ajuster à la largeur du contenu */
@@ -798,7 +793,7 @@ padding: 2px 6px;
 
 
 custom-a {
-  color: blue;
+  color: var(--custom-tags-color);
   text-decoration: underline;
   display: block; 
   padding: 5px;
