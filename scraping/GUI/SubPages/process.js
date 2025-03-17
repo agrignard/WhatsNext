@@ -325,12 +325,14 @@ rightPanel.addEventListener('click', (event) => {
   }
 
   if (clickedElement.classList.contains('SCRPXlinkedPageMainBlock')){
+    movePrincipalTagTo(eventsMap[clickedElement.id]);
     movePrincipalTagTo(clickedElement.children[1]);
     return;
   }
 
   if (clickedElement.classList.contains('SCRPXlinkedPageEventHeader')){
-    movePrincipalTagTo(clickedElement.parentElement.children[1]);
+    movePrincipalTagTo(eventsMap[clickedElement.parentElement.id]);
+    // movePrincipalTagTo(clickedElement.parentElement.children[1]);
     return;
   }
 
@@ -1622,7 +1624,8 @@ function makeLinksPage(){
     // create one div per event, with 3 parts: 1: header, 2: text, 3: tags that have been identified
     const eventDiv = document.createElement('div');
     eventDiv.classList.add('SCRPXlinkedPageMainBlock');
-    eventDiv.id = currentEventURL;
+    // eventDiv.id = currentEventURL;
+    eventDiv.id = key;
     eventDiv.innerHTML = '<div class="SCRPXlinkedPageEventHeader">'+currentEventURL+'</div>';
     const eventDivPage = document.createElement('div');
     const currentLinkedPage = linkedFileContent[currentEventURL];
@@ -3575,6 +3578,7 @@ function isElementVisible(element) {
 
 // used to move through linked page
 function movePrincipalTagTo(eventInfo) {
+  console.log(eventInfo);
   console.log('PI', principalTagIndex, eventInfo.linkedPageIndex);
 
   if (eventInfo.linkedPageIndex === principalTagIndex) { return };

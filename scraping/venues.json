@@ -398,7 +398,9 @@
       "Bar Rock'n eat",
       "Le Rock N Eat"
     ],
-    "ID": "Rock N Eat|Lyon|France"
+    "ID": "Rock N Eat|Lyon|France",
+    "mainPage": {},
+    "url": "https://www.rockneat.com/Programmation"
   },
   {
     "name": "La Rayonne",
