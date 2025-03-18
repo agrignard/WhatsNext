@@ -37,13 +37,21 @@
   --easybutton-remove-font-color: white;
 
   /* delimiter panel */
-  --delimiter-bg-color: rgb(231, 76, 60);
-  --delimiter-font-color: rgb(54, 12, 7);
-  --delimiter-lighter-color: rgb(242, 91, 75);
-  --delimiter-button-color: rgb(223, 135, 125);
-  --delimiter-lightest-color: rgb(248, 213, 209);
-
+  --delimiter-bg-color: hsl(6, 78%, 57%);
+  --delimiter-font-color: hsl(6, 77%, 12%);
+  --delimiter-lighter-color: hsl(6, 87%, 62%);
+  --delimiter-button-color: hsl(6, 60%, 68%);
+  --delimiter-lightest-color: hsl(6, 74%, 90%);
   --delimiter-inactive-font-color: hsl(6, 52%, 40%);
+
+  /* --linkedpagedelimiter-bg-color: rgba(36, 165, 105, 0.2); */
+  --linkedpagedelimiter-bg-color: hsl(36, 38%, 82%);
+  --linkedpagedelimiter-font-color: hsl(36, 38%, 32%);
+  --linkedpagedelimiter-lighter-color: hsl(36, 38%, 75%);
+  --linkedpagedelimiter-button-color: hsl(36, 38%, 75%);
+  --linkedpagedelimiter-lightest-color: hsl(36, 38%, 86%);
+  
+
 
   --dimmed-white-font: rgb(236, 240, 241);
 
@@ -83,7 +91,6 @@
   --eventblock-border-color: black;
 
   --eventblock-bg-color: rgba(231, 76, 60, 0.2);
-  --linkedpage-eventblock-bg-color: rgba(36, 165, 105, 0.2);
 
   --extend-button-bg-color: rgba(223, 137, 127, 0.6);
   --extend-button-hover-bg-color: rgba(223, 137, 127, 1);
@@ -771,7 +778,19 @@ padding: 2px 6px;
   margin: 1px;
   background-color: var(--eventblock-bg-color);
   margin-bottom: 10px;
-  box-shadow: 2px 2px 5px var(--shadow-color);
+  box-shadow: 2px
+  2px 5px var(--shadow-color);
+}
+
+.SCRPXeventBlockWithField{
+  border: 2px solid var(--eventblock-border-color); 
+  padding: 5px; 
+  padding-left: 25px;
+  display: inline-block; 
+  margin: 1px;
+  margin-bottom: 10px;
+  box-shadow: 2px
+  2px 5px var(--shadow-color);
 }
 
 
@@ -781,7 +800,7 @@ padding: 2px 6px;
   padding-left: 0px;
   display: inline-block; /* Permet à l'élément de s'ajuster à la largeur du contenu */
   margin: 1px;
-  background-color: var(--linkedpage-eventblock-bg-color);
+  /* background-color: var(--linkedpage-eventblock-bg-color); */
   margin-bottom: 10px;
   box-shadow: 2px 2px 5px var(--shadow-color);
 }

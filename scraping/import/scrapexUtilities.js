@@ -15,19 +15,29 @@ module.exports = {getInfo};
 
 
     
-// auxiliary function to extract data. For a given tagName, get the list of tags from JSONBlock 
+// auxiliary function to extract data. For a given key ('eventNameTags', ...), get the list of tags from venueInfo 
 // (mainPage or linkedPage) and return the corresponding text. If the tag is an URL tag, returns
 // the info in href.
 // for sub event, the sub event delimiter should be provided 
 
-function getText(tagName, JSONblock, $, subEventDelimiter, eventTag){
+function textWithWhiteSpace($, element){
+  return $(element).contents().map((_, el) => {
+    if ($(el).children().length > 0) {
+        return getTextWithSpaces($(el)); // Appel récursif
+    }
+    return $(el).text();
+  }).get().join(' ');
+  // return $(tag).contents().map((_, el) => $(el).text()).get().join(' ');
+}
+
+function getText(key, venueInfo, $, subEventDelimiter, eventTag){
 
   let string = "";
-  let tagList = JSONblock[tagName].map(tagPath => tagPath.replace(subEventDelimiter,'').replace(/^>/,''));
+  let tagList = venueInfo[key].map(tagPath => tagPath.replace(subEventDelimiter,'').replace(/^>/,''));
   const $subEv = $(eventTag);
 
   try {
-    if (tagName.includes('URL')){
+    if (key.includes('URL')){
       if (tagList[0].length > 0){
         if (eventTag){
           string = getHrefFromAncestor($subEv.find(tagList[0])) || '';
@@ -40,16 +50,24 @@ function getText(tagName, JSONblock, $, subEventDelimiter, eventTag){
     }else{
       for (let i = 0; i <= tagList.length - 1; i++) {
         if (tagList[i] === ''){
-          string += ' ' + $subEv.text();
+          if (eventTag){
+            // string += ' ' + $subEv.text();
+            string += ' ' + textWithWhiteSpace($, eventTag);
+          }else{
+            // string += ' ' + $.text();
+            string += ' ' + textWithWhiteSpace($, '');
+          }
+            
         }else{
           if (eventTag){
-            // string += ' ' + $subEv.find(tagList[i]).text();
             $subEv.find(tagList[i]).each((index, descendant) => {
-              string += ' ' + $(descendant).text();
+              // string += ' ' + $(descendant).text();
+              string += ' ' + textWithWhiteSpace($, descendant);
             });
           }else{
             $(tagList[i]).each((index, element) => {
-              string += ' ' +  $(element).text();
+              // string += ' ' +  $(element).text();
+              string += ' ' + textWithWhiteSpace($, element);
             });
             
           }
@@ -73,7 +91,7 @@ function getText(tagName, JSONblock, $, subEventDelimiter, eventTag){
 // 'Multi' tags should not have an existing value, so there is no need to test if there is something to append
 // overwrite = true may be used when using linked pages, to overwrite stuff already from the main page
 
-function getInfo(venueTags,$, eventInfo = {}, overwrite = false) {
+function getInfo(venueTags, $, eventInfo = {}, overwrite = false) {
 
   const keysToOverwrite = ['eventPlaceTags','eventURLTags'];
 

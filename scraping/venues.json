@@ -47,16 +47,19 @@
     "name": "Le Petit Salon",
     "city": "Lyon",
     "country": "France",
-    "url": "https://www.lpslyon.fr/evenements-le-petit-salon/",
+    "url": "https://www.chromatique.art/spectacles",
     "baseURL": "https://www.lpslyon.fr/evenements-le-petit-salon/",
     "eventsDelimiterTag": "DIV.events__item.item.colmd4.depth10",
     "mainPage": {
       "eventDateTags": [
-        "DIV.item__date.dxlnone.depth11:eq(0)>DIV.item__dateday.depth12:eq(0)",
-        "DIV.item__date.dxlnone.depth11:eq(0)>SPAN.depth12:eq(0)"
+        "DIV.item__date.dxlnone.depth11:eq(0)>SPAN.depth12:eq(0)",
+        "DIV.item__date.dxlnone.depth11:eq(0)>DIV.item__dateday.depth12:eq(0)"
       ],
       "eventNameTags": [
         "H2.item__title.depth11:eq(0)"
+      ],
+      "eventStyleTags": [
+        "DIV.item__text.depth11:eq(0)>P.depth12:eq(1)"
       ],
       "eventURLTags": [
         "DIV.depth11:eq(4)>A.item__link.depth12:eq(0)"
@@ -64,10 +67,12 @@
     },
     "eventURLIndex": 1,
     "dateFormat": "dd-MM",
-    "linkedPage": {},
-    "linkedPageDateFormat": "",
     "ID": "Le Petit Salon|Lyon|France",
-    "comments": "essai"
+    "multiPages": {
+      "nbPages": "5",
+      "startPage": "1",
+      "increment": "1"
+    }
   },
   {
     "name": "Transbordeur",
@@ -182,10 +187,10 @@
     "ID": "Le Sonic|Lyon|France",
     "linkedPage": {
       "eventDateTags": [
-        "DIV.sitewrapper.site.depth2:eq(0)>DIV.sitecontent.depth3:eq(0)>DIV.container.depth4:eq(0)>DIV.row.depth5:eq(0)>SECTION.contentarea.col12.colsm12.colmd12.collg8.colxl8.colxxl8.pushlg4.pushxl4.pushxxl4.depth6:eq(0)>MAIN.sitemain.depth7:eq(0)>DIV.postwrapper.postwrappersingle.postwrapperpost.depth8:eq(0)>ARTICLE.post5626.facebook_events.typefacebook_events.statuspublish.haspostthumbnail.hentry.facebook_categoryclub.facebook_categoryconcert.depth9:eq(0)>DIV.entrycontent.entrycontentsingle.depth10:eq(0)>DIV.ife_eventmeta.depth11:eq(0)>DIV.organizermain.depth12:eq(0)>DIV.details.depth13:eq(0)>P.depth14:eq(0)"
+        "DIV.sitewrapper.site.depth2:eq(0)>DIV.sitecontent.depth3:eq(0)>DIV.container.depth4:eq(0)>DIV.row.depth5:eq(0)>SECTION.contentarea.col12.colsm12.colmd12.collg8.colxl8.colxxl8.pushlg4.pushxl4.pushxxl4.depth6:eq(0)>MAIN.sitemain.depth7:eq(0)>DIV.postwrapper.postwrappersingle.postwrapperpost.depth8:eq(0)>ARTICLE.facebook_events.typefacebook_events.statuspublish.haspostthumbnail.hentry.depth9:eq(0)>DIV.entrycontent.entrycontentsingle.depth10:eq(0)>DIV.ife_eventmeta.depth11:eq(0)>DIV.organizermain.depth12:eq(0)>DIV.details.depth13:eq(0)>P.depth14:eq(0)"
       ]
     },
-    "linkedPageDateFormat": "dd-MM-HH:mm"
+    "linkedPageDateFormat": "MM-dd-HH:mm"
   },
   {
     "name": "Le Petit Bulletin",
@@ -815,9 +820,9 @@
         "DIV.top.depth7:eq(0)>DIV.tags.depth8:eq(0)>DIV.tag.depth9"
       ],
       "eventNameTags": [
-        "A.depth7:eq(0)>H3.artist.depth8:eq(0)",
+        "A.depth7:eq(0)>H3.depth8:eq(1)",
         "A.depth7:eq(0)>H2.depth8:eq(0)",
-        "A.depth7:eq(0)>H3.depth8:eq(1)"
+        "A.depth7:eq(0)>H3.artist.depth8:eq(0)"
       ],
       "eventURLTags": [
         "DIV.bottom.depth7:eq(0)>A.btn.depth8:eq(0)"
@@ -834,6 +839,26 @@
     "eventURLIndex": 0,
     "dateFormat": "dd-MM-yyyy",
     "eventsDelimiterTag": "DIV.left.depth6",
+    "linkedPage": {
+      "eventDateTags": [
+        "DIV.depth2:eq(0)>MAIN._app__Mainsc1wjubze0.kpIEmU.depth3:eq(0)>DIV.Wrapper__ThemedWrapperscdjff701.cFhHcE.depth4:eq(0)>DIV.Wrapper__Containerscdjff700.iglxjS.depth5:eq(0)>DIV.EventDescription__Containersckfgwiu0.jTGHVe.depth6:eq(0)>DIV.TicketingImage__ImageContainersc11fulsw0.cRNmiq.EventDateTicketingImagesc1b88p100.gbUeTm.depth7:eq(0)>DIV.mpdcard.WeekFilter__Dayschh0cps6.SingleEventDate__DayBlocksc1js13oa0.bGxYUt.gayxMw.depth8:eq(0)"
+      ]
+    },
+    "linkedPageDateFormat": "dd-MM-yyyy-HH:mm"
+  },
+  {
+    "name": "Chromatique",
+    "city": "Lyon",
+    "country": "France",
+    "mainPage": {
+      "eventNameTags": [
+        ""
+      ]
+    },
+    "url": "https://www.chromatique.art/spectacles",
+    "ID": "Chromatique|Lyon|France",
+    "baseURL": "https://www.chromatique.art/",
+    "eventsDelimiterTag": "A.depth15",
     "linkedPage": {}
   }
 ]

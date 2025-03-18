@@ -21,13 +21,18 @@ function mergeEvents(eventList,showFullMergeLog){
 
     // preprocessing: merge events at the same date. All similar events are stored in the list mergeCandidates
     eventList.forEach(event =>{
-        const samePlaceSameDayEventList = newList.filter(el => 
-            samePlace(getEventPlace(el),getEventPlace(event))
+        // console.log('\x1b[31m***********************');
+        // console.log(event);
+        // console.log('A comparer avec:\x1b[0m');
+        const samePlaceSameDayEventList = newList.filter(el => {
+            // console.log(el);
+            return samePlace(getEventPlace(el),getEventPlace(event))
             && sameDay(el.unixDate, event.unixDate)
             && el.unixDate !== 0
             //&& el.mergeCandidates.some(subEl => similarName(subEl.eventName,event.eventName))
-            && similarName(el.eventName,event.eventName)
-            );
+            && similarName(el.eventName,event.eventName)       
+        });
+            
         if (samePlaceSameDayEventList.length >0){// for each event, if a similar event is found in newList, it is added to mergeCandidates
             const samePlaceSameDayEvent = samePlaceSameDayEventList[0];    
             samePlaceSameDayEvent.mergeCandidates.push(event);  

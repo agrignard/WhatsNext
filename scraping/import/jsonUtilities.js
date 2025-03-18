@@ -60,6 +60,7 @@ function geAliasesToURLMap(){
 
 // returns the venue (name, city, country) of an object
 function getEventPlace(object){
+    // console.log(object);
     return {'name':object.eventPlace, 'city':object.source.city, 'country':object.source.country};
 }
 

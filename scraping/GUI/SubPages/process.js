@@ -20,8 +20,9 @@ const {getTagLocalization, tagContainsAllStrings, getTagContainingAllStrings,
 const {getDateConversionPatterns} =require(imports+'dateUtilities.js');
 // const {getText} =require(imports+'scrapexUtilities.js');
 
-var showLog = false;
+// global variables 
 
+var showLog = false;
 
 let linkedFileContent, eventURL;
 let preventDownload = false;
@@ -46,6 +47,45 @@ let venueBeforeLoading;
 let eventsMap = {};
 let savedLinkPage;
 let oldEventsMap;
+
+let subTags = {
+  'mainPage': null,
+  'linkedPage': null
+};
+
+let candidatePrincipalTag;
+let principalTagIndex;
+let principalTag;
+let eventTagList;
+let depthPrefix;
+
+function initVars(){
+  eventURL = undefined;
+  lastDateList = undefined;
+  log ='';
+let nbPages = 0;
+  currentURLTag = undefined;
+  unusedTags = {keepTrace: {mainPage: false, linkedPage: false}, mainPage: {}, linkedPage: {}};
+  linkedPageFirstLoad = true;
+  extendButton = undefined;
+  currentSubEventIndex = undefined;
+// let tagsAdjustLevel = {mainPage: 0, linkedPage: 0}; 
+  subEventPath = undefined;
+  venueBeforeLoading = undefined;
+  eventsMap = {};
+  savedLinkPage = undefined;
+  oldEventsMap = undefined;
+  subTags = {
+    'mainPage': null,
+    'linkedPage': null
+  };
+  
+  candidatePrincipalTag = undefined;
+  principalTagIndex = undefined;
+  principalTag = undefined;
+  eventTagList = undefined;
+  depthPrefix = undefined;
+}
 
 // const keyNames = ['Dummy','Name','Date','Style','Place','URL','MultiName','MultiDate','MultiStyle','MultiPlace','MultiURL'];
 
@@ -82,20 +122,7 @@ class customA extends HTMLElement {
 // Enregistrer la balise personnalisée
 customElements.define(customTagName, customA);
 
-// global variables 
 
-
-
-let subTags = {
-  'mainPage': null,
-  'linkedPage': null
-};
-
-let candidatePrincipalTag;
-let principalTagIndex;
-let principalTag;
-let eventTagList;
-let depthPrefix;
 
 /*****************************/
 /*         initialize        */
@@ -559,7 +586,6 @@ const downloadButton = document.getElementById('downloadButton');
 const saveButton = document.getElementById('saveButton');
 saveButton.classList.add('inactive');
 const missingLinksButton = document.getElementById('missingLinksButton');
-const pageManager = document.getElementById('pageManager');
 const pageManagerButton = document.getElementById('pageManagerButton');
 
 
@@ -647,12 +673,13 @@ downloadButton.addEventListener('click', function() {
   .then(() => {
     downloadVenue(venue,sourcePath, undefined, true)
     .then(() =>{
-      oldEventsMap = undefined;
-      linkedPageFirstLoad = true;
+      initVars();
       lastModified = getModificationDate(sourcePath);
       if (lastModified){
         nbPages = getFilesNumber(sourcePath);
         renderMultiPageManager(nbPages);
+        analyzePanel.style.display = 'block';
+        delimiterLowerPanel.style.display = 'block';
       }
       lastScrapped.textContent = lastModified?'Updated: '+showDate(lastModified):"Page not downloaded yet.";
       preventDownload = false;
@@ -892,7 +919,7 @@ function populateEasyPanel(firstLoad = false){
   console.log("\x1b[43m\x1b[30mpopulating Easy Panel\x1b[0m");
   easyLines = [];
   easyPanelFields.innerHTML = '';
-
+ 
   // keep only one isURL flag. If the previous currentURLTag is present, keep it, else keep the first tag with this flag
   
   const tagsWithURL = subTags[currentPage].filter(el => el.hasAttribute('isURL'));
@@ -949,9 +976,13 @@ function newMissingTagLine(tagPath, key){
   missingPanelFields.appendChild(newDiv);
 }
 
+
+
 // create new line in the easy panel. If several tags are marked as URL tags, only keep the first one
 function newEasyLine(tag, index){
-  const text = tag.textContent.trim().replace(/[\n\s\t]{1,}/g,' ');
+
+  const text = getTextFromTag(tag);
+
   // create html div panel for the line
   let newDiv = document.createElement('div');
   newDiv.classList.add('easyPanelLine');
@@ -964,6 +995,7 @@ function newEasyLine(tag, index){
   inputElement.classList.add('easyField');
   inputElement.setAttribute('type', 'text');
   inputElement.value = text;
+  console.log(text);
   newDiv.appendChild(inputElement);
   if (tag.isMulti){
     inputElement.classList.add('easyFieldBg');
@@ -983,17 +1015,18 @@ function newEasyLine(tag, index){
         desc: (tag.desc?tag.desc.replace('event','eventMulti'):undefined),
         isMulti: true
       });
-      // easyLines.forEach(el => console.log(el.tag.isMulti,el.tag.textContent.replace(/[\t\n\s]{1,}/g,' ')));
 
       inputElement.classList.add('easyFieldBg');
     }
     makeSubEvents();
   });
 
+
   // create buttons for changing field type (name, date, ...)
   for(i=0;i<keyNames.length;i++){
-    if (tag !== principalTag || keyNames[i].toLowerCase() === 'url'){
-      let newEasyButton = document.createElement('button');
+    // if (tag !== principalTag || keyNames[i].toLowerCase() === 'url'){
+    if (true){
+        let newEasyButton = document.createElement('button');
 
       setEasyButtonDesign(newEasyButton, keyNames[i]);
       newEasyButton.classList.add('easyLine'+index); // used to identify buttons on the same line
@@ -1172,6 +1205,8 @@ function computeTags(){
       venue[currentPage].hasOwnProperty('eventMulti' + key + 'Tags') )) ? 'block' : 'none';
   });
   ProcessRegex();
+
+  console.log(venue[currentPage]);
   
   // update tag fields on the GUI
   for(let i = 0; i < eventTagsBoxes.length; i++){
@@ -1562,12 +1597,18 @@ switchPageButton.addEventListener('click',() =>{
   if (currentPage === 'mainPage'){
     principalTagIndex = event.linkedPageIndex;
     currentPage = 'linkedPage';
-    // delimiterPanel.style.display = 'none';
+    pageManagerDetailsPanel.style.display = 'none';
+    switchDelimiterColors(delimiterPanel, 'linkedpagedelimiter');
+    // delimiterPanel.style.backgroundColor = "var(--linkedpage-eventblock-bg-color)";
   }else{
     principalTagIndex = event.mainIndex;
     currentSubEventIndex = event.subIndex;
     currentPage = 'mainPage';
     oldEventsMap = JSON.parse(JSON.stringify(eventsMap));
+    switchDelimiterColors(delimiterPanel, 'delimiter');
+    if (!pageManagerReduced){
+      pageManagerDetailsPanel.style.display = 'block';
+    }
   }
 
   // add a small timeout so the animation can start before calling initializeInterface
@@ -1628,11 +1669,19 @@ function makeLinksPage(){
     eventDiv.id = key;
     eventDiv.innerHTML = '<div class="SCRPXlinkedPageEventHeader">'+currentEventURL+'</div>';
     const eventDivPage = document.createElement('div');
-    const currentLinkedPage = linkedFileContent[currentEventURL];
-    const parsedLinkedPage = parseDocument('<html><head></head>'
-      +currentLinkedPage.replace(/<[\s\n\t]*a /gi,'<'+customTagName+' ').replace(/<[\s\n\t]*\/a[\s\n\t]*>/gi,'</'+customTagName+'>')
-      +'</html>');
-    eventDivPage.innerHTML = cheerio.load(parsedLinkedPage).html();
+    if (currentEventURL){
+      eventDiv.innerHTML = '<div class="SCRPXlinkedPageEventHeader">'+currentEventURL+'</div>';
+      const currentLinkedPage = linkedFileContent[currentEventURL];
+      console.log('contain',currentLinkedPage.slice(0,200));
+      const parsedLinkedPage = parseDocument('<html><head></head>'
+        +currentLinkedPage.replace(/<[\s\n\t]*a /gi,'<'+customTagName+' ').replace(/<[\s\n\t]*\/a[\s\n\t]*>/gi,'</'+customTagName+'>')
+        +'</html>');
+      eventDivPage.innerHTML = cheerio.load(parsedLinkedPage).html();
+    }else{
+      eventDiv.innerHTML = '<div class="SCRPXlinkedPageEventHeader">'+"Event with no link"+'</div>';
+      eventDivPage.textContent = 'Invalid event.';
+    }
+    
     eventDiv.appendChild(eventDivPage);
     eventDivPage.style.display = 'none';
     const eventShowTags = document.createElement('div');
@@ -1854,7 +1903,6 @@ function clearAllTags(clearOnlySubTags = false){
 function applyTags(){
 
   console.log('\x1b[43m\x1b[30mapplying tags\x1b[0m');
-let u;
   // add css classes to event blocks
 
   eventTagList.filter(el => el.textContent.trim().length > 0).forEach(el => {
@@ -1872,31 +1920,35 @@ let u;
   });
  
 
-  if (currentPage === 'mainPage'){
+  // if (currentPage === 'mainPage'){
     principalTag.classList.add('SCRPXmainTag');
-  }
+  // }
 
 
   // apply tags for sub events
   if (subEventPath) {
     applySubEventDelimiterTags();
   }
-  
-  // console.log(Array.from(rightPanel.querySelectorAll('*')).filter(el => el.hasAttribute('isURL')));
-  // const blocksToProcess = currentPage === 'mainPage'?eventTagList:[rightPanel];
-  const blocksToProcess = eventTagList;
 
+  // add classes for highlights in the right panel
   Object.keys(venue[currentPage]).forEach(key => {
     className = 'SCRPXhighlight'+key.replace('event','').replace('Tags','').replace('Multi','');
     venue[currentPage][key].forEach(path =>{
-      blocksToProcess.forEach(rootTag =>{
+      eventTagList.forEach(rootTag =>{
         const tags = findTagsFromPath(rootTag,path); 
         tags.forEach(tag => {
           if (currentPage === 'mainPage'){
-            tag.classList.add(className);
+            if (path.length > 0){
+              tag.classList.add(className);
+            }else{
+              tag.classList.remove('SCRPXeventBlock', 'SCRPXmainTag');
+              tag.classList.add(className, 'SCRPXeventBlockWithField');
+            }
+            
           }else if(rootTag !== principalTag){
+            // in the linked page, add a new div that shows the matches from the tag without showing the whole page
             const newDiv = document.createElement('div');
-            newDiv.textContent = tag.textContent;
+            newDiv.textContent = getTextFromTag(tag);
             newDiv.classList.add(className);
             rootTag.parentElement.children[2].append(newDiv);
           }else{
@@ -2008,7 +2060,7 @@ function makeEventsMap(){
         let url;
         // take the first URL found in the url tag list
         while (!url && k < venue.mainPage.eventURLTags.length) {
-          url = getURLFromAncestor(findTagsFromPath(eventTagList[i], venue.mainPage.eventURLTags[k])[0]);
+          url = makeURL(venue.baseURL,getURLFromAncestor(findTagsFromPath(eventTagList[i], venue.mainPage.eventURLTags[k])[0]));
           k++;
         }
         eventsMap[eventIndex.toString()] = {url: url, mainIndex: i, linkedPageIndex: eventIndex-1};
@@ -2022,7 +2074,7 @@ function makeEventsMap(){
           let k = 0;
           let url;
           while (!url && k < tagPathsFromSubEvent.length) {
-            url = getURLFromAncestor(findTagsFromPath(subEvents[j], tagPathsFromSubEvent[k])[0]);
+            url = makeURL(venue.baseURL,getURLFromAncestor(findTagsFromPath(subEvents[j], tagPathsFromSubEvent[k])[0]));
             k++;
           }
           eventsMap[eventIndex.toString()+'.'+(j+1).toString()] = {url: url, mainIndex: i, subIndex: j, linkedPageIndex: linkedPageIndex};
@@ -2030,7 +2082,7 @@ function makeEventsMap(){
         }
         eventIndex++;
       } else {
-        const url = eventTagList[i].getAttribute('href');
+        const url = makeURL(venue.baseURL,eventTagList[i].getAttribute('href'));
         eventsMap[(eventIndex).toString()] = {url: url, mainIndex: i, linkedPageIndex: eventIndex-1};
         eventIndex++;
       }
@@ -2048,9 +2100,8 @@ function computeMissingLinks(){
   console.log('Computing missing links');
 
   linkedFileContent = fs.existsSync(sourcePath+'linkedPages.json')?loadLinkedPages(sourcePath):[];
-  // const hrefList = getHrefListFrom([localPage],venueWithCustomTags(venue));
+  // console.log(getHrefListFrom([localPage],venueWithCustomTags(venue)));
   const hrefList = Object.keys(eventsMap).map(key => eventsMap[key].url).filter(el => el);
-  // console.log(hrefList);
   const existingLinks = hrefList.filter(el => Object.keys(linkedFileContent).includes(el));
   const nbLinksToDownload = hrefList.length - existingLinks.length;
 
@@ -2167,15 +2218,14 @@ function computeDateFormat(){
     .map(el => replaceWithCustomTags(el))
     .map(el => el.replace(subEventPath, '').replace(/^>/, ''));
 
-  // const blocksToProcess = currentPage === 'mainPage'?eventTagList:[rightPanel];
-  const blocksToProcess = eventTagList;
+  
 
-  blocksToProcess.forEach(eventTag => {
+  eventTagList.forEach(eventTag => {
     let dateString = '';
 
     if ('eventDateTags' in venue[currentPage]) {
       dateString += venue[currentPage]['eventDateTags'].flatMap(dateTag => findTagsFromPath(eventTag, dateTag))
-        .map(tag => tag.textContent).join(' ');
+        .map(tag => getTextFromTag(tag)).join(' ');
     }
 
     if ('eventMultiDateTags' in venue[currentPage]) {
@@ -2184,11 +2234,10 @@ function computeDateFormat(){
         dates.push(removeBlanks(dateString));
       } else {
         subEventDelimiterTagList.forEach(subEventTag => {
-          // console.log(subEventTag.textContent);
           let newDateString = dateString;
           tagPathsFromSubEvent.forEach(path => {
             findTagsFromPath(subEventTag, path).forEach(tag => {
-              newDateString += ' ' + tag.textContent;
+              newDateString += ' ' + getTextFromTag(tag);
             });
           });
           dates.push(removeBlanks(newDateString));
@@ -2368,11 +2417,6 @@ function populateField(textBox, strings, append){
   }
 }
 
-function getValueFromBox(textBox){
-  const divsChildren = Array.from(textBox.querySelectorAll('div'));
-  return divsChildren.map(myDiv => myDiv.textContent.trim());
-}
-
 
 
 // to be removed, only find the url in the main delimiter now
@@ -2462,7 +2506,7 @@ function removeEmptyFields(object){
   fieldsToCheck.forEach(field => {
     if (object.hasOwnProperty(field)){
       Object.keys(object[field]).forEach(key =>{
-        object[field][key] = object[field][key].filter(el =>  /\S/.test(el));
+        // object[field][key] = object[field][key].filter(el =>  /\S/.test(el));
         if (object[field][key].length === 0){
           delete object[field][key];
         }
@@ -2479,16 +2523,6 @@ function focusTo(element, behavior = 'smooth', position = 'center'){
   }
 }
 
-
-function highlightStringsNotFound(divsChildren){
-  divsChildren.forEach(myDiv =>{
-    if ($page.text().includes(myDiv.textContent.trim())){
-      myDiv.classList.remove('redFont');
-    }else{
-      myDiv.classList.add('redFont');
-    }
-  });
-}
 
 
 ///////////////////////////////////////////////
@@ -2692,7 +2726,6 @@ function getDescFromJSON(rootTag, subTagsList){
             markAndPropagateTag(tag, {isURL: true});
             currentURLTag = tag;
           } else {
-            // console.log(tag.tagName, tag.textContent);
             markAndPropagateTag(tag, {desc: key});
           }
         });
@@ -2813,10 +2846,8 @@ function getSubTags(tag){
     console.log("\x1b[33mWarning: badly nested divs found in tag \x1b[36m'"+tag.tagName+"'\x1b[0m: "+tag.textContent
       +'. \x1b[33mBadly nested text:\x1b[0m '+parentText
     );
-    // descendants.forEach(el => console.log(el.tagName, el.textContent));
     selectedTags.push(tag);
   }
-  // selectedTags.forEach(el => console.log(el.tagName,el.textContent));
   return selectedTags;
 }
 
@@ -3161,8 +3192,6 @@ function makeSubEvents(){
 
   ungroupDivs(easyPanelFields);
   
-  // const currentRootTag = currentPage === 'mainPage'?principalTag:rightPanel;
-  // const blocksToProcess = currentPage === 'mainPage'?eventTagList:[rightPanel];
 
   const commonAncestor = findCommonAncestor(subTags[currentPage].filter(el => el.isMulti));
 
@@ -3221,8 +3250,6 @@ function markAndPropagateTag(tag, change){
   isURL = change.hasOwnProperty('isURL')?change.isURL:undefined;  
   isMulti = change.hasOwnProperty('isMulti')?change.isMulti:undefined;
 
-  // console.log(tag.textContent.replace(/[\s\n\t]{1,}/g," "), isMulti);
-
   // get the path of the tag that is being modified
 
   // const tagPath = currentPage === 'mainPage'?getPath(principalTag,tag):getPath(rightPanel,tag);
@@ -3233,7 +3260,6 @@ function markAndPropagateTag(tag, change){
 
   if (isURL){// isURL !== undefined and null: a new URL tag is set, isURL has to be removed of all other tags
     rightPanel.querySelectorAll('[isURL = "true"]').forEach( t => {
-      // console.log('remove',t.textContent.replace(/[\s\n\t]{1,}/g,''),t.getAttribute('isURL'));
       t.removeAttribute('isURL');
     });
   }
@@ -3511,6 +3537,26 @@ function setVarRefForCss(element, varString, key, replaceMulti = false){
   element.style.setProperty(varString, prop);
 }
 
+function switchDelimiterColors(element, varString){
+  varList = ['--xxx-bg-color', '--xxx-font-color', '--xxx-lighter-color',
+              '--xxx-button-color', '--xxx-lightest-color'];
+              varList.forEach(variable => {
+                const computedStyle = getComputedStyle(document.documentElement);
+            
+                // old and new CSS variable
+                const oldVar = variable.replace('xxx', varString);
+                const newVar = variable.replace('xxx', varString === 'delimiter' ? 'linkedpagedelimiter' : 'delimiter');
+            
+                // get the values in :root
+                const oldValue = computedStyle.getPropertyValue(oldVar).trim();
+                const newValue = computedStyle.getPropertyValue(newVar).trim();
+            
+                // exchange values in root:root
+                document.documentElement.style.setProperty(oldVar, newValue);
+                document.documentElement.style.setProperty(newVar, oldValue);
+              });
+}
+
 
 function adjustLightness(colorVar, variation) {
   let color = getComputedStyle(document.documentElement).getPropertyValue(colorVar).trim();
@@ -3613,4 +3659,19 @@ function clearPrincipalTag(){
 
 function mod(k, n) {
   return ((k % n) + n) % n;
+}
+
+
+// get the text from tag. Add missing white spaces between blocks (eg 10mai2025 should be 10 mai 2025).
+// Missing white spaces sometimes occur when the tag has children.
+// this function is supposed to be working with badly nested divs.
+// this should only happen in linked pages because only terminal tags are found in the main page
+function getTextFromTag(tag){
+  let res = tag.textContent;
+  if (tag.children.length > 0){
+    Array.from(tag.children).forEach(child => {
+      res = res.replace(child.textContent, ' '+getTextFromTag(child)+' ');
+    });
+  }
+  return res.trim().replace(/[\n\s\t]{1,}/g,' ');
 }
