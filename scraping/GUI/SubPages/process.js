@@ -92,7 +92,7 @@ let nbPages = 0;
 const keyNames = ['Name','Date','Style','Place','URL'];
 const colorClassList = ['SCRPXhighlightName','SCRPXhighlightDate','SCRPXhighlightStyle',
                         'SCRPXhighlightPlace','SCRPXhighlightURL','SCRPXhighlightURLOverlay','SCRPXhighlightUnknown'];
-const reservedClassList = colorClassList.concat(['SCRPXhighlightMultiName','SCRPXhighlightMultiDate','SCRPXhighlightMultiStyle','SCRPXhighlightMultiPlace','SCRPXhighlightMultiURL',
+const reservedClassList = colorClassList.concat(['SCRPXhighlightUnused','SCRPXhighlightMultiName','SCRPXhighlightMultiDate','SCRPXhighlightMultiStyle','SCRPXhighlightMultiPlace','SCRPXhighlightMultiURL',
   'SCRPXmainTag','SCRPXeventBlock','SCRPXeventBlockInvalid','SCRPXeventBlockWithURL','SCRPXshadow','SCRPXsubEvent',
   'SCRPXmouseHighlight','SCRPXmouseHighlight2']);
 const easyButtonClassList = ['easyButtonName','easyButtonDate','easyButtonStyle','easyButtonPlace','easyButtonURL'];
@@ -342,6 +342,8 @@ rightPanel.addEventListener('click', (event) => {
   
   const clickedElement = event.target;
 
+  console.log(clickedElement);
+
   if (clickedElement === rightPanel){
     return;
   }
@@ -353,7 +355,7 @@ rightPanel.addEventListener('click', (event) => {
 
   if (clickedElement.classList.contains('SCRPXlinkedPageMainBlock')){
     movePrincipalTagTo(eventsMap[clickedElement.id]);
-    movePrincipalTagTo(clickedElement.children[1]);
+    // movePrincipalTagTo(clickedElement.children[1]);
     return;
   }
 
@@ -474,7 +476,7 @@ function makePrincipalTag(initialTag, firstLoad = false){
       populateEasyPanel(firstLoad);
       updateEventIndexInput();
     }else{// some tags may have change, for example if there are more events in eventTagList
-      makeSubEvents();
+      makeSubEvents(true);
     }
     makeExtendButton(principalTag);
   }
@@ -485,10 +487,12 @@ function makePrincipalTag(initialTag, firstLoad = false){
 }
 
 function computeSubEventIndex(){
+  console.log('computing sub event index', currentSubEventIndex);
   if (currentPage !== 'mainPage' || !principalTag || !subEventPath){
     return undefined;
   }
   const multiTag = subTags[currentPage].find(tag => tag.isMulti);
+
   if (multiTag){
     const subEvents = findTagsFromPath(principalTag,subEventPath);
     const mainSubEventIndex = subEvents.findIndex(se => isAncestorOf(se,multiTag));
@@ -497,6 +501,17 @@ function computeSubEventIndex(){
     }
     return mainSubEventIndex;
   }
+
+  // in this case, sub events exist (subEventPath is not undefined), but no multi tag is defined. This happens when the sub event has been declared for example in the 
+  // second sub event, but the current event has less than 2 sub events.
+  // is this working when sub events have been defined, but no subeventpath has been set up ?
+  // or should it be replaced by
+  //
+  // if (subEventPath){
+  //   return 0;
+  // } 
+  // ??
+  return 0;
   
 }
 
@@ -948,10 +963,11 @@ function populateEasyPanel(firstLoad = false){
     })
   }
 
-  makeSubEvents();
+  makeSubEvents(firstLoad);
   computeDateFormat();
 }
 
+// create an entry in the missing tag panel for the tags that have been declared but do not appear in the current event
 function newMissingTagLine(tagPath, key){
   // console.log('new missing tag', tagPath, key);
   let newDiv = document.createElement('div');
@@ -959,18 +975,64 @@ function newMissingTagLine(tagPath, key){
   // newDiv.tagPath = tagPath;
   let inputElement = document.createElement('input');
   inputElement.readOnly = true;
-  inputElement.classList.add('easyPanelLine');
+  inputElement.classList.add('easyField');
   inputElement.setAttribute('type', 'text');
   inputElement.value = 'Tag not in current event';
   newDiv.appendChild(inputElement);
 
+  for(i=0;i<keyNames.length;i++){
+    const newFakeButton = document.createElement('div');
+    newFakeButton.classList.add('fakeEasyButton'); 
+    setVarRefForCss(newFakeButton, "--category-bg-color", key);
+    if (key.includes(keyNames[i])){
+      // console.log('SCRPXhighlight'+keyNames[i]);
+      newFakeButton.classList.add('SCRPXhighlight'+keyNames[i]);
+      newFakeButton.title = keyNames[i];
+    }else{
+      newFakeButton.classList.add('inactive');
+    }
+    newDiv.appendChild(newFakeButton);
+  }
+
   const newButton = document.createElement('button');
+  newButton.classList.add('easyButton');
   newButton.classList.add('easyRemoveButton');
+  newButton.title = 'Remove';
   newButton.textContent = '✖';
   newButton.addEventListener('click', function(){
     unusedTags[currentPage][key] = unusedTags[currentPage][key].filter(el => el !== tagPath);
-    // markAndPropagateTag(tag, {desc: null, isURL: false, isMulti: false});
-    populateEasyPanel();
+    if (unusedTags[currentPage][key].length === 0){
+      delete unusedTags[currentPage][key];
+    }
+
+    let tag;
+    let rootTag;
+
+    // find in which event can a tag defining this tagPath can be found
+    for (rootTag of eventTagList){
+      const tags = findTagsFromPath(rootTag, tagPath).filter(el => el.desc && el.desc === key);
+      if (tags.length>0){
+        tag = tags[0];
+        break;
+      }
+
+    }
+    // const rootTag = eventTagList.find(eventTag => findTagsFromPath(eventTag, tagPath)
+                                        // .filter(tag => tag.desc & tag.desc === key).length>0);
+
+    markAndPropagateTag(tag, {desc: null, isURL: false, isMulti: false}, rootTag);
+    console.log(!Object.keys(unusedTags[currentPage]).some(el => el.includes('Multi')));
+    // if no more tag has multi, remove sub event path
+    if (!subTags.linkedPage.some(el => el.isMulti) && !Object.keys(unusedTags[currentPage]).some(el => el.includes('Multi'))){
+    // if (!subTags.linkedPage.some(el => el.isMulti)) {
+      console.log('removing sub event path');
+      subEventPath = undefined;
+    }
+        
+    newDiv.remove();
+    if (missingPanelFields.children.length === 0){
+      document.getElementById('missingTagsPanel').style.display = 'none';
+    }
   });
   newDiv.appendChild(newButton);
   missingPanelFields.appendChild(newDiv);
@@ -995,7 +1057,6 @@ function newEasyLine(tag, index){
   inputElement.classList.add('easyField');
   inputElement.setAttribute('type', 'text');
   inputElement.value = text;
-  console.log(text);
   newDiv.appendChild(inputElement);
   if (tag.isMulti){
     inputElement.classList.add('easyFieldBg');
@@ -1018,107 +1079,112 @@ function newEasyLine(tag, index){
 
       inputElement.classList.add('easyFieldBg');
     }
-    makeSubEvents();
+    makeSubEvents(true);
   });
 
 
   // create buttons for changing field type (name, date, ...)
   for(i=0;i<keyNames.length;i++){
     // if (tag !== principalTag || keyNames[i].toLowerCase() === 'url'){
-    if (true){
-        let newEasyButton = document.createElement('button');
+ 
+    let newEasyButton = document.createElement('button');
+    setEasyButtonDesign(newEasyButton, keyNames[i]);
+    newEasyButton.classList.add('easyLine' + index); // used to identify buttons on the same line
+    newEasyButton.eventTagType = 'event' + (tag.isMulti ? 'Multi' : '') + keyNames[i] + 'Tags'; // set the corresponding tag field
+    // newEasyButton.colorClass = colorClassList[i]; // set the color class when active
+    newEasyButton.inputElement = inputElement;
 
-      setEasyButtonDesign(newEasyButton, keyNames[i]);
-      newEasyButton.classList.add('easyLine'+index); // used to identify buttons on the same line
-      newEasyButton.eventTagType = 'event'+(tag.isMulti?'Multi':'')+keyNames[i]+'Tags'; // set the corresponding tag field
-      // newEasyButton.colorClass = colorClassList[i]; // set the color class when active
-      newEasyButton.inputElement = inputElement;
-      
-      // if the type (name, date, ...) is the same than the current button, make it active
-      if (tag.desc === newEasyButton.eventTagType){
-        newEasyButton.classList.add('activeButton');
+    // if the type (name, date, ...) is the same than the current button, make it active
+    if (tag.desc === newEasyButton.eventTagType) {
+      newEasyButton.classList.add('activeButton');
       //   newEasyButton.classList.add(newEasyButton.colorClass);
-      }
-      if (newEasyButton.eventTagType.replace('Multi','') === 'eventURLTags' && tag.hasAttribute('isURL')){
-        newEasyButton.classList.add('activeButton');
-        // newEasyButton.classList.add(newEasyButton.colorClass);
-      }
+    }
+    if (newEasyButton.eventTagType.replace('Multi', '') === 'eventURLTags' && tag.hasAttribute('isURL')) {
+      newEasyButton.classList.add('activeButton');
+      // newEasyButton.classList.add(newEasyButton.colorClass);
+    }
 
-      // if the tag and ancestors have no url link, deactivate the button
-      if (keyNames[i] === 'URL'){
-        if (!findAncestorWithURL(tag)){
-          newEasyButton.classList.add('inactiveURL');
-        }else{
-          newEasyButton.title = 'URL: '+findAncestorWithURL(tag).getAttribute('href');
-          // URL switch button 
-          newEasyButton.addEventListener('click',function() {
-            if (tag.hasAttribute('isURL')){
-                // turn button off when clicking on an active button
-                // this.classList.remove(this.colorClass);
-                this.classList.remove('activeButton');
-                markAndPropagateTag(tag, {isURL: null});
-                currentURLTag = undefined;
-            }else{
-              // turn of all other URL button and remove isURL marker (there can be only one URL)
-              const easyButtons = easyPanelFields.getElementsByClassName('eventTagTypeButton');
-              for (button of easyButtons){
-                if (button.eventTagType.replace('Multi','') === 'eventURLTags'){
-                  button.classList.remove('activeButton');
-                }
+    // if the tag and ancestors have no url link, deactivate the button
+    if (keyNames[i] === 'URL') {
+      if (!findAncestorWithURL(tag)) {
+        newEasyButton.classList.add('inactiveURL');
+      } else {
+        newEasyButton.title = 'URL: ' + findAncestorWithURL(tag).getAttribute('href');
+        // URL switch button 
+        newEasyButton.addEventListener('click', function () {
+          if (tag.hasAttribute('isURL')) {
+            // turn button off when clicking on an active button
+            // this.classList.remove(this.colorClass);
+            this.classList.remove('activeButton');
+            markAndPropagateTag(tag, { isURL: null });
+            currentURLTag = undefined;
+          } else {
+            // turn of all other URL button and remove isURL marker (there can be only one URL)
+            const easyButtons = easyPanelFields.getElementsByClassName('eventTagTypeButton');
+            for (button of easyButtons) {
+              if (button.eventTagType.replace('Multi', '') === 'eventURLTags') {
+                button.classList.remove('activeButton');
               }
-              // activate the current button
-              markAndPropagateTag(tag, {isURL: true});
-              currentURLTag = tag;
-              // this.classList.add(this.colorClass);
-              this.classList.add('activeButton');
             }
-            computeTags();
-            makeEventsMap();
-            if (currentPage === 'linkedPage' && useLinks){
-              computeMissingLinks();
-            }
-            renderEventURLPanel();
-          });
-        }
-      }else{
-        // new button for keyName !== URL
-        newEasyButton.addEventListener('click',function() {
-          if (newEasyButton.classList.contains('inactive')){
-            return;
-          }
-      
-          // when clicking on the button, make all buttons of the line inactive
-          const buttonList = easyPanelFields.getElementsByClassName('easyLine'+index);
-          for(j=0;j<buttonList.length;j++){
-            if (keyNames[j] !== 'URL'){
-              buttonList[j].classList.remove(colorClassList[j]);
-              buttonList[j].classList.remove('activeButton');
-            }
-          }
-          if (tag.desc === this.eventTagType){
-              // turn button off when clicking on an active button
-              markAndPropagateTag(tag, {desc: null});
-          }else{
             // activate the current button
-            markAndPropagateTag(tag, {desc: this.eventTagType});
+            markAndPropagateTag(tag, { isURL: true });
+            currentURLTag = tag;
             // this.classList.add(this.colorClass);
             this.classList.add('activeButton');
           }
           computeTags();
-          computeDateFormat();
+          makeEventsMap();
+          if (currentPage === 'linkedPage' && useLinks) {
+            computeMissingLinks();
+          }
+          renderEventURLPanel();
         });
       }
-      newDiv.appendChild(newEasyButton);
+    } else {
+      // new button for keyName !== URL
+      newEasyButton.addEventListener('click', function () {
+        if (newEasyButton.classList.contains('inactive')) {
+          return;
+        }
+
+        // when clicking on the button, make all buttons of the line inactive
+        const buttonList = easyPanelFields.getElementsByClassName('easyLine' + index);
+        for (j = 0; j < buttonList.length; j++) {
+          if (keyNames[j] !== 'URL') {
+            // buttonList[j].classList.remove(colorClassList[j]);
+            buttonList[j].classList.remove('activeButton');
+          }
+        }
+        if (tag.desc === this.eventTagType) {
+          // turn button off when clicking on an active button
+          markAndPropagateTag(tag, { desc: null });
+        } else {
+          // activate the current button
+          markAndPropagateTag(tag, { desc: this.eventTagType });
+          // this.classList.add(this.colorClass);
+          this.classList.add('activeButton');
+        }
+        computeTags();
+        computeDateFormat();
+      });
     }
+    newDiv.appendChild(newEasyButton);
   }
 
   if (currentPage === 'linkedPage'){
     const newButton = document.createElement('button');
     newButton.classList.add('easyButton');
     newButton.classList.add('easyRemoveButton');
+    newButton.title = 'Remove';
     newButton.textContent = '✖';
     newButton.addEventListener('click', function(){
       subTags.linkedPage = subTags.linkedPage.filter(el => el !== newDiv.tag);
+      // if all 'multi' tags have been removed, remove the subEventPath
+      // should it be also for unused tags ?
+      // if (!subTags.linkedPage.some(el => el.isMulti) && !Object.keys(unusedTags.linkedPage).some(el => el.includes('Multi'))){
+      if (!subTags.linkedPage.some(el => el.isMulti)){
+        subEventPath = undefined;
+      }
       markAndPropagateTag(tag, {desc: null, isURL: false, isMulti: false});
       populateEasyPanel();
     });
@@ -1140,11 +1206,19 @@ function computeTags(){
 
   // remove sub events divs and headers
   removeSubEventHeaders();
-  rightPanel.querySelectorAll('div.SCRPXsubEventHeader').forEach(div => div.remove());
-  
-
   clearAllTags();
-  venue[currentPage] = {};
+
+  // if subEventPath exists, and no tag as .isMulti, and if a sub event can be found, that means that the sub event has been defined with an index that exceeds the
+  // current number of sub events. Ex: defining sub event on the 3rd sub event of one event, and the current event only has 2 subevents. In that case, the paths of
+  // "multi" tags should not be erased.
+  if (subEventPath && findTagsFromPath(principalTag, subEventPath).length > 0 && !subTags[currentPage].some(el => el.isMulti)){
+    Object.keys(venue[currentPage]).filter(key => !key.includes('Multi')).forEach(key => {
+      delete venue[currentPage][key];
+    });
+  }else{
+    venue[currentPage] = {};
+  }
+ 
 
   // identify sub event delimiter. Could use subEventPath instead of findCommonAncestor ?
   const subEventDelimiter = findCommonAncestor(subTags[currentPage].filter(el => el.isMulti));
@@ -1206,7 +1280,6 @@ function computeTags(){
   });
   ProcessRegex();
 
-  console.log(venue[currentPage]);
   
   // update tag fields on the GUI
   for(let i = 0; i < eventTagsBoxes.length; i++){
@@ -1346,6 +1419,7 @@ function changeEventIndex(eventKey, updateInput = true){
     clearPrincipalTag();
     
     principalTag = eventTagList[principalTagIndex];
+    removeSubEventHeaders();
     subTags[currentPage] = getSubTags(principalTag);
 
     populateEasyPanel();
@@ -1672,7 +1746,6 @@ function makeLinksPage(){
     if (currentEventURL){
       eventDiv.innerHTML = '<div class="SCRPXlinkedPageEventHeader">'+currentEventURL+'</div>';
       const currentLinkedPage = linkedFileContent[currentEventURL];
-      console.log('contain',currentLinkedPage.slice(0,200));
       const parsedLinkedPage = parseDocument('<html><head></head>'
         +currentLinkedPage.replace(/<[\s\n\t]*a /gi,'<'+customTagName+' ').replace(/<[\s\n\t]*\/a[\s\n\t]*>/gi,'</'+customTagName+'>')
         +'</html>');
@@ -1786,7 +1859,7 @@ function adjustTag(path, subEventPath = undefined){
     return path;
   }
 
-  const start = performance.now();
+  // const start = performance.now();
   // let tagName = principalTag.tagName;
 
   // identify what tag is the first to block finding tags in other events. If the tag
@@ -1930,7 +2003,10 @@ function applyTags(){
     applySubEventDelimiterTags();
   }
 
-  // add classes for highlights in the right panel
+
+  // add classes for highlights in the right panel. The subevents for linked pages will be filled
+  // later
+ 
   Object.keys(venue[currentPage]).forEach(key => {
     className = 'SCRPXhighlight'+key.replace('event','').replace('Tags','').replace('Multi','');
     venue[currentPage][key].forEach(path =>{
@@ -1946,22 +2022,109 @@ function applyTags(){
             }
             
           }else if(rootTag !== principalTag){
-            // in the linked page, add a new div that shows the matches from the tag without showing the whole page
-            const newDiv = document.createElement('div');
-            newDiv.textContent = getTextFromTag(tag);
-            newDiv.classList.add(className);
-            rootTag.parentElement.children[2].append(newDiv);
+            // in the linked page, add a new div that shows the matches from the tag without showing 
+            // the whole page. Do this only for non multi tags (multi tags will be processed seperatly)
+            if (!key.includes('Multi')){
+              const newDiv = document.createElement('div');
+              newDiv.textContent = getTextFromTag(tag);
+              newDiv.classList.add(className);
+              rootTag.parentElement.children[2].append(newDiv);
+            }
           }else{
-            // if (rootTag === principalTag){
             tag.classList.add(className);
-            // }
           }
         });
       });
     })
   });
 
-  // const subEventTags = rightPanel.querySelectorAll('*').filter(el => el.isSubEventDelimiter);
+  // add classes for highlights for unused tags in the right panel. The subevents for linked pages will be filled
+  // later
+  Object.keys(unusedTags[currentPage]).forEach(key => {
+    const className = 'SCRPXhighlight' + key.replace('event', '').replace('Tags', '').replace('Multi', '');
+    unusedTags[currentPage][key].forEach(path => {
+      eventTagList.forEach(rootTag => {
+        const tags = findTagsFromPath(rootTag, path);
+        tags.forEach(tag => {
+          if (currentPage === 'mainPage') {
+            if (path.length > 0) {
+              tag.classList.add(className);
+            } else {
+              tag.classList.remove('SCRPXeventBlock', 'SCRPXmainTag');
+              tag.classList.add(className, 'SCRPXeventBlockWithField');
+            }
+          } else if (rootTag !== principalTag) {
+            // in the linked page, add a new div that shows the matches from the tag without showing the whole page
+            if (!key.includes('Multi')){
+              const newDiv = document.createElement('div');
+              newDiv.textContent = getTextFromTag(tag);
+              newDiv.classList.add('SCRPXhighlightUnused');
+              setVarRefForCss(newDiv, "--category-bg-color", key.replace('Multi', '').replace('Tags', '').replace('event', ''));
+              // setVarRefForCss(newDiv, "--category-bg-color", 'Date');
+              rootTag.parentElement.children[2].append(newDiv);  
+            }
+          } else {
+            tag.classList.add(className);
+          }
+        });
+      });
+    })
+  });
+
+
+  // make subevent in linked page for events that are not in the principal tag
+  if (currentPage === 'linkedPage' && subEventPath){
+    const multiKeys = Object.keys(venue.linkedPage).filter(key => key.includes('Multi'));
+    const multiKeysUnused = Object.keys(unusedTags.linkedPage).filter(key => key.includes('Multi'));
+    
+    eventTagList.forEach(rootTag =>{
+      if(rootTag !== principalTag){
+        findTagsFromPath(rootTag, subEventPath).forEach(subEventTag => {
+          const subEventDiv = document.createElement('div');
+          subEventDiv.classList.add('SCRPXsubEvent');
+          const headerDiv = document.createElement('div');
+          headerDiv.classList.add('SCRPXsubEventHeader');
+          headerDiv.textContent = 'Sub event';
+          subEventDiv.append(headerDiv);
+          rootTag.parentElement.children[2].append(subEventDiv);
+
+          // for regular keys
+          multiKeys.forEach(key => {
+            const className = 'SCRPXhighlight' + key.replace('eventMulti', '').replace('Tags', '');
+            venue.linkedPage[key].forEach(tagPath => {
+              const pathAfterDelimiter = tagPath.replace(subEventPath,'').replace(/^>/,'');
+              findTagsFromPath(subEventTag, pathAfterDelimiter).forEach(tag => {
+                const newDiv = document.createElement('div');
+                newDiv.textContent = getTextFromTag(tag);
+                newDiv.classList.add(className);
+                subEventDiv.append(newDiv);
+              });
+            });
+          });
+
+          // for unused keys
+          multiKeysUnused.forEach(key => {
+           unusedTags.linkedPage[key].forEach(tagPath => {
+              const pathAfterDelimiter = tagPath.replace(subEventPath,'').replace(/^>/,'');
+              findTagsFromPath(subEventTag, pathAfterDelimiter).forEach(tag => {
+                const newDiv = document.createElement('div');
+                newDiv.textContent = getTextFromTag(tag);
+                newDiv.classList.add('SCRPXhighlightUnused');
+                setVarRefForCss(newDiv, "--category-bg-color", key.replace('eventMulti', '').replace('Tags', ''));
+                subEventDiv.append(newDiv);
+              });
+            });
+          });
+
+          // remove sub event if it there is no tag inside
+          if (subEventDiv.children.length === 1){
+            subEventDiv.remove();
+          }
+        });
+      };
+    });
+  }
+
 
   // Colorize tags that have no type
   if (currentPage === 'linkedPage'){
@@ -2801,9 +2964,7 @@ function getDescFromJSON(rootTag, subTagsList){
       });
     });
 
-  // if (Object.keys(unusedTags[currentPage]).length > 0){
-  //   console.log('There are unused tag paths in '+(currentPage==='mainPage'?'the main page':'the linked page')+' venue', unusedTags);
-  // }
+
 
 }
 
@@ -3095,6 +3256,7 @@ function isAncestorOf(candidate,tag){
 function applySubEventDelimiterTags(){
   rightPanel.querySelectorAll('*').forEach(el => {
     if (el.isSubEventDelimiter){
+      // console.log(el.textContent);
       el.classList.add('SCRPXsubEvent');
       const headerDiv = document.createElement('div');
       headerDiv.classList.add('SCRPXsubEventHeader');
@@ -3102,6 +3264,7 @@ function applySubEventDelimiterTags(){
       el.parentNode.insertBefore(headerDiv, el);
     }
   });
+  console.log('currentSubEventIndex', currentSubEventIndex);
 
   if (currentPage === 'mainPage'){
     const mainSubEvents = principalTag.querySelectorAll('.SCRPXsubEventHeader');
@@ -3153,10 +3316,7 @@ function ungroupDivs(mainDiv) {
   
   
   // remove group headers and css classes from html
-  // rightPanel.querySelectorAll('[isSubEventDelimiter]').forEach(el => {
-  //     delete el.isSubEventDelimiter;
-  //     el.classList.remove('SCRPXsubEvent');
-  //   });
+  
   Array.from(rightPanel.querySelectorAll('*')).filter(el => el.isSubEventDelimiter).forEach(el => {
     delete el.isSubEventDelimiter;
     el.classList.remove('SCRPXsubEvent');
@@ -3187,15 +3347,17 @@ function ungroupDivs(mainDiv) {
   easyPanelFields.querySelectorAll('div.subEventRightDiv').forEach(div => div.remove());
 }
 
-function makeSubEvents(){
+function makeSubEvents(recomputeSubEventPath = false){
   console.log('Making sub events');
-
+  
   ungroupDivs(easyPanelFields);
   
-
+  
   const commonAncestor = findCommonAncestor(subTags[currentPage].filter(el => el.isMulti));
 
-  subEventPath = getPath(principalTag, commonAncestor, true);
+  if (recomputeSubEventPath){
+    subEventPath = getPath(principalTag, commonAncestor, true);
+  }
   
   // applying grouping to all subevents
   if (subEventPath) {
@@ -3216,6 +3378,7 @@ function makeSubEvents(){
               markAndPropagateTag(line.tag, {desc: null, isURL: null});
             });
           }else{
+
           }
         }
         subEventTag.isSubEventDelimiter = true;
@@ -3244,7 +3407,9 @@ function makeSubEvents(){
 // desc: value is null if the desc is to be cleared
 // isURL: null/false if the field 'isURL' if the tag is not an URL tag
 // isMulti: null/false if the tag has not been marked as multi
-function markAndPropagateTag(tag, change){
+//
+// rootTag (optional): the tag from which the path should be computed.
+function markAndPropagateTag(tag, change, rootTag = undefined){
 
   desc = change.hasOwnProperty('desc')?change.desc:undefined;
   isURL = change.hasOwnProperty('isURL')?change.isURL:undefined;  
@@ -3253,9 +3418,9 @@ function markAndPropagateTag(tag, change){
   // get the path of the tag that is being modified
 
   // const tagPath = currentPage === 'mainPage'?getPath(principalTag,tag):getPath(rightPanel,tag);
-  let tagPath = getPath(principalTag,tag);
+  let tagPath = rootTag ? getPath(rootTag,tag) : getPath(principalTag,tag);
 
-  // adjust the path. WORKING FOR SUB EVENTS, OR ADJSUSTMENT SHOULD START AFTER subEventPath ?
+  // adjust the path. WORKING FOR SUB EVENTS, OR ADJUSTMENT SHOULD START AFTER subEventPath ?
   tagPath = adjustTag(tagPath);
 
   if (isURL){// isURL !== undefined and null: a new URL tag is set, isURL has to be removed of all other tags
@@ -3280,18 +3445,17 @@ function markAndPropagateTag(tag, change){
     }
   }
 
-  // modify tag propagate the changes to the corresponding tags in the other events
-  // if (currentPage === 'mainPage'){
-    eventTagList.forEach(rootTag => {
-      const similarTags = findTagsFromPath(rootTag,tagPath);
-      if (similarTags.length > 0){
-        const myTag = similarTags[0];
-        setTag(myTag);
-      }
-    });
-  // }else{
-  //   setTag(tag);
-  // }
+  // modify tag propagate the changes to the corresponding tags in the other events. Only the first matching tag is marked per event:
+  // it prevents propagating the tag to several sub events.
+ 
+  eventTagList.forEach(rootTag => {
+    const similarTags = findTagsFromPath(rootTag, tagPath);
+    if (similarTags.length > 0) {
+      const myTag = similarTags[0];
+      setTag(myTag);
+    }
+  });
+  
   
 }
 
@@ -3389,8 +3553,10 @@ function nbOfMatchingEvents(path, eventTagList){
 // can be reached with a given path from a given tagList
 function updateTagAdjustLevel(path, tagList){
   let updatedLevel = 0;
+  // get the classes for each tag for a given path
   const splittedPath= path.split('>')
   .map(el => el.split(':')[0].split('.').slice(1));
+  // browse the event tag list and verify that the path is relievant for each event tag
   tagList.forEach(rootTag => {
     findTagsFromPath(rootTag, path).forEach(tag => {
       // keep the list of class names
@@ -3452,12 +3618,16 @@ function setLeftPanelDesign(){
 function traceMissingTagInfo(subTags, firstLoad = false){
   console.log("tracing missing tags");
 
-  // verify if previous unused tags have found a tag. If yes, remove it from unused tags,
+  // verify if previous unused tags now correspond to a tag. If yes, remove it from unused tags,
   // mark corresponding tags, and if it is the linked page, push the tag in subTagsList.
   // Venue will be recomputed later in computeTags()
 
+  console.log('before',unusedTags[currentPage].length, unusedTags[currentPage]);
+
   Object.keys(unusedTags[currentPage]).forEach(key => {
     [...unusedTags[currentPage][key]].forEach(tagPath => {
+      // find tags corresponding to the given key. If on the main page, only keep the results
+      // that have a match in the subtags
       let foundTags = findTagsFromPath(principalTag, tagPath);
       if (currentPage === 'mainPage'){
         foundTags = foundTags.filter(tag => subTags[currentPage].includes(tag));
@@ -3466,21 +3636,29 @@ function traceMissingTagInfo(subTags, firstLoad = false){
       if (foundTags.length > 0){
         console.log('moving tag from unused');
         unusedTags[currentPage][key] = unusedTags[currentPage][key].filter(el => el !== tagPath);
-        foundTags.forEach(tag => {
-            const desc = key.includes('URL')?undefined:key;
-            console.log(desc);
-          subTags[currentPage].push(tag);
-          markAndPropagateTag(tag,{
-            desc: (key.includes('URL')?undefined:key),
-            isMulti: key.includes('Multi'),
-            isURL: key.replace('Multi','') === 'eventURLTags'
-          });
-        });
+        if (unusedTags[currentPage][key].length === 0){
+          delete unusedTags[currentPage][key];
+        }
+        // foundTags.forEach(tag => {
+        //   const desc = key.includes('URL')?undefined:key;
+        //   console.log(desc);
+        //   if (currentPage === 'linkedPage' && !subTags[currentPage].includes(tag)){
+        //     subTags[currentPage].push(tag);
+        //   }
+          
+        //   markAndPropagateTag(tag,{
+        //     desc: (key.includes('URL')?undefined:key),
+        //     // isMulti: key.includes('Multi'),
+        //     isURL: key.replace('Multi','') === 'eventURLTags'
+        //   });
+        // });
       }
     });
   });
 
-  // unusedTags[currentPage] = {};
+  // verify if tags are missing. If yes, add them to the unused list
+
+  console.log('middle',unusedTags[currentPage].length, unusedTags[currentPage]);
 
   if (!unusedTags.keepTrace[currentPage] && !firstLoad){
     return;
@@ -3507,6 +3685,9 @@ function traceMissingTagInfo(subTags, firstLoad = false){
     }
   });
 
+
+  console.log('after',unusedTags[currentPage].length, unusedTags[currentPage]);
+
   if (firstLoad){
     console.log('first load for ', currentPage);
     if(Object.keys(unusedTags[currentPage]).length > 0){
@@ -3515,7 +3696,8 @@ function traceMissingTagInfo(subTags, firstLoad = false){
     }
   }
 
-  console.log('\x1b[45mThere are missing tags in '+currentPage+' \x1b[0m', unusedTags[currentPage]);
+
+  console.log('\x1b[45mThere are missing tags in '+currentPage+' \x1b[0m', unusedTags[currentPage].length, unusedTags[currentPage]);
 }
 
 

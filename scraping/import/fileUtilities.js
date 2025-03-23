@@ -497,6 +497,7 @@ function getFilesContent(sourcePath, maxPages){
     } catch (err) {
         console.error('\x1b[31mError reading html files in directory \'%s\'.\x1b[0m Error: %s',sourcePath, err);
     }
+
     function readBodyContent(file) {
         const content = fs.readFileSync(file, 'utf-8');
         const $ = cheerio.load(content);

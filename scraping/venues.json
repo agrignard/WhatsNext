@@ -152,9 +152,11 @@
     },
     "eventURLIndex": 0,
     "linkedPage": {
+      "eventNameTags": [
+        "DIV.site.depth2:eq(0)>DIV.contentarea.depth3:eq(0)>MAIN.sitemain.depth4:eq(0)>DIV.concertcard.depth5:eq(0)>DIV.depth6:eq(0)>DIV.ukwidth23m.depth7:eq(0)>DIV.ccl.depth8:eq(0)>H1.depth9:eq(0)"
+      ],
       "eventDateTags": [
-        "DIV.cctime:eq(0) SPAN.cctd:eq(0)",
-        "DIV.cctime:eq(0) SPAN.ccth:eq(0)"
+        "DIV.site.depth2:eq(0)>DIV.contentarea.depth3:eq(0)>MAIN.sitemain.depth4:eq(0)>DIV.concertcard.depth5:eq(0)>DIV.depth6:eq(0)>DIV.ukwidth13m.ccr.depth7:eq(0)>DIV.depth8:eq(0)>DIV.cctime.depth9:eq(0)"
       ]
     },
     "linkedPageDateFormat": "dd-MM-yyyy-HH:mm",
@@ -380,16 +382,15 @@
       ]
     },
     "eventURLIndex": 1,
-    "dateFormat": "dd-MM-yyyy-HH:mm",
     "linkedPage": {
       "eventNameTags": [
         "DIV.containerfluid.depth2:eq(0)>DIV.row.depth3:eq(0)>SECTION.maincontent.depth4:eq(0)>DIV.margintop.depth5:eq(0)>DIV.container.depth6:eq(0)>DIV.row.depth7:eq(0)>DIV.colxs12.colmd8.depth8:eq(0)>DIV.panel.paneldefault.mt40.depth9:eq(0)>DIV.sheetconcertheader.depth10:eq(0)>DIV.panelbody.mb10.depth11:eq(0)>DIV.row.depth12:eq(0)>DIV.colxs12.colsm9.depth13:eq(0)>H1.mt0.mb10.bold.depth14:eq(0)>SPAN.red.depth15:eq(0)"
       ],
-      "eventMultiDateTags": [
-        "DIV.containerfluid.depth2>DIV.row.depth3>SECTION.maincontent.depth4>DIV.margintop.depth5>DIV.container.depth6>DIV.row.depth7>DIV.colxs12.colmd8.depth8>DIV.tabcontent.depth9>DIV.tabpane.active.depth10>DIV.panel.paneldefault.depth11>DIV.panelbody.depth12>DIV.panelbody__content.depth13>UL.listgroup.depth14>LI.listgroupitem.depth15"
-      ],
       "eventPlaceTags": [
         "DIV.containerfluid.depth2:eq(0)>DIV.row.depth3:eq(0)>SECTION.maincontent.depth4:eq(0)>DIV.margintop.depth5:eq(0)>DIV.container.depth6:eq(0)>DIV.row.depth7:eq(0)>DIV.colxs12.colmd8.depth8:eq(0)>DIV.panel.paneldefault.mt40.depth9:eq(0)>DIV.sheetconcertheader.depth10:eq(0)>DIV.panelbody.mb10.depth11:eq(0)>DIV.row.depth12:eq(0)>DIV.colxs12.colsm9.depth13:eq(0)>H1.mt0.mb10.bold.depth14:eq(0)>SPAN.small.depth15:eq(1)>B.depth16:eq(0)"
+      ],
+      "eventMultiDateTags": [
+        "DIV.containerfluid.depth2>DIV.row.depth3>SECTION.maincontent.depth4>DIV.margintop.depth5>DIV.container.depth6>DIV.row.depth7>DIV.colxs12.colmd8.depth8>DIV.tabcontent.depth9>DIV.tabpane.active.depth10>DIV.panel.paneldefault.depth11>DIV.panelbody.depth12>DIV.panelbody__content.depth13>UL.listgroup.depth14>LI.listgroupitem.depth15"
       ]
     },
     "linkedPageDateFormat": "dd-MM-yyyy-HH:mm",

@@ -254,8 +254,19 @@ body, html {
   background-color: var(--category-bg-color);
 }
 
+.fakeEasyButton{
+  position: relative;
+  width: 20px;
+  height: 20px;
+  margin-left: 2px;
+  border: none;
+  padding: 0;
+  --inactive-color: var(--easybutton-inactive-color);
+  background-color: var(--category-bg-color);
+}
+
 /* inactive is used to prevent buttons from working*/
-.easyButton.inactive, .easyButton.inactiveURL{
+.fakeEasyButton.inactive, .easyButton.inactive, .easyButton.inactiveURL{
   background-color: var(--inactive-color) !important;
 }
 
@@ -529,6 +540,27 @@ padding: 2px 6px;
   background-color: var(--name-bg-color);
 }
 
+
+.SCRPXhighlightUnused {
+  border: 1px solid var(--category-bg-color);
+  background-color: var(--dimmed-white-font);
+  margin-bottom: 2px;
+  background-image: repeating-linear-gradient(
+    45deg, 
+    var(--category-bg-color),
+    var(--category-bg-color) 1px,
+    transparent 1px, 
+    transparent 4px
+  ),
+  repeating-linear-gradient(
+    -45deg, 
+    var(--category-bg-color),
+    var(--category-bg-color) 1px,
+    transparent 1px, 
+    transparent 4px
+  );
+}
+
 .SCRPXhighlightName.subEvent {
   background-color: var(--name-bg-color-alt);
 }
@@ -759,7 +791,9 @@ padding: 2px 6px;
 
 .SCRPXeventBlockInvalid {
   border: 2px dashed grey; 
-  padding: 10px; 
+  padding: 5px; 
+  padding-left: 25px;
+  display: inline-block;
   margin: 1px;
   background: repeating-linear-gradient(
     -45deg,        
@@ -768,7 +802,6 @@ padding: 2px 6px;
     grey 10px, 
     grey 12px 
   );
-  display: inline-block; /* Permet à l'élément de s'ajuster à la largeur du contenu */
 }
 .SCRPXeventBlock {
   border: 2px solid var(--eventblock-border-color); 
@@ -807,6 +840,7 @@ padding: 2px 6px;
 
 .SCRPXsubEvent{
   border: 2px solid var(--verydarkgrey-font-color); 
+  margin: 1px;
   margin-bottom: 3px;
 }
 

@@ -51,6 +51,7 @@ if (venues.length === 0){
 async function scrap(venues){
   await testLlamaServer(useAI);
   await scrapFiles(venues.filter(el => !isAlias(el)));
+  console.log('fin');
   const venuesToSkip = venues.filter(el => isAlias(el)).map(el => el.name+' ('+el.city+', '+el.country+')');
   if (venuesToSkip.length>0){
     console.log('\x1b[36mWarning: the following venues have no scraping details and are only used as aliases. Run analex if it is a mistake.\x1b[0m',venuesToSkip);    
@@ -127,12 +128,15 @@ async function scrapFiles(venues) {
 
 
 async function analyseFile(venue) {
+
   const timeZone = timeZones.getTimeZone(venue);
   let linkedFileContent;//, inputFileList;
   const venueSourcePath = sourcePath+venue.country+'/'+venue.city+'/'+venue.name+'/';
   if (venue.hasOwnProperty('linkedPage')){
     linkedFileContent = loadLinkedPages(venueSourcePath);
   }
+  console.log('linked pages');
+
   // get file list to scrap
   // try {
   //   inputFileList = fs.readdirSync(venueSourcePath)
@@ -430,8 +434,14 @@ function  displayEventFullDetails(eventInfo){
   let string = 'Date: '+eventInfo.eventDate+'\n';
   string = string+'Event: '+eventInfo.eventName+'\n';
   Object.keys(eventInfo).forEach(key => {
-      if (!['eventName', 'eventDate', 'eventURL'].includes(key)){
-        string = string+(key.replace('event','')+': '+eventInfo[key.replace('Tags','')])+'\n';
+    if (!['eventName', 'eventDate', 'eventURL'].includes(key)){
+      if(key === 'source'){
+        // string = string + 'source: '+JSON.stringify(eventInfo.source);
+        string = string + 'source: '+ eventInfo.source.name + ' (' +eventInfo.source.city
+                        + ', ' + eventInfo.source.country + ')\n';
+      }else{
+        string = string+(key.replace('event','')+': '+eventInfo[key.replace('Tags','')])+'\n';         
+      }
     }
   });
   string = string +eventInfo.eventURL+'\n\n';
