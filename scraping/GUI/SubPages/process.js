@@ -487,7 +487,6 @@ function makePrincipalTag(initialTag, firstLoad = false){
 }
 
 function computeSubEventIndex(){
-  console.log('computing sub event index', currentSubEventIndex);
   if (currentPage !== 'mainPage' || !principalTag || !subEventPath){
     return undefined;
   }
@@ -1395,7 +1394,6 @@ eventSelectorIndex.addEventListener('input', function(){
 
 
 function changeEventIndex(eventKey, updateInput = true){
-  console.log(eventsMap[eventKey]);
 
   if (currentPage === 'linkedPage'){
     movePrincipalTagTo(eventsMap[eventKey]);
@@ -3264,7 +3262,6 @@ function applySubEventDelimiterTags(){
       el.parentNode.insertBefore(headerDiv, el);
     }
   });
-  console.log('currentSubEventIndex', currentSubEventIndex);
 
   if (currentPage === 'mainPage'){
     const mainSubEvents = principalTag.querySelectorAll('.SCRPXsubEventHeader');
@@ -3616,13 +3613,10 @@ function setLeftPanelDesign(){
 
 // find tags from venue that have no match 
 function traceMissingTagInfo(subTags, firstLoad = false){
-  console.log("tracing missing tags");
 
   // verify if previous unused tags now correspond to a tag. If yes, remove it from unused tags,
   // mark corresponding tags, and if it is the linked page, push the tag in subTagsList.
   // Venue will be recomputed later in computeTags()
-
-  console.log('before',unusedTags[currentPage].length, unusedTags[currentPage]);
 
   Object.keys(unusedTags[currentPage]).forEach(key => {
     [...unusedTags[currentPage][key]].forEach(tagPath => {
@@ -3632,7 +3626,6 @@ function traceMissingTagInfo(subTags, firstLoad = false){
       if (currentPage === 'mainPage'){
         foundTags = foundTags.filter(tag => subTags[currentPage].includes(tag));
       }
-      console.log('path ', tagPath, foundTags.length);
       if (foundTags.length > 0){
         console.log('moving tag from unused');
         unusedTags[currentPage][key] = unusedTags[currentPage][key].filter(el => el !== tagPath);
@@ -3657,8 +3650,6 @@ function traceMissingTagInfo(subTags, firstLoad = false){
   });
 
   // verify if tags are missing. If yes, add them to the unused list
-
-  console.log('middle',unusedTags[currentPage].length, unusedTags[currentPage]);
 
   if (!unusedTags.keepTrace[currentPage] && !firstLoad){
     return;
@@ -3685,11 +3676,7 @@ function traceMissingTagInfo(subTags, firstLoad = false){
     }
   });
 
-
-  console.log('after',unusedTags[currentPage].length, unusedTags[currentPage]);
-
   if (firstLoad){
-    console.log('first load for ', currentPage);
     if(Object.keys(unusedTags[currentPage]).length > 0){
       unusedTags.keepTrace[currentPage] = true;
       updateLockButton(true);
@@ -3697,7 +3684,7 @@ function traceMissingTagInfo(subTags, firstLoad = false){
   }
 
 
-  console.log('\x1b[45mThere are missing tags in '+currentPage+' \x1b[0m', unusedTags[currentPage].length, unusedTags[currentPage]);
+  // console.log('\x1b[45mThere are missing tags in '+currentPage+' \x1b[0m', unusedTags[currentPage].length, unusedTags[currentPage]);
 }
 
 
@@ -3806,8 +3793,6 @@ function isElementVisible(element) {
 
 // used to move through linked page
 function movePrincipalTagTo(eventInfo) {
-  console.log(eventInfo);
-  console.log('PI', principalTagIndex, eventInfo.linkedPageIndex);
 
   if (eventInfo.linkedPageIndex === principalTagIndex) { return };
 
