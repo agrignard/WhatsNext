@@ -28,6 +28,7 @@ let linkedFileContent, eventURL;
 let preventDownload = false;
 var localPage, $page;
 var lastDateList;
+var lastAlternateDateList;
 let pageManagerReduced = false;
 let log ='';
 let mustIncludeURL  = false;
@@ -35,7 +36,8 @@ let nbPagesToShow = 2;
 let nbPages = 0;
 let currentPage = 'mainPage';
 let currentURLTag;
-let unusedTags = {keepTrace: {mainPage: false, linkedPage: false}, mainPage: {}, linkedPage: {}};
+let keepTraceOfAltTags = {mainPage: false, linkedPage: false};
+let alternateTags = {mainPage: {}, linkedPage: {}};
 let linkedPageFirstLoad = true;
 let extendButton = undefined;
 let useLinks;
@@ -62,10 +64,13 @@ let depthPrefix;
 function initVars(){
   eventURL = undefined;
   lastDateList = undefined;
+  lastAlternateDateList = undefined;
+  // lastAlternateDateFormat = undefined;
   log ='';
-let nbPages = 0;
+  nbPages = 0;
   currentURLTag = undefined;
-  unusedTags = {keepTrace: {mainPage: false, linkedPage: false}, mainPage: {}, linkedPage: {}};
+  keepTraceOfAltTags = {mainPage: false, linkedPage: false};
+  alternateTags = {mainPage: {}, linkedPage: {}};
   linkedPageFirstLoad = true;
   extendButton = undefined;
   currentSubEventIndex = undefined;
@@ -92,7 +97,7 @@ let nbPages = 0;
 const keyNames = ['Name','Date','Style','Place','URL'];
 const colorClassList = ['SCRPXhighlightName','SCRPXhighlightDate','SCRPXhighlightStyle',
                         'SCRPXhighlightPlace','SCRPXhighlightURL','SCRPXhighlightURLOverlay','SCRPXhighlightUnknown'];
-const reservedClassList = colorClassList.concat(['SCRPXhighlightUnused','SCRPXhighlightMultiName','SCRPXhighlightMultiDate','SCRPXhighlightMultiStyle','SCRPXhighlightMultiPlace','SCRPXhighlightMultiURL',
+const reservedClassList = colorClassList.concat(['SCRPXhighlightAlternate','SCRPXhighlightMultiName','SCRPXhighlightMultiDate','SCRPXhighlightMultiStyle','SCRPXhighlightMultiPlace','SCRPXhighlightMultiURL',
   'SCRPXmainTag','SCRPXeventBlock','SCRPXeventBlockInvalid','SCRPXeventBlockWithURL','SCRPXshadow','SCRPXsubEvent',
   'SCRPXmouseHighlight','SCRPXmouseHighlight2']);
 const easyButtonClassList = ['easyButtonName','easyButtonDate','easyButtonStyle','easyButtonPlace','easyButtonURL'];
@@ -661,7 +666,16 @@ saveButton.addEventListener('click',function(){
     if (!venue.linkedPage.hasOwnProperty('eventDateTags') && !venue.linkedPage.hasOwnProperty('eventMultiDateTags')){
       delete venue.linkedPageDateFormat;
     }
+    if (venue.hasOwnProperty('alternateTags') && venue.alternateTags.hasOwnProperty('linkedPage')){
+      delete venue.alternateTags.linkedPage;
+    }
   }
+
+  // remove unused alternate date formats
+  if (venue.hasOwnProperty('alternateTags')){
+
+  }
+
 
   console.log('saving');
   toLog("Saved to venue.json:");
@@ -869,8 +883,8 @@ let easyLines;
 
 const lockButton = document.getElementById('lockButton');
 lockButton.addEventListener("click", function() {
-  unusedTags.keepTrace[currentPage] = !unusedTags.keepTrace[currentPage];
-  updateLockButton(unusedTags.keepTrace[currentPage]);
+  keepTraceOfAltTags[currentPage] = !keepTraceOfAltTags[currentPage];
+  updateLockButton(keepTraceOfAltTags[currentPage]);
 });
 
 function updateLockButton(keepTrace){
@@ -953,10 +967,19 @@ function populateEasyPanel(firstLoad = false){
     newEasyLine(tag,index);
   });
 
+  // if alternate tags have dates, compute the corresponding format
+  if (alternateTags && Object.keys(alternateTags[currentPage]).some(key => key.includes('Date'))){
+    // lastAlternateDateFormat = computeAlternateDateFormat();
+    if (!venue.hasOwnProperty('AlternateDateFormat')){
+      venue.alternateDateFormat = {};
+    }
+    venue.alternateDateFormat[currentPage] = computeAlternateDateFormat();
+  }
+
   missingPanelFields.innerHTML = '';
-  if (unusedTags.keepTrace[currentPage]){
-    Object.keys(unusedTags[currentPage]).forEach(key =>{
-      unusedTags[currentPage][key].forEach(tagPath => {
+  if (keepTraceOfAltTags[currentPage]){
+    Object.keys(alternateTags[currentPage]).forEach(key =>{
+      alternateTags[currentPage][key].forEach(tagPath => {
         newMissingTagLine(tagPath, key);
       });
     })
@@ -976,16 +999,19 @@ function newMissingTagLine(tagPath, key){
   inputElement.readOnly = true;
   inputElement.classList.add('easyField');
   inputElement.setAttribute('type', 'text');
-  inputElement.value = 'Tag not in current event';
+  inputElement.value = key.includes('Date') ? venue.alternateDateFormat[currentPage] : 'Tag not in current event';
   newDiv.appendChild(inputElement);
 
   for(i=0;i<keyNames.length;i++){
     const newFakeButton = document.createElement('div');
     newFakeButton.classList.add('fakeEasyButton'); 
-    setVarRefForCss(newFakeButton, "--category-bg-color", key);
+    // setVarRefForCss(newFakeButton, "--category-bg-color", key.replace('Multi', '').replace('Tags', '').replace('event', ''));
+    // setVarRefForCss(newFakeButton, "--category-bg-color", key);
     if (key.includes(keyNames[i])){
       // console.log('SCRPXhighlight'+keyNames[i]);
-      newFakeButton.classList.add('SCRPXhighlight'+keyNames[i]);
+      // newFakeButton.classList.add('SCRPXhighlight'+keyNames[i]);
+      newFakeButton.classList.add('SCRPXhighlightAlternate');
+      setVarRefForCss(newFakeButton, "--category-bg-color", key.replace('Multi', '').replace('Tags', '').replace('event', ''));
       newFakeButton.title = keyNames[i];
     }else{
       newFakeButton.classList.add('inactive');
@@ -999,9 +1025,9 @@ function newMissingTagLine(tagPath, key){
   newButton.title = 'Remove';
   newButton.textContent = '✖';
   newButton.addEventListener('click', function(){
-    unusedTags[currentPage][key] = unusedTags[currentPage][key].filter(el => el !== tagPath);
-    if (unusedTags[currentPage][key].length === 0){
-      delete unusedTags[currentPage][key];
+    alternateTags[currentPage][key] = alternateTags[currentPage][key].filter(el => el !== tagPath);
+    if (alternateTags[currentPage][key].length === 0){
+      delete alternateTags[currentPage][key];
     }
 
     let tag;
@@ -1020,9 +1046,9 @@ function newMissingTagLine(tagPath, key){
                                         // .filter(tag => tag.desc & tag.desc === key).length>0);
 
     markAndPropagateTag(tag, {desc: null, isURL: false, isMulti: false}, rootTag);
-    console.log(!Object.keys(unusedTags[currentPage]).some(el => el.includes('Multi')));
+    console.log(!Object.keys(alternateTags[currentPage]).some(el => el.includes('Multi')));
     // if no more tag has multi, remove sub event path
-    if (!subTags.linkedPage.some(el => el.isMulti) && !Object.keys(unusedTags[currentPage]).some(el => el.includes('Multi'))){
+    if (!subTags.linkedPage.some(el => el.isMulti) && !Object.keys(alternateTags[currentPage]).some(el => el.includes('Multi'))){
     // if (!subTags.linkedPage.some(el => el.isMulti)) {
       console.log('removing sub event path');
       subEventPath = undefined;
@@ -1145,7 +1171,6 @@ function newEasyLine(tag, index){
         if (newEasyButton.classList.contains('inactive')) {
           return;
         }
-
         // when clicking on the button, make all buttons of the line inactive
         const buttonList = easyPanelFields.getElementsByClassName('easyLine' + index);
         for (j = 0; j < buttonList.length; j++) {
@@ -1165,6 +1190,7 @@ function newEasyLine(tag, index){
         }
         computeTags();
         computeDateFormat();
+        focusTo(tag, 'instant', 'center');
       });
     }
     newDiv.appendChild(newEasyButton);
@@ -1179,8 +1205,8 @@ function newEasyLine(tag, index){
     newButton.addEventListener('click', function(){
       subTags.linkedPage = subTags.linkedPage.filter(el => el !== newDiv.tag);
       // if all 'multi' tags have been removed, remove the subEventPath
-      // should it be also for unused tags ?
-      // if (!subTags.linkedPage.some(el => el.isMulti) && !Object.keys(unusedTags.linkedPage).some(el => el.includes('Multi'))){
+      // should it be also for alternate tags ?
+      // if (!subTags.linkedPage.some(el => el.isMulti) && !Object.keys(alternateTags.linkedPage).some(el => el.includes('Multi'))){
       if (!subTags.linkedPage.some(el => el.isMulti)){
         subEventPath = undefined;
       }
@@ -1709,7 +1735,7 @@ initializeInterface();
 
 
 function initializeInterface(){
-  updateLockButton(unusedTags.keepTrace[currentPage]);
+  updateLockButton(keepTraceOfAltTags[currentPage]);
   if (currentPage === 'mainPage'){
     if (lastModified){// if the file exists
       loadPage();
@@ -2036,11 +2062,11 @@ function applyTags(){
     })
   });
 
-  // add classes for highlights for unused tags in the right panel. The subevents for linked pages will be filled
+  // add classes for highlights for alternate tags in the right panel. The subevents for linked pages will be filled
   // later
-  Object.keys(unusedTags[currentPage]).forEach(key => {
+  Object.keys(alternateTags[currentPage]).forEach(key => {
     const className = 'SCRPXhighlight' + key.replace('event', '').replace('Tags', '').replace('Multi', '');
-    unusedTags[currentPage][key].forEach(path => {
+    alternateTags[currentPage][key].forEach(path => {
       eventTagList.forEach(rootTag => {
         const tags = findTagsFromPath(rootTag, path);
         tags.forEach(tag => {
@@ -2056,7 +2082,7 @@ function applyTags(){
             if (!key.includes('Multi')){
               const newDiv = document.createElement('div');
               newDiv.textContent = getTextFromTag(tag);
-              newDiv.classList.add('SCRPXhighlightUnused');
+              newDiv.classList.add('SCRPXhighlightAlternate','miniBottomMargin');
               setVarRefForCss(newDiv, "--category-bg-color", key.replace('Multi', '').replace('Tags', '').replace('event', ''));
               // setVarRefForCss(newDiv, "--category-bg-color", 'Date');
               rootTag.parentElement.children[2].append(newDiv);  
@@ -2073,7 +2099,7 @@ function applyTags(){
   // make subevent in linked page for events that are not in the principal tag
   if (currentPage === 'linkedPage' && subEventPath){
     const multiKeys = Object.keys(venue.linkedPage).filter(key => key.includes('Multi'));
-    const multiKeysUnused = Object.keys(unusedTags.linkedPage).filter(key => key.includes('Multi'));
+    const multiKeysAlternate = Object.keys(alternateTags.linkedPage).filter(key => key.includes('Multi'));
     
     eventTagList.forEach(rootTag =>{
       if(rootTag !== principalTag){
@@ -2100,14 +2126,14 @@ function applyTags(){
             });
           });
 
-          // for unused keys
-          multiKeysUnused.forEach(key => {
-           unusedTags.linkedPage[key].forEach(tagPath => {
+          // for alternate keys
+          multiKeysAlternate.forEach(key => {
+           alternateTags.linkedPage[key].forEach(tagPath => {
               const pathAfterDelimiter = tagPath.replace(subEventPath,'').replace(/^>/,'');
               findTagsFromPath(subEventTag, pathAfterDelimiter).forEach(tag => {
                 const newDiv = document.createElement('div');
                 newDiv.textContent = getTextFromTag(tag);
-                newDiv.classList.add('SCRPXhighlightUnused');
+                newDiv.classList.add('SCRPXhighlightAlternate', 'miniBottomMargin');
                 setVarRefForCss(newDiv, "--category-bg-color", key.replace('eventMulti', '').replace('Tags', ''));
                 subEventDiv.append(newDiv);
               });
@@ -2358,38 +2384,26 @@ function getArray(string){
 // }
 
 
-function computeDateFormat(){
-  console.log('\x1b[42m\x1b[30mComputing date format\x1b[0m');
-  let dates = [];
+function getDatesStrings(venueInfo){
 
-  // if no date tag is found, do nothing
-  if (!venue[currentPage].hasOwnProperty('eventDateTags') && !venue[currentPage].hasOwnProperty('eventMultiDateTags')){
-    dateFormatPanel.style.display = 'none';
-    return;
-  }
-
-  // if no event can be found in the main page, do nothing
-  if (currentPage === 'mainPage' && (!eventTagList || eventTagList.length === 0)){
-    dateFormatPanel.style.display = 'none';
-    return;
-  }
-      
-  // for every event, get the date strings corresponding to the date tags and concatenate them.
-  const tagPathsFromSubEvent = (venue[currentPage]['eventMultiDateTags'] || [])
+  const dates = [];
+  
+  // Get the path of date tags from sub events root tag
+  const tagPathsFromSubEvent = (venueInfo['eventMultiDateTags'] || [])
     .map(el => replaceWithCustomTags(el))
     .map(el => el.replace(subEventPath, '').replace(/^>/, ''));
 
   
-
+  // for every event, get the date strings corresponding to the date tags and concatenate them.
   eventTagList.forEach(eventTag => {
     let dateString = '';
 
-    if ('eventDateTags' in venue[currentPage]) {
+    if ('eventDateTags' in venueInfo) {
       dateString += venue[currentPage]['eventDateTags'].flatMap(dateTag => findTagsFromPath(eventTag, dateTag))
         .map(tag => getTextFromTag(tag)).join(' ');
     }
 
-    if ('eventMultiDateTags' in venue[currentPage]) {
+    if ('eventMultiDateTags' in venueInfo) {
       const subEventDelimiterTagList = findTagsFromPath(eventTag, subEventPath);
       if (subEventDelimiterTagList.length === 0) {
         dates.push(removeBlanks(dateString));
@@ -2408,6 +2422,58 @@ function computeDateFormat(){
       dates.push(removeBlanks(dateString));
     }
   });
+
+  return dates;
+}
+
+function computeAlternateDateFormat(){
+  // console.log('\x1b[42m\x1b[30mComputing alternate date format\x1b[0m');
+  // let dates = [];
+ 
+  const dates = getDatesStrings(alternateTags[currentPage]).filter(string => string.trim().length > 0);
+
+  // lastAlternateDateList keeps memory of computation. If no new dates to analyze since the last valid
+  // date format computation, no need to perform again a search for the best format
+
+  if (lastAlternateDateList && lastAlternateDateList.join('') === dates.join('')){
+    return venue.alternateDateFormat[currentPage];
+  }
+
+  lastAlternateDateList = dates;
+  let formatRes;
+  let bestScore;
+  [formatRes, bestScore] = getBestDateFormat(dates, dateConversionPatterns);
+
+  if (bestScore === dates.length) {
+    return "No date format found.";
+  }
+
+  if (bestScore !== 0) {
+    formatRes += ' ('
+      + (dates.length - bestScore) + '/' + dates.length + ')';
+  }
+  
+  return formatRes;
+}
+
+
+function computeDateFormat(){
+  console.log('\x1b[42m\x1b[30mComputing date format\x1b[0m');
+  // let dates = [];
+
+  // if no date tag is found, do nothing
+  if (!venue[currentPage].hasOwnProperty('eventDateTags') && !venue[currentPage].hasOwnProperty('eventMultiDateTags')){
+    dateFormatPanel.style.display = 'none';
+    return;
+  }
+
+  // if no event can be found in the main page, do nothing
+  if (currentPage === 'mainPage' && (!eventTagList || eventTagList.length === 0)){
+    dateFormatPanel.style.display = 'none';
+    return;
+  }
+      
+  const dates = getDatesStrings(venue[currentPage]);
 
   // if no date found, no display
   if (dates.length === 0){
@@ -2868,8 +2934,6 @@ function behaviourSetup(string){
 // for tag, find the description 'eventXXXTags' that corresponds to it if it is registered in venue.json
 function getDescFromJSON(rootTag, subTagsList){
 
-  // unusedTags[currentPage] = {}; // do not reinitialize. A trace of unused should be ket until saving
-
   // for regular data (not sub event)
   Object.keys(venue[currentPage]).filter(key => !key.includes('Multi'))
     .forEach(key => {
@@ -2879,9 +2943,6 @@ function getDescFromJSON(rootTag, subTagsList){
         if (subTagsList){
           tags.filter(tag => subTagsList.includes(tag));
         }
-        // if (tags.length === 0){// no tag found for this key
-        //   unusedTags[currentPage][key] = venue[currentPage][key];
-        // }
         tags.forEach(tag => {
           if (key === 'eventURLTags') {
             markAndPropagateTag(tag, {isURL: true});
@@ -2918,9 +2979,7 @@ function getDescFromJSON(rootTag, subTagsList){
   // find the delimiter which has the most matching fields for sub events
   const subEventDelimiters = findTagsFromPath(rootTag, subEventDelimiterPath);
 
-  if(subEventDelimiters.length === 0){// no sub event found. all multi tags are unused
-    // multiTags.forEach(key => unusedTags[currentPage][key] = venue[currentPage][key]);
-    // console.log('There are unused tag paths in '+(currentPage==='mainPage'?'the main page':'the linked page')+' venue', unusedTags);
+  if(subEventDelimiters.length === 0){// no sub event found. all multi tags are alternate
     return;
   }
 
@@ -2947,7 +3006,7 @@ function getDescFromJSON(rootTag, subTagsList){
           tags.filter(tag => subTagsList.includes(tag));
         }
         if (tags.length === 0){// no tag found for this key
-          // unusedTags[currentPage][key] = venue[currentPage][key];
+          // anything to do ?
         }else{
           tags.forEach(tag => {
             // tag.isMulti = true;
@@ -3614,12 +3673,12 @@ function setLeftPanelDesign(){
 // find tags from venue that have no match 
 function traceMissingTagInfo(subTags, firstLoad = false){
 
-  // verify if previous unused tags now correspond to a tag. If yes, remove it from unused tags,
+  // verify if previous alternate tags now correspond to a tag. If yes, remove it from alternate tags,
   // mark corresponding tags, and if it is the linked page, push the tag in subTagsList.
   // Venue will be recomputed later in computeTags()
 
-  Object.keys(unusedTags[currentPage]).forEach(key => {
-    [...unusedTags[currentPage][key]].forEach(tagPath => {
+  Object.keys(alternateTags[currentPage]).forEach(key => {
+    [...alternateTags[currentPage][key]].forEach(tagPath => {
       // find tags corresponding to the given key. If on the main page, only keep the results
       // that have a match in the subtags
       let foundTags = findTagsFromPath(principalTag, tagPath);
@@ -3627,10 +3686,10 @@ function traceMissingTagInfo(subTags, firstLoad = false){
         foundTags = foundTags.filter(tag => subTags[currentPage].includes(tag));
       }
       if (foundTags.length > 0){
-        console.log('moving tag from unused');
-        unusedTags[currentPage][key] = unusedTags[currentPage][key].filter(el => el !== tagPath);
-        if (unusedTags[currentPage][key].length === 0){
-          delete unusedTags[currentPage][key];
+        console.log('moving tag from alternate');
+        alternateTags[currentPage][key] = alternateTags[currentPage][key].filter(el => el !== tagPath);
+        if (alternateTags[currentPage][key].length === 0){
+          delete alternateTags[currentPage][key];
         }
         // foundTags.forEach(tag => {
         //   const desc = key.includes('URL')?undefined:key;
@@ -3649,9 +3708,9 @@ function traceMissingTagInfo(subTags, firstLoad = false){
     });
   });
 
-  // verify if tags are missing. If yes, add them to the unused list
+  // verify if tags are missing. If yes, add them to the alternate list
 
-  if (!unusedTags.keepTrace[currentPage] && !firstLoad){
+  if (!keepTraceOfAltTags[currentPage] && !firstLoad){
     return;
   }
 
@@ -3662,29 +3721,27 @@ function traceMissingTagInfo(subTags, firstLoad = false){
         existingTags = existingTags.filter(tag => subTags[currentPage].includes(tag));
       }
       if (existingTags.length === 0){
-        if (!unusedTags[currentPage].hasOwnProperty(key)){
-          unusedTags[currentPage][key] = [];
+        if (!alternateTags[currentPage].hasOwnProperty(key)){
+          alternateTags[currentPage][key] = [];
         } 
-        unusedTags[currentPage][key].push(tagPath);
+        alternateTags[currentPage][key].push(tagPath);
       }
     });
   });
 
-  Object.keys(unusedTags[currentPage]).forEach(key => {
-    if (unusedTags[currentPage][key].length === 0){
-      delete unusedTags[currentPage][key];
+  Object.keys(alternateTags[currentPage]).forEach(key => {
+    if (alternateTags[currentPage][key].length === 0){
+      delete alternateTags[currentPage][key];
     }
   });
 
   if (firstLoad){
-    if(Object.keys(unusedTags[currentPage]).length > 0){
-      unusedTags.keepTrace[currentPage] = true;
+    if(Object.keys(alternateTags[currentPage]).length > 0){
+      keepTraceOfAltTags[currentPage] = true;
       updateLockButton(true);
     }
   }
 
-
-  // console.log('\x1b[45mThere are missing tags in '+currentPage+' \x1b[0m', unusedTags[currentPage].length, unusedTags[currentPage]);
 }
 
 
@@ -3803,7 +3860,7 @@ function movePrincipalTagTo(eventInfo) {
   principalTag = newTag;
   principalTag.style.display = 'block';
   if (!isElementVisible(principalTag.parentElement.children[0])) {
-    focusTo(principalTag.parentElement.children[0], 'instant', 'start');
+    focusTo(principalTag.parentElement.children[0], 'smooth', 'start');
   }
 
   subTags.linkedPage = Array.from(principalTag.querySelectorAll('*')).filter(el =>
