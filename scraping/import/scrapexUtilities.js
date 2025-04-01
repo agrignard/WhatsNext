@@ -44,32 +44,6 @@ function getElements(tagPath, $, rootTag) {
       elements.flatMap(el => $(el).children(tagDesc).toArray()), resList);
 }
 
-// function getElements(tagPath, $, rootTag){
-//   let splitTag = tagPath.split('>');
-//   let iStart;
-//   if (splitTag.some(tag => !tag.endsWith(')'))){
-//     let resList;
-//     if (rootTag){
-//       resList = [rootTag];
-//       iStart = 0;
-//     }else{
-//       let baseTag = $(splitTag[0]); 
-//       resList = [...baseTag]; 
-//       iStart = 1;
-//     }
-    
-//     for (let i = iStart; i < splitTag.length; i++) {
-//         const tagDesc = splitTag[i];
-//         resList = resList.flatMap(tag => $(tag).children(tagDesc).toArray());
-//     }
-//     return resList;
-//   }else{
-//     if (rootTag){
-//       return $(rootTag).find(tagPath).toArray();
-//     }
-//     return [$(tagPath)];
-//   }
-// }
 
 // auxiliary function to extract data. For a given key ('eventNameTags', ...), get the list of tags from venueInfo 
 // (mainPage or linkedPage) and return the corresponding text. If the tag is an URL tag, returns
@@ -105,35 +79,6 @@ function getText(key, venueInfo, $, subEventDelimiter, eventTag){
             string += (string.length > 0 ? separator : '') + matchingTags.map(el => textWithWhiteSpace($, el)).join(separator);
         }
       }
-
-
-
-
-      // for (let i = 0; i <= tagList.length - 1; i++) {
-      //   // if the tag is the empty string '', and if it is allowed to get the text from the 
-      //   // event tag itself, get the text, otherwise return ''
-      //   if (tagList[i] === ''){
-      //     if (eventTag){
-      //       // string += ' ' + $subEv.text();
-      //       string += ' ' + textWithWhiteSpace($, eventTag);
-      //     }else{
-      //       // string += ' ' + $.text();
-      //       string += ' ' + textWithWhiteSpace($, '');
-      //     }
-            
-      //   }else{
-      //     if (eventTag){
-      //       $subEv.find(tagList[i]).each((index, descendant) => {
-      //         // string += ' ' + $(descendant).text();
-      //         string += ((string.length > 0 && key.includes('Name')) ?', ':' ') + textWithWhiteSpace($, descendant);
-      //       });
-      //     }else{
-      //       const matchingTags = getElements(tagList[i],$);
-      //       string += ((string.length > 0 && key.includes('Name')) ?', ':' ') +
-      //           matchingTags.map(element => textWithWhiteSpace($, element)).join(key.includes('Name')?', ':' ');
-      //     }
-      //   }
-      // }
     }
   } catch (err) {
     console.log('\x1b[31m%s\x1b[0m', 'Erreur d\'extraction à partir des balises.\x1b[0m', tagList);
