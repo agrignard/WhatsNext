@@ -15,38 +15,81 @@ const outFile = rootDirectory+"/generated/afterMerge.csv";
 const refStyleList = getStyleList();
 
 function mergeEvents(eventList,showFullMergeLog){
+    // console.log('\x1b[42mMerging\x1b[0m');
     
     let newList = [];
     let mergeLog = '';
 
     // preprocessing: merge events at the same date. All similar events are stored in the list mergeCandidates
-    eventList.forEach(event =>{
-        // console.log('\x1b[31m***********************');
-        // console.log(event);
-        // console.log('A comparer avec:\x1b[0m');
-        const samePlaceSameDayEventList = newList.filter(el => {
-            // console.log(el);
-            return samePlace(getEventPlace(el),getEventPlace(event))
-            && sameDay(el.unixDate, event.unixDate)
-            && el.unixDate !== 0
-            //&& el.mergeCandidates.some(subEl => similarName(subEl.eventName,event.eventName))
-            && similarName(el.eventName,event.eventName)       
-        });
-            
-        if (samePlaceSameDayEventList.length >0){// for each event, if a similar event is found in newList, it is added to mergeCandidates
-            const samePlaceSameDayEvent = samePlaceSameDayEventList[0];    
-            samePlaceSameDayEvent.mergeCandidates.push(event);  
-            // if other elements are found, merge everything
-            for(let i=1;i<samePlaceSameDayEventList.length;i++){
-                const otherEvent = samePlaceSameDayEventList[i];
-                samePlaceSameDayEvent.mergeCandidates = jsonRemoveDouble(samePlaceSameDayEvent.mergeCandidates.concat(otherEvent.mergeCandidates));
-                otherEvent.toRemove = true;// will remove useless entries since they have been merged to another one
-            } 
-        }else{// otherwise it is added as a new entry in newList
-            event.mergeCandidates = [{...event}];
+
+    eventList.forEach(event => {
+        const eventPlace = getEventPlace(event);
+        const eventUnixDate = event.unixDate;
+    
+        // look for first event to be merged
+        let samePlaceSameDayEvent = newList.find(el =>
+            samePlace(getEventPlace(el), eventPlace) &&
+            sameDay(el.unixDate, eventUnixDate) &&
+            eventUnixDate !== 0 &&
+            eventUnixDate !== -1 &&
+            similarName(el.eventName, event.eventName)
+        );
+    
+        if (samePlaceSameDayEvent) {
+            // add the current event to the fusion candidates
+            samePlaceSameDayEvent.mergeCandidates.push(event);
+    
+            // merge other occurences
+            newList = newList.filter(otherEvent => {
+                if (otherEvent !== samePlaceSameDayEvent &&
+                    samePlace(getEventPlace(otherEvent), eventPlace) &&
+                    sameDay(otherEvent.unixDate, eventUnixDate) &&
+                    similarName(otherEvent.eventName, event.eventName)) {
+    
+                    // Merge candidates and prevent doubles 
+                    samePlaceSameDayEvent.mergeCandidates = Array.from(
+                        new Set([...samePlaceSameDayEvent.mergeCandidates, ...otherEvent.mergeCandidates])
+                    );
+                    return false; // remove the merged event
+                }
+                return true; // keep other elements
+            });
+    
+        } else { 
+            // Add as a new element
+            event.mergeCandidates = [{ ...event }];
             newList.push(event);
         }
     });
+    
+
+    // eventList.forEach(event =>{
+
+    //     const samePlaceSameDayEventList = newList.filter(el => {
+    //         return samePlace(getEventPlace(el),getEventPlace(event))
+    //         && sameDay(el.unixDate, event.unixDate)
+    //         && el.unixDate !== 0
+    //         && el.unixDate !== -1
+    //         //&& el.mergeCandidates.some(subEl => similarName(subEl.eventName,event.eventName))
+    //         && similarName(el.eventName,event.eventName)       
+    //     });
+            
+    //     if (samePlaceSameDayEventList.length >0){// for each event, if a similar event is found in newList, it is added to mergeCandidates
+    //         const samePlaceSameDayEvent = samePlaceSameDayEventList[0];    
+    //         samePlaceSameDayEvent.mergeCandidates.push(event);  
+    //         // if other elements are found, merge everything
+    //         for(let i=1;i<samePlaceSameDayEventList.length;i++){
+    //             const otherEvent = samePlaceSameDayEventList[i];
+    //             samePlaceSameDayEvent.mergeCandidates = jsonRemoveDouble(samePlaceSameDayEvent.mergeCandidates.concat(otherEvent.mergeCandidates));
+    //             otherEvent.toRemove = true;// will remove useless entries since they have been merged to another one
+    //         } 
+    //     }else{// otherwise it is added as a new entry in newList
+    //         event.mergeCandidates = [{...event}];
+    //         newList.push(event);
+    //     }
+    // });
+
+    // console.log('end of preprocessing');
     newList = newList.filter(el => !el.hasOwnProperty('toRemove'));
    // return newList;
     // merge process

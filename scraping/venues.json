@@ -16,8 +16,8 @@
         "DIV.infos.depth7:eq(0)>DIV.type.depth8:eq(0)"
       ],
       "eventNameTags": [
-        "DIV.vignette.depth7:eq(0)>DIV.labels.depth8:eq(0)>DIV.artistes.depth9:eq(0)>DIV.depth10",
-        "DIV.vignette.depth7:eq(0)>DIV.labels.depth8:eq(0)>DIV.titre.depth9:eq(0)"
+        "DIV.vignette.depth7:eq(0)>DIV.labels.depth8:eq(0)>DIV.titre.depth9:eq(0)",
+        "DIV.vignette.depth7:eq(0)>DIV.labels.depth8:eq(0)>DIV.artistes.depth9:eq(0)>DIV.depth10"
       ]
     },
     "eventURLIndex": 0,
@@ -30,8 +30,8 @@
         "DIV.content.depth2:eq(0)>DIV.pagecontent.depth3:eq(0)>DIV.wrapper.pageinner.singleevenement.depth4:eq(0)>DIV.pureg.depth5:eq(0)>DIV.pureu11.pureumd12.pureulg524.infos.depth6:eq(0)>DIV.horaires.depth7:eq(0)"
       ],
       "eventNameTags": [
-        "DIV.content.depth2:eq(0)>DIV.pagecontent.depth3:eq(0)>DIV.wrapper.pageinner.singleevenement.depth4:eq(0)>DIV.pureg.depth5:eq(2)>DIV.pureu11.pureulg524.artistes.depth6:eq(0)>DIV.artiste.depth7>H2.depth8:eq(0)>A.nom.depth9:eq(0)",
-        "DIV.content.depth2:eq(0)>DIV.pagecontent.depth3:eq(0)>DIV.wrapper.pageinner.singleevenement.depth4:eq(0)>DIV.pureg.depth5:eq(1)>DIV.pureu11.titre.depth6:eq(0)>H1.depth7:eq(0)"
+        "DIV.content.depth2:eq(0)>DIV.pagecontent.depth3:eq(0)>DIV.wrapper.pageinner.singleevenement.depth4:eq(0)>DIV.pureg.depth5:eq(1)>DIV.pureu11.titre.depth6:eq(0)>H1.depth7:eq(0)",
+        "DIV.content.depth2:eq(0)>DIV.pagecontent.depth3:eq(0)>DIV.wrapper.pageinner.singleevenement.depth4:eq(0)>DIV.pureg.depth5:eq(2)>DIV.pureu11.pureulg524.artistes.depth6:eq(0)>DIV.artiste.depth7>H2.depth8:eq(0)>A.nom.depth9:eq(0)"
       ]
     },
     "linkedPageDateFormat": "dd-MM-HH:mm",
@@ -199,21 +199,20 @@
     "city": "Lyon",
     "country": "France",
     "url": "https://www.petit-bulletin.fr/lyon/agenda-recherche.html?idvillepb=lyon&pageagenda=12&thema=musique-soirees&quoi=0&ou=0&quand=0&dateprecise=&qui=&p={index}",
-    "eventsDelimiterTag": "DIV.entrycontent.bodycolor.clearfix.linkcolorwrap A.term7",
-    "dateFormat": "dd-MM-yyyy-HH:mm",
+    "eventsDelimiterTag": "A.term7.depth12",
     "baseURL": "https://www.petit-bulletin.fr/lyon/",
     "mainPage": {
       "eventNameTags": [
-        "H2:eq(0)"
-      ],
-      "eventDateTags": [
-        "P.addedTag:eq(0)"
+        "H2.depth13:eq(0)"
       ],
       "eventStyleTags": [
-        "P:eq(0)"
+        "P.depth13:eq(0)"
+      ],
+      "eventDateTags": [
+        "P.addedTag.depth13:eq(0)"
       ],
       "eventPlaceTags": [
-        "P.addedTag:eq(1)"
+        "P.addedTag.depth13:eq(1)"
       ]
     },
     "multiPages": {
@@ -222,7 +221,8 @@
       "increment": "1"
     },
     "eventURLIndex": 0,
-    "ID": "Le Petit Bulletin|Lyon|France"
+    "ID": "Le Petit Bulletin|Lyon|France",
+    "dateFormat": "dd-MM-yyyy-HH:mm"
   },
   {
     "name": "Marché Gare",
@@ -232,33 +232,20 @@
       "le marché gare"
     ],
     "url": "https://marchegare.fr/agenda?category=All&page=1",
-    "dateFormat": "dd-MM",
     "baseURL": "https://marchegare.fr/",
-    "mainPage": {
-      "eventNameTags": [
-        "DIV.agendatitle.headingsfontweight.uppercase.fontdisplay.fontbold.text3xl.mdtext4xl.xltext5xl.leadingnone.lgleadingnone:eq(0)  SPAN.leadingnone.lgleadingnone:eq(0)",
-        "DIV.agendasubtitle.text2xl.lgtext3xl.fontdisplay.uppercase.mt1:eq(0)"
-      ],
-      "eventDateTags": [
-        "SPAN.evtdatefromdayname.evtdatedayname:eq(0)",
-        "SPAN.evtdatefromday.evtdateday:eq(0)",
-        "SPAN.evtdatefrommonth.evtdatemonth:eq(0)"
-      ],
-      "eventStyleTags": [
-        "SPAN.uppercase.fontdisplay.textxl.lgtext2xl.nounderline.mx1.leadingnone.lgleadingnone:eq(0)",
-        "SPAN.uppercase.fontdisplay.textxl.lgtext2xl.nounderline.mx1.leadingnone.lgleadingnone:eq(1)"
-      ]
-    },
+    "mainPage": {},
     "eventURLIndex": 0,
-    "eventsDelimiterTag": "A.agendaitem.nounderline.group",
+    "eventsDelimiterTag": "A.agendaitem.nounderline.group.depth17",
     "linkedPage": {
+      "eventNameTags": [
+        "SONIC-TICKETS-APP.depth2:eq(0)>DIV.dialogoffcanvasmaincanvas.depth3:eq(0)>DIV.contents.depth4:eq(0)>DIV.maincontentcontainer.depth5:eq(0)>MAIN.depth6:eq(0)>DIV.depth7:eq(0)>DIV.block.blocksystem.blocksystemmainblock.depth8:eq(0)>ARTICLE.node.nodetypeevenement.viewfull.nodetypeevenementfull.nodeviewmodefull.depth9:eq(0)>DIV.containerfluid.bgcontextbg.textcontextcolor.pb6.depth10:eq(0)>DIV.nodeevtheader.depth11:eq(0)>DIV.nodeevtheadertext.depth12:eq(0)>DIV.colspanfull.lgcolspan3.nodeevtheadertitle.depth13:eq(0)>H1.nodeevttitle.mtauto.uppercase.fontbold.text5xl.mdtext7xl.lgtext9xl.mb2.depth14:eq(0)>SPAN.depth15:eq(0)",
+        "SONIC-TICKETS-APP.depth2:eq(0)>DIV.dialogoffcanvasmaincanvas.depth3:eq(0)>DIV.contents.depth4:eq(0)>DIV.maincontentcontainer.depth5:eq(0)>MAIN.depth6:eq(0)>DIV.depth7:eq(0)>DIV.block.blocksystem.blocksystemmainblock.depth8:eq(0)>ARTICLE.node.nodetypeevenement.viewfull.nodetypeevenementfull.nodeviewmodefull.depth9:eq(0)>DIV.containerfluid.bgcontextbg.textcontextcolor.pb6.depth10:eq(0)>DIV.nodeevtheader.depth11:eq(0)>DIV.nodeevtheadertext.depth12:eq(0)>DIV.colspanfull.lgcolspan3.nodeevtheadertitle.depth13:eq(0)>DIV.nodeevtsubtitle.uppercase.text3xl.mdtext5xl.xltext7xl.leadingnone.depth14:eq(0)"
+      ],
       "eventDateTags": [
-        "SPAN.lb_sessionstartdateday:eq(0)",
-        "SPAN.lb_sessionstartdatemonth:eq(0)",
-        "SPAN.lb_sessionhour.me2.mr2:eq(0)"
+        "SONIC-TICKETS-APP.depth2:eq(0)>DIV.dialogoffcanvasmaincanvas.depth3:eq(0)>DIV.contents.depth4:eq(0)>DIV.maincontentcontainer.depth5:eq(0)>MAIN.depth6:eq(0)>DIV.depth7:eq(0)>DIV.block.blocksystem.blocksystemmainblock.depth8:eq(0)>ARTICLE.node.nodetypeevenement.viewfull.nodetypeevenementfull.nodeviewmodefull.depth9:eq(0)>DIV.containerfluid.bgcontextbg.textcontextcolor.pb6.depth10:eq(0)>DIV.grid.gridcols1.lggridcols4.gap6.depth11:eq(0)>DIV.colspanfull.lgcolspan3.depth12:eq(0)>DIV.depth13:eq(0)>DIV.lb_sessionaccordionitem.depth14:eq(0)>DIV.lb_sessionaccordiontitle.penone.pointereventsnone.depth15:eq(0)>BUTTON.lb_sessionaccordionbtn.textalignleft.textleft.textstart.dflex.flex.wfull.w100.collapsed.lhsm.penone.pointereventsnone.depth16:eq(0)>SPAN.lb_sessionaccordionbtninner.depth17:eq(0)>SPAN.lb_sessiondatecontainer.dblock.block.depth18:eq(0)>SPAN.lb_sessiondate.dinlineblock.inlineblock.evtdate.depth19:eq(0)"
       ]
     },
-    "linkedPageDateFormat": "dd-MM-HH:mm",
+    "linkedPageDateFormat": "dd-MM-yyyy",
     "ID": "Marché Gare|Lyon|France"
   },
   {
@@ -325,15 +312,8 @@
       ]
     },
     "multiPages": {
-      "pattern": "yyyy-mm",
       "nbPages": "4",
-      "pageList": [
-        "2024-01/",
-        "2024-02",
-        "2024-03",
-        "2024-04",
-        "pageList is useless here since a pattern is defined. It is kept in a file to be shown as an exemple"
-      ]
+      "pattern": "yyyy-mm-dd"
     },
     "eventURLIndex": 0,
     "linkedPage": {
@@ -386,15 +366,25 @@
       "eventNameTags": [
         "DIV.containerfluid.depth2:eq(0)>DIV.row.depth3:eq(0)>SECTION.maincontent.depth4:eq(0)>DIV.margintop.depth5:eq(0)>DIV.container.depth6:eq(0)>DIV.row.depth7:eq(0)>DIV.colxs12.colmd8.depth8:eq(0)>DIV.panel.paneldefault.mt40.depth9:eq(0)>DIV.sheetconcertheader.depth10:eq(0)>DIV.panelbody.mb10.depth11:eq(0)>DIV.row.depth12:eq(0)>DIV.colxs12.colsm9.depth13:eq(0)>H1.mt0.mb10.bold.depth14:eq(0)>SPAN.red.depth15:eq(0)"
       ],
+      "eventDateTags": [
+        "DIV.containerfluid.depth2:eq(0)>DIV.row.depth3:eq(0)>SECTION.maincontent.depth4:eq(0)>DIV.margintop.depth5:eq(0)>DIV.container.depth6:eq(0)>DIV.row.depth7:eq(0)>DIV.colxs12.colmd8.depth8:eq(0)>DIV.panel.paneldefault.mt40.depth9:eq(0)>DIV.sheetconcertheader.depth10:eq(0)>DIV.panelbody.mb10.depth11:eq(0)>DIV.row.depth12:eq(0)>DIV.colxs12.colsm9.depth13:eq(0)>H1.mt0.mb10.bold.depth14:eq(0)>SPAN.small.depth15:eq(0)>TIME.depth16:eq(0)"
+      ],
       "eventPlaceTags": [
         "DIV.containerfluid.depth2:eq(0)>DIV.row.depth3:eq(0)>SECTION.maincontent.depth4:eq(0)>DIV.margintop.depth5:eq(0)>DIV.container.depth6:eq(0)>DIV.row.depth7:eq(0)>DIV.colxs12.colmd8.depth8:eq(0)>DIV.panel.paneldefault.mt40.depth9:eq(0)>DIV.sheetconcertheader.depth10:eq(0)>DIV.panelbody.mb10.depth11:eq(0)>DIV.row.depth12:eq(0)>DIV.colxs12.colsm9.depth13:eq(0)>H1.mt0.mb10.bold.depth14:eq(0)>SPAN.small.depth15:eq(1)>B.depth16:eq(0)"
-      ],
-      "eventMultiDateTags": [
-        "DIV.containerfluid.depth2>DIV.row.depth3>SECTION.maincontent.depth4>DIV.margintop.depth5>DIV.container.depth6>DIV.row.depth7>DIV.colxs12.colmd8.depth8>DIV.tabcontent.depth9>DIV.tabpane.active.depth10>DIV.panel.paneldefault.depth11>DIV.panelbody.depth12>DIV.panelbody__content.depth13>UL.listgroup.depth14>LI.listgroupitem.depth15"
       ]
     },
     "linkedPageDateFormat": "dd-MM-yyyy-HH:mm",
-    "ID": "Infoconcert|Lyon|France"
+    "ID": "Infoconcert|Lyon|France",
+    "alternateTags": {
+      "linkedPage": {
+        "eventMultiDateTags": [
+          "DIV.containerfluid.depth2>DIV.row.depth3>SECTION.maincontent.depth4>DIV.margintop.depth5>DIV.container.depth6>DIV.row.depth7>DIV.colxs12.colmd8.depth8>DIV.tabcontent.depth9>DIV.tabpane.active.depth10>DIV.panel.paneldefault.depth11>DIV.panelbody.depth12>DIV.panelbody__content.depth13>UL.listgroup.depth14>LI.listgroupitem.depth15"
+        ]
+      }
+    },
+    "alternateDateFormat": {
+      "linkedPage": "dd-MM-yyyy-HH:mm"
+    }
   },
   {
     "name": "Rock N Eat",
@@ -405,8 +395,26 @@
       "Le Rock N Eat"
     ],
     "ID": "Rock N Eat|Lyon|France",
-    "mainPage": {},
-    "url": "https://www.rockneat.com/Programmation"
+    "mainPage": {
+      "eventDateTags": [
+        "DIV.flex.flexrow.bgblack.bggradienttol.fromred40.viablack.toblack.h10.mb1.mt3.z40.shadowsm.shadowblack30.depth5:eq(0)>H1.flex.grow.itemscenter.fontextrabold.textred.text11px.mdtextlg.depth6:eq(0)",
+        "DIV.flex.flexrow.bgblack.bggradienttol.fromred40.viablack.toblack.h10.mb1.mt3.z40.shadowsm.shadowblack30.depth5:eq(0)>H1.flex.itemscenter.justifycenter.fontextrabold.textred.text11px.mdtextlg.mr2.depth6:eq(0)"
+      ],
+      "eventMultiDateTags": [
+        "DIV.animateslideright.depth5>DIV.wfull.depth6>DIV.flex.flexcol.mdhidden.depth7>DIV.group.relative.h24.mb1.shadowsm.shadowblack30.transform.hoverh56.transitionall.duration300.overflowhidden.depth8>DIV.absolute.flex.flexcol.placecontentend.w90.h70.bottom10.left5.z30.depth9:eq(0)>DIV.textleft.text10px.smtext12px.lgtext11px.fontbold.depth10:eq(0)",
+        "DIV.animateslideright.depth5>DIV.wfull.depth6>DIV.flex.flexcol.mdhidden.depth7>DIV.group.relative.h24.mb1.shadowsm.shadowblack30.transform.hoverh56.transitionall.duration300.overflowhidden.depth8>DIV.absolute.flex.itemscenter.justifycenter.textcenter.text10px.smtext12px.lgtext11px.fontbold.w18.h6.top0.right0.bgred.z40.depth9:eq(0)"
+      ],
+      "eventMultiNameTags": [
+        "DIV.animateslideright.depth5>DIV.wfull.depth6>DIV.flex.flexcol.mdhidden.depth7>DIV.group.relative.h24.mb1.shadowsm.shadowblack30.transform.hoverh56.transitionall.duration300.overflowhidden.depth8>DIV.absolute.flex.flexcol.placecontentend.w90.h70.bottom10.left5.z30.depth9:eq(0)>H1.textleft.text10px.smtext12px.lgtext11px.fontbold.depth10:eq(0)"
+      ],
+      "eventMultiURLTags": [
+        "DIV.animateslideright.depth5>DIV.wfull.depth6>DIV.flex.flexcol.mdhidden.depth7>DIV.group.relative.h24.mb1.shadowsm.shadowblack30.transform.hoverh56.transitionall.duration300.overflowhidden.depth8>DIV.absolute.flex.flexcol.placecontentend.w90.h70.bottom10.left5.z30.depth9:eq(0)>DIV.hidden.grouphoverflex.flexcol.placecontentend.depth10:eq(0)>A.hidden.grouphoverflex.flexrow.selfcenter.wfit.h5.px2.my1.text8px.min375pxtext10px.smtextxs.lgtextsm.fontbold.bgred.depth11:eq(0)>SPAN.mauto.depth12:eq(0)"
+      ]
+    },
+    "url": "https://www.rockneat.com/Programmation",
+    "baseURL": "https://www.rockneat.com/",
+    "eventsDelimiterTag": "DIV.animateslidebottomd5.depth4",
+    "dateFormat": "yyyy-MM-dd"
   },
   {
     "name": "La Rayonne",
@@ -421,9 +429,6 @@
     "mainPage": {
       "eventDateTags": [
         "DIV.agendajourlabel.depth7:eq(0)"
-      ],
-      "eventNameTags": [
-        "DIV.agendaouvertures.depth7:eq(0)>DIV.agendaouvertureinfo.depth8:eq(0)>DIV.agendaouvertureinfoaujourdhui.depth9:eq(0)>P.addedTag.depth10:eq(0)"
       ],
       "eventMultiNameTags": [
         "DIV.agendalistevents.depth7>A.agendaevent.depth8>DIV.agendaeventtitle.depth9:eq(0)"

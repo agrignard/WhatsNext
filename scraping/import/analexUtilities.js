@@ -240,20 +240,20 @@ function regroupTags(tagList, isTest = false){
     if (tagList.length < 2){
         return tagList;
     }
-    let regex = /(.*)(:eq\(\d+\))(?!.*:eq\(\d+\))/;
+    // let regex = /(.*)(:eq\(\d+\))(?!.*:eq\(\d+\))/;
     let toProcess = tagList.slice().reverse(); // make a copy of the array tagList
     const res = [];
     while(toProcess.length >0){
         const tag = toProcess.pop();
         const splittedTag = tag.split('>');
-        const shortTagList = [];
         for (let i = splittedTag.length-1; i >=0; i--){
             // console.log('current slice', i);
             const shortTag = splittedTag.slice(0,i)
                                 .concat(splittedTag[i].split(':')[0])
                                 .concat(splittedTag.slice(i+1,splittedTag.length));
             const oldLength = toProcess.length;
-            toProcess = toProcess.filter(el => !testSimplifiedPath(el, i, shortTag)); // filter the tags that would have the same tag
+            // filter the tags that would have the same tag
+            toProcess = toProcess.filter(el => !testSimplifiedPath(el, i, shortTag)); 
             if (toProcess.length < oldLength) {
                 res.push(shortTag.join('>'));
                 break;
@@ -283,7 +283,7 @@ function regroupTags(tagList, isTest = false){
         }
 
     }
-    return res.reverse();
+    return res;//.reverse();
 }
 
 

@@ -51,7 +51,6 @@ if (venues.length === 0){
 async function scrap(venues){
   await testLlamaServer(useAI);
   await scrapFiles(venues.filter(el => !isAlias(el)));
-  console.log('fin');
   const venuesToSkip = venues.filter(el => isAlias(el)).map(el => el.name+' ('+el.city+', '+el.country+')');
   if (venuesToSkip.length>0){
     console.log('\x1b[36mWarning: the following venues have no scraping details and are only used as aliases. Run analex if it is a mistake.\x1b[0m',venuesToSkip);    
@@ -99,6 +98,7 @@ async function scrapFiles(venues) {
 
   // merge duplicate events
   // console.log('*** Merging duplicate events ***\n');
+ 
   totalEventList = mergeEvents(totalEventList,showFullMergeLog);
 
   // provide local URLs for alias venues
@@ -135,7 +135,6 @@ async function analyseFile(venue) {
   if (venue.hasOwnProperty('linkedPage')){
     linkedFileContent = loadLinkedPages(venueSourcePath);
   }
-  console.log('linked pages');
 
   // get file list to scrap
   // try {
@@ -152,9 +151,12 @@ async function analyseFile(venue) {
 
   // build event list and analyze the events
   //const [eventBlockList, hrefInDelimiterList] = await extractEvents(inputFileList,venue);
+  
   const [eventBlockList, hrefInDelimiterList] = await extractEvents(fileContent,venue);
+
+  // let eventList = await analyseEvents(eventBlockList.slice(0,15), hrefInDelimiterList, venue);
   let eventList = await analyseEvents(eventBlockList, hrefInDelimiterList, venue);
-  // console.log(eventList);
+
   eventList = unique(eventList);
 
 
@@ -174,7 +176,7 @@ async function analyseFile(venue) {
   async function analyseEvents(eventBlockList, hrefInDelimiterList, venue){
     let eventList = [];
     const possibleDateFormats = [venue.linkedPageDateFormat, venue.dateFormat].filter(el => el);
-   
+    
     const eventLanguages = languages[venue.country]; 
     const localDateConversionPatterns = fromLanguages(dateConversionPatterns,eventLanguages);
 
@@ -208,32 +210,38 @@ async function analyseFile(venue) {
 
       // process date: change the date format to Unix time. Test all formats of possibleDateFormat until one is valid
       let formatFound = false; 
-      if (!eventInfo.hasOwnProperty('eventDate')){
-        eventInfo.unixDate = 0;
+      if (!eventInfo.hasOwnProperty('eventDate') && !eventInfo.hasOwnProperty('altEventDate')){
+        eventInfo.unixDate = -1;
         const errorString = '\x1b[31mPas de date trouvée pour \x1b[0m'+venue.name+'\x1b[31m.\x1b[0m';
         writeToLog('error',eventInfo, [errorString], false);
         displayEventLog(eventInfo);
         return eventInfo;
       }
 
+      eventInfo.unixDate = 0;
+      let formatedEventDate;
+
       for (const dateFormat of possibleDateFormats){
-        let formatedEventDate = createDate(convertDate(eventInfo.eventDate,localDateConversionPatterns), dateFormat, timeZone, modificationDate);
-        // console.log(eventInfo.eventDate,convertDate(eventInfo.eventDate,localDateConversionPatterns), dateFormat);
-  
-        if (!isValid(formatedEventDate)) {
-          eventInfo.unixDate = 0;
-        } else {
+        formatedEventDate = createDate(convertDate(eventInfo.eventDate,localDateConversionPatterns), dateFormat, timeZone, modificationDate);
+        if (isValid(formatedEventDate)) {
           formatFound = true;
-          // changer 00:00 en 23:59 si besoin
-          if (venue.hasOwnProperty('midnightHour')) {
-            formatedEventDate = changeMidnightHour(formatedEventDate, venue.midnightHour, eventInfo);
-          }
-          eventInfo.unixDate = formatedEventDate.getTime();
-          eventInfo.eventTime = eventTime(formatedEventDate, timeZone);
-          // console.log(showDate(formatedEventDate));
           break;
         }
       }
+
+      // if no format is found, and alt date is declared, try to find an alternate date
+      if (!formatFound &&  eventInfo.hasOwnProperty('altEventDate')){
+        const possibleAltDateFormats = Object.keys(venue.alternateDateFormat).map(page => venue.alternateDateFormat[page]);
+        for (const dateFormat of possibleAltDateFormats){
+          formatedEventDate = createDate(convertDate(eventInfo.altEventDate,localDateConversionPatterns), dateFormat, timeZone, modificationDate);
+          if (isValid(formatedEventDate)) {
+            formatFound = true;
+            break;
+          }
+        }
+      }
+
+      delete eventInfo.altEventDate;
 
       if (!formatFound){
         const errorString = '\x1b[31mFormat de date invalide pour '+venue.name+'. Reçu \''+eventInfo.eventDate+'\', converti en \''
@@ -241,6 +249,13 @@ async function analyseFile(venue) {
             +possibleDateFormats.join('\x1b[31m, \x1b[0m');
           
         writeToLog('error',eventInfo, [errorString], true);
+      }else{
+        // changer 00:00 en 23:59 si besoin
+        if (venue.hasOwnProperty('midnightHour')) {
+          formatedEventDate = changeMidnightHour(formatedEventDate, venue.midnightHour, eventInfo);
+        }
+        eventInfo.unixDate = formatedEventDate.getTime();
+        eventInfo.eventTime = eventTime(formatedEventDate, timeZone);
       }
   
 
@@ -261,7 +276,9 @@ async function analyseFile(venue) {
 
         /*** extract info from main page ***/
 
-        getInfo(venue.mainPage,$eventBlock,eventInfo);
+        // const altEventInfo = venue.alternateTags.mainpage;
+        const altEventInfo = venue.hasOwnProperty('alternateTags') ? venue.alternateTags.mainPage : undefined;
+        getInfo(venue.mainPage,$eventBlock,eventInfo, altEventInfo);
 
         // find if cancelled
         eventInfo.isCancelled = isCancelled($eventBlock.text(),cancellationKeywords[venue.country]);
@@ -294,7 +311,9 @@ async function analyseFile(venue) {
                 // console.log('file content',subEventInfo.eventURL,linkedFileContent[subEventInfo.eventURL]);
                 const $linkedBlock = cheerio.load(linkedFileContent[subEventInfo.eventURL]);
                 // add info from linked page to the sub event. If subEventInfo has no information for key, create a nes entry
-                getInfo(venue.linkedPage, $linkedBlock, subEventInfo, true);
+                const altLinkedPageInfo = venue.hasOwnProperty('alternateTags') ? venue.alternateTags.linkedPage : undefined;
+   
+                getInfo(venue.linkedPage, $linkedBlock, subEventInfo, true, altLinkedPageInfo);
                 
                 // look for cancellation keywords. Leave commented since it appears that linkedpages do not contain appropriate information about cancellation 
                 // eventInfo.iscancelled = eventInfo.iscancelled || isCancelled($linkedBlock.text(),cancellationKeywords[venue.country]);
@@ -328,7 +347,6 @@ async function analyseFile(venue) {
       console.log("Unknown error while processing "+venue.name,error);
       // throw error;
     }
-    // console.log(eventList);
     return eventList;
   }
 }
@@ -346,11 +364,14 @@ async function extractEvents(fileContent, venue){
   let hrefInDelimiterList = [];
   const $ = cheerio.load(parseDocument(fileContent));
   try{
-    $(venue.eventsDelimiterTag).each((index, element) => {
-      let ev = $(element).html();
-      eventBlockList.push(ev);
-      hrefInDelimiterList.push($(venue.eventsDelimiterTag+':eq('+index+')').attr('href'));
-    });
+    const elements = $(venue.eventsDelimiterTag); 
+    eventBlockList = elements.map((_, element) => $(element).html()).get();
+    hrefInDelimiterList = elements.map((_, element) => $(element).attr('href') || null).get();
+    // $(venue.eventsDelimiterTag).each((index, element) => {
+    //   let ev = $(element).html();
+    //   eventBlockList.push(ev);
+    //   hrefInDelimiterList.push($(venue.eventsDelimiterTag+':eq('+index+')').attr('href'));
+    // });
   }catch(err){        
     console.log('\x1b[31m%s\x1b[0m. %s', 'Délimiteur mal défini pour '+venue.name,err);      
   }

@@ -14,11 +14,8 @@ const {getHrefFromAncestor} = require('./aspiratorexUtilities.js');
 module.exports = {getInfo};
 
 
-    
-// auxiliary function to extract data. For a given key ('eventNameTags', ...), get the list of tags from venueInfo 
-// (mainPage or linkedPage) and return the corresponding text. If the tag is an URL tag, returns
-// the info in href.
-// for sub event, the sub event delimiter should be provided 
+// returns the text of the specified element. If the element contains sub divs, format the text
+// in order to have white spaces between the sub texts.
 
 function textWithWhiteSpace($, element){
   return $(element).contents().map((_, el) => {
@@ -29,6 +26,55 @@ function textWithWhiteSpace($, element){
   }).get().join(' ');
   // return $(tag).contents().map((_, el) => $(el).text()).get().join(' ');
 }
+
+// given a path tagPath, returns the corresponding elements
+// when :eq(x) is precised, choose the only children corresponding, otherwise choose all the children
+// of the right class
+// The starting tag can be optionally specified
+
+function getElements(tagPath, $, rootTag) {
+  let splitTag = tagPath.split('>');
+  
+  if (splitTag.every(tag => tag.endsWith(')'))) { // Case where all tags have restriction
+      return rootTag ? $(rootTag).find(tagPath).toArray() : $(tagPath).toArray();
+  }
+
+  let resList = rootTag ? [rootTag] : [...$(splitTag.shift())]; // base definition
+  return splitTag.reduce((elements, tagDesc) => 
+      elements.flatMap(el => $(el).children(tagDesc).toArray()), resList);
+}
+
+// function getElements(tagPath, $, rootTag){
+//   let splitTag = tagPath.split('>');
+//   let iStart;
+//   if (splitTag.some(tag => !tag.endsWith(')'))){
+//     let resList;
+//     if (rootTag){
+//       resList = [rootTag];
+//       iStart = 0;
+//     }else{
+//       let baseTag = $(splitTag[0]); 
+//       resList = [...baseTag]; 
+//       iStart = 1;
+//     }
+    
+//     for (let i = iStart; i < splitTag.length; i++) {
+//         const tagDesc = splitTag[i];
+//         resList = resList.flatMap(tag => $(tag).children(tagDesc).toArray());
+//     }
+//     return resList;
+//   }else{
+//     if (rootTag){
+//       return $(rootTag).find(tagPath).toArray();
+//     }
+//     return [$(tagPath)];
+//   }
+// }
+
+// auxiliary function to extract data. For a given key ('eventNameTags', ...), get the list of tags from venueInfo 
+// (mainPage or linkedPage) and return the corresponding text. If the tag is an URL tag, returns
+// the info in href.
+// for sub event, the sub event delimiter should be provided 
 
 function getText(key, venueInfo, $, subEventDelimiter, eventTag){
 
@@ -48,31 +94,46 @@ function getText(key, venueInfo, $, subEventDelimiter, eventTag){
         string = getHrefFromAncestor($subEv) || '';
       }
     }else{
-      for (let i = 0; i <= tagList.length - 1; i++) {
-        if (tagList[i] === ''){
-          if (eventTag){
-            // string += ' ' + $subEv.text();
-            string += ' ' + textWithWhiteSpace($, eventTag);
-          }else{
-            // string += ' ' + $.text();
-            string += ' ' + textWithWhiteSpace($, '');
-          }
-            
-        }else{
-          if (eventTag){
-            $subEv.find(tagList[i]).each((index, descendant) => {
-              // string += ' ' + $(descendant).text();
-              string += ' ' + textWithWhiteSpace($, descendant);
-            });
-          }else{
-            $(tagList[i]).each((index, element) => {
-              // string += ' ' +  $(element).text();
-              string += ' ' + textWithWhiteSpace($, element);
-            });
-            
-          }
+      // get the text for each tag in tagList
+      for (const tag of tagList) {
+        if (tag === '') {
+            string += ' ' + textWithWhiteSpace($, eventTag || '');
+        } else {
+          // let matchingTags = eventTag ? $subEv.find(tag).toArray() : getElements(tag, $, null);
+          let matchingTags = getElements(tag, $, eventTag);//eventTag ? $subEv.find(tag).toArray() : getElements(tag, $, null);
+          let separator = key.includes('Name') ? ', ' : ' ';
+            string += (string.length > 0 ? separator : '') + matchingTags.map(el => textWithWhiteSpace($, el)).join(separator);
         }
       }
+
+
+
+
+      // for (let i = 0; i <= tagList.length - 1; i++) {
+      //   // if the tag is the empty string '', and if it is allowed to get the text from the 
+      //   // event tag itself, get the text, otherwise return ''
+      //   if (tagList[i] === ''){
+      //     if (eventTag){
+      //       // string += ' ' + $subEv.text();
+      //       string += ' ' + textWithWhiteSpace($, eventTag);
+      //     }else{
+      //       // string += ' ' + $.text();
+      //       string += ' ' + textWithWhiteSpace($, '');
+      //     }
+            
+      //   }else{
+      //     if (eventTag){
+      //       $subEv.find(tagList[i]).each((index, descendant) => {
+      //         // string += ' ' + $(descendant).text();
+      //         string += ((string.length > 0 && key.includes('Name')) ?', ':' ') + textWithWhiteSpace($, descendant);
+      //       });
+      //     }else{
+      //       const matchingTags = getElements(tagList[i],$);
+      //       string += ((string.length > 0 && key.includes('Name')) ?', ':' ') +
+      //           matchingTags.map(element => textWithWhiteSpace($, element)).join(key.includes('Name')?', ':' ');
+      //     }
+      //   }
+      // }
     }
   } catch (err) {
     console.log('\x1b[31m%s\x1b[0m', 'Erreur d\'extraction à partir des balises.\x1b[0m', tagList);
@@ -85,13 +146,27 @@ function getText(key, venueInfo, $, subEventDelimiter, eventTag){
   return removeBlanks(string);
 }
 
+// used to decide if alternative tag should be used
+function checkAltTag(eventInfo, key){
+  if (!eventInfo.hasOwnProperty(key)){
+    return true;
+  }
+  if (key.includes('Date')){
+    // to be modified
+    return true;
+  }
+  if (eventInfo[key] === undefined || eventInfo[key] === null || eventInfo[key].trim().length === 0){
+    return true;
+  }
+  return false;
+}
 
 // get info from the event block. for each key, if key already exists in eventInfo, append the info to eventInfo[key], otherwise 
 // create a new entry. Keys such as eventPlaceTags or eventURLTags should not be appended, the value in eventInfo should be overwritten instead
 // 'Multi' tags should not have an existing value, so there is no need to test if there is something to append
 // overwrite = true may be used when using linked pages, to overwrite stuff already from the main page
 
-function getInfo(venueTags, $, eventInfo = {}, overwrite = false) {
+function getInfo(venueTags, $, eventInfo = {}, overwrite = false, altEventInfo = undefined) {
 
   const keysToOverwrite = ['eventPlaceTags','eventURLTags'];
 
@@ -106,39 +181,74 @@ function getInfo(venueTags, $, eventInfo = {}, overwrite = false) {
             eventInfo[newKey] = string.trim();
           } 
       }else{
-        eventInfo[newKey] = (eventInfo[newKey] || '') + getText(key, venueTags, $).trim();
+        eventInfo[newKey] = (eventInfo[newKey] || '') + string.trim();
       }
     });
 
+  // **** extraction of alt info ***/
+  // for regular tags and url, replace the ones that are invalid
+  // for dates, add an alternate dateTag, that will be processed later
 
-  // *** find sub events and extract data ***/
+  if (altEventInfo){
+    Object.keys(altEventInfo).filter(el => !el.includes('Multi'))
+    .forEach(key => {
+      let newKey = key.replace('Tags', '');
+      if (checkAltTag(eventInfo,newKey)){
+        if (newKey.includes('Date')){
+          newKey = altEventDate; 
+        }
+        const string = getText(key, venueTags, $);
+        if (string && string.trim().length > 0) {
+          eventInfo[newKey] = string.trim();
+        } 
+      }
+    });
+  }
+  
+  
+  // **** find sub events and extract data ****/
   const multiTags = Object.keys(venueTags).filter(key => key.includes('Multi'));
+  const altMultiTags = altEventInfo ? Object.keys(altEventInfo).filter(key => key.includes('Multi')) : [];
+
+  if (multiTags.length === 0 && altMultiTags.length === 0){
+    // stop here if there is no sub event
+    return;
+  }
 
   let subEvents = [];
-  if (multiTags.length !== 0) {// stop here if there is no sub event
-    let subEventDelimiterPath = venueTags[multiTags[0]][0];
+  // if (multiTags.length !== 0) {
+  let subEventDelimiterPath = multiTags.length !== 0 ? venueTags[multiTags[0]][0] : altEventInfo[altMultiTags[0]][0];
 
-    while (multiTags.flatMap(key => venueTags[key])
-      .some(tagPath => !tagPath.startsWith(subEventDelimiterPath))) {
-      if (!subEventDelimiterPath.includes('>')) {
-        console.log('Warning, unexpected error. Tag ' + subEventDelimiterPath + ' does not contain \'>\'');
-        break;
-      }
-      subEventDelimiterPath = subEventDelimiterPath.replace(/>[^>]*$/, '');
+  while (multiTags.flatMap(key => venueTags[key]).concat(altMultiTags.flatMap(key => altEventInfo[key]))
+    .some(tagPath => !tagPath.startsWith(subEventDelimiterPath))) {
+    if (!subEventDelimiterPath.includes('>')) {
+      console.log('Warning, unexpected error. Tag ' + subEventDelimiterPath + ' does not contain \'>\'');
+      break;
     }
-
-    // console.log(subEventDelimiterPath);
-    // browse sub events and return a json object containing sub event infos and url
-    $(subEventDelimiterPath).each((index, element) => {
-      let subEventInfo = {};
-      multiTags.forEach(key => {
-        subEventInfo[key.replace('Tags','').replace('Multi','')] = getText(key, venueTags, $, subEventDelimiterPath, element);
-      });
-      subEvents.push(subEventInfo);
-      // hrefInDelimiterList.push($(venue.eventsDelimiterTag+':eq('+index+')').attr('href'));
-    });
-    eventInfo.subEvents = subEvents;
+    subEventDelimiterPath = subEventDelimiterPath.replace(/>[^>]*$/, '');
   }
+
+  // browse sub events and return a json object containing sub event infos and url
+  $(subEventDelimiterPath).each((index, element) => {
+    let subEventInfo = {};
+    multiTags.forEach(key => {
+      let newKey = key.replace('Tags', '').replace('Multi', '');
+      subEventInfo[newKey] = getText(key, venueTags, $, subEventDelimiterPath, element);
+    });
+    // replace by alt tag if needed
+    altMultiTags.forEach(key => {
+      let newKey = key.replace('Tags', '').replace('Multi', '');
+      if (checkAltTag(subEventInfo,newKey)){
+        if (newKey.includes('Date')){
+          newKey = 'altEventDate'; 
+        }
+        subEventInfo[newKey] = getText(key, altEventInfo, $, subEventDelimiterPath, element);
+      }
+    });
+    subEvents.push(subEventInfo);
+    // hrefInDelimiterList.push($(venue.eventsDelimiterTag+':eq('+index+')').attr('href'));
+  });
+  eventInfo.subEvents = subEvents;
 }
 
   
