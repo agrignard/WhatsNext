@@ -47,13 +47,13 @@
     "name": "Le Petit Salon",
     "city": "Lyon",
     "country": "France",
-    "url": "https://www.chromatique.art/spectacles",
+    "url": "https://www.lpslyon.fr/evenements-le-petit-salon/",
     "baseURL": "https://www.lpslyon.fr/evenements-le-petit-salon/",
     "eventsDelimiterTag": "DIV.events__item.item.colmd4.depth10",
     "mainPage": {
       "eventDateTags": [
-        "DIV.item__date.dxlnone.depth11:eq(0)>SPAN.depth12:eq(0)",
-        "DIV.item__date.dxlnone.depth11:eq(0)>DIV.item__dateday.depth12:eq(0)"
+        "DIV.item__date.dxlnone.depth11:eq(0)>DIV.item__dateday.depth12:eq(0)",
+        "DIV.item__date.dxlnone.depth11:eq(0)>SPAN.depth12:eq(0)"
       ],
       "eventNameTags": [
         "H2.item__title.depth11:eq(0)"
@@ -68,11 +68,18 @@
     "eventURLIndex": 1,
     "dateFormat": "dd-MM",
     "ID": "Le Petit Salon|Lyon|France",
-    "multiPages": {
-      "nbPages": "5",
-      "startPage": "1",
-      "increment": "1"
-    }
+    "linkedPage": {
+      "eventDateTags": [
+        "DIV.depth2:eq(0)>DIV.cpage.cpagefullscreen.pt6.pb7.uthemedark.depth3:eq(0)>DIV.cgrid.cgridl.uwidthfull.depth4:eq(0)>DIV.leventpage.depth5:eq(0)>DIV.leventpage__sidebar.pt3.ptm0.depth6:eq(0)>DIV.utipslink.my2.utips.utipstop.depth7:eq(0)>A.depth8:eq(0)>DIV.cgrid__row.cgrid__rownocol.cgrid__rownowrap.depth9:eq(0)>DIV.cgrid__row.cgrid__rowcolumn.depth10:eq(0)>DIV.ctype.ctypebody2.depth11:eq(0)>P.addedTag.depth12:eq(0)",
+        "DIV.depth2:eq(0)>DIV.cpage.cpagefullscreen.pt6.pb7.uthemedark.depth3:eq(0)>DIV.cgrid.cgridl.uwidthfull.depth4:eq(0)>DIV.leventpage.depth5:eq(0)>DIV.leventpage__sidebar.pt3.ptm0.depth6:eq(0)>DIV.utipslink.my2.utips.utipstop.depth7:eq(0)>A.depth8:eq(0)>DIV.cgrid__row.cgrid__rownocol.cgrid__rownowrap.depth9:eq(0)>DIV.cgrid__row.cgrid__rowcolumn.depth10:eq(0)>DIV.ctype.ctypebody2.depth11:eq(0)>DIV.ctype.ctypebody2.ucolor__grey60.depth12:eq(0)"
+      ],
+      "eventStyleTags": [
+        "DIV.depth2:eq(0)>DIV.cpage.cpagefullscreen.pt6.pb7.uthemedark.depth3:eq(0)>DIV.cgrid.cgridl.uwidthfull.depth4:eq(0)>DIV.leventpage.depth5:eq(0)>DIV.depth6:eq(1)>UL.cgrid__row.cgrid__rownocol.depth7:eq(0)>LI.ctag.ctagdefault.mt1.depth8:eq(0)",
+        "DIV.depth2:eq(0)>DIV.cpage.cpagefullscreen.pt6.pb7.uthemedark.depth3:eq(0)>DIV.cgrid.cgridl.uwidthfull.depth4:eq(0)>DIV.leventpage.depth5:eq(0)>DIV.depth6:eq(1)>UL.cgrid__row.cgrid__rownocol.depth7:eq(0)>LI.ctag.ctagdefault.mt1.depth8:eq(1)"
+      ]
+    },
+    "linkedPageDownloadMethod": "Puppeteer",
+    "linkedPageDateFormat": "dd-MM-yyyy-HH:mm"
   },
   {
     "name": "Transbordeur",

@@ -317,13 +317,28 @@ async function autoScroll(page){
 }
 
 
+async function fetchWithPuppeteer(url){
+    const browser = await puppeteer.launch({ headless: true });
+    const page = await browser.newPage();
+    await page.goto(url,{ waitUntil: 'networkidle2' });
+    const html = await page.content();
+    // console.log(html);
+    await browser.close();
+    return html;
+}
+
 // fetch linked page
-async function fetchLink(page, nbFetchTries){
+async function fetchLink(page, nbFetchTries, usePuppeteer = false){
     try{
-        const content = await fetchWithRetry(page, nbFetchTries, 2000);
-        return extractBody(removeBlanks(cleanPage(content)));
+        if (usePuppeteer){
+            const content = await fetchWithPuppeteer(page);
+            return extractBody(removeBlanks(cleanPage(content)));
+        }else{
+            const content = await fetchWithRetry(page, nbFetchTries, 2000);
+            return extractBody(removeBlanks(cleanPage(content)));
+        }
     }catch(err){
-        console.log("\x1b[31mNetwork error, cannot download \'%s\'.\x1b[0m",page);
+        console.log("\x1b[31mNetwork error, cannot download \'%s\'.\x1b[0m",page,err);
     }
 }
   
@@ -372,6 +387,8 @@ async function fetchAndRecode(url){
     try{
         // console.log('fetchAndRecode debut');
         const response = await fetch(url);
+        // const response = await fetchWithPuppeteer(url);
+
         // console.log('fetchAndRecode fin');
         const encoding = response.headers.get('content-type').split('charset=')[1]; // identify the page encoding
         if (encoding === 'utf-8'){// || encoding ==='UTF-8'){

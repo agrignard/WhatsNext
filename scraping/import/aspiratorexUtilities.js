@@ -194,7 +194,11 @@ async function downloadLinkedPages(venue, filePath, pageList, verbose = false, m
 
   let hrefContents;
   try {
-    hrefContents = (await Promise.all(linksToDownload.map(el => fetchLink(el, nbFetchTries))));
+    if (venue.hasOwnProperty('linkedPageDownloadMethod') && venue.linkedPageDownloadMethod === 'Puppeteer'){
+      hrefContents = (await Promise.all(linksToDownload.map(el => fetchLink(el, 0, true))));
+    }else{
+      hrefContents = (await Promise.all(linksToDownload.map(el => fetchLink(el, nbFetchTries))));
+    }
   } catch (err) {
     console.log("\x1b[31mNetwork error, cannot load linked page for \'%s\'\x1b[0m: %s", venue.name, err);
   }

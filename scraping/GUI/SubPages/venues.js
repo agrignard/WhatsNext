@@ -508,7 +508,15 @@ function updateVenueInfo(mode){
             });
             // get linked page
             const linkedPageCheckbox = document.getElementById('linkedPageCheckbox');
-            linkedPageCheckbox.checked = venue.hasOwnProperty('linkedPage')?true:false;    
+            linkedPageCheckbox.checked = venue.hasOwnProperty('linkedPage')?true:false; 
+            const linkedPageDownloadMethodCheckbox = document.getElementById('linkedPageDownloadMethodCheckbox');
+            linkedPageDownloadMethodCheckbox.checked = venue.hasOwnProperty('linkedPageDownloadMethod')?true:false;
+            linkedPageDownloadMethodDiv = document.getElementById('linkedPageDownloadMethodDiv');
+            linkedPageDownloadMethodDiv.style.display =  linkedPageCheckbox.checked ? 'inline':'none';
+            linkedPageCheckbox.addEventListener('change', (event) => {
+                linkedPageDownloadMethodDiv.style.display =  linkedPageCheckbox.checked ? 'inline':'none';
+            });
+
             // midnight hour
             const selectMH = document.getElementById('selectMidnightHour');
             midnightHourOptions.forEach(action => {
@@ -609,6 +617,13 @@ function updateVenueInfo(mode){
                         }
                     }else{
                         delete venue.linkedPage;
+                    }
+                    if (linkedPageDownloadMethodCheckbox.checked){
+                        if (!venue.hasOwnProperty('linkedPageDownloadMethod')){
+                            venue.linkedPageDownloadMethod = 'Puppeteer';
+                        }
+                    }else{
+                        delete venue.linkedPageDownloadMethod;
                     }
                 // midnight hour
                 if (selectMH.selectedIndex === 0){
