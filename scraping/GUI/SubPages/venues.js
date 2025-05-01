@@ -68,6 +68,23 @@ pageLimitCheckbox.addEventListener('change', (event) => {
     });
 });
 
+// save button, edit panel fields listeners
+
+const saveButton = document.getElementById('saveVenue');
+
+const venueEditPanel = document.getElementById('venueEditPanel');
+const editableFields = venueEditPanel.querySelectorAll('input, textarea, select, .editable');
+editableFields.forEach(field => {
+    field.addEventListener('change', () => {
+        saveButton.disabled = false;
+    });
+    field.addEventListener('input', () => {
+        saveButton.disabled = false;
+    });
+});
+
+
+
 
 // load countries dropdown menu
 addToMenu(webSources,countriesDropdown);
@@ -126,6 +143,7 @@ urlButton2.addEventListener('click',function(){
     const url = textURL.textContent;
     shell.openExternal(url);
 });
+
 
 
 
@@ -195,11 +213,12 @@ function updateVenueInfo(mode){
         'country': currentCountry};
     }else{
         venue = getCurrentVenue();
+        saveButton.disabled = true;
     }
     const venueShowPanel = document.getElementById('venueShowPanel');
     venueShowPanel.style.display = 'none';
-    const venueEditPanel = document.getElementById('venueEditPanel');;
     venueEditPanel.style.display = 'none';
+    
  
     if (venue){
         if (mode === 'show'){
@@ -547,7 +566,6 @@ function updateVenueInfo(mode){
             //*************************/
             const divButtons =  document.getElementById('divButtons');
             // add save button
-            const saveButton = document.getElementById('saveVenue');
             saveButton.addEventListener('click', function() {
                 // name
                 if (mode === 'newVenue'){
