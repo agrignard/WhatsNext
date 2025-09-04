@@ -3,7 +3,7 @@ import * as dataUtils from './dataUtils.js';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiYWdyaWduYXJkIiwiYSI6ImNqdWZ6ZjJ5MDBoenczeXBkYWU3bTk5ajYifQ.SXiCzAGs4wbMlw3RHRvxhw';
 
-var devMode = true;
+var devMode = false;
 var showAllValueDiv = devMode ? true : false;
 export var city="lyon";
 processCityBasedOnUrl();
