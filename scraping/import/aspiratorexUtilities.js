@@ -24,7 +24,7 @@ const browserPool = new BrowserPool(3);
 /******************************/
 
 async function downloadVenue(venue, filePath, verbose = false, syncWriting = false){
-  let URLlist = [];
+  let URLlist = []; // set the list of URL of the pages that will be downloaded and merged to extract events
   // let failedDownloads;
   if (venue.hasOwnProperty('multiPages')){
     if (venue.multiPages.hasOwnProperty('pattern')){
@@ -72,8 +72,13 @@ async function downloadVenue(venue, filePath, verbose = false, syncWriting = fal
         htmlContent = cleanPage(await fetchWithRetry(page,2,2000));
       }
     }catch(err){
-      console.log("\x1b[31mNetwork error, cannot download \'%s\'\x1b[0m. %s",page,err);
-      return '';
+      if (verbose){
+        console.log("\x1b[38;5;226mNetwork error (or file not exists), cannot download \'%s\'\x1b[0m. %s",page,err);
+      }else{
+        //console.log("\x1b[38;5;226mCannot download page \'%s\'. Either there is a network error, or the page does not exist.\x1b[0m (%s)",page,err.message);
+        console.log("\x1b[38;5;226mCannot download page \x1b[0m%s\x1b[38;5;226m (error: %s).\x1b[0m",page,err.message);
+      }
+      return null;
     }
 
     let outputFile;
@@ -118,6 +123,41 @@ async function downloadVenue(venue, filePath, verbose = false, syncWriting = fal
 
   // read the pages and save them to local files
   let pageList = (await Promise.all(URLlist.map((page,pageIndex)=>getPage(page,pageIndex)))).flat();
+
+  // test if the download process worked.
+
+
+  const nullCount = pageList.filter(p => p === null).length;
+  const nonNullCount = pageList.length - nullCount;
+
+  // if some page downloads failed: if some files were downloaded properly, send a warning message (maybe index problem for multipages)
+  // otherwise raise an error, with download failed
+
+  if (nullCount > 0){
+    if (nonNullCount > 0){
+      console.log("\x1b[38;5;226mWarning: %d pages were correctly downloaded for venue \x1b[0m%s\x1b[38;5;226m, but some failed. "+
+        "Possible causes: wrong index for some pages, network error, or non existing files.",nonNullCount,venue.name);
+      console.log("Proceeding with existing files and ignore missing ones.\x1b[0m");
+      pageList = pageList.filter(p => p !== null);
+    }else{
+      console.log("\x1b[31mPage download for venue \x1b[0m%s\x1b[31m failed. Possible causes: network error or file not exists.\x1b[0m", venue.name);
+      return;
+    }
+  }
+
+  // test if delimiters can be found in the downloaded page. If not found, probably the structure of the page has changed
+  // or the site is down and shows a filler page
+
+  if (await hasDelimiter(pageList, venue.eventsDelimiterTag)) {
+    if (verbose){
+      console.log("Event found for %s.",venue.name);
+    }
+    
+    
+  } else {
+     console.log('\x1b[31mPage was successfully downloaded for \x1b[0m\'%s\'\x1b[31m, but no event delimiter was found. Either the page does not exist anymore, or its structure has changed.\x1b[0m',venue.name)
+        return;
+  }
   
   // get linked pages
   if (venue.hasOwnProperty('linkedPage')){
@@ -134,6 +174,7 @@ async function downloadVenue(venue, filePath, verbose = false, syncWriting = fal
 async function downloadLinkedPages(venue, filePath, pageList, verbose = false, messageTarget = undefined){
   
   const hrefList = getHrefListFrom(pageList,venue);
+
 
   let count = 0;
   if (messageTarget){
@@ -340,6 +381,22 @@ function shortList(list){
     return list.slice(0,3).concat(['...('+list.length+' elements)']);
   }
 }
+
+// test for the presence of events in the page list. Maybe too resource consuming because it forces to load pages with Cheerio until
+// it finds a valid event delimiter
+
+async function hasDelimiter(pageList, delimiter) {
+  for (const page of pageList) {
+    const $ = cheerio.load(page);
+    if ($(delimiter).length > 0) {
+      return true; // found a valid delimiter. Stop here
+    }
+  }
+  return false; // no page contains a delimiter
+}
+
+
+
   
 function getHrefListFrom(pageList,venue){
   let hrefList;

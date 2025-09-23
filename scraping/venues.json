@@ -176,12 +176,12 @@
     ],
     "city": "Lyon",
     "country": "France",
-    "url": "https://sonic-lyon.fr/",
+    "url": "https://sonic-lyon.fr/page/",
     "dateFormat": "MM-dd",
     "eventsDelimiterTag": "DIV.ife_event.depth13",
     "eventURLIndex": 0,
     "defaultStyle": "Rock",
-    "baseURL": "https://sonic-lyon.fr/",
+    "baseURL": "https://sonic-lyon.fr/page/",
     "mainPage": {
       "eventDateTags": [
         "DIV.event_details.depth14:eq(0)>A.depth15:eq(0)>DIV.event_date.depth16:eq(0)"
@@ -196,10 +196,16 @@
     "ID": "Le Sonic|Lyon|France",
     "linkedPage": {
       "eventDateTags": [
-        "DIV.sitewrapper.site.depth2:eq(0)>DIV.sitecontent.depth3:eq(0)>DIV.container.depth4:eq(0)>DIV.row.depth5:eq(0)>SECTION.contentarea.col12.colsm12.colmd12.collg8.colxl8.colxxl8.pushlg4.pushxl4.pushxxl4.depth6:eq(0)>MAIN.sitemain.depth7:eq(0)>DIV.postwrapper.postwrappersingle.postwrapperpost.depth8:eq(0)>ARTICLE.facebook_events.typefacebook_events.statuspublish.haspostthumbnail.hentry.depth9:eq(0)>DIV.entrycontent.entrycontentsingle.depth10:eq(0)>DIV.ife_eventmeta.depth11:eq(0)>DIV.organizermain.depth12:eq(0)>DIV.details.depth13:eq(0)>P.depth14:eq(0)"
+        "DIV.sitewrapper.site.depth2:eq(0)>DIV.sitecontent.depth3:eq(0)>DIV.container.depth4:eq(0)>DIV.row.depth5:eq(0)>SECTION.contentarea.col12.colsm12.colmd12.collg8.colxl8.colxxl8.pushlg4.pushxl4.pushxxl4.depth6:eq(0)>MAIN.sitemain.depth7:eq(0)>DIV.postwrapper.postwrappersingle.postwrapperpost.depth8:eq(0)>ARTICLE.facebook_events.typefacebook_events.statuspublish.haspostthumbnail.hentry.depth9:eq(0)>DIV.entrycontent.entrycontentsingle.depth10:eq(0)>DIV.ife_eventmeta.depth11:eq(0)>DIV.organizermain.depth12:eq(0)>DIV.details.depth13:eq(0)>P.depth14:eq(0)",
+        "DIV.sitewrapper.site.depth2:eq(0)>DIV.sitecontent.depth3:eq(0)>DIV.container.depth4:eq(0)>DIV.row.depth5:eq(0)>SECTION.contentarea.col12.colsm12.colmd12.collg8.colxl8.colxxl8.pushlg4.pushxl4.pushxxl4.depth6:eq(0)>MAIN.sitemain.depth7:eq(0)>DIV.postwrapper.postwrappersingle.postwrapperpost.depth8:eq(0)>ARTICLE.facebook_events.typefacebook_events.statuspublish.haspostthumbnail.hentry.depth9:eq(0)>DIV.entrycontent.entrycontentsingle.depth10:eq(0)>DIV.ife_eventmeta.depth11:eq(0)>DIV.organizermain.depth12:eq(0)>DIV.details.depth13:eq(0)>P.depth14:eq(1)"
       ]
     },
-    "linkedPageDateFormat": "MM-dd-HH:mm"
+    "linkedPageDateFormat": "MM-dd-HH:mm",
+    "multiPages": {
+      "nbPages": "2",
+      "startPage": "1",
+      "increment": "1"
+    }
   },
   {
     "name": "Le Petit Bulletin",
