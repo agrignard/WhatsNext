@@ -192,7 +192,8 @@ async function downloadLinkedPages(venue, filePath, pageList, verbose = false, m
   // if no URL found, abort download
   if(!venue.mainPage.hasOwnProperty('eventsURLTags') && !venue.mainPage.hasOwnProperty('eventsMultiURLTags')
       && hrefList.length === 0){
-    console.log('\x1b[31mTrying to download linked pages for \x1b[0m\'%s\'\x1b[31m, but no URL delimiter found. Set URL tag, then run again aspiratorex.js.\x1b[0m',venue.name)
+    console.log('\x1b[31mTrying to download linked pages for \x1b[0m\'%s\'\x1b[31m, but no URL link could be found automatically.'+
+                'Check if URL to linked page exists. If yes, try to set the URL tag manually, then run aspiratorex.js again.\x1b[0m',venue.name);
         return;
   }
  
