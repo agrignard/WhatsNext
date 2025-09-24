@@ -285,33 +285,6 @@
     "ID": "Halle Tony Garnier|Lyon|France"
   },
   {
-    "name": "Le Trokson",
-    "aliases": [
-      "TROKSON"
-    ],
-    "city": "Lyon",
-    "country": "France",
-    "url": "https://www.trokson.com/shows",
-    "defaultStyle": "Rock",
-    "baseURL": "https://www.trokson.com/",
-    "mainPage": {
-      "eventNameTags": [
-        "DIV.depth27:eq(0)>DIV.MTyds5.depth28:eq(0)>A.DjQEyU.depth29:eq(0)"
-      ],
-      "eventDateTags": [
-        "DIV.depth27:eq(0)>DIV.pyOzT0.depth28:eq(0)>DIV.LQpUqV.AinsX6.wu0Sg9.IHq231.depth29:eq(0)>DIV.v2vbgt.pRRkmP.depth30:eq(0)"
-      ],
-      "eventURLTags": [
-        "DIV.depth27:eq(1)>A.DjQEyU.m022zm.aUkG34.depth28:eq(0)"
-      ]
-    },
-    "eventsDelimiterTag": "DIV.Y42my3.ib4N31.depth26",
-    "eventURLIndex": 0,
-    "dateFormat": "dd-MM",
-    "delimiterAddLevels": 0,
-    "ID": "Le Trokson|Lyon|France"
-  },
-  {
     "name": "Ville Morte",
     "city": "Lyon",
     "country": "France",
@@ -465,6 +438,17 @@
       ]
     },
     "linkedPageDateFormat": "dd-MM-yyyy-HH:mm"
+  },
+  {
+    "name": "Le Trokson",
+    "aliases": [
+      "TROKSON"
+    ],
+    "city": "Lyon",
+    "country": "France",
+    "url": "https://www.trokson.com/shows",
+    "defaultStyle": "Rock",
+    "ID": "Le Trokson|Lyon|France"
   },
   {
     "name": "Bizarre!",
@@ -869,15 +853,6 @@
     "name": "Chromatique",
     "city": "Lyon",
     "country": "France",
-    "mainPage": {
-      "eventNameTags": [
-        ""
-      ]
-    },
-    "url": "https://www.chromatique.art/spectacles",
-    "ID": "Chromatique|Lyon|France",
-    "baseURL": "https://www.chromatique.art/",
-    "eventsDelimiterTag": "A.depth15",
-    "linkedPage": {}
+    "ID": "Chromatique|Lyon|France"
   }
 ]
