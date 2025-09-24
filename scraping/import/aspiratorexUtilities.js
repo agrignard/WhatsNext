@@ -76,7 +76,8 @@ async function downloadVenue(venue, filePath, verbose = false, syncWriting = fal
         console.log("\x1b[38;5;226mNetwork error (or file not exists), cannot download \'%s\'\x1b[0m. %s",page,err);
       }else{
         //console.log("\x1b[38;5;226mCannot download page \'%s\'. Either there is a network error, or the page does not exist.\x1b[0m (%s)",page,err.message);
-        console.log("\x1b[38;5;226mCannot download page \x1b[0m%s\x1b[38;5;226m (error: %s).\x1b[0m",page,err.message);
+        // console.log("\x1b[38;5;226mCannot download page \x1b[0m%s\x1b[38;5;226m (error: %s).\x1b[0m",page,err.message);
+        console.log("\x1b[38;5;226mCannot download page \x1b[0m%s\x1b[38;5;226m (error: %s).\x1b[0m",page,err);
       }
       return null;
     }
@@ -155,7 +156,9 @@ async function downloadVenue(venue, filePath, verbose = false, syncWriting = fal
     
     
   } else {
-     console.log('\x1b[31mPage was successfully downloaded for \x1b[0m\'%s\'\x1b[31m, but no event delimiter was found. Either the page does not exist anymore, or its structure has changed.\x1b[0m',venue.name)
+     console.log('\x1b[31mPage was successfully downloaded for \x1b[0m\'%s\'\x1b[31m, but no event delimiter was found.\n'+
+                'Possible issues: 1) the page does not exist anymore 2) its structure has changed '+
+                '3) It is a dynamic page that is not fully loaded, check dynamic/multipage parameters.\x1b[0m',venue.name)
         return;
   }
   

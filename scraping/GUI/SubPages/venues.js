@@ -6,7 +6,7 @@ const { shell } = require('electron');
 
 const {app, Menu, ipcRenderer} = require('electron');
 const {loadVenuesJSONFile, getStyleList, makeID, isAlias, saveToVenuesJSON} = require(imports+'jsonUtilities.js');
-const {simplify, removeBlanks} = require(imports+'stringUtilities.js');
+const {simplify, removeBlanks, normalizeUrl} = require(imports+'stringUtilities.js');
 const {to2digits} = require(imports+'dateUtilities.js');
 
 const midnightHourOptions = ['none','sameday','previousday'];
@@ -140,6 +140,7 @@ urlButton.addEventListener('click',function(){
 const urlButton2 = document.getElementById('followURLButton2');
 
 urlButton2.addEventListener('click',function(){
+    textURL.textContent = normalizeUrl(textURL.textContent);
     const url = textURL.textContent;
     shell.openExternal(url);
 });
@@ -588,7 +589,7 @@ function updateVenueInfo(mode){
                 }
                 // url
                 if (isNotBlank(textURL.value)){
-                    venue.url = textURL.textContent;
+                    venue.url = normalizeUrl(textURL.textContent);
                 }else{
                     delete venue.url;
                 }

@@ -5,6 +5,7 @@
 const outputFormat = 'text';// for tests, to be removed
 
 const puppeteer = require('puppeteer');
+// const { BrowserPool } = require('browser-pool');
 const fs = require('fs');
 // const fetch = require('electron-fetch').default;
 // const axios = require('axios');
@@ -197,25 +198,52 @@ function verifyPath(path){
 }
 
 
+async function detectIframes(page){
+    // Récupérer toutes les iframes
+    const iframeList = await page.evaluate(() => {
+        return Array.from(document.querySelectorAll('iframe')).map(f => ({
+            src: f.src,
+            id: f.id,
+            name: f.name
+        }));
+    });
 
-async function getPageByPuppeteer(pageURL, venueName, multipagesOptions, browserPool, verbose = false){
-    let browser = null;
+    // console.log('Iframes détectées :', iframeList);
+    return iframeList;
 
-    // browser = await puppeteer.launch({
-    //     // headless: false
-    // });
+};
 
-    browser = await browserPool.acquire();
+
+async function getPageByPuppeteer(pageURL, venueName, multipagesOptions, browserPool, verbose = false, parentBrowser = null){
+    // let browser = null;
+    //  browser = await browserPool.acquire();
+
+     let browser = parentBrowser;
+    if (!browser) {
+        browser = await browserPool.acquire();
+    }
+
+   
 
     const page = await browser.newPage();
     await page.goto(pageURL, { waitUntil: 'networkidle2' });
-    await page.setViewport({
-        width: 1200,
-        height: 800
-    });
+    const iframeList = await detectIframes(page);
 
-    // const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-    // await delay(5000);
+    if (iframeList.length !== 0) {
+         console.log('detected Iframes:',iframeList);
+        await page.close();
+        // await browser.close();
+        return await getPageByPuppeteer(iframeList[0].src, venueName, multipagesOptions, browserPool, verbose = false, browser);
+    }
+
+    // await page.setViewport({
+    //     width: 1200,
+    //     height: 800
+    // });
+
+    await page.setViewport({ width: 1200, height: 3000 });
+    // await page.waitForTimeout(5000); // attendre que JS charge tout
+
 
     if (multipagesOptions.hasOwnProperty('scroll') && multipagesOptions.scroll === true){
         if (verbose) {console.log('scrolling...');}
@@ -248,10 +276,6 @@ async function getPageByPuppeteer(pageURL, venueName, multipagesOptions, browser
                     hasMoreContent = await page.evaluate((buttonText, count, verbose) => { 
                         const buttons = Array.from(document.querySelectorAll('button')); 
 
-                        // count the number of buttons that match the description
-                        // const test = buttons.filter(btn => btn.textContent.trim() === 'Voir plus');
-                        // console.log('length',test.length);
-
                         const button = buttons.find(
                             btn => btn.textContent.trim() === buttonText
                         );
@@ -276,8 +300,7 @@ async function getPageByPuppeteer(pageURL, venueName, multipagesOptions, browser
                     await new Promise(resolve => setTimeout(resolve, 2000));
                 }
             }
-
-        
+  
         } catch (err) {
             console.log('\x1b[31mError in puppeteer: \x1b[0m',err);
         }
@@ -285,7 +308,6 @@ async function getPageByPuppeteer(pageURL, venueName, multipagesOptions, browser
         const content = await page.content();
         await browser.close();
 
-        // fs.writeFileSync('page.html', content);
         return content;
     }catch (error) {
         console.error(`Error processing ${pageURL}: ${error.message}`);
@@ -298,23 +320,50 @@ async function getPageByPuppeteer(pageURL, venueName, multipagesOptions, browser
 };
 
 
-async function autoScroll(page){
+// async function autoScroll(page){
+//     await page.evaluate(async () => {
+//         await new Promise((resolve) => {
+//             var totalHeight = 0;
+//             var distance = 100; // old value: 100
+//             var timer = setInterval(() => {
+//                 var scrollHeight = document.body.scrollHeight;
+//                 window.scrollBy(0, distance);
+//                 totalHeight += distance;
+//                 if(totalHeight >= scrollHeight - window.innerHeight){
+//                     clearInterval(timer);
+//                     resolve();
+//                 }
+//             }, 300); // why can't it be set in a variable ?
+//         });
+//     });
+// }
+
+async function autoScroll(page) {
     await page.evaluate(async () => {
         await new Promise((resolve) => {
-            var totalHeight = 0;
-            var distance = 100; // old value: 100
-            var timer = setInterval(() => {
-                var scrollHeight = document.body.scrollHeight;
+            let lastHeight = document.body.scrollHeight;
+            const distance = 300; // pixels to scroll at each step
+            const timer = setInterval(() => {
                 window.scrollBy(0, distance);
-                totalHeight += distance;
-                if(totalHeight >= scrollHeight - window.innerHeight){
+                const newHeight = document.body.scrollHeight;
+
+                // stops if height doesn't change 
+                if (newHeight === lastHeight) {
                     clearInterval(timer);
                     resolve();
                 }
-            }, 300); // why can't it be set in a variable ?
+
+                lastHeight = newHeight;
+            }, 500); // 0.5s delay
         });
     });
 }
+
+
+
+
+
+
 
 
 async function fetchWithPuppeteer(url){

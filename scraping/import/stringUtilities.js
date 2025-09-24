@@ -2,7 +2,7 @@
 /*   utilities to deal with strings   */
 /**************************************/
 
-module.exports = { simplify, removeAccents, removeBlanks, removeDoubles,
+module.exports = { simplify, removeAccents, removeBlanks, removeDoubles, normalizeUrl,
   makeURL,convertToLowerCase, removeImages, extractBody, cleanPage, fixString, isValidURL};
 
 
@@ -163,6 +163,8 @@ function fixImages(content){
 
 // remove scripts from an html file
 function cleanScripts(content){
+    // console.log("truc");
+    // console.log(content);
   let res = content.replace(/<script[^]*?<\/script>/g,'');// remove scripts
   res = res.replace(/<noscript[^]*?<\/noscript>/g,'');// remove scripts
   return res;
@@ -222,4 +224,15 @@ function cleanHtml(content){
     // return '<'+p.replace(/([^"]*)("[^"]*")/g,replaceClass)+'>';// find the classes within the tags and apply replaceClass
   }
   return content.replace(/<([^<>]*)>/g, findClasses); // find the tag contents and apply findClasses
+}
+
+
+
+// add https:// to an URL if it is missing at the beginning
+
+function normalizeUrl(url) {
+  if (!/^https?:\/\//i.test(url)) {
+    return "https://" + url;
+  }
+  return url;
 }

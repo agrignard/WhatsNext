@@ -315,37 +315,19 @@
     "name": "Ville Morte",
     "city": "Lyon",
     "country": "France",
-    "url": "https://villemorte.fr/agenda/",
+    "url": "https://villemorte.fr/agenda-2-0/",
     "eventsDelimiterTag": "div.tribeeventscategorymusique.tribe_events.typetribe_events.statuspublish.hentry.tribe_events_catmusique.cat_musique>h3.tribeeventsmontheventtitle>a.url",
     "dateFormat": "dd MM",
-    "baseURL": "https://villemorte.fr/agenda/",
+    "baseURL": "https://villemorte.fr/agenda-2-0/",
     "mainPage": {
       "eventNameTags": [
         "html>body:eq(0)"
       ]
     },
     "multiPages": {
-      "nbPages": "4",
-      "pattern": "yyyy-mm-dd"
+      "scroll": true
     },
     "eventURLIndex": 0,
-    "linkedPage": {
-      "eventNameTags": [
-        "DIV.tribeeventssingle:eq(0) H1.tribeeventssingleeventtitle:eq(0)"
-      ],
-      "eventDateTags": [
-        "H2:eq(0) SPAN.tribeeventdatestart:eq(0)"
-      ],
-      "eventStyleTags": [
-        null
-      ],
-      "eventPlaceTags": [
-        "DIV.tribeeventsmetagroup.tribeeventsmetagroupvenue:eq(0) DL:eq(0) DD.author.fn.org:eq(0)"
-      ],
-      "eventURLTags": [
-        "DD.url:eq(0) A:eq(0)"
-      ]
-    },
     "linkedPageDateFormat": "dd-MM-HH:mm",
     "ID": "Ville Morte|Lyon|France"
   },
@@ -403,10 +385,6 @@
     "name": "Rock N Eat",
     "country": "France",
     "city": "Lyon",
-    "aliases": [
-      "Bar Rock'n eat",
-      "Le Rock N Eat"
-    ],
     "ID": "Rock N Eat|Lyon|France",
     "mainPage": {
       "eventDateTags": [
@@ -424,7 +402,7 @@
         "DIV.animateslideright.depth5>DIV.wfull.depth6>DIV.flex.flexcol.mdhidden.depth7>DIV.group.relative.h24.mb1.shadowsm.shadowblack30.transform.hoverh56.transitionall.duration300.overflowhidden.depth8>DIV.absolute.flex.flexcol.placecontentend.w90.h70.bottom10.left5.z30.depth9:eq(0)>DIV.hidden.grouphoverflex.flexcol.placecontentend.depth10:eq(0)>A.hidden.grouphoverflex.flexrow.selfcenter.wfit.h5.px2.my1.text8px.min375pxtext10px.smtextxs.lgtextsm.fontbold.bgred.depth11:eq(0)>SPAN.mauto.depth12:eq(0)"
       ]
     },
-    "url": "https://www.rockneat.com/Programmation",
+    "url": "https://villemorte.fr/agenda-2-0/",
     "baseURL": "https://www.rockneat.com/",
     "eventsDelimiterTag": "DIV.animateslidebottomd5.depth4",
     "dateFormat": "yyyy-MM-dd"
@@ -879,5 +857,17 @@
     "baseURL": "https://www.chromatique.art/",
     "eventsDelimiterTag": "A.depth15",
     "linkedPage": {}
+  },
+  {
+    "name": "Le Bazar",
+    "city": "Lyon",
+    "country": "France",
+    "mainPage": {},
+    "url": "https://www.facebook.com/lebazarlyon/events/?id=100068908959606&sk=events",
+    "ID": "Le Bazar|Lyon|France",
+    "baseURL": "https://www.facebook.com/lebazarlyon/events/",
+    "multiPages": {
+      "scroll": true
+    }
   }
 ]
