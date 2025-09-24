@@ -5,36 +5,23 @@
     "country": "France",
     "url": "https://le-sucre.eu/agenda/",
     "baseURL": "https://le-sucre.eu/agenda/",
-    "eventsDelimiterTag": "A.pureu11.pureumd12.pureulg14.pureug.agendacard.depth6",
+    "eventsDelimiterTag": "A.event.depth5",
     "defaultStyle": "Electro",
     "comments": "après avoir utilisé analex, enlever t5410 de la classe de la balise qui délimite les events",
     "mainPage": {
       "eventDateTags": [
-        "DIV.infos.depth7:eq(0)>DIV.date.depth8:eq(0)"
+        "DIV.top.depth6:eq(0)>DIV.date.depth7:eq(0)"
       ],
       "eventStyleTags": [
-        "DIV.infos.depth7:eq(0)>DIV.type.depth8:eq(0)"
+        "DIV.top.depth6:eq(0)>DIV.type.depth7:eq(0)"
       ],
       "eventNameTags": [
-        "DIV.vignette.depth7:eq(0)>DIV.labels.depth8:eq(0)>DIV.titre.depth9:eq(0)",
-        "DIV.vignette.depth7:eq(0)>DIV.labels.depth8:eq(0)>DIV.artistes.depth9:eq(0)>DIV.depth10"
+        "DIV.cover.depth6:eq(0)>DIV.desc.depth7:eq(0)>H2.depth8:eq(0)",
+        "DIV.cover.depth6:eq(0)>DIV.desc.depth7:eq(0)>H3.depth8"
       ]
     },
     "eventURLIndex": 0,
     "dateFormat": "dd-MM",
-    "linkedPage": {
-      "eventDateTags": [
-        "DIV.content.depth2:eq(0)>DIV.pagecontent.depth3:eq(0)>DIV.wrapper.pageinner.singleevenement.depth4:eq(0)>DIV.pureg.depth5:eq(0)>DIV.pureu11.pureumd12.pureulg524.infos.depth6:eq(0)>DIV.date.depth7:eq(0)>DIV.journom.depth8:eq(0)",
-        "DIV.content.depth2:eq(0)>DIV.pagecontent.depth3:eq(0)>DIV.wrapper.pageinner.singleevenement.depth4:eq(0)>DIV.pureg.depth5:eq(0)>DIV.pureu11.pureumd12.pureulg524.infos.depth6:eq(0)>DIV.date.depth7:eq(0)>DIV.journum.depth8:eq(0)",
-        "DIV.content.depth2:eq(0)>DIV.pagecontent.depth3:eq(0)>DIV.wrapper.pageinner.singleevenement.depth4:eq(0)>DIV.pureg.depth5:eq(0)>DIV.pureu11.pureumd12.pureulg524.infos.depth6:eq(0)>DIV.date.depth7:eq(0)>DIV.mois.depth8:eq(0)",
-        "DIV.content.depth2:eq(0)>DIV.pagecontent.depth3:eq(0)>DIV.wrapper.pageinner.singleevenement.depth4:eq(0)>DIV.pureg.depth5:eq(0)>DIV.pureu11.pureumd12.pureulg524.infos.depth6:eq(0)>DIV.horaires.depth7:eq(0)"
-      ],
-      "eventNameTags": [
-        "DIV.content.depth2:eq(0)>DIV.pagecontent.depth3:eq(0)>DIV.wrapper.pageinner.singleevenement.depth4:eq(0)>DIV.pureg.depth5:eq(1)>DIV.pureu11.titre.depth6:eq(0)>H1.depth7:eq(0)",
-        "DIV.content.depth2:eq(0)>DIV.pagecontent.depth3:eq(0)>DIV.wrapper.pageinner.singleevenement.depth4:eq(0)>DIV.pureg.depth5:eq(2)>DIV.pureu11.pureulg524.artistes.depth6:eq(0)>DIV.artiste.depth7>H2.depth8:eq(0)>A.nom.depth9:eq(0)"
-      ]
-    },
-    "linkedPageDateFormat": "dd-MM-HH:mm",
     "ID": "Le Sucre|Lyon|France",
     "regexp": {
       "eventStyle": [
@@ -177,61 +164,64 @@
     "city": "Lyon",
     "country": "France",
     "url": "https://sonic-lyon.fr/page/",
-    "dateFormat": "MM-dd",
-    "eventsDelimiterTag": "DIV.ife_event.depth13",
+    "dateFormat": "dd-MM-yy-HH:mm",
+    "eventsDelimiterTag": "ARTICLE.eventcard.depth4",
     "eventURLIndex": 0,
     "defaultStyle": "Rock",
     "baseURL": "https://sonic-lyon.fr/page/",
     "mainPage": {
-      "eventDateTags": [
-        "DIV.event_details.depth14:eq(0)>A.depth15:eq(0)>DIV.event_date.depth16:eq(0)"
-      ],
       "eventNameTags": [
-        "DIV.event_details.depth14:eq(0)>DIV.event_desc.depth15:eq(0)>A.depth16:eq(1)>DIV.event_title.depth17:eq(0)"
+        "DIV.eventcontent.depth5:eq(0)>H2.depth6:eq(0)>A.depth7:eq(0)"
+      ],
+      "eventDateTags": [
+        "DIV.eventcontent.depth5:eq(0)>DIV.eventinfo.depth6:eq(0)>P.eventdate.depth7:eq(0)",
+        "DIV.eventcontent.depth5:eq(0)>DIV.eventinfo.depth6:eq(0)>P.eventtime.depth7:eq(0)"
       ],
       "eventURLTags": [
-        "DIV.event_details.depth14:eq(0)>DIV.event_desc.depth15:eq(0)>A.depth16:eq(1)>DIV.event_title.depth17:eq(0)"
+        "DIV.eventcontent.depth5:eq(0)>DIV.eventactions.depth6:eq(0)>A.eventlinkdetails.depth7:eq(0)"
       ]
     },
     "ID": "Le Sonic|Lyon|France",
-    "linkedPage": {
-      "eventDateTags": [
-        "DIV.sitewrapper.site.depth2:eq(0)>DIV.sitecontent.depth3:eq(0)>DIV.container.depth4:eq(0)>DIV.row.depth5:eq(0)>SECTION.contentarea.col12.colsm12.colmd12.collg8.colxl8.colxxl8.pushlg4.pushxl4.pushxxl4.depth6:eq(0)>MAIN.sitemain.depth7:eq(0)>DIV.postwrapper.postwrappersingle.postwrapperpost.depth8:eq(0)>ARTICLE.facebook_events.typefacebook_events.statuspublish.haspostthumbnail.hentry.depth9:eq(0)>DIV.entrycontent.entrycontentsingle.depth10:eq(0)>DIV.ife_eventmeta.depth11:eq(0)>DIV.organizermain.depth12:eq(0)>DIV.details.depth13:eq(0)>P.depth14:eq(0)",
-        "DIV.sitewrapper.site.depth2:eq(0)>DIV.sitecontent.depth3:eq(0)>DIV.container.depth4:eq(0)>DIV.row.depth5:eq(0)>SECTION.contentarea.col12.colsm12.colmd12.collg8.colxl8.colxxl8.pushlg4.pushxl4.pushxxl4.depth6:eq(0)>MAIN.sitemain.depth7:eq(0)>DIV.postwrapper.postwrappersingle.postwrapperpost.depth8:eq(0)>ARTICLE.facebook_events.typefacebook_events.statuspublish.haspostthumbnail.hentry.depth9:eq(0)>DIV.entrycontent.entrycontentsingle.depth10:eq(0)>DIV.ife_eventmeta.depth11:eq(0)>DIV.organizermain.depth12:eq(0)>DIV.details.depth13:eq(0)>P.depth14:eq(1)"
-      ]
-    },
-    "linkedPageDateFormat": "MM-dd-HH:mm",
     "multiPages": {
       "nbPages": "2",
       "startPage": "1",
       "increment": "1"
+    },
+    "alternateTags": {
+      "linkedPage": {
+        "eventDateTags": [
+          "DIV.sitewrapper.site.depth2:eq(0)>DIV.sitecontent.depth3:eq(0)>DIV.container.depth4:eq(0)>DIV.row.depth5:eq(0)>SECTION.contentarea.col12.colsm12.colmd12.collg8.colxl8.colxxl8.pushlg4.pushxl4.pushxxl4.depth6:eq(0)>MAIN.sitemain.depth7:eq(0)>DIV.postwrapper.postwrappersingle.postwrapperpost.depth8:eq(0)>ARTICLE.facebook_events.typefacebook_events.statuspublish.haspostthumbnail.hentry.depth9:eq(0)>DIV.entrycontent.entrycontentsingle.depth10:eq(0)>DIV.ife_eventmeta.depth11:eq(0)>DIV.organizermain.depth12:eq(0)>DIV.details.depth13:eq(0)>P.depth14:eq(0)",
+          "DIV.sitewrapper.site.depth2:eq(0)>DIV.sitecontent.depth3:eq(0)>DIV.container.depth4:eq(0)>DIV.row.depth5:eq(0)>SECTION.contentarea.col12.colsm12.colmd12.collg8.colxl8.colxxl8.pushlg4.pushxl4.pushxxl4.depth6:eq(0)>MAIN.sitemain.depth7:eq(0)>DIV.postwrapper.postwrappersingle.postwrapperpost.depth8:eq(0)>ARTICLE.facebook_events.typefacebook_events.statuspublish.haspostthumbnail.hentry.depth9:eq(0)>DIV.entrycontent.entrycontentsingle.depth10:eq(0)>DIV.ife_eventmeta.depth11:eq(0)>DIV.organizermain.depth12:eq(0)>DIV.details.depth13:eq(0)>P.depth14:eq(1)"
+        ]
+      }
+    },
+    "alternateDateFormat": {
+      "linkedPage": "No date format found."
     }
   },
   {
     "name": "Le Petit Bulletin",
     "city": "Lyon",
     "country": "France",
-    "url": "https://www.petit-bulletin.fr/lyon/agenda-recherche.html?idvillepb=lyon&pageagenda=12&thema=musique-soirees&quoi=0&ou=0&quand=0&dateprecise=&qui=&p={index}",
-    "eventsDelimiterTag": "A.term7.depth12",
-    "baseURL": "https://www.petit-bulletin.fr/lyon/",
+    "url": "https://www.petit-bulletin.fr/agenda-recherche.html?thema=musique-soirees&quoi=0&ou=V1",
+    "eventsDelimiterTag": "DIV.postcontent.depth11",
+    "baseURL": "https://www.petit-bulletin.fr/",
     "mainPage": {
       "eventNameTags": [
-        "H2.depth13:eq(0)"
+        "H3.posttitle.depth12:eq(0)>A.depth13:eq(0)"
+      ],
+      "eventURLTags": [
+        "H3.posttitle.depth12:eq(0)>A.depth13:eq(0)"
       ],
       "eventStyleTags": [
-        "P.depth13:eq(0)"
-      ],
-      "eventDateTags": [
-        "P.addedTag.depth13:eq(0)"
+        "SPAN.depth12:eq(0)"
       ],
       "eventPlaceTags": [
-        "P.addedTag.depth13:eq(1)"
+        "UL.postcategories.depth12:eq(0)>LI.depth13:eq(0)>A.depth14:eq(0)"
+      ],
+      "eventDateTags": [
+        "UL.postcategories.depth12:eq(0)>LI.depth13:eq(1)>A.depth14:eq(0)"
       ]
-    },
-    "multiPages": {
-      "nbPages": "20",
-      "startPage": "1",
-      "increment": "1"
     },
     "eventURLIndex": 0,
     "ID": "Le Petit Bulletin|Lyon|France",
@@ -285,51 +275,29 @@
     "ID": "Halle Tony Garnier|Lyon|France"
   },
   {
-    "name": "Le Trokson",
-    "aliases": [
-      "TROKSON"
-    ],
-    "city": "Lyon",
-    "country": "France",
-    "url": "https://www.trokson.com/shows",
-    "defaultStyle": "Rock",
-    "baseURL": "https://www.trokson.com/",
-    "mainPage": {
-      "eventNameTags": [
-        "DIV.depth27:eq(0)>DIV.MTyds5.depth28:eq(0)>A.DjQEyU.depth29:eq(0)"
-      ],
-      "eventDateTags": [
-        "DIV.depth27:eq(0)>DIV.pyOzT0.depth28:eq(0)>DIV.LQpUqV.AinsX6.wu0Sg9.IHq231.depth29:eq(0)>DIV.v2vbgt.pRRkmP.depth30:eq(0)"
-      ],
-      "eventURLTags": [
-        "DIV.depth27:eq(1)>A.DjQEyU.m022zm.aUkG34.depth28:eq(0)"
-      ]
-    },
-    "eventsDelimiterTag": "DIV.Y42my3.ib4N31.depth26",
-    "eventURLIndex": 0,
-    "dateFormat": "dd-MM",
-    "delimiterAddLevels": 0,
-    "ID": "Le Trokson|Lyon|France"
-  },
-  {
     "name": "Ville Morte",
     "city": "Lyon",
     "country": "France",
     "url": "https://villemorte.fr/agenda-2-0/",
     "eventsDelimiterTag": "div.tribeeventscategorymusique.tribe_events.typetribe_events.statuspublish.hentry.tribe_events_catmusique.cat_musique>h3.tribeeventsmontheventtitle>a.url",
     "dateFormat": "dd MM",
-    "baseURL": "https://villemorte.fr/agenda-2-0/",
+    "baseURL": "https://villemorte.fr/agenda/",
     "mainPage": {
       "eventNameTags": [
         "html>body:eq(0)"
       ]
     },
     "multiPages": {
-      "scroll": true
+      "nbPages": "4",
+      "pattern": "yyyy-mm-dd"
     },
     "eventURLIndex": 0,
     "linkedPageDateFormat": "dd-MM-HH:mm",
-    "ID": "Ville Morte|Lyon|France"
+    "ID": "Ville Morte|Lyon|France",
+    "linkedPageDownloadMethod": "Puppeteer",
+    "multiPages": {
+      "scroll": true
+    }
   },
   {
     "name": "Infoconcert",
@@ -443,6 +411,17 @@
       ]
     },
     "linkedPageDateFormat": "dd-MM-yyyy-HH:mm"
+  },
+  {
+    "name": "Le Trokson",
+    "aliases": [
+      "TROKSON"
+    ],
+    "city": "Lyon",
+    "country": "France",
+    "url": "https://www.trokson.com/shows",
+    "defaultStyle": "Rock",
+    "ID": "Le Trokson|Lyon|France"
   },
   {
     "name": "Bizarre!",
@@ -731,7 +710,10 @@
     "baseURL": "https://www.les-subs.com/agenda/",
     "eventsDelimiterTag": "div.jseventsmonthitem.relative.theatre.gratuit>div.jscardevent.cardevent.flex1.flex.flexcol.relative.border2.bordervar.group.wfull.hfull",
     "eventURLIndex": 1,
-    "dateFormat": "dd-MM-HH:mm"
+    "dateFormat": "dd-MM-HH:mm",
+    "multiPages": {
+      "scroll": true
+    }
   },
   {
     "name": "Shotgun",
@@ -847,16 +829,19 @@
     "name": "Chromatique",
     "city": "Lyon",
     "country": "France",
-    "mainPage": {
-      "eventNameTags": [
-        ""
-      ]
-    },
-    "url": "https://www.chromatique.art/spectacles",
-    "ID": "Chromatique|Lyon|France",
-    "baseURL": "https://www.chromatique.art/",
-    "eventsDelimiterTag": "A.depth15",
-    "linkedPage": {}
+    "ID": "Chromatique|Lyon|France"
+  },
+  {
+    "name": "Olma",
+    "city": "Lyon",
+    "country": "France",
+    "mainPage": {},
+    "aliases": [
+      "Olma Club"
+    ],
+    "url": "https://www.olma-club.com/index.php/evenements",
+    "defaultStyle": "Electro",
+    "ID": "Olma|Lyon|France"
   },
   {
     "name": "Le Bazar",
@@ -865,7 +850,18 @@
     "mainPage": {},
     "url": "https://www.facebook.com/lebazarlyon/events/?id=100068908959606&sk=events",
     "ID": "Le Bazar|Lyon|France",
-    "baseURL": "https://www.facebook.com/lebazarlyon/events/",
+    "multiPages": {
+      "scroll": true
+    },
+    "linkedPageDownloadMethod": "Puppeteer"
+  },
+  {
+    "name": "La Pente",
+    "city": "Lyon",
+    "country": "France",
+    "mainPage": {},
+    "url": "https://www.lapente.fr/evenements",
+    "ID": "La Pente|Lyon|France",
     "multiPages": {
       "scroll": true
     }
