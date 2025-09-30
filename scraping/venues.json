@@ -290,7 +290,8 @@
       ]
     },
     "multiPages": {
-      "scroll": true
+      "scroll": true,
+      "useIframes": true
     },
     "eventURLIndex": 0,
     "linkedPageDateFormat": "dd-MM-HH:mm",

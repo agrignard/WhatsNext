@@ -4,10 +4,10 @@
 
 const outputFormat = 'text';// for tests, to be removed
 
-// const puppeteer = require('puppeteer');
-const puppeteer = require('puppeteer-extra');
-const StealthPlugin = require('puppeteer-extra-plugin-stealth');
-puppeteer.use(StealthPlugin());
+const puppeteer = require('puppeteer');
+// const puppeteer = require('puppeteer-extra');
+// const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+// puppeteer.use(StealthPlugin());
 
 
 // const { BrowserPool } = require('browser-pool');
