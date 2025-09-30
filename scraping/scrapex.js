@@ -8,7 +8,7 @@ const {makeURL, simplify, removeBlanks} = require('./import/stringUtilities.js')
 const {loadLinkedPages, saveToJSON, saveToCSV, getVenuesFromArguments,
         getFilesNumber, getFilesContent, getModificationDate} = require('./import/fileUtilities.js');
 const {samePlace, getAliases, getStyleConversions, loadVenuesJSONFile, 
-        loadCancellationKeywords, writeToLog, isAlias, geAliasesToURLMap,
+        loadCancellationKeywords, writeToLog, isActive, geAliasesToURLMap,
         getLanguages, fromLanguages, checkLanguages, unique} = require('./import/jsonUtilities.js');
 const {mergeEvents} = require('./import/mergeUtilities.js');
 const {getInfo} = require('./import/scrapexUtilities.js');
@@ -50,8 +50,8 @@ if (venues.length === 0){
 
 async function scrap(venues){
   await testLlamaServer(useAI);
-  await scrapFiles(venues.filter(el => !isAlias(el)));
-  const venuesToSkip = venues.filter(el => isAlias(el)).map(el => el.name+' ('+el.city+', '+el.country+')');
+  await scrapFiles(venues.filter(el => isActive(el)));
+  const venuesToSkip = venues.filter(el => !isActive(el)).map(el => el.name+' ('+el.city+', '+el.country+')');
   if (venuesToSkip.length>0){
     console.log('\x1b[36mWarning: the following venues have no scraping details and are only used as aliases. Run analex if it is a mistake.\x1b[0m',venuesToSkip);    
   }
