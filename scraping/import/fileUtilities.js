@@ -4,13 +4,21 @@
 
 const outputFormat = 'text';// for tests, to be removed
 
-const puppeteer = require('puppeteer');
+// const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-extra');
+const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+puppeteer.use(StealthPlugin());
+
+
 // const { BrowserPool } = require('browser-pool');
 const fs = require('fs');
 // const fetch = require('electron-fetch').default;
 // const axios = require('axios');
 const cheerio = require('cheerio');
 const {cleanPage, removeBlanks, extractBody, simplify} = require('./stringUtilities.js');
+
+
+
 
 class BrowserPool {
     constructor(maxConcurrent = 3) {
@@ -23,7 +31,7 @@ class BrowserPool {
             await new Promise(resolve => setTimeout(resolve, 100));
         }
         const browser = await puppeteer.launch({
-            // headless: false,
+            headless: true,
             args: ['--no-sandbox', '--disable-setuid-sandbox']
         });
         this.activeBrowsers.add(browser);
@@ -40,7 +48,9 @@ class BrowserPool {
 
 module.exports = {fetchLink, fetchAndRecode, fetchWithRetry, loadLinkedPages, saveToJSON, 
                     saveToCSV, getVenuesFromArguments,getFilesContent, getFilesNumber, 
-                    getModificationDate, getPageByPuppeteer, minimalizeHtmlFile, minimalizeHtml, BrowserPool};
+                    getModificationDate, getPageByPuppeteer,
+                    minimalizeHtmlFile, minimalizeHtml, 
+                    BrowserPool};
 
 
 /*******************************/
@@ -214,6 +224,11 @@ async function detectIframes(page){
 };
 
 
+
+
+
+
+
 async function getPageByPuppeteer(pageURL, venueName, multipagesOptions, browserPool, verbose = false, parentBrowser = null){
 
     let browser = parentBrowser;
@@ -223,7 +238,7 @@ async function getPageByPuppeteer(pageURL, venueName, multipagesOptions, browser
 
     const page = await browser.newPage();
     await page.goto(pageURL, { waitUntil: 'networkidle2' });
-    const iframeList = await detectIframes(page);
+    const iframeList = multipagesOptions.hasOwnProperty('useIframes')?await detectIframes(page):[];
 
     if (iframeList.length !== 0) {
          console.log('detected Iframes:',iframeList);
@@ -309,44 +324,53 @@ async function getPageByPuppeteer(pageURL, venueName, multipagesOptions, browser
 };
 
 
-// async function autoScroll(page){
+
+
+// can this autoscroll function replace the other one ?
+
+async function autoScroll(page, maxScrolls = 50, delay = 500) {
+    const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+    let lastHeight = await page.evaluate(() => document.body.scrollHeight);
+
+    for (let i = 0; i < maxScrolls; i++) {
+        await page.evaluate(() => {
+            window.scrollBy(0, window.innerHeight);
+        });
+
+        await wait(delay);
+
+        const newHeight = await page.evaluate(() => document.body.scrollHeight);
+
+        // stops if the height has not changed
+        if (newHeight === lastHeight) {
+            break;
+        }
+
+        lastHeight = newHeight;
+    }
+}
+
+// async function autoScroll(page) {
 //     await page.evaluate(async () => {
 //         await new Promise((resolve) => {
-//             var totalHeight = 0;
-//             var distance = 100; // old value: 100
-//             var timer = setInterval(() => {
-//                 var scrollHeight = document.body.scrollHeight;
+//             let lastHeight = document.body.scrollHeight;
+//             const distance = 300; // pixels to scroll at each step
+//             const timer = setInterval(() => {
 //                 window.scrollBy(0, distance);
-//                 totalHeight += distance;
-//                 if(totalHeight >= scrollHeight - window.innerHeight){
+//                 const newHeight = document.body.scrollHeight;
+
+//                 // stops if height doesn't change 
+//                 if (newHeight === lastHeight) {
 //                     clearInterval(timer);
 //                     resolve();
 //                 }
-//             }, 300); // why can't it be set in a variable ?
+
+//                 lastHeight = newHeight;
+//             }, 500); // 0.5s delay
 //         });
 //     });
 // }
-
-async function autoScroll(page) {
-    await page.evaluate(async () => {
-        await new Promise((resolve) => {
-            let lastHeight = document.body.scrollHeight;
-            const distance = 300; // pixels to scroll at each step
-            const timer = setInterval(() => {
-                window.scrollBy(0, distance);
-                const newHeight = document.body.scrollHeight;
-
-                // stops if height doesn't change 
-                if (newHeight === lastHeight) {
-                    clearInterval(timer);
-                    resolve();
-                }
-
-                lastHeight = newHeight;
-            }, 500); // 0.5s delay
-        });
-    });
-}
 
 
 

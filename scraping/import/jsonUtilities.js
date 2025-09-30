@@ -17,7 +17,7 @@ const cancellationKeywordsJSONFile = rootDirectory+"/import/cancellationKeywords
 //const languagesFile = "D:\\Travail\\Github\\Shared Projects\\WhatsNext\\scraping\\import\\languages.json";
 const languagesFile = rootDirectory+'import/languages.json';
 
-module.exports = {venuesListJSONFile, isAlias, geAliasesToURLMap, getEventPlace, getSource,
+module.exports = {venuesListJSONFile, isActive, geAliasesToURLMap, getEventPlace, getSource,
     fromLocalSource, jsonRemoveDouble, samePlace, getStyleConversions, getStyleList, getAliases,
     writeToLog, loadVenueScrapInfofromFile, loadVenuesJSONFile, loadVenueJSON, saveToVenuesJSON,
     getLanguages, loadCancellationKeywords, fromLanguages, checkLanguages, loadErrorLog, 
@@ -48,14 +48,14 @@ function unique(list) {
     return Array.from(uniqueSet).map(str => JSON.parse(str));
 }
 
-// returns true is a venue is only an alias (not for scrapping)
-function isAlias(venue){
-    return !venue.hasOwnProperty('url') || !venue.hasOwnProperty('mainPage');
+// returns true is a venue is active and not an alias (not for scrapping)
+function isActive(venue){
+    return venue.hasOwnProperty('url') && venue.hasOwnProperty('mainPage');
 }
 
 // provide a map between places and URLs, for aliases places which have a declared URL
 function geAliasesToURLMap(){
-    return loadVenuesJSONFile().filter(el => isAlias(el) && el.hasOwnProperty('url'));
+    return loadVenuesJSONFile().filter(el => !isActive(el) && el.hasOwnProperty('url'));
 }
 
 // returns the venue (name, city, country) of an object
@@ -373,7 +373,7 @@ function initializeVenue(venue, outputPath){
             console.log('Initializing new venue %s',venue.name);
             venue.ID = makeID(venue);
         }
-        if (!isAlias(venue)){
+        if (isActive(venue)){
             // initializes base url
             const url = new URL(venue.url);
             venue.baseURL = url.origin + url.pathname.replace(/\/[^\/]+$/, '/');

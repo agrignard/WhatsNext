@@ -23,6 +23,11 @@ body, html {
   padding: 10px 10px;
 }
 
+.subPanel{
+  display: flex; 
+  align-items: center;
+}
+
 .panelHeader{
   display: flex;
   justify-content: space-between; 
@@ -30,13 +35,13 @@ body, html {
   width: 100%;
 }
 
-.downLoadPanelOn{
+.multiPagePanelOn{
   background-color: rgb(211, 227, 232);
   /* background-color: rgb(238, 240, 241); */
 }
 
 
-.downLoadPanelOff{
+.multiPagePanelOff{
   background-color: rgb(228, 237, 240);
 }
 
@@ -96,11 +101,85 @@ background-color: lightblue;
 .venueName{
   font-size: 24px; 
   padding: 0px 0px;
+  padding-right: 5px;
   font-weight: bold; 
   font-family: sans-serif;
-  margin-bottom: 20px;
 }
 
+.sliderCheckBox{
+  /* flex-grow: 1;
+  display: flex; */
+  justify-content: flex-end;
+  padding: 0px;
+  margin: 0px;
+  /* display: inline; */
+  /* background-color: rgb(216, 58, 89); */
+  display: flex;
+  margin-left: auto;
+  align-items: center;
+}
+
+.niceCheckBox{
+  display: flex;
+  align-items: center; 
+}
+
+label.niceCheckBox {
+  font-family: "Montserrat", sans-serif;
+  cursor: pointer;
+  margin: 1em;
+  position: relative; 
+  left: -2px;
+}
+
+
+label.niceCheckBox > input {
+  display: none;
+}
+
+label.niceCheckBox > i {
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  border-radius: 10px;
+  vertical-align: middle;
+  transition: .25s .09s;
+  position: relative;
+  /* background: #deeff7; */
+  background: #c0bdbd;
+  top: -1px;
+}
+
+label.niceCheckBox > i:after {
+  content: " ";
+  display: block;
+  width: 16px;
+  height: 16px;
+  top: 2px;
+  left: 3px;
+  border-radius: 50%;
+  background: #fff;
+  position: absolute;
+  box-shadow: 1px 2px 4px 0 var(--shadow-color);
+  transition: .15s;
+}
+
+label.niceCheckBox > span {
+  color: #c0bdbd !important;
+}
+
+label.niceCheckBox > input:checked + span {
+  color: #000000 !important;
+}
+
+
+label.niceCheckBox>input:checked+span+i {
+  background: #1094fb;
+}
+
+label.niceCheckBox >input:checked+span+i:after {
+  transform: translateX(18px);
+}
 
 .multipageBlock{
   background-color: lightgrey;
@@ -170,8 +249,9 @@ background-color: lightblue;
 }
 
 .subWidth{
-  width:60%;
+  /* width:60%; */
   min-width: 400px;
+  max-width: 800px;
 }
 
 #URLPanel{
@@ -216,6 +296,11 @@ background-color: lightblue;
 }
 
 .rightElement{
+  position: absolute;
+  right: 25px;
+}
+
+.relativeRightElement{
   position: absolute;
   right: 25px;
 }

@@ -5,7 +5,7 @@ const fs = require('fs');
 const { shell } = require('electron');
 
 const {app, Menu, ipcRenderer} = require('electron');
-const {loadVenuesJSONFile, getStyleList, makeID, isAlias, saveToVenuesJSON} = require(imports+'jsonUtilities.js');
+const {loadVenuesJSONFile, getStyleList, makeID, isActive, saveToVenuesJSON} = require(imports+'jsonUtilities.js');
 const {simplify, removeBlanks, normalizeUrl} = require(imports+'stringUtilities.js');
 const {to2digits} = require(imports+'dateUtilities.js');
 
@@ -67,6 +67,10 @@ pageLimitCheckbox.addEventListener('change', (event) => {
         el.style.display = event.target.checked ? 'block' : 'none';
     });
 });
+
+// iframes management
+const iframesCheckbox = document.getElementById('iframesCheckbox');
+
 
 // save button, edit panel fields listeners
 
@@ -178,11 +182,11 @@ function populateVenuesMenu(){
     const venueMenuWidth = Math.max(...(currentVenues.map(el => el.name.length)));
     venuesDropdown.style.width = venueMenuWidth+'ch';
     currentVenues.sort((a,b) => a.name.localeCompare(b.name))
-    .filter(el => !hideAliases || !isAlias(el))
+    .filter(el => !hideAliases || isActive(el))
     .forEach(venue => {
         const option = document.createElement('option');
         option.text = venue.name;
-        if (isAlias(venue)){
+        if (!isActive(venue)){
             option.classList.add('greyFont');
         }
         venuesDropdown.add(option);
@@ -206,6 +210,10 @@ function getCurrentVenue(){
     return venues.find(v => v.country === currentCountry && v.city === currentCity && v.name === currentName)||undefined;
 }
 
+// Some html parts
+
+const activeSiteMenu = document.getElementById('activeSiteMenu');
+
 function updateVenueInfo(mode){
     let venue;
     if (mode === 'newVenue'){
@@ -226,8 +234,8 @@ function updateVenueInfo(mode){
             venueShowPanel.style.display = 'block';
             // name      
             const divName = document.getElementById('venueName');
-            divName.textContent = isAlias(venue)?venue.name+' (used as alias)':venue.name;
-            if (isAlias(venue)){
+            divName.textContent = !isActive(venue)?venue.name+' (used as alias)':venue.name;
+            if (!isActive(venue)){
                 processButton.disabled = true;
                 divName.classList.add('greyFont');
             }else{
@@ -350,13 +358,16 @@ function updateVenueInfo(mode){
             // name
             const nameText = document.getElementById('editVenueNameText');
             const inputNameField = document.getElementById('inputNameField');
+            const isAliasInfo = document.getElementById('isAliasInfo');
             inputNameField.style.display = (mode === "edit")?'none':'inline';
             const divAlert = document.getElementById('nameAlert');
             divAlert.style.display = 'none';
             nameText.textContent = (mode === 'edit')?venue.name:'Venue name: ';
             nameText.style.display = (mode === 'edit')?'inline':'none';
             const aliasCheckbox = document.getElementById('aliasCheckbox');
-            aliasCheckbox.checked = isAlias(venue);
+            aliasCheckbox.checked = isActive(venue);
+            aliasRender();
+
             // aliases
             const textAlias = document.getElementById('textAlias');
             textAlias.value =  venue.hasOwnProperty('aliases')?venue.aliases.join('\n'):'';
@@ -414,7 +425,7 @@ function updateVenueInfo(mode){
             textURL.addEventListener("input", updateTextarea);
             updateTextarea();
             // download
-            const downloadPanel = document.getElementById('downloadPanel');
+            const multiPagePanel = document.getElementById('multiPagePanel');
             // multipages
             let hasMP = isMultipages(venue);
             const MPButton = document.getElementById('MPButton');
@@ -424,11 +435,11 @@ function updateVenueInfo(mode){
             const nbPagesToScrap = document.getElementById('nbPagesToScrap');
             function changeMPPanel(hasMP){
                 if (hasMP){
-                    downloadPanel.classList.add('downLoadPanelOn');
-                    downloadPanel.classList.remove('downLoadPanelOff');
+                    multiPagePanel.classList.add('multiPagePanelOn');
+                    multiPagePanel.classList.remove('multiPagePanelOff');
                 }else{
-                    downloadPanel.classList.add('downLoadPanelOff');
-                    downloadPanel.classList.add('downLoadPanelOn');
+                    multiPagePanel.classList.add('multiPagePanelOff');
+                    multiPagePanel.classList.add('multiPagePanelOn');
                 }
             }
             changeMPPanel(hasMP);
@@ -445,6 +456,9 @@ function updateVenueInfo(mode){
                     maxPageSelection.forEach(el => {
                         el.style.display =  'block';
                     });
+                }
+                if (venue.multiPages.hasOwnProperty('useIframes')){
+                    iframesCheckbox.checked = true;
                 }
                 
             }
@@ -480,7 +494,7 @@ function updateVenueInfo(mode){
                 venue.multiPages.pageList.join('\n'):'';
             const divMPInfo = document.getElementById('divMPInfo');
             checkIndexWarning();
-            const MPElements = document.querySelectorAll(".divMPIndex, .divMPPattern, .divMPPageList, .divMPClickButton");
+            const MPElements = document.querySelectorAll(".divMPIndex, .divMPPattern, .divMPPageList, .divMPClickButton, divMPIframes");
             setVisibility(MPElements,selectMPFields.value);
             selectMPFields.addEventListener('change', function(event) {
                 setVisibility(MPElements,selectMPFields.value);
@@ -552,13 +566,6 @@ function updateVenueInfo(mode){
             // comments
             const textComments = document.getElementById('textComments');
             textComments.textContent =  venue.hasOwnProperty('comments')?venue.comments:'';
-            function aliasRender(){
-                if (aliasCheckbox.checked){
-                    downloadPanel.style.display = 'none';
-                }else{
-                    downloadPanel.style.display = 'block';
-                }
-            }
             aliasCheckbox.addEventListener("change", aliasRender);
             aliasRender();
              
@@ -573,7 +580,7 @@ function updateVenueInfo(mode){
                     venue.name = inputNameField.value;               
                 }
                 // is alias
-                if (aliasCheckbox.checked === true){
+                if (aliasCheckbox.checked === false){
                     delete venue.mainPage;
                 }else{
                     if (!venue.hasOwnProperty('mainPage')){
@@ -618,7 +625,10 @@ function updateVenueInfo(mode){
                         }
                     }else{
                         venue.multiPages.pageList = splitArray(MPPageListInput.value);
-                    }        
+                    }
+                    if (iframesCheckbox.checked){
+                        venue.multiPages.useIframes = true;
+                    }     
                 }else{
                     delete venue.multiPages;
                 }
@@ -862,3 +872,13 @@ function saveToLocalStorage(){
     localStorage.setItem('history|'+currentCountry+'|'+currentCity, currentName);
 }
   
+
+function aliasRender(){
+    if (aliasCheckbox.checked){
+        activeSiteMenu.style.display = 'block';
+        isAliasInfo.style.display = 'none';
+    }else{
+        activeSiteMenu.style.display = 'none';
+        isAliasInfo.style.display = 'inline';
+    }
+}

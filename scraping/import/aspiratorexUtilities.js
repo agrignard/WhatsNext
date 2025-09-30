@@ -17,7 +17,6 @@ const nbFetchTries = 2; // number of tries in case of internet connection time o
 module.exports = {downloadVenue, erasePreviousHtmlFiles, getHrefListFrom, downloadLinkedPages, getHrefFromAncestor};
 
 const browserPool = new BrowserPool(3);
-    
 
 /******************************/
 /*       main function        */
@@ -71,7 +70,8 @@ async function downloadVenue(venue, filePath, verbose = false, syncWriting = fal
       if (venue.hasOwnProperty('multiPages') && (venue.multiPages.hasOwnProperty('scroll') || venue.multiPages.hasOwnProperty('nextButton'))){
         htmlContent = cleanPage(await getPageByPuppeteer(page,venue.name,venue.multiPages, browserPool));
       }else if (venue.hasOwnProperty('dynamicPage')) {
-        htmlContent = cleanPage(await getPageByStealthPuppeteer(page,venue.name,venue.multiPages, browserPool));
+        htmlContent = cleanPage(await getPageByPuppeteer(page,venue.name, venue.multiPages, browserPool));
+
       }else{
         htmlContent = cleanPage(await fetchWithRetry(page,2,2000));
       }
@@ -146,7 +146,6 @@ async function downloadVenue(venue, filePath, verbose = false, syncWriting = fal
     if (verbose){
       console.log("Event found for %s.",venue.name);
     }
-    
     
   } else {
      console.log('\x1b[31mPage was successfully downloaded for \x1b[0m\'%s\'\x1b[31m, but no event delimiter was found.\n'+

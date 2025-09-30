@@ -21,23 +21,39 @@
     </div>
     <div id="venueEditPanel" class="infoPanel">
 
-        <div id="editVenueName">
-            <div id="editVenueNameText" class="venueName" style ="display: inline;">Venue name:</div>
-            <input type="text" id="inputNameField" placeholder="Enter venue name" style ="display: inline;">
-            <div id = "nameAlert" class="alertBlock" style ="display: inline;"></div>
-            <div style ="display: inline;" class="topElement rightElement">
-                <label for="aliasCheckbox">alias</label>
-                <input type="checkbox" id="aliasCheckbox">
-            </div>   
-        </div>
-        
-        <div id="aliasPanel" class="bottomMargin">
-            <div class="topMargin miniBottomMargin">Aliases:</div>
-            <textarea id="textAlias" class="VenueTextArea" rows="1" cols="30" placeholder="Enter alias" style ="display: inline; border: 1px solid #ccc;"></textarea>
-            <div id = "aliasAlert" class="alertBlock" style ="display: inline;"></div>
-        </div>
+       
  
         <div id="verticalColumn" class="subWidth">
+
+
+           <div id="editVenueName">
+                <div id="venueTitle" class="subPanel">
+                    <div id="editVenueNameText" class="venueName">Venue name:</div>
+                    <input type="text" id="inputNameField" placeholder="Enter venue name">
+                    <div id="isAliasInfo" class="venueName">(used as alias)</div>
+                    <div id="aliasCheckBox" class="sliderCheckBox">
+                        <label class="niceCheckBox" style="display: inline;">
+                            <input id="aliasCheckbox" type="checkbox" name="links" checked/>
+                            <span>Active</span> 
+                            <i></i> 
+                        </label>                   
+                    </div>
+
+                    <!-- <div class="essai" style="margin-left: auto; display: flex; align-items: center;">
+                        <label for="aliasCheckbox">alias</label>
+                        <input type="checkbox" id="aliasCheckbox" style="margin-left: 5px;">
+                    </div> -->
+                </div>
+                <div id="nameAlert" class="alertBlock"></div>
+            </div>
+
+            <div id="aliasPanel" class="bottomMargin">
+                <div class="topMargin miniBottomMargin">Aliases:</div>
+                <textarea id="textAlias" class="VenueTextArea" rows="1" cols="30" placeholder="Enter alias" style ="display: inline; border: 1px solid #ccc;"></textarea>
+                <div id = "aliasAlert" class="alertBlock" style ="display: inline;"></div>
+            </div>
+
+
 
             <div id="URLPanel" class="bigPanel bottomMargin">
                 <div id="URLPanelHeader" class = "panelHeader">
@@ -47,78 +63,98 @@
                 <div id="textURL" contenteditable="true" class="editable"></div>
             </div>
 
-            <div id="downloadPanel" class="bigPanel bottomMargin" style="display: inline-block">
-                <button id="MPButton" class="niceButtonNoMargin">Multipage button</button>
-                <div id="MPfields">
-                    <div id="indexType" class="bottomMargin">
-                        <div>Indexation type:  </div>
-                        <div>
-                            <select id="selectMPFields">
-                                <option value="Index">Index</option>
-                                <option value="Pattern">Pattern</option>
-                                <option value="Scroll">Scroll</option>
-                                <option value="ClickButton">Click Button</option>
-                                <option value="PageList">Page List</option>
-                            </select>
-                        </div>
-                        <div class="leftMargin divMPnbPages"> 
-                            Number of pages:
-                        </div>
-                        <div class="divMPnbPages">
-                            <input type="number" id="nbPagesToScrap" min="1" step="1" value="5" style ="width: 6ch;">
-                        </div>
-                        <div class="leftMargin divMPIndex">
-                            Start index:
-                        </div>
-                        <div class="divMPIndex">
-                            <input type="number" id="MPIndex"  min="1" step="1" value="1" style ="width: 6ch">
-                        </div>
-                        <div class="leftMargin divMPIndex">
-                            Increment:
-                        </div>
-                        <div class="divMPIndex">
-                            <input type="number" id="MPIncrement"  min="1" step="1" value="1" style ="width: 6ch">
-                        </div>
-                        <div class="leftMargin divMPPattern">
-                            Pattern:
-                        </div>
-                        <div class="divMPPattern">
-                            <input type="text" id="MPPattern"  placeholder="yyyy-MM" style ="width: 10ch">
-                        </div>
-                        <div class="divMPClickButton">
-                            Button text
-                        </div>
-                        <div class="divMPClickButton">
-                            <input type="text" id="MPClickButtonText"  placeholder="See more" style ="width: 20ch">
-                        </div>
-                        <div class="divMPClickButton">
-                            Page limit
-                        </div>
-                        <div class="divMPClickButton">
-                            <input type="checkbox" id="pageLimitCheckbox" value="false">
-                        </div>
-                        <div class="divMPClickButton maxPageField">
-                            Max pages to load
-                        </div>
-                        <div class="divMPClickButton maxPageField">
-                            <input type="number" id="ClickButtonMaxPages" min="2" step="1" value="3" style ="width: 6ch;">
-                        </div>
-                        <div class="leftMargin divMPPageList">
-                            Page list:
-                        </div>
-                        <div  class="divMPPageList">
-                            <textarea id="MPPageListInput" class="VenueTextArea"  rows="2" cols="30" placeholder="Enter page"></textarea>
+            <div id="activeSiteMenu">
+                <div id="multiPagePanel" class="bigPanel bottomMargin">
+                    <div id="multiPagePanelHeader" class="subPanel">
+                        <div class="">Dynamic web page/multiple pages</div>
+                        <div id="multipageCheckBox" class="sliderCheckBox">
+                            <label class="niceCheckBox" style="display: inline;">
+                                <input id="multipageCheckbox" type="checkbox" name="links" checked/>
+                                <span>On</span> 
+                                <i></i> 
+                            </label>                   
                         </div>
                     </div>
-                    <div id="divMPInfo">Agenda URL does not contain {index}. Page index will be appended at the end of the URL.</div>
+                    <div>
+                        <button id="MPButton" class="niceButtonNoMargin">Multipage button</button>
+                        <div id="MPfields">
+                            <div id="indexType" class="bottomMargin">
+                                <div>Indexation type:  </div>
+                                <div>
+                                    <select id="selectMPFields">
+                                        <option value="Index">Index</option>
+                                        <option value="Pattern">Pattern</option>
+                                        <option value="Scroll">Scroll</option>
+                                        <option value="ClickButton">Click Button</option>
+                                        <option value="PageList">Page List</option>
+                                    </select>
+                                </div>
+                                <div class="leftMargin divMPnbPages"> 
+                                    Number of pages:
+                                </div>
+                                <div class="divMPnbPages">
+                                    <input type="number" id="nbPagesToScrap" min="1" step="1" value="5" style ="width: 6ch;">
+                                </div>
+                                <div class="leftMargin divMPIndex">
+                                    Start index:
+                                </div>
+                                <div class="divMPIndex">
+                                    <input type="number" id="MPIndex"  min="1" step="1" value="1" style ="width: 6ch">
+                                </div>
+                                <div class="leftMargin divMPIndex">
+                                    Increment:
+                                </div>
+                                <div class="divMPIndex">
+                                    <input type="number" id="MPIncrement"  min="1" step="1" value="1" style ="width: 6ch">
+                                </div>
+                                <div class="leftMargin divMPPattern">
+                                    Pattern:
+                                </div>
+                                <div class="divMPPattern">
+                                    <input type="text" id="MPPattern"  placeholder="yyyy-MM" style ="width: 10ch">
+                                </div>
+                                <div class="divMPClickButton">
+                                    Button text
+                                </div>
+                                <div class="divMPClickButton">
+                                    <input type="text" id="MPClickButtonText"  placeholder="See more" style ="width: 20ch">
+                                </div>
+                                <div class="divMPClickButton">
+                                    Page limit
+                                </div>
+                                <div class="divMPClickButton">
+                                    <input type="checkbox" id="pageLimitCheckbox" value="false">
+                                </div>
+                                <div class="divMPClickButton maxPageField">
+                                    Max pages to load
+                                </div>
+                                <div class="divMPClickButton maxPageField">
+                                    <input type="number" id="ClickButtonMaxPages" min="2" step="1" value="3" style ="width: 6ch;">
+                                </div>
+                                <div class="leftMargin divMPPageList">
+                                    Page list:
+                                </div>
+                                <div  class="divMPPageList">
+                                    <textarea id="MPPageListInput" class="VenueTextArea"  rows="2" cols="30" placeholder="Enter page"></textarea>
+                                </div>
+                                <div class="divMPIframes">
+                                    Use iframes
+                                </div>
+                                <div class="divMPIframes">
+                                    <input type="checkbox" id="iframesCheckbox" value="false">
+                                </div>
+                            </div>
+                            <div id="divMPInfo">Agenda URL does not contain {index}. Page index will be appended at the end of the URL.</div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div id="divLinkedPage">
-                <label for="linkedPageCheckbox">Download linked page:</label>
-                <input type="checkbox" id="linkedPageCheckbox">
-                <div id="linkedPageDownloadMethodDiv" style="display: inline;">
-                    <label for="linkedPageDownloadMethodCheckbox">Use Puppeteer for download:</label>
-                    <input type="checkbox" id="linkedPageDownloadMethodCheckbox">
+                <div id="divLinkedPage">
+                    <label for="linkedPageCheckbox">Download linked page:</label>
+                    <input type="checkbox" id="linkedPageCheckbox">
+                    <div id="linkedPageDownloadMethodDiv" style="display: inline;">
+                        <label for="linkedPageDownloadMethodCheckbox">Use Puppeteer for download:</label>
+                        <input type="checkbox" id="linkedPageDownloadMethodCheckbox">
+                    </div>
                 </div>
             </div>
 

@@ -7,7 +7,7 @@
 const fs = require('fs');
 const {removeDoubles, makeURL, cleanPage, extractBody} = require('./import/stringUtilities.js');
 const {loadLinkedPages,fetchAndRecode, fetchWithRetry, fetchLink,getVenuesFromArguments} = require('./import/fileUtilities.js');
-const {loadVenuesJSONFile, saveToVenuesJSON, isAlias, initializeVenue} = require('./import/jsonUtilities.js');
+const {loadVenuesJSONFile, saveToVenuesJSON, isActive, initializeVenue} = require('./import/jsonUtilities.js');
 const {getURLListFromPattern} = require('./import/dateUtilities.js');
 const cheerio = require('cheerio');
 
@@ -38,7 +38,7 @@ if (filteredVenues.length === 0){
   console.log("No place matching arguments.");
 }else{
   // list aliase venues that are skipped
-  filteredVenues.filter(obj => isAlias(obj)).forEach(el =>{
+  filteredVenues.filter(obj => !isActive(obj)).forEach(el =>{
     let text = "Place "+el.name+" not processed (considered as alias: ";
     if (!el.hasOwnProperty('url') && !el.hasOwnProperty('mainPage')){
       text += "keys \'url\' and \'mainPage\'";
@@ -52,7 +52,7 @@ if (filteredVenues.length === 0){
     log +=text;
   });
   // for non aliases venues
-  filteredVenues.filter(obj => !isAlias(obj)).forEach((venue, index) => {
+  filteredVenues.filter(obj => isActive(obj)).forEach((venue, index) => {
     // display venue number and basic information
     console.log(`Venue ${index + 1}: \x1b[36m${venue.name} (${venue.city}, ${venue.country})\x1b[0m (${venue.url})`);
     let venueLog = 'Venue ${index + 1}: \x1b[36m${venue.name} (${venue.city}, ${venue.country})\n';

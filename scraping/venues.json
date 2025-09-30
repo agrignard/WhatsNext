@@ -92,6 +92,7 @@
     "ID": "Transbordeur|Lyon|France",
     "baseURL": "https://www.transbordeur.fr/agenda/",
     "multiPages": {
+      "type": "dynamicPage",
       "nextButton": "Voir plus",
       "maxPages": 2
     }
@@ -183,6 +184,7 @@
     },
     "ID": "Le Sonic|Lyon|France",
     "multiPages": {
+      "type": "pageList",
       "nbPages": "2",
       "startPage": "1",
       "increment": "1"
@@ -284,25 +286,14 @@
     "baseURL": "https://villemorte.fr/agenda-2-0/",
     "mainPage": {
       "eventNameTags": [
-        "A.depth12:eq(0)>H2.title.pname.depth13:eq(0)"
-      ],
-      "eventURLTags": [
-        "A.depth12:eq(0)>H2.title.pname.depth13:eq(0)"
-      ],
-      "eventDateTags": [
-        "DIV.vcard__text.body.pt0.pb0.depth12:eq(0)>TIME.dtstart.subtitle1.depth13:eq(0)"
-      ],
-      "eventPlaceTags": [
-        "DIV.vcard__text.body.pt0.pb0.depth12:eq(0)>DIV.plocation.depth13:eq(0)>A.place.dblock.pl0.depth14:eq(0)"
-      ],
-      "eventStyleTags": [
-        "DIV.vcard__actions.flexwrap.depth12:eq(0)>A.ml1.mt1.vchip.vchipclickable.vchiplabel.vchiplink.vchipoutlined.themelight.vsizesmall.primary.primarytext.depth13:eq(0)"
+        "html>body:eq(0)"
       ]
     },
     "multiPages": {
       "scroll": true
     },
     "eventURLIndex": 0,
+    "linkedPageDateFormat": "dd-MM-HH:mm",
     "ID": "Ville Morte|Lyon|France",
     "linkedPageDownloadMethod": "Puppeteer"
   },
@@ -312,6 +303,7 @@
     "city": "Lyon",
     "url": "https://www.infoconcert.com/concerts/concerts-par-departement-{index}.html?departement_id=69",
     "multiPages": {
+      "type": "pageList",
       "startPage": 1,
       "nbPages": 42
     },
@@ -719,6 +711,7 @@
     "eventURLIndex": 1,
     "dateFormat": "dd-MM-HH:mm",
     "multiPages": {
+      "type": "dynamicPage",
       "scroll": true
     }
   },
@@ -744,6 +737,7 @@
     "eventURLIndex": 0,
     "dateFormat": "dd-MM",
     "multiPages": {
+      "type": "dynamicPage",
       "nextButton": "Voir plus",
       "maxPages": 2
     }
@@ -789,6 +783,7 @@
     "url": "https://www.noisehanoi.com/gigs",
     "ID": "Noise Hanoi|Hanoi|Vietnam",
     "multiPages": {
+      "type": "dynamicPage",
       "nbPages": "5",
       "scroll": true
     },
@@ -857,8 +852,9 @@
     "mainPage": {},
     "url": "https://www.facebook.com/lebazarlyon/events/?id=100068908959606&sk=events",
     "ID": "Le Bazar|Lyon|France",
-    "dynamicPage": {
-      "type": "advanced"
+    "multiPages": {
+      "type": "dynamicPage",
+      "scroll": true
     },
     "linkedPageDownloadMethod": "Puppeteer",
     "baseURL": "https://www.facebook.com/lebazarlyon/events/"
@@ -871,6 +867,7 @@
     "url": "https://www.lapente.fr/evenements",
     "ID": "La Pente|Lyon|France",
     "multiPages": {
+      "type": "dynamicPage",
       "scroll": true
     }
   }
