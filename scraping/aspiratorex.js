@@ -37,6 +37,7 @@ console.log("*******************************************************************
 if (filteredVenues.length === 0){
   console.log("No place matching arguments.");
 }else{
+  // list aliase venues that are skipped
   filteredVenues.filter(obj => isAlias(obj)).forEach(el =>{
     let text = "Place "+el.name+" not processed (considered as alias: ";
     if (!el.hasOwnProperty('url') && !el.hasOwnProperty('mainPage')){
@@ -52,7 +53,7 @@ if (filteredVenues.length === 0){
   });
   // for non aliases venues
   filteredVenues.filter(obj => !isAlias(obj)).forEach((venue, index) => {
-        // Afficher le numéro de l'objet
+    // display venue number and basic information
     console.log(`Venue ${index + 1}: \x1b[36m${venue.name} (${venue.city}, ${venue.country})\x1b[0m (${venue.url})`);
     let venueLog = 'Venue ${index + 1}: \x1b[36m${venue.name} (${venue.city}, ${venue.country})\n';
     try{

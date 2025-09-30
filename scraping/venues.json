@@ -288,16 +288,12 @@
       ]
     },
     "multiPages": {
-      "nbPages": "4",
-      "pattern": "yyyy-mm-dd"
+      "scroll": true
     },
     "eventURLIndex": 0,
     "linkedPageDateFormat": "dd-MM-HH:mm",
     "ID": "Ville Morte|Lyon|France",
-    "linkedPageDownloadMethod": "Puppeteer",
-    "multiPages": {
-      "scroll": true
-    }
+    "linkedPageDownloadMethod": "Puppeteer"
   },
   {
     "name": "Infoconcert",
@@ -850,10 +846,11 @@
     "mainPage": {},
     "url": "https://www.facebook.com/lebazarlyon/events/?id=100068908959606&sk=events",
     "ID": "Le Bazar|Lyon|France",
-    "multiPages": {
-      "scroll": true
+    "dynamicPage": {
+      "type": "advanced"
     },
-    "linkedPageDownloadMethod": "Puppeteer"
+    "linkedPageDownloadMethod": "Puppeteer",
+    "baseURL": "https://www.facebook.com/lebazarlyon/events/"
   },
   {
     "name": "La Pente",

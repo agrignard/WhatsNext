@@ -215,15 +215,11 @@ async function detectIframes(page){
 
 
 async function getPageByPuppeteer(pageURL, venueName, multipagesOptions, browserPool, verbose = false, parentBrowser = null){
-    // let browser = null;
-    //  browser = await browserPool.acquire();
 
-     let browser = parentBrowser;
+    let browser = parentBrowser;
     if (!browser) {
         browser = await browserPool.acquire();
     }
-
-   
 
     const page = await browser.newPage();
     await page.goto(pageURL, { waitUntil: 'networkidle2' });
@@ -232,18 +228,11 @@ async function getPageByPuppeteer(pageURL, venueName, multipagesOptions, browser
     if (iframeList.length !== 0) {
          console.log('detected Iframes:',iframeList);
         await page.close();
-        // await browser.close();
         return await getPageByPuppeteer(iframeList[0].src, venueName, multipagesOptions, browserPool, verbose = false, browser);
     }
 
-    // await page.setViewport({
-    //     width: 1200,
-    //     height: 800
-    // });
-
     await page.setViewport({ width: 1200, height: 3000 });
-    // await page.waitForTimeout(5000); // attendre que JS charge tout
-
+    
 
     if (multipagesOptions.hasOwnProperty('scroll') && multipagesOptions.scroll === true){
         if (verbose) {console.log('scrolling...');}

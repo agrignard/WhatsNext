@@ -24,7 +24,9 @@ const browserPool = new BrowserPool(3);
 /******************************/
 
 async function downloadVenue(venue, filePath, verbose = false, syncWriting = false){
-  let URLlist = []; // set the list of URL of the pages that will be downloaded and merged to extract events
+
+  // set the list of URL of the pages that will be downloaded and merged to extract events.
+  let URLlist = []; 
   // let failedDownloads;
   if (venue.hasOwnProperty('multiPages')){
     if (venue.multiPages.hasOwnProperty('pattern')){
@@ -55,6 +57,7 @@ async function downloadVenue(venue, filePath, verbose = false, syncWriting = fal
         URLlist = [];
         console.log(venue.url);
     }
+  // }else if (venue.hasOwnProperty('dynamicPage')){
   }else{
     URLlist = [venue.url];
   }
@@ -67,16 +70,15 @@ async function downloadVenue(venue, filePath, verbose = false, syncWriting = fal
     try{
       if (venue.hasOwnProperty('multiPages') && (venue.multiPages.hasOwnProperty('scroll') || venue.multiPages.hasOwnProperty('nextButton'))){
         htmlContent = cleanPage(await getPageByPuppeteer(page,venue.name,venue.multiPages, browserPool));
+      }else if (venue.hasOwnProperty('dynamicPage')) {
+        htmlContent = cleanPage(await getPageByStealthPuppeteer(page,venue.name,venue.multiPages, browserPool));
       }else{
-        // console.log('files',URLlist);
         htmlContent = cleanPage(await fetchWithRetry(page,2,2000));
       }
     }catch(err){
       if (verbose){
         console.log("\x1b[38;5;226mNetwork error (or file not exists), cannot download \'%s\'\x1b[0m. %s",page,err);
       }else{
-        //console.log("\x1b[38;5;226mCannot download page \'%s\'. Either there is a network error, or the page does not exist.\x1b[0m (%s)",page,err.message);
-        // console.log("\x1b[38;5;226mCannot download page \x1b[0m%s\x1b[38;5;226m (error: %s).\x1b[0m",page,err.message);
         console.log("\x1b[38;5;226mCannot download page \x1b[0m%s\x1b[38;5;226m (error: %s).\x1b[0m",page,err);
       }
       return null;
@@ -89,15 +91,6 @@ async function downloadVenue(venue, filePath, verbose = false, syncWriting = fal
       outputFile = filePath+venue.name+pageIndex+".html";
     }
 
-    // fs.writeFileSync(outputFile, htmlContent, 'utf8', (err) => {
-    //   if (err) {
-    //     console.log('dyr');
-    //     console.error("\x1b[31mCannot write local file \'%s\'\x1b[0m: %s",outputFile, err);
-    //   } else {
-    //     console.error("\x1b[31mCae local file \'%s\'\x1b[0m: %s",outputFile, err);
-    //     console.log("\'"+venue.name + "\'" + " file downloaded to " + outputFile);
-    //   }
-    // });
     if (syncWriting){
       try {
         fs.writeFileSync(outputFile, htmlContent, 'utf8');
