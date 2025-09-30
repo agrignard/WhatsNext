@@ -279,19 +279,30 @@
     "city": "Lyon",
     "country": "France",
     "url": "https://villemorte.fr/agenda-2-0/",
-    "eventsDelimiterTag": "div.tribeeventscategorymusique.tribe_events.typetribe_events.statuspublish.hentry.tribe_events_catmusique.cat_musique>h3.tribeeventsmontheventtitle>a.url",
-    "dateFormat": "dd MM",
-    "baseURL": "https://villemorte.fr/agenda/",
+    "eventsDelimiterTag": "ARTICLE.hevent.depth11",
+    "dateFormat": "dd-MM-HH:mm",
+    "baseURL": "https://villemorte.fr/agenda-2-0/",
     "mainPage": {
       "eventNameTags": [
-        "html>body:eq(0)"
+        "A.depth12:eq(0)>H2.title.pname.depth13:eq(0)"
+      ],
+      "eventURLTags": [
+        "A.depth12:eq(0)>H2.title.pname.depth13:eq(0)"
+      ],
+      "eventDateTags": [
+        "DIV.vcard__text.body.pt0.pb0.depth12:eq(0)>TIME.dtstart.subtitle1.depth13:eq(0)"
+      ],
+      "eventPlaceTags": [
+        "DIV.vcard__text.body.pt0.pb0.depth12:eq(0)>DIV.plocation.depth13:eq(0)>A.place.dblock.pl0.depth14:eq(0)"
+      ],
+      "eventStyleTags": [
+        "DIV.vcard__actions.flexwrap.depth12:eq(0)>A.ml1.mt1.vchip.vchipclickable.vchiplabel.vchiplink.vchipoutlined.themelight.vsizesmall.primary.primarytext.depth13:eq(0)"
       ]
     },
     "multiPages": {
       "scroll": true
     },
     "eventURLIndex": 0,
-    "linkedPageDateFormat": "dd-MM-HH:mm",
     "ID": "Ville Morte|Lyon|France",
     "linkedPageDownloadMethod": "Puppeteer"
   },

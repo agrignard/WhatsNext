@@ -150,7 +150,7 @@ async function downloadVenue(venue, filePath, verbose = false, syncWriting = fal
     
   } else {
      console.log('\x1b[31mPage was successfully downloaded for \x1b[0m\'%s\'\x1b[31m, but no event delimiter was found.\n'+
-                'Possible issues: 1) the page does not exist anymore 2) its structure has changed '+
+                'Possible issues: 1) its structure has changed (run analex or the GUI to fix) 2) the page does not exist anymore '+
                 '3) It is a dynamic page that is not fully loaded, check dynamic/multipage parameters.\x1b[0m',venue.name)
         return;
   }
