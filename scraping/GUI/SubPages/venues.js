@@ -212,7 +212,13 @@ function getCurrentVenue(){
 
 // Some html parts
 
+const multiPagePanelHeaderText = document.getElementById('multiPagePanelHeaderText');
 const activeSiteMenu = document.getElementById('activeSiteMenu');
+const multipageCheckbox = document.getElementById('multipageCheckbox');
+
+
+let multipageCheckboxText = document.getElementById('multipageCheckboxText');
+let aliasCheckboxText = document.getElementById('aliasCheckboxText');
 
 function updateVenueInfo(mode){
     let venue;
@@ -365,7 +371,11 @@ function updateVenueInfo(mode){
             nameText.textContent = (mode === 'edit')?venue.name:'Venue name: ';
             nameText.style.display = (mode === 'edit')?'inline':'none';
             const aliasCheckbox = document.getElementById('aliasCheckbox');
+            aliasCheckbox.addEventListener('change', (event) => {
+                aliasCheckboxText.textContent =  aliasCheckbox.checked ? 'Active':'Alias';
+            });
             aliasCheckbox.checked = isActive(venue);
+            aliasCheckboxText.textContent =  aliasCheckbox.checked ? 'Active':'Alias';
             aliasRender();
 
             // aliases
@@ -428,19 +438,38 @@ function updateVenueInfo(mode){
             const multiPagePanel = document.getElementById('multiPagePanel');
             // multipages
             let hasMP = isMultipages(venue);
-            const MPButton = document.getElementById('MPButton');
-            MPButton.textContent = hasMP?'Disable multiple pages':'Enable multiple pages';
+            multipageCheckbox.checked =  hasMP;
+            multipageCheckbox.addEventListener('change', (event) => {
+                hasMP = !hasMP;
+                multipageCheckboxText.textContent =  hasMP ? 'On':'Off';
+                MPFields.style.display = hasMP?'block':'none';
+                changeMPPanel(hasMP);
+                // multipageCheckboxText.textContent =  multipageCheckbox.checked ? 'On':'Off';
+                // if (multipageCheckbox.checked){
+                if (hasMP){
+                    multiPagePanelHeaderText.classList.remove('inactive');
+                }else{
+                    multiPagePanelHeaderText.classList.add('inactive');
+                }
+            });
+            multipageCheckboxText.textContent =  multipageCheckbox.checked ? 'On':'Off';
+            if (hasMP){
+                multiPagePanelHeaderText.classList.remove('inactive');
+            }else{
+                multiPagePanelHeaderText.classList.add('inactive');
+            }
+            
             const MPFields = document.getElementById('MPfields');
             MPFields.style.display = hasMP?'block':'none';
             const nbPagesToScrap = document.getElementById('nbPagesToScrap');
             function changeMPPanel(hasMP){
-                if (hasMP){
-                    multiPagePanel.classList.add('multiPagePanelOn');
-                    multiPagePanel.classList.remove('multiPagePanelOff');
-                }else{
-                    multiPagePanel.classList.add('multiPagePanelOff');
-                    multiPagePanel.classList.add('multiPagePanelOn');
-                }
+                // if (hasMP){
+                //     multiPagePanel.classList.add('multiPagePanelOn');
+                //     multiPagePanel.classList.remove('multiPagePanelOff');
+                // }else{
+                //     multiPagePanel.classList.add('multiPagePanelOff');
+                //     multiPagePanel.classList.add('multiPagePanelOn');
+                // }
             }
             changeMPPanel(hasMP);
             if (hasMP){
@@ -501,12 +530,6 @@ function updateVenueInfo(mode){
                 checkIndexWarning();
             });
 
-            MPButton.addEventListener('click', function() {
-                hasMP = !hasMP;
-                MPButton.textContent = hasMP?'Disable multiple pages':'Enable multiple pages';
-                MPFields.style.display = hasMP?'block':'none';
-                changeMPPanel(hasMP);
-            });
             function checkIndexWarning(){
                 divMPInfo.style.display =   selectMPFields.value === 'Scroll' ||
                                             selectMPFields.value === 'PageList' ||

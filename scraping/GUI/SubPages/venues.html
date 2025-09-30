@@ -30,11 +30,11 @@
                 <div id="venueTitle" class="subPanel">
                     <div id="editVenueNameText" class="venueName">Venue name:</div>
                     <input type="text" id="inputNameField" placeholder="Enter venue name">
-                    <div id="isAliasInfo" class="venueName">(used as alias)</div>
+                    <div id="isAliasInfo" class="venueName isAliasInfo">(used as alias)</div>
                     <div id="aliasCheckBox" class="sliderCheckBox">
                         <label class="niceCheckBox" style="display: inline;">
                             <input id="aliasCheckbox" type="checkbox" name="links" checked/>
-                            <span>Active</span> 
+                            <span id="aliasCheckboxText">Active</span> 
                             <i></i> 
                         </label>                   
                     </div>
@@ -64,19 +64,18 @@
             </div>
 
             <div id="activeSiteMenu">
-                <div id="multiPagePanel" class="bigPanel bottomMargin">
+                <div id="multiPagePanel" class="bigPanelNoVerticalMargin bottomMargin activePanel">
                     <div id="multiPagePanelHeader" class="subPanel">
-                        <div class="">Dynamic web page/multiple pages</div>
+                        <div id="multiPagePanelHeaderText" class="">Dynamic web page/multiple pages</div>
                         <div id="multipageCheckBox" class="sliderCheckBox">
                             <label class="niceCheckBox" style="display: inline;">
                                 <input id="multipageCheckbox" type="checkbox" name="links" checked/>
-                                <span>On</span> 
+                                <span id="multipageCheckboxText">On</span> 
                                 <i></i> 
                             </label>                   
                         </div>
                     </div>
                     <div>
-                        <button id="MPButton" class="niceButtonNoMargin">Multipage button</button>
                         <div id="MPfields">
                             <div id="indexType" class="bottomMargin">
                                 <div>Indexation type:  </div>

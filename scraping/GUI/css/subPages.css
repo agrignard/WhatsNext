@@ -1,3 +1,8 @@
+ :root {
+  /* page manager color theme */
+  --inactive-color: #c0bdbd;  
+ }
+
 body, html {
   margin: 0px;
   padding: 0px;
@@ -18,9 +23,18 @@ body, html {
   font-size: 85%;
 }
 
+.isAliasInfo{
+  color: grey;
+}
+
 .bigPanel{
   margin: 0px;
   padding: 10px 10px;
+}
+
+.bigPanelNoVerticalMargin{
+  margin: 0px;
+  padding: 0px 10px;
 }
 
 .subPanel{
@@ -35,15 +49,18 @@ body, html {
   width: 100%;
 }
 
-.multiPagePanelOn{
+/* .multiPagePanelOn{
   background-color: rgb(211, 227, 232);
-  /* background-color: rgb(238, 240, 241); */
+} */
+
+.activePanel{
+  background-color: rgb(211, 227, 232);
 }
 
 
-.multiPagePanelOff{
+/* .multiPagePanelOff{
   background-color: rgb(228, 237, 240);
-}
+} */
 
 /* Style pour les boutons des options */
 .niceButton {
@@ -146,7 +163,7 @@ label.niceCheckBox > i {
   transition: .25s .09s;
   position: relative;
   /* background: #deeff7; */
-  background: #c0bdbd;
+  background: var(--inactive-color);
   top: -1px;
 }
 
@@ -165,7 +182,7 @@ label.niceCheckBox > i:after {
 }
 
 label.niceCheckBox > span {
-  color: #c0bdbd !important;
+  color: var(--inactive-color) !important;
 }
 
 label.niceCheckBox > input:checked + span {
@@ -218,7 +235,7 @@ label.niceCheckBox >input:checked+span+i:after {
 }
 
 .inactive{
-  color: grey;
+  color: #c0bdbd;
 }
 
 .blue-text {
