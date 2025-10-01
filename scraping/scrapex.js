@@ -206,6 +206,7 @@ async function analyseFile(venue) {
         }
       }
       eventInfo.eventStyle = getStyle(eventInfo.eventStyle, eventLanguages);
+      eventInfo.eventStyle = getValidatedStyle(eventInfo.eventStyle, eventLanguages);
       eventInfo.source = { 'name': venue.name, 'city': venue.city, 'country': venue.country };
 
       // process date: change the date format to Unix time. Test all formats of possibleDateFormat until one is valid
@@ -431,6 +432,17 @@ function getStyle(string, eventLanguages){
     }
   });
   return res;
+}
+
+
+function getValidatedStyle(style, langs) {
+  const candidate = getStyle(style, langs);
+  const validKeys = Object.keys(styleConversion.French);
+
+  if (!validKeys.includes(candidate)) {
+    console.error(`❌ Style inconnu détecté: "${candidate}"`);
+  }
+  return candidate;
 }
 
 function  displayEventLog(eventInfo){

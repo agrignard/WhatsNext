@@ -172,7 +172,7 @@ async function chartIt(){
             data: {
                 labels:Array.from(eventStyleInformation.keys()),
                 datasets: [{
-                label: '(Number of events per Style: ' + eventStyleInformation.size + " - Event: " + dataUtils.nbActiveEvent + " )",
+                label: '(Number of events per style)',
                 data:Array.from(eventStyleInformation.values()),
                 borderWidth: 1
                 }]
