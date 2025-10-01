@@ -78,7 +78,5 @@ if (filteredVenues.length === 0){
   });
 }
 
-
-
 // save base URL to JSON file
 saveToVenuesJSON(venues);// écrit à la fin. Problème de sauvegarde si un des fichiers a un pb ?

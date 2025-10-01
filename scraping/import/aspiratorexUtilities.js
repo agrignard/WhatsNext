@@ -26,11 +26,9 @@ async function downloadVenue(venue, filePath, verbose = false, syncWriting = fal
 
   // set the list of URL of the pages that will be downloaded and merged to extract events.
   let URLlist = []; 
-  // let failedDownloads;
-  if (venue.hasOwnProperty('multiPages')){
+  if (venue.hasOwnProperty('multiPages') && venue.multiPages.type === 'pageList'){
     if (venue.multiPages.hasOwnProperty('pattern')){
       URLlist = getURLListFromPattern(venue.url,venue.multiPages.pattern,venue.multiPages.nbPages);
-      // console.log(URLlist);
     }else if (/\{index\}/.test(venue.url) || venue.multiPages.hasOwnProperty('startPage')){
       if (venue.multiPages.hasOwnProperty('startPage') && venue.multiPages.hasOwnProperty('nbPages')){
         let increment = (venue.multiPages.hasOwnProperty('increment'))?venue.multiPages.increment:1;
@@ -41,14 +39,11 @@ async function downloadVenue(venue, filePath, verbose = false, syncWriting = fal
           }else{
             URLlist.push(venue.url+pageID);
           }
-          
         }
       }else{
         console.log("\x1b[31mAttribute \'startPage\' and \'nbPages' are mandatory for multipages if there is a placeholder \'index\' in the URL. No page loaded\x1b[0m.");
         URLlist = [];
       }
-    }else if(venue.multiPages.hasOwnProperty('scroll') || venue.multiPages.hasOwnProperty('nextButton')){
-      URLlist = [venue.url];
     }else if(venue.multiPages.hasOwnProperty('pageList')){
         venue.multiPages.pageList.forEach(el => URLlist.push(venue.url+el));
     }else{
@@ -67,12 +62,15 @@ async function downloadVenue(venue, filePath, verbose = false, syncWriting = fal
   async function getPage(page,pageIndex){
     let htmlContent;
     try{
-      if (venue.hasOwnProperty('multiPages') && (venue.multiPages.hasOwnProperty('scroll') || venue.multiPages.hasOwnProperty('nextButton'))){
-        htmlContent = cleanPage(await getPageByPuppeteer(page,venue.name,venue.multiPages, browserPool));
-      }else if (venue.hasOwnProperty('dynamicPage')) {
+      if (venue.hasOwnProperty('multiPages') && venue.multiPages.type === 'dynamicPage') {
+        if (verbose){
+          console.log('Fetching %s using Puppeteer (dynamic web page)',venue.name);
+        }
         htmlContent = cleanPage(await getPageByPuppeteer(page,venue.name, venue.multiPages, browserPool));
-
       }else{
+        if (verbose){
+          console.log('Fetching %s using regular method',venue.name);
+        }
         htmlContent = cleanPage(await fetchWithRetry(page,2,2000));
       }
     }catch(err){

@@ -476,10 +476,15 @@ function updateVenueInfo(mode) {
             const divMultipages = document.getElementById('divMultipages');
             if (isMultipages(venue)) {
                 divMultipages.style.display = 'block';
-                if (venue.multiPages.hasOwnProperty('scroll')) {
-                    divMultipages.textContent = 'Page will be scrolled to get all events.';
-                } else if (venue.multiPages.hasOwnProperty('nextButton')) {
-                    divMultipages.textContent = 'Puppeteer will click on button \'' + venue.multiPages.nextButton + '\' to load the entire page.';
+                if (venue.multiPages.type === 'dynamicPage') {
+                    let divHtml = '<div class="smallBottomMargin">Dynamic web page ('
+                                + [venue.multiPages.hasOwnProperty('scroll')?'scroll':null, 
+                                   venue.multiPages.hasOwnProperty('nextButton')?'click next button':null]
+                                   .filter(e => e).join(', ')
+                                +').</div>'
+                                +(venue.multiPages.hasOwnProperty('useIframes')?'<div>Exploring iframes.</div>':'');
+
+                    divMultipages.innerHTML =  divHtml;
                 } else {
                     divMultipages.textContent = 'Multiple pages: will scrap ' + venue.multiPages.nbPages + ' pages.';
                     if (venue.multiPages.hasOwnProperty('pattern')) {
@@ -487,7 +492,6 @@ function updateVenueInfo(mode) {
                     } else if (venue.multiPages.hasOwnProperty('pageList')) {
                         divMultipages.textContent = divMultipages.textContent + '\nList of pages to scrap: '
                             + venue.multiPages.pageList;
-
                     } else {
                         divMultipages.textContent = divMultipages.textContent + ' Start index: ' + venue.multiPages.startPage;
                     }

@@ -230,7 +230,7 @@ async function detectIframes(page){
 
 
 async function getPageByPuppeteer(pageURL, venueName, multipagesOptions, browserPool, verbose = false, parentBrowser = null){
-
+ 
     let browser = parentBrowser;
     if (!browser) {
         browser = await browserPool.acquire();
@@ -249,7 +249,7 @@ async function getPageByPuppeteer(pageURL, venueName, multipagesOptions, browser
     await page.setViewport({ width: 1200, height: 3000 });
     
 
-    if (multipagesOptions.hasOwnProperty('scroll') && multipagesOptions.scroll === true){
+    if (multipagesOptions.hasOwnProperty('scroll')){
         if (verbose) {console.log('scrolling...');}
         const maxScrolls = multipagesOptions.hasOwnProperty('dynamicPageLimit')?multipagesOptions.dynamicPageLimit:null;
         await autoScroll(page, maxScrolls);
@@ -329,7 +329,7 @@ async function getPageByPuppeteer(pageURL, venueName, multipagesOptions, browser
 
 // can this autoscroll function replace the other one ?
 
-async function autoScroll(page, maxScrolls, delay = 500) {
+async function autoScroll(page, maxScrolls = null, delay = 500) {
     const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 
     let lastHeight = await page.evaluate(() => document.body.scrollHeight);
