@@ -299,10 +299,9 @@
       ]
     },
     "multiPages": {
-      "type": "pageList",
-      "nbPages": "5",
-      "startPage": "1",
-      "increment": "1"
+      "type": "dynamicPage",
+      "scroll": true,
+      "useIframes": true
     },
     "eventURLIndex": 0,
     "ID": "Ville Morte|Lyon|France",
