@@ -38,9 +38,13 @@ const languages = getLanguages();
 const timeZones = new TimeZone();
 
     
-//initScrap(process.argv[2]);
+// presence of --verbose argument
+const verbose = process.argv.includes('--verbose');
+if (verbose){
+  console.log('*** v=verbose mode ***');
+}
 
-const venues = getVenuesFromArguments(process.argv, venueList); // venueList is kept to allow finding matches with event places
+const venues = getVenuesFromArguments(process.argv.filter(el => el !=='--verbose'), venueList); // venueList is kept to allow finding matches with event places
 
 if (venues.length === 0){
   console.log("No place matching arguments.");

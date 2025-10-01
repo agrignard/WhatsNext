@@ -5,14 +5,18 @@
 
 
 const fs = require('fs');
-const {removeDoubles, makeURL, cleanPage, extractBody} = require('./import/stringUtilities.js');
-const {loadLinkedPages,fetchAndRecode, fetchWithRetry, fetchLink,getVenuesFromArguments} = require('./import/fileUtilities.js');
+const {getVenuesFromArguments} = require('./import/fileUtilities.js');
 const {loadVenuesJSONFile, saveToVenuesJSON, isActive, initializeVenue} = require('./import/jsonUtilities.js');
-const {getURLListFromPattern} = require('./import/dateUtilities.js');
 const cheerio = require('cheerio');
 
 const {downloadVenue, erasePreviousHtmlFiles} = require('./import/aspiratorexUtilities.js')
 //module.exports = {downloadVenue, erasePreviousHtmlFiles};
+
+// presence of --verbose argument
+const verbose = process.argv.includes('--verbose');
+if (verbose){
+  console.log('*** v=verbose mode ***');
+}
 
 const outputPath = './webSources/';
 //const nbFetchTries = 2; // number of tries in case of internet connection time outs
@@ -20,7 +24,7 @@ const outputPath = './webSources/';
 const venues = loadVenuesJSONFile();
 let log = '';
 
-const filteredVenues = getVenuesFromArguments(process.argv, venues);
+const filteredVenues = getVenuesFromArguments(process.argv.filter(el => el !=='--verbose'), venues);
 
 // initializes new venues
 filteredVenues.forEach(venue => initializeVenue(venue, outputPath));
@@ -67,7 +71,7 @@ if (filteredVenues.length === 0){
           let path = outputPath+venue.country+'/'+venue.city+'/'+venue.name+'/';
           erasePreviousHtmlFiles(path)
           .then(() => {
-            downloadVenue(venue,path);
+            downloadVenue(venue,path, verbose);
             venueLog += '\x1b[31mEssai d\'URL for '+venue.name+'.x1b[0m';
           })
       } 
