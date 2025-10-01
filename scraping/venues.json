@@ -290,8 +290,10 @@
       ]
     },
     "multiPages": {
-      "scroll": true,
-      "useIframes": true
+      "type": "pageList",
+      "nbPages": "5",
+      "startPage": "1",
+      "increment": "1"
     },
     "eventURLIndex": 0,
     "linkedPageDateFormat": "dd-MM-HH:mm",

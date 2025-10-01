@@ -251,8 +251,9 @@ async function getPageByPuppeteer(pageURL, venueName, multipagesOptions, browser
 
     if (multipagesOptions.hasOwnProperty('scroll') && multipagesOptions.scroll === true){
         if (verbose) {console.log('scrolling...');}
-        await autoScroll(page);
-        if (verbose) {console.log('fin scrolling');}
+        const maxScrolls = multipagesOptions.hasOwnProperty('dynamicPageLimit')?multipagesOptions.dynamicPageLimit:null;
+        await autoScroll(page, maxScrolls);
+        if (verbose) {console.log('scrolling ended.');}
     }
 
     try{
@@ -261,7 +262,7 @@ async function getPageByPuppeteer(pageURL, venueName, multipagesOptions, browser
                 if (verbose) {
                     console.log("Start clicking...");
                     page.on('console', (msg) => {
-                        console.log('Message du navigateur :'+msg.text());
+                        console.log('Browser message :'+msg.text());
                     });
                 }
 
@@ -273,8 +274,8 @@ async function getPageByPuppeteer(pageURL, venueName, multipagesOptions, browser
                     count++;
                     if (verbose) {console.log(count);}
                     // stop clicking if a max number of pages has been set
-                    if (multipagesOptions.hasOwnProperty('maxPages') && count === multipagesOptions.maxPages){
-                        console.log('Download successful for venue \x1b[36m%s\x1b[0m: %s clicks were performed. Stopped because the maximum number of clicks has been reached.', venueName, multipagesOptions.maxPages);
+                    if (multipagesOptions.hasOwnProperty('dynamicPagesLimit') && count === multipagesOptions.dynamicPagesLimit){
+                        console.log('Download successful for venue \x1b[36m%s\x1b[0m: %s clicks were performed. Stopped because the maximum number of clicks has been reached.', venueName, multipagesOptions.dynamicPagesLimit);
                         break;
                     }
                     hasMoreContent = await page.evaluate((buttonText, count, verbose) => { 
@@ -299,7 +300,7 @@ async function getPageByPuppeteer(pageURL, venueName, multipagesOptions, browser
                         break;
                     }
                     if (hasMoreContent === false){
-                        console.log('Download successful for venue \x1b[36m%s\x1b[0m: %s clicks were performed.', venueName, multipagesOptions.maxPages);
+                        console.log('Download successful for venue \x1b[36m%s\x1b[0m: %s clicks were performed.', venueName, multipagesOptions.dynamicPagesLimit);
                     }
                     await new Promise(resolve => setTimeout(resolve, 2000));
                 }
@@ -328,12 +329,13 @@ async function getPageByPuppeteer(pageURL, venueName, multipagesOptions, browser
 
 // can this autoscroll function replace the other one ?
 
-async function autoScroll(page, maxScrolls = 50, delay = 500) {
+async function autoScroll(page, maxScrolls, delay = 500) {
     const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 
     let lastHeight = await page.evaluate(() => document.body.scrollHeight);
 
-    for (let i = 0; i < maxScrolls; i++) {
+    // end the loop if maxscrolls is defined and i > maxscrolls
+    for (let i = 0; !maxScrolls || i < maxScrolls; i++) {
         await page.evaluate(() => {
             window.scrollBy(0, window.innerHeight);
         });

@@ -1,6 +1,8 @@
  :root {
   /* page manager color theme */
   --inactive-color: #c0bdbd;  
+  --toggle-active-color: #1094fb;
+  --shadow-color: rgba(0, 0, 0, 0.16);
  }
 
 body, html {
@@ -21,6 +23,8 @@ body, html {
   color: grey;
   font-style: italic;
   font-size: 85%;
+  white-space: normal;
+  word-wrap: break-word;
 }
 
 .isAliasInfo{
@@ -35,6 +39,7 @@ body, html {
 .bigPanelNoVerticalMargin{
   margin: 0px;
   padding: 0px 10px;
+  padding-bottom: 10px;
 }
 
 .subPanel{
@@ -57,6 +62,42 @@ body, html {
   background-color: rgb(211, 227, 232);
 }
 
+#MPfields {
+  width: fit-content;
+  display: block;
+  /* display: inline-block;  */
+}
+
+#radioButtonPanel{
+  display: flex;
+}
+
+/* #dynamicPagePanel{
+  background-color: green;
+  display: grid;
+  grid-template-columns: 19ch 100px;
+  gap: 10px; 
+} */
+
+#dynamicPagePanel .row {
+    display: flex;
+    justify-content: space-between; /* espace entre gauche et droite */
+    align-items: center;           /* centrer verticalement si nécessaire */
+    /* margin-bottom: -10px;           
+    margin-top: -10px; */
+}
+
+#dynamicPagePanel {
+  margin-left: 5px;
+}
+
+#dynamicPagePanel .left {
+    text-align: left;
+}
+
+#dynamicPagePanel .right {
+    text-align: right;
+}
 
 /* .multiPagePanelOff{
   background-color: rgb(228, 237, 240);
@@ -124,12 +165,9 @@ background-color: lightblue;
 }
 
 .sliderCheckBox{
-  /* flex-grow: 1;
-  display: flex; */
   justify-content: flex-end;
   padding: 0px;
   margin: 0px;
-  /* display: inline; */
   /* background-color: rgb(216, 58, 89); */
   display: flex;
   margin-left: auto;
@@ -191,11 +229,15 @@ label.niceCheckBox > input:checked + span {
 
 
 label.niceCheckBox>input:checked+span+i {
-  background: #1094fb;
+  background: var(--toggle-active-color);
 }
 
 label.niceCheckBox >input:checked+span+i:after {
   transform: translateX(18px);
+}
+
+.insideMPPanel{
+  margin: 4px !important;
 }
 
 .multipageBlock{
@@ -343,6 +385,10 @@ label.niceCheckBox >input:checked+span+i:after {
   margin-left: 20px;
 }
 
+.smallLeftMargin{
+  margin-left: 10px;
+}
+
 .topMargin{
   margin-top: 20px;
 }
@@ -378,17 +424,42 @@ label.niceCheckBox >input:checked+span+i:after {
   overflow-y: auto;
 }
 
-/* .leftPanel { 
-  width: 35%; 
-  background-color: #f0f0f0; 
-  overflow: auto; 
+
+.radio-toggle {
+  display: flex;
+  gap: 10px;
 }
 
-.rightPanel {
-  width: 65%; 
-  background-color: #d0d0d0; 
-  overflow-y: auto; 
-} */
+.radio-toggle input[type="radio"] {
+  display: none; /* cacher le bouton radio natif */
+}
+
+.radio-toggle label {
+  padding: 8px 16px;
+  /* border: 2px solid var(--toggle-active-color); */
+  border-radius: 0px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: sans-serif;
+}
+
+/* état normal */
+.radio-toggle label {
+  background-color: var(--inactive-color);
+  color: grey;
+}
+
+/* état hover */
+.radio-toggle label:hover {
+  background-color: #e6f0ff;
+}
+
+/* état sélectionné */
+.radio-toggle input[type="radio"]:checked + label {
+  background-color: var(--toggle-active-color);
+  color: white;
+}
+
   
 
 .encadre {

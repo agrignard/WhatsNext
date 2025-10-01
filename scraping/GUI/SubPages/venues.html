@@ -21,28 +21,19 @@
     </div>
     <div id="venueEditPanel" class="infoPanel">
 
-       
- 
         <div id="verticalColumn" class="subWidth">
-
-
            <div id="editVenueName">
                 <div id="venueTitle" class="subPanel">
                     <div id="editVenueNameText" class="venueName">Venue name:</div>
                     <input type="text" id="inputNameField" placeholder="Enter venue name">
                     <div id="isAliasInfo" class="venueName isAliasInfo">(used as alias)</div>
-                    <div id="aliasCheckBox" class="sliderCheckBox">
+                    <div id="aliasCheckBoxPanel" class="sliderCheckBox">
                         <label class="niceCheckBox" style="display: inline;">
                             <input id="aliasCheckbox" type="checkbox" name="links" checked/>
                             <span id="aliasCheckboxText">Active</span> 
                             <i></i> 
                         </label>                   
                     </div>
-
-                    <!-- <div class="essai" style="margin-left: auto; display: flex; align-items: center;">
-                        <label for="aliasCheckbox">alias</label>
-                        <input type="checkbox" id="aliasCheckbox" style="margin-left: 5px;">
-                    </div> -->
                 </div>
                 <div id="nameAlert" class="alertBlock"></div>
             </div>
@@ -63,11 +54,14 @@
                 <div id="textURL" contenteditable="true" class="editable"></div>
             </div>
 
+            <!-- Panels to be shown when the venue is active (not alias) -->
             <div id="activeSiteMenu">
+                <!-- Multipage panel -->
                 <div id="multiPagePanel" class="bigPanelNoVerticalMargin bottomMargin activePanel">
+                    <!-- header -->
                     <div id="multiPagePanelHeader" class="subPanel">
                         <div id="multiPagePanelHeaderText" class="">Dynamic web page/multiple pages</div>
-                        <div id="multipageCheckBox" class="sliderCheckBox">
+                        <div id="multipageCheckBoxPanel" class="sliderCheckBox">
                             <label class="niceCheckBox" style="display: inline;">
                                 <input id="multipageCheckbox" type="checkbox" name="links" checked/>
                                 <span id="multipageCheckboxText">On</span> 
@@ -75,17 +69,83 @@
                             </label>                   
                         </div>
                     </div>
-                    <div>
-                        <div id="MPfields">
+                    
+                    
+                    <div id="MPfields">
+                        <!-- Radio boutons dynamic page/page list -->
+                        <div id="radioButtonPanel" class="bottomMargin" style="display: flex; gap: 15px; align-items: center;">
+                            <div class="radio-toggle">
+                                <input type="radio" id="dynamicPage" name="choice" value="dynamicPage" checked/>
+                                <label for="dynamicPage">Dynamic web page</label>
+
+                                <input type="radio" id="pageList" name="choice" value="pageList"/>
+                                <label for="pageList">Page list</label>
+                            </div>
+                        </div>
+                        <!-- dynamic web page panel -->
+
+                        <div id="dynamicPagePanel">
+                            <!-- scroll -->
+                            <div class="row">
+                                <div class="left">Automatic scroll</div>
+                                <div class="right sliderCheckBox">
+                                    <label class="niceCheckBox insideMPPanel">
+                                        <input id="scrollCheckbox" type="checkbox" name="links" checked/>
+                                        <span id="scrollCheckboxText"></span> 
+                                        <i></i> 
+                                    </label>  
+                                </div>
+                            </div>
+                            <!-- next button -->
+                            <div class="row">
+                                <div class="left">"Next" button</div>
+                                <div class="right sliderCheckBox">
+                                    <label class="niceCheckBox insideMPPanel">
+                                        <input id="nextButtonCheckbox" type="checkbox" name="links" checked/>
+                                        <span id="nextButtonCheckboxText"></span> 
+                                        <i></i> 
+                                    </label>  
+                                </div>
+                            </div>
+                            <div id="nextButtonTextPanel" class="row smallLeftMargin smallBottomMargin">
+                                <div class="left">
+                                    Button text:
+                                </div>
+                                <div class="right">
+                                    <input type="text" id="nextButtonTextField" placeholder="See more" style="width: 16ch"/>
+                                </div>
+                            </div>
+                            <!-- page load limit -->
+                            <div class="row">
+                                <div class="left">
+                                    Actions limit:
+                                </div>
+                                <div class="right">
+                                    <input type="number" id="dynamicPageLimitField" min="1" step="1" style ="width: 6ch;" placeholder="∞"/>
+                                </div>
+                            </div>
+                            <!-- iframes detection -->
+                            <div class="row">
+                                <div class="left">Detect iframes</div>
+                                <div class="right sliderCheckBox">
+                                    <label class="niceCheckBox insideMPPanel">
+                                        <input id="iframesCheckbox" type="checkbox" name="links"/>
+                                        <span id="iframesCheckboxText"></span> 
+                                        <i></i> 
+                                    </label>  
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Page List panel -->
+                        <div id="pageListPanel" style="display: none;">
                             <div id="indexType" class="bottomMargin">
                                 <div>Indexation type:  </div>
                                 <div>
-                                    <select id="selectMPFields">
+                                    <select id="multiplePagesMethodSelection">
                                         <option value="Index">Index</option>
                                         <option value="Pattern">Pattern</option>
-                                        <option value="Scroll">Scroll</option>
-                                        <option value="ClickButton">Click Button</option>
-                                        <option value="PageList">Page List</option>
+                                        <option value="PageList">Predefined list of pages</option>
                                     </select>
                                 </div>
                                 <div class="leftMargin divMPnbPages"> 
@@ -112,41 +172,19 @@
                                 <div class="divMPPattern">
                                     <input type="text" id="MPPattern"  placeholder="yyyy-MM" style ="width: 10ch">
                                 </div>
-                                <div class="divMPClickButton">
-                                    Button text
-                                </div>
-                                <div class="divMPClickButton">
-                                    <input type="text" id="MPClickButtonText"  placeholder="See more" style ="width: 20ch">
-                                </div>
-                                <div class="divMPClickButton">
-                                    Page limit
-                                </div>
-                                <div class="divMPClickButton">
-                                    <input type="checkbox" id="pageLimitCheckbox" value="false">
-                                </div>
-                                <div class="divMPClickButton maxPageField">
-                                    Max pages to load
-                                </div>
-                                <div class="divMPClickButton maxPageField">
-                                    <input type="number" id="ClickButtonMaxPages" min="2" step="1" value="3" style ="width: 6ch;">
-                                </div>
                                 <div class="leftMargin divMPPageList">
                                     Page list:
                                 </div>
                                 <div  class="divMPPageList">
                                     <textarea id="MPPageListInput" class="VenueTextArea"  rows="2" cols="30" placeholder="Enter page"></textarea>
                                 </div>
-                                <div class="divMPIframes">
-                                    Use iframes
-                                </div>
-                                <div class="divMPIframes">
-                                    <input type="checkbox" id="iframesCheckbox" value="false">
-                                </div>
                             </div>
                             <div id="divMPInfo">Agenda URL does not contain {index}. Page index will be appended at the end of the URL.</div>
-                        </div>
+                        </div> 
                     </div>
                 </div>
+
+
                 <div id="divLinkedPage">
                     <label for="linkedPageCheckbox">Download linked page:</label>
                     <input type="checkbox" id="linkedPageCheckbox">
