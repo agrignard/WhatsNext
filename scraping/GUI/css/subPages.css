@@ -3,6 +3,9 @@
   --inactive-color: #c0bdbd;  
   --toggle-active-color: #1094fb;
   --shadow-color: rgba(0, 0, 0, 0.16);
+  --main-panel-color: rgb(211, 227, 232);
+  --sub-panel-color: rgb(195, 216, 223);
+  --button-hover-color: rgb(224, 224, 224);
  }
 
 body, html {
@@ -36,10 +39,18 @@ body, html {
   padding: 10px 10px;
 }
 
+.bigPanelSmallVerticalMargin{
+  margin: 0px;
+  padding: 10px 10px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
 .bigPanelNoVerticalMargin{
   margin: 0px;
-  padding: 0px 10px;
-  padding-bottom: 10px;
+  padding: 0px 0px;
+  padding-left: 10px;
+  padding-bottom: 2px;
 }
 
 .subPanel{
@@ -56,7 +67,12 @@ body, html {
 
 
 .activePanel{
-  background-color: rgb(211, 227, 232);
+  background-color: var(--main-panel-color);
+}
+
+.subCategory{
+  background-color: var(--sub-panel-color);
+  margin-bottom: 5px;
 }
 
 #MPfields {
@@ -69,12 +85,7 @@ body, html {
   display: flex;
 }
 
-/* #dynamicPagePanel{
-  background-color: green;
-  display: grid;
-  grid-template-columns: 19ch 100px;
-  gap: 10px; 
-} */
+
 
 #dynamicPagePanel .row {
     display: flex;
@@ -84,12 +95,11 @@ body, html {
     margin-top: -10px; */
 }
 
-#dynamicPagePanel {
-  margin-left: 5px;
-}
+
 
 #dynamicPagePanel .left {
     text-align: left;
+    padding-left: 5px;
 }
 
 #dynamicPagePanel .right {
@@ -162,10 +172,16 @@ background-color: lightblue;
   justify-content: flex-end;
   padding: 0px;
   margin: 0px;
-  /* background-color: rgb(216, 58, 89); */
   display: flex;
   margin-left: auto;
   align-items: center;
+}
+
+.reduce{
+  margin-bottom: -8px;
+  margin-top: -5px;
+  padding-bottom: -8px;
+  padding-top: -5px;
 }
 
 .niceCheckBox{
@@ -230,6 +246,7 @@ label.niceCheckBox >input:checked+span+i:after {
   transform: translateX(18px);
 }
 
+
 .insideMPPanel{
   margin: 4px !important;
 }
@@ -292,23 +309,23 @@ label.niceCheckBox >input:checked+span+i:after {
 
 #textURL {
   /* width: 60ch;  */
-  border: 1px solid #ccc; 
-  background-color: white;
   padding: 5px 10px;
 }
 
-#textURL:focus, input:focus {
-  outline: 2px solid rgb(189, 195, 199); 
+.editable{
+  border: 1px solid #ccc; 
+  background-color: white;
+}
+
+.editable:focus, input:focus {
+  /* outline: 2px solid rgb(189, 195, 199);  */
+  outline: 2px solid var(--toggle-active-color); 
 }
 
 .subWidth{
   /* width:60%; */
   min-width: 400px;
   max-width: 800px;
-}
-
-#URLPanel{
-  background-color: rgb(211, 227, 232);
 }
 
 #addVenueBtn{
@@ -387,6 +404,11 @@ label.niceCheckBox >input:checked+span+i:after {
   margin-top: 20px;
 }
 
+.noTopMargin{
+  margin-top: 0px;
+  padding-top: 0px;
+}
+
 
 .modifyButton{
   position: absolute;
@@ -404,11 +426,11 @@ label.niceCheckBox >input:checked+span+i:after {
 }
 
 .compact-button:hover {
-  background-color: darkgray;
+  background-color: var(--button-hover-color);
 }
 
 .normal-button:hover {
-  background-color: darkgray;
+  background-color: var(--button-hover-color);
 }
 
 #processContainer {

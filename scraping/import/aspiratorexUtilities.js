@@ -66,7 +66,9 @@ async function downloadVenue(venue, filePath, verbose = false, syncWriting = fal
         if (verbose){
           console.log('Fetching %s using Puppeteer (dynamic web page)',venue.name);
         }
-        htmlContent = cleanPage(await getPageByPuppeteer(page,venue.name, venue.multiPages, browserPool));
+        // by default, always try to identify iframes. Remove if it causes trouble
+        htmlContent = cleanPage(await getPageByPuppeteer(page,venue, venue.multiPages, browserPool, null, true, verbose));
+        // htmlContent = cleanPage(await getPageByPuppeteer(page,venue, venue.multiPages, browserPool, null, venue.multiPages.hasOwnProperty('useIframes'), verbose));
       }else{
         if (verbose){
           console.log('Fetching %s using regular method',venue.name);
@@ -114,7 +116,7 @@ async function downloadVenue(venue, filePath, verbose = false, syncWriting = fal
   }
 
   // read the pages and save them to local files
-  let pageList = (await Promise.all(URLlist.map((page,pageIndex)=>getPage(page,pageIndex)))).flat();
+  let pageList = (await Promise.all(URLlist.map((page,pageIndex)=>getPage(page,pageIndex,verbose)))).flat();
 
   // test if the download process worked.
 

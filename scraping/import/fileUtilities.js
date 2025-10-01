@@ -48,7 +48,7 @@ class BrowserPool {
 
 module.exports = {fetchLink, fetchAndRecode, fetchWithRetry, loadLinkedPages, saveToJSON, 
                     saveToCSV, getVenuesFromArguments,getFilesContent, getFilesNumber, 
-                    getModificationDate, getPageByPuppeteer,
+                    getModificationDate, getPageByPuppeteer, getIframesList,
                     minimalizeHtmlFile, minimalizeHtml, 
                     BrowserPool};
 
@@ -224,13 +224,36 @@ async function detectIframes(page){
 };
 
 
+async function getIframesList(pageURL) {
+    let browser;
+
+    try {
+        browser = await puppeteer.launch({
+            headless: true,
+            args: ['--no-sandbox', '--disable-setuid-sandbox']
+        });
+
+        const page = await browser.newPage();
+        await page.goto(pageURL, { waitUntil: 'networkidle2' });
+
+        const iframeList = await detectIframes(page);
+
+        return iframeList;
+
+    } catch (err) {
+        console.error("Error in getIframesList:", err.message);
+        throw err;
+    } finally {
+        if (browser) {
+            await browser.close();
+        }
+    }
+}
 
 
+async function getPageByPuppeteer(pageURL, venue, multipagesOptions, browserPool, parentBrowser = null, iframesDetection = false, verbose = false){
 
-
-
-async function getPageByPuppeteer(pageURL, venueName, multipagesOptions, browserPool, verbose = false, parentBrowser = null){
- 
+    venueName = venue.name;
     let browser = parentBrowser;
     if (!browser) {
         browser = await browserPool.acquire();
@@ -238,12 +261,13 @@ async function getPageByPuppeteer(pageURL, venueName, multipagesOptions, browser
 
     const page = await browser.newPage();
     await page.goto(pageURL, { waitUntil: 'networkidle2' });
-    const iframeList = multipagesOptions.hasOwnProperty('useIframes')?await detectIframes(page):[];
+    const iframeList = iframesDetection?await detectIframes(page):[];
 
     if (iframeList.length !== 0) {
          console.log('detected Iframes:',iframeList);
         await page.close();
-        return await getPageByPuppeteer(iframeList[0].src, venueName, multipagesOptions, browserPool, verbose = false, browser);
+        // assuming that iframes should not be detected recursively
+        return await getPageByPuppeteer(iframeList[0].src, venue, multipagesOptions, browserPool, browser, iframesDetection = false, verbose = false);
     }
 
     await page.setViewport({ width: 1200, height: 3000 });

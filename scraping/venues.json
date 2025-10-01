@@ -746,7 +746,7 @@
     "multiPages": {
       "type": "dynamicPage",
       "nextButton": "Voir plus",
-      "maxPages": 10
+      "useIframes": true
     },
     "alternateTags": {
       "mainPage": {

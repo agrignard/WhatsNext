@@ -8,9 +8,9 @@
 </head>
 <body>
     <div class="venueHeader">
-        <select id="countriesDropdown"></select>
-        <select id="citiesDropdown"></select>
-        <select id="venuesDropdown"></select>
+        <select id="countriesDropdown" class="editable"></select>
+        <select id="citiesDropdown" class="editable"></select>
+        <select id="venuesDropdown" class="editable"></select>
         <label for="hideAliasesCheckbox" style ="display: inline;">Hide Aliases</label>
         <input type="checkbox" id="hideAliasesCheckbox" style ="display: inline;">
         <button id="addVenueBtn">Add venue</button>
@@ -27,7 +27,7 @@
                     <div id="editVenueNameText" class="venueName">Venue name:</div>
                     <input type="text" id="inputNameField" placeholder="Enter venue name">
                     <div id="isAliasInfo" class="venueName isAliasInfo">(used as alias)</div>
-                    <div id="aliasCheckBoxPanel" class="sliderCheckBox">
+                    <div id="aliasCheckBoxPanel" class="sliderCheckBox reduce">
                         <label class="niceCheckBox" style="display: inline;">
                             <input id="aliasCheckbox" type="checkbox" name="links" checked/>
                             <span id="aliasCheckboxText">Active</span> 
@@ -38,15 +38,15 @@
                 <div id="nameAlert" class="alertBlock"></div>
             </div>
 
-            <div id="aliasPanel" class="bottomMargin">
+            <div id="aliasPanel" class="smallBottomMargin noTopMargin">
                 <div class="topMargin miniBottomMargin">Aliases:</div>
-                <textarea id="textAlias" class="VenueTextArea" rows="1" cols="30" placeholder="Enter alias" style ="display: inline; border: 1px solid #ccc;"></textarea>
+                <textarea id="textAlias" class="VenueTextArea editable" rows="1" cols="30" placeholder="Enter alias"></textarea>
                 <div id = "aliasAlert" class="alertBlock" style ="display: inline;"></div>
             </div>
 
 
 
-            <div id="URLPanel" class="bigPanel bottomMargin">
+            <div id="URLPanel" class="bigPanelSmallVerticalMargin smallBottomMargin activePanel">
                 <div id="URLPanelHeader" class = "panelHeader">
                     <div class="smallBottomMargin" style="display: inline">URL of agenda page:</div>
                     <button id="followURLButton2" class="niceButtonNoMargin normal-button">Open URL</button>
@@ -57,11 +57,11 @@
             <!-- Panels to be shown when the venue is active (not alias) -->
             <div id="activeSiteMenu">
                 <!-- Multipage panel -->
-                <div id="multiPagePanel" class="bigPanelNoVerticalMargin bottomMargin activePanel">
+                <div id="multiPagePanel" class="bigPanelNoVerticalMargin smallBottomMargin activePanel">
                     <!-- header -->
                     <div id="multiPagePanelHeader" class="subPanel">
                         <div id="multiPagePanelHeaderText" class="">Dynamic web page/multiple pages</div>
-                        <div id="multipageCheckBoxPanel" class="sliderCheckBox">
+                        <div id="multipageCheckBoxPanel" class="sliderCheckBox reduce">
                             <label class="niceCheckBox" style="display: inline;">
                                 <input id="multipageCheckbox" type="checkbox" name="links" checked/>
                                 <span id="multipageCheckboxText">On</span> 
@@ -79,14 +79,14 @@
                                 <label for="dynamicPage">Dynamic web page</label>
 
                                 <input type="radio" id="pageList" name="choice" value="pageList"/>
-                                <label for="pageList">Page list</label>
+                                <label for="pageList">Multiple pages</label>
                             </div>
                         </div>
                         <!-- dynamic web page panel -->
 
                         <div id="dynamicPagePanel">
                             <!-- scroll -->
-                            <div class="row">
+                            <div class="row subCategory">
                                 <div class="left">Automatic scroll</div>
                                 <div class="right sliderCheckBox">
                                     <label class="niceCheckBox insideMPPanel">
@@ -97,35 +97,37 @@
                                 </div>
                             </div>
                             <!-- next button -->
-                            <div class="row">
-                                <div class="left">"Next" button</div>
-                                <div class="right sliderCheckBox">
-                                    <label class="niceCheckBox insideMPPanel">
-                                        <input id="nextButtonCheckbox" type="checkbox" name="links" checked/>
-                                        <span id="nextButtonCheckboxText"></span> 
-                                        <i></i> 
-                                    </label>  
+                            <div id="nextButtonPanel" class = "subCategory">
+                                <div class="row">
+                                    <div class="left">"Next" button</div>
+                                    <div class="right sliderCheckBox">
+                                        <label class="niceCheckBox insideMPPanel">
+                                            <input id="nextButtonCheckbox" type="checkbox" name="links" checked/>
+                                            <span id="nextButtonCheckboxText"></span> 
+                                            <i></i> 
+                                        </label>  
+                                    </div>
                                 </div>
-                            </div>
-                            <div id="nextButtonTextPanel" class="row smallLeftMargin smallBottomMargin">
-                                <div class="left">
-                                    Button text:
-                                </div>
-                                <div class="right">
-                                    <input type="text" id="nextButtonTextField" placeholder="See more" style="width: 16ch"/>
+                                <div id="nextButtonTextPanel" class="row smallLeftMargin smallBottomMargin subCategory">
+                                    <div class="left">
+                                        Button text:
+                                    </div>
+                                    <div class="right">
+                                        <input type="text" id="nextButtonTextField" placeholder="See more" style="width: 16ch"/>
+                                    </div>
                                 </div>
                             </div>
                             <!-- page load limit -->
-                            <div class="row">
+                            <div class="row subCategory">
                                 <div class="left">
                                     Actions limit:
                                 </div>
                                 <div class="right">
-                                    <input type="number" id="dynamicPageLimitField" min="1" step="1" style ="width: 6ch;" placeholder="∞"/>
+                                    <input type="number" id="dynamicPageLimitField" min="1" step="1" style ="width: 6ch;" placeholder="∞" class="editable"/>
                                 </div>
                             </div>
                             <!-- iframes detection -->
-                            <div class="row">
+                            <div class="row subCategory">
                                 <div class="left">Detect iframes</div>
                                 <div class="right sliderCheckBox">
                                     <label class="niceCheckBox insideMPPanel">
@@ -142,41 +144,42 @@
                             <div id="indexType" class="bottomMargin">
                                 <div>Indexation type:  </div>
                                 <div>
-                                    <select id="multiplePagesMethodSelection">
+                                    <select id="multiplePagesMethodSelection" class="editable" style ="width: 17ch;">
                                         <option value="Index">Index</option>
                                         <option value="Pattern">Pattern</option>
-                                        <option value="PageList">Predefined list of pages</option>
+                                        <option value="PageList">Predefined list</option>
                                     </select>
                                 </div>
                                 <div class="leftMargin divMPnbPages"> 
                                     Number of pages:
                                 </div>
                                 <div class="divMPnbPages">
-                                    <input type="number" id="nbPagesToScrap" min="1" step="1" value="5" style ="width: 6ch;">
+                                    <input type="number" class="editable" id="nbPagesToScrap" min="1" step="1" value="5" style ="width: 6ch;">
                                 </div>
                                 <div class="leftMargin divMPIndex">
                                     Start index:
                                 </div>
                                 <div class="divMPIndex">
-                                    <input type="number" id="MPIndex"  min="1" step="1" value="1" style ="width: 6ch">
+                                    <input type="number"  class="editable" id="MPIndex"  min="1" step="1" value="1" style ="width: 6ch">
                                 </div>
                                 <div class="leftMargin divMPIndex">
                                     Increment:
                                 </div>
                                 <div class="divMPIndex">
-                                    <input type="number" id="MPIncrement"  min="1" step="1" value="1" style ="width: 6ch">
+                                    <input type="number"  class="editable" id="MPIncrement"  min="1" step="1" value="1" style ="width: 6ch">
                                 </div>
                                 <div class="leftMargin divMPPattern">
                                     Pattern:
                                 </div>
                                 <div class="divMPPattern">
-                                    <input type="text" id="MPPattern"  placeholder="yyyy-MM" style ="width: 10ch">
+                                    <input type="text"  class="editable" id="MPPattern"  placeholder="yyyy-MM" style ="width: 10ch">
                                 </div>
                                 <div class="leftMargin divMPPageList">
                                     Page list:
                                 </div>
                                 <div  class="divMPPageList">
-                                    <textarea id="MPPageListInput" class="VenueTextArea"  rows="2" cols="30" placeholder="Enter page"></textarea>
+                                    <textarea id="MPPageListInput" class="VenueTextArea editable"  rows="2" cols="30" 
+                                        placeholder="Enter page" style ="width: 17ch;"></textarea>
                                 </div>
                             </div>
                             <div id="divMPInfo">Agenda URL does not contain {index}. Page index will be appended at the end of the URL.</div>
@@ -185,10 +188,10 @@
                 </div>
 
                 <!-- linked page -->
-                <div id="divLinkedPage" class="bigPanelNoVerticalMargin bottomMargin activePanel">
+                <div id="divLinkedPage" class="bigPanelNoVerticalMargin activePanel smallBottomMargin">
                     <div id="multiPagePanelHeader" class="subPanel">
                         <div id="linkedPageText" class="">Download linked page</div>
-                        <div id="linkedPageCheckBoxPanel" class="sliderCheckBox">
+                        <div id="linkedPageCheckBoxPanel" class="sliderCheckBox reduce">
                             <label class="niceCheckBox" style="display: inline;">
                                 <input id="linkedPageCheckbox" type="checkbox" name="links" checked/>
                                 <span id="linkedPageCheckboxText">On</span> 
@@ -196,27 +199,40 @@
                             </label>                   
                         </div>
                     </div>
-                    <div id="linkedPageDownloadMethodDiv" style="display: inline;">
+
+                    <div id="linkedPageDownloadMethodPanel" class="subPanel">
+                        <div id="linkedPageDownloadMethodHeaderText" class="">Download with Puppeteer</div>
+                        <div id="linkedPageDownloadMethodCheckboxPanel" class="sliderCheckBox">
+                            <label class="niceCheckBox" style="display: inline;">
+                                <input id="linkedPageDownloadMethodCheckbox" type="checkbox" name="links" checked/>
+                                <span id="linkedPageDownloadMethodCheckboxText">On</span> 
+                                <i></i> 
+                            </label>                   
+                        </div>
+                    </div>
+
+                    
+                    <!-- <div id="linkedPageDownloadMethodDiv" style="display: inline;">
                         <label for="linkedPageDownloadMethodCheckbox">Use Puppeteer for download:</label>
                         <input type="checkbox" id="linkedPageDownloadMethodCheckbox">
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
             <div id="divStyle" class="topMargin">Default Style:
-                <select id="selectStyle"></select>
-                <input id="inputStyle" type="text" style ="display: none;" placeholder="Enter style here...">
+                <select id="selectStyle" class="editable"></select>
+                <input id="inputStyle" type="text" style ="display: none;" placeholder="Enter style here..." class="editable">
             </div>
             <div id="divSelectMidnightHour" class="topMargin">Midnight hour action:
-                <select id="selectMidnightHour"></select>
+                <select id="selectMidnightHour" class="editable"></select>
             </div>
         </div>
         <div id="divTextComments" class="topMargin" >
-            <textarea id="textComments"  class="VenueTextArea" rows="3" cols="40" style ="display: block; border: 1px solid #ccc;" placeholder="Comments..."></textarea>
+            <textarea id="textComments"  class="VenueTextArea editable" rows="3" cols="40" style ="display: block; border: 1px solid #ccc;" placeholder="Comments..."></textarea>
         </div>
         <div id="divButtons" style="display: inline" class="rightElement bottomElement">
-            <button id="cancelVenue" class="cancelButton">Cancel</button>
-            <button id="saveVenue" class="saveButton">Save</button>
+            <button id="cancelVenue" class="cancelButton niceButtonNoMargin normal-button">Cancel</button>
+            <button id="saveVenue" class="saveButton niceButtonNoMargin normal-button">Save</button>
         </div>   
     </div>
 

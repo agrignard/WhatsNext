@@ -8,6 +8,7 @@ const { app, Menu, ipcRenderer } = require('electron');
 const { loadVenuesJSONFile, getStyleList, makeID, isActive, saveToVenuesJSON } = require(imports + 'jsonUtilities.js');
 const { simplify, removeBlanks, normalizeUrl } = require(imports + 'stringUtilities.js');
 const { to2digits } = require(imports + 'dateUtilities.js');
+const { getIframesList } = require(imports + 'fileUtilities.js');
 
 const midnightHourOptions = ['none', 'sameday', 'previousday'];
 
@@ -347,6 +348,15 @@ multiplePagesMethodSelection.addEventListener('change', function (event) {
 
 // iframes management
 const iframesCheckbox = document.getElementById('iframesCheckbox');
+iframesCheckbox.addEventListener('change', () => {
+    const pageURL = textURL.textContent;
+    getIframesList(pageURL).then(res => {
+        console.log(res);
+    }).catch(err => {
+        console.error("Erreur :", err);
+    });
+});
+
 
 
 
@@ -377,8 +387,30 @@ selectStyle.addEventListener('change', (event) => {
 
 // linked page panel
 const linkedPageCheckbox = document.getElementById('linkedPageCheckbox');
-const linkedPageDownloadMethodCheckbox = document.getElementById('linkedPageDownloadMethodCheckbox');
 const linkedPageCheckboxText = document.getElementById('linkedPageCheckboxText');
+const linkedPageDownloadMethodCheckbox = document.getElementById('linkedPageDownloadMethodCheckbox');
+const linkedPageDownloadMethodHeaderText = document.getElementById('linkedPageDownloadMethodHeaderText');
+const linkedPageDownloadMethodCheckboxText = document.getElementById('linkedPageDownloadMethodCheckboxText');
+const linkedPageDownloadMethodPanel = document.getElementById('linkedPageDownloadMethodPanel');
+
+linkedPageCheckbox.addEventListener('change', (event) => {
+    linkedPageDownloadMethodPanel.style.display = linkedPageCheckbox.checked ? 'flex' : 'none';
+    linkedPageCheckboxText.textContent = linkedPageCheckbox.checked ? 'On' : 'Off';
+    if (linkedPageCheckbox.checked) {
+        linkedPageText.classList.remove('inactive');
+    } else {
+        linkedPageText.classList.add('inactive');
+    }
+});
+
+linkedPageDownloadMethodCheckbox.addEventListener('change', (event) => {
+    linkedPageDownloadMethodCheckboxText.textContent = linkedPageDownloadMethodCheckbox.checked ? 'On' : 'Off';
+    if (linkedPageDownloadMethodCheckbox.checked) {
+        linkedPageDownloadMethodHeaderText.classList.remove('inactive');
+    } else {
+        linkedPageDownloadMethodHeaderText.classList.add('inactive');
+    }
+});
 
 // cancel button
 const cancelButton = document.getElementById('cancelVenue');
@@ -633,19 +665,11 @@ function updateVenueInfo(mode) {
 
             // get linked page
             linkedPageCheckbox.checked = venue.hasOwnProperty('linkedPage') ? true : false;
-            linkedPageCheckboxText.textContent = linkedPageCheckbox.checked ? 'On':'Off';
+            console.log(linkedPageCheckbox.checked);
+            linkedPageCheckbox.dispatchEvent(new Event('change', { bubbles: true }));
             linkedPageDownloadMethodCheckbox.checked = venue.hasOwnProperty('linkedPageDownloadMethod') ? true : false;
-            linkedPageDownloadMethodDiv = document.getElementById('linkedPageDownloadMethodDiv');
-            linkedPageDownloadMethodDiv.style.display = linkedPageCheckbox.checked ? 'inline' : 'none';
-            linkedPageCheckbox.addEventListener('change', (event) => {
-                linkedPageDownloadMethodDiv.style.display = linkedPageCheckbox.checked ? 'inline' : 'none';
-                linkedPageCheckboxText.textContent = linkedPageCheckbox.checked ? 'On' : 'Off';
-                if (linkedPageCheckbox.checked) {
-                    linkedPageText.classList.remove('inactive');
-                } else {
-                    linkedPageText.classList.add('inactive');
-                }
-            });
+            linkedPageDownloadMethodPanel.style.display = linkedPageCheckbox.checked ? 'flex' : 'none';
+            
 
             // midnight hour
             const selectMH = document.getElementById('selectMidnightHour');
