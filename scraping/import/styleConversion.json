@@ -1,12 +1,12 @@
 {
     "French":{
-        "Rock": ["ROCK","METALCORE"],
+        "Rock": ["ROCK","METALCORE","Post-Punk"],
         "Rap": ["RAP"],
-        "Electro": ["Electro","techno","house","Clubbing","Club","Dj Set","House Techno","TRANCE EURODANCE"],
+        "Electro": ["Electro","techno","house","Clubbing","Club","Dj Set","House Techno","TRANCE EURODANCE","Industrial","Hard Trance"],
         "World": ["Sono Mondiale"],    
         "Classique":["Classique","lyrique","opera"],
         "Jazz":["jazz","groove","Soul & funk"],
-        "Live":["musique live"],
+        "Live":["musique live", "live"],
         "Chanson":["Chanson / Folk "],
         "": ["Unknwown"]
     }

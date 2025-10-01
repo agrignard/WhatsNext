@@ -281,12 +281,21 @@
     "city": "Lyon",
     "country": "France",
     "url": "https://villemorte.fr/agenda-2-0/",
-    "eventsDelimiterTag": "div.tribeeventscategorymusique.tribe_events.typetribe_events.statuspublish.hentry.tribe_events_catmusique.cat_musique>h3.tribeeventsmontheventtitle>a.url",
-    "dateFormat": "dd MM",
+    "eventsDelimiterTag": "ARTICLE.hevent.depth11",
+    "dateFormat": "MM-dd-HH:mm",
     "baseURL": "https://villemorte.fr/agenda-2-0/",
     "mainPage": {
       "eventNameTags": [
-        "html>body:eq(0)"
+        "A.depth12:eq(0)>H2.title.pname.depth13:eq(0)"
+      ],
+      "eventDateTags": [
+        "DIV.vcard__text.body.pt0.pb0.depth12:eq(0)>TIME.dtstart.subtitle1.depth13:eq(0)"
+      ],
+      "eventPlaceTags": [
+        "DIV.vcard__text.body.pt0.pb0.depth12:eq(0)>DIV.plocation.depth13:eq(0)>A.place.dblock.pl0.depth14:eq(0)"
+      ],
+      "eventURLTags": [
+        "DIV.vcard__actions.flexwrap.depth12:eq(0)>A.ml1.mt1.vchip.vchipclickable.vchiplabel.vchiplink.vchipoutlined.themelight.vsizesmall.primary.primarytext.depth13:eq(0)"
       ]
     },
     "multiPages": {
@@ -294,7 +303,6 @@
       "useIframes": true
     },
     "eventURLIndex": 0,
-    "linkedPageDateFormat": "dd-MM-HH:mm",
     "ID": "Ville Morte|Lyon|France",
     "linkedPageDownloadMethod": "Puppeteer"
   },
@@ -371,7 +379,7 @@
       ]
     },
     "url": "https://villemorte.fr/agenda-2-0/",
-    "baseURL": "https://www.rockneat.com/",
+    "baseURL": "https://villemorte.fr/agenda-2-0/",
     "eventsDelimiterTag": "DIV.animateslidebottomd5.depth4",
     "dateFormat": "yyyy-MM-dd"
   },
@@ -691,29 +699,22 @@
     "baseURL": "https://www.laclefdevoute.fr/concerts-de-jazz-a-lyon/",
     "eventsDelimiterTag": "DIV.tribeeventscalendarmonth__calendareventtooltip.depth19",
     "dateFormat": "dd-MM-HH:mm",
-    "eventURLIndex": 0
+    "eventURLIndex": 0,
+    "defaultStyle": "Jazz"
   },
   {
     "name": "Les SUBS",
     "city": "Lyon",
     "country": "France",
-    "mainPage": {
-      "eventNameTags": [
-        "p.leadingtight.uppercase.fontbold.text20.ltext24.dtext28.mb2:eq(0)"
-      ],
-      "eventDateTags": [
-        "li.tmin.text12.dtext14:eq(0)"
-      ]
-    },
+    "mainPage": {},
     "url": "https://www.les-subs.com/agenda/",
     "ID": "Les SUBS|Lyon|France",
     "baseURL": "https://www.les-subs.com/agenda/",
-    "eventsDelimiterTag": "div.jseventsmonthitem.relative.theatre.gratuit>div.jscardevent.cardevent.flex1.flex.flexcol.relative.border2.bordervar.group.wfull.hfull",
+    "eventsDelimiterTag": "DIV.relative.jsarchivewrapper.depth6",
     "eventURLIndex": 1,
-    "dateFormat": "dd-MM-HH:mm",
     "multiPages": {
-      "type": "dynamicPage",
-      "scroll": true
+      "scroll": true,
+      "useIframes": true
     }
   },
   {
@@ -722,25 +723,45 @@
     "country": "France",
     "mainPage": {
       "eventNameTags": [
-        "div.mt2.lineclamp2.textlg.fontbold.leadingtight:eq(0)"
-      ],
-      "eventDateTags": [
-        "time.textaccentforeground:eq(0)"
+        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.mt2.flex.flexrow.itemscenter.gap2.depth9:eq(0)>P.lineclamp2.textlg.fontbold.leadingtight.depth10:eq(0)"
       ],
       "eventPlaceTags": [
-        "div.textmutedforeground.lineclamp1.textsm.leadingtight:eq(0)"
+        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.wfull.minw0.flexcol.gap2.overflowhidden.depth9:eq(0)>DIV.textmutedforeground.wfull.shrink.overflowhidden.textellipsis.whitespacenowrap.textsm.leadingtight.depth10:eq(0)"
+      ],
+      "eventDateTags": [
+        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.wfull.minw0.flexcol.gap2.overflowhidden.depth9:eq(0)>DIV.flex.shrink0.itemscenter.gapx3.leadingtight.depth10:eq(0)>DIV.textaccentforeground.flex.gap1.depth11:eq(0)>TIME.depth12:eq(0)",
+        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.wfull.minw0.flexcol.gap2.overflowhidden.depth9:eq(0)>DIV.flex.shrink0.itemscenter.gapx3.leadingtight.depth10:eq(0)>DIV.textaccentforeground.flex.gap1.depth11:eq(0)>DIV.flex.gap1.depth12:eq(0)>TIME.depth13:eq(0)"
+      ],
+      "eventStyleTags": [
+        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.maxh6.flexwrap.gap2.overflowhidden.depth9:eq(0)>DIV.inlineflex.itemscenter.whitespacenowrap.roundedfull.border.px25.py05.fontmedium.uppercase.trackingwider.textmutedforeground.borderborder.text2xs.h6.depth10:eq(2)"
       ]
     },
     "url": "https://shotgun.live/fr/cities/lyon",
     "ID": "Shotgun|Lyon|France",
     "baseURL": "https://shotgun.live/fr/cities/",
-    "eventsDelimiterTag": "div.grid.gapx4.smgridcols2.lggridcols3.lggapx8.gapy0>a",
+    "eventsDelimiterTag": "A.depth6",
     "eventURLIndex": 0,
-    "dateFormat": "dd-MM",
+    "dateFormat": "dd-MM-HH:mm",
     "multiPages": {
       "type": "dynamicPage",
       "nextButton": "Voir plus",
-      "maxPages": 2
+      "maxPages": 10
+    },
+    "alternateTags": {
+      "mainPage": {
+        "eventNameTags": [
+          "div.mt2.lineclamp2.textlg.fontbold.leadingtight:eq(0)"
+        ],
+        "eventDateTags": [
+          "time.textaccentforeground:eq(0)"
+        ],
+        "eventPlaceTags": [
+          "div.textmutedforeground.lineclamp1.textsm.leadingtight:eq(0)"
+        ]
+      }
+    },
+    "alternateDateFormat": {
+      "mainPage": "dd-MM-HH:mm"
     }
   },
   {
@@ -798,13 +819,10 @@
       "eventDateTags": [
         "DIV.top.depth7:eq(0)>DIV.date.depth8:eq(0)"
       ],
-      "eventStyleTags": [
-        "DIV.top.depth7:eq(0)>DIV.tags.depth8:eq(0)>DIV.tag.depth9"
-      ],
       "eventNameTags": [
-        "A.depth7:eq(0)>H3.depth8:eq(1)",
+        "A.depth7:eq(0)>H3.artist.depth8:eq(0)",
         "A.depth7:eq(0)>H2.depth8:eq(0)",
-        "A.depth7:eq(0)>H3.artist.depth8:eq(0)"
+        "A.depth7:eq(0)>H3.depth8:eq(1)"
       ],
       "eventURLTags": [
         "DIV.bottom.depth7:eq(0)>A.btn.depth8:eq(0)"
@@ -844,7 +862,8 @@
     ],
     "url": "https://www.olma-club.com/index.php/evenements",
     "defaultStyle": "Electro",
-    "ID": "Olma|Lyon|France"
+    "ID": "Olma|Lyon|France",
+    "baseURL": "https://www.olma-club.com/index.php/"
   },
   {
     "name": "Le Bazar",
@@ -870,6 +889,25 @@
     "multiPages": {
       "type": "dynamicPage",
       "scroll": true
-    }
+    },
+    "baseURL": "https://www.lapente.fr/"
+  },
+  {
+    "name": "MacBAR",
+    "city": "Lyon",
+    "country": "France",
+    "aliases": [
+      "MacBAR - Bar restaurant du Musée d'art contemporain"
+    ],
+    "url": "https://www.mac-lyon.com/fr/cafe-restaurant-et-boutique",
+    "ID": "MacBAR|Lyon|France"
+  },
+  {
+    "name": "Six",
+    "city": "Lyon",
+    "country": "France",
+    "url": "https://www.sixbrotteaux.com/",
+    "defaultStyle": "Electro",
+    "ID": "Six|Lyon|France"
   }
 ]
