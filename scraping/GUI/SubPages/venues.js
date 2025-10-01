@@ -378,6 +378,7 @@ selectStyle.addEventListener('change', (event) => {
 // linked page panel
 const linkedPageCheckbox = document.getElementById('linkedPageCheckbox');
 const linkedPageDownloadMethodCheckbox = document.getElementById('linkedPageDownloadMethodCheckbox');
+const linkedPageCheckboxText = document.getElementById('linkedPageCheckboxText');
 
 // cancel button
 const cancelButton = document.getElementById('cancelVenue');
@@ -628,11 +629,18 @@ function updateVenueInfo(mode) {
 
             // get linked page
             linkedPageCheckbox.checked = venue.hasOwnProperty('linkedPage') ? true : false;
+            linkedPageCheckboxText.textContent = linkedPageCheckbox.checked ? 'On':'Off';
             linkedPageDownloadMethodCheckbox.checked = venue.hasOwnProperty('linkedPageDownloadMethod') ? true : false;
             linkedPageDownloadMethodDiv = document.getElementById('linkedPageDownloadMethodDiv');
             linkedPageDownloadMethodDiv.style.display = linkedPageCheckbox.checked ? 'inline' : 'none';
             linkedPageCheckbox.addEventListener('change', (event) => {
                 linkedPageDownloadMethodDiv.style.display = linkedPageCheckbox.checked ? 'inline' : 'none';
+                linkedPageCheckboxText.textContent = linkedPageCheckbox.checked ? 'On' : 'Off';
+                if (linkedPageCheckbox.checked) {
+                    linkedPageText.classList.remove('inactive');
+                } else {
+                    linkedPageText.classList.add('inactive');
+                }
             });
 
             // midnight hour

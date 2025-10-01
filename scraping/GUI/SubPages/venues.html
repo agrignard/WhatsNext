@@ -184,10 +184,18 @@
                     </div>
                 </div>
 
-
-                <div id="divLinkedPage">
-                    <label for="linkedPageCheckbox">Download linked page:</label>
-                    <input type="checkbox" id="linkedPageCheckbox">
+                <!-- linked page -->
+                <div id="divLinkedPage" class="bigPanelNoVerticalMargin bottomMargin activePanel">
+                    <div id="multiPagePanelHeader" class="subPanel">
+                        <div id="linkedPageText" class="">Download linked page</div>
+                        <div id="linkedPageCheckBoxPanel" class="sliderCheckBox">
+                            <label class="niceCheckBox" style="display: inline;">
+                                <input id="linkedPageCheckbox" type="checkbox" name="links" checked/>
+                                <span id="linkedPageCheckboxText">On</span> 
+                                <i></i> 
+                            </label>                   
+                        </div>
+                    </div>
                     <div id="linkedPageDownloadMethodDiv" style="display: inline;">
                         <label for="linkedPageDownloadMethodCheckbox">Use Puppeteer for download:</label>
                         <input type="checkbox" id="linkedPageDownloadMethodCheckbox">

@@ -54,9 +54,6 @@ body, html {
   width: 100%;
 }
 
-/* .multiPagePanelOn{
-  background-color: rgb(211, 227, 232);
-} */
 
 .activePanel{
   background-color: rgb(211, 227, 232);
@@ -99,9 +96,6 @@ body, html {
     text-align: right;
 }
 
-/* .multiPagePanelOff{
-  background-color: rgb(228, 237, 240);
-} */
 
 /* Style pour les boutons des options */
 .niceButton {
