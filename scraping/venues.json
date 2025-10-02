@@ -93,8 +93,9 @@
     "baseURL": "https://www.transbordeur.fr/agenda/",
     "multiPages": {
       "type": "dynamicPage",
+      "scroll": true,
       "nextButton": "Voir plus",
-      "maxPages": 2
+      "dynamicPageLimit": "20"
     }
   },
   {
@@ -746,6 +747,7 @@
     "dateFormat": "dd-MM-HH:mm",
     "multiPages": {
       "type": "dynamicPage",
+      "scroll": true,
       "nextButton": "Voir plus"
     },
     "alternateTags": {

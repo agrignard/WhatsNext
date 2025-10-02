@@ -304,9 +304,8 @@ async function getPageByPuppeteer(pageURL, venue, multipagesOptions, browserPool
 
                     while (hasMoreContent) {
                         count++;
-                        if (verbose) {console.log(count);}
                         // stop clicking if a max number of pages has been set
-                        if (multipagesOptions.hasOwnProperty('dynamicPagesLimit') && count === multipagesOptions.dynamicPagesLimit){
+                        if (multipagesOptions.hasOwnProperty('dynamicPageLimit') && count > multipagesOptions.dynamicPageLimit){
                             console.log('Download successful for venue \x1b[36m%s\x1b[0m: %s clicks were performed. Stopped because the maximum number of clicks has been reached.', venueName, multipagesOptions.dynamicPagesLimit);
                             break;
                         }
@@ -314,10 +313,11 @@ async function getPageByPuppeteer(pageURL, venue, multipagesOptions, browserPool
                             const buttons = Array.from(document.querySelectorAll('button')); 
 
                             const button = buttons.find(
-                                btn => btn.textContent.trim() === buttonText
+                                btn => btn.textContent.trim() === buttonText && btn.offsetParent !== null
                             );
+                            console.log(button);
                             if (button) {
-                                if (verbose) {console.log("click",count)};
+                                if (verbose) {console.log("click", count)};
                                 button.click();
                                 return true;
                             }else{
@@ -328,11 +328,11 @@ async function getPageByPuppeteer(pageURL, venue, multipagesOptions, browserPool
                             }
                         },buttonText,count, verbose);
                         if (hasMoreContent === 'buttonNotFound'){
-                            console.log('\x1b[31mWarning: button \x1b[0m\'%s\'\x1b[31m not found\x1b[0m for venue \x1b[36m%s\x1b[0m.',buttonText,venueName);
+                            console.log('\x1b[38;5;226mWarning: button \x1b[0m\'%s\'\x1b[38;5;226m not found\x1b[0m for venue \x1b[36m%s\x1b[0m.',buttonText,venueName);
                             break;
                         }
                         if (hasMoreContent === false){
-                            console.log('Download successful for venue \x1b[36m%s\x1b[0m: %s clicks were performed.', venueName, multipagesOptions.dynamicPagesLimit);
+                            console.log('Download successful for venue \x1b[36m%s\x1b[0m: %s clicks were performed.', venueName, count);
                         }
                         await new Promise(resolve => setTimeout(resolve, 2000));
                     }
