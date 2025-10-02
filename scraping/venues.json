@@ -746,8 +746,7 @@
     "dateFormat": "dd-MM-HH:mm",
     "multiPages": {
       "type": "dynamicPage",
-      "nextButton": "Voir plus",
-      "useIframes": true
+      "nextButton": "Voir plus"
     },
     "alternateTags": {
       "mainPage": {

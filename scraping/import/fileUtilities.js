@@ -258,93 +258,109 @@ async function getPageByPuppeteer(pageURL, venue, multipagesOptions, browserPool
     if (!browser) {
         browser = await browserPool.acquire();
     }
-
     const page = await browser.newPage();
-    await page.goto(pageURL, { waitUntil: 'networkidle2' });
-    const iframeList = iframesDetection?await detectIframes(page):[];
-
-    if (iframeList.length !== 0) {
-         console.log('detected Iframes:',iframeList);
-        await page.close();
-        // assuming that iframes should not be detected recursively
-        return await getPageByPuppeteer(iframeList[0].src, venue, multipagesOptions, browserPool, browser, iframesDetection = false, verbose = false);
-    }
-
-    await page.setViewport({ width: 1200, height: 3000 });
-    
-
-    if (multipagesOptions.hasOwnProperty('scroll')){
-        if (verbose) {console.log('scrolling...');}
-        const maxScrolls = multipagesOptions.hasOwnProperty('dynamicPageLimit')?multipagesOptions.dynamicPageLimit:null;
-        await autoScroll(page, maxScrolls);
-        if (verbose) {console.log('scrolling ended.');}
-    }
 
     try{
+    
         try{
-            if (multipagesOptions.hasOwnProperty('nextButton')){
-                if (verbose) {
-                    console.log("Start clicking...");
-                    page.on('console', (msg) => {
-                        console.log('Browser message ('+venue.name+'): '+msg.text());
-                    });
-                }
-
-                let hasMoreContent = true;
-                count = 0;
-                const buttonText = multipagesOptions.nextButton;
-
-                while (hasMoreContent) {
-                    count++;
-                    if (verbose) {console.log(count);}
-                    // stop clicking if a max number of pages has been set
-                    if (multipagesOptions.hasOwnProperty('dynamicPagesLimit') && count === multipagesOptions.dynamicPagesLimit){
-                        console.log('Download successful for venue \x1b[36m%s\x1b[0m: %s clicks were performed. Stopped because the maximum number of clicks has been reached.', venueName, multipagesOptions.dynamicPagesLimit);
-                        break;
-                    }
-                    hasMoreContent = await page.evaluate((buttonText, count, verbose) => { 
-                        const buttons = Array.from(document.querySelectorAll('button')); 
-
-                        const button = buttons.find(
-                            btn => btn.textContent.trim() === buttonText
-                        );
-                        if (button) {
-                            if (verbose) {console.log("click",count)};
-                            button.click();
-                            return true;
-                        }else{
-                            if (count == 1){
-                                return 'buttonNotFound';
-                            }
-                            return false;
-                        }
-                    },buttonText,count, verbose);
-                    if (hasMoreContent === 'buttonNotFound'){
-                        console.log('\x1b[31mWarning: button \x1b[0m\'%s\'\x1b[31m not found\x1b[0m for venue \x1b[36m%s\x1b[0m.',buttonText,venueName);
-                        break;
-                    }
-                    if (hasMoreContent === false){
-                        console.log('Download successful for venue \x1b[36m%s\x1b[0m: %s clicks were performed.', venueName, multipagesOptions.dynamicPagesLimit);
-                    }
-                    await new Promise(resolve => setTimeout(resolve, 2000));
-                }
-            }
-  
-        } catch (err) {
-            console.log('\x1b[31mError in puppeteer: \x1b[0m',err);
+            await page.goto(pageURL, { waitUntil: 'networkidle2', timeOut: 15000});
+        }catch(err){
+            console.log('\x1b[31mError in Puppeteer for venue \x1b[0m'+venue.name
+                        +'\x1b[31m (page.goto) with URL \'\x1b[0m'+pageURL+'\x1b[31m\'. Check URL or iframe settings.\x1b[0m');
+            throw err;
         }
         
-        const content = await page.content();
-        await browser.close();
+        const iframeList = iframesDetection?await detectIframes(page):[];
 
-        return content;
-    }catch (error) {
-        console.error(`Error processing ${pageURL}: ${error.message}`);
-        throw error;
-    } finally {
-        if (browser) {
-            await browserPool.release(browser);
+        if (multipagesOptions.hasOwnProperty('useIframes') && iframeList.length > 0) {
+            console.log('detected Iframes:',iframeList);
+            await page.close();
+            return await getPageByPuppeteer(iframeList[0].src, venue, multipagesOptions, browserPool, browser, iframesDetection = false, verbose = false);
         }
+
+        await page.setViewport({ width: 1200, height: 3000 });
+        
+
+        if (multipagesOptions.hasOwnProperty('scroll')){
+            if (verbose) {console.log('scrolling...');}
+            const maxScrolls = multipagesOptions.hasOwnProperty('dynamicPageLimit')?multipagesOptions.dynamicPageLimit:null;
+            await autoScroll(page, maxScrolls);
+            if (verbose) {console.log('scrolling ended.');}
+        }
+
+        try{
+            try{
+                if (multipagesOptions.hasOwnProperty('nextButton')){
+                    if (verbose) {
+                        console.log("Start clicking...");
+                        page.on('console', (msg) => {
+                            console.log('Browser message ('+venue.name+'): '+msg.text());
+                        });
+                    }
+
+                    let hasMoreContent = true;
+                    count = 0;
+                    const buttonText = multipagesOptions.nextButton;
+
+                    while (hasMoreContent) {
+                        count++;
+                        if (verbose) {console.log(count);}
+                        // stop clicking if a max number of pages has been set
+                        if (multipagesOptions.hasOwnProperty('dynamicPagesLimit') && count === multipagesOptions.dynamicPagesLimit){
+                            console.log('Download successful for venue \x1b[36m%s\x1b[0m: %s clicks were performed. Stopped because the maximum number of clicks has been reached.', venueName, multipagesOptions.dynamicPagesLimit);
+                            break;
+                        }
+                        hasMoreContent = await page.evaluate((buttonText, count, verbose) => { 
+                            const buttons = Array.from(document.querySelectorAll('button')); 
+
+                            const button = buttons.find(
+                                btn => btn.textContent.trim() === buttonText
+                            );
+                            if (button) {
+                                if (verbose) {console.log("click",count)};
+                                button.click();
+                                return true;
+                            }else{
+                                if (count == 1){
+                                    return 'buttonNotFound';
+                                }
+                                return false;
+                            }
+                        },buttonText,count, verbose);
+                        if (hasMoreContent === 'buttonNotFound'){
+                            console.log('\x1b[31mWarning: button \x1b[0m\'%s\'\x1b[31m not found\x1b[0m for venue \x1b[36m%s\x1b[0m.',buttonText,venueName);
+                            break;
+                        }
+                        if (hasMoreContent === false){
+                            console.log('Download successful for venue \x1b[36m%s\x1b[0m: %s clicks were performed.', venueName, multipagesOptions.dynamicPagesLimit);
+                        }
+                        await new Promise(resolve => setTimeout(resolve, 2000));
+                    }
+                }
+    
+            } catch (err) {
+                console.log('\x1b[31mError in puppeteer: \x1b[0m',err);
+            }
+            
+            const content = await page.content();
+            await browser.close();
+
+            return content;
+        }catch (error) {
+            console.error(`Error processing ${pageURL}: ${error.message}`);
+            throw error;
+        } finally {
+            if (browser) {
+                await browserPool.release(browser);
+            }
+        }
+    }catch(err){
+        if (parentBrowser){
+            page.close();
+        }else{
+            browser.close();
+        }
+        throw err;
     }
 };
 
