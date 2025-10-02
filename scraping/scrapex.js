@@ -28,7 +28,7 @@ const outFile = "generated/scrapexResult_lyon.csv";
 const globalDefaultStyle = 'Live';
 const styleConversion = getStyleConversions();
 const cancellationKeywords = loadCancellationKeywords();
-const showFullMergeLog = true;
+// const showFullMergeLog = true;
 
 
 const dateConversionPatterns = getDateConversionPatterns();
@@ -103,7 +103,7 @@ async function scrapFiles(venues) {
   // merge duplicate events
   // console.log('*** Merging duplicate events ***\n');
  
-  totalEventList = mergeEvents(totalEventList,showFullMergeLog);
+  totalEventList = mergeEvents(totalEventList,verbose);
 
   // provide local URLs for alias venues
 

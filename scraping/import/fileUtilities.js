@@ -315,7 +315,6 @@ async function getPageByPuppeteer(pageURL, venue, multipagesOptions, browserPool
                             const button = buttons.find(
                                 btn => btn.textContent.trim() === buttonText && btn.offsetParent !== null
                             );
-                            console.log(button);
                             if (button) {
                                 if (verbose) {console.log("click", count)};
                                 button.click();
