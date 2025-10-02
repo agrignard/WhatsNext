@@ -73,7 +73,7 @@
                     
                     <div id="MPfields">
                         <!-- Radio boutons dynamic page/page list -->
-                        <div id="radioButtonPanel" class="bottomMargin" style="display: flex; gap: 15px; align-items: center;">
+                        <div id="radioButtonPanel" class="smallBottomMargin" style="display: flex; gap: 15px; align-items: center;">
                             <div class="radio-toggle">
                                 <input type="radio" id="dynamicPage" name="choice" value="dynamicPage" checked/>
                                 <label for="dynamicPage">Dynamic web page</label>
@@ -99,7 +99,7 @@
                             <!-- next button -->
                             <div id="nextButtonPanel" class = "subCategory">
                                 <div class="row">
-                                    <div class="left">"Next" button</div>
+                                    <div class="left">Click Next button</div>
                                     <div class="right sliderCheckBox">
                                         <label class="niceCheckBox insideMPPanel">
                                             <input id="nextButtonCheckbox" type="checkbox" name="links" checked/>
@@ -108,7 +108,7 @@
                                         </label>  
                                     </div>
                                 </div>
-                                <div id="nextButtonTextPanel" class="row smallLeftMargin smallBottomMargin subCategory">
+                                <div id="nextButtonTextPanel" class="row smallBottomMargin subCategory">
                                     <div class="left">
                                         Button text:
                                     </div>
@@ -127,14 +127,53 @@
                                 </div>
                             </div>
                             <!-- iframes detection -->
-                            <div class="row subCategory">
-                                <div class="left">Detect iframes</div>
-                                <div class="right sliderCheckBox">
-                                    <label class="niceCheckBox insideMPPanel">
-                                        <input id="iframesCheckbox" type="checkbox" name="links"/>
-                                        <span id="iframesCheckboxText"></span> 
-                                        <i></i> 
-                                    </label>  
+                            <div id="iframeMenu" class="subCategory">
+                                <div class="row">
+                                    <div class="left">Detect iframes</div>
+                                    <div class="right sliderCheckBox">
+                                        <label class="niceCheckBox insideMPPanel">
+                                            <input id="iframesCheckbox" type="checkbox" name="links"/>
+                                            <span id="iframesCheckboxText"></span> 
+                                            <i></i> 
+                                        </label>  
+                                    </div>
+                                </div>
+                                <div id="iframeSubMenu" style="display: block;">
+
+                                    <!-- Radio boutons for iframe mode -->
+                                    <div id="iframeRadioPanel" class="verySmallLeftMargin verySmallBottomPadding" style="display: flex; gap: 15px; align-items: center;">
+                                        <div class="radio-toggle">
+                                            <!-- Groupe iframeMode -->
+                                            <input type="radio" id="iframefirst" name="iframeMode" value="first" checked/>
+                                            <label for="iframefirst">First</label>
+
+                                            <input type="radio" id="iframeall" name="iframeMode" value="all"/>
+                                            <label for="iframeall">All</label>
+
+                                            <input type="radio" id="iframeselect" name="iframeMode" value="select"/>
+                                            <label for="iframeselect">Select</label>
+                                        </div>
+                                    </div>
+                                    <!-- select iframe -->
+                                    <div id="iframeListPanel" class="verySmallLeftMargin verySmallBottomMargin noTopMargin">
+                                        <table id="iframeTable" style="border-collapse: collapse; width: 100%;">
+                                            <thead>
+                                                <tr>
+                                                <th>Select</th>
+                                                <th>Name</th>
+                                                <th>ID</th>
+                                                <th>Src</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!-- Les lignes seront insérées dynamiquement -->
+                                            </tbody>
+                                        </table>
+
+                                        <button id="getSelected">Get Selected Iframes</button>
+                                        <pre id="output"></pre>
+                                        <button id="updateIframeListButton" class="niceButtonNoMargin normal-button">Update</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -301,7 +301,8 @@
     "multiPages": {
       "type": "dynamicPage",
       "scroll": true,
-      "useIframes": true
+      "useIframes": true,
+      "iframeMode": "first"
     },
     "eventURLIndex": 0,
     "ID": "Ville Morte|Lyon|France",

@@ -286,7 +286,7 @@ async function getPageByPuppeteer(pageURL, venue, multipagesOptions, browserPool
                 if (verbose) {
                     console.log("Start clicking...");
                     page.on('console', (msg) => {
-                        console.log('Browser message :'+msg.text());
+                        console.log('Browser message ('+venue.name+'): '+msg.text());
                     });
                 }
 

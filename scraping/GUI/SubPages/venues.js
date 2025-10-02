@@ -348,14 +348,50 @@ multiplePagesMethodSelection.addEventListener('change', function (event) {
 
 // iframes management
 const iframesCheckbox = document.getElementById('iframesCheckbox');
+const iframeSubMenu = document.getElementById('iframeSubMenu');
+const iframeListPanel = document.getElementById('iframeListPanel');
+const tbody = document.querySelector("#iframeTable tbody");
+
+
+let currentIframeList = [];
+
 iframesCheckbox.addEventListener('change', () => {
+    // change the visibility of the iframe subpanel
+    iframeSubMenu.style.display = iframesCheckbox.checked ? 'block':'none';
+});
+
+const updateIframeListButton = document.getElementById('updateIframeListButton');
+updateIframeListButton.addEventListener('click', function () {
     const pageURL = textURL.textContent;
     getIframesList(pageURL).then(res => {
+        currentIframeList = res;
         console.log(res);
+        fillIframeTable();
+
+        document.querySelector("#getSelected").addEventListener("click", () => {
+        const selected = [];
+        tbody.querySelectorAll("input[type=checkbox]:checked").forEach(cb => {
+        const iframe = currentIframeList[cb.dataset.index];
+        selected.push(iframe);
+    });
+
+    document.querySelector("#output").textContent = JSON.stringify(selected, null, 2);
+    console.log(selected);
+});
+
     }).catch(err => {
-        console.error("Erreur :", err);
+        console.error("Error :", err);
     });
 });
+
+document.querySelectorAll('input[name="iframeMode"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+        const selected = document.querySelector('input[name="iframeMode"]:checked').value;
+        iframeListPanel.style.display = selected === 'select'?'block':'none';
+        console.log('Selected iframeMode:', selected);
+    });
+});
+
 
 
 
@@ -617,6 +653,11 @@ function updateVenueInfo(mode) {
                     dynamicPageLimitField.value = venue.multiPages.dynamicPageLimit;
                 }
                 iframesCheckbox.checked = venue.multiPages.hasOwnProperty('useIframes');
+                iframeSubMenu.style.display = iframesCheckbox.checked ? 'block':'none';
+                const iframeSelectedOption = venue.multiPages.hasOwnProperty('iframeMode') ? venue.multiPages.iframeMode : "first";
+                document.getElementById('iframe'+iframeSelectedOption).click();
+                iframeListPanel.style.display = iframeSelectedOption.value === 'select'?'block':'none';
+                currentIframeList = venue.multiPages.hasOwnProperty('iframeList')?venue.multiPages.iframeList:[];
 
                 // page list fields
                 if (venue.multiPages.hasOwnProperty('nbPages')) {
@@ -665,7 +706,6 @@ function updateVenueInfo(mode) {
 
             // get linked page
             linkedPageCheckbox.checked = venue.hasOwnProperty('linkedPage') ? true : false;
-            console.log(linkedPageCheckbox.checked);
             linkedPageCheckbox.dispatchEvent(new Event('change', { bubbles: true }));
             linkedPageDownloadMethodCheckbox.checked = venue.hasOwnProperty('linkedPageDownloadMethod') ? true : false;
             linkedPageDownloadMethodPanel.style.display = linkedPageCheckbox.checked ? 'flex' : 'none';
@@ -745,6 +785,10 @@ function updateVenueInfo(mode) {
                         }
                         if (iframesCheckbox.checked) {
                             venue.multiPages.useIframes = true;
+                            venue.multiPages.iframeMode =  document.querySelector('input[name="iframeMode"]:checked').value;
+                            if (currentIframeList.length > 0){
+                                venue.multiPages.iframeList = currentIframeList;
+                            }
                         }
                     } else {
                         // save for page list behaviour
@@ -991,3 +1035,41 @@ function checkIndexWarning() {
     divMPInfo.style.display = multiplePagesMethodSelection.value === 'PageList' ||
         /\{index\}/.test(textURL.textContent) ? 'none' : 'inline';
 }
+
+function fillIframeTable(){
+    clearTable();
+    currentIframeList.forEach((iframe, index) => {
+        const tr = document.createElement("tr");
+
+        // Checkbox
+        const tdCheckbox = document.createElement("td");
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.dataset.index = index; // pour retrouver l'iframe
+        tdCheckbox.appendChild(checkbox);
+        tr.appendChild(tdCheckbox);
+
+        // Name
+        const tdName = document.createElement("td");
+        tdName.textContent = iframe.name;
+        tr.appendChild(tdName);
+
+        // ID
+        const tdId = document.createElement("td");
+        tdId.textContent = iframe.id;
+        tr.appendChild(tdId);
+
+        // Src
+        const tdSrc = document.createElement("td");
+        tdSrc.textContent = iframe.src;
+        tr.appendChild(tdSrc);
+
+        tbody.appendChild(tr);
+    });
+}
+
+
+function clearTable() {
+    tbody.innerHTML = "";
+}
+

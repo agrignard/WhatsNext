@@ -388,6 +388,14 @@ label.niceCheckBox >input:checked+span+i:after {
   margin-bottom: 10px;
 }
 
+.smallBottomPadding{
+  padding-bottom: 10px;
+}
+
+.verySmallBottomPadding{
+  padding-bottom: 5px;
+}
+
 .miniBottomMargin{
   margin-bottom: 5px;
 }
@@ -398,6 +406,10 @@ label.niceCheckBox >input:checked+span+i:after {
 
 .smallLeftMargin{
   margin-left: 10px;
+}
+
+.verySmallLeftMargin{
+  margin-left: 5px;
 }
 
 .topMargin{
