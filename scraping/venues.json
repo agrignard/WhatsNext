@@ -73,22 +73,21 @@
     "city": "Lyon",
     "country": "France",
     "url": "https://www.transbordeur.fr/agenda/",
-    "eventsDelimiterTag": "a.postscontaineritem",
+    "eventsDelimiterTag": "A.postscontaineritem.depth11",
     "dateFormat": "dd-MM-yyyy-HH:mm",
     "mainPage": {
       "eventNameTags": [
-        "div.tsh3:eq(0)"
+        "DIV.postscontaineritem__contain.depth12:eq(0)>DIV.tsh3.depth13:eq(0)"
       ],
       "eventDateTags": [
-        "div.tslabel:eq(0)",
-        "div.tslabel:eq(1)"
+        "DIV.postscontaineritem__contain.depth12:eq(0)>DIV.flex.itemscenter.gaps.depth13:eq(0)>DIV.tslabel.depth14:eq(0)",
+        "DIV.postscontaineritem__contain.depth12:eq(0)>DIV.flex.itemscenter.gaps.depth13:eq(0)>DIV.tslabel.depth14:eq(1)"
       ],
       "eventStyleTags": [
-        "div.postscontaineritem__contain:eq(0)>div.tslabel:eq(2)"
+        "DIV.postscontaineritem__contain.depth12:eq(0)>DIV.tslabel.depth13:eq(0)"
       ]
     },
     "eventURLIndex": 0,
-    "linkedPageDateFormat": "dd-MM-yyyy-HH:mm",
     "ID": "Transbordeur|Lyon|France",
     "baseURL": "https://www.transbordeur.fr/agenda/",
     "multiPages": {
@@ -748,7 +747,8 @@
     "multiPages": {
       "type": "dynamicPage",
       "scroll": true,
-      "nextButton": "Voir plus"
+      "nextButton": "Voir plus",
+      "dynamicPageLimit": "20"
     },
     "alternateTags": {
       "mainPage": {
