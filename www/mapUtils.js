@@ -117,11 +117,26 @@ export function addPlaces(map,placesData){
     });
 }
 
+
+function toCapitalCase(str) {
+  if (!str) return "";
+  return str.toUpperCase();
+}
+
 export function addEvents(map,eventsData){
+    
+    eventsData.features = eventsData.features.map(f => {
+    const name = f.properties.title|| "";
+    console.log(" je recupere le name" + name);
+    f.properties.short_label = toCapitalCase(name.length > 30 ? name.slice(0, 30) + "…" : name);
+    return f;
+    });
+    
     map.addSource('events', {
         'type': 'geojson',
         data: eventsData
     });
+    
         
     map.addLayer({
         'id': 'event-circles',
@@ -153,10 +168,12 @@ export function addEvents(map,eventsData){
         'type': 'symbol',
         'source': 'events',
         'layout': {
-            "text-field": ['format',['get', 'title'],{ 'font-scale': 0.9 }],
+           // "text-field": ['format',['get', 'title'],{ 'font-scale': 0.6 }],
+            "text-field": ["get", "short_label"],
             "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
             "text-offset": [1.0, 1.0],
-            "text-anchor": "top"
+            "text-anchor": "top",
+            "text-size": 12
         },
         'paint': {
         'text-color': 'rgba(0,0,0,0.5)'
@@ -396,7 +413,7 @@ export const lyon_start = {
 
 export const startLocations = new Map([
     [
-      'hanoi',
+      'Hanoi',
       {
         center: [105.85238037071497, 21.030703836681795],
         zoom: 11.5,
@@ -405,7 +422,7 @@ export const startLocations = new Map([
       }
     ],
     [
-      'lyon',
+      'Lyon',
       {
         center: [4.85, 45.7465],
         zoom: 11.5,
@@ -431,9 +448,9 @@ var transparencyBig = 0.95;
 export var categoryColors = {};
 
 export const setCategoryColors = (city) => {
-    if (city === "lyon") {
+    if (city === "Lyon") {
       categoryColors = { ...categoryColorsLyon };
-    } else if (city === "hanoi") {
+    } else if (city === "Hanoi") {
       categoryColors = { ...categoryColorsHanoi };
     }
   };

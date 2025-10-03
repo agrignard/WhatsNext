@@ -5,7 +5,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiYWdyaWduYXJkIiwiYSI6ImNqdWZ6ZjJ5MDBoenczeXBkY
 
 var devMode = false;
 var showAllValueDiv = devMode ? true : false;
-export var city="lyon";
+export var city="Lyon";
 processCityBasedOnUrl();
 mapUtils.setCategoryColors(city);
 const map = mapUtils.initializeMap();
@@ -286,9 +286,7 @@ function processDayBasedOnUrl() {
 
 function processCityBasedOnUrl() {
   const cityUrl = getQueryParam('city');
-  // Check the value of the 'type' parameter and take appropriate actions
   if (cityUrl!=null) {
-      console.log('City parameter: ' + city);
       city=cityUrl;
   }
 }
