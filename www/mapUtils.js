@@ -127,7 +127,6 @@ export function addEvents(map,eventsData){
     
     eventsData.features = eventsData.features.map(f => {
     const name = f.properties.title|| "";
-    console.log(" je recupere le name" + name);
     f.properties.short_label = toCapitalCase(name.length > 30 ? name.slice(0, 30) + "…" : name);
     return f;
     });
@@ -413,7 +412,7 @@ export const lyon_start = {
 
 export const startLocations = new Map([
     [
-      'Hanoi',
+      'hanoi',
       {
         center: [105.85238037071497, 21.030703836681795],
         zoom: 11.5,
@@ -422,7 +421,7 @@ export const startLocations = new Map([
       }
     ],
     [
-      'Lyon',
+      'lyon',
       {
         center: [4.85, 45.7465],
         zoom: 11.5,
@@ -448,9 +447,9 @@ var transparencyBig = 0.95;
 export var categoryColors = {};
 
 export const setCategoryColors = (city) => {
-    if (city === "Lyon") {
+    if (city === "lyon") {
       categoryColors = { ...categoryColorsLyon };
-    } else if (city === "Hanoi") {
+    } else if (city === "hanoi") {
       categoryColors = { ...categoryColorsHanoi };
     }
   };
