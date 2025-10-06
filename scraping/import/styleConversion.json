@@ -1,13 +1,18 @@
 {
     "French":{
-        "Rock": ["ROCK","METALCORE","Post-Punk"],
-        "Rap": ["RAP"],
-        "Electro": ["Electro","techno","house","Clubbing","Club","Dj Set","House Techno","TRANCE EURODANCE","Industrial","Hard Trance"],
-        "World": ["Sono Mondiale"],    
+        "Rock": ["ROCK","METALCORE","Post-Punk", "GYPSY PUNK","BLUES / FUNK","POP URBAINE","METAL", "BLACK METAL",
+        "POWER METAL","POP ALTERNATIVE","INDIE FOLK / POP ONIRIQUE","R&B / POP","POP / R&B","GOUYAD / POP URBAINE",
+        "POP FUTURISTE","BLUES / FOLK","COLD WAVE / SYNTH PUNK","POP FOLK / SOUL","POP","HYPERPOP","Pop","Soul"],
+        "Rap": ["RAP","DANSE HIP HOP","SOUL / R&B","HIP HOP / POP","HIP HOP / RAVE","SOUL / HIP HOP / AFRO","Hip Hop"],
+        "Electro": ["Electro","techno","house","Clubbing","Club","Dj Set","House Techno","TRANCE EURODANCE","Industrial",
+        "Hard Trance","ORIGINAL DUB CULTURE","AMBIENT","SYNTHWAVE","Trance","Synthpop","Hardcore","Dance","Dark Wave","Uk Garage",
+        "Breakbeat","Deep Tech","Dancehall","Drum & Bass","Disco","Progressive Trance","Indie Dance","Italo Disco","Dub","Alternative Dance",
+        "Synthpop","House Disco"],
+        "World": ["Sono Mondiale","LATINO / REGGAETON","REGGAE","Shatta","Zouk","Afrobeat"],    
         "Classique":["Classique","lyrique","opera"],
-        "Jazz":["jazz","groove","Soul & funk"],
-        "Live":["musique live", "live"],
-        "Chanson":["Chanson / Folk "],
+        "Jazz":["jazz","groove","Soul & funk","PIANO SOLO","FOLK / BLUEGRASS"],
+        "Live":["musique live", "live","Concert","Event","(Ciné Concert)"],
+        "Chanson":["Chanson / Folk ","CHANSON POP","(Chanson)","Variété Française","Folk"],
         "": ["Unknwown"]
     }
 }
