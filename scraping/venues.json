@@ -508,7 +508,22 @@
     "name": "LDLC Arena",
     "country": "France",
     "city": "Lyon",
-    "ID": "LDLC Arena|Lyon|France"
+    "ID": "LDLC Arena|Lyon|France",
+    "url": "https://www.olvallee.fr/calendrier/?type_evenement=concerts",
+    "mainPage": {
+      "eventNameTags": [
+        "DIV.eventcard__infocontainer.depth11:eq(0)>DIV.eventcard__title.depth12:eq(0)"
+      ],
+      "eventDateTags": [
+        "DIV.eventcard__infocontainer.depth11:eq(0)>DIV.eventcard__detailscontainer.depth12:eq(0)>DIV.eventcard__desc.depth13:eq(0)"
+      ],
+      "eventURLTags": [
+        "DIV.eventcard__infocontainer.depth11:eq(0)>DIV.eventcard__detailscontainer.depth12:eq(0)>DIV.cta.card.depth13:eq(0)"
+      ]
+    },
+    "baseURL": "https://www.olvallee.fr/calendrier/",
+    "eventsDelimiterTag": "DIV.eventcard__container.depth10",
+    "dateFormat": "dd-MM-yyyy-HH:mm"
   },
   {
     "name": "Bourse du Travail",
@@ -524,7 +539,26 @@
       "Radiant Bellevue"
     ],
     "url": "http://radiant-bellevue.fr/",
-    "ID": "Radiant-Bellevue|Lyon|France"
+    "ID": "Radiant-Bellevue|Lyon|France",
+    "mainPage": {
+      "eventStyleTags": [
+        "DIV.depth9:eq(0)>P.depth10:eq(0)"
+      ],
+      "eventNameTags": [
+        "DIV.depth9:eq(1)>H2.depth10:eq(0)"
+      ],
+      "eventDateTags": [
+        "DIV.depth9:eq(1)>TIME.depth10:eq(0)"
+      ]
+    },
+    "multiPages": {
+      "type": "dynamicPage",
+      "scroll": true,
+      "nextButton": "SAISON SUITE"
+    },
+    "baseURL": "http://radiant-bellevue.fr/",
+    "eventsDelimiterTag": "A.depth8",
+    "dateFormat": "dd-MM-yyyy"
   },
   {
     "name": "La Marquise",
@@ -644,19 +678,10 @@
     ]
   },
   {
-    "name": "Groom",
-    "country": "France",
-    "city": "Lyon",
-    "ID": "Groom|Lyon|France",
-    "aliases": [
-      "Le Groom"
-    ]
-  },
-  {
     "name": "Ô Totem live",
     "country": "France",
     "city": "Lyon",
-    "ID": "Groom|Lyon|France",
+    "ID": "Totem|Lyon|France",
     "aliases": [
       "Ô Totem",
       "MJC Ô Totem",
@@ -912,5 +937,15 @@
     "url": "https://www.sixbrotteaux.com/",
     "defaultStyle": "Electro",
     "ID": "Six|Lyon|France"
+  },
+  {
+    "name": "Groom",
+    "city": "Lyon",
+    "country": "France",
+    "url": "https://www.groomlyon.com/agenda/",
+    "ID": "Groom|Lyon|France",
+    "defaultStyle": "Electro",
+    "mainPage": {},
+    "baseURL": "https://www.groomlyon.com/agenda/"
   }
 ]

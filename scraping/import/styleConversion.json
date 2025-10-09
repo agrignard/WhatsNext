@@ -11,7 +11,7 @@
         "World": ["Sono Mondiale","LATINO / REGGAETON","REGGAE","Shatta","Zouk","Afrobeat"],    
         "Classique":["Classique","lyrique","opera"],
         "Jazz":["jazz","groove","Soul & funk","PIANO SOLO","FOLK / BLUEGRASS"],
-        "Live":["musique live", "live","Concert","Event","(Ciné Concert)"],
+        "Live":["musique live", "live","Concert","Event","(Ciné Concert)", "Musique"],
         "Chanson":["Chanson / Folk ","CHANSON POP","(Chanson)","Variété Française","Folk"],
         "": ["Unknwown"]
     }
