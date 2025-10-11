@@ -462,7 +462,17 @@ export const startLocations = new Map([
         bearing: 0,
         pitch: 0
       }
+    ],
+    [
+      'marseille',
+      {
+        center: [5.37795429530581,43.304602136518774],
+        zoom: 11.5,
+        bearing: 0,
+        pitch: 0
+      }
     ]
+
 
 
 
