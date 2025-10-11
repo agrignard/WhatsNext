@@ -5,7 +5,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiYWdyaWduYXJkIiwiYSI6ImNqdWZ6ZjJ5MDBoenczeXBkY
 
 var devMode = false;
 var showAllValueDiv = devMode ? true : false;
-export var city="lyon";
+export var city="france";
 processCityBasedOnUrl();
 mapUtils.setCategoryColors(city);
 const map = mapUtils.initializeMap();

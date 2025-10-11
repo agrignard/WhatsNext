@@ -24,7 +24,7 @@ if (useAI){
 const sourcePath = './webSources/';
 
 //var out="";// = "PLACE,TITRE,UNIX,SIZE,GENRE,URL";
-const outFile = "generated/scrapexResult_lyon.csv";
+const outFile = "generated/scrapexResult_france.csv";
 const globalDefaultStyle = 'Live';
 const styleConversion = getStyleConversions();
 const cancellationKeywords = loadCancellationKeywords();

@@ -2,7 +2,9 @@ const fs = require('fs');
 
 const placeToCoord = new Map();
 
-const city="lyon";
+const city = process.argv[2] || "france";
+
+//const city="saint-etienne";
 console.log("***************DATACLEANEX-City: " + city + " **************");
 convertPlaceCSVtoGeoJson();
 convertEventCSVtoGeoJson();
@@ -92,9 +94,11 @@ async function convertEventCSVtoGeoJson(){
     var table = csvData.split('\n');
     pushTableInExistingGeoJsonFile(table,existingGeoJSON);
     csvFilePath = 'scraping/handMade/scrapexResult_'+city+"_handMade"+'.csv';
-    csvData = fs.readFileSync(csvFilePath, 'utf8');
-    table = csvData.split('\n');
-    pushTableInExistingGeoJsonFile(table,existingGeoJSON);
+    if (fs.existsSync(csvFilePath)) {
+      csvData = fs.readFileSync(csvFilePath, 'utf8');
+      table = csvData.split('\n');
+      pushTableInExistingGeoJsonFile(table,existingGeoJSON);
+    }
 
   
 

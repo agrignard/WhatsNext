@@ -947,5 +947,247 @@
     "defaultStyle": "Electro",
     "mainPage": {},
     "baseURL": "https://www.groomlyon.com/agenda/"
+  },
+  {
+    "name": "Le fil",
+    "city": "Saint-Etienne",
+    "country": "France",
+    "url": "https://www.le-fil.com/agenda/",
+    "ID": "Le fil|Saint-Etienne|France",
+    "defaultStyle": "Electro",
+    "mainPage": {
+      "eventDateTags": [
+        "DIV.infoheadertop.depth10:eq(0)>DIV.singlecard__meta.depth11:eq(0)"
+      ],
+      "eventStyleTags": [
+        "DIV.singlecard__text.depth10:eq(0)>DIV.styletermwrapper.depth11:eq(0)"
+      ],
+      "eventNameTags": [
+        "DIV.singlecard__text.depth10:eq(0)>A.stretchedlink.depth11:eq(0)"
+      ],
+      "eventURLTags": [
+        "DIV.singlecard__text.depth10:eq(0)>A.stretchedlink.depth11:eq(0)"
+      ]
+    },
+    "baseURL": "https://www.le-fil.com/agenda/",
+    "eventsDelimiterTag": "DIV.singlecard__infoheader.depth9",
+    "dateFormat": "dd-MM-HH:mm"
+  },
+  {
+    "name": "Zénith de Saint-Étienne",
+    "city": "Saint-Etienne",
+    "country": "France",
+    "url": "https://www.zenith-saint-etienne.fr/agenda/",
+    "ID": "Zénith de Saint-Étienne|Saint-Etienne|France",
+    "mainPage": {
+      "eventNameTags": [
+        "DIV.content.depth11:eq(0)>DIV.bodyevent.depth12:eq(0)>DIV.contentbody.depth13:eq(0)>DIV.eventinfos.depth14:eq(0)>SPAN.title.depth15:eq(0)"
+      ],
+      "eventDateTags": [
+        "DIV.content.depth11:eq(0)>DIV.bodyevent.depth12:eq(0)>DIV.contentbody.depth13:eq(0)>DIV.eventinfos.depth14:eq(0)>DIV.dates.depth15:eq(0)"
+      ]
+    },
+    "baseURL": "https://www.zenith-saint-etienne.fr/agenda/",
+    "eventsDelimiterTag": "A.depth10",
+    "dateFormat": "dd-MM-yyyy-HH:mm",
+    "defaultStyle": "Live"
+  },
+  {
+    "name": "Le Solar",
+    "city": "Saint-Etienne",
+    "country": "France",
+    "mainPage": {
+      "eventNameTags": [
+        "A.elheader.depth8:eq(0)"
+      ],
+      "eventDateTags": [
+        "DIV.elcontent.depth8:eq(0)>DIV.contentinfos.depth9:eq(0)>SPAN.infosdate.depth10:eq(0)"
+      ],
+      "eventURLTags": [
+        "DIV.elcontent.depth8:eq(0)>DIV.contentinfos.depth9:eq(0)>DIV.infosright.depth10:eq(0)>A.cbobutton.buttongold.depth11:eq(0)"
+      ]
+    },
+    "url": "https://le-solar.fr/agenda/",
+    "ID": "Le Solar|Saint-Etienne|France",
+    "baseURL": "https://le-solar.fr/agenda/",
+    "eventsDelimiterTag": "DIV.elinner.depth7",
+    "dateFormat": "dd-MM-HH:mm",
+    "defaultStyle": "Jazz",
+    "multiPages": {
+      "type": "dynamicPage",
+      "scroll": true,
+      "nextButton": "Événements suivants"
+    }
+  },
+  {
+    "name": "Le Pax",
+    "city": "Saint-Etienne",
+    "country": "France",
+    "mainPage": {
+      "eventDateTags": [
+        "SECTION.elementorsection.elementorinnersection.elementorelement.elementorelement506ebf0.elementorsectionboxed.elementorsectionheightdefault.depth16:eq(0)>DIV.elementorcontainer.elementorcolumngapdefault.depth17:eq(0)>DIV.elementorcolumn.elementorcol100.elementorinnercolumn.elementorelement.elementorelement1bedc17.depth18:eq(0)>DIV.elementorwidgetwrap.elementorelementpopulated.depth19:eq(0)>DIV.elementorelement.elementorelementf247494.elementorwidget.elementorwidgetheading.depth20:eq(0)>DIV.elementorwidgetcontainer.depth21:eq(0)>H2.elementorheadingtitle.elementorsizedefault.depth22:eq(0)"
+      ],
+      "eventNameTags": [
+        "SECTION.elementorsection.elementorinnersection.elementorelement.elementorelement95822be.elementorsectionboxed.elementorsectionheightdefault.depth16:eq(0)>DIV.elementorcontainer.elementorcolumngapdefault.depth17:eq(0)>DIV.elementorcolumn.elementorcol100.elementorinnercolumn.elementorelement.elementorelementad32b8f.depth18:eq(0)>DIV.elementorwidgetwrap.elementorelementpopulated.depth19:eq(0)>DIV.elementorelement.elementorelementdfc6531.elementorwidget.elementorwidgetheading.depth20:eq(0)>DIV.elementorwidgetcontainer.depth21:eq(0)>H2.elementorheadingtitle.elementorsizedefault.depth22:eq(0)"
+      ],
+      "eventStyleTags": [
+        "SECTION.elementorsection.elementorinnersection.elementorelement.elementorelement3d67252.elementorsectionboxed.elementorsectionheightdefault.depth16:eq(0)>DIV.elementorcontainer.elementorcolumngapdefault.depth17:eq(0)>DIV.elementorcolumn.elementorcol50.elementorinnercolumn.elementorelement.elementorelementea2c68c.depth18:eq(0)>DIV.elementorwidgetwrap.elementorelementpopulated.depth19:eq(0)>DIV.elementorelement.elementorelemente4fca44.elementorwidget.elementorwidgetheading.depth20:eq(0)>DIV.elementorwidgetcontainer.depth21:eq(0)>H2.elementorheadingtitle.elementorsizedefault.depth22:eq(0)"
+      ],
+      "eventPlaceTags": [
+        "SECTION.elementorsection.elementorinnersection.elementorelement.elementorelement3d67252.elementorsectionboxed.elementorsectionheightdefault.depth16:eq(0)>DIV.elementorcontainer.elementorcolumngapdefault.depth17:eq(0)>DIV.elementorcolumn.elementorcol50.elementorinnercolumn.elementorelement.elementorelement84e6109.depth18:eq(0)>DIV.elementorwidgetwrap.elementorelementpopulated.depth19:eq(0)>DIV.elementorelement.elementorelement2d4ffa0.elementorwidget__widthauto.elementorwidget.elementorwidgetheading.depth20:eq(0)>DIV.elementorwidgetcontainer.depth21:eq(0)>H2.elementorheadingtitle.elementorsizedefault.depth22:eq(0)"
+      ],
+      "eventURLTags": [
+        "SECTION.elementorsection.elementorinnersection.elementorelement.elementorelementc9b98c0.elementorsectionboxed.elementorsectionheightdefault.depth16:eq(0)>DIV.elementorcontainer.elementorcolumngapdefault.depth17:eq(0)>DIV.elementorcolumn.elementorcol50.elementorinnercolumn.elementorelement.elementorelement3259786.depth18:eq(0)>DIV.elementorwidgetwrap.elementorelementpopulated.depth19:eq(0)>DIV.elementorelement.elementorelement53d1fc8.elementoralignjustify.elementorwidget.elementorwidgetbutton.depth20:eq(0)>DIV.elementorwidgetcontainer.depth21:eq(0)>DIV.elementorbuttonwrapper.depth22:eq(0)>A.elementorbutton.elementorbuttonlink.elementorsizesm.depth23:eq(0)"
+      ]
+    },
+    "url": "https://www.lepax.fr/",
+    "ID": "Le Pax|Saint-Etienne|France",
+    "baseURL": "https://www.lepax.fr/",
+    "eventsDelimiterTag": "DIV.elementorwidgetwrap.depth15",
+    "dateFormat": "dd-MM"
+  },
+  {
+    "name": "La Maison Scène",
+    "city": "Saint-Etienne",
+    "country": "France",
+    "mainPage": {
+      "eventNameTags": [
+        "DIV.elementorelement.elementorelement99fe166.econfull.eflex.econ.echild.depth18:eq(0)>DIV.elementorelement.elementorelement513cbac.elementorwidget.elementorwidgetheading.depth19:eq(0)>DIV.elementorwidgetcontainer.depth20:eq(0)>H2.elementorheadingtitle.elementorsizedefault.depth21:eq(0)>A.depth22:eq(0)"
+      ],
+      "eventURLTags": [
+        "DIV.elementorelement.elementorelement99fe166.econfull.eflex.econ.echild.depth18:eq(0)>DIV.elementorelement.elementorelement513cbac.elementorwidget.elementorwidgetheading.depth19:eq(0)>DIV.elementorwidgetcontainer.depth20:eq(0)>H2.elementorheadingtitle.elementorsizedefault.depth21:eq(0)>A.depth22:eq(0)"
+      ],
+      "eventDateTags": [
+        "DIV.elementorelement.elementorelement83a509e.econfull.eflex.econ.echild.depth18:eq(0)>DIV.elementorelement.elementorelement77c9f16.elementorwidget.elementorwidgetheading.depth19:eq(0)>DIV.elementorwidgetcontainer.depth20:eq(0)>H2.elementorheadingtitle.elementorsizedefault.depth21:eq(0)"
+      ],
+      "eventStyleTags": [
+        "DIV.elementorelement.elementorelement6667938.econfull.eflex.econ.echild.depth18:eq(0)>DIV.elementorelement.elementorelemente71dd92.elementorwidget.elementorwidgetheading.depth19:eq(0)>DIV.elementorwidgetcontainer.depth20:eq(0)>H2.elementorheadingtitle.elementorsizedefault.depth21:eq(0)",
+        "DIV.elementorelement.elementorelement6667938.econfull.eflex.econ.echild.depth18:eq(0)>DIV.elementorelement.elementorelementc57ff68.elementorwidget.elementorwidgetheading.depth19:eq(0)>DIV.elementorwidgetcontainer.depth20:eq(0)>H2.elementorheadingtitle.elementorsizedefault.depth21:eq(0)",
+        "DIV.elementorelement.elementorelement6667938.econfull.eflex.econ.echild.depth18:eq(0)>DIV.elementorelement.elementorelement9c87d17.elementorwidget.elementorwidgetheading.depth19:eq(0)>DIV.elementorwidgetcontainer.depth20:eq(0)>H2.elementorheadingtitle.elementorsizedefault.depth21:eq(0)"
+      ]
+    },
+    "url": "https://lamaisonscene.fr/agenda/",
+    "ID": "La Maison Scène|Saint-Etienne|France",
+    "baseURL": "https://lamaisonscene.fr/agenda/",
+    "eventsDelimiterTag": "DIV.elementorelement.elementorelementd294d83.econfull.customcontener.eflex.econ.eparent.depth17",
+    "dateFormat": "dd-MM"
+  },
+  {
+    "name": "La Belle Electrique",
+    "city": "Grenoble",
+    "country": "France",
+    "mainPage": {
+      "eventNameTags": [
+        "DIV.flex.justifybetween.itemscenter.wfull.mt4.depth9:eq(0)>H3.my0.depth10:eq(0)"
+      ],
+      "eventDateTags": [
+        "P.datem.mb0.mt4.depth9:eq(0)"
+      ],
+      "eventStyleTags": [
+        "P.addedTag.depth9:eq(0)"
+      ],
+      "eventPlaceTags": [
+        "A.mt6.mr6.btn.btnblack.depth9:eq(0)"
+      ]
+    },
+    "url": "https://www.la-belle-electrique.com/fr/programmation",
+    "ID": "La Belle Electrique|Grenoble|France",
+    "baseURL": "https://www.la-belle-electrique.com/fr/",
+    "eventsDelimiterTag": "ARTICLE.eventcard.flex.flexcol.itemsstart.wfull.textblack.depth8",
+    "dateFormat": "dd-MM-yy-HH:mm",
+    "multiPages": {
+      "type": "dynamicPage",
+      "scroll": true,
+      "nextButton": "Suivant"
+    }
+  },
+  {
+    "name": "L'Ampérage",
+    "city": "Grenoble",
+    "country": "France",
+    "mainPage": {},
+    "url": "https://www.amperage.fr/programmation",
+    "ID": "L'Ampérage|Grenoble|France",
+    "baseURL": "https://www.amperage.fr/"
+  },
+  {
+    "name": "Austra Rocks",
+    "city": "Grenoble",
+    "country": "France",
+    "mainPage": {},
+    "url": "https://www.austrarocks.com/evenements/",
+    "multiPages": {
+      "type": "pageList",
+      "nbPages": "5",
+      "startPage": "1",
+      "increment": "1"
+    },
+    "ID": "Austra Rocks|Grenoble|France"
+  },
+  {
+    "name": "Le Summum",
+    "city": "Grenoble",
+    "country": "France",
+    "mainPage": {
+      "eventStyleTags": [
+        "ARTICLE.relative.textwhite.transitioncolors.grouphovertextprimary.ltsmw8c.ltsmmxauto.depth7:eq(0)>DIV.depth8:eq(0)>DIV.flex.flexwrap.gap2.depth9:eq(0)"
+      ],
+      "eventNameTags": [
+        "ARTICLE.relative.textwhite.transitioncolors.grouphovertextprimary.ltsmw8c.ltsmmxauto.depth7:eq(0)>DIV.depth8:eq(0)>H1.title2.mt2.mini.depth9:eq(0)"
+      ],
+      "eventDateTags": [
+        "ARTICLE.relative.textwhite.transitioncolors.grouphovertextprimary.ltsmw8c.ltsmmxauto.depth7:eq(0)>DIV.depth8:eq(0)>TIME.block.mt2.textlg.fontlight.depth9:eq(0)"
+      ]
+    },
+    "url": "https://www.summum-grenoble.com/categorie/concert/",
+    "ID": "Le Summum|Grenoble|France",
+    "baseURL": "https://www.summum-grenoble.com/categorie/concert/",
+    "eventsDelimiterTag": "A.group.depth6",
+    "dateFormat": "dd-MM-yyyy"
+  },
+  {
+    "name": "La Source",
+    "city": "Grenoble",
+    "country": "France",
+    "mainPage": {
+      "eventNameTags": [
+        "DIV.gttitle.depth26:eq(0)>A.depth27:eq(0)"
+      ],
+      "eventURLTags": [
+        "DIV.gttitle.depth26:eq(0)>A.depth27:eq(0)"
+      ],
+      "eventStyleTags": [
+        "DIV.gtdetails.depth26:eq(0)>DIV.gtcategory.depth27:eq(0)>UL.depth28:eq(0)>LI.gtcategory43.depth29:eq(0)>A.depth30:eq(0)"
+      ],
+      "eventDateTags": [
+        "DIV.gtdetails.depth26:eq(0)>DIV.gtdate.depth27:eq(0)"
+      ]
+    },
+    "url": "https://lasource-fontaine.fr/programme/",
+    "ID": "La Source|Grenoble|France",
+    "baseURL": "https://lasource-fontaine.fr/programme/",
+    "eventsDelimiterTag": "DIV.gtcontent.depth25",
+    "dateFormat": "dd-MM-yyyy"
+  },
+  {
+    "name": "La Cordo",
+    "city": "Grenoble",
+    "country": "France",
+    "mainPage": {
+      "eventDateTags": [
+        "DIV.textwhite.flipcardinner.depth6:eq(0)>DIV.flex.flexcol.justifybetween.hfull.overflowhidden.flipcardfront.p4.mask.depth7:eq(0)>DIV.depth8:eq(0)>DIV.flex.flexrow.justifybetween.itemsstart.depth9:eq(0)>DIV.fontbold.text2xl.px1.depth10:eq(0)"
+      ],
+      "eventStyleTags": [
+        "DIV.textwhite.flipcardinner.depth6:eq(0)>DIV.flex.flexcol.justifybetween.hfull.overflowhidden.flipcardfront.p4.mask.depth7:eq(0)>DIV.depth8:eq(1)>DIV.depth9:eq(0)"
+      ],
+      "eventNameTags": [
+        "DIV.textwhite.flipcardinner.depth6:eq(0)>DIV.flex.flexcol.justifybetween.hfull.overflowhidden.flipcardfront.p4.mask.depth7:eq(0)>DIV.depth8:eq(1)>DIV.text3xl.mdtextxl.xltext3xl.fontbold.hyphens.depth9:eq(0)"
+      ]
+    },
+    "url": "https://www.lacordo.com/agenda",
+    "ID": "La Cordo|Grenoble|France",
+    "baseURL": "https://www.lacordo.com/",
+    "eventsDelimiterTag": "A.flipcard.depth5",
+    "dateFormat": "dd-MM"
   }
 ]

@@ -395,7 +395,7 @@ export const start = {
     bearing: 45
 };
 
-export const hanoi_start = {
+/*export const hanoi_start = {
     center: [105.85238037071497,21.030703836681795],
     zoom: 11.5,
     bearing: 0,
@@ -408,6 +408,13 @@ export const lyon_start = {
     bearing: 0,
     pitch: 0
 };
+
+export const saint_etienne_start = {
+    center: [4.391819939084299,45.43924131431503],
+    zoom: 11.5,
+    bearing: 0,
+    pitch: 0
+};*/
 
 
 export const startLocations = new Map([
@@ -428,7 +435,37 @@ export const startLocations = new Map([
         bearing: 0,
         pitch: 0
       }
+    ],
+    [
+      'france',
+      {
+        center: [4.85, 45.7465],
+        zoom: 11.5,
+        bearing: 0,
+        pitch: 0
+      }
+    ],
+    [
+      'saint-etienne',
+      {
+        center: [4.39, 45.44],
+        zoom: 11.5,
+        bearing: 0,
+        pitch: 0
+      }
+    ],
+    [
+      'grenoble',
+      {
+        center: [5.724814462077887,45.18881283411705 ],
+        zoom: 11.5,
+        bearing: 0,
+        pitch: 0
+      }
     ]
+
+
+
 ]);
   
 
@@ -447,10 +484,10 @@ var transparencyBig = 0.95;
 export var categoryColors = {};
 
 export const setCategoryColors = (city) => {
-    if (city === "lyon") {
-      categoryColors = { ...categoryColorsLyon };
-    } else if (city === "hanoi") {
+    if (city === "hanoi" ) {
       categoryColors = { ...categoryColorsHanoi };
+    } else {
+      categoryColors = { ...categoryColorsLyon };
     }
   };
 
@@ -461,7 +498,7 @@ export const categoryColorsLyon = {
     'Jazz': '255, 140, 0',       // 🎷 Burnt Orange (Warm, classic, smoky bar feel)
     'Rap': '111, 0, 170',        // 🎤 Deep Purple (Royal, underground, strong)
     'Chanson': '255, 60, 120',   // 💖 Hot Magenta (Expressive, romantic)
-    'Live': '80, 80, 80',        // 🎭 Dark Gray (Gritty, real, versatile)
+    'Live': '125, 125, 125',        // 🎭 Dark Gray (Gritty, real, versatile)
     'Classique': '20, 40, 160',  // 🎻 Deep Indigo Blue (Sophisticated, elegant)
 };
 
