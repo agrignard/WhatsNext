@@ -1,22 +1,8 @@
 PLACE,LATITUDE,LONGITUDE,URL
-⁠Le Silo, 43.299167, 5.365556, https://www.cepacsilo-marseille.fr/evenements/
-⁠Le Dôme, 43.295556, 5.405278, https://dome.marseille.fr/
-⁠Espace Julien , 43.292778, 5.379722, https://espace-julien.com/agenda?page=1
-Opéra de Marseille, 43.293333, 5.361389, https://opera-odeon.marseille.fr/ 
-⁠La Criée - Scène Nationale , 43.294722, 5.3725
-⁠Le Makeda, 43.290556, 5.384722, https://www.lemakeda.com/
-⁠L'Affranchi ,43.304722, 5.398056, https://l-affranchi.com/
-⁠Le Molotov , 43.294167, 5.385556, https://lemolotov.com/
-⁠Dock des Suds , 43.283611, 5.368333
-⁠Le Moulin, 43.2875, 5.393333 
-⁠Le Cri Du Port, 43.304722, 5.356944 , http://criduport.fr/
-⁠La Maison Du Chant,43.296944, 5.3775 
-⁠L'Embobineuse , 43.302778, 5.395556, https://www.lembobineuse.biz/events/upcoming
-⁠Cité de la Musique de Marseille , 43.288611, 5.386111, https://www.citemusique-marseille.com/
-⁠Palais Longchamp, 43.304722, 5.393333 
-⁠Orange Vélodrome , 43.269722, 5.395556, https://www.orangevelodrome.com/
-⁠Esplanade Du J4, 43.304722, 5.356944
-⁠Abbaye St Victor, 43.290556, 5.365556
-⁠Le Cabaret Aléatoire, 43.291389, 5.376667, https://cabaret-aleatoire.com/
-⁠Friche la belle de mai, 43.310104,5.390539, https://www.lafriche.org/
-⁠Le 15ème Art : 43.281389, 5.393611,https://le15emeart.org/
+CEPAC Silo,43.310673361823355, 5.366977904055434,https://www.cepacsilo-marseille.fr/
+Le Dôme, 43.295556, 5.405278, https://dome.marseille.fr/
+Espace Julien,43.2942140392514, 5.383528577932294,https://espace-julien.com/
+Théâtre de La Criée, 43.29266598408319, 5.368740750149353,https://theatre-lacriee.com/
+Le Makeda,43.29326858393524, 5.39190767339256,https://www.lemakeda.com/
+Le Cri du Port,43.30552899205118, 5.374053918258364,https://criduport.fr/
+⁠L'Affranchi,43.304722, 5.398056, https://l-affranchi.com/
