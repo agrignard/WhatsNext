@@ -273,10 +273,45 @@ async function getPageByPuppeteer(pageURL, venue, multipagesOptions, browserPool
         const iframeList = iframesDetection?await detectIframes(page):[];
 
         if (multipagesOptions.hasOwnProperty('useIframes') && iframeList.length > 0) {
-            console.log('detected Iframes:',iframeList);
+            // console.log('detected Iframes:',iframeList);
             await page.close();
-            return await getPageByPuppeteer(iframeList[0].src, venue, multipagesOptions, browserPool, browser, iframesDetection = false, verbose = false);
-        }
+            if (multipagesOptions.iframeMode === "first"){
+                return await getPageByPuppeteer(iframeList[0].src, venue, multipagesOptions, browserPool, browser, iframesDetection = false, verbose = false);
+            }else{
+                let iframesToProcess;
+                if (multipagesOptions.iframeMode === "all"){
+                    iframesToProcess = iframeList;
+                }else{
+                    iframesToProcess = multipagesOptions.iframeList
+                        .filter(iframe => iframe.selected === true)
+                        .filter(iframe => iframeList.some(fr => fr.id === iframe.id && fr.name === iframe.name && fr.src === iframe.src));
+                    const missingIframes = multipagesOptions.iframeList
+                        .filter(iframe => iframe.selected === true)
+                        .filter(iframe => !iframeList.some(fr => fr.id === iframe.id && fr.name === iframe.name && fr.src === iframe.src));
+                    missingIframes.forEach(iframe => delete iframe.selected);
+                    if (missingIframes.length){
+                        console.log("\x1b[38;5;226mWarning, some iframes selected in the venue could not be found:\n\x1b[0m", missingIframes);
+                        console.log('\x1b[38;5;226mbut found the following iframes:\n\x1b[0m',iframeList);
+                    }
+                    // return iframesToProcess.map(iframe => await getPageByPuppeteer(iframeList[0].src, venue, multipagesOptions, browserPool, browser, iframesDetection = false, verbose = false))
+                    //         .join('\n');
+                    return (await Promise.all(
+                        iframesToProcess.map(iframe =>
+                            getPageByPuppeteer(
+                                iframe.src,
+                                venue,
+                                multipagesOptions,
+                                browserPool,
+                                browser,
+                                false, // iframesDetection
+                                false  // verbose
+                            )
+                        )
+                    )).join('\n');
+
+                }
+            }
+         }
 
         await page.setViewport({ width: 1200, height: 3000 });
         

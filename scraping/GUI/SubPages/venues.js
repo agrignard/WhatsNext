@@ -363,21 +363,30 @@ iframesCheckbox.addEventListener('change', () => {
 const updateIframeListButton = document.getElementById('updateIframeListButton');
 updateIframeListButton.addEventListener('click', function () {
     const pageURL = textURL.textContent;
+    updateIframeListButton.classList.add("spin");
     getIframesList(pageURL).then(res => {
+        const oldSelectedList = currentIframeList.filter(iframe => iframe.selected === true);
+        console.log(oldSelectedList);
         currentIframeList = res;
-        console.log(res);
+        currentIframeList.forEach(iframe => {
+            iframe.selected = oldSelectedList.some(oldIframe => oldIframe.id === iframe.id
+                && oldIframe.name === iframe.name && oldIframe.src === iframe.src
+            );
+        });
+    
         fillIframeTable();
 
-        document.querySelector("#getSelected").addEventListener("click", () => {
-        const selected = [];
-        tbody.querySelectorAll("input[type=checkbox]:checked").forEach(cb => {
-        const iframe = currentIframeList[cb.dataset.index];
-        selected.push(iframe);
-    });
-
-    document.querySelector("#output").textContent = JSON.stringify(selected, null, 2);
-    console.log(selected);
-});
+        // document.querySelector("#getSelected").addEventListener("click", () => {
+        //     const selected = [];
+        //     tbody.querySelectorAll("input[type=checkbox]:checked").forEach(cb => {
+        //         const iframe = currentIframeList[cb.dataset.index];
+        //         selected.push(iframe);
+                
+        //     });
+        //     document.querySelector("#output").textContent = JSON.stringify(selected, null, 2);
+        //     console.log(selected);
+        // });
+        updateIframeListButton.classList.remove("spin");
 
     }).catch(err => {
         console.error("Error :", err);
@@ -550,7 +559,9 @@ function updateVenueInfo(mode) {
                                    venue.multiPages.hasOwnProperty('nextButton')?'click next button':null]
                                    .filter(e => e).join(', ')
                                 +').</div>'
-                                +(venue.multiPages.hasOwnProperty('useIframes')?'<div>Exploring iframes.</div>':'');
+                                +(venue.multiPages.hasOwnProperty('useIframes')?'<div>Exploring iframes (method: '
+                                    +venue.multiPages.iframeMode+' frame'+
+                                    (venue.multiPages.iframeMode === 'first'?'':'s')+').</div>':'');
 
                     divMultipages.innerHTML =  divHtml;
                 } else {
@@ -656,8 +667,9 @@ function updateVenueInfo(mode) {
                 iframeSubMenu.style.display = iframesCheckbox.checked ? 'block':'none';
                 const iframeSelectedOption = venue.multiPages.hasOwnProperty('iframeMode') ? venue.multiPages.iframeMode : "first";
                 document.getElementById('iframe'+iframeSelectedOption).click();
-                iframeListPanel.style.display = iframeSelectedOption.value === 'select'?'block':'none';
+                iframeListPanel.style.display = iframeSelectedOption === 'select'?'block':'none';
                 currentIframeList = venue.multiPages.hasOwnProperty('iframeList')?venue.multiPages.iframeList:[];
+                fillIframeTable();
 
                 // page list fields
                 if (venue.multiPages.hasOwnProperty('nbPages')) {
@@ -788,6 +800,15 @@ function updateVenueInfo(mode) {
                             venue.multiPages.iframeMode =  document.querySelector('input[name="iframeMode"]:checked').value;
                             if (currentIframeList.length > 0){
                                 venue.multiPages.iframeList = currentIframeList;
+                                const selectedIframeIndexes = Array.from(
+                                    document.querySelectorAll('input.tableCheckBox:checked'),
+                                    cb => Number(cb.dataset.index)
+                                );
+                                currentIframeList.forEach((iframe, index) => {
+                                    iframe.selected = selectedIframeIndexes.includes(index);
+                                    // console.log(selectedIframeIndexes, index, selectedIframeIndexes.includes(index));
+                                });
+                                console.log(currentIframeList);
                             }
                         }
                     } else {
@@ -1044,28 +1065,40 @@ function fillIframeTable(){
         // Checkbox
         const tdCheckbox = document.createElement("td");
         const checkbox = document.createElement("input");
+        checkbox.classList.add('tableCheckBox');
         checkbox.type = "checkbox";
-        checkbox.dataset.index = index; // pour retrouver l'iframe
+        checkbox.dataset.index = index; // to find the corresponding iframe
+        checkbox.addEventListener("click", () => {
+            currentIframeList[checkbox.dataset.index].selected = checkbox.checked;
+        });
         tdCheckbox.appendChild(checkbox);
+        tdCheckbox.classList.add('iframeTableCell');
         tr.appendChild(tdCheckbox);
 
         // Name
         const tdName = document.createElement("td");
         tdName.textContent = iframe.name;
+        tdName.classList.add('iframeTableCell');
         tr.appendChild(tdName);
 
         // ID
         const tdId = document.createElement("td");
         tdId.textContent = iframe.id;
+        tdId.classList.add('iframeTableCell');
         tr.appendChild(tdId);
 
         // Src
         const tdSrc = document.createElement("td");
         tdSrc.textContent = iframe.src;
+        tdSrc.classList.add('iframeTableCell');
         tr.appendChild(tdSrc);
 
         tbody.appendChild(tr);
     });
+    document.querySelectorAll('.tableCheckBox').forEach(cb => {
+        cb.checked = currentIframeList[cb.dataset.index].selected;
+    });// check the checkboxes
+
 }
 
 

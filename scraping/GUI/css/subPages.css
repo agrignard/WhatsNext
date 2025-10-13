@@ -5,7 +5,13 @@
   --shadow-color: rgba(0, 0, 0, 0.16);
   --main-panel-color: rgb(211, 227, 232);
   --sub-panel-color: rgb(195, 216, 223);
+  --sub-sub-panel-color: rgb(188, 210, 217);
+  --table-header-color: rgb(172, 193, 200);
+  --table-cell-color: rgb(180, 201, 208);
   --button-hover-color: rgb(224, 224, 224);
+
+  /* fonts */
+  --sub-sub-font-color: rgb(53, 60, 62);
  }
 
 body, html {
@@ -73,6 +79,13 @@ body, html {
 .subCategory{
   background-color: var(--sub-panel-color);
   margin-bottom: 5px;
+}
+
+.subSubCategory{
+  color: var(--sub-sub-font-color);
+  background-color: var(--sub-sub-panel-color);
+  margin-right: 5px;
+  padding: 5px;
 }
 
 #MPfields {
@@ -564,3 +577,131 @@ label.niceCheckBox >input:checked+span+i:after {
   background-color: rgb(202, 223, 229);
   padding: 5px 10px;
 }
+
+/* Update button */
+
+.iframeListPanelHeader{
+  display: flex;
+  width: 100%;
+  justify-content: space-between; 
+  flex-direction: row;
+  white-space: nowrap;
+  gap: 0px;
+  margin: 0px;
+  padding-top: 5px;
+}
+
+
+.reloadButton {
+  position: relative;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-left: 8px;
+  cursor: pointer;
+  /* margin-right: 3px; */
+}
+
+/* partial circle */
+.reloadButton::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--sub-sub-font-color);
+  border-right-color: transparent; /* missing part of the circle */
+  border-radius: 50%;
+  box-sizing: border-box;
+  transition: transform 0.1s ease, opacity 0.1s ease;
+}
+
+/* arrow */
+.reloadButton::after {
+  content: "";
+  position: absolute;
+  top: 1px;           
+  right: -2px;         
+  border: 4px solid transparent;
+  border-left-color: var(--sub-sub-font-color);
+  transform: rotate(45deg); /* better angle */
+}
+
+.reloadButton:hover {
+  filter: brightness(4.3);
+}
+
+/* clic */
+.reloadButton:active::before {
+  transform: scale(0.9);
+  opacity: 0.8;
+}
+
+.reloadButton.spin {
+  pointer-events: none;   /* Deactivate clicks */
+  opacity: 0.5;
+}
+
+/* rotation */
+.reloadButton.spin::before {
+  animation: spin 1s linear infinite;
+}
+
+.reloadButton.spin::after {
+  opacity: 0; /* arrows disappear */
+}
+
+/* animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+thead{
+  font-size: 11px; 
+  font-weight: bold; 
+  font-family: sans-serif;
+}
+
+#iframeTable{
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 1px 1px;
+}
+
+th {
+  background: var(--table-header-color);    
+  padding: 2px 3px;   
+}
+
+td.iframeTableCell {
+  background: var(--table-cell-color);
+  padding: 0px 3px;  
+  line-height: 1;
+  font-size: 10px;
+}
+
+.tableCheckBox {
+  width: 10px;
+  height: 10px;
+  border-radius: 0;  
+  border: 0px;   
+  accent-color: var(--toggle-active-color);   
+}
+
+.tableCheckBox:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* .tableCheckBox {
+ 
+  width: 16px;
+  height: 16px;
+  
+  border: 1px solid #555;    
+  border-radius: 0;          
+  background-color: white;   
+  cursor: pointer;
+  vertical-align: middle;
+  margin: 0;                 
+  display: inline-block;
+} */

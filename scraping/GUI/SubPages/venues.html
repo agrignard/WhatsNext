@@ -155,11 +155,17 @@
                                         </div>
                                     </div>
                                     <!-- select iframe -->
-                                    <div id="iframeListPanel" class="verySmallLeftMargin verySmallBottomMargin noTopMargin">
-                                        <table id="iframeTable" style="border-collapse: collapse; width: 100%;">
+                                    <div id="iframeListPanel" class="subSubCategory verySmallLeftMargin verySmallBottomMargin noTopMargin">
+                                        <div id="iframeListPanelHeader" class="iframeListPanelHeader">
+                                            <div style="display: inline; font-weight: bold;" class="rightMargin">
+                                                iframe List
+                                            </div>
+                                            <span id="updateIframeListButton" class="reloadButton" title="Update"></span>
+                                        </div>
+                                        <table id="iframeTable">
                                             <thead>
                                                 <tr>
-                                                <th>Select</th>
+                                                <th></th>
                                                 <th>Name</th>
                                                 <th>ID</th>
                                                 <th>Src</th>
@@ -170,9 +176,9 @@
                                             </tbody>
                                         </table>
 
-                                        <button id="getSelected">Get Selected Iframes</button>
-                                        <pre id="output"></pre>
-                                        <button id="updateIframeListButton" class="niceButtonNoMargin normal-button">Update</button>
+                                        <!-- <button id="getSelected">Get Selected Iframes</button>
+                                        <pre id="output"></pre> -->
+                                        <!-- <button id="updateIframeListButton" class="niceButtonNoMargin normal-button">Update</button> -->
                                     </div>
                                 </div>
                             </div>

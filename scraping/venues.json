@@ -301,8 +301,17 @@
     "multiPages": {
       "type": "dynamicPage",
       "scroll": true,
+      "dynamicPageLimit": "20",
       "useIframes": true,
-      "iframeMode": "first"
+      "iframeMode": "first",
+      "iframeList": [
+        {
+          "src": "https://agenda.villemorte.fr/",
+          "id": "iframe1",
+          "name": "",
+          "selected": true
+        }
+      ]
     },
     "eventURLIndex": 0,
     "ID": "Ville Morte|Lyon|France",
@@ -740,8 +749,10 @@
     "eventsDelimiterTag": "DIV.relative.jsarchivewrapper.depth6",
     "eventURLIndex": 1,
     "multiPages": {
+      "type": "dynamicPage",
       "scroll": true,
-      "useIframes": true
+      "useIframes": true,
+      "iframeMode": "first"
     }
   },
   {
