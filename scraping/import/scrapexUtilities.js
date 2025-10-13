@@ -20,7 +20,7 @@ module.exports = {getInfo};
 function textWithWhiteSpace($, element){
   return $(element).contents().map((_, el) => {
     if ($(el).children().length > 0) {
-        return getTextWithSpaces($(el)); // Appel récursif
+        return textWithWhiteSpace($,el); // Appel récursif
     }
     return $(el).text();
   }).get().join(' ');

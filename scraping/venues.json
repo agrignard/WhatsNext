@@ -1097,7 +1097,7 @@
       "eventStyleTags": [
         "P.addedTag.depth9:eq(0)"
       ],
-      "eventPlaceTags": [
+      "eventURLTags": [
         "A.mt6.mr6.btn.btnblack.depth9:eq(0)"
       ]
     },
@@ -1119,7 +1119,12 @@
     "mainPage": {},
     "url": "https://www.amperage.fr/programmation",
     "ID": "L'Ampérage|Grenoble|France",
-    "baseURL": "https://www.amperage.fr/"
+    "baseURL": "https://www.amperage.fr/",
+    "multiPages": {
+      "type": "dynamicPage",
+      "scroll": true,
+      "nextButton": ""
+    }
   },
   {
     "name": "Austra Rocks",
@@ -1133,7 +1138,8 @@
       "startPage": "1",
       "increment": "1"
     },
-    "ID": "Austra Rocks|Grenoble|France"
+    "ID": "Austra Rocks|Grenoble|France",
+    "baseURL": "https://www.austrarocks.com/evenements/"
   },
   {
     "name": "Le Summum",
@@ -1200,5 +1206,222 @@
     "baseURL": "https://www.lacordo.com/",
     "eventsDelimiterTag": "A.flipcard.depth5",
     "dateFormat": "dd-MM"
+  },
+  {
+    "name": "Shotgun_saint-etienne",
+    "city": "Saint-Etienne",
+    "country": "France",
+    "mainPage": {
+      "eventNameTags": [
+        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.mt2.flex.flexrow.itemscenter.gap2.depth9:eq(0)>P.lineclamp2.textlg.fontbold.leadingtight.depth10:eq(0)"
+      ],
+      "eventPlaceTags": [
+        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.wfull.minw0.flexcol.gap2.overflowhidden.depth9:eq(0)>DIV.textmutedforeground.wfull.shrink.overflowhidden.textellipsis.whitespacenowrap.textsm.leadingtight.depth10:eq(0)"
+      ],
+      "eventDateTags": [
+        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.wfull.minw0.flexcol.gap2.overflowhidden.depth9:eq(0)>DIV.flex.shrink0.itemscenter.gapx3.leadingtight.depth10:eq(0)>DIV.textaccentforeground.flex.gap1.depth11:eq(0)>TIME.depth12:eq(0)",
+        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.wfull.minw0.flexcol.gap2.overflowhidden.depth9:eq(0)>DIV.flex.shrink0.itemscenter.gapx3.leadingtight.depth10:eq(0)>DIV.textaccentforeground.flex.gap1.depth11:eq(0)>DIV.flex.gap1.depth12:eq(0)>TIME.depth13:eq(0)"
+      ]
+    },
+    "url": "https://shotgun.live/fr/cities/saint-etienne",
+    "multiPages": {
+      "type": "dynamicPage",
+      "scroll": true,
+      "nextButton": "Voir Plus",
+      "dynamicPageLimit": "20"
+    },
+    "ID": "Shotgun_saint-etienne|Saint-Etienne|France",
+    "baseURL": "https://shotgun.live/fr/cities/",
+    "eventsDelimiterTag": "A.depth6",
+    "dateFormat": "dd-MM-HH:mm"
+  },
+  {
+    "name": "Shotgun_grenoble",
+    "city": "Grenoble",
+    "country": "France",
+    "mainPage": {
+      "eventNameTags": [
+        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.mt2.flex.flexrow.itemscenter.gap2.depth9:eq(0)>P.lineclamp2.textlg.fontbold.leadingtight.depth10:eq(0)"
+      ],
+      "eventPlaceTags": [
+        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.wfull.minw0.flexcol.gap2.overflowhidden.depth9:eq(0)>DIV.textmutedforeground.wfull.shrink.overflowhidden.textellipsis.whitespacenowrap.textsm.leadingtight.depth10:eq(0)"
+      ],
+      "eventDateTags": [
+        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.wfull.minw0.flexcol.gap2.overflowhidden.depth9:eq(0)>DIV.flex.shrink0.itemscenter.gapx3.leadingtight.depth10:eq(0)>DIV.textaccentforeground.flex.gap1.depth11:eq(0)>TIME.depth12:eq(0)",
+        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.wfull.minw0.flexcol.gap2.overflowhidden.depth9:eq(0)>DIV.flex.shrink0.itemscenter.gapx3.leadingtight.depth10:eq(0)>DIV.textaccentforeground.flex.gap1.depth11:eq(0)>DIV.flex.gap1.depth12:eq(0)>TIME.depth13:eq(0)"
+      ],
+      "eventStyleTags": [
+        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.maxh6.flexwrap.gap2.overflowhidden.depth9:eq(0)>DIV.inlineflex.itemscenter.whitespacenowrap.roundedfull.border.px25.py05.fontmedium.uppercase.trackingwider.textmutedforeground.borderborder.text2xs.h6.depth10"
+      ]
+    },
+    "url": "https://shotgun.live/fr/cities/grenoble",
+    "multiPages": {
+      "type": "dynamicPage",
+      "scroll": true,
+      "nextButton": "Voir Plus",
+      "dynamicPageLimit": "20"
+    },
+    "ID": "Shotgun_grenoble|Grenoble|France",
+    "baseURL": "https://shotgun.live/fr/cities/",
+    "eventsDelimiterTag": "A.depth6",
+    "dateFormat": "dd-MM-HH:mm"
+  },
+  {
+    "name": "CEPAC Silo",
+    "city": "Marseille",
+    "country": "France",
+    "mainPage": {
+      "eventStyleTags": [
+        "DIV.cardevent__content.depth8:eq(0)>SPAN.cardevent__tag.colorprimary.depth9:eq(0)"
+      ],
+      "eventNameTags": [
+        "DIV.cardevent__content.depth8:eq(0)>H3.cardevent__title.depth9:eq(0)"
+      ],
+      "eventDateTags": [
+        "DIV.cardevent__content.depth8:eq(0)>P.cardevent__date.depth9:eq(0)"
+      ],
+      "eventURLTags": [
+        "DIV.cardevent__hovermobile.depth8:eq(0)>A.btn.btnwhitetransparent.depth9:eq(0)"
+      ]
+    },
+    "url": "https://www.cepacsilo-marseille.fr/evenements/",
+    "ID": "CEPAC Silo|Marseille|France",
+    "baseURL": "https://www.cepacsilo-marseille.fr/evenements/",
+    "eventsDelimiterTag": "DIV.cardevent.depth7",
+    "dateFormat": "dd-MM-yyyy"
+  },
+  {
+    "name": "Théâtre de La Criée",
+    "city": "Marseille",
+    "country": "France",
+    "mainPage": {
+      "eventStyleTags": [
+        "DIV.relative.mb4.wfull.overflowhidden.depth8:eq(0)>DIV.absolute.bottom0.left0.right0.bggradienttot.fromblack.totransparent.p6.textcenter.textwhite.depth9:eq(0)>DIV.flex.justifycenter.gap2.fontbold.depth10:eq(0)"
+      ],
+      "eventNameTags": [
+        "DIV.relative.mb4.wfull.overflowhidden.depth8:eq(0)>DIV.absolute.bottom0.left0.right0.bggradienttot.fromblack.totransparent.p6.textcenter.textwhite.depth9:eq(0)>H3.mt2.fontdisplay.text3xl.fontbold.uppercase.leadingnone.lgtext4xl.depth10:eq(0)"
+      ],
+      "eventDateTags": [
+        "P.mb3.text2xl.fontbold.depth8:eq(0)"
+      ]
+    },
+    "url": "https://theatre-lacriee.com/programmation/spectacles",
+    "ID": "Théâtre de La Criée|Marseille|France",
+    "baseURL": "https://theatre-lacriee.com/programmation/",
+    "eventsDelimiterTag": "A.depth7",
+    "dateFormat": "dd-MM-yyyy"
+  },
+  {
+    "name": "Le Makeda",
+    "city": "Marseille",
+    "country": "France",
+    "mainPage": {},
+    "url": "https://www.lemakeda.com/evenements/",
+    "ID": "Le Makeda|Marseille|France"
+  },
+  {
+    "name": "Shotgun-marseille",
+    "city": "Marseille",
+    "country": "France",
+    "mainPage": {
+      "eventNameTags": [
+        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.mt2.flex.flexrow.itemscenter.gap2.depth9:eq(0)>P.lineclamp2.textlg.fontbold.leadingtight.depth10:eq(0)"
+      ],
+      "eventPlaceTags": [
+        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.wfull.minw0.flexcol.gap2.overflowhidden.depth9:eq(0)>DIV.textmutedforeground.wfull.shrink.overflowhidden.textellipsis.whitespacenowrap.textsm.leadingtight.depth10:eq(0)"
+      ],
+      "eventDateTags": [
+        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.wfull.minw0.flexcol.gap2.overflowhidden.depth9:eq(0)>DIV.flex.shrink0.itemscenter.gapx3.leadingtight.depth10:eq(0)>DIV.textaccentforeground.flex.gap1.depth11:eq(0)>TIME.depth12:eq(0)",
+        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.wfull.minw0.flexcol.gap2.overflowhidden.depth9:eq(0)>DIV.flex.shrink0.itemscenter.gapx3.leadingtight.depth10:eq(0)>DIV.textaccentforeground.flex.gap1.depth11:eq(0)>DIV.flex.gap1.depth12:eq(0)>TIME.depth13:eq(0)"
+      ],
+      "eventStyleTags": [
+        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.maxh6.flexwrap.gap2.overflowhidden.depth9:eq(0)>DIV.inlineflex.itemscenter.whitespacenowrap.roundedfull.border.px25.py05.fontmedium.uppercase.trackingwider.textmutedforeground.borderborder.text2xs.h6.depth10"
+      ]
+    },
+    "url": "https://shotgun.live/fr/cities/aix-marseille",
+    "multiPages": {
+      "type": "dynamicPage",
+      "scroll": true,
+      "nextButton": "VOIR PLUS"
+    },
+    "ID": "Shotgun-marseille|Marseille|France",
+    "baseURL": "https://shotgun.live/fr/cities/",
+    "eventsDelimiterTag": "A.depth6",
+    "dateFormat": "dd-MM-HH:mm"
+  },
+  {
+    "name": "Le Cri du Port",
+    "city": "Marseille",
+    "country": "France",
+    "mainPage": {},
+    "url": "https://criduport.fr/saison-2024-2025-2/",
+    "ID": "Le Cri du Port|Marseille|France",
+    "baseURL": "https://criduport.fr/saison-2024-2025-2/",
+    "eventsDelimiterTag": ""
+  },
+  {
+    "name": "Espace Julien",
+    "city": "Marseille",
+    "country": "France",
+    "mainPage": {
+      "eventDateTags": [
+        "DIV.relative.minh60cqw.mxcgx.pxcalcvarcontainergutterx__2.pt8.pb10.lgpycgx.mtcgx.textcenter.bgneutral0.depth18:eq(0)>DIV.depth19:eq(1)>DIV.mb2.evtdate.agendaevtdate.datetohasdifferentmonth.datetohasdifferentyear.depth20:eq(0)"
+      ],
+      "eventNameTags": [
+        "DIV.relative.minh60cqw.mxcgx.pxcalcvarcontainergutterx__2.pt8.pb10.lgpycgx.mtcgx.textcenter.bgneutral0.depth18:eq(0)>DIV.depth19:eq(2)>DIV.text18rem.lgtext22rem.fontbold.uppercase.leadingnone.depth20:eq(0)"
+      ],
+      "eventStyleTags": [
+        "DIV.relative.minh60cqw.mxcgx.pxcalcvarcontainergutterx__2.pt8.pb10.lgpycgx.mtcgx.textcenter.bgneutral0.depth18:eq(0)>DIV.depth19:eq(2)>DIV.flex.flexwrap.itemsbaseline.justifycenter.gapx3.gapy1.mtcgx.depth20:eq(0)"
+      ]
+    },
+    "url": "https://espace-julien.com/agenda",
+    "ID": "Espace Julien|Marseille|France",
+    "baseURL": "https://espace-julien.com/",
+    "eventsDelimiterTag": "A.container.group.block.hfull.bgneutral0.textcontent.hoverscbasescbaseinvert.hoverscbasecontentscbasecontentinvert.depth17",
+    "dateFormat": "dd-MM-HH:mm"
+  },
+  {
+    "name": "Le Dôme",
+    "city": "Marseille",
+    "country": "France",
+    "mainPage": {
+      "eventStyleTags": [
+        "DIV.viewsfield.viewsfieldfieldtags.depth18:eq(0)>DIV.fieldcontent.depth19:eq(0)>A.depth20:eq(0)"
+      ],
+      "eventNameTags": [
+        "DIV.viewsfield.viewsfieldtitle.depth18:eq(0)"
+      ],
+      "eventDateTags": [
+        "DIV.viewsfield.viewsfieldfielddatesdesrepresentations.depth18:eq(0)>DIV.fieldcontent.depth19:eq(0)>TIME.datetime.depth20:eq(0)"
+      ]
+    },
+    "url": "https://dome.marseille.fr/programmation/concert",
+    "ID": "Le Dôme|Marseille|France",
+    "baseURL": "https://dome.marseille.fr/programmation/",
+    "eventsDelimiterTag": "DIV.viewsviewresponsivegrid__iteminner.depth17",
+    "dateFormat": "dd-MM-yyyy-HH:mm"
+  },
+  {
+    "name": "⁠L'Affranchi",
+    "city": "Marseille",
+    "country": "France",
+    "mainPage": {
+      "eventNameTags": [
+        "DIV.evo_event_schema.depth17:eq(0)>SPAN.depth18:eq(0)"
+      ],
+      "eventDateTags": [
+        "P.desc_trig_outter.depth17:eq(0)>A.hasFtIMG.desc_trig.sin_val.evcal_list_a.depth18:eq(0)"
+      ]
+    },
+    "url": "https://l-affranchi.com/",
+    "ID": "⁠L'Affranchi|Marseille|France",
+    "multiPages": {
+      "type": "dynamicPage",
+      "scroll": true,
+      "nextButton": "AFFICHER PLUS DE DATES"
+    },
+    "baseURL": "https://l-affranchi.com/",
+    "eventsDelimiterTag": "DIV.eventon_list_event.evo_eventtop.event.event_213045_0.depth16",
+    "dateFormat": "dd-MM-yyyy"
   }
 ]
