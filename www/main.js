@@ -75,6 +75,17 @@ function jsonCallback(err, data) {
     });
 
     mapUtils.addGeolocationWidget(map);
+    mapUtils.addPlacesWidget(map, (showPlaces) => {
+    if (showPlaces) {
+        map.setLayoutProperty('places-circles', 'visibility', 'visible');
+        map.setLayoutProperty('places-circles_v', 'visibility', 'visible');
+        map.setLayoutProperty('place-labels', 'visibility', 'visible');
+    } else {
+        map.setLayoutProperty('places-circles', 'visibility', 'none');
+        map.setLayoutProperty('places-circles_v', 'visibility', 'none');
+        map.setLayoutProperty('place-labels', 'visibility', 'none');
+    }
+    });
     mapUtils.addShareWidget(map);
     appDate=currentDate;
     mapUtils.filterByTime(map,currentDate.valueOf(),false);

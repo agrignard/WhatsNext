@@ -57,13 +57,13 @@ export function addPlaces(map,placesData){
         'type': 'circle',
         'source': 'places',
         'paint': {
-          'circle-radius': 10, // Larger radius for hit detection
-          'circle-opacity': 0, // Hide the circles while keeping their size for hit detection
-          'circle-stroke-width': 1,
-          'circle-color': 'transparent', // Transparent fill color
-          'circle-stroke-color': 'transparent' // Transparent stroke color
+        'circle-radius': 10, // Larger radius for hit detection
+        'circle-opacity': 0, // Hide the circles while keeping their size for hit detection
+        'circle-stroke-width': 1,
+        'circle-color': 'transparent', // Transparent fill color
+        'circle-stroke-color': 'transparent' // Transparent stroke color
         }
-      });
+    });
     
     map.addLayer({
     'id': 'place-labels',
@@ -115,6 +115,7 @@ export function addPlaces(map,placesData){
         map.on('mouseleave', 'places-circles', () => {
         map.getCanvas().style.cursor = '';
     });
+    
 }
 
 
@@ -270,6 +271,35 @@ export function addGeolocationWidget(map){
         })
     );
 }
+
+export function addPlacesWidget(map, togglePlacesCallback) {
+  // Crée le bouton personnalisé
+  const button = document.createElement('button');
+  button.className = 'mapboxgl-ctrl-icon mapboxgl-ctrl-custom';
+  button.type = 'button';
+  button.title = 'Afficher / masquer les places';
+  button.innerHTML = '📍'; // ou ton icône SVG préférée
+
+  // État interne du bouton
+  let showPlaces = map.getLayoutProperty('places-circles', 'visibility') === 'visible';
+  button.addEventListener('click', () => {
+    showPlaces = !showPlaces;
+    togglePlacesCallback(showPlaces);
+    button.style.opacity = showPlaces ? '1' : '0.5'; // feedback visuel
+  });
+
+  // Conteneur Mapbox (même style que les autres contrôles)
+  const ctrl = document.createElement('div');
+  ctrl.className = 'mapboxgl-ctrl mapboxgl-ctrl-group';
+  ctrl.appendChild(button);
+
+  // Ajoute le contrôle à la carte
+  map.addControl({
+    onAdd: () => ctrl,
+    onRemove: () => ctrl.parentNode.removeChild(ctrl)
+  }, 'top-right'); // ou 'top-left' si tu veux le placer ailleurs
+}
+
 
 export function addShareWidget(map){
     class ShareControl {
