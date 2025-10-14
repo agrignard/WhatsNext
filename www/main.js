@@ -5,7 +5,10 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiYWdyaWduYXJkIiwiYSI6ImNqdWZ6ZjJ5MDBoenczeXBkY
 
 var devMode = false;
 var showAllValueDiv = devMode ? true : false;
-export var city="france";
+export var country = "france";
+export var city="lyon";
+export var dataPlacePath = "./data/places/generated/";
+export var dataEventPath = "./data/events/generated/";
 processCityBasedOnUrl();
 mapUtils.setCategoryColors(city);
 const map = mapUtils.initializeMap();
@@ -30,7 +33,7 @@ currentDate.setHours(2,0,0);
 var appDate;
  
 map.on('load', () => {
-d3.json('./' + city + '_event.geojson',jsonCallback);
+d3.json('./' + dataEventPath+country + '_event.geojson',jsonCallback);
     map.flyTo({
     ...mapUtils.startLocations.get(city), // Fly to the selected target
     duration: 5000, // Animate over 12 seconds
@@ -43,7 +46,7 @@ function jsonCallback(err, data) {
     throw err;
     }
     //PLACES
-    mapUtils.addPlaces(map,'./' + city + '_place.geojson');
+    mapUtils.addPlaces(map, dataPlacePath + country + '_place.geojson');
     map.setLayoutProperty('places-circles', 'visibility', 'visible');
     map.setLayoutProperty('place-labels', 'visibility', 'visible');
     

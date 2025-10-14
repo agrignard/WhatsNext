@@ -1,0 +1,117 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "Zénith de Dijon",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.066667,
+          47.316667
+        ]
+      },
+      "properties": {
+        "title": "Zénith de Dijon",
+        "icon": "dot-11",
+        "city": "dijon"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Palais des sports de Dijon",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.066667,
+          47.316667
+        ]
+      },
+      "properties": {
+        "title": "Palais des sports de Dijon",
+        "icon": "dot-11",
+        "city": "dijon"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Auditorium de Dijon",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.066667,
+          47.316667
+        ]
+      },
+      "properties": {
+        "title": "Auditorium de Dijon",
+        "icon": "dot-11",
+        "city": "dijon"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "La Vapeur",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.066667,
+          47.316667
+        ]
+      },
+      "properties": {
+        "title": "La Vapeur",
+        "icon": "dot-11",
+        "city": "dijon"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Grand Théâtre de Dijon",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.041667,
+          47.321389
+        ]
+      },
+      "properties": {
+        "title": "Grand Théâtre de Dijon",
+        "icon": "dot-11",
+        "city": "dijon"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Parc des Expositions et Palais des Congrès de Dijon",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.073611,
+          47.336111
+        ]
+      },
+      "properties": {
+        "title": "Parc des Expositions et Palais des Congrès de Dijon",
+        "icon": "dot-11",
+        "city": "dijon"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Théâtre des Feuillants",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.042778,
+          47.323333
+        ]
+      },
+      "properties": {
+        "title": "Théâtre des Feuillants",
+        "icon": "dot-11",
+        "city": "dijon"
+      }
+    }
+  ]
+}

@@ -24,7 +24,7 @@ if (useAI){
 const sourcePath = './webSources/';
 
 //var out="";// = "PLACE,TITRE,UNIX,SIZE,GENRE,URL";
-const outFile = "generated/scrapexResult_france.csv";
+const outFile = "generated/scrapexResult.csv";
 const globalDefaultStyle = 'Live';
 const styleConversion = getStyleConversions();
 const cancellationKeywords = loadCancellationKeywords();
@@ -113,7 +113,7 @@ async function scrapFiles(venues) {
 
   saveToCSV(totalEventList, outFile);
   // save to JSON
-  saveToJSON(totalEventList,'./generated/scrapResult_lyon.json');
+  saveToJSON(totalEventList,'./generated/scrapexResult.json');
 
   // save errors to JSON file
   saveToJSON(totalEventList.filter(el => el.hasOwnProperty('errorLog')),'./generated/errorLog.json');

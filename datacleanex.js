@@ -1,13 +1,19 @@
-const fs = require('fs');
+
+
+const fsCallback = require('fs');
+const fs = require('fs').promises;
+const path = require('path');
 
 const placeToCoord = new Map();
 
-const city = process.argv[2] || "france";
+//const city = process.argv[2] || "france";
 
 //const city="saint-etienne";
-console.log("***************DATACLEANEX-City: " + city + " **************");
-convertPlaceCSVtoGeoJson();
-convertEventCSVtoGeoJson();
+const country = "france";
+console.log("***************DATACLEANEX-City: " + country + " **************");
+//convertPlaceCSVtoGeoJson();
+convertPlaceCSVtoGeoJsonFromFolder('www/data/places');
+convertEventCSVtoGeoJson('www/data/events');
 
 const initPlaceInformationMapping = {
   'art': 'art-gallery',
@@ -18,102 +24,121 @@ const initPlaceInformationMapping = {
   'undefined' : 'dot-11'
 };
 
-async function convertPlaceCSVtoGeoJson(){
-  console.log("*****Converting Place CSV to GeoJson (place,lat,long,url)*****");
-  // Getting the original template source file for event
-  const templateGeoJSONPplace = 'www/template/place_minimal.geojson';
-  // Read the existing GeoJSON file
-  fs.readFile(templateGeoJSONPplace, 'utf8', (err, data) => {
-    if (err) {
-      console.error('Error reading existing GeoJSON:', err);
-      return;
-    }
-    const existingGeoJSON = JSON.parse(data);
-    const csvFilePath = 'www/' + city + '_place.csv';
-    const csvData = fs.readFileSync(csvFilePath, 'utf8');
-    const table = csvData.split('\n').slice(1);
-    table.forEach(row => {
-      const columns = row.split(','); 
-      const place=columns[0];
-      const latitude=parseFloat(columns[1]);
-      const longitude=parseFloat(columns[2]);
-      const url=columns[3];
-      var style = columns[4];    
-      if(initPlaceInformationMapping[columns[4]]!=null){
-        style=initPlaceInformationMapping[columns[4]];
-      }else{
-        style= initPlaceInformationMapping['undefined'];
-      }    
-      //console.log("Place: "+place+";"+latitude+";"+longitude+";"+url);
-
-    const newFeature = {
-      type: 'Feature',
-      id:place,
-      geometry:{
-          type: 'Point',
-          coordinates: [longitude,latitude],
-      },
-      properties:{
-          "title": place,
-          "icon": style,
-          "description":url
-      },
-      };
-      existingGeoJSON.features.push(newFeature);
-  });
-    // Define the path to the modified GeoJSON file
-    const modifiedGeoJSONPath = 'www/' + city + '_place.geojson';
-    // Save the modified GeoJSON to a new file
-    fs.writeFile(modifiedGeoJSONPath, JSON.stringify(existingGeoJSON), 'utf8', (err) => {
-      if (err) {
-        console.error('Error saving modified GeoJSON:', err);
-      } else {
-        console.log('Modified GeoJSON saved to', modifiedGeoJSONPath);
-      }
-    });
-    console.log("in convertPlaceCSVtoGeoJson(): "+ table.length + " places created")
-  });
+const verbose = process.argv.includes('--verbose');
+if (verbose){
+  console.log('*** v=verbose mode ***');
 }
- 
-async function convertEventCSVtoGeoJson(){
-  // Getting the original source file for event
-  console.log("*****Converting Event CSV*****");
-  const existingGeoJSONPath = 'www/template/event_minimal.geojson';
-  // Read the existing GeoJSON file
-  fs.readFile(existingGeoJSONPath, 'utf8', (err, data) => {
-    if (err) {
-      console.error('Error reading existing GeoJSON:', err);
-      return;
+
+async function convertPlaceCSVtoGeoJsonFromFolder(folderPath) {
+  console.log("*****Converting Place CSV to GeoJson (place,lat,long,url)*****");
+  var nbPlaces;
+  // GeoJSON global
+  const globalGeoJSON = {
+    type: "FeatureCollection",
+    features: []
+  };
+
+  try {
+    // Lister tous les fichiers CSV dans le dossier
+    const sourcefilesPath =folderPath+"/sources";
+    const generatedfilesPath =folderPath+"/generated";
+    const files = await fs.readdir(sourcefilesPath);
+    const csvFiles = files.filter(f => f.endsWith('_place.csv'));
+
+    for (const file of csvFiles) {
+      const city = file.replace('_place.csv', ''); // extraire le nom de la ville
+      const templateGeoJSONPlace = generatedfilesPath+'/place_minimal.geojson';
+      const data = await fs.readFile(templateGeoJSONPlace, 'utf8');
+      const cityGeoJSON = JSON.parse(data);
+
+      const csvFilePath = path.join(sourcefilesPath, file);
+      const csvData = await fs.readFile(csvFilePath, 'utf8');
+      const table = csvData.split('\n').slice(1);
+
+      table.forEach(row => {
+        if (!row.trim()) return; // ignorer les lignes vides
+        const columns = row.split(',');
+        const place = columns[0];
+        const latitude = parseFloat(columns[1]);
+        const longitude = parseFloat(columns[2]);
+        const url = columns[3];
+
+        let style = columns[4];
+        if (initPlaceInformationMapping[columns[4]] != null) {
+          style = initPlaceInformationMapping[columns[4]];
+        } else {
+          style = initPlaceInformationMapping['undefined'];
+        }
+
+        const newFeature = {
+          type: 'Feature',
+          id: place,
+          geometry: { type: 'Point', coordinates: [longitude, latitude] },
+          properties: { title: place, icon: style, description: url, city: city },
+        };
+
+        cityGeoJSON.features.push(newFeature);
+        globalGeoJSON.features.push(newFeature);
+      });
+
+      const modifiedCityGeoJSONPath = path.join(generatedfilesPath, `${city}_place.geojson`);
+      await fs.writeFile(modifiedCityGeoJSONPath, JSON.stringify(cityGeoJSON, null, 2), 'utf8');
+      if (verbose){
+        console.log(`${city}: ${table.length} places saved to ${modifiedCityGeoJSONPath}`);
+      }
+      
     }
 
+    // Sauvegarde du GeoJSON global
+    const globalGeoJSONPath = path.join(generatedfilesPath, `${country}_place.geojson`);
+    await fs.writeFile(globalGeoJSONPath, JSON.stringify(globalGeoJSON, null, 2), 'utf8');
+    console.log(globalGeoJSON.features.length + ` places in ${globalGeoJSONPath}`);
+
+  } catch (err) {
+    console.error("Error processing folder:", err);
+  }
+}
+
+ 
+async function convertEventCSVtoGeoJson(folderPath) {
+  try {
+    console.log("*****Converting Event CSV*****");
+
+    const existingGeoJSONPath = folderPath+'/generated/event_minimal.geojson';
+    const data = await fs.readFile(existingGeoJSONPath, 'utf8');
     // Parse the existing GeoJSON data
     const existingGeoJSON = JSON.parse(data);
 
-    var csvFilePath = 'scraping/generated/scrapexResult_'+city+'.csv';
-    var csvData = fs.readFileSync(csvFilePath, 'utf8');
-    var table = csvData.split('\n');
-    pushTableInExistingGeoJsonFile(table,existingGeoJSON);
-    csvFilePath = 'scraping/handMade/scrapexResult_'+city+"_handMade"+'.csv';
-    if (fs.existsSync(csvFilePath)) {
-      csvData = fs.readFileSync(csvFilePath, 'utf8');
-      table = csvData.split('\n');
-      pushTableInExistingGeoJsonFile(table,existingGeoJSON);
+    // Fonction utilitaire pour lire et pousser les données CSV
+    async function processCSV(filePath) {
+      try {
+        const csvData = await fs.readFile(filePath, 'utf8');
+        const table = csvData.split('\n');
+        pushTableInExistingGeoJsonFile(table, existingGeoJSON);
+      } catch (err) {
+        console.warn(`CSV file ${filePath} not found or error reading it.`);
+      }
     }
 
-  
+    // Lire et traiter le CSV principal
+    let csvFilePath = `scraping/generated/scrapexResult.csv`;
+    await processCSV(csvFilePath);
 
-    // Define the path to the modified GeoJSON file
-    const modifiedGeoJSONPath = 'www/' + city + '_event.geojson';
-    // Save the modified GeoJSON to a new file
-    fs.writeFile(modifiedGeoJSONPath, JSON.stringify(existingGeoJSON), 'utf8', (err) => {
-      if (err) {
-        console.error('Error saving modified GeoJSON:', err);
-      } else {
-        console.log('Modified GeoJSON saved to', modifiedGeoJSONPath);
-      }
-    });
-    console.log("in convertEventCSVtoGeoJson(): " + existingGeoJSON.features.length + " events");
-  });
+    // Lire et traiter le CSV handMade si présent
+    csvFilePath = `scraping/handMade/scrapexResult_handMade.csv`;
+    if (fsCallback.existsSync(csvFilePath)) {
+      await processCSV(csvFilePath);
+    }
+
+    // Définir le chemin pour le GeoJSON modifié
+    const modifiedGeoJSONPath = `www/data/events/generated/${country}_event.geojson`;
+    await fs.writeFile(modifiedGeoJSONPath, JSON.stringify(existingGeoJSON), 'utf8');
+
+    console.log(`${existingGeoJSON.features.length} events in ${modifiedGeoJSONPath}`);
+
+  } catch (err) {
+    console.error('Error in convertEventCSVtoGeoJson:', err);
+  }
 }
 
 
@@ -151,48 +176,4 @@ function pushTableInExistingGeoJsonFile(_table,_existingGeoJSON){
           _existingGeoJSON.features.push(newFeature);
       } 
   })
-}
-
-//printEachEvent();
-//Getting the coordinate of each place 
-function printEachEvent(){
-  const placeGeoJSONPath = 'www/' + city + '_event.geojson';
-  fs.readFile(placeGeoJSONPath, 'utf8', (err, data) => {
-      if (err) {
-          console.error('Error reading existing GeoJSON:', err);
-          return;
-      }
-      const placeGeoJSONPath = JSON.parse(data);
-      for (var i = 0; i < placeGeoJSONPath.features.length; i++) {
-        console.log(placeGeoJSONPath.features[i].properties.place + "," + placeGeoJSONPath.features[i].properties.title + "," + placeGeoJSONPath.features[i].properties.time + "," + placeGeoJSONPath.features[i].properties.size + "," + placeGeoJSONPath.features[i].properties.style + "," + placeGeoJSONPath.features[i].properties.description); 
-      }
-  });
-}
-
-function convertGeoJsontoCSV(){
-  console.log("converting geojson place to csv");
-  const placeGeoJSONPath = 'www/' + city + '_place.geojson';
-  var placeString="place,latitude,longitude,url\n";
-  fs.readFile(placeGeoJSONPath, 'utf8', (err, data) => {
-      if (err) {
-          console.error('Error reading existing GeoJSON:', err);
-          return;
-      }
-      const placeGeoJSONPath = JSON.parse(data);
-      for (var i = 0; i < placeGeoJSONPath.features.length; i++) {
-        placeString += placeGeoJSONPath.features[i].properties.title + "," + parseFloat(placeGeoJSONPath.features[i].geometry.coordinates[1])+ "," + parseFloat(placeGeoJSONPath.features[i].geometry.coordinates[0]) + ","  + placeGeoJSONPath.features[i].properties.description + "\n"; 
-      }
-      // Define the path to the modified GeoJSON file
-      const modifiedPlacePath = 'www/' + city + '_place.csv';
-      console.log(placeString);
-      // Save the modified GeoJSON to a new file
-      fs.writeFile(modifiedPlacePath, placeString, 'utf8', (err) => {
-        if (err) {
-          console.error('Error saving modified GeoJSON:', err);
-        } else {
-          console.log('Modified CSV saved to', modifiedPlacePath);
-        }
-      });
-  });
-  
 }

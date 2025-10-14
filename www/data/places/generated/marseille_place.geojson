@@ -1,0 +1,141 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "CEPAC Silo",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.366977904055434,
+          43.310673361823355
+        ]
+      },
+      "properties": {
+        "title": "CEPAC Silo",
+        "icon": "dot-11",
+        "description": "https://www.cepacsilo-marseille.fr/",
+        "city": "marseille"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Le Dôme",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.405278,
+          43.295556
+        ]
+      },
+      "properties": {
+        "title": "Le Dôme",
+        "icon": "dot-11",
+        "description": " https://dome.marseille.fr/",
+        "city": "marseille"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Espace Julien",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.383528577932294,
+          43.2942140392514
+        ]
+      },
+      "properties": {
+        "title": "Espace Julien",
+        "icon": "dot-11",
+        "description": "https://espace-julien.com/",
+        "city": "marseille"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Théâtre de La Criée",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.368740750149353,
+          43.29266598408319
+        ]
+      },
+      "properties": {
+        "title": "Théâtre de La Criée",
+        "icon": "dot-11",
+        "description": "https://theatre-lacriee.com/",
+        "city": "marseille"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Le Makeda",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.39190767339256,
+          43.29326858393524
+        ]
+      },
+      "properties": {
+        "title": "Le Makeda",
+        "icon": "dot-11",
+        "description": "https://www.lemakeda.com/",
+        "city": "marseille"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Le Cri du Port",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.374053918258364,
+          43.30552899205118
+        ]
+      },
+      "properties": {
+        "title": "Le Cri du Port",
+        "icon": "dot-11",
+        "description": "https://criduport.fr/",
+        "city": "marseille"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "⁠L'Affranchi",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.398056,
+          43.304722
+        ]
+      },
+      "properties": {
+        "title": "⁠L'Affranchi",
+        "icon": "dot-11",
+        "description": " https://l-affranchi.com/",
+        "city": "marseille"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "⁠Le Molotov",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.385556,
+          43.294167
+        ]
+      },
+      "properties": {
+        "title": "⁠Le Molotov",
+        "icon": "dot-11",
+        "description": " https://lemolotov.com/",
+        "city": "marseille"
+      }
+    }
+  ]
+}

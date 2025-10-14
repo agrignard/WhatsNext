@@ -11,18 +11,18 @@ const showPlacesNotHandled= false;
 
 
 export async function initPlaceInformation(){
-    const response = await fetch(main.city+'_place.geojson');
+    const response = await fetch(main.dataPlacePath + main.city+'_place.geojson');
     const data =   await response.json();
     for (var i = 0; i < data.features.length; i++) {
         placeToCoord.set(data.features[i].properties.title,data.features[i].geometry.coordinates);
         placeToUrl.set(data.features[i].properties.title,data.features[i].properties.description);
         places.push(data.features[i].properties.title);
     }
-    console.log("Total places imported from " + main.city + "_place.geojson: " + placeToCoord.size);
+    console.log("Total places imported from " + main.dataPlacePath + main.city+ "_place.geojson: " + placeToCoord.size);
 }
 
 export async function getTodayEvents(_date){
-    const response = await fetch(main.city+'_event.geojson');
+    const response = await fetch(main.dataEventPath+ main.country+'_event.geojson');
     const data =   await response.json();
     var nbEventToday=0;
     todaysEvent=new Map();
@@ -44,7 +44,7 @@ export async function getTodayEvents(_date){
 
 
 export async function getSortedNbEventPerPlaceMap(_date){
-    const response = await fetch(main.city+'_event.geojson');
+    const response = await fetch(main.dataEventPath+main.country+'_event.geojson');
     const data =   await response.json();
     const nbEventPerPlace = new Map();
     nbActiveEvent=0;
@@ -70,7 +70,7 @@ export async function getSortedNbEventPerPlaceMap(_date){
 }
 
 export async function getSortedNbEventPerStyleMap(_date){
-    const response = await fetch(main.city+'_event.geojson');
+    const response = await fetch(main.dataEventPath+main.country+'_event.geojson');
     const data =   await response.json();
     const nbEventPerStyle = new Map();
     for (var j = 0; j < mapUtils.categoryColors.length;j++){
@@ -94,7 +94,7 @@ export async function getSortedNbEventPerStyleMap(_date){
 }
 
 export async function getSortedNbEventPerDayMap(_date){
-    const response = await fetch(main.city+'_event.geojson');
+    const response = await fetch(main.dataEventPath+main.country+'_event.geojson');
     const data =   await response.json();
     const nbEventPerDay = new Map();
     var keyEntry;

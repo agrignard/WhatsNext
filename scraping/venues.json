@@ -1423,5 +1423,83 @@
     "baseURL": "https://l-affranchi.com/",
     "eventsDelimiterTag": "DIV.eventon_list_event.evo_eventtop.event.event_213045_0.depth16",
     "dateFormat": "dd-MM-yyyy"
+  },
+  {
+    "name": "Centre culturel L'Ilyade",
+    "city": "Marseille",
+    "country": "France",
+    "mainPage": {
+      "eventStyleTags": [
+        "A.elementorelement.elementorelement3ce456e2.econfull.bclprogctnimg.eflex.econ.echild.depth13:eq(0)>DIV.elementorelement.elementorelement8cc8910.econfull.eflex.econ.echild.depth14:eq(0)>DIV.elementorelement.elementorelement5fec6821.bclproggenre.elementorwidget.elementorwidgetpostinfo.depth15:eq(0)>DIV.elementorwidgetcontainer.depth16:eq(0)>UL.elementorinlineitems.elementoriconlistitems.elementorpostinfo.depth17:eq(0)>LI.elementoriconlistitem.elementorrepeateritem0720d7a.elementorinlineitem.depth18:eq(0)"
+      ],
+      "eventNameTags": [
+        "DIV.elementorelement.elementorelement59a61d14.econfull.eflex.econ.echild.depth13:eq(0)>DIV.elementorelement.elementorelement21874ee5.blcprogctntitreresa.eflex.econboxed.econ.echild.depth14:eq(0)>DIV.econinner.depth15:eq(0)>DIV.elementorelement.elementorelement1e3f771c.bclprogtitre.vingt_cinq_six.elementorwidget.elementorwidgetthemeposttitle.elementorpagetitle.elementorwidgetheading.depth16:eq(0)>DIV.elementorwidgetcontainer.depth17:eq(0)>H3.elementorheadingtitle.elementorsizedefault.depth18:eq(0)>A.depth19:eq(0)"
+      ],
+      "eventURLTags": [
+        "DIV.elementorelement.elementorelement59a61d14.econfull.eflex.econ.echild.depth13:eq(0)>DIV.elementorelement.elementorelement21874ee5.blcprogctntitreresa.eflex.econboxed.econ.echild.depth14:eq(0)>DIV.econinner.depth15:eq(0)>DIV.elementorelement.elementorelement1e3f771c.bclprogtitre.vingt_cinq_six.elementorwidget.elementorwidgetthemeposttitle.elementorpagetitle.elementorwidgetheading.depth16:eq(0)>DIV.elementorwidgetcontainer.depth17:eq(0)>H3.elementorheadingtitle.elementorsizedefault.depth18:eq(0)>A.depth19:eq(0)"
+      ],
+      "eventDateTags": [
+        "DIV.elementorelement.elementorelement59a61d14.econfull.eflex.econ.echild.depth13:eq(0)>DIV.elementorelement.elementorelement30fbe298.econfull.eflex.econ.echild.depth14:eq(0)>DIV.elementorelement.elementorelement4654961a.elementorwidget.elementorwidgetpostinfo.depth15:eq(0)>DIV.elementorwidgetcontainer.depth16:eq(0)>UL.elementorinlineitems.elementoriconlistitems.elementorpostinfo.depth17:eq(0)>LI.elementoriconlistitem.elementorrepeateritem696e5cf.elementorinlineitem.depth18:eq(0)",
+        "DIV.elementorelement.elementorelement59a61d14.econfull.eflex.econ.echild.depth13:eq(0)>DIV.elementorelement.elementorelement30fbe298.econfull.eflex.econ.echild.depth14:eq(0)>DIV.elementorelement.elementorelement5cd9a422.elementorwidget.elementorwidgetpostinfo.depth15:eq(0)>DIV.elementorwidgetcontainer.depth16:eq(0)>UL.elementorinlineitems.elementoriconlistitems.elementorpostinfo.depth17:eq(0)>LI.elementoriconlistitem.elementorrepeateriteme29cdcf.elementorinlineitem.depth18:eq(0)"
+      ]
+    },
+    "url": "https://www.lilyade.fr/programmation/",
+    "multiPages": {
+      "type": "dynamicPage",
+      "scroll": true,
+      "nextButton": "Voir plus d'événements"
+    },
+    "ID": "Centre culturel L'Ilyade|Marseille|France",
+    "baseURL": "https://www.lilyade.fr/programmation/",
+    "eventsDelimiterTag": "DIV.econinner.depth12",
+    "dateFormat": "dd-MM-yyyy-HH:mm"
+  },
+  {
+    "name": "Zénith de Dijon",
+    "city": "Dijon",
+    "country": "France",
+    "mainPage": {
+      "eventStyleTags": [
+        "DIV.cardevent__content.depth8:eq(0)>SPAN.cardevent__tag.colorprimary.depth9:eq(0)"
+      ],
+      "eventNameTags": [
+        "DIV.cardevent__content.depth8:eq(0)>H3.cardevent__title.depth9:eq(0)"
+      ],
+      "eventDateTags": [
+        "DIV.cardevent__content.depth8:eq(0)>P.cardevent__date.depth9:eq(0)"
+      ],
+      "eventURLTags": [
+        "DIV.cardevent__hovermobile.depth8:eq(0)>A.btn.btnwhitetransparent.depth9:eq(0)"
+      ]
+    },
+    "url": "https://www.zenith-dijon.fr/evenements/",
+    "ID": "Zénith de Dijon|Dijon|France",
+    "baseURL": "https://www.zenith-dijon.fr/evenements/",
+    "eventsDelimiterTag": "DIV.cardevent.depth7",
+    "dateFormat": "dd-MM-yyyy"
+  },
+  {
+    "name": "L'Olympia",
+    "city": "Paris",
+    "country": "France",
+    "mainPage": {
+      "eventNameTags": [
+        "DIV.ccard__content.depth10:eq(0)>H3.h5.ccard__title.depth11:eq(0)"
+      ],
+      "eventDateTags": [
+        "DIV.ccard__content.depth10:eq(0)>DIV.ccard__suptitle.depth11:eq(0)"
+      ]
+    },
+    "url": "https://www.olympiahall.com/agenda/",
+    "multiPages": {
+      "type": "pageList",
+      "nbPages": "5",
+      "startPage": "1",
+      "increment": "1"
+    },
+    "ID": "L'Olympia|Paris|France",
+    "baseURL": "https://www.olympiahall.com/agenda/",
+    "eventsDelimiterTag": "A.ccard.event.depth9",
+    "dateFormat": "dd-MM-yyyy"
   }
 ]

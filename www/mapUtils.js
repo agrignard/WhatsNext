@@ -464,6 +464,15 @@ export const startLocations = new Map([
       }
     ],
     [
+      'dijon',
+      {
+        center: [5.049040612404608,47.32975347936957],
+        zoom: 11.5,
+        bearing: 0,
+        pitch: 0
+      }
+    ],
+    [
       'marseille',
       {
         center: [5.37795429530581,43.304602136518774],

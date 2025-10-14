@@ -1,0 +1,75 @@
+Date: Wednesday, Oct 15, 08:30 PM
+Event: El Gant
+Place: Le Sonic
+city: Lyon
+country: France
+Style: Rap
+isCancelled: false
+DetailedStyle: (Rap)
+source: Le Petit Bulletin (Lyon, France)
+unixDate: 1760509800000
+Time: mercredi 15 octobre à 20:00
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for El Gant (Le Sonic). Found 20:00,08:30. Consider merging or discarding.
+https://www.petit-bulletin.fr/agenda-315973-el-gant.html
+
+Date: Thursday, Oct 16, 08:00 PM
+Event: Fleur Sous Bitume [RELEASE PARTY] + Mo(i)
+Place: Kraspek Myzik
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: Folk
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 1760594400000
+Time: jeudi 16 octobre à 08:00
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Fleur Sous Bitume [RELEASE PARTY] + Mo(i) (Kraspek Myzik). Found 08:00,20:00. Consider merging or discarding.
+https://villemorte.fr/tag/musique%20live
+
+Date: Saturday, Oct 18, 08:00 PM
+Event: Cotton Kid + Majora
+Place: Kraspek Myzik
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 1760767200000
+Time: samedi 18 octobre à 08:00
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Cotton Kid + Majora (Kraspek Myzik). Found 08:00,20:00. Consider merging or discarding.
+https://villemorte.fr/tag/musique%20live
+
+Date: Friday, Oct 24, 08:00 PM
+Event: Yugene + T2G
+Place: Kraspek Myzik
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 1761285600000
+Time: vendredi 24 octobre à 08:00
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Yugene + T2G (Kraspek Myzik). Found 08:00,20:00. Consider merging or discarding.
+https://villemorte.fr/tag/musique%20live
+
+Date: Saturday, Oct 25, 08:00 PM
+Event: Violet Candy [Release Party] | Petite Magic
+Place: Kraspek Myzik
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: Folk
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 1761372000000
+Time: samedi 25 octobre à 08:00
+mergeCandidates: [object Object],[object Object]
+warningLog: Inconsistent times for Violet Candy [Release Party] | Petite Magic (Kraspek Myzik). Found 08:00,20:00. Consider merging or discarding.
+https://villemorte.fr/tag/musique%20live
+
