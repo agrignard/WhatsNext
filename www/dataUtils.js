@@ -11,14 +11,14 @@ const showPlacesNotHandled= false;
 
 
 export async function initPlaceInformation(){
-    const response = await fetch(main.dataPlacePath + main.city+'_place.geojson');
+    const response = await fetch(main.dataPlacePath + main.country+'_place.geojson');
     const data =   await response.json();
     for (var i = 0; i < data.features.length; i++) {
         placeToCoord.set(data.features[i].properties.title,data.features[i].geometry.coordinates);
         placeToUrl.set(data.features[i].properties.title,data.features[i].properties.description);
         places.push(data.features[i].properties.title);
     }
-    console.log("Total places imported from " + main.dataPlacePath + main.city+ "_place.geojson: " + placeToCoord.size);
+    console.log("Total places imported from " + main.dataPlacePath + main.country+ "_place.geojson: " + placeToCoord.size);
 }
 
 export async function getTodayEvents(_date){
