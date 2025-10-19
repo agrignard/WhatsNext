@@ -377,6 +377,438 @@
     },
     {
       "type": "Feature",
+      "id": "Ancienne Belgique",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.355556,
+          50.850556
+        ]
+      },
+      "properties": {
+        "title": "Ancienne Belgique",
+        "icon": "dot-11",
+        "description": "https://www.abconcerts.be/fr/agenda",
+        "city": "bruxelles"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "AB Box",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.364722,
+          50.849722
+        ]
+      },
+      "properties": {
+        "title": "AB Box",
+        "icon": "dot-11",
+        "description": "https://www.abconcerts.be/fr/agenda",
+        "city": "bruxelles"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Vk Events",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.383333,
+          50.866667
+        ]
+      },
+      "properties": {
+        "title": "Vk Events",
+        "icon": "dot-11",
+        "city": "bruxelles"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Le Botanique",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.365556,
+          50.854722
+        ]
+      },
+      "properties": {
+        "title": "Le Botanique",
+        "icon": "dot-11",
+        "description": "https://botanique.be/fr/concerts",
+        "city": "bruxelles"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Le Cirque Royal",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.356389,
+          50.850556
+        ]
+      },
+      "properties": {
+        "title": "Le Cirque Royal",
+        "icon": "dot-11",
+        "description": "https://www.cirque-royal-bruxelles.be/agenda",
+        "city": "bruxelles"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Le Cirque Royal Club",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.356399,
+          50.850566
+        ]
+      },
+      "properties": {
+        "title": "Le Cirque Royal Club",
+        "icon": "dot-11",
+        "description": "https://www.cirque-royal-bruxelles.beagenda",
+        "city": "bruxelles"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Flagey",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.370556,
+          50.827222
+        ]
+      },
+      "properties": {
+        "title": "Flagey",
+        "icon": "dot-11",
+        "description": "https://www.flagey.be/fr/program",
+        "city": "bruxelles"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Forest National",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.317778,
+          50.814722
+        ]
+      },
+      "properties": {
+        "title": "Forest National",
+        "icon": "dot-11",
+        "description": "https://www.forest-national.be/calendrier?",
+        "city": "bruxelles"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "La Madeleine",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.355556,
+          50.850556
+        ]
+      },
+      "properties": {
+        "title": "La Madeleine",
+        "icon": "dot-11",
+        "description": "https://www.la-madeleine.be/agenda/",
+        "city": "bruxelles"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Palais des Beaux-Arts (Bozar)",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.359722,
+          50.844722
+        ]
+      },
+      "properties": {
+        "title": "Palais des Beaux-Arts (Bozar)",
+        "icon": "dot-11",
+        "city": "bruxelles"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Salle de concert Piano Perfect",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.349722,
+          50.845556
+        ]
+      },
+      "properties": {
+        "title": "Salle de concert Piano Perfect",
+        "icon": "dot-11",
+        "city": "bruxelles"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Theatre St-Michel",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.355556,
+          50.850556
+        ]
+      },
+      "properties": {
+        "title": "Theatre St-Michel",
+        "icon": "dot-11",
+        "description": "https://www.novum.brussels/",
+        "city": "bruxelles"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "The Music Village",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.364722,
+          50.849722
+        ]
+      },
+      "properties": {
+        "title": "The Music Village",
+        "icon": "dot-11",
+        "description": "https://themusicvillage.com/program-2/?lang=fr",
+        "city": "bruxelles"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Sounds Jazz Club",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.355556,
+          50.850556
+        ]
+      },
+      "properties": {
+        "title": "Sounds Jazz Club",
+        "icon": "dot-11",
+        "description": "https://www.sounds.brussels/agenda/",
+        "city": "bruxelles"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Jazz Station",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.355556,
+          50.850556
+        ]
+      },
+      "properties": {
+        "title": "Jazz Station",
+        "icon": "dot-11",
+        "description": "https://club.jazzstation.be/",
+        "city": "bruxelles"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Recyclart",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.355556,
+          50.850556
+        ]
+      },
+      "properties": {
+        "title": "Recyclart",
+        "icon": "dot-11",
+        "description": "https://recyclart.be/fr/agenda",
+        "city": "bruxelles"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "L'Archiduc",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.349722,
+          50.845556
+        ]
+      },
+      "properties": {
+        "title": "L'Archiduc",
+        "icon": "dot-11",
+        "description": "https://archiduc.com/#upcoming-events",
+        "city": "bruxelles"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Café DNA",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.364722,
+          50.849722
+        ]
+      },
+      "properties": {
+        "title": "Café DNA",
+        "icon": "dot-11",
+        "city": "bruxelles"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "New-York Café and Jazz Club",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.364722,
+          50.849722
+        ]
+      },
+      "properties": {
+        "title": "New-York Café and Jazz Club",
+        "icon": "dot-11",
+        "city": "bruxelles"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Le Cabaret aux Chansons",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.355556,
+          50.850556
+        ]
+      },
+      "properties": {
+        "title": "Le Cabaret aux Chansons",
+        "icon": "dot-11",
+        "city": "bruxelles"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "La Samaritaine",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.364722,
+          50.849722
+        ]
+      },
+      "properties": {
+        "title": "La Samaritaine",
+        "icon": "dot-11",
+        "city": "bruxelles"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Chez Maman",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.364722,
+          50.849722
+        ]
+      },
+      "properties": {
+        "title": "Chez Maman",
+        "icon": "dot-11",
+        "description": "https://chezmaman.be/artistes-2-2-2/",
+        "city": "bruxelles"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Halles de Schaerbeek",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.377778,
+          50.869722
+        ]
+      },
+      "properties": {
+        "title": "Halles de Schaerbeek",
+        "icon": "dot-11",
+        "description": "https://www.halles.be/fr/agenda#today",
+        "city": "bruxelles"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Backstage",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.383333,
+          50.866667
+        ]
+      },
+      "properties": {
+        "title": "Backstage",
+        "icon": "dot-11",
+        "city": "bruxelles"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Le Mezzo",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.364722,
+          50.849722
+        ]
+      },
+      "properties": {
+        "title": "Le Mezzo",
+        "icon": "dot-11",
+        "city": "bruxelles"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "La Tentation",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.355556,
+          50.850556
+        ]
+      },
+      "properties": {
+        "title": "La Tentation",
+        "icon": "dot-11",
+        "city": "bruxelles"
+      }
+    },
+    {
+      "type": "Feature",
       "id": "Zénith de Dijon",
       "geometry": {
         "type": "Point",
