@@ -3,6 +3,380 @@
   "features": [
     {
       "type": "Feature",
+      "id": "Razzmatazz",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1911786054718276,
+          41.39775790901272
+        ]
+      },
+      "properties": {
+        "title": "Razzmatazz",
+        "icon": "dot-11",
+        "description": "https://www.salarazzmatazz.com/",
+        "city": "barcelona"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Macarena Club Barcelona",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1775060699960775,
+          41.37963733439489
+        ]
+      },
+      "properties": {
+        "title": "Macarena Club Barcelona",
+        "icon": "dot-11",
+        "description": "https://macarenaclub.com/",
+        "city": "barcelona"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Moog",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.175065497521412,
+          41.378091555884446
+        ]
+      },
+      "properties": {
+        "title": "Moog",
+        "icon": "dot-11",
+        "description": "https://moogbarcelona.com/",
+        "city": "barcelona"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "La Terrrazza Barcelona",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.14940998716715,
+          41.3688074485502
+        ]
+      },
+      "properties": {
+        "title": "La Terrrazza Barcelona",
+        "icon": "dot-11",
+        "description": "https://laterrrazza.com/",
+        "city": "barcelona"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LAUT",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.169793713500813,
+          41.37382812688644
+        ]
+      },
+      "properties": {
+        "title": "LAUT",
+        "icon": "dot-11",
+        "description": "https://laut.es/",
+        "city": "barcelona"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Apolo theatre",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1704632953248795,
+          41.374735788594165
+        ]
+      },
+      "properties": {
+        "title": "Apolo theatre",
+        "icon": "dot-11",
+        "description": "https://teatreapolo.com/",
+        "city": "barcelona"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Jamboree",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1752645643821396,
+          41.379693844377954
+        ]
+      },
+      "properties": {
+        "title": "Jamboree",
+        "icon": "dot-11",
+        "description": "https://jamboreejazz.com/",
+        "city": "barcelona"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Parc del Fòrum",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.225037912617263,
+          41.41152795822407
+        ]
+      },
+      "properties": {
+        "title": "Parc del Fòrum",
+        "icon": "dot-11",
+        "description": " https://parcdelforum.barcelona/",
+        "city": "barcelona"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Les Enfants Brillants Barcelona",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1737884969753236,
+          41.37803839563915
+        ]
+      },
+      "properties": {
+        "title": "Les Enfants Brillants Barcelona",
+        "icon": "dot-11",
+        "description": "https://es.ra.co/clubs/195409",
+        "city": "barcelona"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Slow Barcelona",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.153731671773661,
+          41.393569642542005
+        ]
+      },
+      "properties": {
+        "title": "Slow Barcelona",
+        "icon": "dot-11",
+        "description": "https://www.slowbarcelona.es/forest/",
+        "city": "barcelona"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Disco City Hall",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.168395030189824,
+          41.3877545539986
+        ]
+      },
+      "properties": {
+        "title": "Disco City Hall",
+        "icon": "dot-11",
+        "description": "https://www.cityhallbarcelona.com/",
+        "city": "barcelona"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "45/33 Bar",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.167240824586931,
+          41.380626917550025
+        ]
+      },
+      "properties": {
+        "title": "45/33 Bar",
+        "icon": "dot-11",
+        "description": "https://3345.es/eventos/",
+        "city": "barcelona"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "M7 Club Barcelona",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1481855359916175,
+          41.37316822772005
+        ]
+      },
+      "properties": {
+        "title": "M7 Club Barcelona",
+        "icon": "dot-11",
+        "description": "https://www.m7club.es/",
+        "city": "barcelona"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Switch",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.159208010980504,
+          41.399170561843995
+        ]
+      },
+      "properties": {
+        "title": "Switch",
+        "icon": "dot-11",
+        "description": "https://www.instagram.com/switchpocketclub_bcn",
+        "city": "barcelona"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "S Bar",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.168912002137505,
+          41.378651208842946
+        ]
+      },
+      "properties": {
+        "title": "S Bar",
+        "icon": "dot-11",
+        "description": "https://www.instagram.com/s_barjamaican/",
+        "city": "barcelona"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Garage 442",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.160843900104209,
+          41.39713321300729
+        ]
+      },
+      "properties": {
+        "title": "Garage 442",
+        "icon": "dot-11",
+        "description": " https://garage442.com/",
+        "city": "barcelona"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "INPUT - High Fidelity Dance Club",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1489376548399246,
+          41.368712278283084
+        ]
+      },
+      "properties": {
+        "title": "INPUT - High Fidelity Dance Club",
+        "icon": "dot-11",
+        "description": " https://inputbcn.com/",
+        "city": "barcelona"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "La Paloma Sala de Ball",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.16469031609069,
+          41.3824748317686
+        ]
+      },
+      "properties": {
+        "title": "La Paloma Sala de Ball",
+        "icon": "dot-11",
+        "description": " https://lapaloma.com/",
+        "city": "barcelona"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Sala Bikini Barcelona",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.136907880764712,
+          41.38996628708751
+        ]
+      },
+      "properties": {
+        "title": "Sala Bikini Barcelona",
+        "icon": "dot-11",
+        "description": " https://bikinibcn.com/",
+        "city": "barcelona"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Harlem Jazz Club",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1785263254021943,
+          41.38114092884892
+        ]
+      },
+      "properties": {
+        "title": "Harlem Jazz Club",
+        "icon": "dot-11",
+        "description": " https://www.harlemjazzclub.es/",
+        "city": "barcelona"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Diobar",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1854887166710752,
+          41.38551434555165
+        ]
+      },
+      "properties": {
+        "title": "Diobar",
+        "icon": "dot-11",
+        "description": " https://diobarbcn.com/",
+        "city": "barcelona"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "GUZZO",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1837129367361436,
+          41.38511382859142
+        ]
+      },
+      "properties": {
+        "title": "GUZZO",
+        "icon": "dot-11",
+        "description": " https://guzzobcn.es/ ",
+        "city": "barcelona"
+      }
+    },
+    {
+      "type": "Feature",
       "id": "Zénith de Dijon",
       "geometry": {
         "type": "Point",

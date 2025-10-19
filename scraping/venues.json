@@ -1317,7 +1317,8 @@
     "country": "France",
     "mainPage": {},
     "url": "https://www.lemakeda.com/evenements/",
-    "ID": "Le Makeda|Marseille|France"
+    "ID": "Le Makeda|Marseille|France",
+    "baseURL": "https://www.lemakeda.com/evenements/"
   },
   {
     "name": "Shotgun-marseille",
