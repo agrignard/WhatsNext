@@ -11,19 +11,6 @@ unixDate: 0
 errorLog: Format de date invalide pour Le Sucre. Reçu 'Archives', converti en ''. Formats essayés: dd-MM
 https://le-sucre.eu/agenda-archives/
 
-Date: mercredi 15.10.25
-Event: EL Gant + vinyl dj set
-Place: Le Sonic
-city: Lyon
-country: France
-isCancelled: false
-DetailedStyle: 
-Style: Rock
-source: Le Sonic (Lyon, France)
-unixDate: 0
-errorLog: Format de date invalide pour Le Sonic. Reçu 'mercredi 15.10.25', converti en '15-10-25'. Formats essayés: dd-MM-yy-HH:mm
-https://sonic-lyon.fr/evenement/el-gant-vinyl-dj-set/
-
 Date: 21 octobre et 22 octobre à 11h et 15h
 Event: Histoires en musique
 Place: Auditorium de Lyon
@@ -37,18 +24,18 @@ unixDate: 0
 errorLog: Format de date invalide pour Le Petit Bulletin. Reçu '21 octobre et 22 octobre à 11h et 15h', converti en '21-10-22-11:00'. Formats essayés: dd-MM-yyyy-HH:mm
 https://www.petit-bulletin.fr/agenda-315943-histoires-en-musique.html
 
-Date: Du 13 au 25 octobre 2025, à 20h sauf dimanche à 16h
-Event: Boris Godounov
-Place: Opéra National de Lyon
+Date: Du 31 octobre au 2 novembre 2025, vendredi et samedi de 23h à 5h, dimanche de 18h à minuit
+Event: A week-end with Live From Earth
+Place: Le Sucre
 city: Lyon
 country: France
-Style: Classique
+Style: Live
 isCancelled: false
-DetailedStyle: (Classique et Lyrique)
+DetailedStyle: (Musique Electronique)
 source: Le Petit Bulletin (Lyon, France)
 unixDate: 0
-errorLog: Format de date invalide pour Le Petit Bulletin. Reçu 'Du 13 au 25 octobre 2025, à 20h sauf dimanche à 16h', converti en '13-25-10-2025-20:00'. Formats essayés: dd-MM-yyyy-HH:mm
-https://www.petit-bulletin.fr/agenda-315641-boris-godounov.html
+errorLog: Format de date invalide pour Le Petit Bulletin. Reçu 'Du 31 octobre au 2 novembre 2025, vendredi et samedi de 23h à 5h, dimanche de 18h à minuit', converti en '31-10-02-11-2025-23:00'. Formats essayés: dd-MM-yyyy-HH:mm
+https://www.petit-bulletin.fr/agenda-316052-a-week-end-with-live-from-earth.html
 
 Date: Du 20 au 22 novembre 2025, jeudi et vendredi à 20h, samedi à 11h, 15h et 18h
 Event: Journées du piano
@@ -102,19 +89,6 @@ unixDate: 0
 errorLog: Format de date invalide pour Marché Gare. Reçu '14. 15. 11 2025', converti en '14-15-11-2025'. Formats essayés: dd-MM-yyyy
 https://marchegare.fr/agenda/lyonburlesquefestival2025-pass
 
-Date: Tuesday, Oct 14, 07:30 PM → Friday, Oct 17
-Event: LA FAUSSE SUIVANTE - D’après l’œuvre de Marivaux / Cie L’Imposture
-Place: Théâtre de l'Élysée
-city: Lyon
-country: France
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: Ville Morte (Lyon, France)
-unixDate: 0
-errorLog: Format de date invalide pour Ville Morte. Reçu 'Tuesday, Oct 14, 07:30 PM → Friday, Oct 17', converti en '10-14-07:30-17'. Formats essayés: MM-dd-HH:mm
-https://villemorte.fr/tag/th%C3%A9%C3%A2tre
-
 Date: Tuesday, Oct 21, 07:00 PM → Sunday, Oct 26
 Event: FACT - Festival Arts et Créations Trans
 Place: Théâtre de l'Élysée
@@ -126,7 +100,98 @@ Style: Live
 source: Ville Morte (Lyon, France)
 unixDate: 0
 errorLog: Format de date invalide pour Ville Morte. Reçu 'Tuesday, Oct 21, 07:00 PM → Sunday, Oct 26', converti en '10-21-07:00-26'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/DJ%20Set
+
+Date: Tuesday, Nov 04, 07:30 PM → Friday, Nov 07
+Event: KOMOREBI - Clémentine Allain / Arthur Vandepoel / Cie Haydalur
+Place: Théâtre de l'Élysée
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Tuesday, Nov 04, 07:30 PM → Friday, Nov 07', converti en '11-04-07:30-07'. Formats essayés: MM-dd-HH:mm
 https://villemorte.fr/tag/th%C3%A9%C3%A2tre
+
+Date: Tuesday, Nov 11, 07:30 PM → Friday, Nov 14
+Event: ADORCISME - Baptiste Febvre / Collectif Clébards selon ton cœur
+Place: Théâtre de l'Élysée
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Tuesday, Nov 11, 07:30 PM → Friday, Nov 14', converti en '11-11-07:30-14'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/th%C3%A9%C3%A2tre
+
+Date: Tuesday, Nov 18, 07:30 PM → Friday, Nov 21
+Event: SPECTACLESPECTACLE - Marie Depoorter, Romain Gy et Nans Mérieux / Collectif Clébards selon ton cœur
+Place: Théâtre de l'Élysée
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Tuesday, Nov 18, 07:30 PM → Friday, Nov 21', converti en '11-18-07:30-21'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/th%C3%A9%C3%A2tre
+
+Date: Tuesday, Nov 25, 07:30 PM → Friday, Nov 28
+Event: LES OISEAUX SONT FAUX - Maëlle Puéchoultres / Cie La Tension
+Place: Théâtre de l'Élysée
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Tuesday, Nov 25, 07:30 PM → Friday, Nov 28', converti en '11-25-07:30-28'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/th%C3%A9%C3%A2tre
+
+Date: Saturday, Jan 24, 2026, 07:30 PM-08:00 PM
+Event: La Roda de la Guill'
+Place: Court Circuit
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, Jan 24, 2026, 07:30 PM-08:00 PM', converti en '01-24-2026-07:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/musique%20live
+
+Date: Friday, Feb 06, 2026, 07:00 PM
+Event: Vernissage Exposition Xénomorphe [ appel à artistes ]
+Place: BosKop
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Friday, Feb 06, 2026, 07:00 PM', converti en '06-2026-07:00'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: 17
+Event: PITT OCHA - LES OGRES DE BARBACK
+Place: Stade Georges Lyvet ,
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Infoconcert (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Infoconcert. Reçu '17', converti en '17'. Formats essayés: dd-MM-yyyy-HH:mm
+https://www.infoconcert.com/ticket/concert-pitt-ocha---les-ogres-de-barback-villeurbanne/1822729.html
 
 Date: 22
 Event: MAGALI GIO
@@ -245,19 +310,6 @@ unixDate: 0
 errorLog: Format de date invalide pour LDLC Arena. Reçu '28 juin 2026', converti en '28-06-2026'. Formats essayés: dd-MM-yyyy-HH:mm
 https://www.olvallee.fr/evenement/iron-maiden-lyon-2026/
 
-Date: 16,17,18,19 octobre 2025
-Event: Stomp
-Place: Radiant-Bellevue
-city: Lyon
-country: France
-Style: Live
-isCancelled: false
-DetailedStyle: Musique - Danse
-source: Radiant-Bellevue (Lyon, France)
-unixDate: 0
-errorLog: Format de date invalide pour Radiant-Bellevue. Reçu '16,17,18,19 octobre 2025', converti en '16-17-18-19-10-2025'. Formats essayés: dd-MM-yyyy
-https://radiant-bellevue.fr/spectacles/stomp-2/
-
 Date: 06, 07 & 08 novembre 2025
 Event: Sofiane Pamart
 Place: Radiant-Bellevue
@@ -270,19 +322,6 @@ source: Radiant-Bellevue (Lyon, France)
 unixDate: 0
 errorLog: Format de date invalide pour Radiant-Bellevue. Reçu '06, 07 & 08 novembre 2025', converti en '06-07-08-11-2025'. Formats essayés: dd-MM-yyyy
 https://radiant-bellevue.fr/spectacles/sofiane-pamart/
-
-Date: 10 & 11 novembre 2025
-Event: Comme ça vous chante !
-Place: Radiant-Bellevue
-city: Lyon
-country: France
-Style: Live
-isCancelled: false
-DetailedStyle: Musique
-source: Radiant-Bellevue (Lyon, France)
-unixDate: 0
-errorLog: Format de date invalide pour Radiant-Bellevue. Reçu '10 & 11 novembre 2025', converti en '10-11-11-2025'. Formats essayés: dd-MM-yyyy
-https://radiant-bellevue.fr/spectacles/comme-ca-vous-chante/
 
 Date: 22 & 23 novembre 25
 Event: Hoshi
@@ -572,19 +611,6 @@ https://radiant-bellevue.fr/spectacles/les-intemperies-de-sami/
 
 Date: undefined
 Event: undefined
-Place: Les SUBS
-city: Lyon
-country: France
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: Les SUBS (Lyon, France)
-unixDate: -1
-errorLog: Pas de date trouvée pour Les SUBS.
-undefined
-
-Date: undefined
-Event: undefined
 Place: Shotgun
 city: Lyon
 country: France
@@ -607,11 +633,11 @@ Style: Live
 source: Shotgun (Lyon, France)
 unixDate: -1
 errorLog: Pas de date trouvée pour Shotgun.
-https://shotgun.live/fr/events/theodora-lyon
+https://shotgun.live/fr/events/perceval
 
-Date: 11
-Event: [Lyon] Friperie + Dj-Sets + Designers — Stock Xxxxxl
-Place: HEAT Lyon
+Date: 31 oct.
+Event: Les Bénévoles Présentent Le Collectif Dysklektik
+Place: Kraspek Myzik
 city: Lyon
 country: France
 isCancelled: false
@@ -619,8 +645,8 @@ DetailedStyle:
 Style: Live
 source: Shotgun (Lyon, France)
 unixDate: 0
-errorLog: Format de date invalide pour Shotgun. Reçu '11', converti en '11'. Formats essayés: dd-MM-HH:mm
-https://shotgun.live/fr/events/lyon-friperie-dj-sets-designers-stock-xxxxxl
+errorLog: Format de date invalide pour Shotgun. Reçu '31 oct.', converti en '31-10'. Formats essayés: dd-MM-HH:mm
+https://shotgun.live/fr/events/soiree-benevole-31-10-dysklektik
 
 Date: 15
 Event: Xlr Events Pres. Th;En + Jast
@@ -724,6 +750,19 @@ Style: Live
 source: Shotgun (Lyon, France)
 unixDate: -1
 errorLog: Pas de date trouvée pour Shotgun.
+https://shotgun.live/fr/venues/encore
+
+Date: undefined
+Event: undefined
+Place: Shotgun
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Shotgun (Lyon, France)
+unixDate: -1
+errorLog: Pas de date trouvée pour Shotgun.
 https://shotgun.live/fr/venues/23-59
 
 Date: undefined
@@ -738,19 +777,6 @@ source: Shotgun (Lyon, France)
 unixDate: -1
 errorLog: Pas de date trouvée pour Shotgun.
 https://shotgun.live/fr/venues/le-sucre
-
-Date: undefined
-Event: undefined
-Place: Shotgun
-city: Lyon
-country: France
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: Shotgun (Lyon, France)
-unixDate: -1
-errorLog: Pas de date trouvée pour Shotgun.
-https://shotgun.live/fr/venues/encore
 
 Date: undefined
 Event: undefined
@@ -830,47 +856,8 @@ unixDate: -1
 errorLog: Pas de date trouvée pour Shotgun.
 https://shotgun.live/fr/cities/saint-etienne
 
-Date: O c t 0 9 T h u
-Event: Savage Thursday
-Place: Savage
-city: Hanoi
-country: Vietnam
-Style: Live
-isCancelled: false
-DetailedStyle: 
-source: Likdo (Hanoi, Vietnam)
-unixDate: 0
-errorLog: Format de date invalide pour Likdo. Reçu 'O c t 0 9 T h u', converti en '00-09'. Formats essayés: dd-MM
-https://likdo.asia/event/2233
-
-Date: O c t 0 9 T h u
-Event: Alexander Skancke + Latex
-Place: Klymax Discotheque
-city: Hanoi
-country: Vietnam
-Style: Live
-isCancelled: false
-DetailedStyle: 
-source: Likdo (Hanoi, Vietnam)
-unixDate: 0
-errorLog: Format de date invalide pour Likdo. Reçu 'O c t 0 9 T h u', converti en '00-09'. Formats essayés: dd-MM
-https://likdo.asia/event/2254
-
-Date: O c t 1 0 F r i
-Event: .TAG OUTDOOR PARTY
-Place: Savage
-city: Hanoi
-country: Vietnam
-Style: Live
-isCancelled: false
-DetailedStyle: 
-source: Likdo (Hanoi, Vietnam)
-unixDate: 0
-errorLog: Format de date invalide pour Likdo. Reçu 'O c t 1 0 F r i', converti en '01-00'. Formats essayés: dd-MM
-https://likdo.asia/event/2234
-
-Date: O c t 1 0 F r i
-Event: Friday 10 October Youss, Special K, Adduc, Unmute Takeover w/ Komga, Lam Dao & Anh Vy
+Date: N o v 0 1 S a t
+Event: Saturday 1/11 OBS Halloween
 Place: The Observatory
 city: Hanoi
 country: Vietnam
@@ -879,12 +866,12 @@ isCancelled: false
 DetailedStyle: 
 source: Likdo (Hanoi, Vietnam)
 unixDate: 0
-errorLog: Format de date invalide pour Likdo. Reçu 'O c t 1 0 F r i', converti en '01-00'. Formats essayés: dd-MM
-https://likdo.asia/event/2246
+errorLog: Format de date invalide pour Likdo. Reçu 'N o v 0 1 S a t', converti en '00-01'. Formats essayés: dd-MM
+https://likdo.asia/event/2250
 
-Date: O c t 1 0 F r i
-Event: Bloody
-Place: VENT
+Date: A p r 0 3 F r i
+Event: Equation Festival 2026
+Place: Mo Luong Cave
 city: Hanoi
 country: Vietnam
 Style: Live
@@ -892,21 +879,21 @@ isCancelled: false
 DetailedStyle: 
 source: Likdo (Hanoi, Vietnam)
 unixDate: 0
-errorLog: Format de date invalide pour Likdo. Reçu 'O c t 1 0 F r i', converti en '01-00'. Formats essayés: dd-MM
-https://likdo.asia/event/2253
+errorLog: Format de date invalide pour Likdo. Reçu 'A p r 0 3 F r i', converti en '00-03'. Formats essayés: dd-MM
+https://likdo.asia/event/2035
 
-Date: O c t 1 0 F r i
-Event: Invites DJ Masda
-Place: teller
+Date: N o v 0 1 S a t
+Event: Ghoul Cruise: Rave on the Red River
+Place: Red River Cruise
 city: Hanoi
 country: Vietnam
-Style: Live
+Style: House Rave
 isCancelled: false
-DetailedStyle: 
+DetailedStyle: House Rave
 source: Likdo (Hanoi, Vietnam)
 unixDate: 0
-errorLog: Format de date invalide pour Likdo. Reçu 'O c t 1 0 F r i', converti en '01-00'. Formats essayés: dd-MM
-https://likdo.asia/event/2255
+errorLog: Format de date invalide pour Likdo. Reçu 'N o v 0 1 S a t', converti en '00-01'. Formats essayés: dd-MM
+https://likdo.asia/event/2257
 
 Date: 05 déc. 2025 | 20:00 06 déc. 2025 | 20:00 07 déc. 2025 | 15:00
 Event: LES BODIN’S
@@ -960,27 +947,14 @@ unixDate: 0
 errorLog: Format de date invalide pour Zénith de Saint-Étienne. Reçu '05 déc. 2026 | 20:00 06 déc. 2026 | 19:00', converti en '05-12-2026-20:00-06-12-2026-19:00'. Formats essayés: dd-MM-yyyy-HH:mm
 https://www.zenith-saint-etienne.fr/evenement/dub-inc/
 
-Date: Du 18.10.25 / 23h55 au 19.10.25 / 5h30
-Event: GIGI FM + LACCHESI + MAZAIR
-Place: La Belle Electrique
-city: Grenoble
-country: France
-Style: Electro
-isCancelled: false
-DetailedStyle: Techno
-source: La Belle Electrique (Grenoble, France)
-unixDate: 0
-errorLog: Format de date invalide pour La Belle Electrique. Reçu 'Du 18.10.25 / 23h55 au 19.10.25 / 5h30', converti en '18-10-25-23:55-19-10-25-05:30'. Formats essayés: dd-MM-yy-HH:mm
-https://www.la-belle-electrique.com/fr/agenda/gigifm-lacchesi-mazair
-
 Date: Du 24.10.25 / 20h au 25.10.25 / 1h
 Event: Dressing Club Dub w/ Wise Up Hi-Fi
 Place: La Belle Electrique
 city: Grenoble
 country: France
-Style: Gratuit
+Style: Electro
 isCancelled: false
-DetailedStyle: Gratuit
+DetailedStyle: Dub
 source: La Belle Electrique (Grenoble, France)
 unixDate: 0
 errorLog: Format de date invalide pour La Belle Electrique. Reçu 'Du 24.10.25 / 20h au 25.10.25 / 1h', converti en '24-10-25-20:00-25-10-25-01:00'. Formats essayés: dd-MM-yy-HH:mm
@@ -1000,13 +974,13 @@ errorLog: Format de date invalide pour La Belle Electrique. Reçu 'Du 25.10.25 /
 https://www.la-belle-electrique.com/fr/agenda/dynamitas-night-36
 
 Date: Du 31.10.25 / 15h au 31.10.25 / 18h
-Event: Dressing Boum #4 • Boum d'Halloween
+Event: Dressing Bouhhm #4 • Boum d'Halloween
 Place: La Belle Electrique
 city: Grenoble
 country: France
-Style: Gratuit
+Style: Live
 isCancelled: false
-DetailedStyle: Gratuit
+DetailedStyle: 
 source: La Belle Electrique (Grenoble, France)
 unixDate: 0
 errorLog: Format de date invalide pour La Belle Electrique. Reçu 'Du 31.10.25 / 15h au 31.10.25 / 18h', converti en '31-10-25-15:00-31-10-25-18:00'. Formats essayés: dd-MM-yy-HH:mm
@@ -1017,13 +991,26 @@ Event: Dressing Club • Halloween Party w/ Init1
 Place: La Belle Electrique
 city: Grenoble
 country: France
-Style: Gratuit
+Style: Electro
 isCancelled: false
-DetailedStyle: Gratuit
+DetailedStyle: Techno
 source: La Belle Electrique (Grenoble, France)
 unixDate: 0
 errorLog: Format de date invalide pour La Belle Electrique. Reçu 'Du 31.10.25 / 22h30 au 31.10.25 / 1h', converti en '31-10-25-22:30-31-10-25-01:00'. Formats essayés: dd-MM-yy-HH:mm
 https://www.la-belle-electrique.com/fr/agenda/dressing-club-halloween-party
+
+Date: Du 03.11.25 / 12h au 07.11.25 / 14h
+Event: Dégustation de vin solidaire
+Place: La Belle Electrique
+city: Grenoble
+country: France
+Style: Live
+isCancelled: false
+DetailedStyle: 
+source: La Belle Electrique (Grenoble, France)
+unixDate: 0
+errorLog: Format de date invalide pour La Belle Electrique. Reçu 'Du 03.11.25 / 12h au 07.11.25 / 14h', converti en '03-11-25-12:00-07-11-25-14:00'. Formats essayés: dd-MM-yy-HH:mm
+https://www.la-belle-electrique.com/fr/agenda/degustation-vin-solidaire
 
 Date: Du 08.11.25 / 22h au 09.11.25 / 4h
 Event: COMPLET • Chinese Man Records
@@ -1116,19 +1103,6 @@ unixDate: 0
 errorLog: Format de date invalide pour La Belle Electrique. Reçu 'Du 20.12.25 / 23h55 au 21.12.25 / 5h30', converti en '20-12-25-23:55-21-12-25-05:30'. Formats essayés: dd-MM-yy-HH:mm
 https://www.la-belle-electrique.com/fr/agenda/the-hacker-belaria-djedjotronic-endrick-schroeder
 
-Date: 17 & 18 octobre 2025
-Event: Oktoberfest
-Place: Le Summum
-city: Grenoble
-country: France
-Style: Live
-isCancelled: false
-DetailedStyle: Concert
-source: Le Summum (Grenoble, France)
-unixDate: 0
-errorLog: Format de date invalide pour Le Summum. Reçu '17 & 18 octobre 2025', converti en '17-18-10-2025'. Formats essayés: dd-MM-yyyy
-https://www.summum-grenoble.com/evenements/oktoberfest/
-
 Date: 24
 Event: Dj Guest - Vasco
 Place: La Maison Scène
@@ -1142,31 +1116,18 @@ unixDate: 0
 errorLog: Format de date invalide pour Shotgun_saint-etienne. Reçu '24', converti en '24'. Formats essayés: dd-MM-HH:mm
 https://shotgun.live/fr/events/dj-guest-vasco
 
-Date: 11 - reporté & 18 oct. 2025 - Annulé
-Event: GREG EMPECHE MOI
-Place: CEPAC Silo
-city: Marseille
+Date: 5
+Event: Dystopia 2025 • Saint-Etienne
+Place: Saint-Etienne Parc Expo Auvergne-Rhône-Alpes
+city: Saint-Etienne
 country: France
-Style: Humour
-isCancelled: true
-DetailedStyle: Humour
-source: CEPAC Silo (Marseille, France)
-unixDate: 0
-errorLog: Format de date invalide pour CEPAC Silo. Reçu '11 - reporté & 18 oct. 2025 - Annulé', converti en '11-18-10-2025'. Formats essayés: dd-MM-yyyy
-https://www.cepacsilo-marseille.fr/evenement/greg-empeche-moi/
-
-Date: 16 & 17 oct. 2025
-Event: Nawell Madani
-Place: CEPAC Silo
-city: Marseille
-country: France
-Style: Humour
 isCancelled: false
-DetailedStyle: Humour
-source: CEPAC Silo (Marseille, France)
+DetailedStyle: 
+Style: Live
+source: Shotgun_saint-etienne (Saint-Etienne, France)
 unixDate: 0
-errorLog: Format de date invalide pour CEPAC Silo. Reçu '16 & 17 oct. 2025', converti en '16-17-10-2025'. Formats essayés: dd-MM-yyyy
-https://www.cepacsilo-marseille.fr/evenement/nawell-madani/
+errorLog: Format de date invalide pour Shotgun_saint-etienne. Reçu '5', converti en '05'. Formats essayés: dd-MM-HH:mm
+https://shotgun.live/fr/festivals/dystopia-festival-2025-saint-etienne
 
 Date: Du 31 oct. au 2 nov. 2025
 Event: SOFIANE PAMART
@@ -1193,32 +1154,6 @@ source: CEPAC Silo (Marseille, France)
 unixDate: 0
 errorLog: Format de date invalide pour CEPAC Silo. Reçu '14, 15 & 16 novembre 2025', converti en '14-15-16-11-2025'. Formats essayés: dd-MM-yyyy
 https://www.cepacsilo-marseille.fr/evenement/stomp/
-
-Date: 10 - 11 octobre 2025
-Event: INHALE DELIRIUM EXHALE
-Place: Théâtre de La Criée
-city: Marseille
-country: France
-Style: Théâtre performance
-isCancelled: false
-DetailedStyle: Théâtre performance
-source: Théâtre de La Criée (Marseille, France)
-unixDate: 0
-errorLog: Format de date invalide pour Théâtre de La Criée. Reçu '10 - 11 octobre 2025', converti en '10-11-10-2025'. Formats essayés: dd-MM-yyyy
-https://theatre-lacriee.com/programmation/evenements/inhale-delirium-exhale
-
-Date: 15 - 17 octobre 2025
-Event: 65 rue d'Aubagne
-Place: Théâtre de La Criée
-city: Marseille
-country: France
-Style: Théâtre
-isCancelled: false
-DetailedStyle: Théâtre
-source: Théâtre de La Criée (Marseille, France)
-unixDate: 0
-errorLog: Format de date invalide pour Théâtre de La Criée. Reçu '15 - 17 octobre 2025', converti en '15-17-10-2025'. Formats essayés: dd-MM-yyyy
-https://theatre-lacriee.com/programmation/evenements/65-rue-daubagne-a-lastronef
 
 Date: 4 - 8 novembre 2025
 Event: La Stupéfaction
@@ -1454,8 +1389,34 @@ unixDate: 0
 errorLog: Format de date invalide pour Théâtre de La Criée. Reçu '7 - 8 mars 2026', converti en '07-08-03-2026'. Formats essayés: dd-MM-yyyy
 https://theatre-lacriee.com/programmation/evenements/lart-de-la-joie
 
-Date: 9
-Event: Fiesta Des Suds 2025
+Date: 10 - 14 mars 2026
+Event: Hautes perchées
+Place: Théâtre de La Criée
+city: Marseille
+country: France
+Style: Théâtre
+isCancelled: false
+DetailedStyle: Théâtre
+source: Théâtre de La Criée (Marseille, France)
+unixDate: 0
+errorLog: Format de date invalide pour Théâtre de La Criée. Reçu '10 - 14 mars 2026', converti en '10-14-03-2026'. Formats essayés: dd-MM-yyyy
+https://theatre-lacriee.com/programmation/evenements/hautes-perchees
+
+Date: 12 - 15 mars 2026
+Event: Le Petit Chaperon rouge
+Place: Théâtre de La Criée
+city: Marseille
+country: France
+Style: Théâtre jeune public
+isCancelled: false
+DetailedStyle: Théâtre jeune public
+source: Théâtre de La Criée (Marseille, France)
+unixDate: 0
+errorLog: Format de date invalide pour Théâtre de La Criée. Reçu '12 - 15 mars 2026', converti en '12-15-03-2026'. Formats essayés: dd-MM-yyyy
+https://theatre-lacriee.com/programmation/evenements/le-petit-chaperon-rouge
+
+Date: 21
+Event: Électro Octobre
 Place: Marseille
 city: Marseille
 country: France
@@ -1464,8 +1425,8 @@ isCancelled: false
 DetailedStyle: 
 source: Shotgun-marseille (Marseille, France)
 unixDate: 0
-errorLog: Format de date invalide pour Shotgun-marseille. Reçu '9', converti en '09'. Formats essayés: dd-MM-HH:mm
-https://shotgun.live/fr/festivals/fiesta-des-suds-2025
+errorLog: Format de date invalide pour Shotgun-marseille. Reçu '21', converti en '21'. Formats essayés: dd-MM-HH:mm
+https://shotgun.live/fr/events/electro-octobre
 
 Date: 
 Event: HERMAN DUNE
@@ -1519,6 +1480,19 @@ unixDate: 0
 errorLog: Format de date invalide pour Zénith de Dijon. Reçu 'Du 29 oct. au 1 nov. 2025', converti en '29-10-01-11-2025'. Formats essayés: dd-MM-yyyy
 https://www.zenith-dijon.fr/evenement/indochine/
 
+Date: 22 nov. 2025 - reporté & 31 oct. 2026
+Event: NEJ
+Place: Zénith de Dijon
+city: Dijon
+country: France
+Style: Live
+isCancelled: true
+DetailedStyle: Concert
+source: Zénith de Dijon (Dijon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Zénith de Dijon. Reçu '22 nov. 2025 - reporté & 31 oct. 2026', converti en '22-11-2025-31-10-2026'. Formats essayés: dd-MM-yyyy
+https://www.zenith-dijon.fr/evenement/nej/
+
 Date: 28, 29 & 30 novembre 2025
 Event: Les Bodin’s
 Place: Zénith de Dijon
@@ -1532,32 +1506,6 @@ unixDate: 0
 errorLog: Format de date invalide pour Zénith de Dijon. Reçu '28, 29 & 30 novembre 2025', converti en '28-29-30-11-2025'. Formats essayés: dd-MM-yyyy
 https://www.zenith-dijon.fr/evenement/les-bodins/
 
-Date: 13-14 oct. 2025
-Event: Jean-Paul Rouve
-Place: L'Olympia
-city: Paris
-country: France
-isCancelled: true
-DetailedStyle: 
-Style: Live
-source: L'Olympia (Paris, France)
-unixDate: 0
-errorLog: Format de date invalide pour L'Olympia. Reçu '13-14 oct. 2025', converti en '13-14-10-2025'. Formats essayés: dd-MM-yyyy
-https://www.olympiahall.com/agenda/jean-paul-rouve/
-
-Date: 18-19 oct. 2025
-Event: Ethel Cain
-Place: L'Olympia
-city: Paris
-country: France
-isCancelled: false
-DetailedStyle: 
-Style: Live
-source: L'Olympia (Paris, France)
-unixDate: 0
-errorLog: Format de date invalide pour L'Olympia. Reçu '18-19 oct. 2025', converti en '18-19-10-2025'. Formats essayés: dd-MM-yyyy
-https://www.olympiahall.com/agenda/ethel-cain/
-
 Date: 20-21 oct. 2025
 Event: Patti Smith and her band perform horses
 Place: L'Olympia
@@ -1570,4 +1518,43 @@ source: L'Olympia (Paris, France)
 unixDate: 0
 errorLog: Format de date invalide pour L'Olympia. Reçu '20-21 oct. 2025', converti en '20-21-10-2025'. Formats essayés: dd-MM-yyyy
 https://www.olympiahall.com/agenda/patti-smith-and-her-band-perform-horses/
+
+Date: 24-26 oct. 2025
+Event: Mireille Mathieu
+Place: L'Olympia
+city: Paris
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: L'Olympia (Paris, France)
+unixDate: 0
+errorLog: Format de date invalide pour L'Olympia. Reçu '24-26 oct. 2025', converti en '24-26-10-2025'. Formats essayés: dd-MM-yyyy
+https://www.olympiahall.com/agenda/mireille-mathieu/
+
+Date: 27-30 oct. 2025
+Event: WET LEG
+Place: L'Olympia
+city: Paris
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: L'Olympia (Paris, France)
+unixDate: 0
+errorLog: Format de date invalide pour L'Olympia. Reçu '27-30 oct. 2025', converti en '27-30-10-2025'. Formats essayés: dd-MM-yyyy
+https://www.olympiahall.com/agenda/wet-leg/
+
+Date: 01-02 nov. 2025
+Event: Michael Flatley's Lord of the Dance
+Place: L'Olympia
+city: Paris
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: L'Olympia (Paris, France)
+unixDate: 0
+errorLog: Format de date invalide pour L'Olympia. Reçu '01-02 nov. 2025', converti en '01-02-11-2025'. Formats essayés: dd-MM-yyyy
+https://www.olympiahall.com/agenda/michael-flatleys-lord-of-the-dance/
 

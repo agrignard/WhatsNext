@@ -377,6 +377,600 @@
     },
     {
       "type": "Feature",
+      "id": "Philharmonie de Berlin",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.367222,
+          52.509722
+        ]
+      },
+      "properties": {
+        "title": "Philharmonie de Berlin",
+        "icon": "dot-11",
+        "description": "https://www.berliner-philharmoniker.de/en/",
+        "city": "berlin"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Konzerthaus Berlin",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.392557,
+          52.513611
+        ]
+      },
+      "properties": {
+        "title": "Konzerthaus Berlin",
+        "icon": "dot-11",
+        "description": "https://www.konzerthaus.de/en/programm/18-10-2025",
+        "city": "berlin"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Uber Arena",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.443333,
+          52.505556
+        ]
+      },
+      "properties": {
+        "title": "Uber Arena",
+        "icon": "dot-11",
+        "description": "https://www.uber-arena.de/en/events/all",
+        "city": "berlin"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Tempodrom",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.383333,
+          52.505556
+        ]
+      },
+      "properties": {
+        "title": "Tempodrom",
+        "icon": "dot-11",
+        "description": "https://www.tempodrom.de/en/events-and-tickets/",
+        "city": "berlin"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Columbiahalle",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.423611,
+          52.486389
+        ]
+      },
+      "properties": {
+        "title": "Columbiahalle",
+        "icon": "dot-11",
+        "description": "https://www.columbiahalle.berlin/veranstaltungen.html",
+        "city": "berlin"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Admiralspalast",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.388611,
+          52.521389
+        ]
+      },
+      "properties": {
+        "title": "Admiralspalast",
+        "icon": "dot-11",
+        "description": "https://www.admiralspalast.theater/programm-tickets.html#go",
+        "city": "berlin"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Waldbühne",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.228333,
+          52.513333
+        ]
+      },
+      "properties": {
+        "title": "Waldbühne",
+        "icon": "dot-11",
+        "description": "https://www.waldbuehne-berlin.de/programm-und-tickets/",
+        "city": "berlin"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Parkbühne Wuhlheide",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.549722,
+          52.459722
+        ]
+      },
+      "properties": {
+        "title": "Parkbühne Wuhlheide",
+        "icon": "dot-11",
+        "description": "http://www.wuhlheide.de/programm",
+        "city": "berlin"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Berghain",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.442993,
+          52.511055
+        ]
+      },
+      "properties": {
+        "title": "Berghain",
+        "icon": "dot-11",
+        "description": "https://www.berghain.berlin/de/program/",
+        "city": "berlin"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Lido",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.446944,
+          52.499611
+        ]
+      },
+      "properties": {
+        "title": "Lido",
+        "icon": "dot-11",
+        "description": "https://www.lido-berlin.de/",
+        "city": "berlin"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Huxleys Neue Welt",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.438611,
+          52.509722
+        ]
+      },
+      "properties": {
+        "title": "Huxleys Neue Welt",
+        "icon": "dot-11",
+        "description": "https://huxleysneuewelt.de/events",
+        "city": "berlin"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Metropol Berlin",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.384722,
+          52.505556
+        ]
+      },
+      "properties": {
+        "title": "Metropol Berlin",
+        "icon": "dot-11",
+        "description": "https://metropol-berlin.de/",
+        "city": "berlin"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Uber Eats Music Hall",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.442733,
+          52.504556
+        ]
+      },
+      "properties": {
+        "title": "Uber Eats Music Hall",
+        "icon": "dot-11",
+        "description": "https://www.uber-eats-music-hall.de/events-tickets#alle",
+        "city": "berlin"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Max Schmeling Halle",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.425556,
+          52.535556
+        ]
+      },
+      "properties": {
+        "title": "Max Schmeling Halle",
+        "icon": "dot-11",
+        "description": "https://www.max-schmeling-halle.de/events-tickets",
+        "city": "berlin"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Privatclub",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.388611,
+          52.513611
+        ]
+      },
+      "properties": {
+        "title": "Privatclub",
+        "icon": "dot-11",
+        "description": "https://privatclub-berlin.de/?ved=2ahUKEwiKvtqO8q2QAxWjUaQEHRz_LNMQgU96BAhSEAQ",
+        "city": "berlin"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Hole",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.433342,
+          52.46439
+        ]
+      },
+      "properties": {
+        "title": "Hole",
+        "icon": "dot-11",
+        "description": "https://hole-berlin.de/",
+        "city": "berlin"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Astra Kulturhaus",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.471111,
+          52.475556
+        ]
+      },
+      "properties": {
+        "title": "Astra Kulturhaus",
+        "icon": "dot-11",
+        "description": "https://www.astra-berlin.de/",
+        "city": "berlin"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Kesselhaus Kulturbrauerei",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.412778,
+          52.544722
+        ]
+      },
+      "properties": {
+        "title": "Kesselhaus Kulturbrauerei",
+        "icon": "dot-11",
+        "description": "https://www.kesselhaus.net/fr/calendar",
+        "city": "berlin"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Sisyphos",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.470556,
+          52.474722
+        ]
+      },
+      "properties": {
+        "title": "Sisyphos",
+        "icon": "dot-11",
+        "description": "https://sisyphos-berlin.net/",
+        "city": "berlin"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Crack Bellmer",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.438611,
+          52.509722
+        ]
+      },
+      "properties": {
+        "title": "Crack Bellmer",
+        "icon": "dot-11",
+        "description": "https://www.crackbellmer.de/program/this-month",
+        "city": "berlin"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Kater Blau",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.435556,
+          52.503333
+        ]
+      },
+      "properties": {
+        "title": "Kater Blau",
+        "icon": "dot-11",
+        "description": "https://www.katerclub.de/",
+        "city": "berlin"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "About Blank",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.452778,
+          52.503611
+        ]
+      },
+      "properties": {
+        "title": "About Blank",
+        "icon": "dot-11",
+        "description": "https://aboutblank.li/",
+        "city": "berlin"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "KitKat Club",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.384722,
+          52.505556
+        ]
+      },
+      "properties": {
+        "title": "KitKat Club",
+        "icon": "dot-11",
+        "description": "http://kitkatclub.org/",
+        "city": "berlin"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Club der Visionäre",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.446389,
+          52.488611
+        ]
+      },
+      "properties": {
+        "title": "Club der Visionäre",
+        "icon": "dot-11",
+        "description": "https://clubdervisionaere.com/programm",
+        "city": "berlin"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Monarch",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.41947,
+          52.4993
+        ]
+      },
+      "properties": {
+        "title": "Monarch",
+        "icon": "dot-11",
+        "description": "https://kottimonarch.de/programm.php",
+        "city": "berlin"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Paloma bar",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.41899,
+          52.499333
+        ]
+      },
+      "properties": {
+        "title": "Paloma bar",
+        "icon": "dot-11",
+        "description": "https://palomabar.de/programm.php",
+        "city": "berlin"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "So 36",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.422722,
+          52.500333
+        ]
+      },
+      "properties": {
+        "title": "So 36",
+        "icon": "dot-11",
+        "description": "https://www.so36.com/tickets",
+        "city": "berlin"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Tresor",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.419722,
+          52.510756
+        ]
+      },
+      "properties": {
+        "title": "Tresor",
+        "icon": "dot-11",
+        "description": "https://tresorberlin.com/events/",
+        "city": "berlin"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Ritter Butzke",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.393333,
+          52.506389
+        ]
+      },
+      "properties": {
+        "title": "Ritter Butzke",
+        "icon": "dot-11",
+        "description": "https://club.ritterbutzke.com/events",
+        "city": "berlin"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Hoppetosse",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.454944,
+          52.497611
+        ]
+      },
+      "properties": {
+        "title": "Hoppetosse",
+        "icon": "dot-11",
+        "description": "https://hoppetosse.berlin/program/",
+        "city": "berlin"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Badeschiff an der Arena",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.426944,
+          52.488611
+        ]
+      },
+      "properties": {
+        "title": "Badeschiff an der Arena",
+        "icon": "dot-11",
+        "description": "https://www.arena.berlin/veranstaltungen/",
+        "city": "berlin"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Cassiopeia Club & jardin d'été",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.438611,
+          52.509722
+        ]
+      },
+      "properties": {
+        "title": "Cassiopeia Club & jardin d'été",
+        "icon": "dot-11",
+        "city": "berlin"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Else Club",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.454722,
+          52.488611
+        ]
+      },
+      "properties": {
+        "title": "Else Club",
+        "icon": "dot-11",
+        "description": "https://www.else.tv/corporate",
+        "city": "berlin"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Golden Gate",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.417056,
+          52.515222
+        ]
+      },
+      "properties": {
+        "title": "Golden Gate",
+        "icon": "dot-11",
+        "description": "https://fr.ra.co/clubs/8009",
+        "city": "berlin"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Hafen",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.349778,
+          52.498389
+        ]
+      },
+      "properties": {
+        "title": "Hafen",
+        "icon": "dot-11",
+        "description": "https://hafen-berlin.de/",
+        "city": "berlin"
+      }
+    },
+    {
+      "type": "Feature",
       "id": "Ancienne Belgique",
       "geometry": {
         "type": "Point",
