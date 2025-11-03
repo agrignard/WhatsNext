@@ -29,7 +29,7 @@ if (showAllValueDiv){
 
 
 var currentDate = new Date(Date.now());
-currentDate.setHours(2,0,0);
+currentDate.setHours(0,0,0,0);
 var appDate;
  
 map.on('load', () => {
@@ -89,6 +89,7 @@ function jsonCallback(err, data) {
     mapUtils.addShareWidget(map);
     appDate=currentDate;
     mapUtils.filterByTime(map,currentDate.valueOf(),false);
+    document.getElementById('dateSlider').textContent = mapUtils.setSliderDate(currentDate.valueOf());
 
 
     ///HANDLE SLIDER
@@ -98,7 +99,7 @@ function jsonCallback(err, data) {
       const newDateAsInt = tmpDate.setDate(tmpDate.getDate() + sliderValue).valueOf();
       appDate=newDateAsInt;
       mapUtils.filterByStyles(map,mapUtils.getActiveCircles(circles),newDateAsInt);
-      document.getElementById('dateSlider').textContent = mapUtils.days[new Date(newDateAsInt).getDay()] + " " + new Date(newDateAsInt).getDate()+ "/" + parseInt(new Date(newDateAsInt).getMonth()+1) + "/" + new Date(newDateAsInt).getFullYear();  
+      document.getElementById('dateSlider').textContent = mapUtils.setSliderDate(newDateAsInt);  
     });
 
     document.getElementById('showAll').addEventListener('input', (e) => {

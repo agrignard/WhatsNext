@@ -336,16 +336,22 @@ export function addShareWidget(map){
 //////////////////////////////////////////////////
 
 ////////////LAYER INTERACTION//////////////////////
-export function filterByTime(map,value) {  
+
+export function setSliderDate(value){
+  return days[new Date(value).getDay()] + " " + new Date(value).getDate()+ "/" + parseInt(new Date(value).getMonth()+1) + "/" + new Date(value).getFullYear();
+}
+
+export function filterByTime(map,value) {
+    var timeMin= parseInt(value);  //2h GMT
+    var timeMax= parseInt(timeMin + 86400000); //23h59
     if(!document.getElementById("showAll").checked){
         var filters = [
         "all",     
-        [">=", ['get', 'time'], value],
-        ["<=", ['get', 'time'], value+86400000]
+        [">=", ['to-number', ['get', 'time']], Number(timeMin)],
+        ["<", ['to-number', ['get', 'time']], Number(timeMax)]
         ];
         map.setFilter('event-circles', filters);
-        map.setFilter('event-labels', filters);
-        document.getElementById('dateSlider').textContent = days[new Date(value).getDay()] + " " + new Date(value).getDate()+ "/" + parseInt(new Date(value).getMonth()+1) + "/" + new Date(value).getFullYear();  
+        map.setFilter('event-labels', filters);  
     }else{
         var filters = [
         "all",     
@@ -353,50 +359,22 @@ export function filterByTime(map,value) {
         ];
         map.setFilter('event-circles', filters);
         map.setFilter('event-labels', filters);
-        document.getElementById('dateSlider').textContent = new Date(value).getDate()+ "/" + parseInt(new Date(value).getMonth()+1)  + "/" + new Date(value).getFullYear()+ "++";
     }    
-}
-
-export function filterByStyle(map,style,time) {  
-    var filters ="";
-    if(style=="all"){
-        filters = [
-        "all",     
-        [">=", ['get', 'time'], time],
-        ["<=", ['get', 'time'], time+86400000]
-        ];
-    }else{
-        if(!document.getElementById("showAll").checked){
-            filters = [
-                "all",    
-                ["==", ['get', 'style'], style],
-                [">=", ['get', 'time'], time],
-                ["<=", ['get', 'time'], time+86400000]
-            ];
-        }else{
-            filters = [
-                "all",    
-                ["==", ['get', 'style'], style],
-                [">=", ['get', 'time'], time]
-            ];
-        }
-        
-    }
-    map.setFilter('event-circles', filters);
-    map.setFilter('event-labels', filters);
 }
 
 export function getActiveCircles(circles) {
     return circles.filter(circle => circle.active);
 }
 
-export function filterByStyles(map,circles,time){   
+export function filterByStyles(map,circles,time){  
+    var timeMin= parseInt(time);  //2h GMT
+    var timeMax= parseInt(timeMin + 86400000); //00h00 
     function generateFilterConditions(activeCircles,time) {
         return activeCircles.map(circle => {
             // Check if 'style' and 'time' properties exist
             const styleCondition = ["==", ["get", "style"], circle.value];
-            const timeCondition1 = [">=", ["get", "time"], time];
-            const timeCondition2 = ["<=", ["get", "time"], time+86400000];
+            const timeCondition1 = [">=", ['to-number', ['get', 'time']], Number(timeMin)];
+            const timeCondition2 = ["<", ['to-number', ['get', 'time']], Number(timeMax)];
             // Filter out null conditions
             const conditions = [styleCondition, timeCondition1,timeCondition2].filter(condition => condition !== null);
             // Use 'all' if there are conditions, otherwise return null
