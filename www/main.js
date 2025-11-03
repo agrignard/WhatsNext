@@ -111,6 +111,7 @@ function jsonCallback(err, data) {
     });
     processTimeBasedOnUrl();
     processDayBasedOnUrl(); 
+    processDateBasedOnUrl();
 }
 
 dataUtils.initPlaceInformation();
@@ -306,10 +307,7 @@ function processTimeBasedOnUrl() {
     const time = getQueryParam('time');
     // Check the value of the 'type' parameter and take appropriate actions
     if (time!=null) {
-        console.log('Time parameter: ' + time);
-        console.log("currentDate" + currentDate);
         var nbDayfromToday=Math.floor((time - currentDate) / (1000 * 60 * 60 * 24));
-        console.log("il faut que je bouge le slider de " + nbDayfromToday);
         document.getElementById('slider').value = nbDayfromToday;
         const tmpDate= new Date(currentDate);
         const newDateAsInt = tmpDate.setDate(tmpDate.getDate() + nbDayfromToday);
@@ -317,7 +315,24 @@ function processTimeBasedOnUrl() {
         mapUtils.filterByTime(map,newDateAsInt,false);
         document.getElementById('dateSlider').textContent = mapUtils.setSliderDate(appDate.valueOf());
 
-    }else {
+    }
+}
+
+// Function to show content based on the URL parameter
+function processDateBasedOnUrl() {
+    const date = getQueryParam('date');
+    // Check the value of the 'type' parameter and take appropriate actions
+    if (date!=null) {
+        const year = parseInt(date.slice(0,4), 10);
+        const month = parseInt(date.slice(4,6), 10) - 1; // JS months = 0-11
+        const day = parseInt(date.slice(6,8), 10);
+        const dateUTC = Date.UTC(year, month, day, 0, 0, 0, 0);
+        var nbDayfromToday=Math.floor((dateUTC - currentDate) / (1000 * 60 * 60 * 24));
+        const tmpDate= new Date(currentDate);
+        const newDateAsInt = tmpDate.setDate(tmpDate.getDate() + nbDayfromToday);
+        appDate=newDateAsInt;
+        mapUtils.filterByTime(map,newDateAsInt,false);
+        document.getElementById('dateSlider').textContent = mapUtils.setSliderDate(appDate.valueOf());
     }
 }
 

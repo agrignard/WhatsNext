@@ -317,10 +317,12 @@ export function addShareWidget(map){
             dateToShare.setDate(dateToShare.getDate()+parseInt(document.getElementById('slider').value,10))
             //old way to share date                
             //const currentURL = window.location.origin+"/?day="+parseInt(document.getElementById('slider').value,10);
-            const currentURL = window.location.origin+"/?time="+dateToShare.getTime();
+            //const currentURL = window.location.origin+"/?time="+dateToShare.getTime();
+            //WARNING: I need to see why I have to add a +1 (related to UTC etc)
+            const currentURL = window.location.origin+"/?date="+(parseInt(dateToShare.toISOString().slice(0,10).replace(/-/g,''))+1);
             navigator.clipboard.writeText(currentURL)
             .then(() => {
-                alert("📤 Share this link for this specific day: " + currentURL );
+                alert("📤 Share this link for this specific date: " + currentURL );
                // window.open("https://cdn.glitch.global/f7c291e5-78f1-4461-8ca2-473115b2660f/qr_code.jpg?v=1739907954203", "_blank");
             })
             .catch((error) => {
