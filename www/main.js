@@ -328,6 +328,7 @@ function processDateBasedOnUrl() {
         const day = parseInt(date.slice(6,8), 10);
         const dateUTC = Date.UTC(year, month, day, 0, 0, 0, 0);
         var nbDayfromToday=Math.floor((dateUTC - currentDate) / (1000 * 60 * 60 * 24));
+        document.getElementById('slider').value = nbDayfromToday;
         const tmpDate= new Date(currentDate);
         const newDateAsInt = tmpDate.setDate(tmpDate.getDate() + nbDayfromToday);
         appDate=newDateAsInt;
