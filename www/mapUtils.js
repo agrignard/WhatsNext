@@ -312,10 +312,15 @@ export function addShareWidget(map){
         // Add event listener for copying the current URL
         this.container.addEventListener('click', () => {
             const appURL = window.location.origin;
-            const currentURL = window.location.origin+"/?day="+parseInt(document.getElementById('slider').value,10);
+            var dateToShare=new Date(Date.now());
+            dateToShare.setHours(0,0,0,0);
+            dateToShare.setDate(dateToShare.getDate()+parseInt(document.getElementById('slider').value,10))
+            //old way to share date                
+            //const currentURL = window.location.origin+"/?day="+parseInt(document.getElementById('slider').value,10);
+            const currentURL = window.location.origin+"/?time="+dateToShare.getTime();
             navigator.clipboard.writeText(currentURL)
             .then(() => {
-                alert("📤 Share this link for the full app: " + appURL + "\n\n📤 Share this link for this specific day: " + currentURL );
+                alert("📤 Share this link for this specific day: " + currentURL );
                // window.open("https://cdn.glitch.global/f7c291e5-78f1-4461-8ca2-473115b2660f/qr_code.jpg?v=1739907954203", "_blank");
             })
             .catch((error) => {

@@ -109,6 +109,7 @@ function jsonCallback(err, data) {
     }
     mapUtils.filterByTime(map,currentDate.valueOf(),false)
     });
+    processTimeBasedOnUrl();
     processDayBasedOnUrl(); 
 }
 
@@ -295,6 +296,27 @@ function processDayBasedOnUrl() {
         const newDateAsInt = tmpDate.setDate(tmpDate.getDate() + parseInt(day)).valueOf();
         appDate=newDateAsInt;
         mapUtils.filterByTime(map,newDateAsInt,false);
+        document.getElementById('dateSlider').textContent = mapUtils.setSliderDate(appDate.valueOf());
+    }else {
+    }
+}
+
+// Function to show content based on the URL parameter
+function processTimeBasedOnUrl() {
+    const time = getQueryParam('time');
+    // Check the value of the 'type' parameter and take appropriate actions
+    if (time!=null) {
+        console.log('Time parameter: ' + time);
+        console.log("currentDate" + currentDate);
+        var nbDayfromToday=Math.floor((time - currentDate) / (1000 * 60 * 60 * 24));
+        console.log("il faut que je bouge le slider de " + nbDayfromToday);
+        document.getElementById('slider').value = nbDayfromToday;
+        const tmpDate= new Date(currentDate);
+        const newDateAsInt = tmpDate.setDate(tmpDate.getDate() + nbDayfromToday);
+        appDate=newDateAsInt;
+        mapUtils.filterByTime(map,newDateAsInt,false);
+        document.getElementById('dateSlider').textContent = mapUtils.setSliderDate(appDate.valueOf());
+
     }else {
     }
 }
