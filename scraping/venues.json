@@ -1502,5 +1502,26 @@
     "baseURL": "https://www.olympiahall.com/agenda/",
     "eventsDelimiterTag": "A.ccard.event.depth9",
     "dateFormat": "dd-MM-yyyy"
+  },
+  {
+    "name": "FIDUCIAL Astéria",
+    "city": "Lyon",
+    "country": "France",
+    "url": "https://www.fiducial-asteria.com/agenda",
+    "ID": "FIDUCIAL Astéria|Lyon|France",
+    "mainPage": {
+      "eventNameTags": [
+        "DIV.articletitle.depth18:eq(0)>H3.depth19:eq(0)>A.linktext.linktextlight.depth20:eq(0)"
+      ],
+      "eventURLTags": [
+        "DIV.articletitle.depth18:eq(0)>H3.depth19:eq(0)>A.linktext.linktextlight.depth20:eq(0)"
+      ],
+      "eventDateTags": [
+        "DIV.articledescription.depth18:eq(0)>P.depth19:eq(0)"
+      ]
+    },
+    "baseURL": "https://www.fiducial-asteria.com/",
+    "eventsDelimiterTag": "DIV.articlecontent.depth17",
+    "dateFormat": "dd-MM-yyyy-HH:mm"
   }
 ]

@@ -568,8 +568,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          4.978658041447684,
-          45.76865757266265
+          4.979913252649467,
+          45.769280639372276
         ]
       },
       "properties": {
@@ -1885,6 +1885,23 @@
         "title": "Anticlub",
         "icon": "dot-11",
         "description": " https://www.instagram.com/anticlub.lyon/",
+        "city": "lyon"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FIDUCIAL Astéria",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.980433814261172,
+          45.76994394488923
+        ]
+      },
+      "properties": {
+        "title": "FIDUCIAL Astéria",
+        "icon": "dot-11",
+        "description": "https://www.fiducial-asteria.com/",
         "city": "lyon"
       }
     }

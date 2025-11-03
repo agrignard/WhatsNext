@@ -190,7 +190,7 @@
     },
     {
       "type": "Feature",
-      "id": "Olympia",
+      "id": "L'Olympia",
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -199,7 +199,7 @@
         ]
       },
       "properties": {
-        "title": "Olympia",
+        "title": "L'Olympia",
         "icon": "dot-11",
         "description": " https://www.olympiahall.com/",
         "city": "paris"
