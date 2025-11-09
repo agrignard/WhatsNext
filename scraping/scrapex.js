@@ -63,6 +63,18 @@ async function scrap(venues){
 
 
 async function validateVenue(venue){
+  if(!venue.hasOwnProperty('url')){
+    writeToLog('error',undefined,'\x1b[31mNo url defined for '+venue.name+'. Skipping file.\x1b[0m');
+    return false;
+  }
+
+  // check if a repertory exists for the venue
+  if (!fs.existsSync(sourcePath+venue.country+'/'+ venue.city+'/'+venue.name+'/'+venue.name+'.html')){
+    console.log('\x1b[31mError: No file found for venue \x1b[0m%s\x1b[31m. '
+      +'Check venue properties and run aspiratorex.\x1b[0m',venue.name);
+    return false;
+  }
+
   if (!(venue.hasOwnProperty('eventsDelimiterTag') || venue.hasOwnProperty('eventsDelimiterRegex'))){
     writeToLog('error',undefined,'\x1b[31mAucun délimiteur de bloc d\'événement défini pour '+venue.name+'. Fichier non traité.\x1b[0m');
     return false;
@@ -82,8 +94,10 @@ async function validateVenue(venue){
 
   if(!keywords.some(keyword => keyword.includes('Date'))){
     writeToLog('error',undefined,'\x1b[31m%sAucun délimiteur de date d\'événement défini pour '+venue.name+'. Fichier non traité.\x1b[0m');
-    return true;
+    return false;
   }
+
+  return true;
 }
 
 
@@ -91,10 +105,10 @@ async function validateVenue(venue){
 async function scrapFiles(venues) {
   let totalEventList = [];
   for (const venue of venues) {
-    if (validateVenue(venue)){
+    if (await validateVenue(venue)){
       totalEventList = totalEventList.concat(await analyseFile(venue));
     }else{
-      console.log('\x1b[31mVenue %s non traitée.\x1b[0m', venue);
+      console.log('\x1b[31mVenue \x1b[0m%s\x1b[31m non traitée.\x1b[0m', venue.name);
     }
     
   }
@@ -134,7 +148,7 @@ async function scrapFiles(venues) {
 async function analyseFile(venue) {
 
   const timeZone = timeZones.getTimeZone(venue);
-  let linkedFileContent;//, inputFileList;
+  let linkedFileContent;
   const venueSourcePath = sourcePath+venue.country+'/'+venue.city+'/'+venue.name+'/';
   if (venue.hasOwnProperty('linkedPage')){
     linkedFileContent = loadLinkedPages(venueSourcePath);

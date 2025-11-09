@@ -362,7 +362,10 @@ async function getPageByPuppeteer(pageURL, venue, multipagesOptions, browserPool
                             }
                         },buttonText,count, verbose);
                         if (hasMoreContent === 'buttonNotFound'){
-                            console.log('\x1b[38;5;226mWarning: button \x1b[0m\'%s\'\x1b[38;5;226m not found\x1b[0m for venue \x1b[36m%s\x1b[0m.',buttonText,venueName);
+                            // if no button is found, send a warning.
+                            if (count === 1){
+                                console.log('\x1b[38;5;226mWarning: button \x1b[0m\'%s\'\x1b[38;5;226m not found\x1b[0m for venue \x1b[36m%s\x1b[0m.',buttonText,venueName); 
+                            }
                             break;
                         }
                         if (hasMoreContent === false){
