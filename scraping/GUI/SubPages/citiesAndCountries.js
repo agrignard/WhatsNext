@@ -55,7 +55,7 @@ countriesDropdown.addEventListener('change', (event) => {
 
 ["country","city"].forEach(el =>{
     document.getElementById('add'+el+'Btn').addEventListener('click', () => {
-        // Afficher la boîte de dialogue pour saisir le nom du nouveau pays
+        // Display dialog box to add new country/city
         if (document.getElementById(el+'Dialog').style.display === 'none'){
             document.getElementById('add'+el+'Btn').textContent = "Cancel";
             document.getElementById(el+'Dialog').style.display = 'block';

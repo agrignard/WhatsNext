@@ -24,15 +24,14 @@ const outputPath = './webSources/';
 const venues = loadVenuesJSONFile();
 let log = '';
 
-const filteredVenues = getVenuesFromArguments(process.argv.filter(el => el !=='--verbose'), venues);
+// get venue list and initializes new venues
+const filteredVenues = getVenuesFromArguments(process.argv.filter(el => el !=='--verbose'), venues)
+                          .filter(venue => initializeVenue(venue, outputPath));
 
-// initializes new venues
-filteredVenues.forEach(venue => initializeVenue(venue, outputPath));
 
-// const venueToDownload = process.argv[2];
-// if (venueToDownload && typeof venueToDownload !== "string"){
-//   throw new Error('Argument for this script should be a venue name (string)');
-// }
+// filteredVenues.forEach(venue => initializeVenue(venue, outputPath));
+// filteredVenues = filteredVenues.filter(venue => initializeVenue(venue, outputPath));
+
 
 console.log("\n\x1b[36m***********************************************************************************");
 console.log("ASPIRATOREX IS SNIFFING SOURCES FILES contained in venues JSON file.");

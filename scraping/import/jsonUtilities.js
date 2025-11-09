@@ -367,7 +367,8 @@ function getNameFromID(ID){
 // add keys ID and baseURL to new venue
 function initializeVenue(venue, outputPath){
     if (!venue.hasOwnProperty('country') || !venue.hasOwnProperty('city')){
-        console.log('\x1b[31mError: venue \x1b[0m%s\x1b[31m has no country and/or city defined.',venue.name);
+        console.log('\x1b[31mError: venue \x1b[0m%s\x1b[31m has no country and/or city defined.\x1b[0m',venue.name);
+        return false;
     }else{
         if (!venue.hasOwnProperty('ID')){
             console.log('Initializing new venue %s',venue.name);
@@ -377,11 +378,19 @@ function initializeVenue(venue, outputPath){
             // initializes base url
             const url = new URL(venue.url);
             venue.baseURL = url.origin + url.pathname.replace(/\/[^\/]+$/, '/');
+            // check if a repertory exists for the city
+            if (!fs.existsSync(outputPath+venue.country+'/'+ venue.city+'/')){
+                console.log('\x1b[31mError: there is no directory for city \x1b[0m%s\x1b[31m. '
+                    +'Check if the city name is mispelled, otherwise use the GUI to create a new city entry.\x1b[0m',venue.city);
+                // throw(new Error('City not found'));
+                return false;
+            }
             // initializes directory for storage
             const path = outputPath+venue.country+'/'+ venue.city+'/'+venue.name+'/';
             if (!fs.existsSync(path)){
               fs.mkdirSync(path);
             }
+            return true;
         }
     } 
 }
