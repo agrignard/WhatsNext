@@ -241,6 +241,7 @@ async function analyseFile(venue) {
       let formatedEventDate;
 
       for (const dateFormat of possibleDateFormats){
+        console.log("test ", convertDate(eventInfo.eventDate,localDateConversionPatterns));
         formatedEventDate = createDate(convertDate(eventInfo.eventDate,localDateConversionPatterns), dateFormat, timeZone, modificationDate);
         if (isValid(formatedEventDate)) {
           formatFound = true;

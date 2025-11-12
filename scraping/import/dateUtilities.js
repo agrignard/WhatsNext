@@ -87,7 +87,7 @@ function createDate(s,dateFormat,timeZone,refDate, verbose = false) {
       // peut-être que true force moment.tz à faire un formattage strict. Si ça ne fonctionne pas,
       // enlever true et décommenter les lignes précédentes
       const date = moment.tz(s,dateFormat.replace(/d/g,'D').replace(/y/g,'Y'), true, timeZone);
-      //console.log(date.toLocaleString());
+      // console.log(s,dateFormat);
       let tzDate = date.toDate();
       // if (refDate && !/yy/.test(dateFormat) && tzDate < refDate){// add one year if the date is past for more than one month. Useful when the year is not in the data
       //     tzDate.setFullYear(tzDate.getFullYear() + 1);
@@ -102,14 +102,18 @@ function createDate(s,dateFormat,timeZone,refDate, verbose = false) {
 
 // clean the date (remove unwanted characters)
 function convertDate(s,dateConversionPatterns){
+
+  // test non regular date format. Currently: same day event may use keywords like 'tonight'
+  // to be improved, using field 'tonight' of 'dateConversionPatterns'
   if (s.includes('tonight')){
-    return s;
+    return 'tonight';
   }
-  // const s1 = s;
+  
+  // Fix caracters encoding errors
   s = s.normalize('NFD').replace(/[\u0300-\u036f]/g, ''); // remove accents
   s = s.replace(/[^\x00-\x7F]/g,''); //remove non standard caracters => to be improved
  
-  
+  console.log(s," pattern: ", dateConversionPatterns);
   for (const key in dateConversionPatterns) {
     function replacer(match, p1, p2, p3, offset, string) {
       return ' '+key+' ';
@@ -119,11 +123,12 @@ function convertDate(s,dateConversionPatterns){
       s = s.replace(new RegExp("([^a-zA-Z.]|^)("+str2+")([^a-zA-Z.]|$)",'i'),replacer);
     }
   }  
+  console.log(s);
+  
   // change some inconsistencies
   s = s.replace(/de([^]*?)[aà][^]*$/,(_,p) =>'a'+p);
 
   //  //removing words with 2 or more letters
- 
   s = s.replace(/\b[^0-9]{2,}\b/g,' ');
   
   // const s2 = s;
