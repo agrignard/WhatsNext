@@ -4490,6 +4490,23 @@
     },
     {
       "type": "Feature",
+      "id": "La Q",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.823038485943611,
+          45.75360298553996
+        ]
+      },
+      "properties": {
+        "title": "La Q",
+        "icon": "dot-11",
+        "description": "https://whatsnext-live.com/",
+        "city": "lyon"
+      }
+    },
+    {
+      "type": "Feature",
       "id": "CEPAC Silo",
       "geometry": {
         "type": "Point",
