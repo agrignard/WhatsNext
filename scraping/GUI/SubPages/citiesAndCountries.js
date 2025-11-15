@@ -108,7 +108,7 @@ document.getElementById('cityConfirmBtn').addEventListener('click', () => {
     if (newCityName) {
         // Créer le répertoire correspondant au nouveau pays
         const newCityDirectory = webSources + '/' + countriesDropdown.value + '/' + newCityName;
-        fs.mkdir(newCityName, (err) => {
+        fs.mkdir(newCityDirectory, (err) => {
             if (err) {
                 console.error('Cannot create directory :', err);
                 return;

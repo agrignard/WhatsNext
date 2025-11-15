@@ -1,130 +1,52 @@
-Date: Du 15.11.25 / 10h au 15.11.25 / 17h
-Event: Formation • Les revenus de l'artiste musicien.ne
-Place: La Belle Electrique
-city: Grenoble
+Date: 05 déc. 2025 | 20:00 06 déc. 2025 | 20:00 07 déc. 2025 | 15:00
+Event: LES BODIN’S
+Place: Zénith de Saint-Étienne
+city: Saint-Etienne
 country: France
-Style: Live
 isCancelled: false
 DetailedStyle: 
-source: La Belle Electrique (Grenoble, France)
-unixDate: 0
-errorLog: Format de date invalide pour La Belle Electrique. Reçu 'Du 15.11.25 / 10h au 15.11.25 / 17h', converti en '15-11-25-10:00-15-11-25-17:00'. Formats essayés: dd-MM-yy-HH:mm
-https://www.la-belle-electrique.com/fr/agenda/formation-revenus-artiste
-
-Date: Du 15.11.25 / 20h au 16.11.25 / 2h
-Event: Los Burritos Santos • Release Party - Nuit de la Cumbia + Chicharron + Kumbia Boruka + DJ Felipe
-Place: La Belle Electrique
-city: Grenoble
-country: France
-Style: Cumbia
-isCancelled: false
-DetailedStyle: Cumbia
-source: La Belle Electrique (Grenoble, France)
-unixDate: 0
-errorLog: Format de date invalide pour La Belle Electrique. Reçu 'Du 15.11.25 / 20h au 16.11.25 / 2h', converti en '15-11-25-20:00-16-11-25-02:00'. Formats essayés: dd-MM-yy-HH:mm
-https://www.la-belle-electrique.com/fr/agenda/los-burritos-release
-
-Date: Du 22.11.25 / 23h55 au 23.11.25 / 5h30
-Event: JEN CARDINI b2b PABLO BOZZI + CLEO b2b DJ LIBERT
-Place: La Belle Electrique
-city: Grenoble
-country: France
-Style: Electro
-isCancelled: false
-DetailedStyle: Techno
-source: La Belle Electrique (Grenoble, France)
-unixDate: 0
-errorLog: Format de date invalide pour La Belle Electrique. Reçu 'Du 22.11.25 / 23h55 au 23.11.25 / 5h30', converti en '22-11-25-23:55-23-11-25-05:30'. Formats essayés: dd-MM-yy-HH:mm
-https://www.la-belle-electrique.com/fr/agenda/jennifer-cardini-pablo-bozzi-cleo-dj-libert
-
-Date: Du 29.11.25 / 9h30 au 29.11.25 / 17h30
-Event: Formation • L'export : compréhensions, productions et stratégies
-Place: La Belle Electrique
-city: Grenoble
-country: France
 Style: Live
+source: Zénith de Saint-Étienne (Saint-Etienne, France)
+unixDate: 0
+errorLog: Format de date invalide pour Zénith de Saint-Étienne. Reçu '05 déc. 2025 | 20:00 06 déc. 2025 | 20:00 07 déc. 2025 | 15:00', converti en '05-12-2025-20:00-06-12-2025-20:00-07-2025-15:00'. Formats essayés: dd-MM-yyyy-HH:mm
+https://www.zenith-saint-etienne.fr/evenement/les-bodins/
+
+Date: 21 mars 2026 | 14:00 21 mars 2026 | 17:00
+Event: PAT’ PATROUILLE
+Place: Zénith de Saint-Étienne
+city: Saint-Etienne
+country: France
 isCancelled: false
 DetailedStyle: 
-source: La Belle Electrique (Grenoble, France)
-unixDate: 0
-errorLog: Format de date invalide pour La Belle Electrique. Reçu 'Du 29.11.25 / 9h30 au 29.11.25 / 17h30', converti en '29-11-25-09:30-29-11-25-17:30'. Formats essayés: dd-MM-yy-HH:mm
-https://www.la-belle-electrique.com/fr/agenda/formation-export
-
-Date: Du 06.12.25 / 9h30 au 06.12.25 / 17h30
-Event: Formation • Stratégies, image et élaboration de documents de communication
-Place: La Belle Electrique
-city: Grenoble
-country: France
 Style: Live
+source: Zénith de Saint-Étienne (Saint-Etienne, France)
+unixDate: 0
+errorLog: Format de date invalide pour Zénith de Saint-Étienne. Reçu '21 mars 2026 | 14:00 21 mars 2026 | 17:00', converti en '21-03-2026-14:00-21-2026-17:00'. Formats essayés: dd-MM-yyyy-HH:mm
+https://www.zenith-saint-etienne.fr/evenement/pat-patrouille/
+
+Date: 19 mai 2026 | 20:00 20 mai 2026 | 20:00
+Event: LE ROI SOLEIL
+Place: Zénith de Saint-Étienne
+city: Saint-Etienne
+country: France
 isCancelled: false
 DetailedStyle: 
-source: La Belle Electrique (Grenoble, France)
-unixDate: 0
-errorLog: Format de date invalide pour La Belle Electrique. Reçu 'Du 06.12.25 / 9h30 au 06.12.25 / 17h30', converti en '06-12-25-09:30-06-12-25-17:30'. Formats essayés: dd-MM-yy-HH:mm
-https://www.la-belle-electrique.com/fr/agenda/formation-communication
-
-Date: Du 09.12.25 / 9h30 au 09.12.25 / 15h30
-Event: Formation • Développer un projet musical professionnel indépendant
-Place: La Belle Electrique
-city: Grenoble
-country: France
 Style: Live
+source: Zénith de Saint-Étienne (Saint-Etienne, France)
+unixDate: 0
+errorLog: Format de date invalide pour Zénith de Saint-Étienne. Reçu '19 mai 2026 | 20:00 20 mai 2026 | 20:00', converti en '19-05-2026-20:00-20-2026-20:00'. Formats essayés: dd-MM-yyyy-HH:mm
+https://www.zenith-saint-etienne.fr/evenement/le-roi-soleil/
+
+Date: 05 déc. 2026 | 20:00 06 déc. 2026 | 19:00
+Event: DUB INC
+Place: Zénith de Saint-Étienne
+city: Saint-Etienne
+country: France
 isCancelled: false
 DetailedStyle: 
-source: La Belle Electrique (Grenoble, France)
+Style: Live
+source: Zénith de Saint-Étienne (Saint-Etienne, France)
 unixDate: 0
-errorLog: Format de date invalide pour La Belle Electrique. Reçu 'Du 09.12.25 / 9h30 au 09.12.25 / 15h30', converti en '09-12-25-09:30-09-12-25-15:30'. Formats essayés: dd-MM-yy-HH:mm
-https://www.la-belle-electrique.com/fr/agenda/formation-projet-musical-independant
-
-Date: Du 12.12.25 / 22h au 13.12.25 / 4h
-Event: AFTRWRK SESSION • ADI SHANKARA + ASHKABAD + DUB DYNASTY FEAT JONAH DAN + ROOTS RAID FEAT SHANTI D
-Place: La Belle Electrique
-city: Grenoble
-country: France
-Style: Electro
-isCancelled: false
-DetailedStyle: Dub
-source: La Belle Electrique (Grenoble, France)
-unixDate: 0
-errorLog: Format de date invalide pour La Belle Electrique. Reçu 'Du 12.12.25 / 22h au 13.12.25 / 4h', converti en '12-12-25-22:00-13-12-25-04:00'. Formats essayés: dd-MM-yy-HH:mm
-https://www.la-belle-electrique.com/fr/agenda/aftrwrk-session
-
-Date: Du 13.12.25 / 22h au 14.12.25 / 4h
-Event: La Fièvre d'Hiver 2025
-Place: La Belle Electrique
-city: Grenoble
-country: France
-Style: World
-isCancelled: false
-DetailedStyle: Afrobeat
-source: La Belle Electrique (Grenoble, France)
-unixDate: 0
-errorLog: Format de date invalide pour La Belle Electrique. Reçu 'Du 13.12.25 / 22h au 14.12.25 / 4h', converti en '13-12-25-22:00-14-12-25-04:00'. Formats essayés: dd-MM-yy-HH:mm
-https://www.la-belle-electrique.com/fr/agenda/la-fievre-hiver-2025
-
-Date: Du 20.12.25 / 23h55 au 21.12.25 / 5h30
-Event: THE HACKER INVITE : BELARIA + DJEDJOTRONIC [LIVE] + ENDRIK SCHROEDER
-Place: La Belle Electrique
-city: Grenoble
-country: France
-Style: Electro
-isCancelled: false
-DetailedStyle: Techno
-source: La Belle Electrique (Grenoble, France)
-unixDate: 0
-errorLog: Format de date invalide pour La Belle Electrique. Reçu 'Du 20.12.25 / 23h55 au 21.12.25 / 5h30', converti en '20-12-25-23:55-21-12-25-05:30'. Formats essayés: dd-MM-yy-HH:mm
-https://www.la-belle-electrique.com/fr/agenda/the-hacker-belaria-djedjotronic-endrick-schroeder
-
-Date: Du 10.01.26 / 23h au 11.01.26 / 5h30
-Event: Grabuge à La Belle
-Place: La Belle Electrique
-city: Grenoble
-country: France
-Style: Electro
-isCancelled: false
-DetailedStyle: Tekno / Hardcore
-source: La Belle Electrique (Grenoble, France)
-unixDate: 0
-errorLog: Format de date invalide pour La Belle Electrique. Reçu 'Du 10.01.26 / 23h au 11.01.26 / 5h30', converti en '10-01-26-23:00-11-01-26-05:30'. Formats essayés: dd-MM-yy-HH:mm
-https://www.la-belle-electrique.com/fr/agenda/grabuge-a-la-belle
+errorLog: Format de date invalide pour Zénith de Saint-Étienne. Reçu '05 déc. 2026 | 20:00 06 déc. 2026 | 19:00', converti en '05-12-2026-20:00-06-12-2026-19:00'. Formats essayés: dd-MM-yyyy-HH:mm
+https://www.zenith-saint-etienne.fr/evenement/dub-inc/
 

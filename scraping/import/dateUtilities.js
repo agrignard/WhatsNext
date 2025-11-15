@@ -103,6 +103,7 @@ function createDate(s,dateFormat,timeZone,refDate, verbose = false) {
 // clean the date (remove unwanted characters)
 function convertDate(s,dateConversionPatterns){
 
+  console.log('debut',s);
   // test non regular date format. Currently: same day event may use keywords like 'tonight'
   // to be improved, using field 'tonight' of 'dateConversionPatterns'
   if (s.includes('tonight')){
@@ -113,7 +114,7 @@ function convertDate(s,dateConversionPatterns){
   s = s.normalize('NFD').replace(/[\u0300-\u036f]/g, ''); // remove accents
   s = s.replace(/[^\x00-\x7F]/g,''); //remove non standard caracters => to be improved
  
-  console.log(s," pattern: ", dateConversionPatterns);
+  // console.log(s," pattern: ", dateConversionPatterns);
   for (const key in dateConversionPatterns) {
     function replacer(match, p1, p2, p3, offset, string) {
       return ' '+key+' ';
@@ -124,11 +125,11 @@ function convertDate(s,dateConversionPatterns){
     }
   }  
   console.log(s);
-  
   // change some inconsistencies
   s = s.replace(/de([^]*?)[aà][^]*$/,(_,p) =>'a'+p);
 
   //  //removing words with 2 or more letters
+
   s = s.replace(/\b[^0-9]{2,}\b/g,' ');
   
   // const s2 = s;
