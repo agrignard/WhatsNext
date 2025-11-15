@@ -1,3 +1,6 @@
+verbose = true;
+
+
 const monthsDict = {
   janvier: ["jan", "janv"],
   fevrier: ["fev"],
@@ -205,20 +208,7 @@ function preprocessTokens(list){
       }
 
     } else {
-      // if a 'time' token is found
-      if (token.type === "time") {
-        if (buffer) {
-          // buffer txt is added to the previousText field
-          result.push({
-            ...token,
-            previousText: buffer.rawText
-          });
-          buffer = null;
-          continue;
-        }
-      }
-
-      // if the type is neither text nor time, buffer is released
+      // if the type is not text, the buffer is released
       if (buffer) {
         result.push(buffer);
         buffer = null;
@@ -228,19 +218,163 @@ function preprocessTokens(list){
     }
   }
 
-  // S'il reste du texte à la fin
+  // if there is some text remaining at the end
   if (buffer) {
     result.push(buffer);
   }
 
-  return result.map(token => processTextToken(token))
+  return timeParser(result).map(token => processTextToken(token))
                .filter(token => token.type !== 'unknown text');
 }
+
+// aux function to regroupe time and text
+function timeParser(tokens) {
+  const result = [];
+  let buffer = []; // tokens time/text buffer
+
+  const flushBuffer = () => {
+    if (buffer.length === 0) return;
+    
+    // should not finish by text
+    if (buffer.length === 1 && buffer[0].type === 'text'){
+        result.push(buffer[0]);
+        buffer = [];
+        return;
+    }
+
+    let lastToken = null;
+    // if the list of token finishes by text, remove the last one, and push it at the end of the process
+    if (buffer[buffer.length-1].type === 'text'){
+        lastToken = buffer.pop();
+    }
+    
+    // function for the default behaviour
+    const makeDefaultGroup = () => {
+      
+      result.push({
+        type: "timeList",
+        rawText: buffer.map(t => t.rawText).join(" "),
+        value: buffer.filter(t => t.type === "time").map(t => t.rawText)
+      });
+      if (lastToken){
+        result.push(lastToken);
+      }
+    };
+
+    // case 0: only one element. Don't do any change
+    if (buffer.length === 1){
+        result.push(buffer[0]);
+        if (lastToken){
+            result.push(lastToken);
+        }
+        buffer = [];
+        return;
+    }
+    // case 1: [text, time2]
+    if (buffer.length === 2 &&
+        buffer[0].type === "text" &&
+        buffer[1].type === "time") {
+
+        result.push({
+          type: "time",
+          rawText: buffer[1].rawText,
+          textBefore: buffer[0].rawText
+        });
+        buffer = [];
+        if (lastToken){
+            result.push(lastToken);
+        }
+        return;
+    }
+
+    // case 2 : [time, text, time]
+        if (buffer.length === 3 &&
+        buffer[0].type === "time" &&
+        buffer[1].type === "text" &&
+        buffer[2].type === "time") {
+
+      const sep = buffer[1].rawText.trim();
+      if (timeRangeSeparators.includes(sep)) {
+        result.push({
+          type: "timeRange",
+          rawText: buffer.map(t => t.rawText).join(" "),
+          value: [buffer[0].rawText, buffer[2].rawText],
+          separator: sep
+        });
+        buffer = [];
+        if (lastToken){
+            result.push(lastToken);
+        }
+        return;
+      }else{
+        if (verbose){
+            console.log("\x1b[38;5;226mWarning: found a text between two times in \x1b[0m"
+                    +buffer.map(t => t.rawText).join(" ")
+                    +"\x1b[38;5;226m but it is neither in the timeSeparatorList, nor in ignore list. Check if it is a missing keyword.\x1b[0m");
+        }
+      }
+    }
+
+    // case 3 : [text, time, text, time]
+    if (buffer.length === 4 &&
+        buffer[0].type === "text" &&
+        buffer[1].type === "time" &&
+        buffer[2].type === "text" &&
+        buffer[3].type === "time") {
+
+      const t1 = buffer[0].rawText.trim().toLowerCase();
+      const t2 = buffer[2].rawText.trim().toLowerCase();
+
+      for (const pair of timeRangeDelimiters) {
+        if (t1 === pair[0] && t2 === pair[1]) {
+          result.push({
+            type: "timeRange",
+            rawText: buffer.map(t => t.rawText).join(" "),
+            value: [buffer[1].rawText, buffer[3].rawText],
+            delimiter: pair
+          });
+          buffer = [];
+        if (lastToken){
+            result.push(lastToken);
+        }
+          return;
+        }else{
+            if (verbose){
+                console.log("\x1b[38;5;226mWarning: found a sequence [text, time, text, time] in \x1b[0m"
+                        +buffer.map(t => t.rawText).join(" ")
+                        +"\x1b[38;5;226m but it is neither in the timeRangeList, nor in ignore list. Check if it is a missing keyword.\x1b[0m");
+            }
+        }
+      }
+    }
+
+    // Default case
+    makeDefaultGroup();
+    buffer = [];
+  };
+
+  for (const token of tokens) {
+    if (token.type === "time" || token.type === "text") {
+      buffer.push(token);
+    } else {
+      flushBuffer();
+      result.push(token);
+    }
+  }
+
+  // Fin → vider
+  flushBuffer();
+
+  return result;
+}
+
+
+
 
 // process text token: if it is a keyword, change the type to the corresponding situation.
 // Remove others and send a warning to developpers if verbose 
 // non text tokens are unchanged
-function processTextToken(token, verbose = false){
+function processTextToken(token){
     // don't process non text tokens
     if (token.type !== 'text'){
         return token;
@@ -261,7 +395,6 @@ function processTextToken(token, verbose = false){
     }
     // by default, the type has not been recognized. Flag as unknown text
     token.type = 'unknown text';
-    verbose = true;
     if (verbose && !ignoreList.includes(token.rawText)){
         console.log("\x1b[38;5;226mWarning: text \x1b[0m"
                     +token.rawText
@@ -313,13 +446,13 @@ function resolvePossibilities(tokenList){
     return result;
 }
 
-function tokenizeString(s, dateFormat){
-    return preprocessTokens(s.split(" ").map(e => makeToken(e, dateFormat)).flat());
+function lexer(s, dateFormat){
+    return s.split(" ").map(e => makeToken(e, dateFormat)).flat();
     
 }
 
 function extractDates(s, dateFormat){
-    const tokenList = tokenizeString(cleanDate(s), dateFormat);
+    const tokenList = preprocessTokens(lexer(cleanDate(s), dateFormat));
     return resolvePossibilities(tokenList);
 }
 
@@ -430,6 +563,7 @@ const dateFormat10 = {
 
 
 const text11 = `11.05.26-14.06.26 à 17h`;
+// const text11 = `11.05.26-14.06.26 17h aa 23h`;
 
 const dateFormat11 = {
     month: 'numeric',
@@ -439,15 +573,15 @@ const dateFormat11 = {
 
 
 console.log("\n\n\n");
-// console.log("text1: ",extractDates(text1,dateFormat1));
-// console.log("text1b: ",extractDates(text1b,dateFormat1b));
-// console.log("text2: ",extractDates(text2,dateFormat2));
+console.log("text1: ",extractDates(text1,dateFormat1));
+console.log("text1b: ",extractDates(text1b,dateFormat1b));
+console.log("text2: ",extractDates(text2,dateFormat2));
 console.log("text3: ",extractDates(text3,dateFormat3));
-// console.log("text4: ",extractDates(text4,dateFormat4));
-// console.log("text5: ",extractDates(text5,dateFormat5));
-// console.log("text6: ",extractDates(text6,dateFormat6));
-// console.log("text7: ",extractDates(text7,dateFormat7));
-// console.log("text8: ",extractDates(text8,dateFormat8));
-// console.log("text9: ",extractDates(text9,dateFormat9));
-// console.log("text10: ",extractDates(text10,dateFormat10));
+console.log("text4: ",extractDates(text4,dateFormat4));
+console.log("text5: ",extractDates(text5,dateFormat5));
+console.log("text6: ",extractDates(text6,dateFormat6));
+console.log("text7: ",extractDates(text7,dateFormat7));
+console.log("text8: ",extractDates(text8,dateFormat8));
+console.log("text9: ",extractDates(text9,dateFormat9));
+console.log("text10: ",extractDates(text10,dateFormat10));
 console.log("text11: ",extractDates(text11,dateFormat11));
