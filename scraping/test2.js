@@ -407,7 +407,8 @@ function processTextToken(token){
 // possibilities (each token has only one type). Each element of the list will be processed
 // and discarded later if there are inconsistencies
 
-function resolvePossibilities(tokenList){
+function resolvePossibilities(tokenList, hasYears){
+    console.log(hasYears);
 
     // transform every element into a list
 
@@ -443,7 +444,17 @@ function resolvePossibilities(tokenList){
         // replace the old array
         result.splice(0, result.length, ...newResult);
     }
-    return result;
+
+    // the lists must have at least one occurrence of 'day' and 'month', as well as 'year' if hasYear is true
+    return result.filter(list => {
+        const types = new Set(list.map(el => el.type));
+
+        if (!types.has('month')) return false;
+        if (!types.has('day')) return false;
+        if (hasYears && !types.has('year')) return false;
+
+        return true;
+    });
 }
 
 function lexer(s, dateFormat){
@@ -453,9 +464,174 @@ function lexer(s, dateFormat){
 
 function extractDates(s, dateFormat){
     const tokenList = preprocessTokens(lexer(cleanDate(s), dateFormat));
-    return resolvePossibilities(tokenList);
+    const poss = resolvePossibilities(tokenList, dateFormat.order.includes('year'));
+    console.log("nombre de possibilités",poss.length);
+    for (p of poss){
+        console.log(p);
+        const truc = makeTree(p, dateFormat);
+        console.log(truc);
+    }
 }
 
+function makeTree(tokenList, dateFormat){
+    let currentId = 1;
+    const levels = ['root','year','month','day'];
+    dateLength = dateFormat.order.length;
+
+    const tree = {
+        1: {
+            type: 'root',
+            children: []
+        }
+    }
+
+    let currentPosition = 1;
+    let currentState = null;
+
+    // test if n_1 is at a lower level than n_2
+    function isUnder(n1, n2) {
+        const i_n1 = levels.indexOf(n1);
+        const i_n2 = levels.indexOf(n2);
+        // return false if one does not exist
+        if (i_n1 === -1 || i_n2 === -1) return false;
+        return i_n2 < i_n1;
+    }
+
+    function createChild(sourceId, value, type){
+        // console.log('current ID',currentId, sourceId, tree[sourceId]);
+        currentId++;
+        const node = {
+            type: type ? type:levels[levels.indexOf(tree[sourceId].type)+1],
+            parent: sourceId,
+            children: [],
+            val: value
+        }
+        tree[currentId] = node;
+        tree[sourceId].children.push(currentId);
+        return currentId;
+    }
+
+    function transitionType(source, dest){
+
+        // test transitions to range delimiters
+        if (['rangeDelimiterStart', 'rangeDelimiterEnd'].includes(dest)){
+            // only valid transitions are root -> rangeDelimiterXXX and end of date -> rangeDelimiterXXX (cannot do this transition in
+            // the middle of a date processing)
+            if (source === 'root' || source === dateFormat.order[dateLength - 1]){
+                return 'new delimiter';
+            }
+            return 'invalid';
+        }
+
+        if (dest === 'date'){
+            // make a new date. cannot do this transition in the middle of a date processing
+            if (source === 'root' || source === dateFormat.order[dateLength - 1]){
+                return 'new date';
+            }
+            return 'invalid';
+        }
+
+        if (source === 'root'){
+            const validDest = ['date', dateFormat.order[0]];
+            if (validDest.includes(dest)){
+                return 'new date'; 
+            }else{
+                return 'invalid';
+            }
+        }
+        // one leaf to be added
+        if (source === 'day' && dest === 'day'){
+            return 'add';
+        }
+        // a date is complete, start a new date
+        if (source === dateFormat.order[dateLength - 1]){
+            // new date
+            if (dest === dateFormat.order[0]){
+                return 'new date';
+            }
+        }
+        if (dateFormat.order.indexOf(dest) === dateFormat.order.indexOf(source) - 1 || dateFormat.order.indexOf(dest) === dateFormat.order.indexOf(source) + 1){
+            return 'add';
+        }
+        return 'invalid';
+    }
+
+    function moveAndProcess(token){
+        if (tree[currentPosition].type === 'rangeDelimiterStart' || tree[currentPosition].type === 'rangeDelimiterEnd'){
+            // if the current node 'rangeXXX' has no child, it has just been created. We create an empty child and move to it
+            if (tree[currentPosition].children.length === 0){
+                currentPosition = createChild(currentPosition);
+                moveAndProcess(token);
+            }else{
+                // else go up one level (root) and start a new branch
+                currentPosition = tree[currentPosition].parent;
+                moveAndProcess(token);
+            }
+            
+        }
+        // console.log('pos dans move',position);
+        // console.log('is under', isUnder(token.type, tree[position].type),token.type, tree[position].type);
+        if (isUnder(token.type, tree[currentPosition].type)){
+            // if just under, create a new node from the token
+            if (levels.indexOf(token.type) === levels.indexOf(tree[currentPosition].type) +1){
+                currentPosition = createChild(currentPosition,token.rawText);
+            }else{
+                // else go down one level.
+                currentPosition = createChild(currentPosition);
+                moveAndProcess(token);
+            }
+        }else{
+            // same level and value is undefined
+            if (token.type === tree[currentPosition].type && !tree[currentPosition].val){
+                tree[currentPosition].val = token.rawText;
+            }else{
+                // else go up one level
+                currentPosition = tree[currentPosition].parent;
+                moveAndProcess(token);
+            } 
+        }
+    }
+
+    
+    for (const token of tokenList){
+        console.log('\n\n **** transition ****');
+        console.log('pos: ', currentPosition);
+        console.log(tree);
+
+        if (token.type === 'time' || token.type === 'weekDay'){ // *** TO IMPROVE
+            continue;
+        }
+
+        const transition = transitionType(tree[currentPosition].type, token.type);
+        console.log(transition,tree[currentPosition].type, token.type);
+
+        if (transition === 'invalid'){
+            return null;
+        }
+
+        if (token.type === 'rangeDelimiterStart'){
+            // cannot start a new range within a range
+            if (currentState === 'making range'){
+                return null;
+            }
+            currentState = 'making range';
+            currentPosition = createChild(1, null, 'rangeDelimiterStart');
+        }else if (token.type === 'rangeDelimiterEnd'){
+            // cannot end a range that is not open
+            if (currentState !== 'making range'){
+                return null;
+            }
+            currentState = null;
+            currentPosition = createChild(1, null, 'rangeDelimiterEnd');
+        }else{
+            // console.log('new pos',currentPosition);
+            moveAndProcess(token);
+            console.log('new pos',currentPosition);
+        }
+    }
+
+    return tree;
+}
 
 
 
@@ -573,15 +749,15 @@ const dateFormat11 = {
 
 
 console.log("\n\n\n");
-console.log("text1: ",extractDates(text1,dateFormat1));
-console.log("text1b: ",extractDates(text1b,dateFormat1b));
-console.log("text2: ",extractDates(text2,dateFormat2));
-console.log("text3: ",extractDates(text3,dateFormat3));
-console.log("text4: ",extractDates(text4,dateFormat4));
+// console.log("text1: ",extractDates(text1,dateFormat1));
+// console.log("text1b: ",extractDates(text1b,dateFormat1b));
+// console.log("text2: ",extractDates(text2,dateFormat2));
+// console.log("text3: ",extractDates(text3,dateFormat3));
+// console.log("text4: ",extractDates(text4,dateFormat4));
 console.log("text5: ",extractDates(text5,dateFormat5));
-console.log("text6: ",extractDates(text6,dateFormat6));
-console.log("text7: ",extractDates(text7,dateFormat7));
-console.log("text8: ",extractDates(text8,dateFormat8));
-console.log("text9: ",extractDates(text9,dateFormat9));
-console.log("text10: ",extractDates(text10,dateFormat10));
-console.log("text11: ",extractDates(text11,dateFormat11));
+// console.log("text6: ",extractDates(text6,dateFormat6));
+// console.log("text7: ",extractDates(text7,dateFormat7));
+// console.log("text8: ",extractDates(text8,dateFormat8));
+// console.log("text9: ",extractDates(text9,dateFormat9));
+// console.log("text10: ",extractDates(text10,dateFormat10));
+// console.log("text11: ",extractDates(text11,dateFormat11));
