@@ -19,10 +19,12 @@ const monthsDict = {
 const shortMonths = Object.values(monthsDict).flat();
 const longMonths = Object.keys(monthsDict);
 const rangeDeLimiters = [["du","au"],["a partir du","jusqu'au"]];
-const rangeSeparators = ["->", "→","-"];
+const rangeSeparators = ["%date_separator%","->", "→","-"];
 
 const timeRangeDelimiters = [["de","a"],["de","jusqu'a"]];
 const timeRangeSeparators = ["-"];
+const timeListDelimiters = [["a","et"]];
+const timeListSeparators = ["et"];
 
 
 
@@ -39,11 +41,18 @@ const currentYear = new Date().getFullYear();
 const shortCurrentYear = currentYear - Math.floor(currentYear / 100) * 100;
 nextYears = [shortCurrentYear, shortCurrentYear+1, shortCurrentYear+2];
 
+
+//***************************************//
+// clean the string                      //
+//***************************************//
+
 // il reste les . et / et - entre les nombres
 function cleanDate(s){
 
+    const regex = new RegExp(rangeSeparators.join("|"), "g");
     // Fix caracters encoding errors
     s = s.normalize('NFD').replace(/[\u0300-\u036f]/g, '') // remove accents
+         .replace(regex, rangeSeparators[0])
          .replace(/[^\x00-\x7F]/g,'') //remove non standard caracters => to be improved
          .toLowerCase()
          .replace(/(?<=\p{L})\./gu, '') //replace(/(?<=[a-zÀ-ÖØ-öø-ÿ])\./g, '') // remove all dots directly following a letter
@@ -91,6 +100,10 @@ function cleanDate(s){
     return s;
 }
  
+
+//***************************************//
+// lexer: make a list of tokens          //
+//***************************************//
 
 
 function makeToken(str, dateFormat){
@@ -254,7 +267,7 @@ function timeParser(tokens) {
       result.push({
         type: "timeList",
         rawText: buffer.map(t => t.rawText).join(" "),
-        value: buffer.filter(t => t.type === "time").map(t => t.rawText)
+        timeList: buffer.filter(t => t.type === "time").map(t => t.rawText.split(":"))
       });
       if (lastToken){
         result.push(lastToken);
@@ -277,6 +290,7 @@ function timeParser(tokens) {
 
         result.push({
           type: "time",
+          time: buffer[1].rawText.split(":"),
           rawText: buffer[1].rawText,
           textBefore: buffer[0].rawText
         });
@@ -294,11 +308,14 @@ function timeParser(tokens) {
         buffer[2].type === "time") {
 
       const sep = buffer[1].rawText.trim();
-      if (timeRangeSeparators.includes(sep)) {
+
+      if (timeRangeSeparators.includes(sep)) {// make time range
+       
         result.push({
           type: "timeRange",
+          startTime: buffer[0].rawText.split(":"),
+          endTime: buffer[2].rawText.split(":"),
           rawText: buffer.map(t => t.rawText).join(" "),
-          value: [buffer[0].rawText, buffer[2].rawText],
           separator: sep
         });
         buffer = [];
@@ -306,7 +323,21 @@ function timeParser(tokens) {
             result.push(lastToken);
         }
         return;
-      }else{
+      }else if (timeListSeparators.includes(sep)) {// make time list
+        const [hh, mm] = buffer[0].rawText.split(":");
+
+        result.push({
+          type: "timeList",
+          timeList: [buffer[0].rawText.split(":"), buffer[2].rawText.split(":")],
+          rawText: buffer.map(t => t.rawText).join(" "),
+          separator: sep
+        });
+        buffer = [];
+        if (lastToken){
+            result.push(lastToken);
+        }
+        return;
+      }{
         if (verbose){
             console.log("\x1b[38;5;226mWarning: found a text between two times in \x1b[0m"
                     +buffer.map(t => t.rawText).join(" ")
@@ -329,8 +360,24 @@ function timeParser(tokens) {
         if (t1 === pair[0] && t2 === pair[1]) {
           result.push({
             type: "timeRange",
+            timeStart: buffer[1].rawText.split(":"), 
+            timeEnd: buffer[3].rawText.split(":"),
             rawText: buffer.map(t => t.rawText).join(" "),
-            value: [buffer[1].rawText, buffer[3].rawText],
+            delimiter: pair
+          });
+          buffer = [];
+        if (lastToken){
+            result.push(lastToken);
+        }
+          return;
+        }
+      }
+      for (const pair of timeListDelimiters) {
+        if (t1 === pair[0] && t2 === pair[1]) {
+          result.push({
+            type: "timeList",
+            timeList: [buffer[1].rawText.split(":"), buffer[3].rawText.split(":")],
+            rawText: buffer.map(t => t.rawText).join(" "),
             delimiter: pair
           });
           buffer = [];
@@ -408,7 +455,6 @@ function processTextToken(token){
 // and discarded later if there are inconsistencies
 
 function resolvePossibilities(tokenList, hasYears){
-    console.log(hasYears);
 
     // transform every element into a list
 
@@ -427,19 +473,19 @@ function resolvePossibilities(tokenList, hasYears){
     for (const possibleTokens of l) {
         const newResult = [];
         for (const partial of result) {
-        for (const currentToken of possibleTokens) {
-            if (Array.isArray(currentToken.type)){
-                // unfold groups
-                const newOption = [...partial];
-                for (let i = 0; i < currentToken.type.length; i++){
-                    newOption.push({type: currentToken.type[i], rawText: currentToken.numList[i]});
-                }
-                newResult.push(newOption);
-                
-            }else{
-                newResult.push([...partial, currentToken]);
-            } 
-        }
+            for (const currentToken of possibleTokens) {
+                if (Array.isArray(currentToken.type)){
+                    // unfold groups
+                    const newOption = [...partial];
+                    for (let i = 0; i < currentToken.type.length; i++){
+                        newOption.push({type: currentToken.type[i], rawText: currentToken.numList[i]});
+                    }
+                    newResult.push(newOption);
+                    
+                }else{
+                    newResult.push([...partial, currentToken]);
+                } 
+            }
         }
         // replace the old array
         result.splice(0, result.length, ...newResult);
@@ -462,16 +508,9 @@ function lexer(s, dateFormat){
     
 }
 
-function extractDates(s, dateFormat){
-    const tokenList = preprocessTokens(lexer(cleanDate(s), dateFormat));
-    const poss = resolvePossibilities(tokenList, dateFormat.order.includes('year'));
-    console.log("nombre de possibilités",poss.length);
-    for (p of poss){
-        console.log(p);
-        const truc = makeTree(p, dateFormat);
-        console.log(truc);
-    }
-}
+//***************************************//
+// make a tree from the list of tokens   //
+//***************************************//
 
 function makeTree(tokenList, dateFormat){
     let currentId = 0;
@@ -499,8 +538,7 @@ function makeTree(tokenList, dateFormat){
     }
 
     function createChild(sourceId, value, type){
-        console.log("\x1b[38;5;226m creating child \x1b[0m", type);
-        // console.log('current ID',currentId, sourceId, tree[sourceId]);
+        // console.log("\x1b[38;5;226m creating child \x1b[0m", type);
         currentId++;
         const node = {
             type: type ? type:levels[levels.indexOf(tree[sourceId].type)+1],
@@ -513,7 +551,7 @@ function makeTree(tokenList, dateFormat){
         return currentId;
     }
 
-    function transitionType(token){ // warning, 'date' token is actually never generated by the lexer
+    function doTransition(token){ // warning, 'date' token is actually never generated by the lexer
         const source = tree[currentPosition].type;
         const dest = token.type;
         
@@ -568,6 +606,7 @@ function makeTree(tokenList, dateFormat){
 
             // create an end delimiter
             currentPosition = createChild(0, null, 'rangeDelimiterEnd');
+            return 'creating range from separator';
         }
 
         //**** other transitions ****
@@ -661,9 +700,9 @@ function makeTree(tokenList, dateFormat){
 
     
     for (const token of tokenList){
-        console.log('\n\n **** new transition ****');
-        console.log('position before: ', currentPosition);
-        console.log(tree);
+        // console.log('\n\n **** new transition ****');
+        // console.log('position before: ', currentPosition);
+        // console.log(tree);
 
          if (token.type === 'weekDay'){ // *** ignore weekdays
             continue;
@@ -675,23 +714,212 @@ function makeTree(tokenList, dateFormat){
             continue;
         }
 
-        const transition = transitionType(token);
+        const transition = doTransition(token);
         if (token.type === 'date' || token.type === 'day'){
             lastDayNode = currentPosition;
         }
-        console.log(transition,'from',tree[currentPosition].type, 'to', token.type);
+        // console.log(transition,'from',tree[currentPosition].type, 'to', token.type);
 
         if (transition === 'invalid'){
             return null;
         }
 
-        console.log('position after',currentPosition);
+        // console.log('position after',currentPosition);
     }
 
     return tree;
 }
 
+//******************************************//
+// process the trees to something simpler   //
+//******************************************//
 
+function isValidTree(tree, dateFormat) {
+    verbose = true;
+
+    hasYears = 'year' in Object.keys(dateFormat);
+    if (tree === null){
+        return false;
+    }
+
+    let rangeBalance = 0;
+    
+    for (const key of Object.keys(tree)) {
+        const el = tree[key];
+
+        // the element should have children, unless it is a leaf ('day)
+        if (el.type !== 'day' && el.children.length === 0){
+            if (verbose){
+                console.log("This block has no children: ", el);
+            } 
+            return false; 
+        }
+
+        // test for missing values
+        if (el.type === 'day' || el.type === 'month' || (hasYears && el.type === 'year')) {
+            if (!el.val) {
+                if (verbose){
+                    console.log("Missing value: ",el);
+                } 
+                return false; 
+            }
+        }
+
+        // test if the ranges are well balanced. End value should be 0.
+        if (el.type === 'rangeDelimiterStart'){
+            rangeBalance++;
+        }
+        if (el.type === 'rangeDelimiterEnd'){
+            rangeBalance--;
+        }
+
+        // check if nodes have exactly one child
+        if (el.type === 'rangeDelimiterStart' || el.type === 'rangeDelimiterEnd'){
+            let currentNode = el;
+            while (currentNode.type !== 'day') {
+                if (currentNode.children.length !== 1){
+                    return false;
+                }
+                currentNode = tree[currentNode.children[0]];
+            }
+        }
+        // check if the dates are chronologically relevant. 
+        if (el.type === 'root' && hasYears){
+            let y = 0;
+            for (i of el.children){
+                console.log(tree[i]);
+                const year = tree[i].val;
+                if (year < y){
+                    if (verbose){
+                        console.log("Years not in correct order");
+                    }
+                    return false;
+                }
+                y = year;
+            }
+        }
+        if (el.type === 'year'){
+            let m = 0;
+            for (i of el.children){
+                const month = (dateFormat.month === 'short' || dateFormat.month === 'long') ? convertDate(tree[i].val,dateFormat): tree[i].val;
+                if (month < m){
+                    if (verbose){
+                        console.log("Months not in correct order");
+                    }
+                    return false;
+                }
+                m = month;
+            }
+        }
+        if (el.type === 'month'){
+            let d = 0;
+            for (i of el.children){
+                const day = tree[i].val;
+                if (day < d){
+                    if (verbose){
+                        console.log("Days not in correct order");
+                    }
+                    return false;
+                }
+                d = day;
+            }
+        }
+    }
+
+    if (rangeBalance !== 0){
+        if (verbose){
+            console.log("Unbalanced range");
+        }
+        return false;
+    }
+
+    
+
+    return true; 
+}
+
+
+function convertDate(str, dateFormat){
+    let res;
+    if (dateFormat.month = 'short'){
+        for (let i=0;i<shortMonths.length;i++){
+            if (shortMonths[i].includes(str)){
+                return i;
+            }
+        }
+    }
+    return longMonths.indexOf(str);
+}
+
+function processTree(tree){
+    if (tree === null){
+        return null;
+    }
+
+    return tree[0].children.map(index => {
+        const subTree = tree[index];
+        if (subTree.type === 'date'){
+            return subTree;
+        }
+        if (subTree.type === 'rangeDelimiterStart' || subTree.type === 'rangeDelimiterEnd'){
+            
+            let currentNode = subTree;
+            while(currentNode.children.length === 1){
+                currentNode = tree[currentNode.children[0]];
+                subTree[currentNode.type] = currentNode.val;
+                if (currentNode.hasOwnProperty('timeInfo')){
+                    subTree['timeInfo'] = currentNode.timeInfo;
+                }
+            }
+            return subTree;
+        }
+        const dates = [];
+        
+        function explore(currentNode, context = {}) {
+            // console.log('exploring',currentNode);
+            if (currentNode.type === 'year') {
+                context.year = currentNode.val;
+            } else if (currentNode.type === 'month') {
+                context.month = currentNode.val;
+            } else if (currentNode.type === 'day') {
+                context.day = currentNode.val;
+                // add the date when arriving at the leaf
+                const type = (subTree.type === 'RangeDelimiterStart' || subTree.type === 'rangeDelimiterEnd') ? subTree.type : 'date';
+                const res = {type: 'date', day: context.day, month: context.month, year: context.year };
+                if (currentNode.hasOwnProperty('timeInfo')){
+                    res.timeInfo = currentNode.timeInfo;
+                }
+                dates.push(res);
+                return;
+            }
+
+            // Explore the children
+            if (currentNode.children) {
+                for (const index of currentNode.children) {
+                    explore(tree[index], { ...context });
+                }
+            }
+        }
+
+        explore(subTree);
+        return dates;
+    }).flat();
+}
+
+
+
+
+function extractDates(s, dateFormat){
+    const tokenList = preprocessTokens(lexer(cleanDate(s), dateFormat));
+    const poss = resolvePossibilities(tokenList, dateFormat.order.includes('year'));
+    console.log("nombre de possibilités",poss.length);
+    const treeList = poss.map(p => makeTree(p, dateFormat))
+        .filter(tree => isValidTree(tree, dateFormat))
+        .map(tree => processTree(tree));
+    console.log("Nombre arbres:", treeList.length);
+    console.log("sortie", treeList);
+
+}
 
 
 // // --- Exemple d’utilisation ---
@@ -727,6 +955,7 @@ const dateFormat2 = {
 
 const text2b = "mardi, Nov 11, 07:30 PM → vendredi, Nov 14";
 const dateFormat2b = {
+    weekDay: 'long',
     month: 'short',
     order: ['month','day']
 }
@@ -832,14 +1061,14 @@ console.log("\n\n\n");
 // console.log("text1: ",extractDates(text1,dateFormat1), text1);
 // console.log("text1b: ",extractDates(text1b,dateFormat1b), text1b);
 // console.log("text2: ",extractDates(text2,dateFormat2), text2);
-// console.log("text2b: ",extractDates(text2,dateFormat2), text2b);
+// console.log("text2b: ",extractDates(text2b,dateFormat2b), text2b);
 // console.log("text3: ",extractDates(text3,dateFormat3), text3);
-console.log("text4: ",extractDates(text4,dateFormat4), text4);
+// console.log("text4: ",extractDates(text4,dateFormat4), text4);
 // console.log("text5: ",extractDates(text5,dateFormat5), text5);
 // console.log("text6: ",extractDates(text6,dateFormat6), text6);
-// console.log("text7: ",extractDates(text7,dateFormat7), text7);
+console.log("text7: ",extractDates(text7,dateFormat7), text7); //multiposs
 // console.log("text8: ",extractDates(text8,dateFormat8), text8);
 // console.log("text9: ",extractDates(text9,dateFormat9), text9);
-// console.log("text10: ",extractDates(text10,dateFormat10), text10);
+// console.log("text10: ",extractDates(text10,dateFormat10), text10);//multiposs
 // console.log("text11: ",extractDates(text11,dateFormat11), text11);
-// console.log("text12: ",extractDates(text12,dateFormat12), text12);
+// console.log("text12: ",extractDates(text12,dateFormat12), text12);//multiposs
