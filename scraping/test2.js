@@ -16,7 +16,7 @@ const monthsDict = {
   décembre: ["dec"]
 };
 
-const shortMonths = Object.values(monthsDict).flat();
+const shortMonths = Object.values(monthsDict);
 const longMonths = Object.keys(monthsDict);
 const rangeDeLimiters = [["du","au"],["a partir du","jusqu'au"]];
 const rangeSeparators = ["%date_separator%","->", "→","-"];
@@ -113,7 +113,7 @@ function makeToken(str, dateFormat){
         if (dateFormat.month === 'long' && longMonths.includes(str)){
             possibilities.push('month');
         }
-        if (dateFormat.month === 'short' && shortMonths.includes(str)){
+        if (dateFormat.month === 'short' && shortMonths.flat().includes(str)){
             possibilities.push('month');
         }
         if ('weekDay' in dateFormat){
@@ -248,7 +248,7 @@ function timeParser(tokens) {
   const flushBuffer = () => {
     if (buffer.length === 0) return;
     
-    // should not finish by text
+    // should not be only by text
     if (buffer.length === 1 && buffer[0].type === 'text'){
         result.push(buffer[0]);
         buffer = [];
@@ -540,8 +540,12 @@ function makeTree(tokenList, dateFormat){
     function createChild(sourceId, value, type){
         // console.log("\x1b[38;5;226m creating child \x1b[0m", type);
         currentId++;
+        type = type ? type:levels[levels.indexOf(tree[sourceId].type)+1];
+        if (type === 'day' || type === 'year' || type === 'month'){
+            value = convertDate(value, type, dateFormat);
+        }
         const node = {
-            type: type ? type:levels[levels.indexOf(tree[sourceId].type)+1],
+            type: type,
             parent: sourceId,
             children: [],
             val: value
@@ -615,8 +619,8 @@ function makeTree(tokenList, dateFormat){
             // make a new date. cannot do this transition in the middle of a date processing
             if ((source === 'root' || source === dateFormat.order.at(-1)) && currentState !== 'making range'){
                 let pos = [];
-                pos['year'] = createChild(currentPosition, token.year, 'year');
-                pos['month'] = createChild(pos['year'], token.month, 'month');
+                pos['year'] = createChild(currentPosition, convertDate(token.year, 'year', dateFormat), 'year');
+                pos['month'] = createChild(pos['year'], convertDate(token.month, 'month', dateFormat), 'month');
                 pos['day'] = createChild(pos['month'], token.day, 'day');
                 currentPosition = pos[dateFormat.order.at(-1)];
                 return 'new date';
@@ -689,7 +693,7 @@ function makeTree(tokenList, dateFormat){
         }else{
             // same level and value is undefined
             if (token.type === tree[currentPosition].type && !tree[currentPosition].val){
-                tree[currentPosition].val = token.rawText;
+                tree[currentPosition].val = convertDate(token.rawText, token.type, dateFormat);
             }else{
                 // else go up one level
                 currentPosition = tree[currentPosition].parent;
@@ -728,6 +732,7 @@ function makeTree(tokenList, dateFormat){
     }
 
     return tree;
+    // return tree.map(el => convertDate(el));
 }
 
 //******************************************//
@@ -735,17 +740,18 @@ function makeTree(tokenList, dateFormat){
 //******************************************//
 
 function isValidTree(tree, dateFormat) {
-    verbose = true;
+    verbose = false;
 
     hasYears = 'year' in Object.keys(dateFormat);
     if (tree === null){
         return false;
     }
 
-    let rangeBalance = 0;
+    let rangeOpened = false;
     
     for (const key of Object.keys(tree)) {
         const el = tree[key];
+        // console.log(el.type);
 
         // the element should have children, unless it is a leaf ('day)
         if (el.type !== 'day' && el.children.length === 0){
@@ -765,13 +771,21 @@ function isValidTree(tree, dateFormat) {
             }
         }
 
-        // test if the ranges are well balanced. End value should be 0.
+        // test if the ranges are correctly defined.
+        // a closing token should always be just after an opening one
+        if (rangeOpened && el.type !== 'rangeDelimiterEnd'){
+            if (verbose){
+                console.log("Unbalanced range: closing before opening", el);
+                return false;
+            }
+        }
         if (el.type === 'rangeDelimiterStart'){
-            rangeBalance++;
+            rangeOpened = true;
         }
         if (el.type === 'rangeDelimiterEnd'){
-            rangeBalance--;
+            rangeOpened = false;
         }
+        // the balance should be always 0 or 1 (-1 means that)
 
         // check if nodes have exactly one child
         if (el.type === 'rangeDelimiterStart' || el.type === 'rangeDelimiterEnd'){
@@ -787,7 +801,6 @@ function isValidTree(tree, dateFormat) {
         if (el.type === 'root' && hasYears){
             let y = 0;
             for (i of el.children){
-                console.log(tree[i]);
                 const year = tree[i].val;
                 if (year < y){
                     if (verbose){
@@ -801,7 +814,7 @@ function isValidTree(tree, dateFormat) {
         if (el.type === 'year'){
             let m = 0;
             for (i of el.children){
-                const month = (dateFormat.month === 'short' || dateFormat.month === 'long') ? convertDate(tree[i].val,dateFormat): tree[i].val;
+                const month = tree[i].val;
                 if (month < m){
                     if (verbose){
                         console.log("Months not in correct order");
@@ -826,40 +839,59 @@ function isValidTree(tree, dateFormat) {
         }
     }
 
-    if (rangeBalance !== 0){
-        if (verbose){
-            console.log("Unbalanced range");
-        }
-        return false;
-    }
-
-    
-
     return true; 
 }
 
-
-function convertDate(str, dateFormat){
-    let res;
-    if (dateFormat.month = 'short'){
-        for (let i=0;i<shortMonths.length;i++){
-            if (shortMonths[i].includes(str)){
-                return i;
-            }
-        }
+// convert date elements to normalized (only numeric, year with 4 digits)
+function convertDate(str, field, dateFormat){
+    if (!str){
+        return str;
     }
-    return longMonths.indexOf(str);
+    
+    if (field === 'day'){
+        return parseInt(str);
+    }
+    if (field === 'month'){
+        if (dateFormat.month === 'short'){
+            for (let i=0;i<shortMonths.length;i++){
+                if (shortMonths[i].includes(str)){
+                    return i+1;
+                }
+            }
+        }else if (dateFormat.month === 'long'){
+            return longMonths.indexOf(str)+1;
+        }
+        return parseInt(str);
+    }
+    if (field === 'year'){
+        if (str.length === 4){
+            return parseInt(str);
+        }
+        return 2000+parseInt(str);
+    }
+
 }
 
+
+// process information in the tree
 function processTree(tree){
     if (tree === null){
         return null;
     }
 
-    return tree[0].children.map(index => {
+    // console.log(tree);
+    // // show time info
+    // for (index in Object.keys(tree)){
+    //     console.log(tree[index].timeInfo);
+    // }
+
+
+
+    // assign time info to leaves
+    const newTree = tree[0].children.map(index => {
         const subTree = tree[index];
         if (subTree.type === 'date'){
-            return subTree;
+            return checkYear(subTree);
         }
         if (subTree.type === 'rangeDelimiterStart' || subTree.type === 'rangeDelimiterEnd'){
             
@@ -871,7 +903,10 @@ function processTree(tree){
                     subTree['timeInfo'] = currentNode.timeInfo;
                 }
             }
-            return subTree;
+            delete subTree.children;
+            delete subTree.val;
+            delete subTree.parent;
+            return checkYear(subTree);
         }
         const dates = [];
         
@@ -884,8 +919,9 @@ function processTree(tree){
             } else if (currentNode.type === 'day') {
                 context.day = currentNode.val;
                 // add the date when arriving at the leaf
-                const type = (subTree.type === 'RangeDelimiterStart' || subTree.type === 'rangeDelimiterEnd') ? subTree.type : 'date';
-                const res = {type: 'date', day: context.day, month: context.month, year: context.year };
+                // const type = (subTree.type === 'rangeDelimiterStart' || subTree.type === 'rangeDelimiterEnd') ? subTree.type : 'date';
+                const res = checkYear({type: 'date', day: context.day, month: context.month, year: context.year });
+                
                 if (currentNode.hasOwnProperty('timeInfo')){
                     res.timeInfo = currentNode.timeInfo;
                 }
@@ -904,6 +940,128 @@ function processTree(tree){
         explore(subTree);
         return dates;
     }).flat();
+
+    //  if no info on year, add current years. If the date is passed, set next year
+    function checkYear(node){
+        // do nothing if the year is defined
+        if (node.year){
+            return node;
+        }
+       
+        const now = new Date();
+
+        const currentDay = now.getDate();
+        const currentMonth = now.getMonth() + 1;
+        const currentYear = now.getFullYear();
+
+        // month is passed, so the date must be next year
+        if (node.month < currentMonth){
+            node.year = currentYear + 1;
+            return node;
+        }
+        // same month but the date is passed
+        if (node.month === currentMonth && node.day < currentDay){
+            node.year = currentYear + 1;
+            return node;
+        }
+        node.year = currentYear;
+        return node;
+    }
+    
+    // merge rangeDelimiters
+
+    const treeAfterMerge = [];
+    let mergedNode;
+    
+    for (const node of newTree){
+        if(node.type === 'rangeDelimiterStart'){
+            mergedNode = node;
+        }else if(node.type === 'rangeDelimiterEnd'){
+
+            // case 1: no time for the end range. It is a list of dates, with the only first one possibly 
+            // having a start time. If timeInfo is present for the start range, add it to the first date
+            if (!node.hasOwnProperty('timeInfo')){
+                // push the first date with its time info, which should correspond to only one start time. We verify
+                // that we only have a start time
+                if (mergedNode.timeInfo.type !== 'time'){
+                    // strange time info, send an error
+                    console.log("\x1b[38;5;226mbad time info in range delimiter. Aborting\x1b[0m", mergedNode);
+                    return null;
+                }else{
+                    
+                    mergedNode.type = 'date';
+                    treeAfterMerge.push(mergedNode);
+                }
+                // all following days
+                let current = new Date(mergedNode.year, mergedNode.month - 1, mergedNode.day + 1);
+                const last = new Date(node.year, node.month - 1, node.day); 
+                while (current <= last) {
+                    treeAfterMerge.push({
+                        type: 'date',
+                        day: current.getDate(),
+                        month: current.getMonth() + 1,
+                        year: current.getFullYear()
+                    });
+
+                    // step to the next day
+                    current.setDate(current.getDate() + 1);
+                }
+            }else{
+                // case 2: end delimiter has time info.
+                // case 2b: start delimiter has time info, so its only a single event, with a start day and time
+                // and an end day/time
+                // time info in node and merged should be simple times, otherwise the syntax is bad.
+                if (!mergedNode.hasOwnProperty('timeInfo')){
+                    if (mergedNode.timeInfo.type !== 'time'){
+                        // strange time info, send an error
+                        console.log("\x1b[38;5;226mbad time info in range delimiter. Aborting\x1b0m", mergedNode);
+                        return null;
+                    }
+                    if (node.timeInfo.type !== 'time'){
+                        // strange time info, send an error
+                        console.log("\x1b[38;5;226mbad time info in range delimiter. Aborting\x1b0m", node);
+                        return null;
+                    }
+                    mergedNode.type = 'date';
+                    mergedNode.endDay = node.day;
+                    mergedNode.endMonth = node.month;
+                    mergedNode.endYear = node.year;
+                    mergedNode.endTime = node.timeInfo;
+                    treeAfterMerge.push(mergedNode);
+                }else{
+                    // we have a list of dates, all sharing the same time information
+                    // all following days
+                    let current = new Date(mergedNode.year, mergedNode.month - 1, mergedNode.day);
+                    const last = new Date(node.year, node.month - 1, node.day); 
+                    while (current <= last) {
+                        treeAfterMerge.push({
+                            type: 'date',
+                            day: current.getDate(),
+                            month: current.getMonth() + 1,
+                            year: current.getFullYear()
+                        });
+
+                        // step to the next day
+                        current.setDate(current.getDate() + 1);
+                    }
+                }
+            }
+            
+        }else{
+            treeAfterMerge.push(node);
+        }
+    }
+
+    // process and propagate time information to the previous leaves
+    function propagateTimeInfo(){
+
+        for(let i = tree.length - 1; i >0; i--){
+            //propagates time info backwards, until 
+        }
+        return treeAfterMerge;
+    }
+
+    return propagateTimeInfo(treeAfterMerge);
 }
 
 
@@ -913,6 +1071,9 @@ function extractDates(s, dateFormat){
     const tokenList = preprocessTokens(lexer(cleanDate(s), dateFormat));
     const poss = resolvePossibilities(tokenList, dateFormat.order.includes('year'));
     console.log("nombre de possibilités",poss.length);
+    // console.log(poss);
+    // console.log(makeTree(poss[0], dateFormat));
+    console.log("\n\n*********")
     const treeList = poss.map(p => makeTree(p, dateFormat))
         .filter(tree => isValidTree(tree, dateFormat))
         .map(tree => processTree(tree));
@@ -1058,15 +1219,15 @@ const dateFormat12b = {
 
 
 console.log("\n\n\n");
-// console.log("text1: ",extractDates(text1,dateFormat1), text1);
-// console.log("text1b: ",extractDates(text1b,dateFormat1b), text1b);
-// console.log("text2: ",extractDates(text2,dateFormat2), text2);
-// console.log("text2b: ",extractDates(text2b,dateFormat2b), text2b);
+console.log("text1: ",extractDates(text1,dateFormat1), text1);
+console.log("text1b: ",extractDates(text1b,dateFormat1b), text1b);
+console.log("text2: ",extractDates(text2,dateFormat2), text2);
+console.log("text2b: ",extractDates(text2b,dateFormat2b), text2b);
 // console.log("text3: ",extractDates(text3,dateFormat3), text3);
 // console.log("text4: ",extractDates(text4,dateFormat4), text4);
 // console.log("text5: ",extractDates(text5,dateFormat5), text5);
 // console.log("text6: ",extractDates(text6,dateFormat6), text6);
-console.log("text7: ",extractDates(text7,dateFormat7), text7); //multiposs
+// console.log("text7: ",extractDates(text7,dateFormat7), text7); //multiposs
 // console.log("text8: ",extractDates(text8,dateFormat8), text8);
 // console.log("text9: ",extractDates(text9,dateFormat9), text9);
 // console.log("text10: ",extractDates(text10,dateFormat10), text10);//multiposs
