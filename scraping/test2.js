@@ -19,10 +19,10 @@ const monthsDict = {
 const shortMonths = Object.values(monthsDict);
 const longMonths = Object.keys(monthsDict);
 const rangeDeLimiters = [["du","au"],["a partir du","jusqu'au"]];
-const rangeSeparators = ["%date_separator%","->", "→","-"];
+const rangeSeparators = ["%separator%","->", "→","-"];
 
 const timeRangeDelimiters = [["de","a"],["de","jusqu'a"]];
-const timeRangeSeparators = ["-"];
+const timeRangeSeparators = ["%separator%","-"];
 const timeListDelimiters = [["a","et"]];
 const timeListSeparators = ["et"];
 
@@ -135,7 +135,7 @@ function makeToken(str, dateFormat){
     }else{
         // only digits
         if (str.includes(':')){
-            return {type: 'time', rawText: str};
+            return {type: 'time', time: str, rawText: str};
         }
         if (/\D/.test(str)){
             const numList = str.match(/\d{1,2}/g);
@@ -267,7 +267,7 @@ function timeParser(tokens) {
       result.push({
         type: "timeList",
         rawText: buffer.map(t => t.rawText).join(" "),
-        timeList: buffer.filter(t => t.type === "time").map(t => t.rawText.split(":"))
+        timeList: buffer.filter(t => t.type === "time").map(t => t.rawText)
       });
       if (lastToken){
         result.push(lastToken);
@@ -290,7 +290,7 @@ function timeParser(tokens) {
 
         result.push({
           type: "time",
-          time: buffer[1].rawText.split(":"),
+          time: buffer[1].rawText,
           rawText: buffer[1].rawText,
           textBefore: buffer[0].rawText
         });
@@ -313,8 +313,8 @@ function timeParser(tokens) {
        
         result.push({
           type: "timeRange",
-          startTime: buffer[0].rawText.split(":"),
-          endTime: buffer[2].rawText.split(":"),
+          startTime: buffer[0].rawText,
+          endTime: buffer[2].rawText,
           rawText: buffer.map(t => t.rawText).join(" "),
           separator: sep
         });
@@ -324,11 +324,11 @@ function timeParser(tokens) {
         }
         return;
       }else if (timeListSeparators.includes(sep)) {// make time list
-        const [hh, mm] = buffer[0].rawText.split(":");
+        const [hh, mm] = buffer[0].rawText;
 
         result.push({
           type: "timeList",
-          timeList: [buffer[0].rawText.split(":"), buffer[2].rawText.split(":")],
+          timeList: [buffer[0].rawText, buffer[2].rawText],
           rawText: buffer.map(t => t.rawText).join(" "),
           separator: sep
         });
@@ -360,8 +360,8 @@ function timeParser(tokens) {
         if (t1 === pair[0] && t2 === pair[1]) {
           result.push({
             type: "timeRange",
-            timeStart: buffer[1].rawText.split(":"), 
-            timeEnd: buffer[3].rawText.split(":"),
+            startTime: buffer[1].rawText, 
+            endTime: buffer[3].rawText,
             rawText: buffer.map(t => t.rawText).join(" "),
             delimiter: pair
           });
@@ -376,7 +376,7 @@ function timeParser(tokens) {
         if (t1 === pair[0] && t2 === pair[1]) {
           result.push({
             type: "timeList",
-            timeList: [buffer[1].rawText.split(":"), buffer[3].rawText.split(":")],
+            timeList: [buffer[1].rawText, buffer[3].rawText],
             rawText: buffer.map(t => t.rawText).join(" "),
             delimiter: pair
           });
@@ -975,9 +975,10 @@ function processTree(tree){
     
     for (const node of newTree){
         if(node.type === 'rangeDelimiterStart'){
+            // console.log('debut');
             mergedNode = node;
         }else if(node.type === 'rangeDelimiterEnd'){
-
+            // console.log('fin', mergedNode,node);
             // case 1: no time for the end range. It is a list of dates, with the only first one possibly 
             // having a start time. If timeInfo is present for the start range, add it to the first date
             if (!node.hasOwnProperty('timeInfo')){
@@ -1011,7 +1012,7 @@ function processTree(tree){
                 // case 2b: start delimiter has time info, so its only a single event, with a start day and time
                 // and an end day/time
                 // time info in node and merged should be simple times, otherwise the syntax is bad.
-                if (!mergedNode.hasOwnProperty('timeInfo')){
+                if (mergedNode.hasOwnProperty('timeInfo')){
                     if (mergedNode.timeInfo.type !== 'time'){
                         // strange time info, send an error
                         console.log("\x1b[38;5;226mbad time info in range delimiter. Aborting\x1b0m", mergedNode);
@@ -1023,10 +1024,12 @@ function processTree(tree){
                         return null;
                     }
                     mergedNode.type = 'date';
-                    mergedNode.endDay = node.day;
-                    mergedNode.endMonth = node.month;
-                    mergedNode.endYear = node.year;
-                    mergedNode.endTime = node.timeInfo;
+                    mergedNode.eventEnd = {
+                        day: node.day,
+                        month: node.month,
+                        year: node.year,
+                        time: node.timeInfo.time
+                    }
                     treeAfterMerge.push(mergedNode);
                 }else{
                     // we have a list of dates, all sharing the same time information
@@ -1040,6 +1043,7 @@ function processTree(tree){
                             month: current.getMonth() + 1,
                             year: current.getFullYear()
                         });
+                        treeAfterMerge.at(-1).timeInfo = node.timeInfo;
 
                         // step to the next day
                         current.setDate(current.getDate() + 1);
@@ -1054,32 +1058,91 @@ function processTree(tree){
 
     // process and propagate time information to the previous leaves
     function propagateTimeInfo(){
-
-        for(let i = tree.length - 1; i >0; i--){
-            //propagates time info backwards, until 
+        let currentTimeInfo = undefined;
+        // propagates time info backwards, until some time info is found
+        for(let i = treeAfterMerge.length - 1; i >= 0; i--){      
+            if (treeAfterMerge[i].hasOwnProperty('timeInfo')){
+                currentTimeInfo = treeAfterMerge[i].timeInfo; // end data should be included in time info at this this
+            }else{
+                if (currentTimeInfo){
+                    treeAfterMerge[i].timeInfo = currentTimeInfo;
+                }
+            }
+            // console.log('time info', currentTimeInfo);
         }
-        return treeAfterMerge;
     }
 
-    return propagateTimeInfo(treeAfterMerge);
+    propagateTimeInfo();
+
+    // evaluate time info and create corresponding dates
+    function evaluateTimeInfo(t){
+        // console.log(t);
+        const res = [];
+        for (const node of t){
+            if (!node.hasOwnProperty('timeInfo')){
+                res.push(node);
+            }else if (node.timeInfo.type === 'time'){
+                // if it is simple time, add time to the node
+                node.time = node.timeInfo.time;
+                delete node.timeInfo;
+                res.push(node);
+                continue;
+            } else if (node.timeInfo.type === 'timeRange'){
+                // if time range: should add a start and end time
+                node.time = node.timeInfo.startTime;
+                node.eventEnd = {time: node.timeInfo.endTime};
+                delete node.timeInfo;
+                res.push(node);
+            } else if (node.timeInfo.type === 'timeList'){
+                // if time list, should generate a date per item
+                for (const time of node.timeInfo.timeList){
+                    const newNode = {...node};
+                    newNode.time = time;
+                    delete newNode.timeInfo;
+                    res.push(newNode);
+                }
+                
+            }
+        }
+        return res;
+    }
+
+    return evaluateTimeInfo(treeAfterMerge);
 }
 
 
+function formatDate(dateObj){
+    let txt = ""+dateObj.day+"/"+dateObj.month+"/"+dateObj.year+(dateObj.hasOwnProperty('time')? " à "+dateObj.time : "");
+    if (dateObj.hasOwnProperty('eventEnd')){
+        const end = dateObj.eventEnd;
+        txt = txt + " (ends";
+        if (end.hasOwnProperty('day')){
+            txt = txt + " on " + end.day+"/"+end.month+"/"+end.year;
+        }
+        txt = txt + " at " + end.time+")";
+    }
+    return txt;
+}
 
 
 function extractDates(s, dateFormat){
+    console.log("**************** Entrée: ****************\n"+s);
     const tokenList = preprocessTokens(lexer(cleanDate(s), dateFormat));
     const poss = resolvePossibilities(tokenList, dateFormat.order.includes('year'));
-    console.log("nombre de possibilités",poss.length);
+    // console.log("nombre de possibilités",poss.length);
     // console.log(poss);
     // console.log(makeTree(poss[0], dateFormat));
-    console.log("\n\n*********")
     const treeList = poss.map(p => makeTree(p, dateFormat))
         .filter(tree => isValidTree(tree, dateFormat))
         .map(tree => processTree(tree));
-    console.log("Nombre arbres:", treeList.length);
-    console.log("sortie", treeList);
-
+    // console.log("Nombre arbres filtrés:", treeList.length);
+    console.log("*** sortie ***"); 
+    treeList.forEach((p,ind) => {
+        console.log("\nPossibilité",ind+1);
+        console.log();
+        p.forEach(node => console.log(formatDate(node)));
+    });
+    console.log("\n");
 }
 
 
@@ -1192,7 +1255,7 @@ const dateFormat10 = {
 }
 
 
-const text11 = `11.05.26-14.06.26 à 17h`;
+const text11 = `03.06.26-14.06.26 à 17h et 20h`;
 // const text11 = `11.05.26-14.06.26 17h aa 23h`;
 
 const dateFormat11 = {
@@ -1219,17 +1282,17 @@ const dateFormat12b = {
 
 
 console.log("\n\n\n");
-console.log("text1: ",extractDates(text1,dateFormat1), text1);
-console.log("text1b: ",extractDates(text1b,dateFormat1b), text1b);
-console.log("text2: ",extractDates(text2,dateFormat2), text2);
-console.log("text2b: ",extractDates(text2b,dateFormat2b), text2b);
-// console.log("text3: ",extractDates(text3,dateFormat3), text3);
-// console.log("text4: ",extractDates(text4,dateFormat4), text4);
-// console.log("text5: ",extractDates(text5,dateFormat5), text5);
+// console.log("text1: ");extractDates(text1,dateFormat1);
+// console.log("text1b: ");extractDates(text1b,dateFormat1b);
+// console.log("text2: ");extractDates(text2,dateFormat2);
+// console.log("text2b: ");extractDates(text2b,dateFormat2b);
+// console.log("text3: ");extractDates(text3,dateFormat3);
+// console.log("text4: ");extractDates(text4,dateFormat4);
+// console.log("text5: ");extractDates(text5,dateFormat5);
 // console.log("text6: ",extractDates(text6,dateFormat6), text6);
 // console.log("text7: ",extractDates(text7,dateFormat7), text7); //multiposs
 // console.log("text8: ",extractDates(text8,dateFormat8), text8);
 // console.log("text9: ",extractDates(text9,dateFormat9), text9);
 // console.log("text10: ",extractDates(text10,dateFormat10), text10);//multiposs
-// console.log("text11: ",extractDates(text11,dateFormat11), text11);
+console.log("text11: ",extractDates(text11,dateFormat11), text11);
 // console.log("text12: ",extractDates(text12,dateFormat12), text12);//multiposs
