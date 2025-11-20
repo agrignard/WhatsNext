@@ -19,10 +19,10 @@ const monthsDict = {
 const shortMonths = Object.values(monthsDict);
 const longMonths = Object.keys(monthsDict);
 const rangeDeLimiters = [["du","au"],["a partir du","jusqu'au"]];
-const rangeSeparators = ["%separator%","->", "→","-"];
+const rangeSeparators = ["->", "→", "—"]; // classic dash will be processed by default
 
 const timeRangeDelimiters = [["de","a"],["de","jusqu'a"]];
-const timeRangeSeparators = ["%separator%","-"];
+// const timeRangeSeparators = ["%separator%","-"];
 const timeListDelimiters = [["a","et"]];
 const timeListSeparators = ["et"];
 
@@ -49,15 +49,18 @@ nextYears = [shortCurrentYear, shortCurrentYear+1, shortCurrentYear+2];
 // il reste les . et / et - entre les nombres
 function cleanDate(s){
 
-    const regex = new RegExp(rangeSeparators.join("|"), "g");
+    // regex to identify range separators. "-" strictly surrounded by letters are ignored (it is not a
+    // separator in "après-midi")
+    const rangeSeparatorRegex = new RegExp("-(?![A-Za-zÀ-ÖØ-öø-ÿ])|(?<![A-Za-zÀ-ÖØ-öø-ÿ])-"+rangeSeparators.join("|"), "g");
+
     // Fix caracters encoding errors
     s = s.normalize('NFD').replace(/[\u0300-\u036f]/g, '') // remove accents
-         .replace(regex, rangeSeparators[0])
+         .replace(/–/g, "-") // normalize dashes
          .replace(/[^\x00-\x7F]/g,'') //remove non standard caracters => to be improved
          .toLowerCase()
+         .replace(/le|,|;/g, " ") // remove unprocessed separators. Separators like | without semantic meanings have been found in texts, so it is discarded
+         .replace(rangeSeparatorRegex, '—') // replace rangeSeparators by long dash
          .replace(/(?<=\p{L})\./gu, '') //replace(/(?<=[a-zÀ-ÖØ-öø-ÿ])\./g, '') // remove all dots directly following a letter
-         .replace(/–|—/g, "-") // normalize dashes
-         .replace(/le|,|;/g, " ") // remove unprocessed separators
          .replace(/\s+/g, " ")
          .trim();
 
@@ -240,179 +243,250 @@ function preprocessTokens(list){
                .filter(token => token.type !== 'unknown text');
 }
 
-// aux function to regroupe time and text
+// aux function to regroupe time and text:
+// Assemble sequences of time, text and weekDay. Sequences without time are discarded (no relevant information)
+// sequences with time and text are treated as simple time info, or time range (start-end), or timeList.
+// sequences with weekDay are considered as timeCondition (eg: le mardi à 18h, le jeudi à 19h)
+// Since this function is called at the end of preprocessToken, there can't be two text tokens in a row.
+// weekDays token separate time conditions: eg "à 18h le jeudi, à 20h le vendredi". It has to be determined which
+// side is the info.
+// then info sequence 
 function timeParser(tokens) {
+    console.log("time parser", tokens);
   const result = [];
-  let buffer = []; // tokens time/text buffer
+  let buffer = []; // tokens time/text/weekDay buffer
 
-  const flushBuffer = () => {
-    if (buffer.length === 0) return;
-    
-    // should not be only by text
-    if (buffer.length === 1 && buffer[0].type === 'text'){
-        result.push(buffer[0]);
+    const flushBuffer = () => {
+        console.log("********buffer *********", buffer);
+        
+        
+        if (buffer.length === 0) return;
+        
+        
+        // should not be only text
+        if (buffer.length === 1 && buffer[0].type === 'text'){
+            result.push(buffer[0]);
+            buffer = [];
+            return;
+        }
+
+        let lastToken = null;
+        // if the list of token finishes by text, remove the last one, and push it at the end of the process
+        if (buffer[buffer.length-1].type === 'text'){
+            lastToken = buffer.pop();
+        }
+        
+        // function for the default behaviour, after having parsed time ranges. Makes a list of the time and 
+        // time ranges encountered.
+        // every remaining text is tested for inconsistencies.
+        const makeDefaultGroup = () => {
+            result.push({
+                type: "timeList",
+                rawText: buffer.map(t => t.rawText).join(" "),
+                // timeList: buffer.filter(t => t.type === "time").map(t => t.rawText)
+                timeList: buffer.filter(t => t.type === "time" || t.type === "timeRange")
+            });
+            if (lastToken){
+                result.push(lastToken);
+            }
+            const inconsistencies = buffer.filter(t => t.type === "text" && !ignoreList.includes(t.rawText));
+            if (verbose && inconsistencies.length > 0){
+
+                        console.log("\x1b[38;5;226mWarning: found a unknown texts: \x1b[0m"
+                                +inconsistencies.map(t => t.rawText).join(" ")
+                                +"\x1b[38;5;226m they are neither in the timeRangeList, timeSeparatorList nor in ignore list. Check if it is a missing keyword.\x1b[0m");
+            }
+        };
+
+        // case 0: only one element. Don't do any change
+        if (buffer.length === 1){
+            result.push(buffer[0]);
+            if (lastToken){
+                result.push(lastToken);
+            }
+            buffer = [];
+            return;
+        }
+        // case 1: [text, time2]
+        if (buffer.length === 2 &&
+            buffer[0].type === "text" &&
+            buffer[1].type === "time") {
+
+            result.push({
+            type: "time",
+            time: buffer[1].rawText,
+            rawText: buffer[1].rawText,
+            textBefore: buffer[0].rawText
+            });
+            buffer = [];
+            if (lastToken){
+                result.push(lastToken);
+            }
+            return;
+        }
+        // from here, there is at least two time tokens. We try to find range patterns
+        // such as time sep time, or text time text time
+
+        let i = 0;
+        // test text time text pattern first (to avoid possible ambiguity about time/text separator)
+        while(i < buffer.length - 3){ 
+            if (buffer[i].type === "text" &&
+                buffer[i+1].type === "time" &&
+                buffer[i+2].type === "text" &&
+                buffer[i+3].type === "time") {
+
+                const t1 = buffer[i].rawText.trim().toLowerCase();
+                const t2 = buffer[i+2].rawText.trim().toLowerCase();
+                for (const pair of timeRangeDelimiters) {
+                    if (t1.endsWith(pair[0]) && t2 === pair[1]) {
+                        buffer.splice(i, 4, {
+                            type: "timeRange",
+                            startTime: buffer[i+1].rawText, 
+                            endTime: buffer[i+3].rawText,
+                            rawText: buffer.slice(i,i+4).map(t => t.rawText).join(" "),
+                            delimiter: pair
+                        });
+                    }
+                }
+            }
+            i++;
+        }
+        i = 0;
+        // test now time text time
+        while(i < buffer.length - 2){ 
+            // console.log("testing",buffer[i],buffer[i+1],buffer[i+2])
+            if (buffer[i].type === "time" &&
+                buffer[i+1].type === "text" &&
+                buffer[i+2].type === "time") {
+
+                const sep = buffer[i+1].rawText.trim();
+
+                if (timeRangeSeparators.includes(sep)) {// make time range
+                    buffer.splice(i, 3, {
+                        type: "timeRange",
+                        startTime: buffer[i].rawText, 
+                        endTime: buffer[i+2].rawText,
+                        rawText: buffer.slice(i,i+3).map(t => t.rawText).join(" "),
+                        delimiter: sep
+                    });
+                }
+            }
+            i++;
+        }
+
+
+
+        // // case 2 : [time, text, time]
+        // if (buffer.length === 3 &&
+        // buffer[0].type === "time" &&
+        // buffer[1].type === "text" &&
+        // buffer[2].type === "time") {
+
+        //     const sep = buffer[1].rawText.trim();
+
+        //     if (timeRangeSeparators.includes(sep)) {// make time range
+                
+        //         result.push({
+        //             type: "timeRange",
+        //             startTime: buffer[0].rawText,
+        //             endTime: buffer[2].rawText,
+        //             rawText: buffer.map(t => t.rawText).join(" "),
+        //             separator: sep
+        //         });
+        //         buffer = [];
+        //         if (lastToken){
+        //             result.push(lastToken);
+        //         }
+        //         return;
+        //     }else if (timeListSeparators.includes(sep)) {// make time list
+        //         const [hh, mm] = buffer[0].rawText;
+
+        //         result.push({
+        //             type: "timeList",
+        //             timeList: [buffer[0].rawText, buffer[2].rawText],
+        //             rawText: buffer.map(t => t.rawText).join(" "),
+        //             separator: sep
+        //         });
+        //         buffer = [];
+        //         if (lastToken){
+        //             result.push(lastToken);
+        //         }
+        //         return;
+        //     }{
+        //         if (verbose){
+        //             console.log("\x1b[38;5;226mWarning: found a text between two times in \x1b[0m"
+        //                     +buffer.map(t => t.rawText).join(" ")
+        //                     +"\x1b[38;5;226m but it is neither in the timeSeparatorList, nor in ignore list. Check if it is a missing keyword.\x1b[0m");
+        //         }
+        //     }
+        // }
+
+        // // case 3 : [text, time, text, time]
+        // if (buffer.length === 4 &&
+        //     buffer[0].type === "text" &&
+        //     buffer[1].type === "time" &&
+        //     buffer[2].type === "text" &&
+        //     buffer[3].type === "time") {
+
+        //     const t1 = buffer[0].rawText.trim().toLowerCase();
+        //     const t2 = buffer[2].rawText.trim().toLowerCase();
+
+        //     for (const pair of timeRangeDelimiters) {
+        //         if (t1 === pair[0] && t2 === pair[1]) {
+        //             result.push({
+        //                 type: "timeRange",
+        //                 startTime: buffer[1].rawText, 
+        //                 endTime: buffer[3].rawText,
+        //                 rawText: buffer.map(t => t.rawText).join(" "),
+        //                 delimiter: pair
+        //             });
+        //             buffer = [];
+        //             if (lastToken){
+        //                 result.push(lastToken);
+        //             }
+        //             return;
+        //         }
+        //     }
+        //     for (const pair of timeListDelimiters) {
+        //         if (t1 === pair[0] && t2 === pair[1]) {
+        //             result.push({
+        //                 type: "timeList",
+        //                 timeList: [buffer[1].rawText, buffer[3].rawText],
+        //                 rawText: buffer.map(t => t.rawText).join(" "),
+        //                 delimiter: pair
+        //             });
+        //             buffer = [];
+        //             if (lastToken){
+        //                 result.push(lastToken);
+        //             }
+        //             return;
+        //         }else{
+        //             if (verbose){
+        //                 console.log("\x1b[38;5;226mWarning: found a sequence [text, time, text, time] in \x1b[0m"
+        //                         +buffer.map(t => t.rawText).join(" ")
+        //                         +"\x1b[38;5;226m but it is neither in the timeRangeList, nor in ignore list. Check if it is a missing keyword.\x1b[0m");
+        //             }
+        //         }
+        //     }
+        // }
+
+        // Default case
+        makeDefaultGroup();
         buffer = [];
-        return;
-    }
-
-    let lastToken = null;
-    // if the list of token finishes by text, remove the last one, and push it at the end of the process
-    if (buffer[buffer.length-1].type === 'text'){
-        lastToken = buffer.pop();
-    }
-    
-    // function for the default behaviour
-    const makeDefaultGroup = () => {
-      
-      result.push({
-        type: "timeList",
-        rawText: buffer.map(t => t.rawText).join(" "),
-        timeList: buffer.filter(t => t.type === "time").map(t => t.rawText)
-      });
-      if (lastToken){
-        result.push(lastToken);
-      }
     };
 
-    // case 0: only one element. Don't do any change
-    if (buffer.length === 1){
-        result.push(buffer[0]);
-        if (lastToken){
-            result.push(lastToken);
+    for (const token of tokens) {
+        if (token.type === "time" || token.type === "text" || token.type === "weekDay") {
+            buffer.push(token);
+        } else {
+            flushBuffer();
+            result.push(token);
         }
-        buffer = [];
-        return;
     }
-    // case 1: [text, time2]
-    if (buffer.length === 2 &&
-        buffer[0].type === "text" &&
-        buffer[1].type === "time") {
-
-        result.push({
-          type: "time",
-          time: buffer[1].rawText,
-          rawText: buffer[1].rawText,
-          textBefore: buffer[0].rawText
-        });
-        buffer = [];
-        if (lastToken){
-            result.push(lastToken);
-        }
-        return;
-    }
-
-    // case 2 : [time, text, time]
-        if (buffer.length === 3 &&
-        buffer[0].type === "time" &&
-        buffer[1].type === "text" &&
-        buffer[2].type === "time") {
-
-      const sep = buffer[1].rawText.trim();
-
-      if (timeRangeSeparators.includes(sep)) {// make time range
-       
-        result.push({
-          type: "timeRange",
-          startTime: buffer[0].rawText,
-          endTime: buffer[2].rawText,
-          rawText: buffer.map(t => t.rawText).join(" "),
-          separator: sep
-        });
-        buffer = [];
-        if (lastToken){
-            result.push(lastToken);
-        }
-        return;
-      }else if (timeListSeparators.includes(sep)) {// make time list
-        const [hh, mm] = buffer[0].rawText;
-
-        result.push({
-          type: "timeList",
-          timeList: [buffer[0].rawText, buffer[2].rawText],
-          rawText: buffer.map(t => t.rawText).join(" "),
-          separator: sep
-        });
-        buffer = [];
-        if (lastToken){
-            result.push(lastToken);
-        }
-        return;
-      }{
-        if (verbose){
-            console.log("\x1b[38;5;226mWarning: found a text between two times in \x1b[0m"
-                    +buffer.map(t => t.rawText).join(" ")
-                    +"\x1b[38;5;226m but it is neither in the timeSeparatorList, nor in ignore list. Check if it is a missing keyword.\x1b[0m");
-        }
-      }
-    }
-
-    // case 3 : [text, time, text, time]
-    if (buffer.length === 4 &&
-        buffer[0].type === "text" &&
-        buffer[1].type === "time" &&
-        buffer[2].type === "text" &&
-        buffer[3].type === "time") {
-
-      const t1 = buffer[0].rawText.trim().toLowerCase();
-      const t2 = buffer[2].rawText.trim().toLowerCase();
-
-      for (const pair of timeRangeDelimiters) {
-        if (t1 === pair[0] && t2 === pair[1]) {
-          result.push({
-            type: "timeRange",
-            startTime: buffer[1].rawText, 
-            endTime: buffer[3].rawText,
-            rawText: buffer.map(t => t.rawText).join(" "),
-            delimiter: pair
-          });
-          buffer = [];
-        if (lastToken){
-            result.push(lastToken);
-        }
-          return;
-        }
-      }
-      for (const pair of timeListDelimiters) {
-        if (t1 === pair[0] && t2 === pair[1]) {
-          result.push({
-            type: "timeList",
-            timeList: [buffer[1].rawText, buffer[3].rawText],
-            rawText: buffer.map(t => t.rawText).join(" "),
-            delimiter: pair
-          });
-          buffer = [];
-        if (lastToken){
-            result.push(lastToken);
-        }
-          return;
-        }else{
-            if (verbose){
-                console.log("\x1b[38;5;226mWarning: found a sequence [text, time, text, time] in \x1b[0m"
-                        +buffer.map(t => t.rawText).join(" ")
-                        +"\x1b[38;5;226m but it is neither in the timeRangeList, nor in ignore list. Check if it is a missing keyword.\x1b[0m");
-            }
-        }
-      }
-    }
-
-    // Default case
-    makeDefaultGroup();
-    buffer = [];
-  };
-
-  for (const token of tokens) {
-    if (token.type === "time" || token.type === "text") {
-      buffer.push(token);
-    } else {
-      flushBuffer();
-      result.push(token);
-    }
-  }
-
-  // Fin → vider
-  flushBuffer();
-
-  return result;
+    
+    flushBuffer();
+    console.log(result);
+    return result;
 }
 
 
@@ -504,6 +578,7 @@ function resolvePossibilities(tokenList, hasYears){
 }
 
 function lexer(s, dateFormat){
+    console.log(s.split(" ").map(e => makeToken(e, dateFormat)).flat());
     return s.split(" ").map(e => makeToken(e, dateFormat)).flat();
     
 }
@@ -740,7 +815,6 @@ function makeTree(tokenList, dateFormat){
 //******************************************//
 
 function isValidTree(tree, dateFormat) {
-    verbose = false;
 
     hasYears = 'year' in Object.keys(dateFormat);
     if (tree === null){
@@ -1095,9 +1169,15 @@ function processTree(tree){
                 res.push(node);
             } else if (node.timeInfo.type === 'timeList'){
                 // if time list, should generate a date per item
-                for (const time of node.timeInfo.timeList){
+                for (const timeToken of node.timeInfo.timeList){
                     const newNode = {...node};
-                    newNode.time = time;
+                    if (timeToken.type === 'timeRange'){
+                        newNode.time = timeToken.startTime;
+                        newNode.eventEnd = {time: timeToken.endTime};
+                    }else{
+                        newNode.time = timeToken.time;
+                    }
+                    
                     delete newNode.timeInfo;
                     res.push(newNode);
                 }
@@ -1230,7 +1310,7 @@ const dateFormat7 = {
     order: ['day','month','year']
 }
 
-const text8= "23 nov 25, 02 dec 25"; // ce cas n'est pas ambigu car 02 ne suit pas 25
+const text8= "23 nov 25, 02 dec 25, de 17h à 18h, et de 19h à 20h"; // ce cas n'est pas ambigu car 02 ne suit pas 25
 
 const dateFormat8 = {
     month: 'short',
@@ -1272,14 +1352,29 @@ const dateFormat12 = {
     order: ['day','month','year']
 }
 
-const text12b = `nov, 27, 28, déc, 03, 2025`;
+const text13 = `nov, 27, 28, déc, 03, 2025, de 17h à 22h`;
 
-const dateFormat12b = {
+const dateFormat13 = {
     month: 'short',
     year: 'short',
-    order: ['day','month','year']
+    order: ['month','day','year']
 }
 
+const text14 = `Du 13 au 15 novembre 2025, jeudi à 20h, samedi à 18h`;
+
+const dateFormat14 = {
+    month: 'long',
+    order: ['day','month'],
+    weekDay: 'long'
+}
+
+const text15 = `Lundi 15 novembre 2025 à 20h - mardi 16 novembre à 4h`;
+
+const dateFormat15 = {
+    month: 'long',
+    order: ['day','month'],
+    weekDay: 'long'
+}
 
 console.log("\n\n\n");
 // console.log("text1: ");extractDates(text1,dateFormat1);
@@ -1294,5 +1389,7 @@ console.log("\n\n\n");
 // console.log("text8: ",extractDates(text8,dateFormat8), text8);
 // console.log("text9: ",extractDates(text9,dateFormat9), text9);
 // console.log("text10: ",extractDates(text10,dateFormat10), text10);//multiposs
-console.log("text11: ",extractDates(text11,dateFormat11), text11);
+// console.log("text11: ",extractDates(text11,dateFormat11), text11);
 // console.log("text12: ",extractDates(text12,dateFormat12), text12);//multiposs
+// console.log("text13: ",extractDates(text13,dateFormat13), text13);
+console.log("text14: ",extractDates(text14,dateFormat14), text14);
