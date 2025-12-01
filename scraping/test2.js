@@ -1,4 +1,4 @@
-verbose = false; // false, true, 'full'
+verbose = 'full'; // false, true, 'full'
 
 
 const monthsDict = {
@@ -64,7 +64,7 @@ function cleanDate(s){
     const ignoreRegex = new RegExp(`\\b(${escaped.join("|")})\\b`, "gi");
 
     // Fix caracters encoding errors
-    s = s.normalize('NFD').replace(/[\u0300-\u036f]/g, '') // remove accents
+    s = s.replace(/→/g,"—").normalize('NFD').replace(/[\u0300-\u036f]/g, '') // remove accents
          .replace(/–/g, "-") // normalize dashes
          .replace(/[^\x00-\x7F—]/g,'') //remove non standard caracters => to be improved
          .toLowerCase()
@@ -1668,7 +1668,7 @@ dateFormat: {
 console.log("\n\n\n");
 
 let i = 19;
-for (i = 0; i < 21; i++){
+for (i = 20; i < 21; i++){
     extractDates(test[i].text, test[i].dateFormat)
     console.log("test "+i+": ",test[i].text);
 }
