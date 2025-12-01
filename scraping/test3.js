@@ -44,6 +44,7 @@ const startTimeKeywords = ["a", "a partir de"];
 
 const moisRegex = Object.values(monthsDict).flat().map(m => m.replace('.', '\\.')).join('|');
 const currentYear = new Date().getFullYear();
+const now = new Date();
 const shortCurrentYear = currentYear - Math.floor(currentYear / 100) * 100;
 nextYears = [shortCurrentYear, shortCurrentYear+1, shortCurrentYear+2];
 
@@ -519,19 +520,46 @@ function resolvePossibilities(tokenList, hasYears){
     return finalResults;
 }
 
-// aux function to test if range are well balanced
+// aux function to test if range are well balanced: end follow start, token after opening and closing
+// have the same type
 function testRangeBalance(list){
     // list must have at most one "rangeDelimiterUnbalancedEnd"
     if (list.filter(el => el.type === "rangeDelimiterUnbalancedEnd").length > 1){
         return false;
     }
     let balance = 0;
-    for (const token of list){
-        if (token.type === "rangeDelimiterStart") balance++;
-        if (token.type === "rangeDelimiterEnd") balance--;
+    let tokenTypeAfterOpening;
+    for (let i=0; i < list.length; i++){
+        const token = list[i];
+        if (token.type === "rangeDelimiterStart"){
+            balance++;
+            if (i+1 > list.length - 1){
+                if (verbose){
+                    console.log("\x1b[38;5;226mRange delimiters opens on nothing\x1b[0m", list);
+                }
+                return false;
+            }
+            tokenTypeAfterOpening = list[i+1].type;
+        }
+        if (token.type === "rangeDelimiterEnd"){
+            balance--;
+            if (i+1 > list.length - 1){
+                if (verbose){
+                    console.log("\x1b[38;5;226mRange delimiters have no end information\x1b[0m", list);
+                }
+                return false;
+            }
+            if (list[i+1].type !== tokenTypeAfterOpening){
+                if (verbose){
+                    console.log("\x1b[38;5;226mToken types after opening and closing delimiters do not match\x1b[0m", list);
+                }
+                return false;
+            }
+            tokenTypeAfterOpening = null;
+        } 
         if (balance < 0 || balance > 1){
             if (verbose){
-                console.log("\x1b[38;5;226m Unbalanced range delimiters \x1b[0m", list);
+                console.log("\x1b[38;5;226mUnbalanced range delimiters \x1b[0m", list);
             }
             return false;
         }
@@ -901,13 +929,24 @@ function makeTree(tokenList, dateFormat){
             // the time is after date, 
             // create a new time node
             if (timeAfterDay){
-                if (dest === possibleTokenAfterTime){
-                    currentPosition = createChild(tree[currentPosition].parent);
-                    moveAndProcess(token);
-                    return 'new date'; 
-                }else{
-                    return 'invalid';
-                }
+                currentPosition = tree[currentPosition].parent;
+                moveAndProcess(token);
+                return 'new date';
+                // if (dest === possibleTokenAfterTime){
+                //     // create a new date on the branch
+                //     currentPosition = createChild(tree[currentPosition].parent);
+                //     moveAndProcess(token);
+                //     return 'new date'; 
+                // }else if (dest === dateFormat.order[0]){
+                //     // create a new date
+                //     currentPosition = 0;
+                //     moveAndProcess(token);
+                //     return 'new date'; 
+                // }else{
+                //     console.log(possibleTokenAfterTime);
+                //     console.log(levels);
+                //     return 'invalid';
+                // }
             }else{
                 // can only start a date
                 if (dest === dateFormat.order[0]){
@@ -918,7 +957,7 @@ function makeTree(tokenList, dateFormat){
             }
         }
 
-        // source 'root' already processed at this poknt
+        // source 'root' already processed at this point
         if (dest === 'time'){
             if (timeAfterDay){
                 // must be after a full date or day token ??
@@ -953,12 +992,13 @@ function makeTree(tokenList, dateFormat){
                 return 'new date';
             }
         }
-        // move one step forward in the order of date format
+        // move one step forward in the order of date format. Moving two steps forward is impossible
         if (dateFormat.order.indexOf(dest) === dateFormat.order.indexOf(source) + 1){
             moveAndProcess(token);
             return 'add element';
         }
-        if (dateFormat.order.indexOf(dest) === dateFormat.order.indexOf(source) - 1){// backtracking
+        // backtracking
+        if (dateFormat.order.indexOf(dest) === dateFormat.order.indexOf(source) - 1){
             // backtracking with year as source or dest is impossible
             if (dest === 'year' || source === 'year'){
                 return 'invalid';
@@ -985,7 +1025,6 @@ function makeTree(tokenList, dateFormat){
                 if (token.type === 'time'){
                     if (token.hasOwnProperty('timeList')){
                         tree[currentPosition].timeList = token.timeList;
-                
                     }
                     if (token.hasOwnProperty('conditionList')){
                         tree[currentPosition].conditionList = token.conditionList;
@@ -1272,8 +1311,6 @@ function processTree(tree){
         if (node.year){
             return node;
         }
-       
-        const now = new Date();
 
         const currentDay = now.getDate();
         const currentMonth = now.getMonth() + 1;
@@ -1305,10 +1342,15 @@ function processTree(tree){
         }else if(dateToken.delimiter === 'rangeDelimiterEnd' || dateToken.delimiter === 'rangeDelimiterUnbalanceEnd'){
             // if there is an unbalanced end delimiter, add a start date (today)
             if (dateToken.delimiter === 'rangeDelimiterUnbalanceEnd'){
-                const now = new Date();
                 startDate = {type: 'date', day:now.getDate(), month:now.getMonth() + 1, year: now.getFullYear()};
                 if (dateToken.hasOwnProperty('parentTimeInfo')){
                     startDate.parentTimeInfo = dateToken.parentTimeInfo;
+                }
+                if (dateToken.hasOwnProperty('timeList')){
+                    startDate.timeList = dateToken.timeList;
+                }
+                if (dateToken.hasOwnProperty('conditionList')){
+                    startDate.conditionList = dateToken.conditionList;
                 }
             }
             // case 1: both startDate and currentToken have time info from a different parentTimeInfo. So 
@@ -1665,18 +1707,40 @@ dateFormat: {
     order: ['month','day']
 }};
 
+test[21] = {text: "septembre 2026: le 03 à 18h, le 04 à 22h, octobre 2026: le 06 à 18h",
+dateFormat: {
+    month: 'long',
+    year: 'long',
+    order: ['month','year', 'day'],
+}};
+
+test[22] = {text: "2026 septembre 03, 04, octobre 02",
+dateFormat: {
+    month: 'long',
+    year: 'long',
+    order: ['year', 'month', 'day'],
+}};
+
+test[23] = {text: "2025: sept: 2 et 3 à 18h, le 4 à 20h, oct 4 et 5 à 19h ",
+dateFormat: {
+    month: 'short',
+    year: 'long',
+    order: ['year', 'month', 'day'],
+}};
+
 console.log("\n\n\n");
 
 let i = 19;
-for (i = 20; i < 21; i++){
-    extractDates(test[i].text, test[i].dateFormat)
-    console.log("test "+i+": ",test[i].text);
-}
-// extractDates(test[i].text, test[i].dateFormat)
-// console.log("test "+i+": ",test[i].text);
+extractDates(test[i].text, test[i].dateFormat);
+console.log("test "+i+": ",test[i].text);
+
+// for (i = 0; i < 24; i++){
+//     extractDates(test[i].text, test[i].dateFormat)
+//     console.log("test "+i+": ",test[i].text);
+// }
 
 
-// 2025: sept: 2 et 3 à 18h, 4 et 5 à 19h 
+
             // 2025: 2 et 3 sept à 18h, 4 et 5 oct à 19h 
             // 2025: sept 2 et 3 à 18h, oct 4 et 5 à 19h 
 
