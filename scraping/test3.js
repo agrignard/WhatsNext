@@ -1,5 +1,7 @@
-verbose = 'full'; // false, true, 'full'
+verbose = false; // false, true, 'full'
 
+
+// CHANGER const now !!!!!!!!!!!!
 
 const monthsDict = {
   janvier: ["jan", "janv"],
@@ -44,7 +46,8 @@ const startTimeKeywords = ["a", "a partir de"];
 
 const moisRegex = Object.values(monthsDict).flat().map(m => m.replace('.', '\\.')).join('|');
 const currentYear = new Date().getFullYear();
-const now = new Date();
+// const now = new Date();
+const now = new Date(2025, 11, 1); 
 const shortCurrentYear = currentYear - Math.floor(currentYear / 100) * 100;
 nextYears = [shortCurrentYear, shortCurrentYear+1, shortCurrentYear+2];
 
@@ -69,7 +72,7 @@ function cleanDate(s){
          .replace(/–/g, "-") // normalize dashes
          .replace(/[^\x00-\x7F—]/g,'') //remove non standard caracters => to be improved
          .toLowerCase()
-         .replace(/,|;|\|/g, " ") // remove unprocessed separators. Separators like | without semantic meanings 
+         .replace(/,|;|\||\. |\.$/g, " ") // remove unprocessed separators. Separators like | without semantic meanings 
                     //  have been found in texts, so it is discarded also.
          .replace(rangeSeparatorRegex, ' — ') // replace rangeSeparators by long dash. Add spaces around to ensure token capture
          .replace(/(?<=\p{L})\./gu, '') //replace(/(?<=[a-zÀ-ÖØ-öø-ÿ])\./g, '') // remove all dots directly following a letter
@@ -633,7 +636,7 @@ function simplifyTokens(tokenList){
     let firstWeekDayIndex = tokenList.findIndex(t => t.type === 'weekDay');
     // if there are weekDay tokens
     if (firstWeekDayIndex > - 1){
-        if (firstWeekDayIndex > 0 && tokenList[firstWeekDayIndex - 1] === 'time'){
+        if (firstWeekDayIndex > 0 && tokenList[firstWeekDayIndex - 1].type === 'time'){
         // there is a time token to the left of the first week day, propagates time to the right for all sequences
             // find all sequences starting with time | weekDay
             for (let startIndex = firstWeekDayIndex; startIndex < tokenList.length; startIndex++) {
@@ -824,12 +827,16 @@ function makeTree(tokenList, dateFormat){
     // if no time token is present, use default levels.
 
     let possibleTokenAfterTime;
+    let possibleTokenBeforeTime;
    
     if (tokenList.some(token => token.type.startsWith('time'))){
          // we determine which "date" tokens are present between time or timeCondition tokens
         const tokenSetBetweenTimes = intersectAll(tokenList.map(el => el.type)
             .join(" ").split('time').map(str => str.trim()).filter(str => str.length > 0)
             .map(str => [... new Set(str.split(' '))]));
+        const tmp = tokenList.map(el => el.type).join(" ")
+            .split('time')[0].trim().split(' ');
+        if (tmp.length > 0){possibleTokenBeforeTime= tmp.at(-1)};
     
         if (!tokenSetBetweenTimes.has('month')){
             levels =  ['root','year','month','time','day'];
@@ -871,8 +878,10 @@ function makeTree(tokenList, dateFormat){
     }
 
     function createChild(sourceId, value, type){
-        // console.log("\x1b[38;5;226m creating child \x1b[0m", type);
         currentId++;
+        if (verbose === 'full'){
+            console.log("\x1b[38;5;226m creating child \x1b[0m", type,' with id ', currentId);
+        }
         type = type ? type:levels[levels.indexOf(tree[sourceId].type)+1];
         if (type === 'day' || type === 'year' || type === 'month'){
             value = convertDate(value, type, dateFormat);
@@ -929,31 +938,34 @@ function makeTree(tokenList, dateFormat){
             // the time is after date, 
             // create a new time node
             if (timeAfterDay){
-                currentPosition = tree[currentPosition].parent;
-                moveAndProcess(token);
-                return 'new date';
-                // if (dest === possibleTokenAfterTime){
-                //     // create a new date on the branch
-                //     currentPosition = createChild(tree[currentPosition].parent);
-                //     moveAndProcess(token);
-                //     return 'new date'; 
-                // }else if (dest === dateFormat.order[0]){
-                //     // create a new date
-                //     currentPosition = 0;
-                //     moveAndProcess(token);
-                //     return 'new date'; 
-                // }else{
-                //     console.log(possibleTokenAfterTime);
-                //     console.log(levels);
-                //     return 'invalid';
-                // }
+                if (dest === possibleTokenAfterTime){
+                    // create a new date on the branch
+                    currentPosition = createChild(tree[currentPosition].parent);
+                    moveAndProcess(token);
+                    return 'new date'; 
+                }else if (dest === dateFormat.order[0]){
+                    // new date from scratch
+                    currentPosition = 0;
+                    moveAndProcess(token);
+                    return 'new date'; 
+                }else{
+                    currentPosition = tree[currentPosition].parent;
+                    moveAndProcess(token);
+                    return 'add date';
+                }
             }else{
-                // can only start a date
+                // either start a date
                 if (dest === dateFormat.order[0]){
                     moveAndProcess(token);
                     return 'new date'; 
+                }else{
+                    moveAndProcess(token);
+                    // console.log(levels);
+                    return 'new date';
+                    //possible token
+
                 }
-                return 'invalid';
+                // return 'invalid';
             }
         }
 
@@ -968,6 +980,20 @@ function makeTree(tokenList, dateFormat){
                     return 'invalid';
                 }
             }else{
+                // if some tokens are before the time, move to this position
+
+                if (possibleTokenBeforeTime){
+                    while(tree[currentPosition].type !== possibleTokenBeforeTime){
+                        currentPosition = tree[currentPosition].parent;
+                    }
+                }
+                if (tree[currentPosition].children.length > 0 
+                    && tree[tree[currentPosition].children.at(-1)].type
+                    && isUnder(token, tree[currentPosition].type)){
+                    createChild(currentPosition);
+                }
+                
+                
                 moveAndProcess(token);
                 return 'add time info';
             }
@@ -1044,12 +1070,22 @@ function makeTree(tokenList, dateFormat){
                     }
                 }
             }else{
+                
                 // sept 2025: 03; 04, jan 2026: 05
                 // 2025 3, 4 sept 2026 2, 3 janv ok
                 // 2025 le 3 septembre 18h, le 2 oct 17h 
                 // else go down one level.
                 if (tree[currentPosition].type === 'year' && token.type === 'day' 
                     && tree[currentPosition].children.length > 0){
+
+                    currentPosition = tree[currentPosition].children.at(-1);
+                }else if(tree[currentPosition].children.length > 0 
+                    && !tree[tree[currentPosition].children.at(-1)].type){
+                        
+                    currentPosition = tree[currentPosition].children.at(-1);
+                }else if(tree[currentPosition].children.length > 0 && 
+                    tree[tree[currentPosition].children.at(-1)].type === 'time'
+                ){
                     currentPosition = tree[currentPosition].children.at(-1);
                 }else{
                     currentPosition = createChild(currentPosition);
@@ -1522,8 +1558,8 @@ function formatDate(dateObj){
 }
 
 
-function extractDates(s, dateFormat){
-    console.log("\n\n**************** Entrée: ****************\n"+s);
+function extractDates(s, dateFormat, sol, i){
+    console.log("\n****************** Entrée: ******************\nTest n°"+i+": "+s);
     const tokenList = tokenize(cleanDate(s), dateFormat);
     
     // console.log('time list',tokenList.filter(t => t.type === 'time').map(t => t.timeList));
@@ -1543,16 +1579,25 @@ function extractDates(s, dateFormat){
             console.log();
             p.forEach(node => console.log(formatDate(node)));
         });
+        const res = treeList[0].map(node => formatDate(node)).join("|");
+        // console.log('*********');
+        // console.log(res);
+        // console.log('*********');
+        if (treeList.length === 1 && res === sol){
+            console.log("\n\x1b[32mTest passed\x1b[0m");
+        }else{
+            console.log("\n\x1b[31mTest failed\x1b[0m");
+        }
     }else{
         console.log('No solution found.');
+        console.log("\n\x1b[31mTest failed\x1b[0m");
     }
-    
-    console.log("\n");
 }
 
 
 
 const test = [];
+const sols = [];
 
 // // --- Exemple d’utilisation ---
 test[0] = {text:`jusqu'au mardi 9 décembre 2025 à 18h-20h`,
@@ -1562,6 +1607,10 @@ dateFormat: {
     weekDay: 'long',
     order: ['day','month','year']
 }};
+sols[0] = "Le lundi 01/12/2025 à 18:00 (fin à 20:00)|Le mardi 02/12/2025 à 18:00 (fin à 20:00)|Le mercredi 03/12/"
+    +"2025 à 18:00 (fin à 20:00)|Le jeudi 04/12/2025 à 18:00 (fin à 20:00)|Le vendredi 05/12/2025 à 18:00 (fin à "
+    +"20:00)|Le samedi 06/12/2025 à 18:00 (fin à 20:00)|Le dimanche 07/12/2025 à 18:00 (fin à 20:00)|Le lundi 08/"
+    +"12/2025 à 18:00 (fin à 20:00)|Le mardi 09/12/2025 à 18:00 (fin à 20:00)";
 
 test[1] = {text: `23.09.26 à partir de 18h`,
 dateFormat: {
@@ -1569,6 +1618,7 @@ dateFormat: {
     month: 'numeric',
     order: ['day','month','year']
 }};
+sols[1] = "Le mercredi 23/9/2026 à 18:00";
 
 test[2] = {text: `du 17.02.26 à 20h au 18.02.26 à 4h`,
 dateFormat: {
@@ -1576,6 +1626,7 @@ dateFormat: {
     month: 'numeric',
     order: ['day','month','year']
 }};
+sols[2] = "Le mardi 17/2/2026 à 20:00 (fin le 18/2/2026 à 04:00)";
 
 
 
@@ -1586,6 +1637,7 @@ dateFormat: {
     weekDay: 'short',
     order: ['day','month','year']
 }};
+sols[3] = "Le samedi 24/1/2026 à 19:30 (fin à 20:00)";
 
 test[4] = {text: `à 21h15 les 14, 15 & 16 novembre 2025`,
 dateFormat: {
@@ -1593,6 +1645,7 @@ dateFormat: {
     month: 'long',
     order: ['day','month','year']
 }};
+sols[4] = "Le vendredi 14/11/2025 à 21:15|Le samedi 15/11/2025 à 21:15|Le dimanche 16/11/2025 à 21:15";
 
 test[5] = {text: `05 déc. 2025 20:00, 06 déc. 2025 20:00, 07 déc. 2025 15:00`,
 dateFormat: {
@@ -1600,12 +1653,14 @@ dateFormat: {
     month: 'short',
     order: ['day','month','year']
 }};
+sols[5] = "Le vendredi 05/12/2025 à 20:00|Le samedi 06/12/2025 à 20:00|Le dimanche 07/12/2025 à 15:00";
 
 test[6] = {text: "5 janvier à 8am",
 dateFormat: {
     month: 'long',
     order: ['day','month']
 }};
+sols[6] = "Le lundi 05/1/2026 à 08:00";
 
 test[7] = {text: "23 nov 26, 27 dec 26, 19h, 21h", // cas ambigu, même en langage naturel
 dateFormat: {
@@ -1613,6 +1668,9 @@ dateFormat: {
     year: 'short',
     order: ['day','month','year']
 }};
+sols[7] = "Le lundi 23/11/2026 à 19:00|Le lundi 23/11/2026 à 21:00|Le samedi 26/12/2026 à 19:00|"
++"Le samedi 26/12/2026 à 21:00|Le dimanche 27/12/2026 à 19:00|Le dimanche 27/12/2026 à 21:00";
+// test doit fail !
 
 test[8] = {text: "23 nov 25, 02 dec 25, de 17h à 18h, et de 19h à 20h", // ce cas n'est pas ambigu car 02 ne suit pas 25
 dateFormat: {
@@ -1620,6 +1678,8 @@ dateFormat: {
     year: 'short',
     order: ['day','month','year']
 }};
+sols[8] = "Le dimanche 23/11/2025 à 17:00 (fin à 18:00)|Le dimanche 23/11/2025 à 19:00 (fin à 20:00)|"
+    +"Le mardi 02/12/2025 à 17:00 (fin à 18:00)|Le mardi 02/12/2025 à 19:00 (fin à 20:00)";
 
 test[9] = {text: "09 07.25", 
 dateFormat: {
@@ -1627,6 +1687,7 @@ dateFormat: {
     year: 'short',
     order: ['month','day','year']
 }};
+sols[9] = "Le dimanche 07/9/2025";
 
 test[10] = {text: "23 09 25, 02 12 25", 
 dateFormat: {
@@ -1634,6 +1695,7 @@ dateFormat: {
     year: 'short',
     order: ['day','month','year']
 }};
+sols[10] = "Le mardi 23/9/2025|Le mardi 02/12/2025";
 
 
 test[11] = {text: `03.06.26-14.06.26 à 17h et 20h`,
@@ -1643,6 +1705,13 @@ dateFormat: {
     year: 'short',
     order: ['day','month','year']
 }};
+sols[11] = "Le mercredi 03/6/2026 à 17:00|Le mercredi 03/6/2026 à 20:00|Le jeudi 04/6/2026 à 17:00|Le jeudi 04/6"
+    +"/2026 à 20:00|Le vendredi 05/6/2026 à 17:00|Le vendredi 05/6/2026 à 20:00|Le samedi 06/6/2026 à 17:00|Le "
+    +"samedi 06/6/2026 à 20:00|Le dimanche 07/6/2026 à 17:00|Le dimanche 07/6/2026 à 20:00|Le lundi 08/6/2026 à "
+    +"17:00|Le lundi 08/6/2026 à 20:00|Le mardi 09/6/2026 à 17:00|Le mardi 09/6/2026 à 20:00|Le mercredi 10/6/2026"
+    +" à 17:00|Le mercredi 10/6/2026 à 20:00|Le jeudi 11/6/2026 à 17:00|Le jeudi 11/6/2026 à 20:00|Le vendredi 1"
+    +"2/6/2026 à 17:00|Le vendredi 12/6/2026 à 20:00|Le samedi 13/6/2026 "
+    +"à 17:00|Le samedi 13/6/2026 à 20:00|Le dimanche 14/6/2026 à 17:00|Le dimanche 14/6/2026 à 20:00";
 
 test[12] = {text: `27, 28 nov, 3 déc, 2025`,
 dateFormat: {
@@ -1650,6 +1719,7 @@ dateFormat: {
     year: 'short',
     order: ['day','month','year']
 }};
+sols[12] = "Le jeudi 27/11/2025|Le vendredi 28/11/2025|Le mercredi 03/12/2025";
 
 test[13] = {text: `nov, 27, 28, déc, 03, 2025, de 17h à 22h`,
 dateFormat: {
@@ -1657,6 +1727,7 @@ dateFormat: {
     year: 'short',
     order: ['month','day','year']
 }};
+sols[13] = "Le jeudi 27/11/2025 à 17:00 (fin à 22:00)|Le vendredi 28/11/2025 à 17:00 (fin à 22:00)|Le mercredi 03/12/2025 à 17:00 (fin à 22:00)";
 
 test[14] = {text: `Du jeudi 13 jusqu'au samedi 15 novembre 2025, jeudi à 20h, samedi à 18h`,
 dateFormat: {
@@ -1664,6 +1735,7 @@ dateFormat: {
     order: ['day','month','year'],
     weekDay: 'long'
 }};
+sols[14] = "Le jeudi 13/11/2025 à 20:00|Le samedi 15/11/2025 à 18:00";
 
 test[15] = {text: `Lundi 15 novembre 2025 à 20h - mardi 16 novembre 2025 à 4h`,
 dateFormat: {
@@ -1671,6 +1743,7 @@ dateFormat: {
     order: ['day','month','year'],
     weekDay: 'long'
 }};
+sols[15] = "Le samedi 15/11/2025 à 20:00 (fin le 16/11/2025 à 04:00)";
 
 test[16] = {text: `Les lundis et mardis de 18h à 19h et de 20h à 21h, du 14 au 27 septembre 2025`,
 dateFormat: {
@@ -1678,14 +1751,21 @@ dateFormat: {
     order: ['day','month','year'],
     weekDay: 'long'
 }};
+sols[16] = "Le lundi 15/9/2025 à 18:00 (fin à 19:00)|Le lundi 15/9/2025 à 20:00 (fin à 21:00)|Le mardi 16/9/2025 à"
+    +" 18:00 (fin à 19:00)|Le mardi 16/9/2025 à 20:00 (fin à 21:00)|Le lundi 22/9/2025 à 18:00 (fin à 19:00)|L"
+    +"e lundi 22/9/2025 à 20:00 (fin à 21:00)|Le mardi 23/9/2025 à 18:00 (fin à 19:00)|Le mardi 23/9/2025 à 20:0"
+    +"0 (fin à 21:00)";
 
 
-test[17] = {text: `du lundi au mercredi, à 18h, du 14 au 27 septembre 2025`,
+test[17] = {text: `du lundi au mercredi, à 18h, du 14 au 27 septembre 2025. Du samedi au lundi, à 18h, du 01 au 10 octobre 2025.`,
 dateFormat: {
     month: 'long',
+    year: 'long',
     order: ['day','month','year'],
     weekDay: 'long'
 }};
+sols[17] = "Le dimanche 14/9/2025 à 18:00|Le samedi 20/9/2025 à 18:00|Le dimanche 21/9/2025 à 18:00|Le samedi 27/9/2025 à 1"
+    +"8:00|Le samedi 04/10/2025 à 18:00|Le dimanche 05/10/2025 à 18:00";
 
 test[18] = {text: "septembre 2026: le 03 à 18h, le 04 à 22h",
 dateFormat: {
@@ -1693,12 +1773,16 @@ dateFormat: {
     year: 'long',
     order: ['month','year', 'day'],
 }};
+sols[18] = "Le jeudi 03/9/2026 à 18:00|Le vendredi 04/9/2026 à 22:00";
 
 test[19] = {text: "du 07 juin à 19h au 21 juin",
 dateFormat: {
     month: 'long',
     order: ['day','month']
 }};
+sols[19] = "Le dimanche 07/6/2026 à 19:00|Le lundi 08/6/2026|Le mardi 09/6/2026|Le mercredi 10/6/2026|Le jeudi 1"
+    +"1/6/2026|Le vendredi 12/6/2026|Le samedi 13/6/2026|Le dimanche 14/6/2026|Le lundi 15/6/2026|Le mardi 1"
+    +"6/6/2026|Le mercredi 17/6/2026|Le jeudi 18/6/2026|Le vendredi 19/6/2026|Le samedi 20/6/2026|Le dimanche 21/6/2026";
 
 test[20] = {text: "mercredi, Nov 11, 07:30 PM → samedi, Nov 14",
 dateFormat: {
@@ -1706,6 +1790,7 @@ dateFormat: {
     month: 'short',
     order: ['month','day']
 }};
+sols[20] = "Le mercredi 11/11/2026 à 19:30|Le jeudi 12/11/2026|Le vendredi 13/11/2026|Le samedi 14/11/2026";
 
 test[21] = {text: "septembre 2026: le 03 à 18h, le 04 à 22h, octobre 2026: le 06 à 18h",
 dateFormat: {
@@ -1713,6 +1798,7 @@ dateFormat: {
     year: 'long',
     order: ['month','year', 'day'],
 }};
+sols[21] = "Le jeudi 03/9/2026 à 18:00|Le vendredi 04/9/2026 à 22:00|Le mardi 06/10/2026 à 18:00";
 
 test[22] = {text: "2026 septembre 03, 04, octobre 02",
 dateFormat: {
@@ -1720,6 +1806,7 @@ dateFormat: {
     year: 'long',
     order: ['year', 'month', 'day'],
 }};
+sols[22] = "Le jeudi 03/9/2026|Le vendredi 04/9/2026|Le vendredi 02/10/2026";
 
 test[23] = {text: "2025: sept: 2 et 3 à 18h, le 4 à 20h, oct 4 et 5 à 19h ",
 dateFormat: {
@@ -1727,38 +1814,72 @@ dateFormat: {
     year: 'long',
     order: ['year', 'month', 'day'],
 }};
+sols[23] = "Le mardi 02/9/2025 à 18:00|Le mercredi 03/9/2025 à 18:00|Le jeud"
+    +"i 04/9/2025 à 20:00|Le samedi 04/10/2025 à 19:00|Le dimanche 05/10/2025 à 19:00";
 
+test[24] = {text: "à 14h le 03, 04 et 16h le 05 septembre 2025.",
+dateFormat: {
+    month: 'long',
+    year: 'long',
+    order: ['day', 'month', 'year'],
+}};
+sols[24] = "Le mercredi 03/9/2025 à 14:00|Le jeudi 04/9/2025 à 14:00|Le vendredi 05/9/2025 à 16:00";
+
+test[25] =  {text: "2025: 2 et 3 sept à 18h, 4 et 5 oct à 19h",
+dateFormat: {
+    month: 'short',
+    year: 'long',
+    order: ['year', 'day', 'month'],
+}};
+sols[25] = "Le mardi 02/9/2025 à 18:00|Le mercredi 03/9/2025 à 18:00|Le samedi 04/10/2025 à 19:00|Le dimanche 05/10/2025 à 19:00";
+
+test[26] =  {text: "2025: sept 2 et 3 à 18h, oct 4 et 5 à 19h",
+dateFormat: {
+    month: 'short',
+    year: 'long',
+    order: ['year', 'month', 'day'],
+}};
+sols[26] = "Le mardi 02/9/2025 à 18:00|Le mercredi 03/9/2025 à 18:00|Le samedi 04/10/2025 à 19:00|Le dimanche 05/10/2025 à 19:00";
+
+test[27] =  {text: "du 12 au 20 octobre, de 15h à 16h, le mardi, de 16h à 17h le mercredi et jeudi",
+dateFormat: {
+    month: 'long',
+    year: 'long',
+    order: ['day', 'month'],
+}};
+sols[27] = "Le mardi 13/10/2026 à 15:00 (fin à 16:00)|Le mercredi 14/10/2026 à 16:00 (fin à 17:00)|Le jeudi 15/10/2026 à 1"
+    +"6:00 (fin à 17:00)|Le mardi 20/10/2026 à 15:00 (fin à 16:00)";
+
+test[28] =  {text: "2025: 18h les 16 et 17 sept, 21h le 18 sept",
+dateFormat: {
+    month: 'short',
+    year: 'long',
+    order: ['year', 'day', 'month'],
+}};
+sols[28] = 'Le mardi 16/9/2025 à 18:00|Le mercredi 17/9/2025 à 18:00|Le jeudi 18/9/2025 à 21:00';
+
+test[29] =  {text: "2025: 18h sept 16 et 17 21h oct 04",
+dateFormat: {
+    month: 'short',
+    year: 'long',
+    order: ['year', 'month', 'day'],
+}};
+sols[29] = 'Le mardi 16/9/2025 à 18:00|Le mercredi 17/9/2025 à 18:00|Le samedi 04/10/2025 à 21:00';
 console.log("\n\n\n");
 
-let i = 19;
-extractDates(test[i].text, test[i].dateFormat);
-console.log("test "+i+": ",test[i].text);
+// let i = 29;
+// extractDates(test[i].text, test[i].dateFormat, sols[i], i);
+// console.log("test "+i+": ",test[i].text);
 
-// for (i = 0; i < 24; i++){
-//     extractDates(test[i].text, test[i].dateFormat)
-//     console.log("test "+i+": ",test[i].text);
-// }
-
+for (i = 0; i < 30; i++){
+    extractDates(test[i].text, test[i].dateFormat, sols[i],i)
+}
 
 
-            // 2025: 2 et 3 sept à 18h, 4 et 5 oct à 19h 
-            // 2025: sept 2 et 3 à 18h, oct 4 et 5 à 19h 
 
-// sept 2025: 03; 04, jan 2026: 05=> se
-                // 2025 3, 4 sept 2026 2, 3 janv ok
-                // 2025 le 3 septembre 18h, le 2 oct 17h 
-// lundi 9 avril, du mardi 10 au jeudi 12 avril
-// handles lundi - samedi as well as samedi - mardi ranges
-// du 12 au 20 octobre, à 15h le mardi, à 16h le jeudi
-// mardi 12 à 15h, jeudi 13 à 16h
-// du 12 au 20 octobre, le mardi, du 21 au 27 octobre, le vendredi
-// du 01 au 31 octobre, du mardi au jeudi à 20h
-// detect time condition "à 15h le lundi à 18h le mardi et jeudi "
-// "les lundi, mardi et jeudi"
 
-// 2025: 18h les 16 et 17 sept, 21h le 18 sept 
 
-  // du 07 juin à 19h au 21 juin, only the first date as a time (par exemple pour un vernissage)
+
 
 // // aux functions
 

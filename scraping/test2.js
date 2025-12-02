@@ -1558,8 +1558,8 @@ function formatDate(dateObj){
 }
 
 
-function extractDates(s, dateFormat, sol){
-    console.log("\n\n**************** Entrée: ****************\n"+s);
+function extractDates(s, dateFormat, sol, i){
+    console.log("\n****************** Entrée: ******************\nTest n°"+i+": "+s);
     const tokenList = tokenize(cleanDate(s), dateFormat);
     
     // console.log('time list',tokenList.filter(t => t.type === 'time').map(t => t.timeList));
@@ -1584,16 +1584,14 @@ function extractDates(s, dateFormat, sol){
         // console.log(res);
         // console.log('*********');
         if (treeList.length === 1 && res === sol){
-            console.log("\x1b[32mTest passed\x1b[0m");
+            console.log("\n\x1b[32mTest passed\x1b[0m");
         }else{
-            console.log("\x1b[31mTest failed\x1b[0m");
+            console.log("\n\x1b[31mTest failed\x1b[0m");
         }
     }else{
         console.log('No solution found.');
-        console.log("\x1b[31mTest failed\x1b[0m");
+        console.log("\n\x1b[31mTest failed\x1b[0m");
     }
-    
-    console.log("\n");
 }
 
 
@@ -1870,14 +1868,12 @@ sols[29] = 'Le mardi 16/9/2025 à 18:00|Le mercredi 17/9/2025 à 18:00|Le samedi
 console.log("\n\n\n");
 
 // let i = 29;
-// extractDates(test[i].text, test[i].dateFormat, sols[i]);
+// extractDates(test[i].text, test[i].dateFormat, sols[i], i);
 // console.log("test "+i+": ",test[i].text);
 
 for (i = 0; i < 30; i++){
-    extractDates(test[i].text, test[i].dateFormat, sols[i])
-    console.log("test "+i+": ",test[i].text);
+    extractDates(test[i].text, test[i].dateFormat, sols[i],i)
 }
-
 
 
 
