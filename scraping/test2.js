@@ -1,5 +1,7 @@
-verbose = false; // false, true, 'full'
-
+// - false: (no verbose)
+// - true: (to track why a date has been rejected)
+// - 'full': full log for debug
+verbose = false; 
 
 // CHANGER const now !!!!!!!!!!!!
 
@@ -40,8 +42,11 @@ const dayDict = {   monday: ["lun", "lundi", "lundis"],
 
 const dayList = [...Object.keys(dayDict), ...Object.values(dayDict).flat()];
 
-const ignoreList = ["&", "et", "le", "les"]; // those keywords are not mandatory to understand the structure
-const startTimeKeywords = ["a", "a partir de"];
+// those keywords are not mandatory to understand the structure and should be removed in order to allow
+// identification of other keywords ('sauf le samedi')
+const ignoreList = ["&", "et", "le", "les"]; 
+
+// const startTimeKeywords = ["a", "a partir de"];
 
 
 const moisRegex = Object.values(monthsDict).flat().map(m => m.replace('.', '\\.')).join('|');
@@ -138,7 +143,7 @@ function makeBasicToken(str, dateFormat){
         // contains letters
         // if it is a time marker
         if (Object.keys(timeMarkers).includes(str)){
-            return {type: 'time', time: timeMarkers[str], rawText: timeMarkers[str]};
+            return {type: 'time', val: timeMarkers[str], rawText: timeMarkers[str]};
         }
         let possibilities = [];
         if (dateFormat.month === 'long' && longMonths.includes(str)){
@@ -162,7 +167,7 @@ function makeBasicToken(str, dateFormat){
     }else{
         // only digits
         if (str.includes(':')){
-            return {type: 'time', time: str, rawText: str};
+            return {type: 'time', val: str, rawText: str};
         }
         // if contains non digits caracters (such as '.' as in '10.12.25' )
         if (/\D/.test(str)){
@@ -282,8 +287,7 @@ function preprocessTokens(list){
     // return timeParser(result);
 }
 
-// aux function to regroupe time and text:
-// Assemble sequences of time tokens into one time token, which has a list timeList of time objects
+// aux function to regroupe time and text: make timeRange, make list of time tokens
 
 function timeParser(tokens) {
     // console.log("before time parser", tokens);
@@ -303,7 +307,7 @@ function timeParser(tokens) {
             return;
         }
 
-        // if the first token is a separator, push it
+        // if the first token is a separator, push it. This should not happen !
         if (buffer[0].type === 'rangeSeparator'){
             result.push(buffer.shift());
         }
@@ -313,8 +317,6 @@ function timeParser(tokens) {
         if (buffer[buffer.length-1].type === 'rangeSeparator'){
             lastToken = buffer.pop();
         }
-
-        // normally, there should not be any range separator now
 
         // search for pattern time | rangeSeparator | time and replace them by a time range
         // e.g. : 18h-20h, etc... this range has priority over everyhtin
@@ -327,10 +329,9 @@ function timeParser(tokens) {
                 buffer[i+2].type === "time") {
 
                 buffer.splice(i, 3, {
-                    type: "timeRange",
-                    startTime: buffer[i].time, 
-                    endTime: buffer[i+2].time,
-                    rawText: buffer[i].rawText+"—"+buffer[i].rawText,
+                    type: "time",
+                    val: [buffer[i].val, buffer[i+2].val],
+                    rawText: buffer[i].rawText+" — "+buffer[i].rawText,
                     delimiter: "separator"
                 });
             }
@@ -346,9 +347,8 @@ function timeParser(tokens) {
                 for (const pair of timeRangeDelimiters) {
                     if (t1.endsWith(pair[0]) && t2.endsWith(pair[1])) {
                         buffer.splice(i, 2, {
-                            type: "timeRange",
-                            startTime: buffer[i].time, 
-                            endTime: buffer[i+1].time,
+                            type: "time",
+                            val: [buffer[i].val, buffer[i+1].val],
                             rawText: buffer[i].textBefore + " " +buffer[i].rawText + " " 
                                 + buffer[i+1].textBefore + " " +buffer[i+1].rawText,
                             delimiter: pair
@@ -359,12 +359,13 @@ function timeParser(tokens) {
             i++;
         }
             
-        // push the buffer in time list
-        result.push({
-            type: "time",
-            rawText: buffer.map(t => (t.textBefore ? t.textBefore : "")+" "+t.rawText).join(" "),
-            timeList: buffer
-        });
+        // push the buffer as a time list
+        buffer.forEach(t => result.push(t));
+        // result.push({
+        //     type: "time",
+        //     rawText: buffer.map(t => (t.textBefore ? t.textBefore : "")+" "+t.rawText).join(" "),
+        //     timeList: buffer
+        // });
             
         // }
 
@@ -423,6 +424,9 @@ function processTextToken(token){
     if (rightRangeDelimiters.some(el => token.rawText.endsWith(el))){
         possibilities.push('rangeDelimiterUnbalanceEnd');
     }
+    if (exception.some(el => token.rawText.endsWith(el))){
+        possibilities.push('exception');
+    }
 
     if (possibilities.length === 1){
         token.type = possibilities[0];
@@ -451,7 +455,7 @@ function tokenize(s, dateFormat){
     const basicTokenList = s.split(" ").map(e => makeBasicToken(e, dateFormat)).flat();
     const tokenList = preprocessTokens(basicTokenList);
     if (verbose === 'full'){
-        console.log("\n*** tokens after time parser ***\n\n",tokenList);
+        console.log("\n*** tokens after time parser ***\n",tokenList);
     }
     return tokenList;
 }
@@ -477,8 +481,7 @@ function resolvePossibilities(tokenList, hasYears){
 
     const l = tokenList.map(token => Array.isArray(token.type) ? token.type.map(t => newToken(token, t)) : [token]);
     
-    // now every element is a list, make the cartesian product
-    
+   
     const result = [[]];
 
     for (const possibleTokens of l) {
@@ -501,21 +504,46 @@ function resolvePossibilities(tokenList, hasYears){
         // replace the old array
         result.splice(0, result.length, ...newResult);
     }
-    
-    const filteredResults = result.filter(list => {
+
+    if (verbose){
+        console.log("\n"+result.length+" token combinations will be tested.\n");
+    }
+
+    // now every element is a list, make the cartesian product
+
+    const filteredResults = result.map(list => {
+                return list.map(token => ({ ...token })); // hard copy of the tokens to prevent side effects
+        })
+        .map(list => simplifyTokens(list))
+        .filter(list => {
         // the lists must have at least one occurrence of 'day' and 'month', as well as 'year' if hasYear is true
         const types = new Set(list.map(el => el.type));
-        if (!types.has('month')) return false;
-        if (!types.has('day')) return false;
-        if (hasYears && !types.has('year')) return false;
+        if (!types.has('month')){
+            if (verbose){
+                console.log("\x1b[38;5;226mNo month token found, discarding combination.\x1b[0m", list);
+            }    
+            return false;
+        }
+        if (!types.has('day')){
+            if (verbose){
+                console.log("\x1b[38;5;226mNo day token found, discarding combination.\x1b[0m", list);
+            }    
+            return false;
+        }
+        if (hasYears && !types.has('year')){
+            if (verbose){
+                console.log("\x1b[38;5;226mNo year token found, contrary to the provided date format, discarding combination.\x1b[0m", list);
+            }    
+            return false;
+        }
 
         // tests if the rangeDelimiters look well balanced
         return testRangeBalance(list);
     });
-    const finalResults = filteredResults.map(list => simplifyTokens(list));
+    const finalResults = filteredResults.map(list => propagateRangesDelimiters(list));
 
     if (verbose === 'full'){
-        console.log("\n*** number of possibilities: "+finalResults.length+" ***");
+        console.log("\n*** number of remaining possibilities: "+finalResults.length+" ***");
         console.log(finalResults);
         console.log();
     }
@@ -523,8 +551,12 @@ function resolvePossibilities(tokenList, hasYears){
     return finalResults;
 }
 
-// aux function to test if range are well balanced: end follow start, token after opening and closing
-// have the same type
+// aux function to test if range are well balanced: 
+// - end tokens follow start tokens
+// - token after opening and closing have the same type
+// - at most one "rangeDelimiterUnbalancedEnd" token
+// - exactly one day token should be found between a start and end delimiter
+
 function testRangeBalance(list){
     // list must have at most one "rangeDelimiterUnbalancedEnd"
     if (list.filter(el => el.type === "rangeDelimiterUnbalancedEnd").length > 1){
@@ -532,13 +564,15 @@ function testRangeBalance(list){
     }
     let balance = 0;
     let tokenTypeAfterOpening;
+    let countDayTokens = 0;
     for (let i=0; i < list.length; i++){
         const token = list[i];
         if (token.type === "rangeDelimiterStart"){
+            countDayTokens = 0;
             balance++;
             if (i+1 > list.length - 1){
                 if (verbose){
-                    console.log("\x1b[38;5;226mRange delimiters opens on nothing\x1b[0m", list);
+                    console.log("\x1b[38;5;226mRange delimiters opens on nothing, discarding combination.\x1b[0m", list);
                 }
                 return false;
             }
@@ -546,15 +580,23 @@ function testRangeBalance(list){
         }
         if (token.type === "rangeDelimiterEnd"){
             balance--;
+            if (countDayTokens !== 1){
+                if (verbose){
+                    console.log("\x1b[38;5;226mRange delimiters error: "+ countDayTokens+" day tokens found "
+                        +" between start and end delimiters, discarding combination.\x1b[0m", list);
+                }
+                return false;
+            }
             if (i+1 > list.length - 1){
                 if (verbose){
-                    console.log("\x1b[38;5;226mRange delimiters have no end information\x1b[0m", list);
+                    console.log("\x1b[38;5;226mRange delimiters have no end information, discarding combination.\x1b[0m", list);
                 }
                 return false;
             }
             if (list[i+1].type !== tokenTypeAfterOpening){
                 if (verbose){
-                    console.log("\x1b[38;5;226mToken types after opening and closing delimiters do not match\x1b[0m", list);
+                    console.log("\x1b[38;5;226mToken types after opening and closing delimiters "
+                        +"do not match, discarding combination.\x1b[0m", list);
                 }
                 return false;
             }
@@ -565,6 +607,9 @@ function testRangeBalance(list){
                 console.log("\x1b[38;5;226mUnbalanced range delimiters \x1b[0m", list);
             }
             return false;
+        }
+        if (token.type === 'day'){
+            countDayTokens++;
         }
     }
     if (balance > 0){
@@ -579,10 +624,13 @@ function testRangeBalance(list){
 // preprocess weekDays tokens before making the tree: 
 // first filter weekdays, convert to day keys, then process weekdays range delimiters
 
-function simplifyTokens(tokenList){
+function simplifyTokens(list){
 
-    // filter weekdays and convert to normalized day format (english spelling)
-    tokenList = filterWeekDays(tokenList).map(token => convertToDayKeys(token));
+    // // filter weekdays and convert to normalized day format (english spelling)
+    // tokenList = filterWeekDays(tokenList).map(token => convertToDayKeys(token));
+
+     // convert to normalized day format (english spelling)
+    const tokenList = list.map(token => convertToDayKeys(token));
 
     function convertToDayKeys(t){
         if (t.type !== 'weekDay'){
@@ -616,6 +664,7 @@ function simplifyTokens(tokenList){
     // test range patterns: rangeDelimiterStart | weekDay | rangeDelimiterEnd | WeekDay 
     // transforms into a list of weekDays. The rawText is kept in the first token
     i = 0;
+
     while(i < tokenList.length - 3){ 
         if (tokenList[i].type === 'rangeDelimiterStart' && tokenList[i+1].type === 'weekDay'
                 && tokenList[i+2].type === 'rangeDelimiterEnd' && tokenList[i+3].type === 'weekDay'){   
@@ -630,83 +679,73 @@ function simplifyTokens(tokenList){
         i++;
     }
 
-    // here we assume that if time is related to a week day, it is just next to it.
-    // determine if a time is present to the left or the right or the week day.
-    // if left, propagates the time to the right (resp to the left) until no week day is found.
-    let firstWeekDayIndex = tokenList.findIndex(t => t.type === 'weekDay');
-    // if there are weekDay tokens
-    if (firstWeekDayIndex > - 1){
-        if (firstWeekDayIndex > 0 && tokenList[firstWeekDayIndex - 1].type === 'time'){
-        // there is a time token to the left of the first week day, propagates time to the right for all sequences
-            // find all sequences starting with time | weekDay
-            for (let startIndex = firstWeekDayIndex; startIndex < tokenList.length; startIndex++) {
-                if (tokenList[startIndex].type === "weekDay" && tokenList[startIndex - 1].type === 'time') {  
-                    // when a sequence has been found, propagates the time to the right  
-                    let i = startIndex;
-                    while (i < tokenList.length && tokenList[i].type === 'weekDay'){
-                        tokenList[i].time = tokenList[startIndex - 1];
-                        i++;
-                    }
-                    tokenList.splice(startIndex-1, 1);
+    // process exceptions: add an 'exception' flag to following weekDay tokens
+    // we assume here that exceptions are always followed by a weekDay: sauf samedi à 18h
+    // and never by a time (sauf 18h le samedi)
+    i = 0;
+
+    while(i < tokenList.length - 2){ 
+        if (tokenList[i].type === 'exception'){
+            for (let j = 1; i+j < tokenList.length; j++){
+                if (tokenList[i+j].type !== 'weekDay' || tokenList[i+j].type !== 'time'){
+                    break;
                 }
-            } 
-        }else{
-            // get the last weekDay token of the first sequence
-            while (firstWeekDayIndex < tokenList.length - 2 && tokenList[firstWeekDayIndex + 1].type === 'weekDay'){
-                firstWeekDayIndex++;
+                tokenList[i+j].type = tokenList[i+j].type+'Exception';
+
             }
-            if (tokenList[firstWeekDayIndex + 1].type === 'time'){
-                // there is a time token to the right of the last week day token of the first sequence.
-                // propagates time to the left. An indexMin is set to prevent propagating to much to the left
-                // (splicing time tokens result in too long weekDay sequences)
-                let indexMin = 0;
-                for (let startIndex = firstWeekDayIndex; startIndex < tokenList.length - 1; startIndex++) {
-                    if (tokenList[startIndex].type === "weekDay" && tokenList[startIndex + 1].type === 'time') {  
-                        // when a sequence has been found, propagates the time to the right  
-                        let i = startIndex;
-                        while (i >= indexMin && tokenList[i].type === 'weekDay'){
-                            tokenList[i].time = tokenList[startIndex + 1];
-                            i--;
-                        }
-                        indexMin = startIndex + 1;
-                        tokenList.splice(startIndex+1, 1);
-                    }
-                } 
-            }
+            tokenList.splice(i,1);
+        }
+        i++;
+    }
+
+
+    //*******old comment */
+    // weekday filtering. Replace the following weekDay tokens by a wildcard:
+    // - weekDay tokens following any rangeDelimiter  or separator token:
+    //    jusqu'au mardi 12 avril, du mardi 12 avril au jeudi 14 avril, mardi 12 avril - jeudi 14 avril
+    // - weekDay tokens preceding exactly one day token and one range separator 
+    // to avoid filtering information to be processed in the generated list
+
+
+    // detects if a weekDay token is just after a range delimiter or separators. If yes, it means that days 
+    // are always preceded by a weekDay token. Then remove those weekDay tokens.
+
+    // let weekDayBeforeDay = false;
+    let tokenAfterWeekDay;
+
+    for (let i = 1; i < tokenList.length; i++){
+        if (tokenList[i].type !== 'weekDay') continue;
+        
+        if (['rangeDelimiterUnbalanceEnd', 
+             'rangeDelimiterStart', 
+             'rangeDelimiterEnd','rangeSeparator'].includes(tokenList[i - 1].type)
+        ){
+            // tokenList[i].val = '*';
+            // weekDayBeforeDay = true;
+            tokenAfterWeekDay = tokenList[i+1].type;
+            break;
         }
     }
 
-    // regroup weekDay as a condition token with a list of weekDay
+ 
+    if (tokenAfterWeekDay){
+        let i = 0;
 
-    const intermediateTokenList = [];
-    let buffer = [];
-
-    for (token of tokenList){
-        if (token.type === 'weekDay'){
-            buffer.push(token);
-        }else{
-            flushBuffer();
-            intermediateTokenList.push(token);
-        }
-    }
-
-    function flushBuffer(){
-        if (buffer.length > 0){
-            for (t of buffer){
-                delete t.type;
+        while(i < tokenList.length - 1){
+            if (tokenList[i].type === 'weekDay' && tokenList[i+1].type === tokenAfterWeekDay){
+                tokenList.splice(i,1);
             }
-            intermediateTokenList.push({type: 'time', conditionList: buffer});
-            buffer = [];
+            i++;
         }
     }
+    return tokenList;
+}
 
-    // move delimiter tokens information to the next following day token
-
-    flushBuffer();
+function propagateRangesDelimiters(tokenList){
     const finalTokenList = [];
     let rangeInfo = null;
 
-    for (token of intermediateTokenList){
+    for (token of tokenList){
         if (token.type.startsWith('rangeDelimiter')){
             rangeInfo = {...token};
         }else if (token.type === 'rangeSeparator'){
@@ -744,37 +783,37 @@ function simplifyTokens(tokenList){
 }
 
 
-// weekdays filtering.
-// if weekdays are present, and the first token after a week day is a date token, we assume that all dates are
-// // preceded by a weekDay. Such weekDay tokens (case 1) are discarded.
-// the remaining weekday tokens (case 2) will be treated as timeCondition. Examples:
-//
-// lundi 9 avril, du mardi 10 au jeudi 12 avril => case 1
-// monday, september 1st => case 1
-// les lundis et mardis, du 11 au 23 octobre => case 2 (a keyword is between weekDay and day)
-//
-// unhandled case (unlikely cases):
-// les lundis et mardis, du 11 au 23 octobre, mercredi 24 octobre.
-// 
+// // weekdays filtering.
+// // if weekdays are present, and the first token after a week day is a date token, we assume that all dates are
+// // // preceded by a weekDay. Such weekDay tokens (case 1) are discarded.
+// // the remaining weekday tokens (case 2) will be treated as timeCondition. Examples:
+// //
+// // lundi 9 avril, du mardi 10 au jeudi 12 avril => case 1
+// // monday, september 1st => case 1
+// // les lundis et mardis, du 11 au 23 octobre => case 2 (a keyword is between weekDay and day)
+// //
+// // unhandled case (unlikely cases):
+// // les lundis et mardis, du 11 au 23 octobre, mercredi 24 octobre.
+// // 
 
-function filterWeekDays(list){
-    const firstWeekDay = list.findIndex(t => t.type === 'weekDay');
-    // if no weekDay token is present, or if it is at the last index (case 2), return the list
-    if (firstWeekDay === -1 || firstWeekDay === list.length){
-        return list;
-    }
-    const nextType = list[firstWeekDay+1].type;
-    if (nextType !== 'day' && nextType !== 'month' && nextType !== 'year'){
-        // next token is not a date token. 
-        return list;
-    }
-    return list.filter((t, i) => {
-        if (t.type !== 'weekDay') return true;
-        const next = list[i + 1];
-        return !(next && next.type === nextType);
-    });
+// function filterWeekDays(list){
+//     const firstWeekDay = list.findIndex(t => t.type === 'weekDay');
+//     // if no weekDay token is present, or if it is at the last index (case 2), return the list
+//     if (firstWeekDay === -1 || firstWeekDay === list.length){
+//         return list;
+//     }
+//     const nextType = list[firstWeekDay+1].type;
+//     if (nextType !== 'day' && nextType !== 'month' && nextType !== 'year'){
+//         // next token is not a date token. 
+//         return list;
+//     }
+//     return list.filter((t, i) => {
+//         if (t.type !== 'weekDay') return true;
+//         const next = list[i + 1];
+//         return !(next && next.type === nextType);
+//     });
    
-}
+// }
     
 
 // add a list of weekdays instead of the range.
@@ -816,47 +855,25 @@ function filterWeekDays(list){
 
 function makeTree(tokenList, dateFormat){
     let currentId = 0;
-    let levels;
-    // let timeBeforeDay = null;
-    dateLength = dateFormat.order.length;
+    const typeList = tokenList.map(token => token.type).filter(str => str === 'day' || str === 'month'
+        || str === 'year' || str === 'weekDay' || str === 'time');
+    const levels = [...new Set(['root', ...typeList])];
 
-    // decide the level of time tokens. Default place should be between root and year, but it should
-    // be just above the relevant info. In the following example, it should be right above the days,
-    // as the second day as only day informations
-    // "septembre 2026: le 03 à 18h, le 04 à 22h".
-    // if no time token is present, use default levels.
-
-    let possibleTokenAfterTime;
-    let possibleTokenBeforeTime;
-   
-    if (tokenList.some(token => token.type.startsWith('time'))){
-         // we determine which "date" tokens are present between time or timeCondition tokens
-        const tokenSetBetweenTimes = intersectAll(tokenList.map(el => el.type)
-            .join(" ").split('time').map(str => str.trim()).filter(str => str.length > 0)
-            .map(str => [... new Set(str.split(' '))]));
-        const tmp = tokenList.map(el => el.type).join(" ")
-            .split('time')[0].trim().split(' ');
-        if (tmp.length > 0){possibleTokenBeforeTime= tmp.at(-1)};
+    if (verbose === 'full'){
+        console.log("\nTree levels: ", levels,'\n');
+    }
     
-        if (!tokenSetBetweenTimes.has('month')){
-            levels =  ['root','year','month','time','day'];
-        }else if (!tokenSetBetweenTimes.has('year')){
-            levels =  ['root','year','time','month','day'];
-        }else{
-            levels =  ['root','time','year','month','day'];
+    const dateTokensOrder = levels.filter(str => str === 'day' || str === 'month' || str === 'year');
+    if (dateTokensOrder.length !== dateFormat.order.length 
+        || dateTokensOrder.some((el, i) => el !== dateFormat.order[i])){
+         if (verbose){
+            console.log("\x1b[38;5;226mDate sequences don't match date format. Removing tree.\n\x1b[0m", dateFormat.order);
         }
-        possibleTokenAfterTime = dateFormat.order.filter(el => tokenSetBetweenTimes.has(el))[0];
-    }else{
-        levels =  ['root','year','month','day'];
+        return null;
     }
 
-
-
-    // const tokenTypeOrder = [...new Set(tokenList.map(token => token.type)
-    //     .filter(el => !el.startsWith('range') && el != 'year' && el !== 'month'))];
-     const tokenTypeOrder = [...new Set(tokenList.map(token => token.type)
-        .filter(el => el === 'time' || el === 'day'))];
-    const timeAfterDay = tokenTypeOrder.length > 1 && tokenTypeOrder[1] === 'time';
+  
+    
 
     const tree = {
         0: {
@@ -866,386 +883,198 @@ function makeTree(tokenList, dateFormat){
     }
 
     let currentPosition = 0;
-    // let lastDayNode = null;
 
-    // test if n_1 is at a lower level than n_2
-    function isUnder(n1, n2) {
-        const i_n1 = levels.indexOf(n1);
-        const i_n2 = levels.indexOf(n2);
-        // return false if one does not exist
-        if (i_n1 === -1 || i_n2 === -1) return false;
-        return i_n2 < i_n1;
-    }
-
-    function createChild(sourceId, value, type){
+    // create a child from token
+    function createChild(sourceId, token){
         currentId++;
         if (verbose === 'full'){
-            console.log("\x1b[38;5;226m creating child \x1b[0m", type,' with id ', currentId);
+            console.log("\x1b[38;5;226m creating child \x1b[0m", token.type,' with id ', currentId);
         }
-        type = type ? type:levels[levels.indexOf(tree[sourceId].type)+1];
-        if (type === 'day' || type === 'year' || type === 'month'){
-            value = convertDate(value, type, dateFormat);
-        }
+        const value = (token.type === 'day' || token.type === 'year' || token.type === 'month') ?
+            convertDate(token.rawText, token.type, dateFormat) : token.val;
         const node = {
-            type: type,
+            type: token.type,
             parent: sourceId,
             children: [],
-            val: value
+            val: value,
+            // rawText: token.rawText
+        }
+        if (token.hasOwnProperty('delimiter')){
+            node.delimiter = token.delimiter;
         }
         tree[currentId] = node;
         tree[sourceId].children.push(currentId);
         return currentId;
     }
 
-    function doTransition(token){ // warning, 'date' token is actually never generated by the lexer
+    // let currentTokenId = 0;
+
+    function doTransition(token, tokenId){ 
         const source = tree[currentPosition].type;
         const dest = token.type;
         if (verbose === 'full'){
-            console.log('transition from',source,'to',dest);
+            console.log('transition from', source,'to', dest);
         }
-        
 
-        if (dest === 'date'){
-            // make a new date. cannot do this transition in the middle of a date processing
-            if ((source === 'root' || source === dateFormat.order.at(-1)) || source === 'time'){
-                let pos = [];
-                pos['year'] = createChild(currentPosition, convertDate(token.year, 'year', dateFormat), 'year');
-                pos['month'] = createChild(pos['year'], convertDate(token.month, 'month', dateFormat), 'month');
-                pos['day'] = createChild(pos['month'], token.day, 'day');
-                currentPosition = pos[dateFormat.order.at(-1)];
-                return 'new date';
+        // exhaustive verification of transitions validity
+        if (levels.indexOf(dest) > levels.indexOf(source)){
+            // forward tracking. The level difference should be exactly one level, except for 'weekDay'
+            // that can be skipped
+            if (levels.indexOf(dest) - levels.indexOf(source) === 2 
+                && levels[levels.indexOf(source)+1] === 'weekDay'){
+                currentPosition = createChild(currentPosition, {type: 'weekDay', val: '*'});
             }
-            return 'invalid';
-        }
-
-        if (source === 'root'){
-            // only possibilities: start a new date or a new time info
-            if (dest === dateFormat.order[0]){
-                moveAndProcess(token);
-                return 'new date'; 
-            }else if (dest === 'time'){
-                moveAndProcess(token);
-                return 'new time info';
-            }
-            return 'invalid';
-        }
-        
-        if (source === 'time'){
-            // 2025: sept: 2 et 3 à 18h, 4 et 5 à 19h 
-            // 2025: 2 et 3 sept à 18h, 4 et 5 oct à 19h 
-            // 2025: sept 2 et 3 à 18h, oct 4 et 5 à 19h 
-            // if timeAfterDay, can only be possibleTokenAfterTime type. If creating a new date and 
-            // the time is after date, 
-            // create a new time node
-            if (timeAfterDay){
-                if (dest === possibleTokenAfterTime){
-                    // create a new date on the branch
-                    currentPosition = createChild(tree[currentPosition].parent);
-                    moveAndProcess(token);
-                    return 'new date'; 
-                }else if (dest === dateFormat.order[0]){
-                    // new date from scratch
-                    currentPosition = 0;
-                    moveAndProcess(token);
-                    return 'new date'; 
-                }else{
-                    currentPosition = tree[currentPosition].parent;
-                    moveAndProcess(token);
-                    return 'add date';
+            if (levels.indexOf(dest) - levels.indexOf(source) !== 1){
+                if (verbose){
+                    console.log('\x1b[38;5;226mInvalid transition from '+source+' to '+dest+'.\x1b[0m');
                 }
-            }else{
-                // either start a date
-                if (dest === dateFormat.order[0]){
-                    moveAndProcess(token);
-                    return 'new date'; 
-                }else{
-                    moveAndProcess(token);
-                    // console.log(levels);
-                    return 'new date';
-                    //possible token
-
-                }
-                // return 'invalid';
-            }
-        }
-
-        // source 'root' already processed at this point
-        if (dest === 'time'){
-            if (timeAfterDay){
-                // must be after a full date or day token ??
-                if (source === dateFormat.order.at(-1) || source === 'day'){
-                    moveAndProcess(token);
-                    return 'add time info';
-                }else{
-                    return 'invalid';
-                }
-            }else{
-                // if some tokens are before the time, move to this position
-
-                if (possibleTokenBeforeTime){
-                    while(tree[currentPosition].type !== possibleTokenBeforeTime){
-                        currentPosition = tree[currentPosition].parent;
-                    }
-                }
-                if (tree[currentPosition].children.length > 0 
-                    && tree[tree[currentPosition].children.at(-1)].type
-                    && isUnder(token, tree[currentPosition].type)){
-                    createChild(currentPosition);
-                }
-                
-                
-                moveAndProcess(token);
-                return 'add time info';
-            }
-            
-        }
-
-        // one leaf to be added
-        if (source === 'day' && dest === 'day'){
-            moveAndProcess(token);
-            return 'make leaf';
-        }
-        // a date is complete, start a new date
-        if (source === dateFormat.order.at(-1)){
-            // new date
-            if (dest === dateFormat.order[0]){
-                while (tree[currentPosition].type !== 'root' && tree[currentPosition].type !== 'time'){
-                    currentPosition = tree[currentPosition].parent;
-                }
-                // currentPosition = 0;
-                // 2025: 18h les 16 et 17 sept, 21h le 18 sept 
-                moveAndProcess(token);
-                return 'new date';
-            }
-        }
-        // move one step forward in the order of date format. Moving two steps forward is impossible
-        if (dateFormat.order.indexOf(dest) === dateFormat.order.indexOf(source) + 1){
-            moveAndProcess(token);
-            return 'add element';
-        }
-        // backtracking
-        if (dateFormat.order.indexOf(dest) === dateFormat.order.indexOf(source) - 1){
-            // backtracking with year as source or dest is impossible
-            if (dest === 'year' || source === 'year'){
                 return 'invalid';
-            }
-            if (dest === 'month'){// day -> month
-                moveAndProcess(token);
-            }else{// month -> day
-                currentPosition = createChild(tree[currentPosition].parent);
-                moveAndProcess(token);
-            }
-            
-            return 'backtracking';
-        }
-        return 'invalid';
-    }
-
-    function moveAndProcess(token){
-        // console.log('token',token, currentPosition,tree[currentPosition]);
-
-        if (isUnder(token.type, tree[currentPosition].type)){
-            // if just under, create a new node from the token
-            if (levels.indexOf(token.type) === levels.indexOf(tree[currentPosition].type) +1){
-                currentPosition = createChild(currentPosition,token.rawText);
-                if (token.type === 'time'){
-                    if (token.hasOwnProperty('timeList')){
-                        tree[currentPosition].timeList = token.timeList;
-                    }
-                    if (token.hasOwnProperty('conditionList')){
-                        tree[currentPosition].conditionList = token.conditionList;
-                    }
-                    delete tree[currentPosition].val;
-                }
-                if (token.hasOwnProperty('delimiter')){
-                    tree[currentPosition].delimiter = token.delimiter;
-                    // add the identifier of the time info. Will help identifying if two
-                    // delimiters end share the same time info
-                    let parentTimeInfo = currentPosition;
-                    while(parentTimeInfo > 0 && tree[parentTimeInfo].type !== 'time'){
-                        parentTimeInfo = tree[parentTimeInfo].parent;
-                    }
-                    if (parentTimeInfo > 0){
-                        tree[currentPosition].parentTimeInfo = parentTimeInfo;
-                    }
-                }
             }else{
-                
-                // sept 2025: 03; 04, jan 2026: 05
-                // 2025 3, 4 sept 2026 2, 3 janv ok
-                // 2025 le 3 septembre 18h, le 2 oct 17h 
-                // else go down one level.
-                if (tree[currentPosition].type === 'year' && token.type === 'day' 
-                    && tree[currentPosition].children.length > 0){
-
-                    currentPosition = tree[currentPosition].children.at(-1);
-                }else if(tree[currentPosition].children.length > 0 
-                    && !tree[tree[currentPosition].children.at(-1)].type){
-                        
-                    currentPosition = tree[currentPosition].children.at(-1);
-                }else if(tree[currentPosition].children.length > 0 && 
-                    tree[tree[currentPosition].children.at(-1)].type === 'time'
-                ){
-                    currentPosition = tree[currentPosition].children.at(-1);
-                }else{
-                    currentPosition = createChild(currentPosition);
+                currentPosition = createChild(currentPosition, token);
+                return 'forward transition: '+source+' => '+dest;
+            }
+        }else if(dest === source){
+            // same level. Only valid for day, time and weekDay tokens
+            if (dest !== 'day' && dest !== 'time' && dest !== 'weekDay'){
+                if (verbose){
+                    console.log('\x1b[38;5;226mInvalid same level transition from '+source+' to '+dest+'.\x1b[0m');
                 }
-                
-                moveAndProcess(token);
+                return 'invalid';
+            }else{
+                currentPosition = createChild(tree[currentPosition].parent, token);
+                return 'same level transition: '+source+' => '+dest;
             }
         }else{
-            // same level and value is undefined
-            if (token.type === tree[currentPosition].type && token.type !== 'time' && !tree[currentPosition].val){
-                tree[currentPosition].val = convertDate(token.rawText, token.type, dateFormat);
-            // if time
-            }else if (token.type === tree[currentPosition].type && token.type === 'time' 
-                    &&  !tree[currentPosition].hasOwnProperty('timeList') && !tree[currentPosition].hasOwnProperty('timeCondition')){
-                if (token.hasOwnProperty('timeList')){
-                    tree[currentPosition].timeList = token.timeList;
-                }
-                if (token.hasOwnProperty('conditionList')){
-                    tree[currentPosition].conditionList = token.conditionList;
-                }
-                delete tree[currentPosition].val;    
-            }else{
-                // else go up one level
-                if (verbose === 'full'){
-                    console.log('moving from ', currentPosition,'to', tree[currentPosition].parent);
-                }
-                currentPosition = tree[currentPosition].parent;
+            // backtracking. List here invalid backtracking
+            //
+            // If day tokens have not been passed, only backtrackgind from weekDay and time are allowed, but
+            // only with a 1-level difference
+            // otherwise, backtracking should only be possible if day tokens have been passed.
+            if ((source === 'time' || source === 'weekDay') && (dest === 'time' || dest === 'weekDay')
+                && Math.abs(levels.indexOf(source) - levels.indexOf(dest)) === 1){
                 moveAndProcess(token);
-            } 
+                return 'Time or weekDay backward transition: '+source+' => '+dest;
+            }
+            // transition from and to time/weekDay are possible iff the transition between
+            // the day/month/year token before source or after dest is valid. We introduce virtual source
+            // and dest to compute the validity of the transition
+            let vsource = source;
+            if (source === 'time' || source === 'weekDay'){
+                let i = tokenId - 1;
+                // find the previous day/month/year token before the source. i is not supposed to be < 0
+                while (tokenList[i].type === 'time' || tokenList[i].type === 'weekDay'){
+                    i--;
+                }
+                vsource = tokenList[i].type;
+            }
+            let vdest = dest;
+            if (dest === 'time' || dest === 'weekDay'){
+                let i = tokenId;
+                // find the next day/month/year token before the source. i is not supposed to be < 0
+                while (tokenList[i].type === 'time' || tokenList[i].type === 'weekDay'){
+                    i++;
+                }
+                vdest = tokenList[i].type;
+            }
+
+            if (levels.indexOf(vsource) < levels.indexOf('day')){
+                // day tokens not passed yet: not enough info before backtracking => invalid backtracking.
+                if (verbose){
+                    console.log('\x1b[38;5;226mInvalid backward transition from '+source+' to '+dest+'.\x1b[0m');
+                }
+                return 'invalid';
+            }
+
+            // day token has been passed already.
+            // backtracking day => month and month => day always allowed: [y,m,a], [y,a,m], 
+            // [a,y,m], [m,y,a], [a,m,y], [m,a,y]
+            if ((vsource === 'day' || vsource === 'month') && (vdest === 'day' || vdest === 'month')){
+                moveAndProcess(token);
+                return 'backward transition day/month: '+source+' => '+dest;
+            }
+            // transition from 2 to 0 is always permitted (date complete, starting a new one).
+            // Transitions from 1 to 0 and from 2 to 1 are never permitted (a => m and m => a allowed
+            // but already processed).
+            if (dateFormat.order.indexOf(vsource) === 2 && dateFormat.order.indexOf(vdest) === 0){
+                moveAndProcess(token);
+                return 'backward transition to start a new date: '+source+' => '+dest;
+            }
+            console.log('gggg3', vsource, vdest, levels.indexOf(vsource) < levels.indexOf('day'))
+            return 'invalid';
+        }
+
+        function moveAndProcess(token){
+            while (levels.indexOf(tree[currentPosition].type) > levels.indexOf(token.type)){
+                currentPosition = tree[currentPosition].parent;
+            }
+            currentPosition = createChild(tree[currentPosition].parent, token);
         }
     }
 
-    
-    for (const token of tokenList){
+    // add branches and leaves to the tree in order that at every leaf, a complete date can be found
+    // example: 2 et 3 septembre 2025 provides the tree [2, 3:sept:2025] should be transformed in
+    // [2:sept:2025, 3:sept:2025]
+    // by propagating children nodes to the left
 
-        const transition = doTransition(token);
+    function growTree(){
+        const lastNode = {};
+        levels.forEach(str => lastNode[str] = null);
+        const leavesType = levels.at(-1);
+
+        // explore the tree backwards for linear complexity
+        for (let i = Object.keys(tree).length - 1; i >= 0; i--){
+            if (i === 0) continue; // do not process root
+            // get all the nodes from the same parent
+            lastNode[tree[i].type] = tree[tree[i].parent].children;
+            if (tree[i].type !== leavesType && tree[i].children.length === 0){
+                // process tree node that is currently a leaf, but which shouldn't be. Add children
+                tree[i].children = lastNode[levels[levels.indexOf(tree[i].type)+1]];
+                if (tree[i].children === null){
+                    if(levels[levels.indexOf(tree[i].type)+1] !== 'time' 
+                        && levels[levels.indexOf(tree[i].type)+1] !== 'weekDay'){
+                        // if children === null, that means that it is still a leaf. 
+                        // The tree is invalid unless it is a time or a weekDay
+                        return false;
+                    }
+                    tree[i].children = [];
+                }
+                if (tree[i].type === 'time' || tree[i].type === 'weekDay'){
+                    // this branch of the tree will not be explored when verifying that the dates are in 
+                    // ascending order
+                    tree[i].excludeFromVerification = true; 
+                }
+            }
+        }
+        return true;
+    }
+
+
+    for (tokenId = 0; tokenId < tokenList.length; tokenId++){
+    // tokenList.forEach((token, tokenId) => {
+        token = tokenList[tokenId];
+        const transition = doTransition(token, tokenId);
 
         if (transition === 'invalid'){
-            if (verbose){
-                console.log('invalid transition');
-            }
-           
             return null;
         }
+    };
+
+    // complete the graph in order to get a correct distribution of tokens
+    const treeWithBalancedLeaves = growTree();
+    if (!treeWithBalancedLeaves){
+        // unbalanced leaves, discard tree
+        if (verbose){
+            console.log("\x1b[38;5;226mDiscarding tree with unbalanced leaves.\x1b[0m");
+            console.log(tree);
+        }
+        return null;
     }
 
-    // remove parentTimeInfo when there is no time info
-    for (const key of Object.keys(tree)){
-        const node = tree[key];
-        if (node.hasOwnProperty('parentTimeInfo')){
-          if (!tree[node.parentTimeInfo].hasOwnProperty('timeList') && !tree[node.parentTimeInfo].hasOwnProperty('conditionList')){
-            delete node.parentTimeInfo;
-          }  
-        }
+    if (verbose === 'full'){
+        console.log('tree: ', tree);
     }
 
     return tree;
-    // return tree.map(el => convertDate(el));
-}
-
-//******************************************//
-// process the trees to something simpler   //
-//******************************************//
-
-function isValidTree(tree, dateFormat) {
-    if (verbose === 'full'){
-        console.log("\n*** validating the following tree: ***\n\n",tree);
-    }
-    
-    hasYears = 'year' in Object.keys(dateFormat);
-    if (tree === null){
-        if (verbose){
-            console.log("\x1b[38;5;226mInvalid tree: null tree.\x1b[0m");
-        }
-        return false;
-    }
-
-   
-    for (const key of Object.keys(tree)) {
-        const el = tree[key];
-
-        // the element should have children, unless it is a leaf ('day)
-        if (el.type !== 'day' && el.children.length === 0){
-            if (verbose){
-                console.log("\x1b[38;5;226mInvalid tree: block \x1b[0m"+key+"\x1b[38;5;226m has no children in tree:\x1b[0m", tree);
-            } 
-            return false; 
-        }
-
-        // test for missing values
-        if (el.type === 'day' || el.type === 'month' || (hasYears && el.type === 'year')) {
-            if (!el.val) {
-                if (verbose){
-                    console.log("\x1b[38;5;226mInvalid tree: missing value for node \x1b[0m"+el+"\x1b[38;5;226m in tree:\x1b[0m",tree);
-                } 
-                return false; 
-            }
-        }
-
-        // test for range balance
-        if (el.type === 'day' && el.hasOwnProperty('delimiter') && el.delimiter.type === 'rangeDelimiterStart'){
-            // the very next 'day' node should have a delimiter
-            const followingDayNodes = Object.keys(tree).filter(k => k > key && tree[k].type === 'day');
-            if (followingDayNodes.length === 0 || !tree[followingDayNodes[0]].hasOwnProperty('delimiter')
-                || tree[followingDayNodes[0]].delimiter.type !== 'rangeDelimiterEnd'){
-                if (verbose){
-                    console.log('\x1b[38;5;226mInvalid tree: no end delimiter found or end '+
-                        'delimiter not at the right place for node \x1b[0m'+key+'\x1b[38;5;226m in tree:\x1b[0m', tree);
-                }
-                return false;
-            }
-        }
-
-        // check if the dates are chronologically relevant. 
-        if (el.type === 'root' && hasYears){
-            let y = 0;
-            for (const i of el.children){
-                const year = tree[i].val;
-                if (year < y){
-                    if (verbose){
-                        console.log("\x1b[38;5;226mInvalid tree: years not in correct order for tree:\x1b[0m", tree);
-                    }
-                    return false;
-                }
-                y = year;
-            }
-        }
-        if (el.type === 'year'){
-            let m = 0;
-            for (const i of el.children){
-                const month = tree[i].val;
-                if (month < m){
-                    if (verbose){
-                        console.log("\x1b[38;5;226mInvalid tree: months not in correct order for tree:\x1b[0m", tree);
-                    }
-                    return false;
-                }
-                m = month;
-            }
-        }
-        if (el.type === 'month'){
-            let d = 0;
-            for (const i of el.children){
-                const day = tree[i].val;
-                if (day < d){
-                    if (verbose){
-                        console.log("\x1b[38;5;226mInvalid tree: days not in correct order for tree:\x1b[0m", tree);
-                    }
-                    return false;
-                }
-                d = day;
-            }
-        }
-    }
-
-    if (verbose){
-        console.log('Valid tree.');
-    }
-
-    return true; 
 }
 
 // convert date elements to normalized (only numeric, year with 4 digits)
@@ -1285,46 +1114,55 @@ function processTree(tree){
         return null;
     }
 
-    // assign time info to leaves
-    const datesFromTree = tree[0].children.map(index => {
-        const subTree = tree[index];
-        if (subTree.type === 'date'){
-            return checkYear(subTree);
+    // exclude from chronology verification multiple branches
+    for (const ind of Object.keys(tree)){
+        // console.log('ddd',ind, tree[ind],tree[tree[ind].children[0]].type, ['time', 'weekDay'].includes(tree[tree[ind].children[0]].type));
+        if (tree[ind].children.length > 1 && ['time', 'weekDay'].includes(tree[tree[ind].children[0]].type)){
+            for (child of tree[ind].children.slice(1)){
+                tree[child].excludeFromVerification = true;
+            }
         }
+    }
+
+    // make a list of date from the tree. Does not process delimiters nor condition at this point
+    const datesFromTree = tree[0].children.map(index => {
+        // const subTree = tree[index];
         
         const dates = [];
         
-        function explore(currentNode, context = {}) {
-            if (currentNode.type === 'time'){
-                // if (currentNode.hasOwnProperty('timeList')){
-                    context.timeList = currentNode.timeList;
-                // }
-                // if (currentNode.hasOwnProperty('conditionList')){
-                    context.conditionList = currentNode.conditionList;
-                // }
+        // function explore(currentNode, context = {}) {
+        function explore(currentNodeIndex, context = {type: 'date'}) {
+            const currentNode = tree[currentNodeIndex];
+            if (currentNode.hasOwnProperty('excludeFromVerification')){
+                context.excludeFromVerification = true;
             }
-            // console.log('exploring',currentNode);
+            if (currentNode.type === 'time'){
+                context.time = currentNode.val;
+                // the timeInfoSource should contain all time nodes from the same parents
+                let timeInfoIndex = currentNodeIndex;
+                while (tree[timeInfoIndex].type === 'time' || tree[timeInfoIndex].type === 'weekDay'){
+                    timeInfoIndex = tree[timeInfoIndex].parent;
+                }
+                context.timeInfoSource = tree[timeInfoIndex].children.join('|');
+            }
+            if (currentNode.type === 'weekDay'){
+                context.weekDay = currentNode.val;
+            }
             if (currentNode.type === 'year') {
                 context.year = currentNode.val;
-            } else if (currentNode.type === 'month') {
+            }
+            if (currentNode.type === 'month') {
                 context.month = currentNode.val;
-            } else if (currentNode.type === 'day') {
+            }
+            if (currentNode.type === 'day') {
                 context.day = currentNode.val;
-                // add the date when arriving at the leaf
-                // const type = (subTree.type === 'rangeDelimiterStart' || subTree.type === 'rangeDelimiterEnd') ? subTree.type : 'date';
-                const res = checkYear({type: 'date', day: context.day, month: context.month, year: context.year });
-                if (context.timeList){
-                    res.timeList = context.timeList;
-                }
-                if (context.conditionList){
-                    res.conditionList = context.conditionList;
-                }
                 if (currentNode.hasOwnProperty('delimiter')){
-                    res.delimiter = currentNode.delimiter.type;
-                    if (currentNode.hasOwnProperty('parentTimeInfo')){
-                        res.parentTimeInfo = currentNode.parentTimeInfo;
-                    }
+                    context.delimiter = currentNode.delimiter.type;
                 }
+            }
+            // add the date when arriving at the leaf
+            if (currentNode.children.length === 0){
+                const res = checkYear(context); 
                 dates.push(res);
                 return;
             }
@@ -1332,14 +1170,30 @@ function processTree(tree){
             // Explore the children
             if (currentNode.children) {
                 for (const index of currentNode.children) {
-                    explore(tree[index], { ...context });
+                    // explore(tree[index], { ...context });
+                    explore(index, { ...context });
                 }
             }
         }
 
-        explore(subTree);
+        // explore(subTree);
+        explore(index);
         return dates;
     }).flat();
+
+    // rearrange timedelimiters if the order has been messed up
+    for (let i = 0; i < datesFromTree.length - 1; i++){
+        if (!datesFromTree[i].delimiter || datesFromTree[i].delimiter !== 'rangeDelimiterStart') continue;
+        let j = 1;
+        while (datesFromTree[i+j].delimiter !== 'rangeDelimiterEnd'){
+            j++;
+        }
+        if (j > 1){
+            const endToken = datesFromTree[i+j];
+            datesFromTree.splice(i+j, 1);
+            datesFromTree.splice(i+1, 0, endToken);
+        }
+    }
 
     //  if no info on year, add current years. If the date is passed, set next year
     function checkYear(node){
@@ -1365,6 +1219,13 @@ function processTree(tree){
         node.year = currentYear;
         return node;
     }
+
+    if (!isChronological(datesFromTree.filter(date => !date.excludeFromVerification))){
+        if (verbose){
+            console.log("\x1b[38;5;226mDates not in chronological order.\x1b[0m");
+        }
+        return null;
+    }
     
     // merge rangeDelimiters
 
@@ -1373,36 +1234,30 @@ function processTree(tree){
     
     for (const dateToken of datesFromTree){
         if(dateToken.delimiter === 'rangeDelimiterStart'){
-            // console.log('debut');
             startDate = dateToken;
         }else if(dateToken.delimiter === 'rangeDelimiterEnd' || dateToken.delimiter === 'rangeDelimiterUnbalanceEnd'){
             // if there is an unbalanced end delimiter, add a start date (today)
             if (dateToken.delimiter === 'rangeDelimiterUnbalanceEnd'){
                 startDate = {type: 'date', day:now.getDate(), month:now.getMonth() + 1, year: now.getFullYear()};
-                if (dateToken.hasOwnProperty('parentTimeInfo')){
-                    startDate.parentTimeInfo = dateToken.parentTimeInfo;
+                 if (dateToken.hasOwnProperty('timeInfoSource')){
+                    startDate.timeInfoSource = dateToken.timeInfoSource;
                 }
-                if (dateToken.hasOwnProperty('timeList')){
-                    startDate.timeList = dateToken.timeList;
+                if (dateToken.hasOwnProperty('time')){
+                    startDate.time = dateToken.time;
                 }
-                if (dateToken.hasOwnProperty('conditionList')){
-                    startDate.conditionList = dateToken.conditionList;
+                if (dateToken.hasOwnProperty('weekDay')){
+                    startDate.weekDay = dateToken.weekDay;
                 }
             }
-            // case 1: both startDate and currentToken have time info from a different parentTimeInfo. So 
+            delete startDate.delimiter;
+            // case 1: both startDate and currentToken have time info from a different timeInfoSource. So 
             // it is a time range (only one date with start and end time)
-            // if (dateToken.hasOwnProperty('timeList') && startDate.hasOwnProperty('timeList')
-            if (dateToken.hasOwnProperty('parentTimeInfo') && startDate.hasOwnProperty('parentTimeInfo')
-                && dateToken.parentTimeInfo !== startDate.parentTimeInfo){
-                // time info should be a timeList for both, with only one element
-                if (!startDate.hasOwnProperty('timeList') || startDate.timeList.length !== 1 || startDate.timeList[0].type !== 'time'){
+            if (dateToken.hasOwnProperty('timeInfoSource') && startDate.hasOwnProperty('timeInfoSource')
+                && dateToken.timeInfoSource !== startDate.timeInfoSource){
+                // time info should be a single time for both, with only one element
+                if (Array.isArray(startDate.time) || Array.isArray(dateToken.time)){
                     // strange time info, send an error
-                    console.log("\x1b[38;5;226mbad time info in opening range delimiter. Aborting\x1b[0m", startDate);
-                    return null;
-                }
-                if (!dateToken.hasOwnProperty('timeList') || dateToken.timeList.length !== 1 || dateToken.timeList[0].type !== 'time'){
-                    // strange time info, send an error
-                    console.log("\x1b[38;5;226mbad time info in closing range delimiter. Aborting\x1b[0m", dateToken);
+                    console.log("\x1b[38;5;226mInconsistent time info in range delimiter. Aborting\x1b[0m", startDate, dateToken);
                     return null;
                 }
                 startDate.type = 'date';
@@ -1410,32 +1265,20 @@ function processTree(tree){
                     day: dateToken.day,
                     month: dateToken.month,
                     year: dateToken.year,
-                    time: dateToken.timeList[0].time
+                    time: dateToken.time
                 }
                 dateList.push(startDate);
             }else{
                 // case 2: it is a date range
-                // if the ending delimiter as time info while start delimiter not, there is a mistake somewhere
-                if (!startDate.hasOwnProperty('parentTimeInfo') && dateToken.hasOwnProperty('parentTimeInfo')){
-                    console.log("\x1b[38;5;226mClosing range delimiter have time info, but not opening delimiter. Aborting\x1b0m", dateToken);
-                    return null;
-                }
-
                 // now either:
                 // - start and end delimiters have no time info. Push every day in the range as it is
                 // - start has time but not end:
                 // du 07 juin à 19h au 21 juin, only the first date as a time (par exemple pour un vernissage)
                 // push the first date with time info, other dates without time info
-                // - start and end have the same time info from parentTimeInfo
+                // - start and end have the same time info from timeInfoSource
                 // In every case: push the start date as it is, and other days with the time info from the end
                 // date
-                delete startDate.delimiter;
-                // if (!startDate.hasOwnProperty('timeList') && dateToken.hasOwnProperty('timeList')){
-                //     startDate.timeList = dateToken.timeList;
-                // }
-                // if (!startDate.hasOwnProperty('conditionList') && dateToken.hasOwnProperty('conditionList')){
-                //     startDate.conditionList = dateToken.conditionList;
-                // }
+                
                 dateList.push(startDate);
                 // now all following days have the same time info as the closing date
                 let current = new Date(startDate.year, startDate.month - 1, startDate.day + 1);
@@ -1447,11 +1290,11 @@ function processTree(tree){
                         month: current.getMonth() + 1,
                         year: current.getFullYear()
                     });
-                    if (dateToken.hasOwnProperty('timeList')){
-                        dateList.at(-1).timeList = dateToken.timeList;
+                    if (dateToken.hasOwnProperty('time')){
+                        dateList.at(-1).time = dateToken.time;
                     }
-                    if (dateToken.hasOwnProperty('conditionList')){
-                        dateList.at(-1).conditionList = dateToken.conditionList;
+                    if (dateToken.hasOwnProperty('weekDay')){
+                        dateList.at(-1).weekDay = dateToken.weekDay;
                     }
                     // step to the next day
                     current.setDate(current.getDate() + 1);
@@ -1467,69 +1310,8 @@ function processTree(tree){
     if (verbose === 'full'){
         console.log('\n*** Date list after processing: ***\n\n', dateList);
     }
-    
 
-
-    // evaluate time info and create corresponding dates
-    function evaluateTimeInfo(list){
-        const res = [];
-
-        function developTimeList(dateToken, timeList){
-            delete dateToken.timeList;
-            for (const timeToken of timeList){
-                const newDateToken = {...dateToken};
-                if (timeToken.type === 'time'){
-                    // if it is simple time, add time to the dateToken
-                    newDateToken.time = timeToken.time;
-                    res.push(newDateToken);
-                } else {
-                    // it should be a time range. Should add a start and end time
-                    newDateToken.time = timeToken.startTime;
-                    newDateToken.eventEnd = {time: timeToken.endTime};
-                    res.push(newDateToken);
-                } 
-            }
-        }
-
-        for (const dateToken of list){
-            // incompatible time informations
-            if (dateToken.hasOwnProperty('timeList') && dateToken.hasOwnProperty('conditionList')){
-                // if (verbose){
-                    console.log("\x1b[38;5;226mThe following date has both timeList and conditionList: \x1b[0m", dateToken);
-                // }
-                continue;
-            }
-            // no time information, push the token as it is
-            if (!dateToken.hasOwnProperty('timeList') && !dateToken.hasOwnProperty('conditionList')){
-                res.push(dateToken);
-                continue;
-            }
-            // if condition, verify if the date corresponds to the condition, if yes, process the timeList
-            // within the condition
-            if (dateToken.hasOwnProperty('conditionList')){
-                for (const condition of dateToken.conditionList){
-                    const date = new Date(dateToken.year, dateToken.month - 1, dateToken.day);
-                    const dayOfWeek = date.toLocaleDateString('en-US', {weekday: 'long'}).toLowerCase();
-                    if (condition.val === dayOfWeek){
-                        const newDateToken = {...dateToken};
-                        delete newDateToken.conditionList;
-                        if (condition.hasOwnProperty('time')){
-                            developTimeList(newDateToken, condition.time.timeList);
-                        }else{
-                            res.push(newDateToken);
-                        }
-                    }
-                }
-                continue;
-                // continue
-            }
-            // now there is just a time list
-            developTimeList(dateToken, dateToken.timeList);
-        }
-        return res;
-    }
-
-    const result = evaluateTimeInfo(dateList);
+    const result = processTimeAndWeekDayInfo(dateList);
     if (verbose === 'full'){
         console.log('\n*** Date list after time and condition evaluation: ***\n\n', result);
     }
@@ -1558,6 +1340,83 @@ function formatDate(dateObj){
 }
 
 
+
+
+function compare(res, sol){
+    const array = sol.split("|");
+    // console.log("res",res);
+    // console.log("sol",array);
+    if (res.length !== array.length){
+        return false;
+    }
+    for (const el of res){
+        if (!array.includes(el)){
+            return false;
+        }
+    }
+    return true;
+}
+
+
+
+// // aux functions
+
+function intersectAll(sets) {
+    if (sets.length === 0) return new Set();
+
+    // from smallest to biggest for optimization
+    const [smallest, ...others] = [...sets].sort((a,b) => a.size - b.size);
+
+    return new Set(
+        [...smallest].filter(el => others.every(s => s.includes(el)))
+    );
+}
+
+function isChronological(dateList) {
+  for (let i = 1; i < dateList.length; i++) {
+    const prev = new Date(dateList[i-1].year, dateList[i-1].month - 1, dateList[i-1].day);
+    const curr = new Date(dateList[i].year, dateList[i].month - 1, dateList[i].day);
+
+    if (curr < prev) {
+      return false;
+    }
+  }
+  return true;
+}
+
+
+// evaluate time info and create corresponding dates
+function processTimeAndWeekDayInfo(list){
+    const res = [];
+
+    for (const dateToken of list){
+        // store start time in time, and end time in a new eventEnd object
+        if (dateToken.hasOwnProperty('time') && Array.isArray(dateToken.time)){
+            dateToken.eventEnd = {time: dateToken.time[1]};
+            dateToken.time = dateToken.time[0];
+        }
+        // no weekDay information, push the token as it is
+        if (!dateToken.hasOwnProperty('weekDay') || dateToken.weekDay === '*'){
+            delete dateToken.weekDay;
+            res.push(dateToken);
+            continue;
+        }
+        // apply weekDay filters
+        if (dateToken.hasOwnProperty('weekDay')){
+            const date = new Date(dateToken.year, dateToken.month - 1, dateToken.day);
+            const dayOfWeek = date.toLocaleDateString('en-US', {weekday: 'long'}).toLowerCase();
+            if (dateToken.weekDay === dayOfWeek){
+                delete dateToken.weekDay;       
+                res.push(dateToken);
+            }
+        }
+    }
+    return res;
+}
+
+
+//**************** tests *******************/
+
 function extractDates(s, dateFormat, sol, i){
     console.log("\n****************** Entrée: ******************\nTest n°"+i+": "+s);
     const tokenList = tokenize(cleanDate(s), dateFormat);
@@ -1566,7 +1425,7 @@ function extractDates(s, dateFormat, sol, i){
     const poss = resolvePossibilities(tokenList, dateFormat.order.includes('year'));
     
     const treeList = poss.map(p => makeTree(p, dateFormat))
-        .filter(tree => isValidTree(tree, dateFormat))
+        .map(tree => tree)
         .map(tree => processTree(tree))
         .filter(tree => tree !== null);
     if (verbose){
@@ -1583,17 +1442,19 @@ function extractDates(s, dateFormat, sol, i){
         // console.log('*********');
         // console.log(res);
         // console.log('*********');
-        if (treeList.length === 1 && res === sol){
+        if (treeList.length === 1 && compare(treeList[0].map(node => formatDate(node)), sol)){
             console.log("\n\x1b[32mTest passed\x1b[0m");
+            return true;
         }else{
             console.log("\n\x1b[31mTest failed\x1b[0m");
+            return false;
         }
     }else{
         console.log('No solution found.');
         console.log("\n\x1b[31mTest failed\x1b[0m");
+        return false;
     }
 }
-
 
 
 const test = [];
@@ -1630,14 +1491,14 @@ sols[2] = "Le mardi 17/2/2026 à 20:00 (fin le 18/2/2026 à 04:00)";
 
 
 
-test[3] = {text: `mar. 24 Jan, 2026, 07:30 PM-08:00 PM`,
+test[3] = {text: `mar. 20 Jan, 2026, 07:30 PM-08:00 PM`,
 dateFormat: {
     year: 'long',
     month: 'short',
     weekDay: 'short',
     order: ['day','month','year']
 }};
-sols[3] = "Le samedi 24/1/2026 à 19:30 (fin à 20:00)";
+sols[3] = "Le mardi 20/1/2026 à 19:30 (fin à 20:00)";
 
 test[4] = {text: `à 21h15 les 14, 15 & 16 novembre 2025`,
 dateFormat: {
@@ -1737,7 +1598,7 @@ dateFormat: {
 }};
 sols[14] = "Le jeudi 13/11/2025 à 20:00|Le samedi 15/11/2025 à 18:00";
 
-test[15] = {text: `Lundi 15 novembre 2025 à 20h - mardi 16 novembre 2025 à 4h`,
+test[15] = {text: `Samedi 15 novembre 2025 à 20h - dimanche 16 novembre 2025 à 4h`,
 dateFormat: {
     month: 'long',
     order: ['day','month','year'],
@@ -1757,15 +1618,16 @@ sols[16] = "Le lundi 15/9/2025 à 18:00 (fin à 19:00)|Le lundi 15/9/2025 à 20:
     +"0 (fin à 21:00)";
 
 
-test[17] = {text: `du lundi au mercredi, à 18h, du 14 au 27 septembre 2025. Du samedi au lundi, à 18h, du 01 au 10 octobre 2025.`,
+test[17] = {text: `du lundi au mercredi, à 18h,  14 - 27 septembre 2025. Du samedi au lundi, à 18h, du 01 au 10 octobre 2025.`,
 dateFormat: {
     month: 'long',
     year: 'long',
     order: ['day','month','year'],
     weekDay: 'long'
 }};
-sols[17] = "Le dimanche 14/9/2025 à 18:00|Le samedi 20/9/2025 à 18:00|Le dimanche 21/9/2025 à 18:00|Le samedi 27/9/2025 à 1"
-    +"8:00|Le samedi 04/10/2025 à 18:00|Le dimanche 05/10/2025 à 18:00";
+sols[17] = "Le lundi 15/9/2025 à 18:00|Le lundi 22/9/2025 à 18:00|Le mardi 16/9/2025 à 18:00|Le mardi 23/9/2025 à 18:00|Le m"
+    +"ercredi 17/9/2025 à 18:00|Le mercredi 24/9/2025 à 18:00|Le samedi 04/10/2025 à 18:00|Le dimanche 05/10/20"
+    +"25 à 18:00";
 
 test[18] = {text: "septembre 2026: le 03 à 18h, le 04 à 22h",
 dateFormat: {
@@ -1865,41 +1727,53 @@ dateFormat: {
     order: ['year', 'month', 'day'],
 }};
 sols[29] = 'Le mardi 16/9/2025 à 18:00|Le mercredi 17/9/2025 à 18:00|Le samedi 04/10/2025 à 21:00';
+
+
+test[30] =  {text: "lundi et mardi, 18/10/25 - 31/10/25",
+dateFormat: {
+    month: 'numeric',
+    year: 'short',
+    order: ['day', 'month', 'year'],
+}};
+sols[30] = 'Le lundi 20/10/2025|Le lundi 27/10/2025|Le mardi 21/10/2025|Le mardi 28/10/2025';
+
+test[31] =  {text: "lundi 18/10/25 - dimanche 31/10/25",
+    dateFormat: {
+        month: 'numeric',
+        year: 'short',
+        order: ['day', 'month', 'year'],
+}};
+sols[31] = 'Le samedi 18/10/2025|Le dimanche 19/10/2025|Le lundi 20/10/2025|Le mardi 21/10/2025|Le mercredi 22/10/2025|Le jeudi 23/10/2025|Le vendredi 24/10/2025|Le samedi 25/10/2025|Le dimanche 26/10/2025|Le lundi 27/10/2025|Le mardi 28/10/2025|Le mercredi 29/10/2025|Le jeudi 30/10/2025|Le vendredi 31/10/2025';
+
+
+
+test[32] =  {text: "Du 4 au 6 décembre 2025, à 20h sauf samedi à 18h",
+    dateFormat: {
+        month: 'long',
+        year: 'long',
+        order: ['day', 'month', 'year'],
+}};
+sols[32] = '';
+
 console.log("\n\n\n");
 
-// let i = 29;
-// extractDates(test[i].text, test[i].dateFormat, sols[i], i);
-// console.log("test "+i+": ",test[i].text);
+let i = 8;
+extractDates(test[i].text, test[i].dateFormat, sols[i], i);
+console.log("test "+i+": ",test[i].text);
 
-for (i = 0; i < 30; i++){
-    extractDates(test[i].text, test[i].dateFormat, sols[i],i)
+const failedTests = [];
+for (i = 1; i < 32; i++){
+    if (!extractDates(test[i].text, test[i].dateFormat, sols[i],i)){
+        failedTests.push(i);
+    };
+}
+if (failedTests.length === 0){
+    console.log("\n\x1b[32m*** All tests passed. ***\x1b[0m");
+}{
+    console.log('\n\x1b[31mSome test failed:\x1b[0m', failedTests);
 }
 
 
 
 
 
-
-
-// // aux functions
-
-function intersectAll(sets) {
-    if (sets.length === 0) return new Set();
-
-    // from smallest to biggest for optimization
-    const [smallest, ...others] = [...sets].sort((a,b) => a.size - b.size);
-
-    return new Set(
-        [...smallest].filter(el => others.every(s => s.includes(el)))
-    );
-}
-
-// // test inconsistencies
-//         function testInconsistencies(b){
-//             const inconsistencies = b.filter(t => t.type === "text" && !ignoreList.includes(t.rawText));
-//             if (verbose && inconsistencies.length > 0){
-//             console.log("\x1b[38;5;226mWarning: found a unknown texts: \x1b[0m"
-//                 +inconsistencies.map(t => t.rawText).join(" ")
-//                 +"\x1b[38;5;226m they are neither in the timeRangeList, timeSeparatorList nor in ignore list. Check if it is a missing keyword.\x1b[0m");
-//             }
-//         }
