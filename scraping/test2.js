@@ -361,13 +361,6 @@ function timeParser(tokens) {
             
         // push the buffer as a time list
         buffer.forEach(t => result.push(t));
-        // result.push({
-        //     type: "time",
-        //     rawText: buffer.map(t => (t.textBefore ? t.textBefore : "")+" "+t.rawText).join(" "),
-        //     timeList: buffer
-        // });
-            
-        // }
 
         buffer = [];
         if (lastToken) {result.push(lastToken)};
@@ -684,14 +677,13 @@ function simplifyTokens(list){
     // and never by a time (sauf 18h le samedi)
     i = 0;
 
-    while(i < tokenList.length - 2){ 
+    while(i < tokenList.length - 1){ 
         if (tokenList[i].type === 'exception'){
             for (let j = 1; i+j < tokenList.length; j++){
-                if (tokenList[i+j].type !== 'weekDay' || tokenList[i+j].type !== 'time'){
+                if (tokenList[i+j].type !== 'weekDay' && tokenList[i+j].type !== 'time'){
                     break;
                 }
                 tokenList[i+j].type = tokenList[i+j].type+'Exception';
-
             }
             tokenList.splice(i,1);
         }
@@ -710,7 +702,6 @@ function simplifyTokens(list){
     // detects if a weekDay token is just after a range delimiter or separators. If yes, it means that days 
     // are always preceded by a weekDay token. Then remove those weekDay tokens.
 
-    // let weekDayBeforeDay = false;
     let tokenAfterWeekDay;
 
     for (let i = 1; i < tokenList.length; i++){
@@ -795,27 +786,7 @@ function propagateRangesDelimiters(tokenList){
 // // unhandled case (unlikely cases):
 // // les lundis et mardis, du 11 au 23 octobre, mercredi 24 octobre.
 // // 
-
-// function filterWeekDays(list){
-//     const firstWeekDay = list.findIndex(t => t.type === 'weekDay');
-//     // if no weekDay token is present, or if it is at the last index (case 2), return the list
-//     if (firstWeekDay === -1 || firstWeekDay === list.length){
-//         return list;
-//     }
-//     const nextType = list[firstWeekDay+1].type;
-//     if (nextType !== 'day' && nextType !== 'month' && nextType !== 'year'){
-//         // next token is not a date token. 
-//         return list;
-//     }
-//     return list.filter((t, i) => {
-//         if (t.type !== 'weekDay') return true;
-//         const next = list[i + 1];
-//         return !(next && next.type === nextType);
-//     });
-   
-// }
     
-
 // add a list of weekdays instead of the range.
     // handles lundi - samedi as well as samedi - mardi ranges
     function addDayRange(t, listIndex, startDay, endDay, text){
@@ -839,8 +810,6 @@ function propagateRangesDelimiters(tokenList){
 //***************************************//
 
 
-
-
 // sequences with weekDay are considered as timeCondition (eg: le mardi à 18h, le jeudi à 19h)
 // At this point there should not be any text token left.
 // 
@@ -856,7 +825,8 @@ function propagateRangesDelimiters(tokenList){
 function makeTree(tokenList, dateFormat){
     let currentId = 0;
     const typeList = tokenList.map(token => token.type).filter(str => str === 'day' || str === 'month'
-        || str === 'year' || str === 'weekDay' || str === 'time');
+        || str === 'year' || str === 'weekDay' || str === 'time' || str === 'weekDayException'
+        || str === 'timeException');
     const levels = [...new Set(['root', ...typeList])];
 
     if (verbose === 'full'){
@@ -871,9 +841,6 @@ function makeTree(tokenList, dateFormat){
         }
         return null;
     }
-
-  
-    
 
     const tree = {
         0: {
@@ -907,8 +874,6 @@ function makeTree(tokenList, dateFormat){
         return currentId;
     }
 
-    // let currentTokenId = 0;
-
     function doTransition(token, tokenId){ 
         const source = tree[currentPosition].type;
         const dest = token.type;
@@ -923,6 +888,8 @@ function makeTree(tokenList, dateFormat){
             if (levels.indexOf(dest) - levels.indexOf(source) === 2 
                 && levels[levels.indexOf(source)+1] === 'weekDay'){
                 currentPosition = createChild(currentPosition, {type: 'weekDay', val: '*'});
+                currentPosition = createChild(currentPosition, token);
+                return 'forward transition: '+source+' => '+dest;
             }
             if (levels.indexOf(dest) - levels.indexOf(source) !== 1){
                 if (verbose){
@@ -935,7 +902,9 @@ function makeTree(tokenList, dateFormat){
             }
         }else if(dest === source){
             // same level. Only valid for day, time and weekDay tokens
-            if (dest !== 'day' && dest !== 'time' && dest !== 'weekDay'){
+            if (dest !== 'day' && dest !== 'time' && dest !== 'weekDay' && 
+                dest !== 'timeException' && dest !== 'weekDayException'
+            ){
                 if (verbose){
                     console.log('\x1b[38;5;226mInvalid same level transition from '+source+' to '+dest+'.\x1b[0m');
                 }
@@ -955,23 +924,28 @@ function makeTree(tokenList, dateFormat){
                 moveAndProcess(token);
                 return 'Time or weekDay backward transition: '+source+' => '+dest;
             }
+            if ((source === 'timeException' || source === 'weekDayException') && (dest === 'timeException' || dest === 'weekDayException')
+                && Math.abs(levels.indexOf(source) - levels.indexOf(dest)) === 1){
+                moveAndProcess(token);
+                return 'Time or weekDay exception backward transition: '+source+' => '+dest;
+            }
             // transition from and to time/weekDay are possible iff the transition between
             // the day/month/year token before source or after dest is valid. We introduce virtual source
             // and dest to compute the validity of the transition
             let vsource = source;
-            if (source === 'time' || source === 'weekDay'){
+            if (source === 'time' || source === 'weekDay' || source === 'timeException' || source === 'weekDayException'){
                 let i = tokenId - 1;
                 // find the previous day/month/year token before the source. i is not supposed to be < 0
-                while (tokenList[i].type === 'time' || tokenList[i].type === 'weekDay'){
+                while (tokenList[i].type.startsWith('time') || tokenList[i].type.startsWith('weekDay')){
                     i--;
                 }
                 vsource = tokenList[i].type;
             }
             let vdest = dest;
-            if (dest === 'time' || dest === 'weekDay'){
+            if (dest === 'time' || dest === 'weekDay' || dest === 'timeException' || dest === 'weekDayException'){
                 let i = tokenId;
                 // find the next day/month/year token before the source. i is not supposed to be < 0
-                while (tokenList[i].type === 'time' || tokenList[i].type === 'weekDay'){
+                while (tokenList[i].type.startsWith('time') || tokenList[i].type.startsWith('weekDay')){
                     i++;
                 }
                 vdest = tokenList[i].type;
@@ -999,7 +973,6 @@ function makeTree(tokenList, dateFormat){
                 moveAndProcess(token);
                 return 'backward transition to start a new date: '+source+' => '+dest;
             }
-            console.log('gggg3', vsource, vdest, levels.indexOf(vsource) < levels.indexOf('day'))
             return 'invalid';
         }
 
@@ -1010,6 +983,16 @@ function makeTree(tokenList, dateFormat){
             currentPosition = createChild(tree[currentPosition].parent, token);
         }
     }
+
+    // build the tree
+    for (tokenId = 0; tokenId < tokenList.length; tokenId++){
+        token = tokenList[tokenId];
+        const transition = doTransition(token, tokenId);
+
+        if (transition === 'invalid'){
+            return null;
+        }
+    };
 
     // add branches and leaves to the tree in order that at every leaf, a complete date can be found
     // example: 2 et 3 septembre 2025 provides the tree [2, 3:sept:2025] should be transformed in
@@ -1048,16 +1031,6 @@ function makeTree(tokenList, dateFormat){
         return true;
     }
 
-
-    for (tokenId = 0; tokenId < tokenList.length; tokenId++){
-    // tokenList.forEach((token, tokenId) => {
-        token = tokenList[tokenId];
-        const transition = doTransition(token, tokenId);
-
-        if (transition === 'invalid'){
-            return null;
-        }
-    };
 
     // complete the graph in order to get a correct distribution of tokens
     const treeWithBalancedLeaves = growTree();
@@ -1116,13 +1089,68 @@ function processTree(tree){
 
     // exclude from chronology verification multiple branches
     for (const ind of Object.keys(tree)){
-        // console.log('ddd',ind, tree[ind],tree[tree[ind].children[0]].type, ['time', 'weekDay'].includes(tree[tree[ind].children[0]].type));
         if (tree[ind].children.length > 1 && ['time', 'weekDay'].includes(tree[tree[ind].children[0]].type)){
             for (child of tree[ind].children.slice(1)){
                 tree[child].excludeFromVerification = true;
             }
         }
     }
+
+    // process exception subtrees to compact them into single leaves
+    // first fold the second level of exceptions into the first one by removing the leaves
+    let leavesToCut = [];
+    Object.keys(tree).filter(key => tree[key].type.endsWith('Exception') && tree[key].children.length > 0)
+        .forEach(key => {
+            const node = tree[key];
+            
+            const val = [];
+            console.log('exc', key);
+            for (let i of node.children){
+                leavesToCut.push(i);
+                val.push(node.type === 'weekDayException' ? {weekDay: node.val, time: tree[i].val} 
+                    : {weekDay: tree[i].val, time: node.val});
+            }
+            node.val = val;
+            node.type = 'exception';
+            node.children = [];
+
+    });
+    // if there is only one level of exceptions, convert their type (weekDay) to exception
+    Object.keys(tree).filter(key => tree[key].type === 'weekDayException')
+        .forEach(key =>{
+            tree[key].type = 'exception';
+            tree[key].val = [{weekDay: tree[key].val}];
+    });
+
+    // clean the tree from cut leaves
+    leavesToCut.forEach(key => delete tree[key]);
+
+    // merge exception nodes from the same parent
+    leavesToCut = [];
+    let exceptionIndexes = Object.keys(tree).filter(key => tree[key].type === 'exception')
+                            .map(key => Number(key));
+    let i = 0;
+    while (i < exceptionIndexes.length){
+        
+        // if (!tree.hasOwnProperty(key)) continue;
+        const key = exceptionIndexes[i];
+        const brothers = tree[tree[key].parent].children.filter(el => el !== key);
+        for (const childId of brothers){
+            for (const v of tree[childId].val){
+                tree[key].val.push(v);
+            }
+            leavesToCut.push(childId);
+            delete tree[childId];
+        }
+        exceptionIndexes = exceptionIndexes.filter(el => !leavesToCut.includes(el));
+        i++;
+    };
+
+    // remove references to deleted leaves
+    Object.values(tree).forEach(node => node.children = node.children.filter(el => !leavesToCut.includes(el)));
+
+
+
 
     // make a list of date from the tree. Does not process delimiters nor condition at this point
     const datesFromTree = tree[0].children.map(index => {
@@ -1160,6 +1188,9 @@ function processTree(tree){
                     context.delimiter = currentNode.delimiter.type;
                 }
             }
+            if(currentNode.type === 'exception'){
+                context.exception = currentNode.val;
+            }
             // add the date when arriving at the leaf
             if (currentNode.children.length === 0){
                 const res = checkYear(context); 
@@ -1176,7 +1207,6 @@ function processTree(tree){
             }
         }
 
-        // explore(subTree);
         explore(index);
         return dates;
     }).flat();
@@ -1261,6 +1291,7 @@ function processTree(tree){
                     return null;
                 }
                 startDate.type = 'date';
+                delete startDate.timeInfoSource;
                 startDate.eventEnd = {
                     day: dateToken.day,
                     month: dateToken.month,
@@ -1279,6 +1310,7 @@ function processTree(tree){
                 // In every case: push the start date as it is, and other days with the time info from the end
                 // date
                 
+                delete startDate.timeInfoSource;
                 dateList.push(startDate);
                 // now all following days have the same time info as the closing date
                 let current = new Date(startDate.year, startDate.month - 1, startDate.day + 1);
@@ -1295,6 +1327,9 @@ function processTree(tree){
                     }
                     if (dateToken.hasOwnProperty('weekDay')){
                         dateList.at(-1).weekDay = dateToken.weekDay;
+                    }
+                    if (dateToken.hasOwnProperty('exception')){
+                        dateList.at(-1).exception = dateToken.exception;
                     }
                     // step to the next day
                     current.setDate(current.getDate() + 1);
@@ -1325,7 +1360,6 @@ function formatDate(dateObj){
 
     const options = { weekday: 'long' };
     const jour = date.toLocaleDateString('fr-FR', options);
-    // let txt = ""+dateObj.day+"/"+dateObj.month+"/"+dateObj.year+(dateObj.hasOwnProperty('time')? " à "+dateObj.time : "");
     let txt = "Le "+jour+" "+String(dateObj.day).padStart(2, '0')
     +"/"+dateObj.month+"/"+dateObj.year+(dateObj.hasOwnProperty('time')? " à "+dateObj.time : "");
     if (dateObj.hasOwnProperty('eventEnd')){
@@ -1344,8 +1378,6 @@ function formatDate(dateObj){
 
 function compare(res, sol){
     const array = sol.split("|");
-    // console.log("res",res);
-    // console.log("sol",array);
     if (res.length !== array.length){
         return false;
     }
@@ -1396,20 +1428,53 @@ function processTimeAndWeekDayInfo(list){
             dateToken.time = dateToken.time[0];
         }
         // no weekDay information, push the token as it is
-        if (!dateToken.hasOwnProperty('weekDay') || dateToken.weekDay === '*'){
+        if ((!dateToken.hasOwnProperty('weekDay') || dateToken.weekDay === '*')
+                && !dateToken.hasOwnProperty('exception')){
             delete dateToken.weekDay;
             res.push(dateToken);
             continue;
         }
+        
+        const date = new Date(dateToken.year, dateToken.month - 1, dateToken.day);
+        const dayOfWeek = date.toLocaleDateString('en-US', {weekday: 'long'}).toLowerCase();
+  
         // apply weekDay filters
         if (dateToken.hasOwnProperty('weekDay')){
-            const date = new Date(dateToken.year, dateToken.month - 1, dateToken.day);
-            const dayOfWeek = date.toLocaleDateString('en-US', {weekday: 'long'}).toLowerCase();
             if (dateToken.weekDay === dayOfWeek){
                 delete dateToken.weekDay;       
-                res.push(dateToken);
+            }else{
+                // don't push the token because it does not fulfill the condition
+                continue;
             }
         }
+
+        // apply exceptions. If no exception, validate the token
+        if (!dateToken.hasOwnProperty('exception')){
+            res.push(dateToken);
+            continue;
+        }
+        
+        console.log(dateToken, dayOfWeek);
+        const exceptions = dateToken.exception.filter(exc => exc.weekDay === dayOfWeek);
+
+        // if the exception does not apply to the current week day, validate the token
+        if (exceptions.length === 0) {
+            res.push(dateToken);
+            continue;
+        }
+
+        console.log('exce', exceptions);
+
+        if (exceptions[0].hasOwnProperty('time')){
+            // if the exception is an array, it contains times that should replace the original ones
+            for (const newTime of exceptions.map(el => el.time)){
+                const newDateToken = {...dateToken};
+                newDateToken.time = newTime;
+                res.push(newDateToken);
+            }
+        }
+        // if the exception has no time, then the day should not be present
+        // eg: du 12 au 20 avril sauf le dimanche. The token should not be validated
     }
     return res;
 }
@@ -1421,7 +1486,6 @@ function extractDates(s, dateFormat, sol, i){
     console.log("\n****************** Entrée: ******************\nTest n°"+i+": "+s);
     const tokenList = tokenize(cleanDate(s), dateFormat);
     
-    // console.log('time list',tokenList.filter(t => t.type === 'time').map(t => t.timeList));
     const poss = resolvePossibilities(tokenList, dateFormat.order.includes('year'));
     
     const treeList = poss.map(p => makeTree(p, dateFormat))
@@ -1531,7 +1595,7 @@ dateFormat: {
 }};
 sols[7] = "Le lundi 23/11/2026 à 19:00|Le lundi 23/11/2026 à 21:00|Le samedi 26/12/2026 à 19:00|"
 +"Le samedi 26/12/2026 à 21:00|Le dimanche 27/12/2026 à 19:00|Le dimanche 27/12/2026 à 21:00";
-// test doit fail !
+// test must fail ! There is ambiguity and two possibilities
 
 test[8] = {text: "23 nov 25, 02 dec 25, de 17h à 18h, et de 19h à 20h", // ce cas n'est pas ambigu car 02 ne suit pas 25
 dateFormat: {
@@ -1753,27 +1817,51 @@ test[32] =  {text: "Du 4 au 6 décembre 2025, à 20h sauf samedi à 18h",
         year: 'long',
         order: ['day', 'month', 'year'],
 }};
-sols[32] = '';
+sols[32] = 'Le jeudi 04/12/2025 à 20:00|Le vendredi 05/12/2025 à 20:00|Le samedi 06/12/2025 à 18:00';
+
+test[33] =  {text: "Du 4 au 8 décembre 2025, à 20h sauf samedi et dimanche à 18h et 21h",
+    dateFormat: {
+        month: 'long',
+        year: 'long',
+        order: ['day', 'month', 'year'],
+}};
+sols[33] = 'Le jeudi 04/12/2025 à 20:00|Le vendredi 05/12/2025 à 20:00|Le samedi 06/12/2025 à 18:00|Le samedi 06'
+            +'/12/2025 à 21:00|Le dimanche 07/12/2025 à 18:00|Le dimanche 07/12/2025 à 21:00|Le lundi 08/12/202'
+            +'5 à 20:00';
+
+test[34] =  {text: "20h, décembre 2025: du 4 au 8, sauf samedi et dimanche à 18h et 21h",
+    dateFormat: {
+        month: 'long',
+        year: 'long',
+        order: ['month', 'year', 'day'],
+}};
+sols[34] = 'Le jeudi 04/12/2025 à 20:00|Le vendredi 05/12/2025 à 20:00|Le samedi 06/12/2025 à 18:00|Le samedi 06/12/2'
+        +'025 à 21:00|Le dimanche 07/12/2025 à 18:00|Le dimanche 07/12/2025 à 21:00|Le lundi 08/12/2025 à 20:00';
+
+test[35] =  {text: "Du 8 au 12 décembre 2025, du lundi au mercredi sauf le mardi",
+    dateFormat: {
+        month: 'long',
+        year: 'long',
+        order: ['day', 'month', 'year'],
+}};
+sols[35] = 'Le lundi 08/12/2025|Le mercredi 10/12/2025';
 
 console.log("\n\n\n");
 
-let i = 8;
+let i = 34;
 extractDates(test[i].text, test[i].dateFormat, sols[i], i);
 console.log("test "+i+": ",test[i].text);
 
 const failedTests = [];
 for (i = 1; i < 32; i++){
+    if (i === 7) continue; // test 7 cannot be and should not passed
     if (!extractDates(test[i].text, test[i].dateFormat, sols[i],i)){
         failedTests.push(i);
     };
 }
 if (failedTests.length === 0){
     console.log("\n\x1b[32m*** All tests passed. ***\x1b[0m");
-}{
+}else{
     console.log('\n\x1b[31mSome test failed:\x1b[0m', failedTests);
 }
-
-
-
-
 
