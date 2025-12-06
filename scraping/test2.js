@@ -20,16 +20,34 @@ const monthsDict = {
   decembre: ["dec"]
 };
 
-const shortMonths = Object.values(monthsDict);
-const longMonths = Object.keys(monthsDict);
 const rangeDeLimiters = [["du","au"],["a partir du","jusqu'au"],["de","a"]];
-const rightRangeDelimiters = ["jusqu'au"];
+const rightRangeDelimiters = ["jusqu'au", "jusqu'a"];
 const rangeSeparators = ["->", "→", "—"]; // classic dash will be processed by default
 
-const timeMarkers = [{"minuit": "midnight"}];
-const exception = ["sauf"];
-
 const timeRangeDelimiters = [["de","a"],["de","jusqu'a"]];
+
+// keys: keyword, values: time for the time token
+const timeMarkers = {"minuit": "24:00"};
+
+// // keywords to be replaced by dates
+// const dayMarkers = {"today": ["aujourd'hui", "ce soir"],
+//                     "tomorrow": ["demain"]
+// }
+
+const specialMarkers = {  "today": ["aujourd'hui", "ce soir"],
+                    "tomorrow": ["demain"],
+                    "exception": ["sauf"]
+}
+
+    // Construire une liste de tous les mots-clés avec leur type
+let keywordsDict = [];
+for (const type in specialMarkers) {
+    for (const kw of specialMarkers[type]) {
+        keywordsDict.push({ kw, type });
+    }
+}
+
+// const exception = ["sauf"];
 
 const dayDict = {   monday: ["lun", "lundi", "lundis"],
                     tuesday: ["mar", "mardi", "mardis",],
@@ -40,7 +58,6 @@ const dayDict = {   monday: ["lun", "lundi", "lundis"],
                     sunday: ["dim", "dimanche", "dimanches"]
                 };
 
-const dayList = [...Object.keys(dayDict), ...Object.values(dayDict).flat()];
 
 // those keywords are not mandatory to understand the structure and should be removed in order to allow
 // identification of other keywords ('sauf le samedi')
@@ -48,20 +65,24 @@ const ignoreList = ["&", "et", "le", "les"];
 
 // const startTimeKeywords = ["a", "a partir de"];
 
+const shortMonths = Object.values(monthsDict);
+const longMonths = Object.keys(monthsDict);
+
+const dayList = [...Object.keys(dayDict), ...Object.values(dayDict).flat()];
 
 const moisRegex = Object.values(monthsDict).flat().map(m => m.replace('.', '\\.')).join('|');
 const currentYear = new Date().getFullYear();
 // const now = new Date();
-const now = new Date(2025, 11, 1); 
+const now = new Date(2025, 11, 1);
+const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
 const shortCurrentYear = currentYear - Math.floor(currentYear / 100) * 100;
 nextYears = [shortCurrentYear, shortCurrentYear+1, shortCurrentYear+2];
 
 
 //***************************************//
-// clean the string                      //
+// preprocess the date string            //
 //***************************************//
 
-// il reste les . et / et - entre les nombres
 function cleanDate(s){
 
     // regex to identify range separators. "-" strictly surrounded by letters are ignored (it is not a
@@ -122,7 +143,6 @@ function cleanDate(s){
     //     "\\s*(" + rangeSeparators.map(s => s.replace(/[-/\\^$*+?.()|[\]{}]/g, "\\$&")).join("|") + ")\\s*",
     //     "g"
     // );
-
     // s = s.replace(sepRegex, " $1 ");
     return s;
 }
@@ -134,6 +154,7 @@ function cleanDate(s){
 
 // create basic tokens: time, weekday, separators, and text. Does not identify keywords
 // which has to be done after text merge.
+
 function makeBasicToken(str, dateFormat){
     // range separator token
     if (str === '—'){
@@ -219,26 +240,10 @@ function makeBasicToken(str, dateFormat){
     }
 }
 
-// aux funtion to test if a string str consisting of two digits can be of type element (month, year)
-function canBe(element, str){
-    if (element === 'month'){
-        return parseInt(str) <= 12;
-    }
-    if (element === 'year'){
-        return nextYears.includes(parseInt(str));
-    }
-    if (element === 'day'){
-        return parseInt(str) <= 31;
-    }
-}
-
-
-
-
 // prepare text tokens: sequence of text tokens are regrouped. Their texts are merged and
 // passed to the following (non-text) token in attribute previousText 
 
-function preprocessTokens(list){
+function preprocessTokens(list, dateFormat){
 
     // if two consecutive separators are found, stop the process and send an error message
     for (let i = 0; i < list.length - 1; i++) {
@@ -258,14 +263,13 @@ function preprocessTokens(list){
         // otherwise it is pushed as a text token
         if (token.type === "text") {
             buffer += " " + token.rawText;
-        } else if (token.type === "time"){
+        // } else if (token.type === "time"){
             
-            if (buffer.length > 0){
-                 token.textBefore = buffer.trim();
-            }
-            // token.textBefore = buffer.length > 0 ? buffer.trim() : null;
-            buffer = "";
-            result.push(token);
+        //     if (buffer.length > 0){
+        //         token.textBefore = buffer.trim();
+        //     }
+        //     buffer = "";
+        //     result.push(token);
         }else{
             if (buffer.length > 0){
                 result.push({type: 'text', rawText: buffer.trim()});
@@ -277,20 +281,26 @@ function preprocessTokens(list){
 
     // if there is some text remaining at the end
     if (buffer.length > 0){
-        list.at(-1).textAfter = buffer;
+        // result.at(-1).textAfter = buffer;
+        result.push({type: 'text', rawText: buffer.trim()});
     }
-    
 
-    // parse time now so it does not have to be done for every tree possibility
-    return timeParser(result).map(token => processTextToken(token))
+
+    // parse time now so it does not have to be done for every tree possibility, and make a first
+    // round of tokenization
+    const tmp = timeParser(result).map(token => preprocessTextTokens(token, keywordsDict)).flat();
+
+    // remove text tokens before time tokens. They may contain ambiguous keywords (delimiters such
+    // à partir de) but all the time information does not need to be processed anymore
+    return tmp.filter((token,i) => token.type !== 'text' || i === tmp.length - 1 || tmp[i+1].type !== 'time')
+        .map(token => processRemainingTextTokens(token, dateFormat)).flat()
         .filter(el => el.type !== 'unknown text');
     // return timeParser(result);
 }
 
-// aux function to regroupe time and text: make timeRange, make list of time tokens
+// function to regroupe time and text: make time ranges, assemble lists of time tokens
 
 function timeParser(tokens) {
-    // console.log("before time parser", tokens);
     const result = [];
     let buffer = []; // tokens time/text/weekDay buffer
 
@@ -306,6 +316,7 @@ function timeParser(tokens) {
             buffer = [];
             return;
         }
+
 
         // if the first token is a separator, push it. This should not happen !
         if (buffer[0].type === 'rangeSeparator'){
@@ -323,36 +334,43 @@ function timeParser(tokens) {
 
         let i = 0;
         while(i < buffer.length - 2){ 
-            // if pattern found, make time rage
+            // if pattern found, make time range
             if (buffer[i].type === "time" &&
                 buffer[i+1].type === "rangeSeparator" &&
                 buffer[i+2].type === "time") {
 
-                buffer.splice(i, 3, {
-                    type: "time",
-                    val: [buffer[i].val, buffer[i+2].val],
-                    rawText: buffer[i].rawText+" — "+buffer[i].rawText,
-                    delimiter: "separator"
-                });
+                buffer.splice(i, 3,  
+                    {
+                        type: "time",
+                        val: [buffer[i].val, buffer[i+2].val],
+                        rawText: buffer[i].rawText+" — "+buffer[i].rawText,
+                        delimiter: "separator"
+                    }
+                );
             }
             i++;
         }
 
         // test range patterns: time | time pattern with delimiters 
         i = 0;
-        while(i < buffer.length - 1){ 
-            const t1 = buffer[i].textBefore;
-            const t2 = buffer[i+1].textBefore;
-            if (t1 && t2){
+        while(i < buffer.length - 3){
+            if (buffer[i].type === 'text' && buffer[i+1].type === 'time'
+                && buffer[i+2].type === 'text' && buffer[i+3].type === 'time'){
+                const t1 = buffer[i].rawText;
+                const t2 = buffer[i+2].rawText;
                 for (const pair of timeRangeDelimiters) {
                     if (t1.endsWith(pair[0]) && t2.endsWith(pair[1])) {
-                        buffer.splice(i, 2, {
+                        buffer.splice(i+1, 3, 
+                        {
                             type: "time",
-                            val: [buffer[i].val, buffer[i+1].val],
-                            rawText: buffer[i].textBefore + " " +buffer[i].rawText + " " 
-                                + buffer[i+1].textBefore + " " +buffer[i+1].rawText,
+                            val: [buffer[i+1].val, buffer[i+3].val],
+                            rawText: buffer[i].rawText + " " +buffer[i+1].rawText + " " 
+                                + buffer[i+2].rawText + " " +buffer[i+3].rawText,
                             delimiter: pair
                         });
+                        buffer[i].rawText = removeEnding(t1, pair[0]);
+                        if (buffer[i].rawText.length === 0) buffer.splice(i,1);
+                        break;
                     }
                 }
             }
@@ -364,6 +382,13 @@ function timeParser(tokens) {
 
         buffer = [];
         if (lastToken) {result.push(lastToken)};
+
+        // mark text tokens preceding a time token to exclude from rangedelimiter possibility
+        // for(let i = result.length - 1; i > 0; i--){
+        //     if (result[i].type === 'time' && result[i-1].type === 'text'){
+        //         result[i-1].beforeTimeToken = true;
+        //     }
+        // }
         return; 
     };
 
@@ -373,7 +398,7 @@ function timeParser(tokens) {
             result.push(token);
             continue;
         }
-        if (token.type === "time" || token.type === "rangeSeparator") {
+        if (token.type === "time" || token.type === "text" || token.type === "rangeSeparator") {
             buffer.push(token);
         } else {
             flushBuffer();
@@ -385,15 +410,89 @@ function timeParser(tokens) {
     return result;
 }
 
+// deal with keywords. There should no be any collision problem, at least in French.
+// Here we provide a light version of a tokenizer by processing in two steps: keywords without collision
+// problem, and leave the collision-prone tokens for later
 
 
+function preprocessTextTokens(t, entries) {
+    if (t.type !== 'text'){
+        return t;
+    }
+    const str = t.rawText;
+    const tokens = [];
 
+    // sort by increasing size to avoid collisions
+    entries.sort((a, b) => b.kw.length - a.kw.length);
+
+    let i = 0;
+
+    while (i < str.length) {
+        let match = null;
+        let matchPos = Infinity;
+
+        // find the closest keyword in the text
+        for (const { kw, type } of entries) {
+            const pos = str.indexOf(kw, i);
+            if (pos !== -1 && pos < matchPos) {
+                match = { kw, type, pos };
+                matchPos = pos;
+            }
+        }
+
+        // no keyword found: the rest is just a text token
+        if (!match) {
+            tokens.push({ type: "text", rawText: str.slice(i).trim() });
+            break;
+        }
+
+        // non tokenized part before keyword
+        const before = str.slice(i, match.pos).trim();
+        if (before.length > 0) {
+            tokens.push({ type: "text", rawText: before });
+        }
+
+        // add token type
+        tokens.push({ type: match.type, val: match.kw });
+
+        // move forward after keywor
+        i = match.pos + match.kw.length;
+    }
+
+    return tokens;
+}
 
 
 // process text token: if it is a keyword, change the type to the corresponding situation.
 // Remove others and send a warning to developpers if verbose 
 // non text tokens are unchanged
-function processTextToken(token){
+function processRemainingTextTokens(token, dateFormat){
+
+    // function to generate tokens for keywords like "today" and "tomorrow"
+    function getTxt(date, str, dateFormat){
+        if (str === 'day'){
+            return String(date.getDate());
+        }
+        if (str === 'month'){
+            if (dateFormat.month === 'long') return Object.keys(monthsDict)[date.getMonth()];
+            if (dateFormat.month === 'short') return monthsDict[Object.keys(monthsDict)[date.getMonth()]][0];
+            return String(date.getMonth() + 1).padStart(2, '0');
+        }
+        if (str === 'year'){
+            if (dateFormat.year === 'long') return String(date.getFullYear());
+            return String(date.getFullYear()).slice(2,4);
+        }
+    }
+
+    // first deal with keywords to replace them by the right token/ token list
+    if (token.type === 'today'){
+        return dateFormat.order.map(str => {return {type: str, rawText: getTxt(now, str, dateFormat)}});
+    }
+
+    if (token.type === 'tomorrow'){
+        return dateFormat.order.map(str => {return {type: str, rawText: getTxt(tomorrow, str, dateFormat)}});
+    }
+
     // don't process non text tokens
 
     if (token.type !== 'text'){
@@ -401,12 +500,13 @@ function processTextToken(token){
     }    
     
     const possibilities = [];
+
     // if it is a starting delimiter
-    if (rangeDeLimiters.some(el => token.rawText.endsWith(el[0]))){
+    if (!token.beforeTimeToken && rangeDeLimiters.some(el => token.rawText.endsWith(el[0]))){
         possibilities.push('rangeDelimiterStart');
     }
     // if it is a end delimiter
-    if (rangeDeLimiters.some(el => token.rawText.endsWith(el[1]))){
+    if (!token.beforeTimeToken && rangeDeLimiters.some(el => token.rawText.endsWith(el[1]))){
         possibilities.push('rangeDelimiterEnd');
     }
     // if it is a range separator
@@ -414,11 +514,8 @@ function processTextToken(token){
         possibilities.push('rangeSeparator');
     }
     // if it is in the left delimiter
-    if (rightRangeDelimiters.some(el => token.rawText.endsWith(el))){
+    if (!token.beforeTimeToken && rightRangeDelimiters.some(el => token.rawText.endsWith(el))){
         possibilities.push('rangeDelimiterUnbalanceEnd');
-    }
-    if (exception.some(el => token.rawText.endsWith(el))){
-        possibilities.push('exception');
     }
 
     if (possibilities.length === 1){
@@ -446,7 +543,7 @@ function processTextToken(token){
 
 function tokenize(s, dateFormat){
     const basicTokenList = s.split(" ").map(e => makeBasicToken(e, dateFormat)).flat();
-    const tokenList = preprocessTokens(basicTokenList);
+    const tokenList = preprocessTokens(basicTokenList, dateFormat);
     if (verbose === 'full'){
         console.log("\n*** tokens after time parser ***\n",tokenList);
     }
@@ -732,6 +829,9 @@ function simplifyTokens(list){
     return tokenList;
 }
 
+// process range delimiters tokens. Move delimiter informations to the corresponding days (the one
+// opening and the one closing the range)
+
 function propagateRangesDelimiters(tokenList){
     const finalTokenList = [];
     let rangeInfo = null;
@@ -744,7 +844,7 @@ function propagateRangesDelimiters(tokenList){
                 console.log("\x1b[38;5;226mbad range separator balance. Aborting\x1b[0m", token);
                 return null;
             }
-            // find the last day token and add range information
+            // find the last day token before the separator and add range information
             let i = finalTokenList.length - 1;
             while (finalTokenList[i].type !== 'day'){
                 i--;
@@ -788,20 +888,20 @@ function propagateRangesDelimiters(tokenList){
 // // 
     
 // add a list of weekdays instead of the range.
-    // handles lundi - samedi as well as samedi - mardi ranges
-    function addDayRange(t, listIndex, startDay, endDay, text){
-        // create a day list with the first day of the range
-        const newList = [{type: 'weekDay', val: startDay, rawText: text}];
-        let index = Object.keys(dayDict).findIndex(el => el === startDay) + 1;
-        const endDayIndex = Object.keys(dayDict).findIndex(el => el === endDay);
+// handles lundi - samedi as well as samedi - mardi ranges
+function addDayRange(t, listIndex, startDay, endDay, text){
+    // create a day list with the first day of the range
+    const newList = [{type: 'weekDay', val: startDay, rawText: text}];
+    let index = Object.keys(dayDict).findIndex(el => el === startDay) + 1;
+    const endDayIndex = Object.keys(dayDict).findIndex(el => el === endDay);
         
-        // add new days while the index is in the range (index <= endDayIndex mod 7)
-        while ((index - endDayIndex - 1) % 7 !== 0){
-            newList.push({type: 'weekDay', val: Object.keys(dayDict)[index]});
-            index++;
-        }
-        t.splice(listIndex,0, ...newList);
+    // add new days while the index is in the range (index <= endDayIndex mod 7)
+    while ((index - endDayIndex - 1) % 7 !== 0){
+        newList.push({type: 'weekDay', val: Object.keys(dayDict)[index]});
+        index++;
     }
+    t.splice(listIndex,0, ...newList);
+}
 
 
 
@@ -864,7 +964,6 @@ function makeTree(tokenList, dateFormat){
             parent: sourceId,
             children: [],
             val: value,
-            // rawText: token.rawText
         }
         if (token.hasOwnProperty('delimiter')){
             node.delimiter = token.delimiter;
@@ -1104,7 +1203,6 @@ function processTree(tree){
             const node = tree[key];
             
             const val = [];
-            console.log('exc', key);
             for (let i of node.children){
                 leavesToCut.push(i);
                 val.push(node.type === 'weekDayException' ? {weekDay: node.val, time: tree[i].val} 
@@ -1355,55 +1453,47 @@ function processTree(tree){
 }
 
 
-function formatDate(dateObj){
-    const date = new Date(dateObj.year, dateObj.month - 1, dateObj.day);
+//***************************************//
+// auxiliary functions                   //
+//***************************************//
 
-    const options = { weekday: 'long' };
-    const jour = date.toLocaleDateString('fr-FR', options);
-    let txt = "Le "+jour+" "+String(dateObj.day).padStart(2, '0')
-    +"/"+dateObj.month+"/"+dateObj.year+(dateObj.hasOwnProperty('time')? " à "+dateObj.time : "");
-    if (dateObj.hasOwnProperty('eventEnd')){
-        const end = dateObj.eventEnd;
-        txt = txt + " (fin";
-        if (end.hasOwnProperty('day')){
-            txt = txt + " le " + end.day+"/"+end.month+"/"+end.year;
-        }
-        txt = txt + " à " + end.time+")";
+// return str2 - str1
+
+function removeEnding(str2, str1) {
+    if (str2.endsWith(str1)) {
+        return str2.slice(0, str2.length - str1.length).trim();
     }
-    return txt;
+    return str2;
 }
 
 
-
-
-function compare(res, sol){
-    const array = sol.split("|");
-    if (res.length !== array.length){
-        return false;
+// Funtion to test if a string str consisting of two digits can be of type element (month, year)
+// eg 25 can be a year, a day, but not a mont
+function canBe(element, str){
+    if (element === 'month'){
+        return parseInt(str) <= 12;
     }
-    for (const el of res){
-        if (!array.includes(el)){
-            return false;
-        }
+    if (element === 'year'){
+        return nextYears.includes(parseInt(str));
     }
-    return true;
+    if (element === 'day'){
+        return parseInt(str) <= 31;
+    }
 }
 
+// compute the intersection of sets. Not in use anymore ?
+// function intersectAll(sets) {
+//     if (sets.length === 0) return new Set();
 
+//     // from smallest to biggest for optimization
+//     const [smallest, ...others] = [...sets].sort((a,b) => a.size - b.size);
 
-// // aux functions
+//     return new Set(
+//         [...smallest].filter(el => others.every(s => s.includes(el)))
+//     );
+// }
 
-function intersectAll(sets) {
-    if (sets.length === 0) return new Set();
-
-    // from smallest to biggest for optimization
-    const [smallest, ...others] = [...sets].sort((a,b) => a.size - b.size);
-
-    return new Set(
-        [...smallest].filter(el => others.every(s => s.includes(el)))
-    );
-}
-
+// tests if a list of date is in chronological order
 function isChronological(dateList) {
   for (let i = 1; i < dateList.length; i++) {
     const prev = new Date(dateList[i-1].year, dateList[i-1].month - 1, dateList[i-1].day);
@@ -1415,7 +1505,6 @@ function isChronological(dateList) {
   }
   return true;
 }
-
 
 // evaluate time info and create corresponding dates
 function processTimeAndWeekDayInfo(list){
@@ -1454,7 +1543,6 @@ function processTimeAndWeekDayInfo(list){
             continue;
         }
         
-        console.log(dateToken, dayOfWeek);
         const exceptions = dateToken.exception.filter(exc => exc.weekDay === dayOfWeek);
 
         // if the exception does not apply to the current week day, validate the token
@@ -1462,8 +1550,6 @@ function processTimeAndWeekDayInfo(list){
             res.push(dateToken);
             continue;
         }
-
-        console.log('exce', exceptions);
 
         if (exceptions[0].hasOwnProperty('time')){
             // if the exception is an array, it contains times that should replace the original ones
@@ -1482,8 +1568,41 @@ function processTimeAndWeekDayInfo(list){
 
 //**************** tests *******************/
 
+// auxiliary function to format date output
+function formatDate(dateObj){
+    const date = new Date(dateObj.year, dateObj.month - 1, dateObj.day);
+
+    const options = { weekday: 'long' };
+    const jour = date.toLocaleDateString('fr-FR', options);
+    let txt = "Le "+jour+" "+String(dateObj.day).padStart(2, '0')
+    +"/"+dateObj.month+"/"+dateObj.year+(dateObj.hasOwnProperty('time')? " à "+dateObj.time : "");
+    if (dateObj.hasOwnProperty('eventEnd')){
+        const end = dateObj.eventEnd;
+        txt = txt + " (fin";
+        if (end.hasOwnProperty('day')){
+            txt = txt + " le " + end.day+"/"+end.month+"/"+end.year;
+        }
+        txt = txt + " à " + end.time+")";
+    }
+    return txt;
+}
+
+// auxiliary fonction 
+function compare(res, sol){
+    const array = sol.split("|");
+    if (res.length !== array.length){
+        return false;
+    }
+    for (const el of res){
+        if (!array.includes(el)){
+            return false;
+        }
+    }
+    return true;
+}
+
 function extractDates(s, dateFormat, sol, i){
-    console.log("\n****************** Entrée: ******************\nTest n°"+i+": "+s);
+    console.log("\n****************** Entrée: ******************\nTest n°"+i+": "+s+"\n");
     const tokenList = tokenize(cleanDate(s), dateFormat);
     
     const poss = resolvePossibilities(tokenList, dateFormat.order.includes('year'));
@@ -1498,8 +1617,7 @@ function extractDates(s, dateFormat, sol, i){
     
     if (treeList.length > 0){
         treeList.forEach((p,ind) => {
-            console.log("\nPossibility n°",ind+1);
-            console.log();
+            if (treeList.length > 1) console.log("\nPossibility n°",ind+1,"\n");
             p.forEach(node => console.log(formatDate(node)));
         });
         const res = treeList[0].map(node => formatDate(node)).join("|");
@@ -1537,7 +1655,7 @@ sols[0] = "Le lundi 01/12/2025 à 18:00 (fin à 20:00)|Le mardi 02/12/2025 à 18
     +"20:00)|Le samedi 06/12/2025 à 18:00 (fin à 20:00)|Le dimanche 07/12/2025 à 18:00 (fin à 20:00)|Le lundi 08/"
     +"12/2025 à 18:00 (fin à 20:00)|Le mardi 09/12/2025 à 18:00 (fin à 20:00)";
 
-test[1] = {text: `23.09.26 à partir de 18h`,
+test[1] = {text: `aujourd'hi 23.09.26 à partir de 18h`,
 dateFormat: {
     year: 'short',
     month: 'numeric',
@@ -1652,7 +1770,8 @@ dateFormat: {
     year: 'short',
     order: ['month','day','year']
 }};
-sols[13] = "Le jeudi 27/11/2025 à 17:00 (fin à 22:00)|Le vendredi 28/11/2025 à 17:00 (fin à 22:00)|Le mercredi 03/12/2025 à 17:00 (fin à 22:00)";
+sols[13] = "Le jeudi 27/11/2025 à 17:00 (fin à 22:00)|Le vendredi 28/11/20"
+        +"25 à 17:00 (fin à 22:00)|Le mercredi 03/12/2025 à 17:00 (fin à 22:00)";
 
 test[14] = {text: `Du jeudi 13 jusqu'au samedi 15 novembre 2025, jeudi à 20h, samedi à 18h`,
 dateFormat: {
@@ -1807,7 +1926,10 @@ test[31] =  {text: "lundi 18/10/25 - dimanche 31/10/25",
         year: 'short',
         order: ['day', 'month', 'year'],
 }};
-sols[31] = 'Le samedi 18/10/2025|Le dimanche 19/10/2025|Le lundi 20/10/2025|Le mardi 21/10/2025|Le mercredi 22/10/2025|Le jeudi 23/10/2025|Le vendredi 24/10/2025|Le samedi 25/10/2025|Le dimanche 26/10/2025|Le lundi 27/10/2025|Le mardi 28/10/2025|Le mercredi 29/10/2025|Le jeudi 30/10/2025|Le vendredi 31/10/2025';
+sols[31] = 'Le samedi 18/10/2025|Le dimanche 19/10/2025|Le lundi 20/10/2025|Le mardi 21/10/2'
+            +'025|Le mercredi 22/10/2025|Le jeudi 23/10/2025|Le vendredi 24/10/2025|Le same'
+            +'di 25/10/2025|Le dimanche 26/10/2025|Le lundi 27/10/2025|Le mardi 28/10/2025|L'
+            +'e mercredi 29/10/2025|Le jeudi 30/10/2025|Le vendredi 31/10/2025';
 
 
 
@@ -1846,14 +1968,30 @@ test[35] =  {text: "Du 8 au 12 décembre 2025, du lundi au mercredi sauf le mard
 }};
 sols[35] = 'Le lundi 08/12/2025|Le mercredi 10/12/2025';
 
+test[36] =  {text: "Ce soir à 20h",
+    dateFormat: {
+        month: 'short',
+        year: 'long',
+        order: ['day', 'month', 'year'],
+}};
+sols[36] = 'Le lundi 01/12/2025 à 20:00';
+
+test[37] =  {text: "jusqu'à demain, 20h",
+    dateFormat: {
+        month: 'short',
+        year: 'long',
+        order: ['day', 'month', 'year'],
+}};
+sols[37] = 'Le lundi 01/12/2025 à 20:00|Le mardi 02/12/2025 à 20:00';
+
 console.log("\n\n\n");
 
-let i = 34;
+let i = 37;
 extractDates(test[i].text, test[i].dateFormat, sols[i], i);
 console.log("test "+i+": ",test[i].text);
 
 const failedTests = [];
-for (i = 1; i < 32; i++){
+for (i = 1; i < 38; i++){
     if (i === 7) continue; // test 7 cannot be and should not passed
     if (!extractDates(test[i].text, test[i].dateFormat, sols[i],i)){
         failedTests.push(i);
