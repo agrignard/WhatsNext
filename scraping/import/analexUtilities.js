@@ -7,7 +7,7 @@
 const {removeDoubles, removeBlanks, convertToLowerCase, makeURL, simplify} = require('./stringUtilities.js');
 //const {loadLinkedPages, fetchWithRetry, fetchLink} = require('./fileUtilities.js');
 const {unique, isValidEvent, getLanguages, fromLanguages, saveToVenuesJSON} = require('./jsonUtilities.js');
-const {numberOfInvalidDates, getCommonDateFormats, createDate, convertDate} = require('./dateUtilities.js');
+const {createDate} = require('./dateUtilities.js');
 const {loadLinkedPages, getFilesContent} = require('./fileUtilities.js');
 const {getDateConversionPatterns} = require('./dateUtilities.js');
 
@@ -16,7 +16,7 @@ const {parseDocument} =require('htmlparser2');
 
 
 module.exports = {getTagLocalization, tagContainsAllStrings, getTagContainingAllStrings, getMyIndex, 
-    splitAndLowerCase, addJSONBlock, reduceTag, getAllDates, getBestDateFormat, adjustMainTag, 
+    splitAndLowerCase, addJSONBlock, reduceTag, getAllDates, adjustMainTag, 
     regroupTags, countNonEmptyEvents, getMostUsedTagClassSets, analyze};
 
 
@@ -415,15 +415,27 @@ function getBestDateFormat(dates, dateConversionPatterns){
     let bestDateFormat;// = "";
     dates = dates.map(el => convertDate(el,dateConversionPatterns));
     let bestScore = dates.length + 1;
-    //  numberOfInvalidDates(dates.map(element => createDate(element,bestDateFormat,'Europe/Paris')));
     const dateFormatList = getCommonDateFormats();
 
     dateFormatList.forEach(format => {
         const formattedDateList = dates.map(element => createDate(element,format));
        
         if (format === 'dd-MM-HH:mm'){
-            // console.log(format, numberOfInvalidDates(formattedDateList));
             const truc = dates.map(element => createDate(element,format,'Europe/Paris'));
+        }
+
+        // count the number of invalid dates, or with a year too old (older than one year), or a year too far (in more than 2 years)
+        function numberOfInvalidDates(dateList){
+        return dateList.filter(element => (!isValid(element) || !yearIsValid(element.getFullYear()))).length; 
+        }
+
+
+        // test if a year too old (older than one year), or a year too far ahead (in more than 2 years)
+        function yearIsValid(yyyy){
+        let yearBefore = 1;
+        let yearAfter = 2;
+        let currentYear = new Date().getFullYear();
+        return (yyyy >= currentYear  -yearBefore || yyyy >currentYear + yearAfter);
         }
         
         if (numberOfInvalidDates(formattedDateList) < bestScore){

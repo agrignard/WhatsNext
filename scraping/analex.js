@@ -10,7 +10,6 @@ const cheerio = require('cheerio');
 
 
 const sourcePath = './webSources/';
-// const languages = getLanguages();
 
 // load venues json list
 let venuesListJSON = loadVenuesJSONFile();

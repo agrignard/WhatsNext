@@ -9,15 +9,15 @@ const {parseDocument} = require('htmlparser2');
 const {app, Menu, ipcRenderer} = require('electron');
 const { populate } = require('dotenv');
 const {loadVenuesJSONFile, loadVenueJSON, initializeVenue, saveToVenuesJSON,
-        fromLanguages, getLanguages, isValidEvent} = require(imports+'jsonUtilities.js');
-const {simplify, removeBlanks, extractBody, convertToLowerCase, removeDoubles,
+        fromLanguages, getLanguages, getDictionary, isValidEvent} = require(imports+'jsonUtilities.js');
+const {simplify, extractBody, convertToLowerCase, removeDoubles,
       makeURL, isValidURL} = require(imports+'stringUtilities.js');
 const {getFilesContent, getModificationDate, loadLinkedPages, getFilesNumber} = require(imports+'fileUtilities.js');
 const {downloadVenue, erasePreviousHtmlFiles, getHrefListFrom, downloadLinkedPages} = require(imports+'aspiratorexUtilities.js');
 const {getTagLocalization, tagContainsAllStrings, getTagContainingAllStrings,
-  splitAndLowerCase, addJSONBlock, getAllDates, getBestDateFormat,
+  splitAndLowerCase, addJSONBlock, getAllDates,
   countNonEmptyEvents, regroupTags, getMostUsedTagClassSets} = require(imports+'analexUtilities.js');
-const {getDateConversionPatterns} =require(imports+'dateUtilities.js');
+const {cleanDate, initDateFormat} =require(imports+'dateUtilities.js');
 // const {getText} =require(imports+'scrapexUtilities.js');
 
 // global variables 
@@ -172,7 +172,9 @@ initializeVenue(venue,webSources);
 
 // get languages, dates and format info
 const languages = getLanguages();
-const dateConversionPatterns = fromLanguages(getDateConversionPatterns(),languages[venue.country]);
+console.log('lagg',languages[venue.country])
+const dictionary = getDictionary(languages[venue.country]);
+console.log("dico", dictionary);
 
 // get file if it exists
 const sourcePath = webSources+'/'+venue.country+'/'+venue.city+'/'+venue.name+'/'
@@ -2443,7 +2445,7 @@ function getDatesStrings(venueInfo){
     if ('eventMultiDateTags' in venueInfo) {
       const subEventDelimiterTagList = findTagsFromPath(eventTag, subEventPath);
       if (subEventDelimiterTagList.length === 0) {
-        dates.push(removeBlanks(dateString));
+        dates.push(cleanDate(dateString, dictionary.rangeSeparators));
       } else {
         subEventDelimiterTagList.forEach(subEventTag => {
           let newDateString = dateString;
@@ -2452,11 +2454,11 @@ function getDatesStrings(venueInfo){
               newDateString += ' ' + getTextFromTag(tag);
             });
           });
-          dates.push(removeBlanks(newDateString));
+          dates.push(cleanDate(newDateString, dictionary.rangeSeparators));
         });
       }
     } else {
-      dates.push(removeBlanks(dateString));
+      dates.push(cleanDate(dateString, dictionary.rangeSeparators));
     }
   });
 
@@ -2477,20 +2479,22 @@ function computeAlternateDateFormat(){
   }
 
   lastAlternateDateList = dates;
-  let formatRes;
-  let bestScore;
-  [formatRes, bestScore] = getBestDateFormat(dates, dateConversionPatterns);
 
-  if (bestScore === dates.length) {
+  const [dateFormat, bestScore] = initDateFormat(dates, dictionary);
+
+  // console.log('*****************', dateFormat, dateFormat.order);
+  let formatRes;
+  
+  if (bestScore === 0) {
     return "No date format found.";
   }
 
-  if (bestScore !== 0) {
-    formatRes += ' ('
-      + (dates.length - bestScore) + '/' + dates.length + ')';
-  }
+  // if (bestScore !== 0) {
+  //   formatRes += ' ('
+  //     + (dates.length - bestScore) + '/' + dates.length + ')';
+  // }
   
-  return formatRes;
+  return dateFormat;
 }
 
 
@@ -2529,27 +2533,27 @@ function computeDateFormat(){
 
   lastDateList = dates;
   dateFormatPanel.classList.remove('redFont', 'warningFont');
-  let formatRes;
-  let bestScore;
-  [formatRes, bestScore] = getBestDateFormat(dates, dateConversionPatterns);
-  if (bestScore === dates.length) {
-    dateFormatText.textContent = "No date format found.";
-    dateFormatPanel.classList.add('redFont');
-    return;
-  }
+
+  // compute date format information
+  // console.log(dates.length, dates);
+ const [dateFormat, bestScore] = initDateFormat(dates, dictionary);
+
+  // console.log('*****************', dateFormat, dateFormat.order);
+
+ 
   if (currentPage === 'mainPage') {
-    venue.dateFormat = formatRes;
+    venue.dateFormat = dateFormat;
   } else {
-    venue.linkedPageDateFormat = formatRes;
+    venue.linkedPageDateFormat = dateFormat;
   }
+
   if (bestScore !== 0) {
-    dateFormatText.innerHTML = 'Format: '+formatRes+' <span class="warningFont">('
-      + (dates.length - bestScore) + '/' + dates.length + ' valid dates)</span>';
+    dateFormatText.innerHTML = 'Format:  <span class="warningFont">('
+      + bestScore + '/' + dates.length + ' valid dates)</span>';
   }else{
-    dateFormatText.textContent = "Format: " + formatRes;
+    dateFormatText.textContent = '';
   }
   
-  console.log(dateFormatText.innerHTML); 
 }
 
 function renderEventURLPanel(){

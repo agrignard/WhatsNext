@@ -1,0 +1,44 @@
+{
+    "french": 
+    {
+        "dayDict": 
+        {  
+            "monday": ["lun", "lundi", "lundis"],
+            "tuesday": ["mar", "mardi", "mardis"],
+            "wednesday": ["mer", "mercredi", "mercredis"],
+            "thursday": ["jeu", "jeudi", "jeudis"],
+            "friday": ["ven", "vendredi", "vendredis"],
+            "saturday": ["sam", "samedi", "samedis"],
+            "sunday": ["dim", "dimanche", "dimanches"]
+        },
+        "monthsDict": 
+        {
+            "janvier": ["jan", "janv"],
+            "fevrier": ["fev"],
+            "mars": ["mar"],
+            "avril": ["avr"],
+            "mai": ["mai"],
+            "juin": ["juin"],
+            "juillet": ["juil", "juill"],
+            "aout": ["aout"],
+            "septembre": ["sep", "sept"],
+            "octobre": ["oct"],
+            "novembre": ["nov"],
+            "decembre": ["dec"]
+        },
+        "rangeDeLimiters": [["du","au"],["a partir du","jusqu'au"],["de","a"]],
+        "rightRangeDelimiters": ["jusqu'au", "jusqu'a"],
+        "rangeSeparators": ["->", "→", "—","-"],
+        "timeRangeDelimiters": [["de","a"],["de","jusqu'a"]],
+        "timeMarkers": 
+        {
+            "minuit": "24:00"
+        },
+        "specialMarkers": 
+        {  
+            "today": ["aujourd'hui", "ce soir"],
+            "tomorrow": ["demain"],
+            "exception": ["sauf"]
+        }
+    }
+}

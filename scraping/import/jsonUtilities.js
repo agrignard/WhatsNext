@@ -14,7 +14,7 @@ const scrapInfoFile = rootDirectory+"/venuesScrapInfo.json"; // path should star
 const styleConversionFile = rootDirectory+"/import/styleConversion.json";
 const cancellationKeywordsJSONFile = rootDirectory+"/import/cancellationKeywords.json";
 //const languagesFile = "./import/languages.json";
-//const languagesFile = "D:\\Travail\\Github\\Shared Projects\\WhatsNext\\scraping\\import\\languages.json";
+const dictionaryFile = rootDirectory+'languages/dictionary.json';
 const languagesFile = rootDirectory+'import/languages.json';
 
 module.exports = {venuesListJSONFile, isActive, geAliasesToURLMap, getEventPlace, getSource,
@@ -22,7 +22,20 @@ module.exports = {venuesListJSONFile, isActive, geAliasesToURLMap, getEventPlace
     writeToLog, loadVenueScrapInfofromFile, loadVenuesJSONFile, loadVenueJSON, saveToVenuesJSON,
     getLanguages, loadCancellationKeywords, fromLanguages, checkLanguages, loadErrorLog, 
     getAvailableLanguages, initializeVenue, getNameFromID, makeID, loadScrapInfoFile, saveToScrapInfoJSON,
-    unique, isValidEvent};
+    unique, isValidEvent, getDictionary};
+
+// return the dictionary for a given language
+function getDictionary(language){
+    try{
+        const dict = JSON.parse(fs.readFileSync(dictionaryFile, 'utf8'));
+        if (language.length > 1){
+            console.log('\x1b[36mError:found several languages, not implemented yet.\x1b[0m%s\n', language);
+        }
+        return dict[language[0].toLowerCase()];
+    }catch(err){
+        console.log('\x1b[36mError: cannot open dictionary file:  \'%s\'.\x1b[0m%s\n',dictionaryFile,err);
+    }
+}
 
 // test if an event has a name or a date if required by scrapping
 // it takes into account that for some websites, the date or the name may not be scrapped from the main page
