@@ -1,9 +1,12 @@
 // - false: (no verbose)
 // - true: (to track why a date has been rejected)
 // - 'full': full log for debug
-verbose = false; 
+verboseParam = false; 
 
 // CHANGER const now !!!!!!!!!!!!
+
+
+const moment = require('moment-timezone');
 
 const dictionary = {
     monthsDict: {
@@ -265,7 +268,7 @@ function makeBasicToken(str, dateFormat, dict){
 // prepare text tokens: sequence of text tokens are regrouped. Their texts are merged and
 // passed to the following (non-text) token in attribute previousText 
 
-function preprocessTokens(list, dateFormat, dict){
+function preprocessTokens(list, dateFormat, dict, verbose){
 
     // if two consecutive separators are found, stop the process and send an error message
     for (let i = 0; i < list.length - 1; i++) {
@@ -323,7 +326,7 @@ function preprocessTokens(list, dateFormat, dict){
     // remove text tokens before time tokens. They may contain ambiguous keywords (delimiters such
     // à partir de) but all the time information does not need to be processed anymore
     return tmp.filter((token,i) => token.type !== 'text' || i === tmp.length - 1 || tmp[i+1].type !== 'time')
-        .map(token => processRemainingTextTokens(token, dateFormat, dict)).flat()
+        .map(token => processRemainingTextTokens(token, dateFormat, dict, verbose)).flat()
         .filter(el => el.type !== 'unknown text');
     // return timeParser(result);
 }
@@ -496,7 +499,7 @@ function preprocessTextTokens(t, entries) {
 // process text token: if it is a keyword, change the type to the corresponding situation.
 // Remove others and send a warning to developpers if verbose 
 // non text tokens are unchanged
-function processRemainingTextTokens(token, dateFormat, dict){
+function processRemainingTextTokens(token, dateFormat, dict, verbose){
     const rangeDeLimiters = dict.rangeDeLimiters;
     const rightRangeDelimiters = dict.rightRangeDelimiters;
     const monthsDict = dict.monthsDict;
@@ -574,9 +577,9 @@ function processRemainingTextTokens(token, dateFormat, dict){
 
 // main tokenizer function
 
-function tokenize(s, dateFormat){
+function tokenize(s, dateFormat, verbose = false){
     const basicTokenList = s.split(" ").map(e => makeBasicToken(e, dateFormat, dictionary)).flat();
-    const tokenList = preprocessTokens(basicTokenList, dateFormat, dictionary);
+    const tokenList = preprocessTokens(basicTokenList, dateFormat, dictionary, verbose);
     if (verbose === 'full'){
         console.log("\n*** tokens after time parser ***\n",tokenList);
     }
@@ -592,7 +595,7 @@ function tokenize(s, dateFormat){
 // possibilities (each token has only one type). Each element of the list will be processed
 // and discarded later if there are inconsistencies
 
-function resolvePossibilities(tokenList, hasYears, dict){
+function resolvePossibilities(tokenList, hasYears, dict, verbose = false){
 
     // transform every element into a list
 
@@ -661,7 +664,7 @@ function resolvePossibilities(tokenList, hasYears, dict){
         }
 
         // tests if the rangeDelimiters look well balanced
-        return testRangeBalance(list);
+        return testRangeBalance(list, verbose);
     });
     const finalResults = filteredResults.map(list => propagateRangesDelimiters(list));
 
@@ -680,7 +683,7 @@ function resolvePossibilities(tokenList, hasYears, dict){
 // - at most one "rangeDelimiterUnbalancedEnd" token
 // - exactly one day token should be found between a start and end delimiter
 
-function testRangeBalance(list){
+function testRangeBalance(list, verbose){
     // list must have at most one "rangeDelimiterUnbalancedEnd"
     if (list.filter(el => el.type === "rangeDelimiterUnbalancedEnd").length > 1){
         return false;
@@ -956,7 +959,7 @@ function addDayRange(t, listIndex, startDay, endDay, text, dayDict){
 // "les lundi, mardi et jeudi"
 // "septembre 2026: le 03 à 18h, le 04 à 22h".  
 
-function makeTree(tokenList, dateFormat, dict){
+function makeTree(tokenList, dateFormat, dict, verbose = false){
     let currentId = 0;
     const typeList = tokenList.map(token => token.type).filter(str => str === 'day' || str === 'month'
         || str === 'year' || str === 'weekDay' || str === 'time' || str === 'weekDayException'
@@ -1217,7 +1220,7 @@ function normalizeDate(str, field, dateFormat, dict){
 
 
 // process information in the tree
-function processTree(tree){
+function processTree(tree, verbose = false){
     if (tree === null){
         return null;
     }
@@ -1638,25 +1641,29 @@ function compare(res, sol){
 }
 
 function extractDates(s, dateFormat, sol, i){
+    const timeZone = "Europe/Paris";
     console.log("\n****************** Entrée: ******************\nTest n°"+i+": "+s+"\n");
-    const tokenList = tokenize(cleanDate(s, dictionary.rangeSeparators), dateFormat);
+    const tokenList = tokenize(cleanDate(s, dictionary.rangeSeparators), dateFormat, verboseParam);
     
-    const poss = resolvePossibilities(tokenList, dateFormat.order.includes('year'), dictionary);
+    const poss = resolvePossibilities(tokenList, dateFormat.order.includes('year'), dictionary, verboseParam);
     
-    const treeList = poss.map(p => makeTree(p, dateFormat, dictionary))
+    const treeList = poss.map(p => makeTree(p, dateFormat, dictionary, verboseParam))
         .map(tree => tree)
-        .map(tree => processTree(tree))
+        .map(tree => processTree(tree, verboseParam))
         .filter(tree => tree !== null);
-    if (verbose){
+    if (verboseParam){
         console.log("\n*** Output ***");
     }
     
     if (treeList.length > 0){
         treeList.forEach((p,ind) => {
             if (treeList.length > 1) console.log("\nPossibility n°",ind+1,"\n");
-            p.forEach(node => console.log(formatDate(node)));
+            p.forEach(node => {
+                const dateObj = createDateFromFields(node, timeZone);
+                console.log(displayDate(dateObj, timeZone));
+            });
         });
-        const res = treeList[0].map(node => formatDate(node)).join("|");
+        // const res = treeList[0].map(node => formatDate(node)).join("|");
         // console.log('*********');
         // console.log(res);
         // console.log('*********');
@@ -2039,3 +2046,116 @@ if (failedTests.length === 0){
     console.log('\n\x1b[31mSome test failed:\x1b[0m', failedTests);
 }
 
+
+// create a date from an object
+function createDateFromFields(obj, timeZone, verbose = false) {
+    hasStartTime = obj.time ? true:false;
+    let [hour, minute] = obj.time ? obj.time.split(":").map(Number): [0, 0];
+
+    // particular case: 24:00 is midnight next day
+    let addOneDay = false;
+    if (hour === 24 && minute === 0) {
+        hour = 0;
+        addOneDay = true;
+    } else if (hour > 23 || minute > 59) {
+        throw new Error("Invalid time: " + obj.time);
+    }
+
+    const date = moment.tz({
+        year: obj.year,
+        month: obj.month - 1,
+        day: obj.day,
+        hour,
+        minute,
+        second: 0,
+        millisecond: 0
+    }, timeZone);
+
+    if (addOneDay) {
+        date.add(1, "day");
+    }
+
+    if (!date.isValid()) {
+        throw new Error("Invalid date in createDateFromFields");
+    }
+
+    const jsDate = date.toDate();
+
+    // process the end date/time
+
+    let endDate;
+
+    if (obj.eventEnd){
+      let [endHour, endMinute] = obj.eventEnd.time.split(":").map(Number);
+      if (obj.eventEnd.day){
+        endDate = moment.tz({
+        year: obj.eventEnd.year,
+        month: obj.eventEnd.month - 1,
+        day: obj.eventEnd.day,
+        endHour,
+        endMinute,
+        second: 0,
+        millisecond: 0
+    }, timeZone);
+
+      }else{
+        // end date is the same date, with different time
+        endDate = moment.tz({
+        year: obj.year,
+        month: obj.month - 1,
+        day: obj.day,
+        endHour,
+        endMinute,
+        second: 0,
+        millisecond: 0
+    }, timeZone);
+      }
+    }
+
+    const res = {startDate: jsDate, hasStartTime: hasStartTime};
+
+    if (endDate){
+      res.endDate = endDate.toDate();
+    }
+
+    if (verbose) {
+        console.log("JS Date :", res);
+    }
+
+    return res;
+}
+
+
+// function to obtain the formatted time (hour:minutes) of the event
+function displayDate(dateObj, timeZone){
+
+  const date = dateObj.startDate;
+
+  const languageZone = 'fr-FR';
+
+  const timeString = date.toLocaleTimeString(languageZone, { hour: 'numeric', minute: 'numeric', timeZone: timeZone});
+  const day = date.toLocaleString(languageZone, { day: 'numeric', timeZone: timeZone });
+  const weekDay = date.toLocaleString(languageZone, { weekday: 'long' , timeZone: timeZone});
+  const month = date.toLocaleString(languageZone, { month: 'long', timeZone: timeZone});
+  const year = date.toLocaleString(languageZone, {year: 'numeric', timeZone});
+
+  let str = `${weekDay} ${day} ${month} ${year}`+ (dateObj.hasStartTime ? `à ${timeString}`:``);
+
+  if (dateObj.hasOwnProperty('endDate')){
+    const endDate = dateObj.endDate;
+    const endTimeString = endDate.toLocaleTimeString(languageZone, { hour: 'numeric', minute: 'numeric', timeZone: timeZone});
+    const endDay = endDate.toLocaleString(languageZone, { day: 'numeric', timeZone: timeZone });
+    const endWeekDay = endDate.toLocaleString(languageZone, { weekday: 'long' , timeZone: timeZone});
+    const endMonth = endDate.toLocaleString(languageZone, { month: 'long', timeZone: timeZone});
+    const endYear = endDate.toLocaleString(languageZone, {year: 'numeric', timeZone});
+
+    if (endDay === day){
+      // end the same day
+      str += ` (fin à ${endTimeString})`;
+    }else{
+      str += ` (fin le ${endWeekDay} ${endDay} ${endMonth} ${endYear} à ${endTimeString})`;
+    }
+  }
+
+  return str;
+}

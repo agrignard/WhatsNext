@@ -1,15 +1,15 @@
-const { createDate, convertDate, showDate, getDateConversionPatterns, eventTime, 
+const { extractDates, showDate, displayDate, makeDateInfo,
         TimeZone} = require('./import/dateUtilities.js');
 const fs = require('fs');
 const { parse, isValid } = require('date-fns');
 const cheerio = require('cheerio');
 const {parseDocument} = require('htmlparser2');
-const {makeURL, simplify, removeBlanks} = require('./import/stringUtilities.js');
+const {makeURL, simplify} = require('./import/stringUtilities.js');
 const {loadLinkedPages, saveToJSON, saveToCSV, getVenuesFromArguments,
         getFilesNumber, getFilesContent, getModificationDate} = require('./import/fileUtilities.js');
 const {samePlace, getAliases, getStyleConversions, loadVenuesJSONFile, 
         loadCancellationKeywords, writeToLog, isActive, geAliasesToURLMap,
-        getLanguages, fromLanguages, checkLanguages, unique} = require('./import/jsonUtilities.js');
+        getLanguages, fromLanguages, checkLanguages, unique, getDictionary} = require('./import/jsonUtilities.js');
 const {mergeEvents} = require('./import/mergeUtilities.js');
 const {getInfo} = require('./import/scrapexUtilities.js');
 const {getHrefFromAncestor} = require('./import/aspiratorexUtilities.js');
@@ -30,8 +30,6 @@ const styleConversion = getStyleConversions();
 const cancellationKeywords = loadCancellationKeywords();
 // const showFullMergeLog = true;
 
-
-const dateConversionPatterns = getDateConversionPatterns();
 const venueList = loadVenuesJSONFile();
 const aliasList = getAliases(venueList);
 const languages = getLanguages();
@@ -138,8 +136,9 @@ async function scrapFiles(venues) {
   writeLogFile(totalEventList,'warning');
   console.log('\n');
 
-  // check missing languages
-  checkLanguages(venues);
+
+  // check missing languages -> TO BE UPDATED (OR REMOVED ??)
+  // checkLanguages(venues);
   
 }
 
@@ -154,18 +153,10 @@ async function analyseFile(venue) {
     linkedFileContent = loadLinkedPages(venueSourcePath);
   }
 
-  // get file list to scrap
-  // try {
-  //   inputFileList = fs.readdirSync(venueSourcePath)
-  //     .filter(fileName => fileName.endsWith('.html'))
-  //     .map(el => venueSourcePath+el);
-  // } catch (err) {
-  //   console.error('\x1b[31mError reading html files in directory \'%s\'.\x1b[0m Error: %s',venueSourcePath, err);
-  // }
   const fileContent = getFilesContent(venueSourcePath);
   const modificationDate = getModificationDate(venueSourcePath);
 
-  console.log('\n\x1b[32m%s\x1b[0m', `******* Venue: ${venue.name}  (${getFilesNumber(venueSourcePath)} page(s)) *******`);
+  console.log('\n\x1b[32m%s\x1b[0m', `******* Venue: ${venue.name}  (${getFilesNumber(venueSourcePath)} page(s)) *******\n`);
 
   // build event list and analyze the events
   //const [eventBlockList, hrefInDelimiterList] = await extractEvents(inputFileList,venue);
@@ -193,10 +184,13 @@ async function analyseFile(venue) {
 
   async function analyseEvents(eventBlockList, hrefInDelimiterList, venue){
     let eventList = [];
+    // date format maybe different in main and link pages (cf periscope)
     const possibleDateFormats = [venue.linkedPageDateFormat, venue.dateFormat].filter(el => el);
     
-    const eventLanguages = languages[venue.country]; 
-    const localDateConversionPatterns = fromLanguages(dateConversionPatterns,eventLanguages);
+    const eventLanguages = languages[venue.country];
+    const dictionary = getDictionary(languages[venue.country]);
+    dictionary.today = modificationDate;
+    // const localDateConversionPatterns = fromLanguages(dateConversionPatterns,eventLanguages);
 
     //*** aux functio for post processing, show logs and save  ***//
     function postProcess(eventInfo) {
@@ -227,61 +221,95 @@ async function analyseFile(venue) {
       eventInfo.eventStyle = getValidatedStyle(eventInfo.eventStyle, eventLanguages);
       eventInfo.source = { 'name': venue.name, 'city': venue.city, 'country': venue.country };
 
+      
+
       // process date: change the date format to Unix time. Test all formats of possibleDateFormat until one is valid
-      let formatFound = false; 
+
+      // if no date tag has been found, return an unknown date
       if (!eventInfo.hasOwnProperty('eventDate') && !eventInfo.hasOwnProperty('altEventDate')){
         eventInfo.unixDate = -1;
         const errorString = '\x1b[31mPas de date trouvée pour \x1b[0m'+venue.name+'\x1b[31m.\x1b[0m';
         writeToLog('error',eventInfo, [errorString], false);
-        displayEventLog(eventInfo);
-        return eventInfo;
+        displayEventLog(eventInfo, timeZone);
+        eventList.push(eventInfo);
+        return;
       }
+
+      // if a date tag is found
 
       eventInfo.unixDate = 0;
-      let formatedEventDate;
+     
 
-      for (const dateFormat of possibleDateFormats){
-        console.log("test ", convertDate(eventInfo.eventDate,localDateConversionPatterns));
-        formatedEventDate = createDate(convertDate(eventInfo.eventDate,localDateConversionPatterns), dateFormat, timeZone, modificationDate);
-        if (isValid(formatedEventDate)) {
-          formatFound = true;
-          break;
-        }
-      }
+      // THIS SHOULD BE SIMPLIFIED. SHOULD NOT BROWSE DATE FORMAT, BUT INSTEAD CHECK IF THE DATE DATA
+      // COMES FROM MAIN OR LINKED PAGE
 
-      // if no format is found, and alt date is declared, try to find an alternate date
-      if (!formatFound &&  eventInfo.hasOwnProperty('altEventDate')){
-        const possibleAltDateFormats = Object.keys(venue.alternateDateFormat).map(page => venue.alternateDateFormat[page]);
-        for (const dateFormat of possibleAltDateFormats){
-          formatedEventDate = createDate(convertDate(eventInfo.altEventDate,localDateConversionPatterns), dateFormat, timeZone, modificationDate);
-          if (isValid(formatedEventDate)) {
-            formatFound = true;
+      function makeEventsByDate(dateStr, dateFormatList){
+
+        let list = [];
+        let number = 0;
+
+        
+        for (const dateFormat of dateFormatList){
+          const datesPossibilities = extractDates(dateStr, dateFormat, timeZone, dictionary, false);
+          if (!datesPossibilities) continue; // current format not giving solutions
+          list = []; // intialize buffer for dates to push
+          number = datesPossibilities.length;
+          for (const dateObj of datesPossibilities[0]){
+            const newEventInfo = {...eventInfo};
+            newEventInfo.unixDate = dateObj.startDate.getTime();
+            if (dateObj.hasOwnProperty('hasStartTime')){
+              newEventInfo.hasStartTime = true;
+            }
+            if (dateObj.hasOwnProperty('endDate')){
+              newEventInfo.unixEndDate = dateObj.endDate.getTime();
+            }
+            list.push(newEventInfo);
+          }
+          if (datesPossibilities.length === 1){
             break;
           }
+          // should stop here or find a best fit ? length === 1
         }
+        return [list, number];
+      }
+
+      // console.log(eventInfo);
+      let [dateListToPush, formatNumber] =  makeEventsByDate(eventInfo.eventDate, possibleDateFormats);
+      
+
+      // if no format is found, and alt date is declared, try to find an alternate date
+      // formatNumber should be 0 at this step.
+      if (formatNumber === 0 && eventInfo.hasOwnProperty('altEventDate')){
+        const possibleDateFormats = Object.keys(venue.alternateDateFormat).map(page => venue.alternateDateFormat[page]);
+        [dateListToPush, formatNumber] =  makeEventsByDate(eventInfo.eventDate, possibleDateFormats);
       }
 
       delete eventInfo.altEventDate;
 
-      if (!formatFound){
-        const errorString = '\x1b[31mFormat de date invalide pour '+venue.name+'. Reçu \''+eventInfo.eventDate+'\', converti en \''
-            +convertDate(eventInfo.eventDate, localDateConversionPatterns)+'\'. Formats essayés: \x1b[0m'
-            +possibleDateFormats.join('\x1b[31m, \x1b[0m');
-          
+      // if no alternate date is provided, there is a problem with the date
+ 
+      if (formatNumber === 0){
+        const errorString = '\x1b[31mFormat de date invalide pour '+venue.name+'. Reçu \''
+            +eventInfo.eventDate+'\'\x1b[0m';
         writeToLog('error',eventInfo, [errorString], true);
-      }else{
-        // changer 00:00 en 23:59 si besoin
-        if (venue.hasOwnProperty('midnightHour')) {
-          formatedEventDate = changeMidnightHour(formatedEventDate, venue.midnightHour, eventInfo);
-        }
-        eventInfo.unixDate = formatedEventDate.getTime();
-        eventInfo.eventTime = eventTime(formatedEventDate, timeZone);
+        return;
       }
-  
 
-      // display
-      displayEventLog(eventInfo);
-      return eventInfo;
+      if (formatNumber > 1){
+        console.log('\x1b[38;5;226mWarning, several possibilities found for dates.\x1b[0m');
+      }
+
+      if (formatNumber > 0){
+        for (const event of dateListToPush){
+          // if (venue.hasOwnProperty('midnightHour')) {
+          //   event = changeMidnightHour(event, venue.midnightHour, eventInfo);
+          // }
+          // console.log(event);
+          displayEventLog(event, timeZone);
+          eventList.push(event);
+        } 
+      }
+      return;
     }
 
 
@@ -296,28 +324,23 @@ async function analyseFile(venue) {
 
         /*** extract info from main page ***/
 
-        // const altEventInfo = venue.alternateTags.mainpage;
         const altEventInfo = venue.hasOwnProperty('alternateTags') ? venue.alternateTags.mainPage : undefined;
-        getInfo(venue.mainPage,$eventBlock,eventInfo, altEventInfo);
+        getInfo(venue.mainPage, $eventBlock, eventInfo, false, altEventInfo);
 
         // find if cancelled
         eventInfo.isCancelled = isCancelled($eventBlock.text(),cancellationKeywords[venue.country]);
 
        
-        let eventInfoList = createMultipleEvents(eventInfo);
-        
+        const eventInfoList = createSubEvent(eventInfo)
+          .filter(subEventInfo => !isEmptyEvent(subEventInfo));
 
-        eventInfoList = eventInfoList.filter(subEventInfo => !isEmptyEvent(subEventInfo));
-        // let eventInfoListAfterLinkedPage = []; // this second list is needed in case there are multiple events in the linked page too
-
+ 
         for (const subEventInfo of eventInfoList){
          
-
-           // if no URL tags have been provided, try to find an URL in the delimiter tag
+          // if no URL tags have been provided, try to find an URL in the delimiter tag
           if (!subEventInfo.hasOwnProperty('eventURL') && hrefInDelimiterList[eveIndex]){
             subEventInfo.eventURL = hrefInDelimiterList[eveIndex];
           }
-
 
           // format URL
           if (subEventInfo.hasOwnProperty('eventURL')){
@@ -330,7 +353,7 @@ async function analyseFile(venue) {
               try{
                 // console.log('file content',subEventInfo.eventURL,linkedFileContent[subEventInfo.eventURL]);
                 const $linkedBlock = cheerio.load(linkedFileContent[subEventInfo.eventURL]);
-                // add info from linked page to the sub event. If subEventInfo has no information for key, create a nes entry
+                // add info from linked page to the sub event. If subEventInfo has no information for key, create a new entry
                 const altLinkedPageInfo = venue.hasOwnProperty('alternateTags') ? venue.alternateTags.linkedPage : undefined;
    
                 getInfo(venue.linkedPage, $linkedBlock, subEventInfo, true, altLinkedPageInfo);
@@ -342,20 +365,20 @@ async function analyseFile(venue) {
                   subEventInfo.chatStyle = extractStyle(subEventInfo.chatStyleComment);
                 }
                 // tests if there are sub events in the linked page, and return sub events if they exist
-                createMultipleEvents(subEventInfo).forEach(el => {
-                  eventList.push(postProcess(el));
+                createSubEvent(subEventInfo).forEach(el => {
+                  postProcess(el);
                 });
               }catch(err){
                 writeToLog('error',eventInfo,['\x1b[31mImpossible de lire la page liée pour l\'événement \'%s\'. Erreur lors du téléchargement ?\x1b[0m'+err, subEventInfo.eventName],true);
-                eventList.push(postProcess(subEventInfo));
+                postProcess(subEventInfo);
               }
             }else{
               writeToLog('error',eventInfo,['\x1b[31mLa page liée pour l\'événement \'%s\' n\'a pas été téléchargée. Relancer aspiratorex.\x1b[0m', subEventInfo.eventName],false);
-              eventList.push(postProcess(subEventInfo));
+              postProcess(subEventInfo);
             }
             
           }else{
-            eventList.push(postProcess(subEventInfo));
+            postProcess(subEventInfo);
           }
           
 
@@ -464,13 +487,14 @@ function getValidatedStyle(style, langs) {
   return candidate;
 }
 
-function  displayEventLog(eventInfo){
+function  displayEventLog(eventInfo, timeZone){
   console.log('Event : %s (%s, %s)%s',eventInfo.eventName,eventInfo.city,eventInfo.country,eventInfo.isCancelled?' (cancelled)':'');
+  // console.log(new Date(eventInfo.unixDate).toString());
+  console.log(displayDate(makeDateInfo(eventInfo), timeZone));
   Object.keys(eventInfo).forEach(key => {
-    if (!['eventName', 'eventDate', 'eventURL', 'unixDate', 'eventDummy', 'source','city','country','isCancelled','chatStyleComment'].includes(key)
-        && eventInfo[key.replace('Tags','')] !== ''){
+    if (!['eventName', 'eventDate', 'eventURL', 'unixDate', 'eventDummy', 'source','city','country', 'unixEndDate',
+        'isCancelled','chatStyleComment', 'hasStartTime'].includes(key) && eventInfo[key.replace('Tags','')] !== ''){
           const string = key === 'errorLog' ? '\x1b[31m'+eventInfo[key.replace('Tags','')]+'\x1b[0m':eventInfo[key.replace('Tags','')];
-          // console.log(key.replace('event','')+': %s',eventInfo[key.replace('Tags','')]);
           console.log(key.replace('event','')+': '+string);
         }
   });
@@ -509,7 +533,7 @@ function isEmptyEvent(eventInfo){
 // separate sub events and return a list of each sub event.
 // if the event does not have sub events, it returns a list with one element containing itself
 
-function createMultipleEvents(eventInfo){
+function createSubEvent(eventInfo){
 
   // test if sub events are present
   if (eventInfo.hasOwnProperty('subEvents')){

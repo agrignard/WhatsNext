@@ -53,7 +53,13 @@
       ]
     },
     "eventURLIndex": 1,
-    "dateFormat": "dd-MM",
+    "dateFormat": {
+      "month": "numeric",
+      "order": [
+        "day",
+        "month"
+      ]
+    },
     "ID": "Le Petit Salon|Lyon|France",
     "linkedPage": {
       "eventDateTags": [
@@ -65,7 +71,15 @@
         "DIV.depth2:eq(0)>DIV.cpage.cpagefullscreen.pt6.pb7.uthemedark.depth3:eq(0)>DIV.cgrid.cgridl.uwidthfull.depth4:eq(0)>DIV.leventpage.depth5:eq(0)>DIV.depth6:eq(1)>UL.cgrid__row.cgrid__rownocol.depth7:eq(0)>LI.ctag.ctagdefault.mt1.depth8:eq(1)"
       ]
     },
-    "linkedPageDateFormat": "dd-MM-yyyy-HH:mm",
+    "linkedPageDateFormat": {
+      "month": "long",
+      "year": "long",
+      "order": [
+        "day",
+        "month",
+        "year"
+      ]
+    },
     "linkedPageDownloadMethod": "Puppeteer"
   },
   {
@@ -106,7 +120,6 @@
     "dateFormat": "dd-MM",
     "eventURLIndex": 0,
     "defaultStyle": "Electro",
-    "midnightHour": "sameday",
     "baseURL": "https://www.terminal-club.com/evenements/",
     "mainPage": {
       "eventDateTags": [
@@ -876,7 +889,15 @@
     "ID": "Chapelle De La Trinité|Lyon|France",
     "baseURL": "https://trinitelyon.com/programmation/",
     "eventURLIndex": 0,
-    "dateFormat": "dd-MM-yyyy",
+    "dateFormat": {
+      "month": "long",
+      "year": "long",
+      "order": [
+        "day",
+        "month",
+        "year"
+      ]
+    },
     "eventsDelimiterTag": "DIV.left.depth6",
     "linkedPage": {
       "eventDateTags": [
@@ -1522,6 +1543,14 @@
     },
     "baseURL": "https://www.fiducial-asteria.com/",
     "eventsDelimiterTag": "DIV.articlecontent.depth17",
-    "dateFormat": "dd-MM-yyyy-HH:mm"
+    "dateFormat": {
+      "month": "long",
+      "year": "long",
+      "order": [
+        "day",
+        "month",
+        "year"
+      ]
+    }
   }
 ]

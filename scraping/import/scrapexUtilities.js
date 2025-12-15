@@ -7,7 +7,6 @@
 const {removeBlanks} = require('./stringUtilities.js');
 //const {loadLinkedPages, fetchWithRetry, fetchLink} = require('./fileUtilities.js');
 // const {unique, isValidEvent} = require('./jsonUtilities.js');
-// const {getCommonDateFormats, createDate} = require('./dateUtilities.js');
 const cheerio = require('cheerio');
 const {getHrefFromAncestor} = require('./aspiratorexUtilities.js');
 
@@ -109,9 +108,10 @@ function checkAltTag(eventInfo, key){
 // get info from the event block. for each key, if key already exists in eventInfo, append the info to eventInfo[key], otherwise 
 // create a new entry. Keys such as eventPlaceTags or eventURLTags should not be appended, the value in eventInfo should be overwritten instead
 // 'Multi' tags should not have an existing value, so there is no need to test if there is something to append
-// overwrite = true may be used when using linked pages, to overwrite stuff already from the main page
+// fromLinkPage = true may be used when using linked pages. In this case, overwrite stuff already from the 
+// main page.
 
-function getInfo(venueTags, $, eventInfo = {}, overwrite = false, altEventInfo = undefined) {
+function getInfo(venueTags, $, eventInfo = {}, fromLinkPage = false, altEventInfo = undefined) {
 
   const keysToOverwrite = ['eventPlaceTags','eventURLTags'];
 
@@ -120,7 +120,7 @@ function getInfo(venueTags, $, eventInfo = {}, overwrite = false, altEventInfo =
     .forEach(key => {
       const newKey = key.replace('Tags', '');
       const string = getText(key, venueTags, $);
-      if (keysToOverwrite.includes(key) || overwrite){
+      if (keysToOverwrite.includes(key) || fromLinkPage){
         if (string && string.trim().length > 0)
           {
             eventInfo[newKey] = string.trim();

@@ -37,7 +37,6 @@ let nbPages = 0;
 let currentPage = 'mainPage';
 let currentURLTag;
 let keepTraceOfAltTags = {mainPage: false, linkedPage: true};
-// let alternateTags = {mainPage: {}, linkedPage: {}};
 let linkedPageFirstLoad = true;
 let extendButton = undefined;
 let useLinks;
@@ -69,11 +68,9 @@ function initVars(){
   nbPages = 0;
   currentURLTag = undefined;
   keepTraceOfAltTags = {mainPage: false, linkedPage: false};
-  // alternateTags = {mainPage: {}, linkedPage: {}};
   linkedPageFirstLoad = true;
   extendButton = undefined;
   currentSubEventIndex = undefined;
-// let tagsAdjustLevel = {mainPage: 0, linkedPage: 0}; 
   subEventPath = undefined;
   venueBeforeLoading = undefined;
   eventsMap = {};
@@ -172,9 +169,7 @@ initializeVenue(venue,webSources);
 
 // get languages, dates and format info
 const languages = getLanguages();
-console.log('lagg',languages[venue.country])
 const dictionary = getDictionary(languages[venue.country]);
-console.log("dico", dictionary);
 
 // get file if it exists
 const sourcePath = webSources+'/'+venue.country+'/'+venue.city+'/'+venue.name+'/'
@@ -280,6 +275,8 @@ rightPanel.addEventListener("contextmenu", (event) => {
   }
 
   contextMenu.linkedTag = clickedElement;
+
+  
 
   // for each button of the easypanel, create one in the context menu, and dispatch event to the original button
   contextMenuButtonContainer.innerHTML = '';
@@ -412,6 +409,7 @@ rightPanel.addEventListener('click', (event) => {
   capture: true,    // Use capture phase
   passive: false    // Allow preventDefault
 });
+
 
 
 /*****************************************/
@@ -992,8 +990,8 @@ function populateEasyPanel(firstLoad = false){
   });
 
   // if alternate tags have dates, compute the corresponding format
-  // if (alternateTags && Object.keys(alternateTags[currentPage]).some(key => key.includes('Date'))){
   if (Object.keys(venue.alternateTags[currentPage]).some(key => key.includes('Date'))){
+    console.log('ggggg', venue.alternateTags[currentPage]);
     venue.alternateDateFormat[currentPage] = computeAlternateDateFormat();
   }
 
@@ -1227,7 +1225,6 @@ function newEasyLine(tag, index){
       subTags.linkedPage = subTags.linkedPage.filter(el => el !== newDiv.tag);
       // if all 'multi' tags have been removed, remove the subEventPath
       // should it be also for alternate tags ?
-      // if (!subTags.linkedPage.some(el => el.isMulti) && !Object.keys(venue.alternateTags.linkedPage).some(el => el.includes('Multi'))){
       if (!subTags.linkedPage.some(el => el.isMulti) && !Object.keys(venue.alternateTags[currentPage]).some(key => key.includes('Multi'))){
         subEventPath = undefined;
       }
@@ -1276,6 +1273,7 @@ function computeTags(){
   // console.log(venue[currentPage]);
   // const currentRootTag = principalTag;
   // (currentPage === 'mainPage'?principalTag:rightPanel);
+  
   
   // get the tag strings and put them in venue
   subTags[currentPage].forEach(tag => {
@@ -1377,6 +1375,8 @@ eventURLPanelMessage.addEventListener('click',function(){
     shell.openExternal(url);
 });
 
+
+
 // initialize scraptextboxes for tags
 for(let i = 0; i < eventTagsBoxes.length; i++){
   const textBox = eventTagsBoxes[i];
@@ -1398,7 +1398,6 @@ function tagTextBoxUpdate(textBox){
   applyTags();
   renderEventURLPanel();
 }
-
 
 // event selectors panel
 
@@ -1711,7 +1710,8 @@ if (!venue.hasOwnProperty('linkedPage')){
   switchPageButton.style.display = 'none';
 }
 switchPageButton.addEventListener('click',() =>{
-
+  console.log('start switching');
+  console.log(venue.alternateTags);
   if (switchPageButton.classList.contains('inactive')){
     return;
   }
@@ -1778,6 +1778,7 @@ function initializeInterface(){
       focusTo(principalTag, 'instant');
       analyzePanel.style.display = 'block';
       delimiterLowerPanel.style.display = 'block';
+      console.log('1780', venue.alternateTags);
     }else{
       clearAllTags();
       rightPanel.textContent = 'Content not downloaded yet';
@@ -1846,6 +1847,7 @@ function eventsMapHasChanged(){
 
 function loadLinkedPageContent(){
   console.log('\x1b[41mSwitching to linked page\x1b[0m');
+     console.log(venue);
  
   rightPanel.innerHTML = '';
   if (Object.keys(eventsMap).some(key => eventsMap[key].url)){
@@ -1868,6 +1870,7 @@ function loadLinkedPageContent(){
     principalTag = eventTagList[principalTagIndex];
     principalTag.style.display = 'block';
 
+ 
     // const end = performance.now();
     // console.log(`Le code a mis ${(end - start)/1000}s à s'exécuter.`);
     
@@ -2437,7 +2440,7 @@ function getDatesStrings(venueInfo){
   eventTagList.forEach(eventTag => {
     let dateString = '';
 
-    if ('eventDateTags' in venueInfo) {
+    if ('eventDateTags' in venueInfo && venue[currentPage].hasOwnProperty('eventDateTags')) {
       dateString += venue[currentPage]['eventDateTags'].flatMap(dateTag => findTagsFromPath(eventTag, dateTag))
         .map(tag => getTextFromTag(tag)).join(' ');
     }
@@ -2479,11 +2482,11 @@ function computeAlternateDateFormat(){
   }
 
   lastAlternateDateList = dates;
+  console.log(dates);
 
   const [dateFormat, bestScore] = initDateFormat(dates, dictionary);
 
   // console.log('*****************', dateFormat, dateFormat.order);
-  let formatRes;
   
   if (bestScore === 0) {
     return "No date format found.";
@@ -2537,6 +2540,7 @@ function computeDateFormat(){
   // compute date format information
   // console.log(dates.length, dates);
  const [dateFormat, bestScore] = initDateFormat(dates, dictionary);
+ console.log('**************', dateFormat);
 
   // console.log('*****************', dateFormat, dateFormat.order);
 
@@ -3728,7 +3732,7 @@ function traceMissingTagInfo(subTags, firstLoad = false){
   // Venue will be recomputed later in computeTags()
 
   console.log(venue);
-  console.log(venue.alternateTags[currentPage]);
+ 
 
   Object.keys(venue.alternateTags[currentPage]).forEach(key => {
     [...venue.alternateTags[currentPage][key]].forEach(tagPath => {
@@ -3795,6 +3799,7 @@ function traceMissingTagInfo(subTags, firstLoad = false){
           venue.alternateTags[currentPage][key] = [];
         } 
         venue.alternateTags[currentPage][key].push(tagPath);
+        
       }
     });
   });
@@ -3986,3 +3991,4 @@ function getTextFromTag(tag){
   }
   return res.trim().replace(/[\n\s\t]{1,}/g,' ');
 }
+
