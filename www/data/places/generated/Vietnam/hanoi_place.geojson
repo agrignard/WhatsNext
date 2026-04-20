@@ -598,23 +598,6 @@
     },
     {
       "type": "Feature",
-      "id": "Polygon Musik Café",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          105.82973389428794,
-          21.0292765977085
-        ]
-      },
-      "properties": {
-        "title": "Polygon Musik Café",
-        "icon": "music",
-        "description": "https://www.facebook.com/polygon.cafe",
-        "city": "hanoi"
-      }
-    },
-    {
-      "type": "Feature",
       "id": "Polygon Musik",
       "geometry": {
         "type": "Point",
@@ -933,6 +916,40 @@
         "title": "SOL 8 - Live Stage",
         "icon": "music",
         "description": "https://www.facebook.com/SOL8.LiveStage",
+        "city": "hanoi"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "JamBox",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.82167979445097,
+          21.062952238236456
+        ]
+      },
+      "properties": {
+        "title": "JamBox",
+        "icon": "music",
+        "description": " https://www.facebook.com/profile.php?id=61557430405207&rdid=47VBuIuEgwS8v08U&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1GptimhymQ%2F#",
+        "city": "hanoi"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Factory 47 hanoi",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.85173687322205,
+          21.035729885181173
+        ]
+      },
+      "properties": {
+        "title": "Factory 47 hanoi",
+        "icon": "music",
+        "description": "",
         "city": "hanoi"
       }
     }

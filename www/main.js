@@ -5,7 +5,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiYWdyaWduYXJkIiwiYSI6ImNqdWZ6ZjJ5MDBoenczeXBkY
 
 var devMode = false;
 var showAllValueDiv = devMode ? true : false;
-export var country = "france";
+export var country = "world";
 export var city="lyon";
 export var dataPlacePath = "./data/places/generated/";
 export var dataEventPath = "./data/events/generated/";

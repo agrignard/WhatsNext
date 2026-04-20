@@ -1,0 +1,3258 @@
+<<<<<<< Updated upstream
+=======
+Date: Archives
+Event: Retrouvez tous nos événements passés,
+Place: Le Sucre
+city: Lyon
+country: France
+Style: Electro
+isCancelled: false
+DetailedStyle: 
+source: Le Sucre (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Le Sucre. Reçu 'Archives', converti en ''. Formats essayés: dd-MM
+https://le-sucre.eu/agenda-archives/
+
+Date: 22 avril et 23 avril à 20h
+Event: Doppler + Dirty Harry
+Place: Le Périscope
+city: Lyon
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: (Rock & Pop)
+source: Le Petit Bulletin (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Le Petit Bulletin. Reçu '22 avril et 23 avril à 20h', converti en '22-04-23-20:00'. Formats essayés: dd-MM-yyyy-HH:mm
+https://www.petit-bulletin.fr/agenda-281699-doppler-dirty-harry.html
+
+Date: 25 avril et 26 avril samedi à 20h30, dimanche à 17h
+Event: Nicolas de Flüe
+Place: Basilique de Saint-Martin-d\'Ainay
+city: Lyon
+country: France
+Style: Classique
+isCancelled: false
+DetailedStyle: (Classique et Lyrique)
+source: Le Petit Bulletin (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Le Petit Bulletin. Reçu '25 avril et 26 avril samedi à 20h30, dimanche à 17h', converti en '25-04-26-20:30'. Formats essayés: dd-MM-yyyy-HH:mm
+https://www.petit-bulletin.fr/agenda-317826-nicolas-de-flue.html
+
+Date: 25 avril et 26 avril samedi à 20h, dimanche à 18h30
+Event: The End - Music For Films
+Place: Amphithéâtre de l'Opéra
+city: Lyon
+country: France
+Style: Classique
+isCancelled: false
+DetailedStyle: (Classique et Lyrique)
+source: Le Petit Bulletin (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Le Petit Bulletin. Reçu '25 avril et 26 avril samedi à 20h, dimanche à 18h30', converti en '25-04-26-20:00'. Formats essayés: dd-MM-yyyy-HH:mm
+https://www.petit-bulletin.fr/agenda-317909-the-end-music-for-films.html
+
+Date: 15 mai et 16 mai à 20h
+Event: Baby Volcano
+Place: Les SUBS
+city: Lyon
+country: France
+Style: Live
+isCancelled: false
+DetailedStyle: (Musique Electronique)
+source: Le Petit Bulletin (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Le Petit Bulletin. Reçu '15 mai et 16 mai à 20h', converti en '15-05-16-20:00'. Formats essayés: dd-MM-yyyy-HH:mm
+https://www.petit-bulletin.fr/agenda-317597-baby-volcano.html
+
+Date: 8 juin et 9 juin à 21h30
+Event: Vanessa Paradis + Billie
+Place: Théâtres romains de Fourvière
+city: Lyon
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: (Rock & Pop)
+source: Le Petit Bulletin (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Le Petit Bulletin. Reçu '8 juin et 9 juin à 21h30', converti en '08-06-09-21:30'. Formats essayés: dd-MM-yyyy-HH:mm
+https://www.petit-bulletin.fr/agenda-317607-vanessa-paradis-billie.html
+
+Date: 10 juin et 11 juin à 21h30
+Event: Massive Attack
+Place: Théâtres romains de Fourvière
+city: Lyon
+country: France
+Style: Live
+isCancelled: false
+DetailedStyle: (Musique Electronique)
+source: Le Petit Bulletin (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Le Petit Bulletin. Reçu '10 juin et 11 juin à 21h30', converti en '10-06-11-21:30'. Formats essayés: dd-MM-yyyy-HH:mm
+https://www.petit-bulletin.fr/agenda-317608-massive-attack.html
+
+Date: Du 10 au 12 juin 2026, à 20h30 sauf mercredi à 19h30
+Event: Honda Romance
+Place: Maison de la Danse
+city: Lyon
+country: France
+Style: Classique
+isCancelled: false
+DetailedStyle: (Classique et Lyrique)
+source: Le Petit Bulletin (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Le Petit Bulletin. Reçu 'Du 10 au 12 juin 2026, à 20h30 sauf mercredi à 19h30', converti en '10-12-06-2026-20:30'. Formats essayés: dd-MM-yyyy-HH:mm
+https://www.petit-bulletin.fr/agenda-316766-honda-romance.html
+
+Date: Thursday, Mar 19, 03:00 PM → Saturday, May 23
+Event: Sirco Ceguro, Liv Schulman
+Place: La Salle de Bains
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, Mar 19, 03:00 PM → Saturday, May 23', converti en '03-19-03:00-23'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/vernissage
+
+Date: Friday, Apr 17, 08:00 PM → Sunday, Apr 19
+Event: Concert Frédéric Bobin
+Place: agend'arts
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Friday, Apr 17, 08:00 PM → Sunday, Apr 19', converti en '17-08:00-19'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/concert
+
+Date: Monday, Apr 20, 07:00 PM-09:00 PM
+Event: Réunion par le collectif Bi Pan Lyon
+Place: La Comète
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Monday, Apr 20, 07:00 PM-09:00 PM', converti en '20-07:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/discussion
+
+Date: Monday, Apr 20, 08:00 PM-10:00 PM
+Event: Big Comedy Club
+Place: Big White
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Monday, Apr 20, 08:00 PM-10:00 PM', converti en '20-08:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/th%C3%A9%C3%A2tre
+
+Date: Tuesday, Apr 21, 11:30 AM-02:30 PM
+Event: Les Cantines Incroyables !
+Place: L’Amicale Du Futur
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Tuesday, Apr 21, 11:30 AM-02:30 PM', converti en '21-11:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/bouffe
+
+Date: Tuesday, Apr 21, 07:00 PM-11:30 PM
+Event: BOOK'IN#4 - Rob Grams + ATAWW + MEUL
+Place: La Commune Gerland
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Tuesday, Apr 21, 07:00 PM-11:30 PM', converti en '21-07:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/conf%C3%A9rence
+
+Date: Tuesday, Apr 21, 08:30 PM-10:30 PM
+Event: CRASH IMPRO
+Place: Toï Toï Le Zinc
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Tuesday, Apr 21, 08:30 PM-10:30 PM', converti en '21-08:30'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Tuesday, Apr 21, 08:30 PM-11:00 PM
+Event: [ANNULE] Willie & los cuervos (folk rock, ES) + Westwood (rock'n'roll, ES)
+Place: Le Trokson
+city: Lyon
+country: France
+isCancelled: true
+DetailedStyle: 
+Style: Rock
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Tuesday, Apr 21, 08:30 PM-11:00 PM', converti en '21-08:30'. Formats essayés: MM-dd-HH:mm
+altURLs: https://villemorte.fr/tag/concert,https://www.trokson.com/shows
+https://www.trokson.com/shows
+
+Date: Wednesday, Apr 22, 10:00 AM-10:00 PM
+Event: Ouverture hebdomadaire de l'Amicale du futur - Tous les mercredi - Cantine le midi, snack le soir, bar café en continu
+Place: L’Amicale Du Futur
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Wednesday, Apr 22, 10:00 AM-10:00 PM', converti en '22-10:00'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Wednesday, Apr 22, 02:00 PM-05:00 PM
+Event: Le Café de La Comète (sans mec cis hétéro)
+Place: La Comète
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Wednesday, Apr 22, 02:00 PM-05:00 PM', converti en '22-02:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/caf%C3%A9
+
+Date: Wednesday, Apr 22, 07:00 PM-10:30 PM
+Event: BOOK'IN #4 - Rob Grams + ATAWW
+Place: Toï Toï Le Zinc
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Wednesday, Apr 22, 07:00 PM-10:30 PM', converti en '22-07:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/discussion
+
+Date: Wednesday, Apr 22, 07:30 PM → Friday, Apr 24
+Event: L’AN ZERO 1 – ÉTAPE DE TRAVAIL / D’après l’œuvre de Gébé / Grégoire Vauquois / Cie Candolle
+Place: Théâtre de l’Elysée
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Wednesday, Apr 22, 07:30 PM → Friday, Apr 24', converti en '22-07:30-24'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Wednesday, Apr 22, 08:00 PM
+Event: Undergang + Corpus Offal + Vosser
+Place: Grrrnd Zéro
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Wednesday, Apr 22, 08:00 PM', converti en '22-08:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/concert
+
+Date: Wednesday, Apr 22, 08:45 PM
+Event: SNUFF (garage rock/flower punk) (Italy)
+Place: Le Trokson
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Rock
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Wednesday, Apr 22, 08:45 PM', converti en '22-08:45'. Formats essayés: MM-dd-HH:mm
+altURLs: ,https://www.trokson.com/shows
+https://www.trokson.com/shows
+
+Date: Wednesday, Apr 22, 09:00 PM-11:00 PM
+Event: DOPPLeR + DIRTY HARRY DJ Set
+Place: Le Périscope
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Jazz
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Wednesday, Apr 22, 09:00 PM-11:00 PM', converti en '22-09:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/musique%20live
+
+Date: Thursday, Apr 23, 06:00 PM-07:00 PM
+Event: Permanence Programmation de la Comète
+Place: La Comète
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, Apr 23, 06:00 PM-07:00 PM', converti en '23-06:00'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Thursday, Apr 23, 07:00 PM
+Event: Scène ouverte & bal folk
+Place: La Boulangerie du Prado
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, Apr 23, 07:00 PM', converti en '23-07:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/bal%20folk
+
+Date: Thursday, Apr 23, 07:00 PM-08:00 PM
+Event: Poésie couchée #1
+Place: La Machinerie - Théâtre de Vénissieux
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, Apr 23, 07:00 PM-08:00 PM', converti en '23-07:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/po%C3%A9sie
+
+Date: Thursday, Apr 23, 07:00 PM-10:00 PM
+Event: CINE ZAATAR #6 Tout et rien de Jayce SALLOUM
+Place: L’Amicale Du Futur
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, Apr 23, 07:00 PM-10:00 PM', converti en '23-07:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/projection
+
+Date: Thursday, Apr 23, 07:30 PM
+Event: Projection · rencontre documentaire · "Les fleurs de l’est poussent aussi"
+Place: BosKop
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, Apr 23, 07:30 PM', converti en '23-07:30'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Thursday, Apr 23, 08:00 PM
+Event: Un micro pour tous·tes - Open mic
+Place: Rita-Plage
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, Apr 23, 08:00 PM', converti en '23-08:00'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Thursday, Apr 23, 08:00 PM → Friday, Apr 24
+Event: Ce que le ventre dit
+Place: La Machinerie - Théâtre de Vénissieux
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, Apr 23, 08:00 PM → Friday, Apr 24', converti en '23-08:00-24'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/concert
+
+Date: Thursday, Apr 23, 08:00 PM
+Event: The Left + Guilty Simpson COMPLET
+Place: Le Sonic
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Rock
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, Apr 23, 08:00 PM', converti en '23-08:00'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Thursday, Apr 23, 08:00 PM-01:00 AM
+Event: CONCERT MAJORA + LOU LEON
+Place: Groom
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Electro
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, Apr 23, 08:00 PM-01:00 AM', converti en '23-08:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/concert
+
+Date: Thursday, Apr 23, 08:00 PM-12:00 AM
+Event: DOPPLeR + Dirty Harry DJ Set
+Place: Le Périscope
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Jazz
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, Apr 23, 08:00 PM-12:00 AM', converti en '23-08:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/concert
+
+Date: Thursday, Apr 23, 08:30 PM
+Event: Peet
+Place: Marché Gare
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, Apr 23, 08:30 PM', converti en '23-08:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/rap
+
+Date: Thursday, Apr 23, 08:30 PM
+Event: Grise Cornac
+Place: À Thou Bout d'Chant
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, Apr 23, 08:30 PM', converti en '23-08:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/musique%20live
+
+Date: Thursday, Apr 23, 08:30 PM-11:30 PM
+Event: The Funk Blasters
+Place: Toï Toï Le Zinc
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, Apr 23, 08:30 PM-11:30 PM', converti en '23-08:30'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Thursday, Apr 23, 09:00 PM-03:45 AM
+Event: SPIELCLUB
+Place: Loupika
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, Apr 23, 09:00 PM-03:45 AM', converti en '23-09:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/DJ%20Set
+
+Date: Friday, Apr 24, 06:00 PM
+Event: Octobre Rase par Dynastits
+Place: Marché Gare
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Friday, Apr 24, 06:00 PM', converti en '24-06:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/soir%C3%A9e%20de%20soutien
+
+Date: Friday, Apr 24, 06:00 PM
+Event: Dub the Grrrnd #5 avec Radio Canut
+Place: Grrrnd Zéro
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Friday, Apr 24, 06:00 PM', converti en '24-06:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/musique%20live
+
+Date: Friday, Apr 24, 06:30 PM-08:30 PM
+Event: Atelier d'écriture (sans hommes cis)
+Place: La Comète
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Friday, Apr 24, 06:30 PM-08:30 PM', converti en '24-06:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/atelier%20d'%C3%A9criture
+
+Date: Friday, Apr 24, 07:00 PM-11:30 PM
+Event: SOIREE DE SOUTIEN AU FLANEUR !!!
+Place: Le Flâneur
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Friday, Apr 24, 07:00 PM-11:30 PM', converti en '24-07:00'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Friday, Apr 24, 07:00 PM-08:00 PM
+Event: Cahier d'Aimé
+Place: La Machinerie - Théâtre de Vénissieux
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Friday, Apr 24, 07:00 PM-08:00 PM', converti en '24-07:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/po%C3%A9sie
+
+Date: Friday, Apr 24, 07:15 PM-01:00 AM
+Event: EFFEUILLAGE BURLESQUE + SLAM
+Place: Groom
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Electro
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Friday, Apr 24, 07:15 PM-01:00 AM', converti en '24-07:15'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/th%C3%A9%C3%A2tre
+
+Date: Friday, Apr 24, 07:30 PM
+Event: Scène littéraire queer - Les étoiles parlantes
+Place: Rita-Plage
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Friday, Apr 24, 07:30 PM', converti en '24-07:30'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Friday, Apr 24, 08:00 PM-09:00 PM
+Event: Gang Lang
+Place: La Machinerie - Théâtre de Vénissieux
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Friday, Apr 24, 08:00 PM-09:00 PM', converti en '24-08:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/concert
+
+Date: Friday, Apr 24, 08:00 PM
+Event: Das Kinn + Bö.senberg
+Place: Le Sonic
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Rock
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Friday, Apr 24, 08:00 PM', converti en '24-08:00'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Friday, Apr 24, 08:00 PM → Sunday, Apr 26
+Event: Spectacle Mortus tragicus
+Place: agend'arts
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Friday, Apr 24, 08:00 PM → Sunday, Apr 26', converti en '24-08:00-26'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/musique%20live
+
+Date: Friday, Apr 24, 08:30 PM
+Event: CONCERT | LOUISADONNA
+Place: À Thou Bout d'Chant
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Friday, Apr 24, 08:30 PM', converti en '24-08:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/chanson%20fran%C3%A7aise
+
+Date: Friday, Apr 24, 08:30 PM
+Event: Christian Suicide / INNASSAAH + Secret Guest
+Place: Bar des Capucins
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Friday, Apr 24, 08:30 PM', converti en '24-08:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/musique%20live
+
+Date: Friday, Apr 24, 08:30 PM-11:30 PM
+Event: Amazigh + Grand Gamin
+Place: Toï Toï Le Zinc
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Friday, Apr 24, 08:30 PM-11:30 PM', converti en '24-08:30'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Saturday, Apr 25, 09:30 AM → Sunday, Apr 26
+Event: Balade “Les mains qui nous nourrissent”, agriculture et alimentation sur le GR169
+Place: gare TER de Charbonnières-les-Bains
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, Apr 25, 09:30 AM → Sunday, Apr 26', converti en '25-09:30-26'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/alimentation
+
+Date: Saturday, Apr 25, 02:00 PM-09:00 PM
+Event: Journée d’information contre Bolloré & ses alliés - Samedi 25 avril 2026 de 14h à 21h
+Place: Ile Egalité
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, Apr 25, 02:00 PM-09:00 PM', converti en '25-02:00'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Saturday, Apr 25, 04:00 PM
+Event: 10 ans de Terre d'Ancrages
+Place: Grrrnd Zéro
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, Apr 25, 04:00 PM', converti en '25-04:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/musique%20live
+
+Date: Saturday, Apr 25, 04:00 PM-11:00 PM
+Event: Panthère Tonnerre Amicale
+Place: L’Amicale Du Futur
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, Apr 25, 04:00 PM-11:00 PM', converti en '25-04:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/po%C3%A9sie
+
+Date: Saturday, Apr 25, 04:00 PM-01:00 AM
+Event: OPEN AIR Solibarités - DJ SETS + STAND MAKE UP, DIY, STRASS DENTAIRE, TATTOO
+Place: Blue Monday
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, Apr 25, 04:00 PM-01:00 AM', converti en '25-04:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/DJ%20Set
+
+Date: Saturday, Apr 25, 06:00 PM-07:00 PM
+Event: Nous sommes la pluie sur le sol nu - Laura Tirandaz et Arash Sarkechik
+Place: La Machinerie - Bizarre !
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, Apr 25, 06:00 PM-07:00 PM', converti en '25-06:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/concert
+
+Date: Saturday, Apr 25, 06:30 PM-11:30 PM
+Event: La soirée des 30 ans d'agend'Arts
+Place: salle de la Ficelle
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, Apr 25, 06:30 PM-11:30 PM', converti en '25-06:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/th%C3%A9%C3%A2tre
+
+Date: Saturday, Apr 25, 07:00 PM-12:00 AM
+Event: 10 ANS DES CLAMEURS
+Place: Les Clameurs
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, Apr 25, 07:00 PM-12:00 AM', converti en '25-07:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/bar%20autog%C3%A9r%C3%A9
+
+Date: Saturday, Apr 25, 07:00 PM-08:00 PM
+Event: Les âmes vivantes des grandes aigrettes - Diaty Diallo
+Place: La Machinerie - Bizarre !
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, Apr 25, 07:00 PM-08:00 PM', converti en '25-07:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/po%C3%A9sie
+
+Date: Saturday, Apr 25, 08:00 PM-10:00 PM
+Event: le Blaguistan - Stand-up au Bieristan
+Place: Bieristan
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, Apr 25, 08:00 PM-10:00 PM', converti en '25-08:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/th%C3%A9%C3%A2tre
+
+Date: Saturday, Apr 25, 08:00 PM-01:00 AM
+Event: REST IN GALE + GUEST
+Place: Groom
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Electro
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, Apr 25, 08:00 PM-01:00 AM', converti en '25-08:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/concert
+
+Date: Saturday, Apr 25, 08:30 PM
+Event: AblaBôye
+Place: À Thou Bout d'Chant
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, Apr 25, 08:30 PM', converti en '25-08:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/folk
+
+Date: Saturday, Apr 25, 08:30 PM
+Event: FURAX BARBAROSSA + ANTON SERRA & OSTER LAPWASS + 10VERS
+Place: La Machinerie - Bizarre !
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, Apr 25, 08:30 PM', converti en '25-08:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/concert
+
+Date: Saturday, Apr 25, 08:30 PM-11:30 PM
+Event: SOIRÉE MAD MATH METAL#1
+Place: Toï Toï Le Zinc
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, Apr 25, 08:30 PM-11:30 PM', converti en '25-08:30'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Saturday, Apr 25, 08:45 PM
+Event: The Loyal Cheaters (Turbo Punk’N’Roll) Italy
+Place: Le Trokson
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Rock
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, Apr 25, 08:45 PM', converti en '25-08:45'. Formats essayés: MM-dd-HH:mm
+altURLs: ,https://www.trokson.com/shows
+https://www.trokson.com/shows
+
+Date: Saturday, Apr 25, 09:00 PM-01:00 AM
+Event: Concert punk au toutenkaos
+Place: Toutenkaos
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, Apr 25, 09:00 PM-01:00 AM', converti en '25-09:00'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Sunday, Apr 26, 04:00 PM-06:00 PM
+Event: L'ovaire du décor - Conférence gesticulée
+Place: La Ruche
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Sunday, Apr 26, 04:00 PM-06:00 PM', converti en '26-04:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/sant%C3%A9
+
+Date: Sunday, Apr 26, 06:00 PM
+Event: TRUMPETS OF CONSCIOUSNESS | ARKURRI
+Place: Kraspek Myzik
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Sunday, Apr 26, 06:00 PM', converti en '26-06:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/concert
+
+Date: Sunday, Apr 26, 07:30 PM-11:00 PM
+Event: Lma + Rroy
+Place: La Pente
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Sunday, Apr 26, 07:30 PM-11:00 PM', converti en '26-07:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/concert
+
+Date: Monday, Apr 27, 06:30 PM-08:00 PM
+Event: Cercle de lecture auto-géré (sans hommes cis)
+Place: La Comète
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Monday, Apr 27, 06:30 PM-08:00 PM', converti en '27-06:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/discussion
+
+Date: Monday, Apr 27, 08:00 PM
+Event: Hyper Gal + allball
+Place: Le Sonic
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Rock
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Monday, Apr 27, 08:00 PM', converti en '27-08:00'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Tuesday, Apr 28, 07:00 PM-09:00 PM
+Event: I'm free : concert gratuit - « Aki Rissanen : Omniwerk »
+Place: Le Périscope
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Jazz
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Tuesday, Apr 28, 07:00 PM-09:00 PM', converti en '28-07:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/concert
+
+Date: Tuesday, Apr 28, 07:30 PM → Thursday, Apr 30
+Event: SURFACE DE RÉPARATIONS – OU COMMENT RECOUDRE LA CAPE ROUGE DE SUPERMAN / de Claire Truche / Nième Compagnie
+Place: Théâtre de l’Elysée
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Tuesday, Apr 28, 07:30 PM → Thursday, Apr 30', converti en '28-07:30-30'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Tuesday, Apr 28, 08:30 PM-10:30 PM
+Event: CRASH IMPRO
+Place: Toï Toï Le Zinc
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Tuesday, Apr 28, 08:30 PM-10:30 PM', converti en '28-08:30'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Wednesday, Apr 29, 03:00 PM-03:30 PM
+Event: Le vertige de l'envers - Cie L'Envolée Cirque
+Place: La Machinerie - Théâtre de Vénissieux
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Wednesday, Apr 29, 03:00 PM-03:30 PM', converti en '29-03:00'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Wednesday, Apr 29, 07:00 PM-10:00 PM
+Event: KARAOKE AVEC MUSICIENS LIVE !
+Place: Blue Monday
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Wednesday, Apr 29, 07:00 PM-10:00 PM', converti en '29-07:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/jam
+
+Date: Wednesday, Apr 29, 07:30 PM
+Event: Peña - Jam session des Andes
+Place: Rita-Plage
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Wednesday, Apr 29, 07:30 PM', converti en '29-07:30'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Wednesday, Apr 29, 08:00 PM-10:00 PM
+Event: TOÏ TOÏ LE QUIZ // Le Giga Mega Super Quiz #2
+Place: Toï Toï Le Zinc
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Wednesday, Apr 29, 08:00 PM-10:00 PM', converti en '29-08:00'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Wednesday, Apr 29, 08:00 PM-01:00 AM
+Event: WEIRD OMEN + GUEST
+Place: Groom
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Electro
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Wednesday, Apr 29, 08:00 PM-01:00 AM', converti en '29-08:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/concert
+
+Date: Wednesday, Apr 29, 08:00 PM-09:15 PM
+Event: Concert Camille Laïly
+Place: agend'arts
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Wednesday, Apr 29, 08:00 PM-09:15 PM', converti en '29-08:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/musique%20live
+
+Date: Wednesday, Apr 29, 08:30 PM
+Event: BLINDTEST | QU'OUÏS-JE ?
+Place: À Thou Bout d'Chant
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Wednesday, Apr 29, 08:30 PM', converti en '29-08:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/blindtest
+
+Date: Thursday, Apr 30, 06:30 PM-11:55 PM
+Event: Second Souffle — Le sport, on en fait et on en parle
+Place: Vitamine7
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, Apr 30, 06:30 PM-11:55 PM', converti en '30-06:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/conf%C3%A9rence
+
+Date: Thursday, Apr 30, 07:00 PM
+Event: Finissage exposition collective : Figure toi · Ça va bien
+Place: BosKop
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, Apr 30, 07:00 PM', converti en '30-07:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/projection
+
+Date: Thursday, Apr 30, 07:30 PM
+Event: Théâtre - FRANCK BOMPARD
+Place: Rita-Plage
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, Apr 30, 07:30 PM', converti en '30-07:30'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Thursday, Apr 30, 08:00 PM-09:15 PM
+Event: Concert Bernard Gautier-Péry
+Place: agend'arts
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, Apr 30, 08:00 PM-09:15 PM', converti en '30-08:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/concert
+
+Date: Thursday, Apr 30, 08:00 PM-01:00 AM
+Event: LONESOME DOGS +JIM YOUNGER'S SPIRIT
+Place: Groom
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Electro
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, Apr 30, 08:00 PM-01:00 AM', converti en '30-08:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/concert
+
+Date: Thursday, Apr 30, 08:00 PM
+Event: Edhochuli + Potence + Tromblon + Belladone
+Place: Grrrnd Zéro
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, Apr 30, 08:00 PM', converti en '30-08:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/concert
+
+Date: Thursday, Apr 30, 08:00 PM
+Event: MADEINPARIS
+Place: La Machinerie - Bizarre !
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, Apr 30, 08:00 PM', converti en '30-08:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/rap
+
+Date: Thursday, Apr 30, 08:30 PM
+Event: Fleur sous bitume + Mo(i) | Co-plateau
+Place: À Thou Bout d'Chant
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, Apr 30, 08:30 PM', converti en '30-08:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/rap
+
+Date: Thursday, Apr 30, 08:30 PM-11:30 PM
+Event: DRAGSHOW // Les Oliviers x Les Ronces x DJ Pom Pom Pom
+Place: Toï Toï Le Zinc
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, Apr 30, 08:30 PM-11:30 PM', converti en '30-08:30'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Thursday, Apr 30, 08:30 PM
+Event: IT IT ANITA | LA JUNGLE
+Place: Marché Gare
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, Apr 30, 08:30 PM', converti en '30-08:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/concert
+
+Date: Thursday, Apr 30, 08:30 PM-10:30 PM
+Event: CONCERT - Blue Blazer Band
+Place: Blue Monday
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, Apr 30, 08:30 PM-10:30 PM', converti en '30-08:30'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Thursday, Apr 30, 08:45 PM
+Event: Raincheck! (Punk rock) + One Burning match (Hardcore punk)
+Place: Le Trokson
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Rock
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, Apr 30, 08:45 PM', converti en '30-08:45'. Formats essayés: MM-dd-HH:mm
+altURLs: ,https://www.trokson.com/shows
+https://www.trokson.com/shows
+
+Date: Thursday, Apr 30, 09:00 PM-11:00 PM
+Event: Société Étrange 'Release Party' + Manoir Molle
+Place: Le Périscope
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Jazz
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, Apr 30, 09:00 PM-11:00 PM', converti en '30-09:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/musique%20live
+
+Date: Friday, May 01, 07:00 PM-10:00 PM
+Event: Concert Punk Hardcore : PHOSPHORE (hxc Bordeaux) + RUPTURE (punk rock lyon)
+Place: L’Amicale Du Futur
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Friday, May 01, 07:00 PM-10:00 PM', converti en '01-07:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/concert
+
+Date: Saturday, May 02, 06:00 PM
+Event: Algorave
+Place: Grrrnd Zéro
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, May 02, 06:00 PM', converti en '02-06:00'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Saturday, May 02, 07:30 PM-11:30 PM
+Event: The Rumpled + Sulfat'Ketamine
+Place: Bulle de Son
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, May 02, 07:30 PM-11:30 PM', converti en '02-07:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/concert
+
+Date: Saturday, May 02, 08:30 PM-11:30 PM
+Event: Burn the Stage #2
+Place: Toï Toï Le Zinc
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, May 02, 08:30 PM-11:30 PM', converti en '02-08:30'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Monday, May 04, 07:30 PM-08:30 PM
+Event: LES CRABES Raphaël Gautier / Cie NYXs
+Place: Théâtre de l’Elysée
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Monday, May 04, 07:30 PM-08:30 PM', converti en '04-07:30'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Tuesday, May 05, 08:00 PM
+Event: Siderean + Karma + Dysylumn
+Place: Grrrnd Zéro
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Tuesday, May 05, 08:00 PM', converti en '05-08:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/concert
+
+Date: Tuesday, May 05, 08:00 PM-10:00 PM
+Event: Stand Up Politique
+Place: Les Clameurs
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Tuesday, May 05, 08:00 PM-10:00 PM', converti en '05-08:00'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Tuesday, May 05, 08:00 PM
+Event: Public Circuit + La Peau Douce
+Place: Le Sonic
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Rock
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Tuesday, May 05, 08:00 PM', converti en '05-08:00'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Tuesday, May 05, 08:30 PM → Sunday, May 10
+Event: On vous ment
+Place: Lyon / Villeurbanne
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Tuesday, May 05, 08:30 PM → Sunday, May 10', converti en '05-08:30-10'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/cin%C3%A9ma
+
+Date: Wednesday, May 06, 07:00 PM-07:45 PM
+Event: Histoires de Fouilles - David Wahl
+Place: La Machinerie - Théâtre de Vénissieux
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Wednesday, May 06, 07:00 PM-07:45 PM', converti en '06-07:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/th%C3%A9%C3%A2tre
+
+Date: Wednesday, May 06, 08:30 PM
+Event: CONCERT | TRIBUTE THOU MYLÈNE FARMER
+Place: À Thou Bout d'Chant
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Wednesday, May 06, 08:30 PM', converti en '06-08:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/chanson%20fran%C3%A7aise
+
+Date: Wednesday, May 06, 08:30 PM-11:00 PM
+Event: Concert du Labo : Clo + RROY + Alyosha
+Place: Marché Gare
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Wednesday, May 06, 08:30 PM-11:00 PM', converti en '06-08:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/pop-rock
+
+Date: Wednesday, May 06, 09:00 PM-11:00 PM
+Event: Milkweed + Sourdure au Périscope
+Place: Le Périscope
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Jazz
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Wednesday, May 06, 09:00 PM-11:00 PM', converti en '06-09:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/concert
+
+Date: Thursday, May 07, 06:00 PM
+Event: Pop Fiction : Lip-Sync Challenge
+Place: Grrrnd Zéro
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, May 07, 06:00 PM', converti en '07-06:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/DJ%20Set
+
+Date: Thursday, May 07, 07:30 PM-11:00 PM
+Event: Milena et Clémentine Weck
+Place: Bulle de Son
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, May 07, 07:30 PM-11:00 PM', converti en '07-07:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/musique%20live
+
+Date: Thursday, May 07, 08:00 PM-10:30 PM
+Event: Le Feu au Lac - Gravité
+Place: Maison de l’écologie
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, May 07, 08:00 PM-10:30 PM', converti en '07-08:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/stand-up
+
+Date: Thursday, May 07, 08:00 PM
+Event: Loa Mercury + Leo Mid
+Place: Le Sonic
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Rock
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, May 07, 08:00 PM', converti en '07-08:00'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Thursday, May 07, 08:00 PM-09:30 PM
+Event: Safrane
+Place: La Filature
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, May 07, 08:00 PM-09:30 PM', converti en '07-08:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/lecture
+
+Date: Thursday, May 07, 08:30 PM-11:00 PM
+Event: Concert : Bandit Bandit + Blue Salt
+Place: Marché Gare
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, May 07, 08:30 PM-11:00 PM', converti en '07-08:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/bouffe
+
+Date: Thursday, May 07, 08:30 PM
+Event: Marcia + Lisa Claudie | Co-plateau
+Place: À Thou Bout d'Chant
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, May 07, 08:30 PM', converti en '07-08:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/musique%20live
+
+Date: Thursday, May 07, 09:00 PM-11:00 PM
+Event: Sauges + Soleil Rouge au Périscope
+Place: Le Périscope
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Jazz
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, May 07, 09:00 PM-11:00 PM', converti en '07-09:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/musique%20live
+
+Date: Friday, May 08, 08:00 PM
+Event: L'Enfant Pneu présente : Say Hi To the Devil (sortie de résidence) + première partie
+Place: Le Sonic
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Rock
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Friday, May 08, 08:00 PM', converti en '08-08:00'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Friday, May 08, 08:00 PM
+Event: Julien Nicolaï + L'Étrange Alliance du Merveilleux et de l'Immonde + Subtle Turnhips + Canari Gros Calibre
+Place: Grrrnd Zéro
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Friday, May 08, 08:00 PM', converti en '08-08:00'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Saturday, May 09, 07:30 PM-11:00 PM
+Event: Ashed Winter + Bombburst + Fox Paradox
+Place: Bulle de Son
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, May 09, 07:30 PM-11:00 PM', converti en '09-07:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/musique%20live
+
+Date: Saturday, May 09, 08:00 PM-09:00 PM
+Event: Concert Aigre douce
+Place: agend'arts
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, May 09, 08:00 PM-09:00 PM', converti en '09-08:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/concert
+
+Date: Saturday, May 09, 08:00 PM
+Event: YACOPSAE + SHITBRAINS + EXORBITANT PRICES MUST DIMINISH + WARFUCK
+Place: Grrrnd Zéro
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, May 09, 08:00 PM', converti en '09-08:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/concert
+
+Date: Saturday, May 09, 08:30 PM-11:30 PM
+Event: BAL FOLK // Sortie d'album du Duo Azare
+Place: Toï Toï Le Zinc
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, May 09, 08:30 PM-11:30 PM', converti en '09-08:30'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Sunday, May 10, 04:00 PM-06:00 PM
+Event: Balade chapeautée internationale
+Place: RDV devant la statue de Jacquard.
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Sunday, May 10, 04:00 PM-06:00 PM', converti en '10-04:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/musique%20live
+
+Date: Tuesday, May 12, 07:00 PM-09:00 PM
+Event: Pali Meursault : concert gratuit au Périscope
+Place: Le Périscope
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Jazz
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Tuesday, May 12, 07:00 PM-09:00 PM', converti en '12-07:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/musique%20live
+
+Date: Wednesday, May 13, 07:30 PM-12:00 AM
+Event: ELECTRORURAL
+Place: L’Amicale Du Futur
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Wednesday, May 13, 07:30 PM-12:00 AM', converti en '13-07:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/DJ%20Set
+
+Date: Wednesday, May 13, 07:30 PM → Friday, May 15
+Event: GLAUQUE – ÉTAPE DE TRAVAIL Baptiste Febvre / Collectif Clébards selon ton cœur
+Place: Théâtre de l’Elysée
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Wednesday, May 13, 07:30 PM → Friday, May 15', converti en '13-07:30-15'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Thursday, May 14, 07:30 PM-11:00 PM
+Event: Disaster Alley + Pannic Button Theory + Désordre
+Place: Bulle de Son
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, May 14, 07:30 PM-11:00 PM', converti en '14-07:30'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Thursday, May 14, 08:00 PM-01:00 AM
+Event: Concert PUNK : DESTRUCT (dbeat punk usa) / UZU (post punk Montréal) / DELETÄR (dbeat punk lyon)
+Place: Grrrnd Zéro
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, May 14, 08:00 PM-01:00 AM', converti en '14-08:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/concert
+
+Date: Friday, May 15, 08:00 PM → Saturday, May 16
+Event: Écoutes périphériques
+Place: Grrrnd Zéro
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Friday, May 15, 08:00 PM → Saturday, May 16', converti en '15-08:00-16'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Friday, May 15, 08:30 PM-11:00 PM
+Event: Soirée Space Guitar (2e édition) - Toï Toï Le Zinc
+Place: Toï Toï Le Zinc
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Friday, May 15, 08:30 PM-11:00 PM', converti en '15-08:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/musique%20live
+
+Date: Saturday, May 16, 08:00 PM → Sunday, May 17
+Event: Concert Café con cielo et Kevin Dall’Agnol
+Place: agend'arts
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, May 16, 08:00 PM → Sunday, May 17', converti en '16-08:00-17'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/musique%20live
+
+Date: Saturday, May 16, 08:00 PM-11:00 PM
+Event: ♡ SUPPORT UR LOCAL TRANSFEM ARTISTS ♡ Nuage Rose + Eau Chaude Sanitaire
+Place: Théâtre des Clochards Célestes
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, May 16, 08:00 PM-11:00 PM', converti en '16-08:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/concert
+
+Date: Saturday, May 16, 08:00 PM-11:30 PM
+Event: COMPETE + TURN OF PHRASE + LORE + QUEER PANIC
+Place: Toï Toï Le Zinc
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, May 16, 08:00 PM-11:30 PM', converti en '16-08:00'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Saturday, May 16, 08:30 PM-12:30 AM
+Event: Concert : Paledusk + Knosis + Greyhaven + Headwreck
+Place: Marché Gare
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, May 16, 08:30 PM-12:30 AM', converti en '16-08:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/bouffe
+
+Date: Tuesday, May 19, 08:00 PM
+Event: Lorelle Meets the Obsolete + Bergiès
+Place: Le Sonic
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Rock
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Tuesday, May 19, 08:00 PM', converti en '19-08:00'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Tuesday, May 19, 08:00 PM-09:00 PM
+Event: Concert Camille Laïly
+Place: agend'arts
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Tuesday, May 19, 08:00 PM-09:00 PM', converti en '19-08:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/musique%20live
+
+Date: Wednesday, May 20, 08:30 PM-12:00 AM
+Event: KAARMA TECHNO - Lives machines & Dj Set Vinyle - Toï Toï Le Zinc
+Place: Toï Toï Le Zinc
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Wednesday, May 20, 08:30 PM-12:00 AM', converti en '20-08:30'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Wednesday, May 20, 09:00 PM-11:00 PM
+Event: Nout au Périscope
+Place: Le Périscope
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Jazz
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Wednesday, May 20, 09:00 PM-11:00 PM', converti en '20-09:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/concert
+
+Date: Thursday, May 21, 07:30 PM-11:00 PM
+Event: Dr Cunningham + Popeye Death Club
+Place: Bulle de Son
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, May 21, 07:30 PM-11:00 PM', converti en '21-07:30'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Thursday, May 21, 08:00 PM → Friday, May 22
+Event: Les Gaulois - Marion Aubert, Thomas Blanchard & Olivier Martin Salvan
+Place: La Machinerie - Théâtre de Vénissieux
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, May 21, 08:00 PM → Friday, May 22', converti en '21-08:00-22'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/th%C3%A9%C3%A2tre
+
+Date: Thursday, May 21, 08:30 PM-11:00 PM
+Event: Concert anniversaire du Labo : Claire days + Citron Sucré + JIA
+Place: Marché Gare
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, May 21, 08:30 PM-11:00 PM', converti en '21-08:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/bouffe
+
+Date: Thursday, May 21, 08:30 PM
+Event: Chloé Lacan
+Place: À Thou Bout d'Chant
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, May 21, 08:30 PM', converti en '21-08:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/musique%20live
+
+Date: Friday, May 22, 08:00 PM
+Event: Blind Delon + Yann Ponthus
+Place: Le Sonic
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Rock
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Friday, May 22, 08:00 PM', converti en '22-08:00'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Friday, May 22, 08:00 PM
+Event: Soirée drags & nerds
+Place: Grrrnd Zéro
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Friday, May 22, 08:00 PM', converti en '22-08:00'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Friday, May 22, 08:30 PM-11:30 PM
+Event: UNDER THE RADAR : Bloom in the Mist, Raude, BlackPlant - Toï Toï Le Zinc
+Place: Toï Toï Le Zinc
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Friday, May 22, 08:30 PM-11:30 PM', converti en '22-08:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/musique%20live
+
+Date: Friday, May 22, 09:00 PM-11:00 PM
+Event: Aïtawa + James Stewart au Périscope
+Place: Le Périscope
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Jazz
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Friday, May 22, 09:00 PM-11:00 PM', converti en '22-09:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/musique%20live
+
+Date: Saturday, May 23, 02:30 PM-06:30 PM
+Event: Arts d'écho - Journée pratiques amateurs & cultures urbaines
+Place: La Machinerie - Bizarre !
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, May 23, 02:30 PM-06:30 PM', converti en '23-02:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/Musique
+
+Date: Saturday, May 23, 04:30 PM-05:20 PM
+Event: Samedi d'Adele
+Place: La Salle de Bains
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, May 23, 04:30 PM-05:20 PM', converti en '23-04:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/exposition
+
+Date: Saturday, May 23, 08:00 PM
+Event: Est-ce que tu réalises ??
+Place: Grrrnd Zéro
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, May 23, 08:00 PM', converti en '23-08:00'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Saturday, May 23, 08:30 PM-12:00 AM
+Event: KARAOGAY des Louperies - Toï Toï Le Zinc
+Place: Toï Toï Le Zinc
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, May 23, 08:30 PM-12:00 AM', converti en '23-08:30'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Saturday, May 23, 09:00 PM-11:00 PM
+Event: Souls of Mischief au Périscope
+Place: Le Périscope
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Jazz
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, May 23, 09:00 PM-11:00 PM', converti en '23-09:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/concert
+
+Date: Sunday, May 24, 06:00 PM-07:15 PM
+Event: Concert Frasiak
+Place: agend'arts
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Sunday, May 24, 06:00 PM-07:15 PM', converti en '24-06:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/musique%20live
+
+Date: Tuesday, May 26, 07:30 PM → Friday, May 29
+Event: LA SOCIOLOGUE, LA PSYCHIATRE ET LA BOULANGÈRE Léa Porracchia / La Compagnie du Déluge
+Place: Théâtre de l’Elysée
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Tuesday, May 26, 07:30 PM → Friday, May 29', converti en '26-07:30-29'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Tuesday, May 26, 09:00 PM-11:00 PM
+Event: The Dwarfs of East Agouza au Périscope
+Place: Le Périscope
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Jazz
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Tuesday, May 26, 09:00 PM-11:00 PM', converti en '26-09:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/concert
+
+Date: Wednesday, May 27, 06:15 PM-07:15 PM
+Event: Conférence : UN BON ÉLÈVE EST-IL TOUJOURS UN ÉLÈVE QUI VA BIEN ? Sidonie Vacher (ECP, Université Lyon 2)
+Place: Théâtre de l’Elysée
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Wednesday, May 27, 06:15 PM-07:15 PM', converti en '27-06:15'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Wednesday, May 27, 08:30 PM-11:00 PM
+Event: Karaoké Life surf
+Place: Marché Gare
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Wednesday, May 27, 08:30 PM-11:00 PM', converti en '27-08:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/piano%20karaok%C3%A9
+
+Date: Thursday, May 28, 07:30 PM-11:00 PM
+Event: The Midnight Computers
+Place: Bulle de Son
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, May 28, 07:30 PM-11:00 PM', converti en '28-07:30'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Thursday, May 28, 08:30 PM
+Event: CONCERT | KARPATT
+Place: À Thou Bout d'Chant
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, May 28, 08:30 PM', converti en '28-08:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/chanson%20fran%C3%A7aise
+
+Date: Thursday, May 28, 08:30 PM-12:00 AM
+Event: Baïkal (Release Party) + KLM x Kaynixe - Toï Toï Le Zinc
+Place: Toï Toï Le Zinc
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, May 28, 08:30 PM-12:00 AM', converti en '28-08:30'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Thursday, May 28, 09:00 PM-11:00 PM
+Event: Liam Szymonik Quartet au Périscope
+Place: Le Périscope
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Jazz
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, May 28, 09:00 PM-11:00 PM', converti en '28-09:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/musique%20live
+
+Date: Friday, May 29, 08:00 PM-09:15 PM
+Event: Concert Cadencia Project
+Place: agend'arts
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Friday, May 29, 08:00 PM-09:15 PM', converti en '29-08:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/concert
+
+Date: Saturday, May 30, 02:00 PM
+Event: KERMESSE DE SOUTIEN À ATBC
+Place: À Thou Bout d'Chant
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, May 30, 02:00 PM', converti en '30-02:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/chorale
+
+Date: Saturday, May 30, 05:00 PM-11:00 PM
+Event: Fête de Printemps du Court-Circuit ft. Artis
+Place: Court Circuit
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, May 30, 05:00 PM-11:00 PM', converti en '30-05:00'. Formats essayés: MM-dd-HH:mm
+undefined
+
+Date: Saturday, May 30, 07:00 PM-11:00 PM
+Event: Concert punk : AXXIDENT (punk Metz)
+Place: L’Amicale Du Futur
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, May 30, 07:00 PM-11:00 PM', converti en '30-07:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/concert
+
+Date: Saturday, May 30, 08:00 PM → Sunday, May 31
+Event: Concert Keller
+Place: agend'arts
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, May 30, 08:00 PM → Sunday, May 31', converti en '30-08:00-31'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/concert
+
+Date: Monday, Jun 01, 08:00 PM → Tuesday, Jun 02
+Event: Spectacle A la recherche des mémoires perdues
+Place: agend'arts
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Monday, Jun 01, 08:00 PM → Tuesday, Jun 02', converti en '01-08:00-02'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/musique%20live
+
+Date: Wednesday, Jun 03, 08:30 PM
+Event: CONCERT | Soirée ENM
+Place: À Thou Bout d'Chant
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Wednesday, Jun 03, 08:30 PM', converti en '03-08:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/concert
+
+Date: Thursday, Jun 04, 08:30 PM
+Event: LIOR SHOOV
+Place: À Thou Bout d'Chant
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, Jun 04, 08:30 PM', converti en '04-08:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/chanson%20fran%C3%A7aise
+
+Date: Friday, Jun 05, 08:30 PM
+Event: NO MAD
+Place: À Thou Bout d'Chant
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Friday, Jun 05, 08:30 PM', converti en '05-08:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/musique%20live
+
+Date: Saturday, Jun 06, 07:00 PM-10:00 PM
+Event: Concert Punk : SOGA (punk Mexico) + CASSE DALLE (punk Bzh)
+Place: L’Amicale Du Futur
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Saturday, Jun 06, 07:00 PM-10:00 PM', converti en '06-07:00'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/DJ%20Set
+
+Date: Tuesday, Jun 09, 08:30 PM-11:30 PM
+Event: MELT BANANA + PNEU
+Place: Grrrnd Zéro
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Tuesday, Jun 09, 08:30 PM-11:30 PM', converti en '09-08:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/concert
+
+Date: Thursday, Jun 11, 06:00 PM → Saturday, Oct 10
+Event: BDPD, Francesc Ruiz
+Place: La Salle de Bains
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, Jun 11, 06:00 PM → Saturday, Oct 10', converti en '11-06:00-10-10'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/exposition
+
+Date: Thursday, Jun 11, 08:00 PM → Sunday, Jun 14
+Event: Festival Objectif scène
+Place: Villeurbanne ENM
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, Jun 11, 08:00 PM → Sunday, Jun 14', converti en '11-08:00-14'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/musique%20live
+
+Date: Friday, Jun 12, 08:30 PM
+Event: CONCERT | JÉRÉMIE BOSSONE
+Place: À Thou Bout d'Chant
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Friday, Jun 12, 08:30 PM', converti en '12-08:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/chanson%20fran%C3%A7aise
+
+Date: Wednesday, Jun 17, 07:30 PM
+Event: SCÈNE SLAM/RAP
+Place: À Thou Bout d'Chant
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Wednesday, Jun 17, 07:30 PM', converti en '17-07:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/Sc%C3%A8ne%20ouverte
+
+Date: Thursday, Jun 18, 08:30 PM
+Event: CONCERT | CAÏMAN sortie d'album remixé
+Place: À Thou Bout d'Chant
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Thursday, Jun 18, 08:30 PM', converti en '18-08:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/pop
+
+Date: Friday, Jun 19, 07:00 PM → Saturday, Jun 20
+Event: Lixiviat Festival N°4 (Grindcore)
+Place: Grrrnd Zéro
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Friday, Jun 19, 07:00 PM → Saturday, Jun 20', converti en '19-07:00-20'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/musique%20live
+
+Date: Friday, Jun 19, 08:30 PM
+Event: CONCERT | VIRGINIE NOURRY (LÀ PIETÀ)
+Place: À Thou Bout d'Chant
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Friday, Jun 19, 08:30 PM', converti en '19-08:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/chanson%20fran%C3%A7aise
+
+Date: Wednesday, Jun 24, 08:30 PM-11:00 PM
+Event: Racoon Trace (Folk Punk, Espagne) + Hector Bauer (Folk, Lyon) au Trokson
+Place: Le Trokson
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Rock
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Wednesday, Jun 24, 08:30 PM-11:00 PM', converti en '24-08:30'. Formats essayés: MM-dd-HH:mm
+altURLs: ,https://www.trokson.com/shows
+https://www.trokson.com/shows
+
+Date: Tuesday, Jun 30, 07:30 PM-11:00 PM
+Event: GRIDIRON + CONTENTION + CLIQUE
+Place: Warmaudio
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Ville Morte (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Ville Morte. Reçu 'Tuesday, Jun 30, 07:30 PM-11:00 PM', converti en '30-07:30'. Formats essayés: MM-dd-HH:mm
+https://villemorte.fr/tag/musique%20live
+
+Date: 20 et 21 mai 2026
+Event: Damso
+Place: LDLC Arena
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: LDLC Arena (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour LDLC Arena. Reçu '20 et 21 mai 2026', converti en '20-21-05-2026'. Formats essayés: dd-MM-yyyy-HH:mm
+https://www.olvallee.fr/evenement/damso-lyon-2026/
+
+Date: 2 et 3 novembre 2026
+Event: GIMS
+Place: LDLC Arena
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: LDLC Arena (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour LDLC Arena. Reçu '2 et 3 novembre 2026', converti en '02-03-11-2026'. Formats essayés: dd-MM-yyyy-HH:mm
+https://www.olvallee.fr/evenement/gims-lyon-2026/
+
+Date: 6 et 7 novembre 2026
+Event: BIGFLO & OLI
+Place: LDLC Arena
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: LDLC Arena (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour LDLC Arena. Reçu '6 et 7 novembre 2026', converti en '06-07-11-2026'. Formats essayés: dd-MM-yyyy-HH:mm
+https://www.olvallee.fr/evenement/bigflooli-lyon-2026/
+
+Date: 16 et 17 novembre 2026
+Event: Orelsan
+Place: LDLC Arena
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: LDLC Arena (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour LDLC Arena. Reçu '16 et 17 novembre 2026', converti en '16-17-11-2026'. Formats essayés: dd-MM-yyyy-HH:mm
+https://www.olvallee.fr/evenement/orelsan-lyon-2026-2/
+
+Date: 20 & 21 avril 2026
+Event: MÉNOPAUSE
+Place: Radiant-Bellevue
+city: Lyon
+country: France
+Style: Théâtre - Immanquable
+isCancelled: false
+DetailedStyle: Théâtre - Immanquable
+source: Radiant-Bellevue (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Radiant-Bellevue. Reçu '20 & 21 avril 2026', converti en '20-21-04-2026'. Formats essayés: dd-MM-yyyy
+https://radiant-bellevue.fr/spectacles/menopause/
+
+Date: 27 & 28 avril 2026
+Event: Comme une image
+Place: Radiant-Bellevue
+city: Lyon
+country: France
+Style: Théâtre - Scolaires
+isCancelled: false
+DetailedStyle: Théâtre - Scolaires
+source: Radiant-Bellevue (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Radiant-Bellevue. Reçu '27 & 28 avril 2026', converti en '27-28-04-2026'. Formats essayés: dd-MM-yyyy
+https://radiant-bellevue.fr/spectacles/comme-une-image/
+
+Date: 06 & 07 mai 2026
+Event: MOGUIZ
+Place: Radiant-Bellevue
+city: Lyon
+country: France
+Style: Humour
+isCancelled: false
+DetailedStyle: Humour
+source: Radiant-Bellevue (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Radiant-Bellevue. Reçu '06 & 07 mai 2026', converti en '06-07-05-2026'. Formats essayés: dd-MM-yyyy
+https://radiant-bellevue.fr/spectacles/moguiz/
+
+Date: 11 & 12 mai 2026
+Event: Bleu Nuit
+Place: Radiant-Bellevue
+city: Lyon
+country: France
+Style: Théâtre - Scolaires
+isCancelled: false
+DetailedStyle: Théâtre - Scolaires
+source: Radiant-Bellevue (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Radiant-Bellevue. Reçu '11 & 12 mai 2026', converti en '11-12-05-2026'. Formats essayés: dd-MM-yyyy
+https://radiant-bellevue.fr/spectacles/bleu-nuit/
+
+Date: 18 & 19 mai 2026
+Event: Les intempéries de Sami
+Place: Radiant-Bellevue
+city: Lyon
+country: France
+Style: Théâtre - Scolaires
+isCancelled: false
+DetailedStyle: Théâtre - Scolaires
+source: Radiant-Bellevue (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Radiant-Bellevue. Reçu '18 & 19 mai 2026', converti en '18-19-05-2026'. Formats essayés: dd-MM-yyyy
+https://radiant-bellevue.fr/spectacles/les-intemperies-de-sami/
+
+Date: 26, 27 & 28 juin 2026
+Event: COMPAGNIE DCA / PHILIPPE DÉCOUFLÉ
+Place: Radiant-Bellevue
+city: Lyon
+country: France
+Style: Danse
+isCancelled: false
+DetailedStyle: Danse
+source: Radiant-Bellevue (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Radiant-Bellevue. Reçu '26, 27 & 28 juin 2026', converti en '26-27-28-06-2026'. Formats essayés: dd-MM-yyyy
+https://radiant-bellevue.fr/spectacles/compagnie-dca-philippe-decoufle/
+
+Date: 30 & 31 octobre 2026
+Event: STEPHAN EICHER
+Place: Radiant-Bellevue
+city: Lyon
+country: France
+Style: Live
+isCancelled: false
+DetailedStyle: Musique
+source: Radiant-Bellevue (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Radiant-Bellevue. Reçu '30 & 31 octobre 2026', converti en '30-31-10-2026'. Formats essayés: dd-MM-yyyy
+https://radiant-bellevue.fr/spectacles/stephan-eicher-2/
+
+Date: 24 & 25 novembre 2026
+Event: LOCURA
+Place: Radiant-Bellevue
+city: Lyon
+country: France
+Style: Live
+isCancelled: false
+DetailedStyle: Musique - Danse
+source: Radiant-Bellevue (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Radiant-Bellevue. Reçu '24 & 25 novembre 2026', converti en '24-25-11-2026'. Formats essayés: dd-MM-yyyy
+https://radiant-bellevue.fr/spectacles/locura/
+
+Date: 12 & 13 décembre 2026
+Event: MURMURATION LEVEL 2
+Place: Radiant-Bellevue
+city: Lyon
+country: France
+Style: Danse
+isCancelled: false
+DetailedStyle: Danse
+source: Radiant-Bellevue (Lyon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Radiant-Bellevue. Reçu '12 & 13 décembre 2026', converti en '12-13-12-2026'. Formats essayés: dd-MM-yyyy
+https://radiant-bellevue.fr/spectacles/murmuration-level-2/
+
+Date: undefined
+Event: undefined
+Place: Shotgun
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Shotgun (Lyon, France)
+unixDate: -1
+errorLog: Pas de date trouvée pour Shotgun.
+https://www.cookiebot.com/en/what-is-behind-powered-by-cookiebot/?utm_source=banner_cb&utm_medium=referral&utm_content=v2
+
+Date: undefined
+Event: undefined
+Place: Shotgun
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Shotgun (Lyon, France)
+unixDate: -1
+errorLog: Pas de date trouvée pour Shotgun.
+https://shotgun.live/fr/artists/gazo-sc
+
+Date: undefined
+Event: undefined
+Place: Shotgun
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Shotgun (Lyon, France)
+unixDate: -1
+errorLog: Pas de date trouvée pour Shotgun.
+https://shotgun.live/fr/artists/niska-official
+
+Date: undefined
+Event: undefined
+Place: Shotgun
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Shotgun (Lyon, France)
+unixDate: -1
+errorLog: Pas de date trouvée pour Shotgun.
+https://shotgun.live/fr/artists/disiz
+
+Date: undefined
+Event: undefined
+Place: Shotgun
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Shotgun (Lyon, France)
+unixDate: -1
+errorLog: Pas de date trouvée pour Shotgun.
+https://shotgun.live/fr/artists/guy2bezbar
+
+Date: undefined
+Event: undefined
+Place: Shotgun
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Shotgun (Lyon, France)
+unixDate: -1
+errorLog: Pas de date trouvée pour Shotgun.
+https://shotgun.live/fr/artists/letoofficial
+
+Date: undefined
+Event: undefined
+Place: Shotgun
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Shotgun (Lyon, France)
+unixDate: -1
+errorLog: Pas de date trouvée pour Shotgun.
+https://shotgun.live/fr/venues/encore
+
+Date: undefined
+Event: undefined
+Place: Shotgun
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Shotgun (Lyon, France)
+unixDate: -1
+errorLog: Pas de date trouvée pour Shotgun.
+https://shotgun.live/fr/venues/nuits-sonores
+
+Date: undefined
+Event: undefined
+Place: Shotgun
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Shotgun (Lyon, France)
+unixDate: -1
+errorLog: Pas de date trouvée pour Shotgun.
+https://shotgun.live/fr/venues/23-59
+
+Date: undefined
+Event: undefined
+Place: Shotgun
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Shotgun (Lyon, France)
+unixDate: -1
+errorLog: Pas de date trouvée pour Shotgun.
+https://shotgun.live/fr/venues/tr
+
+Date: undefined
+Event: undefined
+Place: Shotgun
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Shotgun (Lyon, France)
+unixDate: -1
+errorLog: Pas de date trouvée pour Shotgun.
+https://shotgun.live/fr/venues/le-sucre
+
+Date: undefined
+Event: undefined
+Place: Shotgun
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Shotgun (Lyon, France)
+unixDate: -1
+errorLog: Pas de date trouvée pour Shotgun.
+https://shotgun.live/fr/cities/annecy
+
+Date: undefined
+Event: undefined
+Place: Shotgun
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Shotgun (Lyon, France)
+unixDate: -1
+errorLog: Pas de date trouvée pour Shotgun.
+https://shotgun.live/fr/cities/chambery
+
+Date: undefined
+Event: undefined
+Place: Shotgun
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Shotgun (Lyon, France)
+unixDate: -1
+errorLog: Pas de date trouvée pour Shotgun.
+https://shotgun.live/fr/cities/grenoble
+
+Date: undefined
+Event: undefined
+Place: Shotgun
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Shotgun (Lyon, France)
+unixDate: -1
+errorLog: Pas de date trouvée pour Shotgun.
+https://shotgun.live/fr/cities/saint-etienne
+
+Date: undefined
+Event: undefined
+Place: Shotgun
+city: Lyon
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Shotgun (Lyon, France)
+unixDate: -1
+errorLog: Pas de date trouvée pour Shotgun.
+https://shotgun.live/fr/cities/valence
+
+Date: M a y 0 1 F r i
+Event: Outlandish 2026
+Place: Gam Troi Arts Valley & Resort
+city: Hanoi
+country: Vietnam
+Style: Festival Outdoor
+isCancelled: false
+DetailedStyle: Festival Outdoor
+source: Likdo (Hanoi, Vietnam)
+unixDate: 0
+errorLog: Format de date invalide pour Likdo. Reçu 'M a y 0 1 F r i', converti en '00-01'. Formats essayés: dd-MM
+https://likdo.asia/event/2310
+
+Date: 19 mai 2026 | 20:00 20 mai 2026 | 20:00
+Event: LE ROI SOLEIL
+Place: Zénith de Saint-Étienne
+city: Saint-Etienne
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Zénith de Saint-Étienne (Saint-Etienne, France)
+unixDate: 0
+errorLog: Format de date invalide pour Zénith de Saint-Étienne. Reçu '19 mai 2026 | 20:00 20 mai 2026 | 20:00', converti en '19-05-2026-20:00-20-2026-20:00'. Formats essayés: dd-MM-yyyy-HH:mm
+https://www.zenith-saint-etienne.fr/evenement/le-roi-soleil/
+
+Date: 05 déc. 2026 | 20:00 06 déc. 2026 | 19:00
+Event: DUB INC
+Place: Zénith de Saint-Étienne
+city: Saint-Etienne
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Zénith de Saint-Étienne (Saint-Etienne, France)
+unixDate: 0
+errorLog: Format de date invalide pour Zénith de Saint-Étienne. Reçu '05 déc. 2026 | 20:00 06 déc. 2026 | 19:00', converti en '05-12-2026-20:00-06-12-2026-19:00'. Formats essayés: dd-MM-yyyy-HH:mm
+https://www.zenith-saint-etienne.fr/evenement/dub-inc/
+
+Date: 06 mars 2027 | 15:00 06 mars 2027 | 20:00
+Event: Celtic Legends
+Place: Zénith de Saint-Étienne
+city: Saint-Etienne
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Zénith de Saint-Étienne (Saint-Etienne, France)
+unixDate: 0
+errorLog: Format de date invalide pour Zénith de Saint-Étienne. Reçu '06 mars 2027 | 15:00 06 mars 2027 | 20:00', converti en '06-03-2027-15:00-06-2027-20:00'. Formats essayés: dd-MM-yyyy-HH:mm
+https://www.zenith-saint-etienne.fr/evenement/celtic-legends-2027/
+
+Date: Du 24.04.26 / 9h30 au 24.04.26 / 17h30
+Event: COMPLET • Formation • Réseaux sociaux : créer du contenu engageant et comprendre les algorithmes
+Place: La Belle Electrique
+city: Grenoble
+country: France
+Style: Live
+isCancelled: false
+DetailedStyle: 
+source: La Belle Electrique (Grenoble, France)
+unixDate: 0
+errorLog: Format de date invalide pour La Belle Electrique. Reçu 'Du 24.04.26 / 9h30 au 24.04.26 / 17h30', converti en '24-04-26-09:30-24-04-26-17:30'. Formats essayés: dd-MM-yy-HH:mm
+https://www.la-belle-electrique.com/fr/agenda/formation-communication-rs-contenu-engageant
+
+Date: 18 au 20 mai 2026
+Event: Opéra Paradiso
+Place: Le Summum
+city: Grenoble
+country: France
+Style: Live
+isCancelled: false
+DetailedStyle: Concert
+source: Le Summum (Grenoble, France)
+unixDate: 0
+errorLog: Format de date invalide pour Le Summum. Reçu '18 au 20 mai 2026', converti en '18-20-05-2026'. Formats essayés: dd-MM-yyyy
+https://www.summum-grenoble.com/evenements/opera-paradiso/
+
+Date: 5
+Event: Black-Yack Motors Festival
+Place: Saint-Étienne
+city: Saint-Etienne
+country: France
+isCancelled: false
+DetailedStyle: 
+Style: Live
+source: Shotgun_saint-etienne (Saint-Etienne, France)
+unixDate: 0
+errorLog: Format de date invalide pour Shotgun_saint-etienne. Reçu '5', converti en '05'. Formats essayés: dd-MM-HH:mm
+https://shotgun.live/fr/festivals/black-yack-motors-festival
+
+Date: 17
+Event: Cosmic Mountain Festival 2026
+Place: Val Thorens
+city: Grenoble
+country: France
+Style: Electro
+isCancelled: false
+DetailedStyle: Electro Hard Techno Techno
+source: Shotgun_grenoble (Grenoble, France)
+unixDate: 0
+errorLog: Format de date invalide pour Shotgun_grenoble. Reçu '17', converti en '17'. Formats essayés: dd-MM-HH:mm
+https://shotgun.live/fr/festivals/cosmic-mountain-festival-2026
+
+Date: 24
+Event: The Rooftop - Opening Weekend
+Place: Neyrpic
+city: Grenoble
+country: France
+Style: Chanson
+isCancelled: false
+DetailedStyle: Funk Variété Française Disco
+source: Shotgun_grenoble (Grenoble, France)
+unixDate: 0
+errorLog: Format de date invalide pour Shotgun_grenoble. Reçu '24', converti en '24'. Formats essayés: dd-MM-HH:mm
+https://shotgun.live/fr/events/the-rooftop-opening-weekend
+
+Date: 21 & 22 mai 2026
+Event: MALIK BENTALHA
+Place: CEPAC Silo
+city: Marseille
+country: France
+Style: Humour
+isCancelled: false
+DetailedStyle: Humour
+source: CEPAC Silo (Marseille, France)
+unixDate: 0
+errorLog: Format de date invalide pour CEPAC Silo. Reçu '21 & 22 mai 2026', converti en '21-22-05-2026'. Formats essayés: dd-MM-yyyy
+https://www.cepacsilo-marseille.fr/evenement/malik-bentalha/
+
+Date: 6 - 7 mai 2026
+Event: Guêpes, grenouilles et monstres
+Place: Théâtre de La Criée
+city: Marseille
+country: France
+Style: Live
+isCancelled: false
+DetailedStyle: Musique
+source: Théâtre de La Criée (Marseille, France)
+unixDate: 0
+errorLog: Format de date invalide pour Théâtre de La Criée. Reçu '6 - 7 mai 2026', converti en '06-07-05-2026'. Formats essayés: dd-MM-yyyy
+https://theatre-lacriee.com/programmation/evenements/guepes-grenouilles-et-monstres
+
+Date: 6 - 7 mai 2026
+Event: Un pays supplémentaire
+Place: Théâtre de La Criée
+city: Marseille
+country: France
+Style: Live
+isCancelled: false
+DetailedStyle: Musique
+source: Théâtre de La Criée (Marseille, France)
+unixDate: 0
+errorLog: Format de date invalide pour Théâtre de La Criée. Reçu '6 - 7 mai 2026', converti en '06-07-05-2026'. Formats essayés: dd-MM-yyyy
+https://theatre-lacriee.com/programmation/evenements/un-pays-supplementaire
+
+Date: 12 - 16 mai 2026
+Event: Annonciation, Torpeur, Noces
+Place: Théâtre de La Criée
+city: Marseille
+country: France
+Style: Danse
+isCancelled: false
+DetailedStyle: Danse
+source: Théâtre de La Criée (Marseille, France)
+unixDate: 0
+errorLog: Format de date invalide pour Théâtre de La Criée. Reçu '12 - 16 mai 2026', converti en '12-16-05-2026'. Formats essayés: dd-MM-yyyy
+https://theatre-lacriee.com/programmation/evenements/annonciation-torpeur-noces
+
+Date: 4 - 6 juin 2026
+Event: Dom Juan
+Place: Théâtre de La Criée
+city: Marseille
+country: France
+Style: Théâtre
+isCancelled: false
+DetailedStyle: Théâtre
+source: Théâtre de La Criée (Marseille, France)
+unixDate: 0
+errorLog: Format de date invalide pour Théâtre de La Criée. Reçu '4 - 6 juin 2026', converti en '04-06-06-2026'. Formats essayés: dd-MM-yyyy
+https://theatre-lacriee.com/programmation/evenements/dom-juan
+
+Date: 12 - 13 juin 2026
+Event: Kaldûn
+Place: Théâtre de La Criée
+city: Marseille
+country: France
+Style: Théâtre musical
+isCancelled: false
+DetailedStyle: Théâtre musical
+source: Théâtre de La Criée (Marseille, France)
+unixDate: 0
+errorLog: Format de date invalide pour Théâtre de La Criée. Reçu '12 - 13 juin 2026', converti en '12-13-06-2026'. Formats essayés: dd-MM-yyyy
+https://theatre-lacriee.com/programmation/evenements/kaldun
+
+Date: 18
+Event: Mang'azur 2026
+Place: Palais des Congrès Neptune
+city: Marseille
+country: France
+Style: Live
+isCancelled: false
+DetailedStyle: 
+source: Shotgun-marseille (Marseille, France)
+unixDate: 0
+errorLog: Format de date invalide pour Shotgun-marseille. Reçu '18', converti en '18'. Formats essayés: dd-MM-HH:mm
+https://shotgun.live/fr/events/mang-azur-2026
+
+Date: 19
+Event: Soirées Minots X Orro - Bonbonne
+Place: Marseille
+city: Marseille
+country: France
+Style: Electro
+isCancelled: false
+DetailedStyle: House Afro House
+source: Shotgun-marseille (Marseille, France)
+unixDate: 0
+errorLog: Format de date invalide pour Shotgun-marseille. Reçu '19', converti en '19'. Formats essayés: dd-MM-HH:mm
+https://shotgun.live/fr/events/orr-ox-minot
+
+Date: mardi Mar. 21/ avril 04 20:00
+Event: SAMUEL BAMBI
+Place: Espace Julien
+city: Marseille
+country: France
+Style: Complet Humour
+isCancelled: false
+DetailedStyle: Complet Humour
+source: Espace Julien (Marseille, France)
+unixDate: 0
+errorLog: Format de date invalide pour Espace Julien. Reçu 'mardi Mar. 21/ avril 04 20:00', converti en '21-04-04-20:00'. Formats essayés: dd-MM-HH:mm
+https://espace-julien.com/agenda/samuel-bambi-0
+
+Date: jeudi Jeu. 23/ avril 04 20:00
+Event: MACHINE HEAD
+Place: Espace Julien
+city: Marseille
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Complet Metal
+source: Espace Julien (Marseille, France)
+unixDate: 0
+errorLog: Format de date invalide pour Espace Julien. Reçu 'jeudi Jeu. 23/ avril 04 20:00', converti en '23-04-04-20:00'. Formats essayés: dd-MM-HH:mm
+https://espace-julien.com/agenda/machine-head
+
+Date: vendredi Ven. 24/ avril 04 20:30
+Event: MADAME ARTHUR ENFLAMME MARSEILLE
+Place: Espace Julien
+city: Marseille
+country: France
+Style: Bientôt complet !
+isCancelled: false
+DetailedStyle: Bientôt complet !
+source: Espace Julien (Marseille, France)
+unixDate: 0
+errorLog: Format de date invalide pour Espace Julien. Reçu 'vendredi Ven. 24/ avril 04 20:30', converti en '24-04-04-20:30'. Formats essayés: dd-MM-HH:mm
+https://espace-julien.com/agenda/madame-arthur-enflamme-marseille
+
+Date: samedi Sam. 25/ avril 04 19:00
+Event: [BLOCK PARTY] AMMAR 808 + RUMBLE
+Place: Espace Julien
+city: Marseille
+country: France
+Style: Live
+isCancelled: false
+DetailedStyle: 
+source: Espace Julien (Marseille, France)
+unixDate: 0
+errorLog: Format de date invalide pour Espace Julien. Reçu 'samedi Sam. 25/ avril 04 19:00', converti en '25-04-04-19:00'. Formats essayés: dd-MM-HH:mm
+https://espace-julien.com/agenda/block-party-ammar-808-rumble
+
+Date: samedi Sam. 25/ avril 04 20:30
+Event: AIME SIMONE
+Place: Espace Julien
+city: Marseille
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Pop
+source: Espace Julien (Marseille, France)
+unixDate: 0
+errorLog: Format de date invalide pour Espace Julien. Reçu 'samedi Sam. 25/ avril 04 20:30', converti en '25-04-04-20:30'. Formats essayés: dd-MM-HH:mm
+https://espace-julien.com/agenda/aime-simone
+
+Date: dimanche Dim. 26/ avril 04 20:00
+Event: L.E.J
+Place: Espace Julien
+city: Marseille
+country: France
+Style: Chanson
+isCancelled: false
+DetailedStyle: Chanson
+source: Espace Julien (Marseille, France)
+unixDate: 0
+errorLog: Format de date invalide pour Espace Julien. Reçu 'dimanche Dim. 26/ avril 04 20:00', converti en '26-04-04-20:00'. Formats essayés: dd-MM-HH:mm
+https://espace-julien.com/agenda/lej
+
+Date: mercredi Mer. 29/ avril 04 20:00
+Event: MIOSSEC
+Place: Espace Julien
+city: Marseille
+country: France
+Style: Chanson
+isCancelled: false
+DetailedStyle: Chanson Rock
+source: Espace Julien (Marseille, France)
+unixDate: 0
+errorLog: Format de date invalide pour Espace Julien. Reçu 'mercredi Mer. 29/ avril 04 20:00', converti en '29-04-04-20:00'. Formats essayés: dd-MM-HH:mm
+https://espace-julien.com/agenda/miossec
+
+Date: samedi Sam. 02/ mai 05 20:00
+Event: CHINESE MAN RECORDS PARTY
+Place: Espace Julien
+city: Marseille
+country: France
+Style: Electro
+isCancelled: false
+DetailedStyle: Electro Rap / Hip-Hop
+source: Espace Julien (Marseille, France)
+unixDate: 0
+errorLog: Format de date invalide pour Espace Julien. Reçu 'samedi Sam. 02/ mai 05 20:00', converti en '02-05-05-20:00'. Formats essayés: dd-MM-HH:mm
+https://espace-julien.com/agenda/chinese-man-records-party
+
+Date: dimanche Dim. 03/ mai 05 18:00
+Event: DJAMIL LE SHLAG
+Place: Espace Julien
+city: Marseille
+country: France
+Style: Humour
+isCancelled: false
+DetailedStyle: Humour
+source: Espace Julien (Marseille, France)
+unixDate: 0
+errorLog: Format de date invalide pour Espace Julien. Reçu 'dimanche Dim. 03/ mai 05 18:00', converti en '03-05-05-18:00'. Formats essayés: dd-MM-HH:mm
+https://espace-julien.com/agenda/djamil-le-shlag
+
+Date: mercredi Mer. 06/ mai 05 20:00
+Event: L’EJ C’EST LE S x Humeur Massacrante
+Place: Espace Julien
+city: Marseille
+country: France
+Style: L'EJ C'EST LE S
+isCancelled: false
+DetailedStyle: L'EJ C'EST LE S
+source: Espace Julien (Marseille, France)
+unixDate: 0
+errorLog: Format de date invalide pour Espace Julien. Reçu 'mercredi Mer. 06/ mai 05 20:00', converti en '06-05-05-20:00'. Formats essayés: dd-MM-HH:mm
+https://espace-julien.com/agenda/lej-cest-le-s-x-humeur-massacrante
+
+Date: jeudi Jeu. 07/ mai 05 19:30
+Event: FINALE DU TREMPLIN ORIZON SUD
+Place: Espace Julien
+city: Marseille
+country: France
+Style: Tremplin
+isCancelled: false
+DetailedStyle: Tremplin
+source: Espace Julien (Marseille, France)
+unixDate: 0
+errorLog: Format de date invalide pour Espace Julien. Reçu 'jeudi Jeu. 07/ mai 05 19:30', converti en '07-05-05-19:30'. Formats essayés: dd-MM-HH:mm
+https://espace-julien.com/agenda/finale-du-tremplin-orizon-sud
+
+Date: vendredi Ven. 08/ mai 05 20:00
+Event: JAMES BAKER + BANDIT BANDIT
+Place: Espace Julien
+city: Marseille
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Rock Pop
+source: Espace Julien (Marseille, France)
+unixDate: 0
+errorLog: Format de date invalide pour Espace Julien. Reçu 'vendredi Ven. 08/ mai 05 20:00', converti en '08-05-05-20:00'. Formats essayés: dd-MM-HH:mm
+https://espace-julien.com/agenda/james-baker-bandit-bandit
+
+Date: samedi Sam. 09/ mai 05 20:30
+Event: ALBERT TAWIL
+Place: Espace Julien
+city: Marseille
+country: France
+Style: Live
+isCancelled: false
+DetailedStyle: 
+source: Espace Julien (Marseille, France)
+unixDate: 0
+errorLog: Format de date invalide pour Espace Julien. Reçu 'samedi Sam. 09/ mai 05 20:30', converti en '09-05-05-20:30'. Formats essayés: dd-MM-HH:mm
+https://espace-julien.com/agenda/albert-tawil
+
+Date: mercredi Mer. 13/ mai 05 20:00
+Event: Carte Blanche Sororo-Club
+Place: Espace Julien
+city: Marseille
+country: France
+Style: Live
+isCancelled: false
+DetailedStyle: 
+source: Espace Julien (Marseille, France)
+unixDate: 0
+errorLog: Format de date invalide pour Espace Julien. Reçu 'mercredi Mer. 13/ mai 05 20:00', converti en '13-05-05-20:00'. Formats essayés: dd-MM-HH:mm
+https://espace-julien.com/agenda/carte-blanche-sororo-club
+
+Date: samedi Sam. 16/ mai 05 20:00
+Event: KICKING 20 YEARS
+Place: Espace Julien
+city: Marseille
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Garage / Punk
+source: Espace Julien (Marseille, France)
+unixDate: 0
+errorLog: Format de date invalide pour Espace Julien. Reçu 'samedi Sam. 16/ mai 05 20:00', converti en '16-05-05-20:00'. Formats essayés: dd-MM-HH:mm
+https://espace-julien.com/agenda/kicking-20-years
+
+Date: vendredi Ven. 22/ mai 05 20:00
+Event: BUZZ BOOSTER PACA
+Place: Espace Julien
+city: Marseille
+country: France
+Style: Live
+isCancelled: false
+DetailedStyle: 
+source: Espace Julien (Marseille, France)
+unixDate: 0
+errorLog: Format de date invalide pour Espace Julien. Reçu 'vendredi Ven. 22/ mai 05 20:00', converti en '22-05-05-20:00'. Formats essayés: dd-MM-HH:mm
+https://espace-julien.com/agenda/buzz-booster-paca
+
+Date: samedi Sam. 23/ mai 05 19:00
+Event: GOODBYE KARELLE
+Place: Espace Julien
+city: Marseille
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Pop
+source: Espace Julien (Marseille, France)
+unixDate: 0
+errorLog: Format de date invalide pour Espace Julien. Reçu 'samedi Sam. 23/ mai 05 19:00', converti en '23-05-05-19:00'. Formats essayés: dd-MM-HH:mm
+https://espace-julien.com/agenda/goodbye-karelle
+
+Date: jeudi Jeu. 02/ juillet 07 20:00
+Event: ALLAH-LAS
+Place: Espace Julien
+city: Marseille
+country: France
+Style: Rock
+isCancelled: false
+DetailedStyle: Rock
+source: Espace Julien (Marseille, France)
+unixDate: 0
+errorLog: Format de date invalide pour Espace Julien. Reçu 'jeudi Jeu. 02/ juillet 07 20:00', converti en '02-07-07-20:00'. Formats essayés: dd-MM-HH:mm
+https://espace-julien.com/agenda/allah-las
+
+Date: dimanche Dim. 04/ octobre 10 18:00
+Event: JEAN-BENOIT DIALLO
+Place: Espace Julien
+city: Marseille
+country: France
+Style: Live
+isCancelled: false
+DetailedStyle: 
+source: Espace Julien (Marseille, France)
+unixDate: 0
+errorLog: Format de date invalide pour Espace Julien. Reçu 'dimanche Dim. 04/ octobre 10 18:00', converti en '04-10-10-18:00'. Formats essayés: dd-MM-HH:mm
+https://espace-julien.com/agenda/jean-benoit-diallo
+
+Date: samedi Sam. 10/ octobre 10 20:00
+Event: 47TER
+Place: Espace Julien
+city: Marseille
+country: France
+Style: Rap
+isCancelled: false
+DetailedStyle: Rap / Hip-Hop Pop
+source: Espace Julien (Marseille, France)
+unixDate: 0
+errorLog: Format de date invalide pour Espace Julien. Reçu 'samedi Sam. 10/ octobre 10 20:00', converti en '10-10-10-20:00'. Formats essayés: dd-MM-HH:mm
+https://espace-julien.com/agenda/47ter
+
+Date: jeudi Jeu. 15/ octobre 10 20:00
+Event: FREDZ
+Place: Espace Julien
+city: Marseille
+country: France
+Style: Rap
+isCancelled: false
+DetailedStyle: Rap / Hip-Hop
+source: Espace Julien (Marseille, France)
+unixDate: 0
+errorLog: Format de date invalide pour Espace Julien. Reçu 'jeudi Jeu. 15/ octobre 10 20:00', converti en '15-10-10-20:00'. Formats essayés: dd-MM-HH:mm
+https://espace-julien.com/agenda/fredz
+
+Date: vendredi Ven. 16/ octobre 10 21:00
+Event: VEN1
+Place: Espace Julien
+city: Marseille
+country: France
+Style: Rap
+isCancelled: false
+DetailedStyle: Rap / Hip-Hop
+source: Espace Julien (Marseille, France)
+unixDate: 0
+errorLog: Format de date invalide pour Espace Julien. Reçu 'vendredi Ven. 16/ octobre 10 21:00', converti en '16-10-10-21:00'. Formats essayés: dd-MM-HH:mm
+https://espace-julien.com/agenda/ven1
+
+Date: dimanche Dim. 18/ octobre 10 18:00
+Event: ELIES ZOGHLAMI
+Place: Espace Julien
+city: Marseille
+country: France
+Style: Humour
+isCancelled: false
+DetailedStyle: Humour
+source: Espace Julien (Marseille, France)
+unixDate: 0
+errorLog: Format de date invalide pour Espace Julien. Reçu 'dimanche Dim. 18/ octobre 10 18:00', converti en '18-10-10-18:00'. Formats essayés: dd-MM-HH:mm
+https://espace-julien.com/agenda/elies-zoghlami
+
+Date: mercredi Mer. 21/ octobre 10 20:00
+Event: Gabrielle Giraud
+Place: Espace Julien
+city: Marseille
+country: France
+Style: Humour
+isCancelled: false
+DetailedStyle: Humour
+source: Espace Julien (Marseille, France)
+unixDate: 0
+errorLog: Format de date invalide pour Espace Julien. Reçu 'mercredi Mer. 21/ octobre 10 20:00', converti en '21-10-10-20:00'. Formats essayés: dd-MM-HH:mm
+https://espace-julien.com/agenda/gabrielle-giraud
+
+Date: 3 juin 2026 & 11 mars 2027
+Event: LAURENT GERRA
+Place: Zénith de Dijon
+city: Dijon
+country: France
+Style: Humour
+isCancelled: false
+DetailedStyle: Humour
+source: Zénith de Dijon (Dijon, France)
+unixDate: 0
+errorLog: Format de date invalide pour Zénith de Dijon. Reçu '3 juin 2026 & 11 mars 2027', converti en '03-06-2026-11-03-2027'. Formats essayés: dd-MM-yyyy
+https://www.zenith-dijon.fr/evenement/laurent-gerra/
+
+>>>>>>> Stashed changes

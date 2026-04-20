@@ -505,10 +505,6 @@ export const startLocations = new Map([
         pitch: 0
       }
     ]
-
-
-
-
 ]);
   
 

@@ -9,7 +9,7 @@ const placeToCoord = new Map();
 //const city = process.argv[2] || "france";
 
 //const city="saint-etienne";
-const country = "france";
+const country = "world";
 console.log("***************DATACLEANEX-City: " + country + " **************");
 //convertPlaceCSVtoGeoJson();
 convertPlaceCSVtoGeoJsonFromFolder('www/data/places');
@@ -157,7 +157,7 @@ async function convertEventCSVtoGeoJson(folderPath) {
     await processCSV(csvFilePath);
 
     // Lire et traiter le CSV handMade si présent
-    csvFilePath = `scraping/handMade/scrapexResult_handMade.csv`;
+    csvFilePath = `scraping/generated/scrapexResult_handMade.csv`;
     if (fsCallback.existsSync(csvFilePath)) {
       await processCSV(csvFilePath);
     }
