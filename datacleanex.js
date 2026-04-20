@@ -45,13 +45,28 @@ async function convertPlaceCSVtoGeoJsonFromFolder(folderPath) {
     const files = await fs.readdir(sourcefilesPath);
     const csvFiles = files.filter(f => f.endsWith('_place.csv'));
 
+  const countries = await fs.readdir(sourcefilesPath, { withFileTypes: true });
+
+  for (const countryDir of countries) {
+    if (!countryDir.isDirectory()) continue;
+
+    const countryName = countryDir.name;
+    const countryPath = path.join(sourcefilesPath, countryName);
+    if (verbose){
+        console.log("Country:", countryName);
+    }
+
+
+    const files = await fs.readdir(countryPath);
+
+    const csvFiles = files.filter(f => f.endsWith('_place.csv'));
     for (const file of csvFiles) {
       const city = file.replace('_place.csv', ''); // extraire le nom de la ville
       const templateGeoJSONPlace = generatedfilesPath+'/place_minimal.geojson';
       const data = await fs.readFile(templateGeoJSONPlace, 'utf8');
       const cityGeoJSON = JSON.parse(data);
 
-      const csvFilePath = path.join(sourcefilesPath, file);
+      const csvFilePath = path.join(sourcefilesPath+"/"+countryName+"/", file);
       const csvData = await fs.readFile(csvFilePath, 'utf8');
       const table = csvData.split('\n').slice(1);
 
@@ -80,14 +95,31 @@ async function convertPlaceCSVtoGeoJsonFromFolder(folderPath) {
         cityGeoJSON.features.push(newFeature);
         globalGeoJSON.features.push(newFeature);
       });
+      const countryDir = path.join(generatedfilesPath, countryName);
+      const outputPath = path.join(countryDir, `${city}_place.geojson`);
 
-      const modifiedCityGeoJSONPath = path.join(generatedfilesPath, `${city}_place.geojson`);
+      // créer le dossier pays si besoin
+      await fs.mkdir(countryDir, { recursive: true });
+      // écrire le fichier
+      await fs.writeFile(
+        outputPath,
+        JSON.stringify(cityGeoJSON, null, 2),
+        'utf8'
+      );
+      if (verbose){
+        console.log(`${city}: ${table.length} places saved to ${outputPath}`);
+      }
+
+
+      /*const modifiedCityGeoJSONPath = path.join(generatedfilesPath, `${city}_place.geojson`);
       await fs.writeFile(modifiedCityGeoJSONPath, JSON.stringify(cityGeoJSON, null, 2), 'utf8');
       if (verbose){
         console.log(`${city}: ${table.length} places saved to ${modifiedCityGeoJSONPath}`);
-      }
-      
+      }*/
     }
+  }
+
+
 
     // Sauvegarde du GeoJSON global
     const globalGeoJSONPath = path.join(generatedfilesPath, `${country}_place.geojson`);
