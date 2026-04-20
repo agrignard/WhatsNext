@@ -4541,23 +4541,6 @@
     },
     {
       "type": "Feature",
-      "id": "MAI GALLERY",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          105.84621913996104,
-          21.029699325630272
-        ]
-      },
-      "properties": {
-        "title": "MAI GALLERY",
-        "icon": "art-gallery",
-        "description": "",
-        "city": "hanoi"
-      }
-    },
-    {
-      "type": "Feature",
       "id": "Manzi Exhibition Space",
       "geometry": {
         "type": "Point",
@@ -5216,6 +5199,40 @@
         "title": "Factory 47 hanoi",
         "icon": "music",
         "description": "",
+        "city": "hanoi"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "otto bar",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.83914807736339,
+          21.050805551762984
+        ]
+      },
+      "properties": {
+        "title": "otto bar",
+        "icon": "music",
+        "description": "",
+        "city": "hanoi"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Purple Blues Bar",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.85476490365303,
+          21.034506825663673
+        ]
+      },
+      "properties": {
+        "title": "Purple Blues Bar",
+        "icon": "music",
+        "description": "https://www.purpleblues.id.vn/home",
         "city": "hanoi"
       }
     }
