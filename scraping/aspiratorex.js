@@ -5,7 +5,7 @@
 
 
 const fs = require('fs');
-const {getVenuesFromArguments} = require('./import/fileUtilities.js');
+const {getVenuesFromArguments, rebuildWebsourcesArborescence} = require('./import/fileUtilities.js');
 const {loadVenuesJSONFile, saveToVenuesJSON, isActive, initializeVenue} = require('./import/jsonUtilities.js');
 const cheerio = require('cheerio');
 
@@ -24,14 +24,14 @@ const outputPath = './webSources/';
 const venues = loadVenuesJSONFile();
 let log = '';
 
+
 // get venue list and initializes new venues
 const filteredVenues = getVenuesFromArguments(process.argv.filter(el => el !=='--verbose'), venues)
                           .filter(venue => initializeVenue(venue, outputPath));
+console.log('Venues to process: %d', filteredVenues.length);
 
-
-// filteredVenues.forEach(venue => initializeVenue(venue, outputPath));
-// filteredVenues = filteredVenues.filter(venue => initializeVenue(venue, outputPath));
-
+// repair arborescence of webSources folder if needed
+rebuildWebsourcesArborescence(filteredVenues, outputPath);
 
 console.log("\n\x1b[36m***********************************************************************************");
 console.log("ASPIRATOREX IS SNIFFING SOURCES FILES contained in venues JSON file.");
@@ -70,7 +70,7 @@ if (filteredVenues.length === 0){
           let path = outputPath+venue.country+'/'+venue.city+'/'+venue.name+'/';
           erasePreviousHtmlFiles(path)
           .then(() => {
-            downloadVenue(venue,path, verbose);
+            downloadVenue(venue, path, verbose);
             venueLog += '\x1b[31mEssai d\'URL for '+venue.name+'.x1b[0m';
           })
       } 

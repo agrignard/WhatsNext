@@ -4,55 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Internationalex</title>
-    <link rel="stylesheet" href="../css/subPages.css">
+    <link rel="stylesheet" href="../css/localizationAndLanguages.css">
 </head>
 <body>
     <div id="processContainer">
-        <!-- country management -->
-        <div class="leftPanel panels">
-            <div class="countries">
-                country:
-                <div class="subCountries">
-                    <select id="countriesDropdown"></select>
-                    <button id="addcountryBtn">Add country</button>
-                    <div id="countryDialog" style="display: none;">
-                        <input type="text" id="newCountryNameInput">
-                        <button id="countryConfirmBtn">Confirm</button>
-                    </div>
+        <div class="leftPanel">
+            <!-- country management -->
+            <div class="countries subsection subLeft">
+                <div class="sectionTitle">Country</div>
+                <div id="subCountries" class="panel">
+                    <select id="countriesDropdown" class="field freezable"></select>
+                    <button class="deleteBtn" id="deleteCountryBtn" title="Delete country">✖</button>
+                    <button id="addcountryBtn"class="freezable">Add country</button>
+                </div>
+                <div id="countryDialog" class="panel" style="display: none;">
+                    <input type="text" class="field" id="newCountryNameInput" placeholder="Country name">
+                    <button id="countryConfirmBtn">Confirm</button>
+                </div>
+                 <!-- country languages management -->
+                <div class="subSectionTitle"> Languages</div>
+                <div class="languagesManagement">
+                    <div id="languagesContainer">
+                    </div>  
+                    <div id="addLanguageContainer">
+                        <input type="text" id="languageInput" class="freezable" placeholder="Add language">
+                        <div id="languageSuggestions"></div>
+                    </div>  
                 </div>
             </div>
 
             <!-- city management -->
-            <div class="cities">
-                cities:
-                <div class="subCities">
-                    <select id="citiesDropdown"></select>
-                    <button id="addcityBtn">Add city</button>
-                    <div id="cityDialog" style="display: none;">
-                        <input type="text" id="newCityNameInput">
-                        <button id="cityConfirmBtn">Confirm</button>
-                    </div>
-                </div>      
-            </div>
-            <!-- languages management -->
-            <div> Languages:
-                <div id="languagesContainer">
-                    <button class="languageItem" data-value="option1">Langue 1</button>
-                </div>               
+            <div class="cities subsection subLeft">
+                <div class="sectionTitle">City</div>
+                <div id="subCities" class="panel">
+                    <select id="citiesDropdown" class="field freezable"></select>
+                    <button id="deleteCityBtn" title="Delete city">✖</button>
+                    <button id="addcityBtn" class="freezable">Add city</button>
+                </div>
+                <div id="cityDialog" class="panel"style="display: none;">
+                    <input type="text" class="field" id="newCityNameInput" placeholder="City name">
+                    <button id="cityConfirmBtn">Confirm</button>
+                </div> 
             </div>
         </div>
-        <div class="rightPanel panels">
-            <div class ="removeButtons">
-                <button id="removeVenuesModeButton" style="display: inline;">Activate remove mode</button>
-                <button id="removeVenuesButton" style="display: none;">Remove selected venues</button>
+        <div class="rightPanel">
+            <div class="subsection">
+                <div class="sectionTitle">Venues</div>
+                <div class ="removeButtons">
+                    <button id="removeVenuesModeButton" style="display: inline;">Enable venues removal</button>
+                    <button id="selectAllButton" style="display: none;">Select all</button>
+                    <button id="removeVenuesButton" style="display: none;">Remove selected venues</button>
+                </div>
+    
+                <ul class="scrollable-list" id="venuesList" style="display: block;">
+                    <li>Élément 1</li>
+                    <li>Élément 2</li>
+                    <li>Élément 3</li>
+                </ul>
             </div>
- 
-            <ul class="scrollable-list" id="venuesList" style="display: none;">
-                <li>Élément 1</li>
-                <li>Élément 2</li>
-                <li>Élément 3</li>
-            </ul>
-
         </div>
     <!-- div id="message-container"-->
     </div>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Venues</title>
-    <link rel="stylesheet" href="../css/subPages.css">
+    <link rel="stylesheet" href="../css/venues.css">
 </head>
 <body>
     <div class="venueHeader">
@@ -44,14 +44,20 @@
                 <div id = "aliasAlert" class="alertBlock" style ="display: inline;"></div>
             </div>
 
-
-
             <div id="URLPanel" class="bigPanelSmallVerticalMargin smallBottomMargin activePanel">
                 <div id="URLPanelHeader" class = "panelHeader">
                     <div class="smallBottomMargin" style="display: inline">URL of agenda page:</div>
                     <button id="followURLButton2" class="niceButtonNoMargin normal-button">Open URL</button>
                 </div>
-                <div id="textURL" contenteditable="true" class="editable"></div>
+                <div id="textURL" contenteditable="true" class="editable smallBottomMargin"></div>
+                <div id="languageInfos" class = "panelHeader">
+                    <div>Page language:</div>
+                    <select id="languageSelection" class="editable" style ="width: 17ch;">
+                                        <option value="Index">Tueton</option>
+                                        <option value="Pattern">Pattern</option>
+                                        <option value="PageList">Predefined</option>
+                    </select>
+                </div>
             </div>
 
             <!-- Panels to be shown when the venue is active (not alias) -->
@@ -186,7 +192,7 @@
 
                         <!-- Page List panel -->
                         <div id="pageListPanel" style="display: none;">
-                            <div id="indexType" class="bottomMargin">
+                            <div id="indexType" class="bottomMargin alignCenter">
                                 <div>Indexation type:  </div>
                                 <div>
                                     <select id="multiplePagesMethodSelection" class="editable" style ="width: 17ch;">
@@ -290,6 +296,7 @@
         
         <div id="venueURL" class="bottomMargin bigPanel"></div>
         <div id="venueAliases" class="smallBottomMargin"></div>
+        <div id="venueLanguage" class="smallBottomMargin"></div>
         <div id="divMultipages" class="auto-width multipageBlock bottomMargin"></div>
         <div id="venueStyle" class="smallBottomMargin"></div>
         <div id="venueLinkedPage" class="smallBottomMargin">(contains linked pages)</div>

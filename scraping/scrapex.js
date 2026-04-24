@@ -7,9 +7,9 @@ const {parseDocument} = require('htmlparser2');
 const {makeURL, simplify} = require('./import/stringUtilities.js');
 const {loadLinkedPages, saveToJSON, saveToCSV, getVenuesFromArguments,
         getFilesNumber, getFilesContent, getModificationDate} = require('./import/fileUtilities.js');
-const {samePlace, getAliases, getStyleConversions, loadVenuesJSONFile, 
-        loadCancellationKeywords, writeToLog, isActive, geAliasesToURLMap,
-        getLanguages, fromLanguages, checkLanguages, unique, getDictionary} = require('./import/jsonUtilities.js');
+const {samePlace, getAliases, loadVenuesJSONFile, writeToLog, isActive, geAliasesToURLMap,
+        unique} = require('./import/jsonUtilities.js');
+const {checkLanguages, getDicts} = require('./import/languagesUtilities.js');
 const {mergeEvents} = require('./import/mergeUtilities.js');
 const {getInfo} = require('./import/scrapexUtilities.js');
 const {getHrefFromAncestor} = require('./import/aspiratorexUtilities.js');
@@ -19,6 +19,7 @@ if (useAI){
   var {isOllamaActive, getCurrentLlamaModel, getStyleInfo, extractStyle} = require('./import/aiUtilities.js');
 }
 
+const WARNING_FOR_UNKOWN_STYLE = true; // if true, the getStyle function will issue a warning when the scrapped style is not recognized. This allows to update the style conversion list and to find new styles. Should be set to false for production use.
 
 // Chemin vers le fichier à lire
 const sourcePath = './webSources/';
@@ -26,13 +27,11 @@ const sourcePath = './webSources/';
 //var out="";// = "PLACE,TITRE,UNIX,SIZE,GENRE,URL";
 const outFile = "generated/scrapexResult.csv";
 const globalDefaultStyle = 'Live';
-const styleConversion = getStyleConversions();
-const cancellationKeywords = loadCancellationKeywords();
 // const showFullMergeLog = true;
 
 const venueList = loadVenuesJSONFile();
+const dicts = getDicts();
 const aliasList = getAliases(venueList);
-const languages = getLanguages();
 const timeZones = new TimeZone();
 
     
@@ -67,7 +66,8 @@ async function validateVenue(venue){
   }
 
   // check if a repertory exists for the venue
-  if (!fs.existsSync(sourcePath+venue.country+'/'+ venue.city+'/'+venue.name+'/'+venue.name+'.html')){
+  if (!fs.existsSync(sourcePath+venue.country+'/'+ venue.city+'/'+venue.name+'/'+venue.name+'.html') &&
+    !fs.existsSync(sourcePath+venue.country+'/'+ venue.city+'/'+venue.name+'/'+venue.name+'0.html')){
     console.log('\x1b[31mError: No file found for venue \x1b[0m%s\x1b[31m. '
       +'Check venue properties and run aspiratorex.\x1b[0m',venue.name);
     return false;
@@ -136,9 +136,7 @@ async function scrapFiles(venues) {
   writeLogFile(totalEventList,'warning');
   console.log('\n');
 
-
-  // check missing languages -> TO BE UPDATED (OR REMOVED ??)
-  // checkLanguages(venues);
+  checkLanguages(venues);
   
 }
 
@@ -187,11 +185,11 @@ async function analyseFile(venue) {
     // date format maybe different in main and link pages (cf periscope)
     const possibleDateFormats = [venue.linkedPageDateFormat, venue.dateFormat].filter(el => el);
     
-    const eventLanguages = languages[venue.country];
-    const dictionary = getDictionary(languages[venue.country]);
+    const dictionary = dicts[venue.language.toLowerCase()];
     dictionary.today = modificationDate;
-    // const localDateConversionPatterns = fromLanguages(dateConversionPatterns,eventLanguages);
-
+    const cancellationKeywords = dictionary.cancellationKeywords || [];
+    const styleConversion = dictionary.styles || {};
+    
     //*** aux functio for post processing, show logs and save  ***//
     function postProcess(eventInfo) {
 
@@ -217,8 +215,7 @@ async function analyseFile(venue) {
           eventInfo.eventStyle = globalDefaultStyle;
         }
       }
-      eventInfo.eventStyle = getStyle(eventInfo.eventStyle, eventLanguages);
-      eventInfo.eventStyle = getValidatedStyle(eventInfo.eventStyle, eventLanguages);
+      eventInfo.eventStyle = getStyle(eventInfo.eventStyle, styleConversion, WARNING_FOR_UNKOWN_STYLE);
       eventInfo.source = { 'name': venue.name, 'city': venue.city, 'country': venue.country };
 
       
@@ -247,7 +244,6 @@ async function analyseFile(venue) {
 
         let list = [];
         let number = 0;
-
         
         for (const dateFormat of dateFormatList){
           const datesPossibilities = extractDates(dateStr, dateFormat, timeZone, dictionary, false);
@@ -328,7 +324,7 @@ async function analyseFile(venue) {
         getInfo(venue.mainPage, $eventBlock, eventInfo, false, altEventInfo);
 
         // find if cancelled
-        eventInfo.isCancelled = isCancelled($eventBlock.text(),cancellationKeywords[venue.country]);
+        eventInfo.isCancelled = isCancelled($eventBlock.text(),cancellationKeywords);
 
        
         const eventInfoList = createSubEvent(eventInfo)
@@ -359,7 +355,7 @@ async function analyseFile(venue) {
                 getInfo(venue.linkedPage, $linkedBlock, subEventInfo, true, altLinkedPageInfo);
                 
                 // look for cancellation keywords. Leave commented since it appears that linkedpages do not contain appropriate information about cancellation 
-                // eventInfo.iscancelled = eventInfo.iscancelled || isCancelled($linkedBlock.text(),cancellationKeywords[venue.country]);
+                // eventInfo.iscancelled = eventInfo.iscancelled || isCancelled($linkedBlock.text(),cancellationKeywords);
                 if (useAI){
                   subEventInfo.chatStyleComment = await getStyleInfo($linkedBlock.html());
                   subEventInfo.chatStyle = extractStyle(subEventInfo.chatStyleComment);
@@ -464,28 +460,25 @@ function FindLocationFromAlias(string,country,city,aliasList){
   return res;
 }
 
-function getStyle(string, eventLanguages){
+// compares the style to the ones in the style conversion list extracted from dictionary and return the 
+// corresponding style if a match is found. Otherwise, return the original string and issue a warning if validate is true (by default). This function allows to find the right style even if the scrapped style is not exactly the same as the one in the style conversion list (for example, "concert" instead of "Concert", or "rock" instead of "Rock").
+function getStyle(string, styleConversion, validate = true){
   const stringComp = simplify(string);
   let res = string;
-  let localStyleConversion = fromLanguages(styleConversion,eventLanguages);
-  Object.keys(localStyleConversion).forEach(style =>{
-    if (localStyleConversion[style].some(word => stringComp.includes(simplify(word)))){
+  let styleFound = false;
+  Object.keys(styleConversion).forEach(style =>{
+    if (styleConversion[style].some(word => stringComp.includes(simplify(word)))){
+      styleFound = true;
       res = style;
     }
   });
+  if (!styleFound && validate){
+    console.log('\x1b[33mWarning: unknown style "%s".\x1b[0m', string);
+  }
   return res;
 }
 
 
-function getValidatedStyle(style, langs) {
-  const candidate = getStyle(style, langs);
-  const validKeys = Object.keys(styleConversion.French);
-
-  if (!validKeys.includes(candidate)) {
-    console.error(`❌ Style inconnu détecté: "${candidate}"`);
-  }
-  return candidate;
-}
 
 function  displayEventLog(eventInfo, timeZone){
   console.log('Event : %s (%s, %s)%s',eventInfo.eventName,eventInfo.city,eventInfo.country,eventInfo.isCancelled?' (cancelled)':'');

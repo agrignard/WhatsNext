@@ -1,14 +1,27 @@
-const webSources = '../webSources';
-const imports = '../../import/';
+const path = require('path');
+const rootPath = path.resolve('.').match(/.*scraping/)[0]+'/';
+
+const webSources = rootPath + 'webSources';
+const imports = rootPath + 'import/';
+// console.log('imports path : ', imports);
+// console.log('webSources path : ', webSources);
+// const webSources = '../webSources';
+// const imports = '../../import/';
 
 const fs = require('fs');
 const { shell } = require('electron');
 
 const { app, Menu, ipcRenderer } = require('electron');
-const { loadVenuesJSONFile, getStyleList, makeID, isActive, saveToVenuesJSON } = require(imports + 'jsonUtilities.js');
+const { initializeVenue } = require('../../import/jsonUtilities');
+
+
+const { loadVenuesJSONFile, makeID, isActive, saveToVenuesJSON, getCountriesInfo } = require(imports + 'jsonUtilities.js');
 const { simplify, removeBlanks, normalizeUrl } = require(imports + 'stringUtilities.js');
 const { to2digits } = require(imports + 'dateUtilities.js');
 const { getIframesList } = require(imports + 'fileUtilities.js');
+const { reinitializeMenu } = require(imports+'GUIUtilities.js');
+const { getStyles } = require(imports + 'languagesUtilities.js');
+
 
 const midnightHourOptions = ['none', 'sameday', 'previousday'];
 
@@ -16,8 +29,12 @@ let hideAliases = true;
 
 let urlToFollow;
 
+let countries = getCountriesInfo();
 let venues = loadVenuesJSONFile();
-const styleList = [''].concat(getStyleList().filter(el => el !== '')).concat(['Other']);
+const styleList = getStyles();
+let currentStyles = [];
+let currentAvailableLanguages = [];
+let lastLanguageUsed;
 
 ////////////////////////////
 // venue list management  //
@@ -52,10 +69,12 @@ let citiesDropdown = document.getElementById('citiesDropdown');
 let venuesDropdown = document.getElementById('venuesDropdown');
 
 // load countries dropdown menu
-addToMenu(webSources, countriesDropdown);
+reinitializeMenu(Object.keys(countries),countriesDropdown);
 countriesDropdown.selectedIndex = getKeyFromStorage('country', countriesDropdown);
 let currentCountry = countriesDropdown.value;
-addToMenu(webSources + '/' + countriesDropdown.value, citiesDropdown);
+setCurrentAvailableLanguages();
+
+reinitializeMenu(countries[currentCountry].cities, citiesDropdown);
 citiesDropdown.selectedIndex = getKeyFromStorage('city', citiesDropdown);
 let currentCity = citiesDropdown.value;
 let currentVenues = getVenuesFromSameCity();
@@ -67,8 +86,9 @@ saveToLocalStorage();
 // load cities menu when country changed
 countriesDropdown.addEventListener('change', (event) => {
     currentCountry = event.target.value;
-    addToMenu(webSources + '/' + currentCountry, citiesDropdown);
+    reinitializeMenu(countries[currentCountry].cities, citiesDropdown);
     citiesDropdown.dispatchEvent(new CustomEvent('change', { detail: { history: 'history|' + currentCountry } }));
+    setCurrentAvailableLanguages();
 });
 
 citiesDropdown.addEventListener('change', (event) => {
@@ -91,25 +111,6 @@ venuesDropdown.addEventListener('change', (event) => {
     updateVenueInfo('show');
 });
 
-/* auxiliary functions for dropdown menus and venues management */
-
-function addToMenu(directory, menu) {
-    try {
-        menu.innerHTML = '';
-        const files = fs.readdirSync(directory);
-        files.forEach(file => {
-            if (fs.statSync(directory + '/' + file).isDirectory()) {
-                const option = document.createElement('option');
-                option.text = file;
-                menu.add(option);
-            }
-        });
-        menu.selectedIndex = 0;
-    } catch (err) {
-        console.log("Cannot read directory ", directory);
-        throw err;
-    }
-}
 
 function populateVenuesMenu() {
     currentVenues = getVenuesFromSameCity();
@@ -259,6 +260,13 @@ function updateTextarea() {
     setCaretPosition(textURL, cursorPosition);
 }
 textURL.addEventListener("input", updateTextarea);
+
+const languageSelection = document.getElementById('languageSelection');
+
+languageSelection.addEventListener('change', function () {
+    lastLanguageUsed = languageSelection.value;
+    updateStyleList(languageSelection.value, selectStyle.value);
+});
 
 // aliases
 
@@ -413,21 +421,46 @@ const MPPatternInput = document.getElementById('MPPattern');
 const MPPageListInput = document.getElementById('MPPageListInput');
 const divMPInfo = document.getElementById('divMPInfo');
 
-// style
+// style management
 
 const selectStyle = document.getElementById('selectStyle');
-styleList.forEach(style => {
-    const option = document.createElement('option');
-    option.text = style;
-    selectStyle.appendChild(option);
-});
 const inputStyle = document.getElementById('inputStyle');
-if (selectStyle.selectedIndex === styleList.length - 1) {// odd style
-    inputStyle.value = venue.defaultStyle;
-    inputStyle.style.display = 'inline';
+
+
+// update style list according to the language of the country, or the first language if several, for now. Will need to be updated if styles become language specific or if a country has several languages with different styles.
+function updateStyleList(language, currentStyle = undefined) {
+    currentStyles = ['Undefined'].concat(styleList[language] || []).filter(el => el !== '').concat(['Custom style']);
+    reinitializeMenu(currentStyles, selectStyle);
+    selectStyle.options[0].classList.add('styleItalic');
+    selectStyle.options[selectStyle.options.length - 1].classList.add('styleItalic');
+    
+    // set the selection to the current style if it is in the list of styles for the country, or to "Custom style" and display the current style in the input field if it is not in the list of styles for the country.
+    if (currentStyle) {
+        const styleIndex = currentStyles.map(el => simplify(el)).indexOf(simplify(currentStyle));
+        if (styleIndex === -1) {// non predefined style
+            selectStyle.selectedIndex = currentStyles.length - 1;
+            inputStyle.value = currentStyle;
+            inputStyle.style.display = 'inline';
+        } else { // predefined style
+            selectStyle.selectedIndex = styleIndex;
+        }
+    }
+    toggleStyleDisplay();
 }
+
+// toggle the display of the style input field and the style dropdown menu according to the selected style. If the selected style is "Custom style", the input field is displayed and the dropdown menu is hidden, and vice versa. Also toggle the display of the custom style name in italic in the dropdown menu.
+function toggleStyleDisplay(){
+    if (selectStyle.selectedIndex === 0 || selectStyle.selectedIndex === selectStyle.options.length - 1) {
+        selectStyle.classList.add('styleItalic');
+    } else { 
+        selectStyle.classList.remove('styleItalic');
+    }
+}
+
+// display the style of the current venue. If the style is not in the list of styles for the country, it is displayed in the input field and the dropdown menu is set to "Custom style". If the style is in the list of styles for the country, it is selected in the dropdown menu and the input field is hidden.
 selectStyle.addEventListener('change', (event) => {
-    inputStyle.style.display = (selectStyle.selectedIndex === styleList.length - 1) ? 'inline' : 'none';
+    inputStyle.style.display = (selectStyle.selectedIndex === currentStyles.length - 1) ? 'inline' : 'none';
+    toggleStyleDisplay();
 });
 
 // linked page panel
@@ -589,6 +622,16 @@ function updateVenueInfo(mode) {
                 divStyle.style.display = 'none';
                 divStyle.textContent = '';
             }
+            // language of the website
+            const divLanguage = document.getElementById('venueLanguage');
+            // alert if no language is specified
+            if (!venue.hasOwnProperty('language')) {
+                divLanguage.textContent = 'Page language not specified';
+                divLanguage.classList.add('redFont');
+            }else {
+                divLanguage.classList.remove('redFont');
+                divLanguage.textContent = 'Page language: ' + venue.language;
+            }
             // linked page
             const divLinkedPage = document.getElementById('venueLinkedPage');
             divLinkedPage.style.display = (venue.hasOwnProperty('linkedPage')) ? 'block' : 'none';
@@ -637,6 +680,19 @@ function updateVenueInfo(mode) {
             // url
             textURL.textContent = venue.hasOwnProperty('url') ? venue.url : '';
             updateTextarea();
+
+            // set language selector
+            reinitializeMenu(currentAvailableLanguages, languageSelection);
+            if (venue.hasOwnProperty('language')) { // for existing venue
+                const langIndex = currentAvailableLanguages.map(el => simplify(el)).indexOf(simplify(venue.language)); 
+                languageSelection.selectedIndex = langIndex === -1 ? 0 : langIndex;
+                lastLanguageUsed = languageSelection.value;
+            }else{// for new venue, select the last language used
+                if (currentAvailableLanguages.includes(lastLanguageUsed)) {
+                    const langIndex = currentAvailableLanguages.map(el => simplify(el)).indexOf(simplify(lastLanguageUsed));
+                    languageSelection.selectedIndex = langIndex === -1 ? 0 : langIndex;
+                }
+            }
 
             // multipages header
             hasMP = isMultipages(venue);
@@ -703,18 +759,8 @@ function updateVenueInfo(mode) {
 
             // style
             selectStyle.selectedIndex = 0;
-            if (venue.hasOwnProperty('defaultStyle')) {
-                const styleIndex = styleList.map(el => simplify(el)).indexOf(simplify(venue.defaultStyle));
-                if (styleIndex === -1) {
-                    selectStyle.selectedIndex = styleList.length - 1;
-                } else {
-                    selectStyle.selectedIndex = styleIndex;
-                }
-            }
-            if (selectStyle.selectedIndex === styleList.length - 1) {// odd style
-                inputStyle.value = venue.defaultStyle;
-                inputStyle.style.display = 'inline';
-            }
+            updateStyleList(languageSelection.value, venue.defaultStyle);
+            
 
             // get linked page
             linkedPageCheckbox.checked = venue.hasOwnProperty('linkedPage') ? true : false;
@@ -778,6 +824,9 @@ function updateVenueInfo(mode) {
                 } else {
                     delete venue.url;
                 }
+                // language
+                venue.language = languageSelection.value;
+
                 // multipages
                 if (hasMP) {
                     venue.multiPages = {};
@@ -832,7 +881,7 @@ function updateVenueInfo(mode) {
                 // style
                 if (selectStyle.selectedIndex === 0) {
                     delete venue.defaultStyle;
-                } else if (selectStyle.selectedIndex === styleList.length - 1) {
+                } else if (selectStyle.selectedIndex === currentStyles.length - 1) {
                     venue.defaultStyle = inputStyle.value;
                 } else {
                     venue.defaultStyle = selectStyle.value;
@@ -1106,3 +1155,7 @@ function clearTable() {
     tbody.innerHTML = "";
 }
 
+
+function setCurrentAvailableLanguages() {
+    currentAvailableLanguages = countries[currentCountry].hasOwnProperty('languages') ? countries[currentCountry].languages : [];
+}

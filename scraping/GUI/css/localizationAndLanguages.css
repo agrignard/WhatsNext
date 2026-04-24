@@ -1,0 +1,230 @@
+body, html {
+  margin: 0px;
+  padding: 0px;
+}
+.container {
+    margin: 20px;
+}
+
+/*generic styles for sections and subsections*/
+
+
+#processContainer {
+  font-family: sans-serif;
+  display: flex; /* Utiliser Flexbox pour le positionnement */
+  height: 100vh;
+  overflow-y: auto;
+}
+
+
+
+.leftPanel {
+  flex: 0 0 35%; /* Largeur de la partie gauche */
+  max-width: 300px;
+  background-color: rgb(155, 176, 239);
+  text-align: left;
+  padding: 0px;
+  margin: 0px;
+  overflow: auto; /* Ajouter un défilement si le contenu est plus long que la zone */
+  cursor: default;
+}
+
+.rightPanel {
+  /* line-height: 30px; */
+  border: 1px solid #ccc;
+  padding: 0px;
+  margin: 0px;
+  text-align: left;
+  flex: 1; /* Largeur de la partie droite */
+  background-color: #cedbf0; /* Couleur de fond */
+  /* overflow-y: auto; Ajouter un défilement vertical si le contenu est plus long que la zone */
+}
+
+.sectionTitle {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.subSectionTitle {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 12px;
+    margin-bottom: 6px;
+}
+
+.subsection {
+    margin: 5px 5px;
+    padding: 10px;
+}
+
+.subsectionLeft {
+    background: rgb(165, 186, 249);
+}
+
+.panel {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+  margin-bottom: 4px;
+  flex-wrap: nowrap;
+}
+
+/* style for buttons and fields */
+
+button {
+  height: 26px;
+  padding: 0 8px;
+  line-height: 1;
+  cursor: pointer;
+  box-sizing: border-box;
+  flex: 0 0 auto;
+}
+
+
+.field {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 26px;
+  box-sizing: border-box;
+}
+
+/* Style for languages */
+
+#languagesContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.languageRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 6px;
+    border: 1px solid #ccc;
+    background: #f4f4f4;
+    cursor: default;
+}
+
+
+
+.languageDelete {
+    color: #b00020;
+    cursor: pointer;
+    font-weight: bold;
+    padding-left: 8px;
+}
+
+.languageDelete:hover {
+    color: red;
+}
+
+
+/* style for add language menu */
+
+
+#addLanguageContainer {
+    margin-top: 6px;
+}
+
+#languageInput {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 4px 6px;
+    border: 1px solid #ccc;
+    background: #e4e4f8;
+    font: inherit;
+}
+
+#languageInput:focus {
+    outline: none;
+    border-color: #4a90e2;
+    background: white;
+}
+
+.languageInputRow {
+    padding: 4px 6px;
+    border: 1px solid #ccc;
+    background: #f4f4f4;
+}
+
+#languageSuggestions {
+    border: 1px solid #ccc;
+    border-top: none;
+    background: white;
+}
+
+
+.suggestionItem {
+    padding: 4px;
+    cursor: pointer;
+}
+
+.suggestionItem:hover {
+    background: #eee;
+}
+
+.unavailableLanguage {
+  color: #ec0a0a;
+}
+
+
+
+.inactive{
+  color: #c0bdbd;
+}
+
+
+/* css for list scrolling in venues and cities */
+
+.scrollable-list {
+  padding: 0;
+  margin: 0;
+  margin-top: 10px;
+  width: 100%;
+  height: 500px;
+  overflow-y: scroll;
+  list-style: none; /* Supprime les puces de la liste */
+}
+
+.scrollable-list li {
+  line-height: 20px;
+  padding: 5px;
+  margin: 0;
+  background-color: #eaedf1;
+  cursor: pointer; /* Montre que les éléments sont cliquables */
+  user-select: none; /* Désactive la sélection du texte par défaut */
+  
+}
+
+/* Style for selected elements */
+.scrollable-list li.selected {
+  background-color: #438cd9; 
+  color: white; 
+}
+
+
+.auto-width {
+  width: max-content;
+  background-color: rgb(202, 223, 229);
+  padding: 5px 10px;
+}
+
+#venuesList {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.deleteBtn {
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
+.deleteBtn:disabled {
+  color: #aaa;
+  cursor: default;
+}

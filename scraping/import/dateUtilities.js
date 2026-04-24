@@ -102,20 +102,32 @@ function initDateFormat(dateList, dictionary){
                         // false positive, but not too high to avoid problems with wrong tokens
   const monthsDict = dictionary.monthsDict;
   const dateFormat = {month: 'numeric'};
+
+  // find if alphabetic months can be found. If yes, compute a score for long and short month, and keep the highest
   // look for long month
   const longMonthPattern = `\\b(?:${Object.keys(monthsDict).join("|")})\\b`;
   const longMonthRegex = new RegExp(longMonthPattern, "i");
   const longMonthScore = cleanDateList.filter(dateStr => longMonthRegex.test(dateStr)).length / cleanDateList.length;
-  if (longMonthScore > threshold){
-    dateFormat.month = 'long';
-  }else{
-    const shortMonthPattern = `\\b(?:${Object.values(monthsDict).flat().join("|")})\\b`;
-    const shortMonthRegex = new RegExp(shortMonthPattern, "i");
-    const shortMonthScore = cleanDateList.filter(dateStr => shortMonthRegex.test(dateStr)).length / cleanDateList.length;
-    if (shortMonthScore > threshold){
-      dateFormat.month = 'short';
-    }
+  
+  // look for short month
+  const shortMonthPattern = `\\b(?:${Object.values(monthsDict).flat().join("|")})\\b`;
+  const shortMonthRegex = new RegExp(shortMonthPattern, "i");
+  const shortMonthScore = cleanDateList.filter(dateStr => shortMonthRegex.test(dateStr)).length / cleanDateList.length;
+    
+  if (longMonthScore > threshold || shortMonthScore > threshold){
+    dateFormat.month =  longMonthScore > shortMonthScore ? 'long' : 'short';
   }
+
+  //   if (longMonthScore > threshold){
+//     dateFormat.month = 'long';
+//   }else{
+//     const shortMonthPattern = `\\b(?:${Object.values(monthsDict).flat().join("|")})\\b`;
+//     const shortMonthRegex = new RegExp(shortMonthPattern, "i");
+//     const shortMonthScore = cleanDateList.filter(dateStr => shortMonthRegex.test(dateStr)).length / cleanDateList.length;
+//     if (shortMonthScore > threshold){
+//       dateFormat.month = 'short';
+//     }
+//   }
 
   // look for years
   const currentYear = (new Date()).getFullYear();
@@ -537,7 +549,7 @@ function preprocessTextTokens(t, entries) {
 // Remove others and send a warning to developpers if verbose 
 // non text tokens are unchanged
 function processRemainingTextTokens(token, dateFormat, dict, verbose){
-    const rangeDeLimiters = dict.rangeDeLimiters;
+    const rangeDelimiters = dict.rangeDelimiters;
     const rightRangeDelimiters = dict.rightRangeDelimiters;
     const monthsDict = dict.monthsDict;
 
@@ -576,11 +588,11 @@ function processRemainingTextTokens(token, dateFormat, dict, verbose){
     const possibilities = [];
 
     // if it is a starting delimiter
-    if (!token.beforeTimeToken && rangeDeLimiters.some(el => token.rawText.endsWith(el[0]))){
+    if (!token.beforeTimeToken && rangeDelimiters.some(el => token.rawText.endsWith(el[0]))){
         possibilities.push('rangeDelimiterStart');
     }
     // if it is a end delimiter
-    if (!token.beforeTimeToken && rangeDeLimiters.some(el => token.rawText.endsWith(el[1]))){
+    if (!token.beforeTimeToken && rangeDelimiters.some(el => token.rawText.endsWith(el[1]))){
         possibilities.push('rangeDelimiterEnd');
     }
     // if it is a range separator

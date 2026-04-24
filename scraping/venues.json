@@ -5,6 +5,7 @@
     "country": "France",
     "url": "https://le-sucre.eu/agenda/",
     "baseURL": "https://le-sucre.eu/agenda/",
+    "language": "french",
     "eventsDelimiterTag": "A.event.depth5",
     "defaultStyle": "Electro",
     "comments": "après avoir utilisé analex, enlever t5410 de la classe de la balise qui délimite les events",
@@ -21,7 +22,13 @@
       ]
     },
     "eventURLIndex": 0,
-    "dateFormat": "dd-MM",
+    "dateFormat": {
+      "month": "short",
+      "order": [
+        "day",
+        "month"
+      ]
+    },
     "ID": "Le Sucre|Lyon|France",
     "regexp": {
       "eventStyle": [
@@ -36,6 +43,7 @@
     "country": "France",
     "url": "https://www.lpslyon.fr/evenements-le-petit-salon/",
     "baseURL": "https://www.lpslyon.fr/evenements-le-petit-salon/",
+    "language": "french",
     "eventsDelimiterTag": "DIV.events__item.item.colmd4.depth10",
     "mainPage": {
       "eventDateTags": [
@@ -87,6 +95,7 @@
     "city": "Lyon",
     "country": "France",
     "url": "https://www.transbordeur.fr/agenda/",
+    "language": "french",
     "eventsDelimiterTag": "A.postscontaineritem.depth11",
     "dateFormat": "dd-MM-yyyy-HH:mm",
     "mainPage": {
@@ -116,6 +125,7 @@
     "city": "Lyon",
     "country": "France",
     "url": "https://www.terminal-club.com/evenements/",
+    "language": "french",
     "eventsDelimiterTag": "DIV.colinner.depth13",
     "dateFormat": "dd-MM",
     "eventURLIndex": 0,
@@ -146,6 +156,7 @@
     "city": "Lyon",
     "country": "France",
     "url": "https://www.periscope-lyon.com/concerts/",
+    "language": "french",
     "eventsDelimiterTag": "A.depth9",
     "dateFormat": "dd-MM",
     "defaultStyle": "Jazz",
@@ -178,12 +189,24 @@
     "city": "Lyon",
     "country": "France",
     "url": "https://sonic-lyon.fr/page/",
-    "dateFormat": "dd-MM-yy-HH:mm",
+    "dateFormat": {
+      "month": "numeric",
+      "year": "short",
+      "order": [
+        "day",
+        "month",
+        "year"
+      ]
+    },
+    "language": "french",
     "eventsDelimiterTag": "ARTICLE.eventcard.depth4",
     "eventURLIndex": 0,
     "defaultStyle": "Rock",
     "baseURL": "https://sonic-lyon.fr/page/",
     "mainPage": {
+      "eventPlaceTags": [
+        "DIV.eventimagecontainer.depth5:eq(0)>SPAN.eventtag.eventtaglive.depth6:eq(0)"
+      ],
       "eventNameTags": [
         "DIV.eventcontent.depth5:eq(0)>H2.depth6:eq(0)>A.depth7:eq(0)"
       ],
@@ -210,15 +233,14 @@
         ]
       }
     },
-    "alternateDateFormat": {
-      "linkedPage": "No date format found."
-    }
+    "linkedPage": {}
   },
   {
     "name": "Le Petit Bulletin",
     "city": "Lyon",
     "country": "France",
     "url": "https://www.petit-bulletin.fr/agenda-recherche.html?thema=musique-soirees&quoi=0&ou=V1",
+    "language": "french",
     "eventsDelimiterTag": "DIV.postcontent.depth11",
     "baseURL": "https://www.petit-bulletin.fr/",
     "mainPage": {
@@ -253,6 +275,7 @@
     "baseURL": "https://marchegare.fr/",
     "mainPage": {},
     "eventURLIndex": 0,
+    "language": "french",
     "eventsDelimiterTag": "A.agendaitem.nounderline.group.depth17",
     "linkedPage": {
       "eventNameTags": [
@@ -284,6 +307,7 @@
         "DIV.blocsquare__infos.depth6:eq(0)>DIV.blocsquare__title.depth7:eq(0)"
       ]
     },
+    "language": "french",
     "eventsDelimiterTag": "A.blocsquare.types.depth5",
     "eventURLIndex": 0,
     "dateFormat": "dd-MM-yy-HH:mm",
@@ -294,6 +318,7 @@
     "city": "Lyon",
     "country": "France",
     "url": "https://villemorte.fr/agenda-2-0/",
+    "language": "french",
     "eventsDelimiterTag": "ARTICLE.hevent.depth11",
     "dateFormat": "MM-dd-HH:mm",
     "baseURL": "https://villemorte.fr/agenda-2-0/",
@@ -341,6 +366,7 @@
       "nbPages": 42
     },
     "baseURL": "https://www.infoconcert.com/concerts/",
+    "language": "french",
     "eventsDelimiterTag": "DIV.panelbody.depth11",
     "mainPage": {
       "eventNameTags": [
@@ -404,6 +430,7 @@
     },
     "url": "https://www.rockneat.com/",
     "baseURL": "https://www.rockneat.com/",
+    "language": "french",
     "eventsDelimiterTag": "DIV.animateslidebottomd5.depth4",
     "dateFormat": "yyyy-MM-dd"
   },
@@ -433,6 +460,7 @@
     },
     "url": "https://larayonne.org/agenda/",
     "baseURL": "https://larayonne.org/agenda/",
+    "language": "french",
     "eventsDelimiterTag": "DIV.agendajour.depth6",
     "eventURLIndex": 1,
     "dateFormat": "dd-MM-HH:mm",
@@ -453,7 +481,8 @@
     "country": "France",
     "url": "https://www.trokson.com/shows",
     "defaultStyle": "Rock",
-    "ID": "Le Trokson|Lyon|France"
+    "ID": "Le Trokson|Lyon|France",
+    "language": "french"
   },
   {
     "name": "Bizarre!",
@@ -463,13 +492,15 @@
       "Bizarre",
       "Bizarre !"
     ],
-    "ID": "Bizarre!|Lyon|France"
+    "ID": "Bizarre!|Lyon|France",
+    "language": "french"
   },
   {
     "name": "Toï Toï Le Zinc",
     "country": "France",
     "city": "Lyon",
-    "ID": "Toï Toï Le Zinc|Lyon|France"
+    "ID": "Toï Toï Le Zinc|Lyon|France",
+    "language": "french"
   },
   {
     "name": "Jack Jack",
@@ -479,7 +510,8 @@
       "Jack Jack - MJC Aragon",
       "Jack Jack / Mjc Louis Aragon De Bron"
     ],
-    "ID": "Jack Jack|Lyon|France"
+    "ID": "Jack Jack|Lyon|France",
+    "language": "french"
   },
   {
     "name": "Salle 3000",
@@ -489,7 +521,8 @@
       "Amphithéâtre - Salle 3000",
       "Cite Internationale (Amphitheatre/Salle 3000/Auditorium Lumiere)"
     ],
-    "ID": "Salle 3000|Lyon|France"
+    "ID": "Salle 3000|Lyon|France",
+    "language": "french"
   },
   {
     "name": "Epicerie Moderne",
@@ -500,13 +533,15 @@
       "L’Épicerie Moderne"
     ],
     "ID": "Epicerie Moderne|Lyon|France",
-    "baseURL": "https://epiceriemoderne.com/"
+    "baseURL": "https://epiceriemoderne.com/",
+    "language": "french"
   },
   {
     "name": "Grrrnd Zéro",
     "country": "France",
     "city": "Lyon",
-    "ID": "Grrrnd Zéro|Lyon|France"
+    "ID": "Grrrnd Zéro|Lyon|France",
+    "language": "french"
   },
   {
     "name": "Hot Club",
@@ -515,7 +550,8 @@
     "aliases": [
       "Hot Club de Lyon"
     ],
-    "ID": "Hot Club|Lyon|France"
+    "ID": "Hot Club|Lyon|France",
+    "language": "french"
   },
   {
     "name": "Opéra National de Lyon",
@@ -524,7 +560,8 @@
     "aliases": [
       "Opéra de Lyon"
     ],
-    "ID": "Opéra National de Lyon|Lyon|France"
+    "ID": "Opéra National de Lyon|Lyon|France",
+    "language": "french"
   },
   {
     "name": "LDLC Arena",
@@ -544,6 +581,7 @@
       ]
     },
     "baseURL": "https://www.olvallee.fr/calendrier/",
+    "language": "french",
     "eventsDelimiterTag": "DIV.eventcard__container.depth10",
     "dateFormat": "dd-MM-yyyy-HH:mm"
   },
@@ -551,7 +589,8 @@
     "name": "Bourse du Travail",
     "country": "France",
     "city": "Lyon",
-    "ID": "Bourse du Travail|Lyon|France"
+    "ID": "Bourse du Travail|Lyon|France",
+    "language": "french"
   },
   {
     "name": "Radiant-Bellevue",
@@ -579,6 +618,7 @@
       "nextButton": "SAISON SUITE"
     },
     "baseURL": "http://radiant-bellevue.fr/",
+    "language": "french",
     "eventsDelimiterTag": "A.depth8",
     "dateFormat": "dd-MM-yyyy"
   },
@@ -589,13 +629,15 @@
     "aliases": [
       "Peniche La Marquise"
     ],
-    "ID": "La Marquise|Lyon|France"
+    "ID": "La Marquise|Lyon|France",
+    "language": "french"
   },
   {
     "name": "À Thou Bout d'Chant",
     "country": "France",
     "city": "Lyon",
-    "ID": "À Thou Bout d'Chant|Lyon|France"
+    "ID": "À Thou Bout d'Chant|Lyon|France",
+    "language": "french"
   },
   {
     "name": "Espace Albert Camus",
@@ -604,14 +646,16 @@
     "aliases": [
       "Espace Albert Camus De Bron"
     ],
-    "ID": "Espace Albert Camus|Lyon|France"
+    "ID": "Espace Albert Camus|Lyon|France",
+    "language": "french"
   },
   {
     "name": "Espace Gerson",
     "country": "France",
     "city": "Lyon",
     "defaultStyle": "Theatre",
-    "ID": "Espace Gerson|Lyon|France"
+    "ID": "Espace Gerson|Lyon|France",
+    "language": "french"
   },
   {
     "name": "La Vache Rouge",
@@ -620,7 +664,8 @@
     "aliases": [
       "Vache Rouge"
     ],
-    "ID": "La Vache Rouge|Lyon|France"
+    "ID": "La Vache Rouge|Lyon|France",
+    "language": "french"
   },
   {
     "name": "Opéra Underground",
@@ -629,13 +674,15 @@
     "aliases": [
       "L'opera Underground : L'autre Scene De L'opera De Lyon"
     ],
-    "ID": "Opéra Underground|Lyon|France"
+    "ID": "Opéra Underground|Lyon|France",
+    "language": "french"
   },
   {
     "name": "Salle des Rancy",
     "country": "France",
     "city": "Lyon",
-    "ID": "Salle des Rancy|Lyon|France"
+    "ID": "Salle des Rancy|Lyon|France",
+    "language": "french"
   },
   {
     "name": "Groupama Stadium",
@@ -644,7 +691,8 @@
     "aliases": [
       "Groupama Stadium Lyon"
     ],
-    "ID": "Groupama Stadium|Lyon|France"
+    "ID": "Groupama Stadium|Lyon|France",
+    "language": "french"
   },
   {
     "name": "Auditorium de Lyon",
@@ -653,42 +701,48 @@
     "aliases": [
       "Auditorium - Orchestre National De Lyon"
     ],
-    "ID": "Auditorium de Lyon|Lyon|France"
+    "ID": "Auditorium de Lyon|Lyon|France",
+    "language": "french"
   },
   {
     "name": "Le Nombril du Monde",
     "country": "France",
     "city": "Lyon",
     "ID": "Le Nombril du Monde|Lyon|France",
-    "defaultStyle": "Theatre"
+    "defaultStyle": "Theatre",
+    "language": "french"
   },
   {
     "name": "Le Boui Boui",
     "country": "France",
     "city": "Lyon",
     "ID": "Le Boui Boui|Lyon|France",
-    "defaultStyle": "Theatre"
+    "defaultStyle": "Theatre",
+    "language": "french"
   },
   {
     "name": "Salle Paul Garcin",
     "country": "France",
     "city": "Lyon",
     "ID": "Salle Paul Garcin|Lyon|France",
-    "defaultStyle": "Theatre"
+    "defaultStyle": "Theatre",
+    "language": "french"
   },
   {
     "name": "Cafe Theatre Le Complexe",
     "country": "France",
     "city": "Lyon",
     "ID": "Cafe Theatre Le Complexe|Lyon|France",
-    "defaultStyle": "Theatre"
+    "defaultStyle": "Theatre",
+    "language": "french"
   },
   {
     "name": "L'ile O",
     "country": "France",
     "city": "Lyon",
     "ID": "L'ile O|Lyon|France",
-    "defaultStyle": "Theatre"
+    "defaultStyle": "Theatre",
+    "language": "french"
   },
   {
     "name": "Centre culturel Charlie Chaplin",
@@ -697,7 +751,8 @@
     "ID": "Centre culturel Charlie Chaplin|Lyon|France",
     "aliases": [
       "Centre Charlie Chaplin"
-    ]
+    ],
+    "language": "french"
   },
   {
     "name": "Ô Totem live",
@@ -708,7 +763,8 @@
       "Ô Totem",
       "MJC Ô Totem",
       "Mjc O Totem"
-    ]
+    ],
+    "language": "french"
   },
   {
     "name": "L'agend'arts",
@@ -717,7 +773,8 @@
     "ID": "L'agend'arts|Lyon|France",
     "aliases": [
       "L'agend'arts "
-    ]
+    ],
+    "language": "french"
   },
   {
     "name": "Maison Du Peuple De Pierre Benite",
@@ -726,7 +783,8 @@
     "ID": "LaMaisonduPeuple|Lyon|France",
     "aliases": [
       "Maison Du Peuple De Pierre Benite "
-    ]
+    ],
+    "language": "french"
   },
   {
     "name": "La Clef de Voûte",
@@ -746,6 +804,7 @@
     "url": "https://www.laclefdevoute.fr/concerts-de-jazz-a-lyon/",
     "ID": "La Clef de Voûte|Lyon|France",
     "baseURL": "https://www.laclefdevoute.fr/concerts-de-jazz-a-lyon/",
+    "language": "french",
     "eventsDelimiterTag": "DIV.tribeeventscalendarmonth__calendareventtooltip.depth19",
     "dateFormat": "dd-MM-HH:mm",
     "eventURLIndex": 0,
@@ -759,6 +818,7 @@
     "url": "https://www.les-subs.com/agenda/",
     "ID": "Les SUBS|Lyon|France",
     "baseURL": "https://www.les-subs.com/agenda/",
+    "language": "french",
     "eventsDelimiterTag": "DIV.relative.jsarchivewrapper.depth6",
     "eventURLIndex": 1,
     "multiPages": {
@@ -790,6 +850,7 @@
     "url": "https://shotgun.live/fr/cities/lyon",
     "ID": "Shotgun|Lyon|France",
     "baseURL": "https://shotgun.live/fr/cities/",
+    "language": "french",
     "eventsDelimiterTag": "A.depth6",
     "eventURLIndex": 0,
     "dateFormat": "dd-MM-HH:mm",
@@ -845,6 +906,7 @@
     "url": "https://likdo.asia/event/all/",
     "ID": "Likdo|Hanoi|Vietnam",
     "baseURL": "https://likdo.asia/event/all/",
+    "language": "french",
     "eventsDelimiterTag": " DIV.wlayoutgrid.evetscollectionsectionheader.blackbg.recom.artist A.cardwrapper.winlineblock",
     "dateFormat": "dd-MM",
     "eventURLIndex": 0
@@ -861,7 +923,8 @@
       "nbPages": "5",
       "scroll": true
     },
-    "baseURL": "https://www.noisehanoi.com/"
+    "baseURL": "https://www.noisehanoi.com/",
+    "language": "french"
   },
   {
     "name": "Chapelle De La Trinité",
@@ -898,6 +961,7 @@
         "year"
       ]
     },
+    "language": "french",
     "eventsDelimiterTag": "DIV.left.depth6",
     "linkedPage": {
       "eventDateTags": [
@@ -910,7 +974,8 @@
     "name": "Chromatique",
     "city": "Lyon",
     "country": "France",
-    "ID": "Chromatique|Lyon|France"
+    "ID": "Chromatique|Lyon|France",
+    "language": "french"
   },
   {
     "name": "Olma",
@@ -923,7 +988,8 @@
     "url": "https://www.olma-club.com/index.php/evenements",
     "defaultStyle": "Electro",
     "ID": "Olma|Lyon|France",
-    "baseURL": "https://www.olma-club.com/index.php/"
+    "baseURL": "https://www.olma-club.com/index.php/",
+    "language": "french"
   },
   {
     "name": "Le Bazar",
@@ -937,7 +1003,8 @@
       "scroll": true
     },
     "linkedPageDownloadMethod": "Puppeteer",
-    "baseURL": "https://www.facebook.com/lebazarlyon/events/"
+    "baseURL": "https://www.facebook.com/lebazarlyon/events/",
+    "language": "french"
   },
   {
     "name": "La Pente",
@@ -950,7 +1017,8 @@
       "type": "dynamicPage",
       "scroll": true
     },
-    "baseURL": "https://www.lapente.fr/"
+    "baseURL": "https://www.lapente.fr/",
+    "language": "french"
   },
   {
     "name": "MacBAR",
@@ -960,7 +1028,8 @@
       "MacBAR - Bar restaurant du Musée d'art contemporain"
     ],
     "url": "https://www.mac-lyon.com/fr/cafe-restaurant-et-boutique",
-    "ID": "MacBAR|Lyon|France"
+    "ID": "MacBAR|Lyon|France",
+    "language": "french"
   },
   {
     "name": "Six",
@@ -968,7 +1037,8 @@
     "country": "France",
     "url": "https://www.sixbrotteaux.com/",
     "defaultStyle": "Electro",
-    "ID": "Six|Lyon|France"
+    "ID": "Six|Lyon|France",
+    "language": "french"
   },
   {
     "name": "Groom",
@@ -978,7 +1048,8 @@
     "ID": "Groom|Lyon|France",
     "defaultStyle": "Electro",
     "mainPage": {},
-    "baseURL": "https://www.groomlyon.com/agenda/"
+    "baseURL": "https://www.groomlyon.com/agenda/",
+    "language": "french"
   },
   {
     "name": "Le fil",
@@ -1002,6 +1073,7 @@
       ]
     },
     "baseURL": "https://www.le-fil.com/agenda/",
+    "language": "french",
     "eventsDelimiterTag": "DIV.singlecard__infoheader.depth9",
     "dateFormat": "dd-MM-HH:mm"
   },
@@ -1020,6 +1092,7 @@
       ]
     },
     "baseURL": "https://www.zenith-saint-etienne.fr/agenda/",
+    "language": "french",
     "eventsDelimiterTag": "A.depth10",
     "dateFormat": "dd-MM-yyyy-HH:mm",
     "defaultStyle": "Live"
@@ -1042,6 +1115,7 @@
     "url": "https://le-solar.fr/agenda/",
     "ID": "Le Solar|Saint-Etienne|France",
     "baseURL": "https://le-solar.fr/agenda/",
+    "language": "french",
     "eventsDelimiterTag": "DIV.elinner.depth7",
     "dateFormat": "dd-MM-HH:mm",
     "defaultStyle": "Jazz",
@@ -1075,6 +1149,7 @@
     "url": "https://www.lepax.fr/",
     "ID": "Le Pax|Saint-Etienne|France",
     "baseURL": "https://www.lepax.fr/",
+    "language": "french",
     "eventsDelimiterTag": "DIV.elementorwidgetwrap.depth15",
     "dateFormat": "dd-MM"
   },
@@ -1101,6 +1176,7 @@
     "url": "https://lamaisonscene.fr/agenda/",
     "ID": "La Maison Scène|Saint-Etienne|France",
     "baseURL": "https://lamaisonscene.fr/agenda/",
+    "language": "french",
     "eventsDelimiterTag": "DIV.elementorelement.elementorelementd294d83.econfull.customcontener.eflex.econ.eparent.depth17",
     "dateFormat": "dd-MM"
   },
@@ -1125,6 +1201,7 @@
     "url": "https://www.la-belle-electrique.com/fr/programmation",
     "ID": "La Belle Electrique|Grenoble|France",
     "baseURL": "https://www.la-belle-electrique.com/fr/",
+    "language": "french",
     "eventsDelimiterTag": "ARTICLE.eventcard.flex.flexcol.itemsstart.wfull.textblack.depth8",
     "dateFormat": "dd-MM-yy-HH:mm",
     "multiPages": {
@@ -1145,7 +1222,8 @@
       "type": "dynamicPage",
       "scroll": true,
       "nextButton": ""
-    }
+    },
+    "language": "french"
   },
   {
     "name": "Austra Rocks",
@@ -1160,7 +1238,8 @@
       "increment": "1"
     },
     "ID": "Austra Rocks|Grenoble|France",
-    "baseURL": "https://www.austrarocks.com/evenements/"
+    "baseURL": "https://www.austrarocks.com/evenements/",
+    "language": "french"
   },
   {
     "name": "Le Summum",
@@ -1180,6 +1259,7 @@
     "url": "https://www.summum-grenoble.com/categorie/concert/",
     "ID": "Le Summum|Grenoble|France",
     "baseURL": "https://www.summum-grenoble.com/categorie/concert/",
+    "language": "french",
     "eventsDelimiterTag": "A.group.depth6",
     "dateFormat": "dd-MM-yyyy"
   },
@@ -1204,6 +1284,7 @@
     "url": "https://lasource-fontaine.fr/programme/",
     "ID": "La Source|Grenoble|France",
     "baseURL": "https://lasource-fontaine.fr/programme/",
+    "language": "french",
     "eventsDelimiterTag": "DIV.gtcontent.depth25",
     "dateFormat": "dd-MM-yyyy"
   },
@@ -1225,6 +1306,7 @@
     "url": "https://www.lacordo.com/agenda",
     "ID": "La Cordo|Grenoble|France",
     "baseURL": "https://www.lacordo.com/",
+    "language": "french",
     "eventsDelimiterTag": "A.flipcard.depth5",
     "dateFormat": "dd-MM"
   },
@@ -1253,6 +1335,7 @@
     },
     "ID": "Shotgun_saint-etienne|Saint-Etienne|France",
     "baseURL": "https://shotgun.live/fr/cities/",
+    "language": "french",
     "eventsDelimiterTag": "A.depth6",
     "dateFormat": "dd-MM-HH:mm"
   },
@@ -1284,6 +1367,7 @@
     },
     "ID": "Shotgun_grenoble|Grenoble|France",
     "baseURL": "https://shotgun.live/fr/cities/",
+    "language": "french",
     "eventsDelimiterTag": "A.depth6",
     "dateFormat": "dd-MM-HH:mm"
   },
@@ -1308,6 +1392,7 @@
     "url": "https://www.cepacsilo-marseille.fr/evenements/",
     "ID": "CEPAC Silo|Marseille|France",
     "baseURL": "https://www.cepacsilo-marseille.fr/evenements/",
+    "language": "french",
     "eventsDelimiterTag": "DIV.cardevent.depth7",
     "dateFormat": "dd-MM-yyyy"
   },
@@ -1329,6 +1414,7 @@
     "url": "https://theatre-lacriee.com/programmation/spectacles",
     "ID": "Théâtre de La Criée|Marseille|France",
     "baseURL": "https://theatre-lacriee.com/programmation/",
+    "language": "french",
     "eventsDelimiterTag": "A.depth7",
     "dateFormat": "dd-MM-yyyy"
   },
@@ -1339,7 +1425,8 @@
     "mainPage": {},
     "url": "https://www.lemakeda.com/evenements/",
     "ID": "Le Makeda|Marseille|France",
-    "baseURL": "https://www.lemakeda.com/evenements/"
+    "baseURL": "https://www.lemakeda.com/evenements/",
+    "language": "french"
   },
   {
     "name": "Shotgun-marseille",
@@ -1368,6 +1455,7 @@
     },
     "ID": "Shotgun-marseille|Marseille|France",
     "baseURL": "https://shotgun.live/fr/cities/",
+    "language": "french",
     "eventsDelimiterTag": "A.depth6",
     "dateFormat": "dd-MM-HH:mm"
   },
@@ -1379,6 +1467,7 @@
     "url": "https://criduport.fr/saison-2024-2025-2/",
     "ID": "Le Cri du Port|Marseille|France",
     "baseURL": "https://criduport.fr/saison-2024-2025-2/",
+    "language": "french",
     "eventsDelimiterTag": ""
   },
   {
@@ -1399,6 +1488,7 @@
     "url": "https://espace-julien.com/agenda",
     "ID": "Espace Julien|Marseille|France",
     "baseURL": "https://espace-julien.com/",
+    "language": "french",
     "eventsDelimiterTag": "A.container.group.block.hfull.bgneutral0.textcontent.hoverscbasescbaseinvert.hoverscbasecontentscbasecontentinvert.depth17",
     "dateFormat": "dd-MM-HH:mm"
   },
@@ -1420,6 +1510,7 @@
     "url": "https://dome.marseille.fr/programmation/concert",
     "ID": "Le Dôme|Marseille|France",
     "baseURL": "https://dome.marseille.fr/programmation/",
+    "language": "french",
     "eventsDelimiterTag": "DIV.viewsviewresponsivegrid__iteminner.depth17",
     "dateFormat": "dd-MM-yyyy-HH:mm"
   },
@@ -1443,6 +1534,7 @@
       "nextButton": "AFFICHER PLUS DE DATES"
     },
     "baseURL": "https://l-affranchi.com/",
+    "language": "french",
     "eventsDelimiterTag": "DIV.eventon_list_event.evo_eventtop.event.event_213045_0.depth16",
     "dateFormat": "dd-MM-yyyy"
   },
@@ -1473,6 +1565,7 @@
     },
     "ID": "Centre culturel L'Ilyade|Marseille|France",
     "baseURL": "https://www.lilyade.fr/programmation/",
+    "language": "french",
     "eventsDelimiterTag": "DIV.econinner.depth12",
     "dateFormat": "dd-MM-yyyy-HH:mm"
   },
@@ -1497,6 +1590,7 @@
     "url": "https://www.zenith-dijon.fr/evenements/",
     "ID": "Zénith de Dijon|Dijon|France",
     "baseURL": "https://www.zenith-dijon.fr/evenements/",
+    "language": "french",
     "eventsDelimiterTag": "DIV.cardevent.depth7",
     "dateFormat": "dd-MM-yyyy"
   },
@@ -1521,6 +1615,7 @@
     },
     "ID": "L'Olympia|Paris|France",
     "baseURL": "https://www.olympiahall.com/agenda/",
+    "language": "french",
     "eventsDelimiterTag": "A.ccard.event.depth9",
     "dateFormat": "dd-MM-yyyy"
   },
@@ -1542,6 +1637,7 @@
       ]
     },
     "baseURL": "https://www.fiducial-asteria.com/",
+    "language": "french",
     "eventsDelimiterTag": "DIV.articlecontent.depth17",
     "dateFormat": {
       "month": "long",

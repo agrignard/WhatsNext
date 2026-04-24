@@ -1,22 +1,21 @@
-// import {to2digits, sameDay} from './dateUtilities.mjs';
-// import {simplify, removeDoubles} from './stringUtilities.mjs';
-// import {samePlace, getEventPlace, fromLocalSource, getStyleList, writeToLog,jsonRemoveDouble} from './jsonUtilities.mjs';
-
 const path = require('path');
 const {to2digits, sameDay} =  require('./dateUtilities.js');
 const {simplify, removeDoubles} = require('./stringUtilities.js');
-const {samePlace, getEventPlace, fromLocalSource, getStyleList, writeToLog,jsonRemoveDouble} = require('./jsonUtilities.js');
+const {samePlace, getEventPlace, fromLocalSource, writeToLog,jsonRemoveDouble} = require('./jsonUtilities.js');
+const {getStyleList} = require('./languagesUtilities.js');
 
 
 module.exports = { mergeEvents };
   
 const rootDirectory = path.resolve('.').match(/.*scraping/)[0]+'/';
 const outFile = rootDirectory+"/generated/afterMerge.csv";
-const refStyleList = getStyleList();
+
 
 function mergeEvents(eventList,showFullMergeLog){
     // console.log('\x1b[42mMerging\x1b[0m');
-    
+    const countries = [...new Set(eventList.map(el => el.source.country))];
+    const refStyleList = getStyleList(countries);
+
     let newList = [];
     let mergeLog = '';
 
@@ -116,7 +115,8 @@ function mergeEvents(eventList,showFullMergeLog){
             return [event];
         }else{// if there are several candidates, first choose the name, style, detailed style that are the best
             event.eventName = chooseBestEventName(event.mergeCandidates.map(el => el.eventName));
-            event.eventStyle = andDoItWithStyle(event.mergeCandidates.map(el => el.eventStyle));
+            const country = event.mergeCandidates[0].source.country;
+            event.eventStyle = andDoItWithStyle(event.mergeCandidates.map(el => el.eventStyle), refStyleList[country]);
             const detailedStyleList = event.mergeCandidates.map(el => el.eventDetailedStyle);
             const maxLength = detailedStyleList.reduce((max, string) => Math.max(max, string.length), 0);
             event.eventDetailedStyle = detailedStyleList.filter(string => string.length === maxLength)[0];
@@ -279,10 +279,10 @@ function chooseBestEventName(eventNameList){
 
 
 // among the styles, find if one matches the default styles. If not, keep the most informative (longest string)
-function andDoItWithStyle(eventStyleList){
+function andDoItWithStyle(eventStyleList, refStyles){
     const styleList = removeDoubles(eventStyleList);
     if (styleList.length>1){
-        const commonElements = styleList.filter(element =>element => element !== '' && refStyleList.includes(element));
+        const commonElements = styleList.filter(element =>element => element !== '' && refStyles.includes(element));
         if (commonElements.length > 0){
             return commonElements[0];
         }else{

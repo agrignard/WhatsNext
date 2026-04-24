@@ -16,6 +16,7 @@ const fs = require('fs');
 // const axios = require('axios');
 const cheerio = require('cheerio');
 const {cleanPage, removeBlanks, extractBody, simplify} = require('./stringUtilities.js');
+const {isActive} = require('./jsonUtilities.js');
 
 
 
@@ -49,7 +50,7 @@ class BrowserPool {
 module.exports = {fetchLink, fetchAndRecode, fetchWithRetry, loadLinkedPages, saveToJSON, 
                     saveToCSV, getVenuesFromArguments,getFilesContent, getFilesNumber, 
                     getModificationDate, getPageByPuppeteer, getIframesList,
-                    minimalizeHtmlFile, minimalizeHtml, 
+                    minimalizeHtmlFile, minimalizeHtml, rebuildWebsourcesArborescence,
                     BrowserPool};
 
 
@@ -68,6 +69,7 @@ async function minimalizeHtmlFile(fileName, inputPath, outputPath){
     htmlContent = minimalizeHtml(content, outputFormat);
     saveToFile(htmlContent, fileName, outputPath);
 }
+
 
 // function to reduce the size of the html.
 function minimalizeHtml(content, action = "basic"){    //option: 'basic' (default) to have a more compact file, 
@@ -697,4 +699,47 @@ function getFilesNumber(sourcePath){
         console.error('\x1b[31mError reading html files in directory \'%s\'.\x1b[0m Error: %s',sourcePath, err);
     }
     return inputFileList.length;
+}
+
+
+
+// rebuild the arborescence of the websources (country/city/venue) in the output directory, and create directories for each active venue
+function rebuildWebsourcesArborescence(venues, outputPath){
+    if (venues.length === 0){
+        return;
+    }
+    const validVenues = venues.filter(venue => venue.hasOwnProperty('country') && venue.hasOwnProperty('city'));
+
+    // check if the base directory exists
+    if (!fs.existsSync(outputPath)){
+        fs.mkdirSync(outputPath);
+    }
+
+    const countriesList = [...new Set(validVenues.map(venue => venue.country))];
+
+    // create directories for countries and cities if they do not exist
+    countriesList.forEach(country => {
+        const countryPath = outputPath + country + '/';
+        if (!fs.existsSync(countryPath)){
+            fs.mkdirSync(countryPath);
+        }
+        const citiesList = [...new Set(validVenues.filter(venue => venue.country === country).map(venue => venue.city))];
+        citiesList.forEach(city => {
+            const cityPath = countryPath + city + '/';
+            if (!fs.existsSync(cityPath)){
+                fs.mkdirSync(cityPath);
+            }
+        });
+    });
+
+    // for each valid venue, initializes directory for storage
+    validVenues.forEach(venue => {
+        if (isActive(venue)){
+            const path = outputPath+venue.country+'/'+ venue.city+'/'+venue.name+'/';
+            if (!fs.existsSync(path)){
+              fs.mkdirSync(path);
+            }
+            return true;
+        }
+    });
 }

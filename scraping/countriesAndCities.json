@@ -1,0 +1,48 @@
+{
+  "France": {
+    "languages": [
+      "french"
+    ],
+    "cities": [
+      "Paris",
+      "Lyon",
+      "Marseille",
+      "Dijon",
+      "Saint-Etienne",
+      "Grenoble"
+    ]
+  },
+  "Belgique": {
+    "languages": [
+      "french"
+    ],
+    "cities": [
+      "Bruxelles"
+    ]
+  },
+  "Vietnam": {
+    "languages": [
+      "english"
+    ],
+    "cities": [
+      "Hanoi"
+    ]
+  },
+  "Spain": {
+    "languages": [
+      "catalan",
+      "spanish"
+    ],
+    "cities": [
+      "Barcelona"
+    ]
+  },
+  "Germany": {
+    "languages": [
+      "german"
+    ],
+    "cities": [
+      "Berlin"
+    ]
+  }
+}

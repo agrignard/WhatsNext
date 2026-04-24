@@ -36,6 +36,11 @@ body, html {
   word-wrap: break-word;
 }
 
+.styleItalic{
+  font-style: italic;
+  color: grey;
+}
+
 .isAliasInfo{
   color: grey;
 }
@@ -61,6 +66,10 @@ body, html {
 
 .subPanel{
   display: flex; 
+  align-items: center;
+}
+
+.alignCenter{
   align-items: center;
 }
 
@@ -135,20 +144,6 @@ body, html {
   margin-bottom: 10px;
 }
   
-.scrapTextBox{
-  width: 90%;
-  border: 1px solid #ccc;
-  padding: 5px 10px;
-  background-color: white;
-  font-family: sans-serif;
-  font-size: 85%;
-  resize: none;
-}
-/* Style pour mettre en surbrillance l'option sélectionnée */
-.languageItem.selected {
-background-color: lightblue;
-}
-
 
 
 .venueHeader{
@@ -280,13 +275,6 @@ label.niceCheckBox >input:checked+span+i:after {
   background-color: rgb(147, 88, 104);
 }
 
-.languageItem.unavailable {
-  color: red;
-}
-
-.invalid{
-  background-color: rgb(241, 148, 146);
-}
 
 .alertBlock {
   color: red;
@@ -328,6 +316,7 @@ label.niceCheckBox >input:checked+span+i:after {
 .editable{
   border: 1px solid #ccc; 
   background-color: white;
+   padding: 5px 10px;
 }
 
 .editable:focus, input:focus {
@@ -345,48 +334,12 @@ label.niceCheckBox >input:checked+span+i:after {
   margin-left: 100px;
 }
 
-#pageManager {
-  position: relative; /* Position relative pour positionner le bouton à l'intérieur */
-  width: 400px;
-  height: 100px;
-  background-color: lightblue;
-  border: 1px solid #ccc;
-  overflow: hidden;
-}
-
-#logPanel {
-  position: relative; /* Position relative pour positionner le bouton à l'intérieur */
-  width: 400px;
-  height: 220px;
-  border: 1px solid #ccc;
-  overflow: hidden;
-}
-
-.compact-button {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  width: 20px;
-  height: 20px;
-  background-color: lightgray;
-  border: none;
-  cursor: pointer;
-}
-
-.topElement{
-  position: absolute;
-  top: 15px;
-}
 
 .rightElement{
   position: absolute;
   right: 25px;
 }
 
-.relativeRightElement{
-  position: absolute;
-  right: 25px;
-}
 
 .bottomElement{
   position: absolute;
@@ -450,19 +403,9 @@ label.niceCheckBox >input:checked+span+i:after {
   
 }
 
-.compact-button:hover {
-  background-color: var(--button-hover-color);
-}
 
 .normal-button:hover {
   background-color: var(--button-hover-color);
-}
-
-#processContainer {
-  font-family: sans-serif;
-  display: flex; /* Utiliser Flexbox pour le positionnement */
-  height: 100vh;
-  overflow-y: auto;
 }
 
 
@@ -501,60 +444,6 @@ label.niceCheckBox >input:checked+span+i:after {
   color: white;
 }
 
-  
-
-.encadre {
-  border: 1px solid black; /* Définit une bordure solide d'un pixel en noir */
-  padding: 10px; /* Ajoute un espacement intérieur de 10 pixels pour séparer le contenu de la bordure */
-  display: inline-block; /* Permet à l'élément de s'ajuster à la largeur du contenu */
-}
-
-.mainTag {
-  background-color: rgb(255, 107, 107);
-}
-
-
-/* css for list scrolling in venues and cities */
-
-.scrollable-list {
-  width: 300px;
-  height: 500px;
-  overflow-y: scroll;
-  border: 1px solid #ccc;
-  padding: 10px;
-  list-style: none; /* Supprime les puces de la liste */
-  width: 50ch;
-}
-
-.scrollable-list li {
-  line-height: 20px;
-  padding: 5px;
-  background-color: #eaedf1;
-  cursor: pointer; /* Montre que les éléments sont cliquables */
-  user-select: none; /* Désactive la sélection du texte par défaut */
-  
-}
-
-/* Style pour les éléments sélectionnés */
-.scrollable-list li.selected {
-  background-color: #007bff; /* Couleur de fond pour la sélection */
-  color: white; /* Texte en blanc pour contraste */
-}
-
-
-.leftPanel {
-  flex: 0 0 35%; /* Largeur de la partie gauche */
-  max-width: 300px;
-  background-color: rgb(155, 176, 239);
-  text-align: left;
-  overflow: auto; /* Ajouter un défilement si le contenu est plus long que la zone */
-}
-
-.rightPanel {
-  flex: 1; /* Largeur de la partie droite */
-  background-color: #cedbf0; /* Couleur de fond */
-  overflow-y: auto; /* Ajouter un défilement vertical si le contenu est plus long que la zone */
-}
 
 .panels {
   line-height: 30px;
@@ -692,16 +581,3 @@ td.iframeTableCell {
   box-shadow: none;
 }
 
-/* .tableCheckBox {
- 
-  width: 16px;
-  height: 16px;
-  
-  border: 1px solid #555;    
-  border-radius: 0;          
-  background-color: white;   
-  cursor: pointer;
-  vertical-align: middle;
-  margin: 0;                 
-  display: inline-block;
-} */

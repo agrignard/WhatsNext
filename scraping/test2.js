@@ -23,7 +23,7 @@ const dictionary = {
         novembre: ["nov"],
         decembre: ["dec"]
     },
-    rangeDeLimiters: [["du","au"],["a partir du","jusqu'au"],["de","a"]],
+    rangeDelimiters: [["du","au"],["a partir du","jusqu'au"],["de","a"]],
     rightRangeDelimiters: ["jusqu'au", "jusqu'a"],
     rangeSeparators: ["->", "→", "—","-"],
     timeRangeDelimiters: [["de","a"],["de","jusqu'a"]],
@@ -59,7 +59,7 @@ const dictionary = {
 //   decembre: ["dec"]
 // };
 
-// const rangeDeLimiters = [["du","au"],["a partir du","jusqu'au"],["de","a"]];
+// const rangeDelimiters = [["du","au"],["a partir du","jusqu'au"],["de","a"]];
 // const rightRangeDelimiters = ["jusqu'au", "jusqu'a"];
 // const rangeSeparators = ["->", "→", "—","-"]; // classic dash will be processed by default
 
@@ -500,7 +500,7 @@ function preprocessTextTokens(t, entries) {
 // Remove others and send a warning to developpers if verbose 
 // non text tokens are unchanged
 function processRemainingTextTokens(token, dateFormat, dict, verbose){
-    const rangeDeLimiters = dict.rangeDeLimiters;
+    const rangeDelimiters = dict.rangeDelimiters;
     const rightRangeDelimiters = dict.rightRangeDelimiters;
     const monthsDict = dict.monthsDict;
 
@@ -538,11 +538,11 @@ function processRemainingTextTokens(token, dateFormat, dict, verbose){
     const possibilities = [];
 
     // if it is a starting delimiter
-    if (!token.beforeTimeToken && rangeDeLimiters.some(el => token.rawText.endsWith(el[0]))){
+    if (!token.beforeTimeToken && rangeDelimiters.some(el => token.rawText.endsWith(el[0]))){
         possibilities.push('rangeDelimiterStart');
     }
     // if it is a end delimiter
-    if (!token.beforeTimeToken && rangeDeLimiters.some(el => token.rawText.endsWith(el[1]))){
+    if (!token.beforeTimeToken && rangeDelimiters.some(el => token.rawText.endsWith(el[1]))){
         possibilities.push('rangeDelimiterEnd');
     }
     // if it is a range separator

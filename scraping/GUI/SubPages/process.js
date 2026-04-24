@@ -8,8 +8,8 @@ const { shell } = require('electron');
 const {parseDocument} = require('htmlparser2');
 const {app, Menu, ipcRenderer} = require('electron');
 const { populate } = require('dotenv');
-const {loadVenuesJSONFile, loadVenueJSON, initializeVenue, saveToVenuesJSON,
-        fromLanguages, getLanguages, getDictionary, isValidEvent} = require(imports+'jsonUtilities.js');
+const {loadVenuesJSONFile, loadVenueJSON, initializeVenue, saveToVenuesJSON, isValidEvent} = require(imports+'jsonUtilities.js');
+const { getDictionary} = require(imports+'languagesUtilities.js');
 const {simplify, extractBody, convertToLowerCase, removeDoubles,
       makeURL, isValidURL} = require(imports+'stringUtilities.js');
 const {getFilesContent, getModificationDate, loadLinkedPages, getFilesNumber} = require(imports+'fileUtilities.js');
@@ -134,6 +134,7 @@ customElements.define(customTagName, customA);
 const venues = loadVenuesJSONFile();
 const venueID = localStorage.getItem('currentVenueId');
 const venue = loadVenueJSON(venueID,venues);
+console.log(venue);
 
 setLeftPanelDesign();
 
@@ -167,9 +168,8 @@ createColorThemes();
 // initialize new venue
 initializeVenue(venue,webSources);
 
-// get languages, dates and format info
-const languages = getLanguages();
-const dictionary = getDictionary(languages[venue.country]);
+// get dictionary for the venue language, which contains the different styles and date formats for this language. It will be used to display the styles in the easy panel, and to initialize the date format if it is not defined for the venue.
+const dictionary = getDictionary(venue.language);
 
 // get file if it exists
 const sourcePath = webSources+'/'+venue.country+'/'+venue.city+'/'+venue.name+'/'
@@ -655,6 +655,10 @@ saveButton.addEventListener('click',function(){
     delete venue.linkedPage;
     delete venue.linkedPageDateFormat;
   }else{
+    // safeguard if useLinks is true but no field linkedPage is found
+    if (!venue.linkedPage){
+      venue.linkedPage = {};
+    }
     if (!venue.linkedPage.hasOwnProperty('eventDateTags') && !venue.linkedPage.hasOwnProperty('eventMultiDateTags')){
       delete venue.linkedPageDateFormat;
     }

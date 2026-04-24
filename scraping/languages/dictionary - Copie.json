@@ -55,26 +55,10 @@
             "Jazz":["jazz","groove","Soul & funk","PIANO SOLO","FOLK / BLUEGRASS"],
             "Live":["musique live", "live","Concert","Event","(Ciné Concert)", "Musique","Festif","Chants polyphoniques en meute","BLIND TEST SHOW TIME AMBIANCE"],
             "Chanson":["Chanson / Folk ","CHANSON POP","(Chanson)","Variété Française","Folk"],
-            "": ["Unknown"]
+            "": ["Unknwown"]
         }
     },
     "english":{
         "cancellationKeywords": ["cancelled", "canceled"]
-    },
-    "spanish":{"styles" :{
-            "Rock": ["ROCK"],
-            "Rap": ["RAP"],
-            "Electro": ["Electro"],
-            "World": ["Sono Mondiale","LATINO / REGGAETON","REGGAE","Shatta","Zouk","Afrobeat"],    
-            "Classique":["Classique","lyrique","opera"],
-            "Live":["musique live"],
-            "Chanson":["Chanson / Folk "],
-            "": ["Unknown"]
-        }},
-    "catalan":{"styles" :{
-            "Rock": ["ROCK"],
-            "Rap": ["RAP"],
-            "": ["Unknown"]
-        }},
-    "german":{}
+    }
 }

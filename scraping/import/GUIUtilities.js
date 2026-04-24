@@ -4,8 +4,11 @@
 
 const { app, BrowserWindow, Menu } = require('electron');
 
+const path = require('path');
+const rootPath = path.resolve('.').match(/.*scraping/)[0]+'/';
 
-module.exports = {makeMenu, loadPage};
+
+module.exports = {makeMenu, loadPage, rootPath, reinitializeMenu};
 
 // load a page
 function loadPage(page, window) {
@@ -105,4 +108,15 @@ function makeMenu(folder, window, enabled){
     ]
     const menu = Menu.buildFromTemplate(template);
     Menu.setApplicationMenu(menu);
+}
+
+
+// function to reinitialize a dropdown menu with a given list of values. The first value of the list will be selected by default.
+function reinitializeMenu(list, menu){
+    menu.innerHTML = '';
+    list.forEach(el => {
+        const option = document.createElement('option');
+        option.text = el;
+        menu.add(option);
+    });
 }

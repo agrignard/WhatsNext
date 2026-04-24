@@ -6,36 +6,36 @@
 const path = require('path');
 const fs = require('fs');
 const {removeAccents, removeDoubles, simplify} = require('./stringUtilities.js');
-const {getDateConversionPatterns, dateConversionFile} = require('./dateUtilities.js');
 
 const rootDirectory = path.resolve('.').match(/.*scraping/)[0]+'/';
 const venuesListJSONFile = rootDirectory+"/venues.json";
 const scrapInfoFile = rootDirectory+"/venuesScrapInfo.json"; // path should start from the directory of the calling script
-const styleConversionFile = rootDirectory+"/import/styleConversion.json";
-const cancellationKeywordsJSONFile = rootDirectory+"/import/cancellationKeywords.json";
-//const languagesFile = "./import/languages.json";
-const dictionaryFile = rootDirectory+'languages/dictionary.json';
-const languagesFile = rootDirectory+'import/languages.json';
+const CountriesAndCitiesFile = rootDirectory+'countriesAndCities.json';
+
 
 module.exports = {venuesListJSONFile, isActive, geAliasesToURLMap, getEventPlace, getSource,
-    fromLocalSource, jsonRemoveDouble, samePlace, getStyleConversions, getStyleList, getAliases,
-    writeToLog, loadVenueScrapInfofromFile, loadVenuesJSONFile, loadVenueJSON, saveToVenuesJSON,
-    getLanguages, loadCancellationKeywords, fromLanguages, checkLanguages, loadErrorLog, 
-    getAvailableLanguages, initializeVenue, getNameFromID, makeID, loadScrapInfoFile, saveToScrapInfoJSON,
-    unique, isValidEvent, getDictionary};
+    fromLocalSource, jsonRemoveDouble, samePlace, getAliases, writeToLog, loadVenueScrapInfofromFile, 
+    loadVenuesJSONFile, loadVenueJSON, saveToVenuesJSON, loadErrorLog, initializeVenue, getNameFromID, 
+    makeID, loadScrapInfoFile, saveToScrapInfoJSON, unique, isValidEvent, getCountriesInfo, saveCountriesInfo};
 
-// return the dictionary for a given language
-function getDictionary(language){
+
+function getCountriesInfo(){
     try{
-        const dict = JSON.parse(fs.readFileSync(dictionaryFile, 'utf8'));
-        if (language.length > 1){
-            console.log('\x1b[36mError:found several languages, not implemented yet.\x1b[0m%s\n', language);
-        }
-        return dict[language[0].toLowerCase()];
+        return JSON.parse(fs.readFileSync(CountriesAndCitiesFile, 'utf8'));;
     }catch(err){
-        console.log('\x1b[36mError: cannot open dictionary file:  \'%s\'.\x1b[0m%s\n',dictionaryFile,err);
+        console.error('\x1b[36mCannot open countries and cities JSON file:  \'%s\'\x1b[0m%s\n',CountriesAndCitiesFile,err);
     }
 }
+
+function saveCountriesInfo(countriesInfo){
+    try{
+        const jsonString = JSON.stringify(countriesInfo, null, 2);
+        fs.writeFileSync(CountriesAndCitiesFile, jsonString, 'utf8');
+    }catch(err){
+        console.error('\x1b[36mCannot save countries and cities JSON file:  \'%s\'\x1b[0m%s\n',CountriesAndCitiesFile,err);
+    }
+}
+
 
 // test if an event has a name or a date if required by scrapping
 // it takes into account that for some websites, the date or the name may not be scrapped from the main page
@@ -76,6 +76,7 @@ function getEventPlace(object){
     // console.log(object);
     return {'name':object.eventPlace, 'city':object.source.city, 'country':object.source.country};
 }
+
 
 // returns the source (website from which the event was scrapped)
 function getSource(event){
@@ -123,32 +124,6 @@ function samePlace(p1,p2){
     return simplify(p1name) === simplify(p2name) && p1.city === p2.city && p1.country === p2.country;
 }
 
-
-// get the style conversion JSON
-function getStyleConversions(){
-    try{
-        const res = JSON.parse(fs.readFileSync(styleConversionFile, 'utf8'));
-//        const res = await JSON.parse(await fs.promises.readFile(styleConversionFile, 'utf8'));
-        Object.keys(res).forEach(language =>{
-            Object.keys(res[language]).forEach(key =>{
-                res[language][key] = res[language][key].map(val => removeAccents(val.toLowerCase()));
-            });
-        });
-        return res;
-    }catch(err){
-        console.log('\x1b[36mWarning: cannot open style conversion file JSON file:  \'%s\'.\x1b[0m%s\n',styleConversionFile,err);
-    }
-}
-// get the default styles and their aliases
-function getStyleList(){
-    try{
-        const res = JSON.parse(fs.readFileSync(styleConversionFile, 'utf8'));
-        const language = Object.keys(res)[0];
-        return Object.keys(res[language]);
-    }catch(err){
-        console.log('\x1b[36mWarning: cannot open style conversion file JSON file:  \'%s\'.\x1b[0m%s\n',styleConversionFile,err);
-    }
-}
 
 // return a list of json object with aliases to change the place name
 function getAliases(list){
@@ -237,18 +212,6 @@ function loadVenueJSON(id,venuesListJSON){
     }
 }
 
-// // load a JSON containing info and return the info only for venue venueName
-// function loadVenueJSON(venueName,venuesListJSON){
-//     const venueJSON = venuesListJSON.find(function(element) {
-//         return element.name === venueName;
-//     });
-//     if (!venueJSON){
-//         console.error("\x1b[31mError venue info. Venue \'%s\' not found in %s\x1b[0m.\n Aborting process",venueName,venuesListJSONFile);
-//         throw err;
-//     }else{
-//         return venueJSON;
-//     }
-// }
 
 function saveToScrapInfoJSON(jsonList){
     try{
@@ -273,77 +236,15 @@ function saveToVenuesJSON(jsonList, verbose=false){
     }
 }
 
-function getLanguages(){
-    try{
-        return JSON.parse(fs.readFileSync(languagesFile, 'utf8'));
+
+function getCountriesAndCities(){
+     try{
+        return JSON.parse(fs.readFileSync(CountriesAndCitiesFile, 'utf8'));
     }catch(err) {
-        console.error('\x1b[36mCannot open languages JSON file:  \'%s\'\x1b[0m%s\n',languagesFile,err);
-    }
-    
-    
-}
-
-// this function is supposed to be multi-languages proof
-function loadCancellationKeywords(){
-    try{
-        const languages = getLanguages();
-        const cancellationKeywords = JSON.parse(fs.readFileSync(cancellationKeywordsJSONFile, 'utf8'));
-        function getKeywords(language){
-            if (Object.keys(cancellationKeywords).includes(language)){
-                return cancellationKeywords[language].map(el => simplify(el));
-            }else{
-                console.log("\x1b[36mWarning, no cancellation keywords defined for language %s. Add it to \'import\\cancellationKeywords.json\'\x1b[0m", language);
-                return [];
-            }
-        }
-        const res = {};
-        Object.keys(languages).forEach(country => {
-            res[country] = languages[country].map(language => getKeywords(language)).flat();
-        });
-        return res;
-    }catch(err) {
-        console.error('\x1b[36mCannot open cancellation keywords JSON file:  \'%s\'\x1b[0m%s\n',cancellationKeywordsJSONFile,err);
+        console.error('\x1b[36mCannot open Countries and Cities JSON file:  \'%s\'\x1b[0m%s\n',CountriesAndCitiesFile,err);
     }
 }
 
-
-function fromLanguages(jsonObject, languages){
-    const res = {};
-    Object.keys(jsonObject).filter(language => languages.includes(language))
-    .forEach(language => {
-        Object.keys(jsonObject[language]).forEach(key =>{
-            res[key] = res.hasOwnProperty(key)?res[key].concat(jsonObject[language][key]):jsonObject[language][key];
-        });
-    }); 
-    return res;
-}
-
-function checkLanguages(venues){
-    let showMessage = false;
-    const countriesToLanguages = getLanguages();
-    const languages = removeDoubles(venues.map(el => countriesToLanguages[el.country]).flat());
-    const styleLanguages = Object.keys(getStyleConversions());
-    languages.filter(language => !styleLanguages.includes(language))
-    .forEach(language =>{
-        showMessage = true;
-        console.log("\x1b[31mLanguage \x1b[0m%s\x1b[31m not defined for \x1b[0mstyles\x1b[31m. Update '%s\'.\x1b[0m", language, styleConversionFile)
-    });
-    const dateLanguages = Object.keys(getDateConversionPatterns());
-    languages.filter(language => !dateLanguages.includes(language))
-    .forEach(language =>{
-        showMessage = true;
-        console.log("\x1b[31mLanguage \x1b[0m%s\x1b[31m not defined for \x1b[0mdates\x1b[31m. Update '%s\'.\x1b[0m", language, dateConversionFile)
-    });
-    const cancellationLanguages = Object.keys(getDateConversionPatterns());
-    languages.filter(language => !cancellationLanguages.includes(language))
-    .forEach(language =>{
-        showMessage = true;
-        console.log("\x1b[31mLanguage \x1b[0m%s\x1b[31m not defined for \x1b[0mcancellation keywords\x1b[31m. Update '%s\'.\x1b[0m", language, dateConversionFile)
-    });
-    if (showMessage){
-        console.log('Fix languages issues then run script again.\n');
-    }
-}
 
 // load events JSON from error log
 function loadErrorLog(errorLogFile){
@@ -356,13 +257,6 @@ function loadErrorLog(errorLogFile){
     return eventList;
 }
 
-// languages are available if they are defined in at least dateConversion and style conversion
-function getAvailableLanguages(){
-    const res = Object.keys(getDateConversionPatterns()).filter(lang =>
-        Object.keys(getStyleConversions()).includes(lang)
-    );
-    return res;
-}
 
 function makeID(venue){
     if (!venue.hasOwnProperty('country') || !venue.hasOwnProperty('city')){
@@ -391,19 +285,28 @@ function initializeVenue(venue, outputPath){
             // initializes base url
             const url = new URL(venue.url);
             venue.baseURL = url.origin + url.pathname.replace(/\/[^\/]+$/, '/');
-            // check if a repertory exists for the city
-            if (!fs.existsSync(outputPath+venue.country+'/'+ venue.city+'/')){
-                console.log('\x1b[31mError: there is no directory for city \x1b[0m%s\x1b[31m. '
-                    +'Check if the city name is mispelled, otherwise use the GUI to create a new city entry.\x1b[0m',venue.city);
-                // throw(new Error('City not found'));
-                return false;
-            }
-            // initializes directory for storage
-            const path = outputPath+venue.country+'/'+ venue.city+'/'+venue.name+'/';
-            if (!fs.existsSync(path)){
-              fs.mkdirSync(path);
-            }
+            // // check if the base directory exists
+            // if (!fs.existsSync(outputPath)){
+            //     fs.mkdirSync(outputPath);
+            // }
+
+            // // check if the directory exists for the country
+            // if (!fs.existsSync(outputPath+venue.country+'/')){
+            //     fs.mkdirSync(outputPath+venue.country+'/');
+            // }
+            // // check if a repertory exists for the city
+            // if (!fs.existsSync(outputPath+venue.country+'/'+ venue.city+'/')){
+            //     fs.mkdirSync(outputPath+venue.country+'/'+ venue.city+'/');
+            // }
+            // // initializes directory for storage
+            // const path = outputPath+venue.country+'/'+ venue.city+'/'+venue.name+'/';
+            // if (!fs.existsSync(path)){
+            //   fs.mkdirSync(path);
+            // }
             return true;
         }
+        return false;
     } 
 }
+
+
