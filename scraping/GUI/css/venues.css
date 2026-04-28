@@ -1,14 +1,19 @@
  :root {
   /* page manager color theme */
-  --inactive-color: #c0bdbd;  
+  --inactive-color: #c0bdbd;
+  --venue-header-color: rgb(103, 158, 182);
+  --info-panel-color: rgb(228, 237, 240);
   --toggle-active-color: #1094fb;
   --shadow-color: rgba(0, 0, 0, 0.16);
-  --main-panel-color: rgb(211, 227, 232);
   --sub-panel-color: rgb(195, 216, 223);
   --sub-sub-panel-color: rgb(188, 210, 217);
   --table-header-color: rgb(172, 193, 200);
   --table-cell-color: rgb(180, 201, 208);
+  --auto-width-color: rgb(202, 223, 229);
   --button-hover-color: rgb(224, 224, 224);
+
+  --venue-url-gb-color: rgb(202, 223, 229);
+  --venue-url-color: rgb(49, 107, 125);
 
   /* fonts */
   --sub-sub-font-color: rgb(53, 60, 62);
@@ -82,7 +87,7 @@ body, html {
 
 
 .activePanel{
-  background-color: var(--main-panel-color);
+  background-color: var(--info-panel-color);
 }
 
 .subCategory{
@@ -145,20 +150,39 @@ body, html {
 }
   
 
-
 .venueHeader{
-  background-color: rgb(103, 158, 182);
+  background-color: var(--venue-header-color);
   width: 100%;
-  margin: 0px;
-  padding: 20px 20px;
+  padding: 20px;
   font-family: sans-serif;
   margin-bottom: 20px;
   box-sizing: border-box;
-  max-width: 100%;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.addBtn{
+  height: 28px;
+  width: 28px;
+  padding: 0;
+  border: 1px solid #ccc;
+  background: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.addBtn:hover{
+  background: var(--toggle-active-color);
+  color: white;
+  border-color: var(--toggle-active-color);
 }
 
 .infoPanel{
-  background-color: rgb(228, 237, 240);
+  background-color: var(--info-panel-color);
   width: 100%;
   border: 1px solid #ccc;
   padding: 15px 20px;
@@ -263,17 +287,6 @@ label.niceCheckBox >input:checked+span+i:after {
   background-color: lightgrey;
 }
 
-.highlightName {
-  background-color: rgb(99, 123, 248);
-}
-
-.highlightDate {
-  background-color: rgb(116, 207, 127);
-}
-
-.highlightStyle {
-  background-color: rgb(147, 88, 104);
-}
 
 
 .alertBlock {
@@ -320,7 +333,6 @@ label.niceCheckBox >input:checked+span+i:after {
 }
 
 .editable:focus, input:focus {
-  /* outline: 2px solid rgb(189, 195, 199);  */
   outline: 2px solid var(--toggle-active-color); 
 }
 
@@ -330,9 +342,7 @@ label.niceCheckBox >input:checked+span+i:after {
   max-width: 800px;
 }
 
-#addVenueBtn{
-  margin-left: 100px;
-}
+
 
 
 .rightElement{
@@ -349,6 +359,8 @@ label.niceCheckBox >input:checked+span+i:after {
 .bottomMargin{
   margin-bottom: 20px;
 }
+
+
 
 .smallBottomMargin{
   margin-bottom: 10px;
@@ -453,17 +465,17 @@ label.niceCheckBox >input:checked+span+i:after {
 
 
 #venueURL{
-  background-color: rgb(202, 223, 229);
+  background-color: var(--venue-url-gb-color);
 }
 
 #venueURL:hover{
   cursor: pointer;
-  color:rgb(49, 107, 125);
+  color:var(--venue-url-color);
 }
 
 .auto-width {
   width: max-content;
-  background-color: rgb(202, 223, 229);
+  background-color: var(--auto-width-color);
   padding: 5px 10px;
 }
 

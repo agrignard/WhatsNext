@@ -11,15 +11,18 @@
         <select id="countriesDropdown" class="editable"></select>
         <select id="citiesDropdown" class="editable"></select>
         <select id="venuesDropdown" class="editable"></select>
-        <label for="hideAliasesCheckbox" style ="display: inline;">Hide Aliases</label>
-        <input type="checkbox" id="hideAliasesCheckbox" style ="display: inline;">
-        <button id="addVenueBtn">Add venue</button>
-        <div id="dialog" style="display: none;">
-            <input type="text" id="newVenueNameInput">
-            <button id="confirmBtn">Confirm</button>
+        <button id="addVenueBtn" class="addBtn" title="Add venue">＋</button>
+        <!-- <label for="hideAliasesCheckbox" style ="display: inline;">Hide Aliases</label>
+        <input type="checkbox" id="hideAliasesCheckbox" style ="display: inline;"> -->
+        <div id="hideAliasesCheckBoxPanel" class="sliderCheckBox reduce">
+            <label class="niceCheckBox" style="display: inline;">
+            <input id="hideAliasesCheckbox" type="checkbox" name="links" checked/>
+            <span id="HidealiasesCheckboxText">Hide aliases</span> 
+            <i></i> 
+            </label>                   
         </div>
     </div>
-    <div id="venueEditPanel" class="infoPanel">
+    <div id="venueEditPanel" class="infoPanel" style = "display: none;">
 
         <div id="verticalColumn" class="subWidth">
            <div id="editVenueName">
@@ -297,7 +300,7 @@
         <div id="venueURL" class="bottomMargin bigPanel"></div>
         <div id="venueAliases" class="smallBottomMargin"></div>
         <div id="venueLanguage" class="smallBottomMargin"></div>
-        <div id="divMultipages" class="auto-width multipageBlock bottomMargin"></div>
+        <div id="divMultipages" class="auto-width multipageBlock bottomMargin topMargin"></div>
         <div id="venueStyle" class="smallBottomMargin"></div>
         <div id="venueLinkedPage" class="smallBottomMargin">(contains linked pages)</div>
         <div id="midnightHour" class="smallBottomMargin"></div>
