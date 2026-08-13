@@ -158,7 +158,13 @@
     "url": "https://www.periscope-lyon.com/concerts/",
     "language": "french",
     "eventsDelimiterTag": "A.depth9",
-    "dateFormat": "dd-MM",
+    "dateFormat": {
+      "month": "short",
+      "order": [
+        "day",
+        "month"
+      ]
+    },
     "defaultStyle": "Jazz",
     "baseURL": "https://www.periscope-lyon.com/concerts/",
     "mainPage": {
@@ -262,7 +268,15 @@
     },
     "eventURLIndex": 0,
     "ID": "Le Petit Bulletin|Lyon|France",
-    "dateFormat": "dd-MM-yyyy-HH:mm"
+    "dateFormat": {
+      "month": "long",
+      "year": "long",
+      "order": [
+        "day",
+        "month",
+        "year"
+      ]
+    }
   },
   {
     "name": "Marché Gare",
@@ -273,21 +287,49 @@
     ],
     "url": "https://marchegare.fr/agenda?category=All&page=1",
     "baseURL": "https://marchegare.fr/",
-    "mainPage": {},
+    "mainPage": {
+      "eventDateTags": [
+        "DIV.agendaiteminner.mb12.depth18:eq(0)>DIV.agendaitemdate.transition.flex.text2xl.lgtext3xl.pb2.depth19:eq(0)>DIV.fontdisplay.fontbold.uppercase.inlineflex.flexwrap.evtdate.agendaevtdate.datetohasdifferentmonth.datetohasdifferentyear.depth20:eq(0)"
+      ],
+      "eventNameTags": [
+        "DIV.agendaiteminner.mb12.depth18:eq(0)>DIV.relative.depth19:eq(0)>DIV.agendaitemtext.transition.depth20:eq(0)>DIV.agendasubtitle.text2xl.lgtext3xl.fontdisplay.leadingnone.lgleadingnone.mt1.depth21:eq(0)"
+      ]
+    },
     "eventURLIndex": 0,
     "language": "french",
     "eventsDelimiterTag": "A.agendaitem.nounderline.group.depth17",
     "linkedPage": {
       "eventNameTags": [
-        "SONIC-TICKETS-APP.depth2:eq(0)>DIV.dialogoffcanvasmaincanvas.depth3:eq(0)>DIV.contents.depth4:eq(0)>DIV.maincontentcontainer.depth5:eq(0)>MAIN.depth6:eq(0)>DIV.depth7:eq(0)>DIV.block.blocksystem.blocksystemmainblock.depth8:eq(0)>ARTICLE.node.nodetypeevenement.viewfull.nodetypeevenementfull.nodeviewmodefull.depth9:eq(0)>DIV.containerfluid.bgcontextbg.textcontextcolor.pb6.depth10:eq(0)>DIV.nodeevtheader.depth11:eq(0)>DIV.nodeevtheadertext.depth12:eq(0)>DIV.colspanfull.lgcolspan3.nodeevtheadertitle.depth13:eq(0)>H1.nodeevttitle.mtauto.uppercase.fontbold.text5xl.mdtext7xl.lgtext9xl.mb2.depth14:eq(0)>SPAN.depth15:eq(0)",
-        "SONIC-TICKETS-APP.depth2:eq(0)>DIV.dialogoffcanvasmaincanvas.depth3:eq(0)>DIV.contents.depth4:eq(0)>DIV.maincontentcontainer.depth5:eq(0)>MAIN.depth6:eq(0)>DIV.depth7:eq(0)>DIV.block.blocksystem.blocksystemmainblock.depth8:eq(0)>ARTICLE.node.nodetypeevenement.viewfull.nodetypeevenementfull.nodeviewmodefull.depth9:eq(0)>DIV.containerfluid.bgcontextbg.textcontextcolor.pb6.depth10:eq(0)>DIV.nodeevtheader.depth11:eq(0)>DIV.nodeevtheadertext.depth12:eq(0)>DIV.colspanfull.lgcolspan3.nodeevtheadertitle.depth13:eq(0)>DIV.nodeevtsubtitle.uppercase.text3xl.mdtext5xl.xltext7xl.leadingnone.depth14:eq(0)"
+        "SONIC-TICKETS-APP.depth2:eq(0)>DIV.dialogoffcanvasmaincanvas.depth3:eq(0)>DIV.contents.depth4:eq(0)>DIV.maincontentcontainer.depth5:eq(0)>MAIN.depth6:eq(0)>DIV.depth7:eq(0)>DIV.block.blocksystem.blocksystemmainblock.depth8:eq(0)>ARTICLE.node.nodetypeevenement.viewfull.nodetypeevenementfull.nodeviewmodefull.depth9:eq(0)>DIV.containerfluid.bgcontextbg.textcontextcolor.pb6.depth10:eq(0)>DIV.nodeevtheader.depth11:eq(0)>DIV.nodeevtheadertext.depth12:eq(0)>DIV.colspanfull.lgcolspan3.nodeevtheadertitle.depth13:eq(0)>H1.nodeevttitle.mtauto.uppercase.fontbold.text5xl.mdtext7xl.lgtext9xl.mb2.depth14:eq(0)>SPAN.depth15:eq(0)"
       ],
       "eventDateTags": [
-        "SONIC-TICKETS-APP.depth2:eq(0)>DIV.dialogoffcanvasmaincanvas.depth3:eq(0)>DIV.contents.depth4:eq(0)>DIV.maincontentcontainer.depth5:eq(0)>MAIN.depth6:eq(0)>DIV.depth7:eq(0)>DIV.block.blocksystem.blocksystemmainblock.depth8:eq(0)>ARTICLE.node.nodetypeevenement.viewfull.nodetypeevenementfull.nodeviewmodefull.depth9:eq(0)>DIV.containerfluid.bgcontextbg.textcontextcolor.pb6.depth10:eq(0)>DIV.grid.gridcols1.lggridcols4.gap6.depth11:eq(0)>DIV.colspanfull.lgcolspan3.depth12:eq(0)>DIV.depth13:eq(0)>DIV.lb_sessionaccordionitem.depth14:eq(0)>DIV.lb_sessionaccordiontitle.penone.pointereventsnone.depth15:eq(0)>BUTTON.lb_sessionaccordionbtn.textalignleft.textleft.textstart.dflex.flex.wfull.w100.collapsed.lhsm.penone.pointereventsnone.depth16:eq(0)>SPAN.lb_sessionaccordionbtninner.depth17:eq(0)>SPAN.lb_sessiondatecontainer.dblock.block.depth18:eq(0)>SPAN.lb_sessiondate.dinlineblock.inlineblock.evtdate.depth19:eq(0)"
+        "SONIC-TICKETS-APP.depth2:eq(0)>DIV.dialogoffcanvasmaincanvas.depth3:eq(0)>DIV.contents.depth4:eq(0)>DIV.maincontentcontainer.depth5:eq(0)>MAIN.depth6:eq(0)>DIV.depth7:eq(0)>DIV.block.blocksystem.blocksystemmainblock.depth8:eq(0)>ARTICLE.node.nodetypeevenement.viewfull.nodetypeevenementfull.nodeviewmodefull.depth9:eq(0)>DIV.containerfluid.bgcontextbg.textcontextcolor.pb6.depth10:eq(0)>DIV.grid.gridcols1.lggridcols4.gap6.depth11:eq(0)>DIV.colspanfull.lgcolspan3.depth12:eq(0)>DIV.depth13:eq(0)>DIV.lb_sessionaccordionitem.depth14:eq(0)>DIV.lb_sessionaccordiontitle.depth15:eq(0)>BUTTON.lb_sessionaccordionbtn.textalignleft.textleft.textstart.dflex.flex.wfull.w100.collapsed.lhsm.depth16:eq(0)>SPAN.lb_sessionaccordionbtninner.depth17:eq(0)>SPAN.lb_sessiondatecontainer.dblock.block.depth18:eq(0)>SPAN.lb_sessiondate.dinlineblock.inlineblock.evtdate.datetohasdifferentmonth.datetohasdifferentyear.depth19:eq(0)"
       ]
     },
-    "linkedPageDateFormat": "dd-MM-yyyy",
-    "ID": "Marché Gare|Lyon|France"
+    "linkedPageDateFormat": {
+      "month": "numeric",
+      "year": "long",
+      "order": [
+        "day",
+        "month",
+        "year"
+      ]
+    },
+    "ID": "Marché Gare|Lyon|France",
+    "dateFormat": {
+      "month": "long",
+      "order": [
+        "day",
+        "month"
+      ]
+    },
+    "alternateTags": {
+      "linkedPage": {
+        "eventNameTags": [
+          "SONIC-TICKETS-APP.depth2:eq(0)>DIV.dialogoffcanvasmaincanvas.depth3:eq(0)>DIV.contents.depth4:eq(0)>DIV.maincontentcontainer.depth5:eq(0)>MAIN.depth6:eq(0)>DIV.depth7:eq(0)>DIV.block.blocksystem.blocksystemmainblock.depth8:eq(0)>ARTICLE.node.nodetypeevenement.viewfull.nodetypeevenementfull.nodeviewmodefull.depth9:eq(0)>DIV.containerfluid.bgcontextbg.textcontextcolor.pb6.depth10:eq(0)>DIV.nodeevtheader.depth11:eq(0)>DIV.nodeevtheadertext.depth12:eq(0)>DIV.colspanfull.lgcolspan3.nodeevtheadertitle.depth13:eq(0)>DIV.nodeevtsubtitle.uppercase.text3xl.mdtext5xl.xltext7xl.leadingnone.depth14:eq(0)"
+        ]
+      }
+    }
   },
   {
     "name": "Halle Tony Garnier",
@@ -299,18 +341,26 @@
     "url": "https://www.halle-tony-garnier.com/fr/programmation",
     "baseURL": "https://www.halle-tony-garnier.com/fr/",
     "mainPage": {
-      "eventDateTags": [
-        "DIV.blocsquare__infos.depth6:eq(0)>DIV.blocsquare__date.depth7:eq(0)",
-        "DIV.blocsquare__infos.depth6:eq(0)>DIV.blocsquare__heure.depth7:eq(0)"
-      ],
       "eventNameTags": [
-        "DIV.blocsquare__infos.depth6:eq(0)>DIV.blocsquare__title.depth7:eq(0)"
+        "DIV.blocsquare__fond.depth6:eq(0)>DIV.blocsquare__title.depth7:eq(0)"
+      ],
+      "eventDateTags": [
+        "DIV.blocsquare__fond.depth6:eq(0)>DIV.blocsquare__bottom.depth7:eq(0)>DIV.blocsquare__date.depth8:eq(0)",
+        "DIV.blocsquare__fond.depth6:eq(0)>DIV.blocsquare__bottom.depth7:eq(0)>DIV.blocsquare__heure.depth8:eq(0)"
       ]
     },
     "language": "french",
     "eventsDelimiterTag": "A.blocsquare.types.depth5",
     "eventURLIndex": 0,
-    "dateFormat": "dd-MM-yy-HH:mm",
+    "dateFormat": {
+      "month": "numeric",
+      "year": "short",
+      "order": [
+        "day",
+        "month",
+        "year"
+      ]
+    },
     "ID": "Halle Tony Garnier|Lyon|France"
   },
   {
