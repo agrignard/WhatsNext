@@ -97,7 +97,15 @@
     "url": "https://www.transbordeur.fr/agenda/",
     "language": "french",
     "eventsDelimiterTag": "A.postscontaineritem.depth11",
-    "dateFormat": "dd-MM-yyyy-HH:mm",
+    "dateFormat": {
+      "month": "short",
+      "year": "long",
+      "order": [
+        "day",
+        "month",
+        "year"
+      ]
+    },
     "mainPage": {
       "eventNameTags": [
         "DIV.postscontaineritem__contain.depth12:eq(0)>DIV.tsh3.depth13:eq(0)"
@@ -119,33 +127,6 @@
       "nextButton": "Voir plus",
       "dynamicPageLimit": "20"
     }
-  },
-  {
-    "name": "Terminal Club",
-    "city": "Lyon",
-    "country": "France",
-    "url": "https://www.terminal-club.com/evenements/",
-    "language": "french",
-    "eventsDelimiterTag": "DIV.colinner.depth13",
-    "dateFormat": "dd-MM",
-    "eventURLIndex": 0,
-    "defaultStyle": "Electro",
-    "baseURL": "https://www.terminal-club.com/evenements/",
-    "mainPage": {
-      "eventDateTags": [
-        "DIV.tribeeventsprophoto__eventdatetag.tribecommongcol.depth14:eq(0)>TIME.tribeeventsprophoto__eventdatetagdatetime.depth15:eq(0)>DIV.nomargin.nopadding.depth16:eq(0)",
-        "DIV.tribeeventsprophoto__eventdatetag.tribecommongcol.depth14:eq(0)>TIME.tribeeventsprophoto__eventdatetagdatetime.depth15:eq(0)>DIV.eventphotodate.nomargin.nopadding.depth16:eq(0)",
-        "DIV.tribeeventsprophoto__eventdatetag.tribecommongcol.depth14:eq(0)>TIME.tribeeventsprophoto__eventdatetagdatetime.depth15:eq(0)>DIV.nomargin.nopadding.depth16:eq(2)"
-      ],
-      "eventNameTags": [
-        "A.plain.depth14:eq(0)>DIV.box.boxoverlay.dark.boxtextbottom.boxblogpost.hashover.depth15:eq(0)>DIV.boxtext.textcenter.issmall.depth16:eq(0)>DIV.boxtextinner.blogpostinner.depth17:eq(0)>H5.posttitle.islarge.uppercase.depth18:eq(0)"
-      ],
-      "eventURLTags": [
-        "A.plain.depth14:eq(0)>DIV.box.boxoverlay.dark.boxtextbottom.boxblogpost.hashover.depth15:eq(0)>DIV.boxtext.textcenter.issmall.depth16:eq(0)>DIV.boxtextinner.blogpostinner.depth17:eq(0)>H5.posttitle.islarge.uppercase.depth18:eq(0)"
-      ]
-    },
-    "ID": "Terminal Club|Lyon|France",
-    "linkedPage": {}
   },
   {
     "name": "Le Périscope",
@@ -184,7 +165,15 @@
         "DIV.site.depth2:eq(0)>DIV.contentarea.depth3:eq(0)>MAIN.sitemain.depth4:eq(0)>DIV.concertcard.depth5:eq(0)>DIV.depth6:eq(0)>DIV.ukwidth13m.ccr.depth7:eq(0)>DIV.depth8:eq(0)>DIV.cctime.depth9:eq(0)"
       ]
     },
-    "linkedPageDateFormat": "dd-MM-yyyy-HH:mm",
+    "linkedPageDateFormat": {
+      "month": "long",
+      "year": "long",
+      "order": [
+        "day",
+        "month",
+        "year"
+      ]
+    },
     "ID": "Le Périscope|Lyon|France"
   },
   {
@@ -239,7 +228,10 @@
         ]
       }
     },
-    "linkedPage": {}
+    "linkedPage": {},
+    "alternateDateFormat": {
+      "linkedPage": "No date format found."
+    }
   },
   {
     "name": "Le Petit Bulletin",
@@ -370,7 +362,13 @@
     "url": "https://villemorte.fr/agenda-2-0/",
     "language": "french",
     "eventsDelimiterTag": "ARTICLE.hevent.depth11",
-    "dateFormat": "MM-dd-HH:mm",
+    "dateFormat": {
+      "month": "short",
+      "order": [
+        "month",
+        "day"
+      ]
+    },
     "baseURL": "https://villemorte.fr/agenda-2-0/",
     "mainPage": {
       "eventNameTags": [
@@ -513,14 +511,28 @@
     "language": "french",
     "eventsDelimiterTag": "DIV.agendajour.depth6",
     "eventURLIndex": 1,
-    "dateFormat": "dd-MM-HH:mm",
+    "dateFormat": {
+      "month": "long",
+      "order": [
+        "day",
+        "month"
+      ]
+    },
     "linkedPage": {
       "eventDateTags": [
         "DIV.pagecontent.depth2:eq(0)>DIV.singleboxcontainer.depth3:eq(1)>DIV.singlebox.depth4:eq(0)>DIV.singleinfos.eventinfos.depth5:eq(0)>DIV.eventquand.depth6:eq(0)>STRONG.depth7:eq(0)",
         "DIV.pagecontent.depth2:eq(0)>DIV.singleboxcontainer.depth3:eq(1)>DIV.singlebox.depth4:eq(0)>DIV.singleinfos.eventinfos.depth5:eq(0)>DIV.eventquand.depth6:eq(0)>DIV.eventhoraires.depth7:eq(0)"
       ]
     },
-    "linkedPageDateFormat": "dd-MM-yyyy-HH:mm"
+    "linkedPageDateFormat": {
+      "month": "long",
+      "year": "long",
+      "order": [
+        "day",
+        "month",
+        "year"
+      ]
+    }
   },
   {
     "name": "Le Trokson",
@@ -633,7 +645,15 @@
     "baseURL": "https://www.olvallee.fr/calendrier/",
     "language": "french",
     "eventsDelimiterTag": "DIV.eventcard__container.depth10",
-    "dateFormat": "dd-MM-yyyy-HH:mm"
+    "dateFormat": {
+      "month": "long",
+      "year": "long",
+      "order": [
+        "day",
+        "month",
+        "year"
+      ]
+    }
   },
   {
     "name": "Bourse du Travail",
@@ -670,7 +690,15 @@
     "baseURL": "http://radiant-bellevue.fr/",
     "language": "french",
     "eventsDelimiterTag": "A.depth8",
-    "dateFormat": "dd-MM-yyyy"
+    "dateFormat": {
+      "month": "long",
+      "year": "long",
+      "order": [
+        "day",
+        "month",
+        "year"
+      ]
+    }
   },
   {
     "name": "La Marquise",
@@ -884,17 +912,14 @@
     "country": "France",
     "mainPage": {
       "eventNameTags": [
-        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.mt2.flex.flexrow.itemscenter.gap2.depth9:eq(0)>P.lineclamp2.textlg.fontbold.leadingtight.depth10:eq(0)"
-      ],
-      "eventPlaceTags": [
-        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.wfull.minw0.flexcol.gap2.overflowhidden.depth9:eq(0)>DIV.textmutedforeground.wfull.shrink.overflowhidden.textellipsis.whitespacenowrap.textsm.leadingtight.depth10:eq(0)"
+        "DIV.group.flex.wfull.flexcol.gap1.pt4.pb8.lgpb12.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.mt2.flex.flexrow.itemscenter.gap2.depth9:eq(0)>P.lineclamp2.textlg.leadingtight.fontbold.depth10:eq(0)"
       ],
       "eventDateTags": [
-        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.wfull.minw0.flexcol.gap2.overflowhidden.depth9:eq(0)>DIV.flex.shrink0.itemscenter.gapx3.leadingtight.depth10:eq(0)>DIV.textaccentforeground.flex.gap1.depth11:eq(0)>TIME.depth12:eq(0)",
-        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.wfull.minw0.flexcol.gap2.overflowhidden.depth9:eq(0)>DIV.flex.shrink0.itemscenter.gapx3.leadingtight.depth10:eq(0)>DIV.textaccentforeground.flex.gap1.depth11:eq(0)>DIV.flex.gap1.depth12:eq(0)>TIME.depth13:eq(0)"
+        "DIV.group.flex.wfull.flexcol.gap1.pt4.pb8.lgpb12.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.wfull.minw0.flexcol.gap2.overflowhidden.depth9:eq(0)>DIV.flex.shrink0.itemscenter.gapx3.leadingtight.depth10:eq(0)>DIV.textaccentforeground.flex.gap1.depth11:eq(0)>TIME.depth12:eq(0)",
+        "DIV.group.flex.wfull.flexcol.gap1.pt4.pb8.lgpb12.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.wfull.minw0.flexcol.gap2.overflowhidden.depth9:eq(0)>DIV.flex.shrink0.itemscenter.gapx3.leadingtight.depth10:eq(0)>DIV.textaccentforeground.flex.gap1.depth11:eq(0)>DIV.flex.gap1.depth12:eq(0)>TIME.depth13:eq(0)"
       ],
       "eventStyleTags": [
-        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.maxh6.flexwrap.gap2.overflowhidden.depth9:eq(0)>DIV.inlineflex.itemscenter.whitespacenowrap.roundedfull.border.px25.py05.fontmedium.uppercase.trackingwider.textmutedforeground.borderborder.text2xs.h6.depth10:eq(2)"
+        "DIV.group.flex.wfull.flexcol.gap1.pt4.pb8.lgpb12.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.maxh6.flexwrap.gap2.overflowhidden.depth9:eq(0)>DIV.inlineflex.itemscenter.roundedfull.border.px25.py05.fontmedium.trackingwider.whitespacenowrap.uppercase.textmutedforeground.borderborder.text2xs.h6.depth10:eq(2)"
       ]
     },
     "url": "https://shotgun.live/fr/cities/lyon",
@@ -903,28 +928,18 @@
     "language": "french",
     "eventsDelimiterTag": "A.depth6",
     "eventURLIndex": 0,
-    "dateFormat": "dd-MM-HH:mm",
+    "dateFormat": {
+      "month": "short",
+      "order": [
+        "day",
+        "month"
+      ]
+    },
     "multiPages": {
       "type": "dynamicPage",
       "scroll": true,
       "nextButton": "Voir plus",
       "dynamicPageLimit": "20"
-    },
-    "alternateTags": {
-      "mainPage": {
-        "eventNameTags": [
-          "div.mt2.lineclamp2.textlg.fontbold.leadingtight:eq(0)"
-        ],
-        "eventDateTags": [
-          "time.textaccentforeground:eq(0)"
-        ],
-        "eventPlaceTags": [
-          "div.textmutedforeground.lineclamp1.textsm.leadingtight:eq(0)"
-        ]
-      }
-    },
-    "alternateDateFormat": {
-      "mainPage": "dd-MM-HH:mm"
     }
   },
   {
@@ -932,33 +947,15 @@
     "city": "Hanoi",
     "country": "Vietnam",
     "mainPage": {
-      "eventDateTags": [
-        "DIV.datetop2.evnt.lp:eq(0) H1.day2:eq(0)",
-        "DIV.datetop2.evnt.lp:eq(0) H1.day2:eq(1)",
-        "DIV.datetop2.evnt.lp:eq(0) H1.day2:eq(2)",
-        "DIV.numberwrapper:eq(0) H1.number2:eq(0)",
-        "DIV.numberwrapper:eq(0) H1.number2:eq(1)",
-        "DIV.monthwrwpper:eq(0) H1.month2.llp:eq(0)",
-        "DIV.monthwrwpper:eq(0) H1.month2.llp:eq(1)",
-        "DIV.monthwrwpper:eq(0) H1.month2.llp:eq(2)"
-      ],
       "eventNameTags": [
-        "DIV.cardtextwrap:eq(0) H4.cerdheader:eq(0)"
-      ],
-      "eventPlaceTags": [
-        "DIV.eventcardlocationwrapper:eq(0) DIV.eventcardtext:eq(0)"
-      ],
-      "eventStyleTags": [
-        "DIV.tag:eq(0) DIV:eq(0)",
-        "DIV.tag:eq(1) DIV:eq(0)"
+        "DIV.eventcardbottom.depth8:eq(0)>DIV.cardtextwrap.depth9:eq(0)>H4.cerdheader.depth10:eq(0)"
       ]
     },
     "url": "https://likdo.asia/event/all/",
     "ID": "Likdo|Hanoi|Vietnam",
     "baseURL": "https://likdo.asia/event/all/",
     "language": "french",
-    "eventsDelimiterTag": " DIV.wlayoutgrid.evetscollectionsectionheader.blackbg.recom.artist A.cardwrapper.winlineblock",
-    "dateFormat": "dd-MM",
+    "eventsDelimiterTag": "A.winlineblock.depth7",
     "eventURLIndex": 0
   },
   {
@@ -1125,7 +1122,13 @@
     "baseURL": "https://www.le-fil.com/agenda/",
     "language": "french",
     "eventsDelimiterTag": "DIV.singlecard__infoheader.depth9",
-    "dateFormat": "dd-MM-HH:mm"
+    "dateFormat": {
+      "month": "long",
+      "order": [
+        "day",
+        "month"
+      ]
+    }
   },
   {
     "name": "Zénith de Saint-Étienne",
@@ -1144,7 +1147,15 @@
     "baseURL": "https://www.zenith-saint-etienne.fr/agenda/",
     "language": "french",
     "eventsDelimiterTag": "A.depth10",
-    "dateFormat": "dd-MM-yyyy-HH:mm",
+    "dateFormat": {
+      "month": "short",
+      "year": "long",
+      "order": [
+        "day",
+        "month",
+        "year"
+      ]
+    },
     "defaultStyle": "Live"
   },
   {
@@ -1228,7 +1239,13 @@
     "baseURL": "https://lamaisonscene.fr/agenda/",
     "language": "french",
     "eventsDelimiterTag": "DIV.elementorelement.elementorelementd294d83.econfull.customcontener.eflex.econ.eparent.depth17",
-    "dateFormat": "dd-MM"
+    "dateFormat": {
+      "month": "short",
+      "order": [
+        "day",
+        "month"
+      ]
+    }
   },
   {
     "name": "La Belle Electrique",
@@ -1253,7 +1270,15 @@
     "baseURL": "https://www.la-belle-electrique.com/fr/",
     "language": "french",
     "eventsDelimiterTag": "ARTICLE.eventcard.flex.flexcol.itemsstart.wfull.textblack.depth8",
-    "dateFormat": "dd-MM-yy-HH:mm",
+    "dateFormat": {
+      "month": "numeric",
+      "year": "short",
+      "order": [
+        "day",
+        "month",
+        "year"
+      ]
+    },
     "multiPages": {
       "type": "dynamicPage",
       "scroll": true,
@@ -1311,7 +1336,15 @@
     "baseURL": "https://www.summum-grenoble.com/categorie/concert/",
     "language": "french",
     "eventsDelimiterTag": "A.group.depth6",
-    "dateFormat": "dd-MM-yyyy"
+    "dateFormat": {
+      "month": "long",
+      "year": "long",
+      "order": [
+        "day",
+        "month",
+        "year"
+      ]
+    }
   },
   {
     "name": "La Source",
@@ -1324,9 +1357,6 @@
       "eventURLTags": [
         "DIV.gttitle.depth26:eq(0)>A.depth27:eq(0)"
       ],
-      "eventStyleTags": [
-        "DIV.gtdetails.depth26:eq(0)>DIV.gtcategory.depth27:eq(0)>UL.depth28:eq(0)>LI.gtcategory43.depth29:eq(0)>A.depth30:eq(0)"
-      ],
       "eventDateTags": [
         "DIV.gtdetails.depth26:eq(0)>DIV.gtdate.depth27:eq(0)"
       ]
@@ -1336,7 +1366,15 @@
     "baseURL": "https://lasource-fontaine.fr/programme/",
     "language": "french",
     "eventsDelimiterTag": "DIV.gtcontent.depth25",
-    "dateFormat": "dd-MM-yyyy"
+    "dateFormat": {
+      "month": "long",
+      "year": "long",
+      "order": [
+        "day",
+        "month",
+        "year"
+      ]
+    }
   },
   {
     "name": "La Cordo",
@@ -1345,9 +1383,6 @@
     "mainPage": {
       "eventDateTags": [
         "DIV.textwhite.flipcardinner.depth6:eq(0)>DIV.flex.flexcol.justifybetween.hfull.overflowhidden.flipcardfront.p4.mask.depth7:eq(0)>DIV.depth8:eq(0)>DIV.flex.flexrow.justifybetween.itemsstart.depth9:eq(0)>DIV.fontbold.text2xl.px1.depth10:eq(0)"
-      ],
-      "eventStyleTags": [
-        "DIV.textwhite.flipcardinner.depth6:eq(0)>DIV.flex.flexcol.justifybetween.hfull.overflowhidden.flipcardfront.p4.mask.depth7:eq(0)>DIV.depth8:eq(1)>DIV.depth9:eq(0)"
       ],
       "eventNameTags": [
         "DIV.textwhite.flipcardinner.depth6:eq(0)>DIV.flex.flexcol.justifybetween.hfull.overflowhidden.flipcardfront.p4.mask.depth7:eq(0)>DIV.depth8:eq(1)>DIV.text3xl.mdtextxl.xltext3xl.fontbold.hyphens.depth9:eq(0)"
@@ -1358,7 +1393,13 @@
     "baseURL": "https://www.lacordo.com/",
     "language": "french",
     "eventsDelimiterTag": "A.flipcard.depth5",
-    "dateFormat": "dd-MM"
+    "dateFormat": {
+      "month": "numeric",
+      "order": [
+        "day",
+        "month"
+      ]
+    }
   },
   {
     "name": "Shotgun_saint-etienne",
@@ -1366,14 +1407,11 @@
     "country": "France",
     "mainPage": {
       "eventNameTags": [
-        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.mt2.flex.flexrow.itemscenter.gap2.depth9:eq(0)>P.lineclamp2.textlg.fontbold.leadingtight.depth10:eq(0)"
-      ],
-      "eventPlaceTags": [
-        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.wfull.minw0.flexcol.gap2.overflowhidden.depth9:eq(0)>DIV.textmutedforeground.wfull.shrink.overflowhidden.textellipsis.whitespacenowrap.textsm.leadingtight.depth10:eq(0)"
+        "DIV.group.flex.wfull.flexcol.gap1.pt4.pb8.lgpb12.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.mt2.flex.flexrow.itemscenter.gap2.depth9:eq(0)>P.lineclamp2.textlg.leadingtight.fontbold.depth10:eq(0)"
       ],
       "eventDateTags": [
-        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.wfull.minw0.flexcol.gap2.overflowhidden.depth9:eq(0)>DIV.flex.shrink0.itemscenter.gapx3.leadingtight.depth10:eq(0)>DIV.textaccentforeground.flex.gap1.depth11:eq(0)>TIME.depth12:eq(0)",
-        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.wfull.minw0.flexcol.gap2.overflowhidden.depth9:eq(0)>DIV.flex.shrink0.itemscenter.gapx3.leadingtight.depth10:eq(0)>DIV.textaccentforeground.flex.gap1.depth11:eq(0)>DIV.flex.gap1.depth12:eq(0)>TIME.depth13:eq(0)"
+        "DIV.group.flex.wfull.flexcol.gap1.pt4.pb8.lgpb12.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.wfull.minw0.flexcol.gap2.overflowhidden.depth9:eq(0)>DIV.flex.shrink0.itemscenter.gapx3.leadingtight.depth10:eq(0)>DIV.textaccentforeground.flex.gap1.depth11:eq(0)>TIME.depth12:eq(0)",
+        "DIV.group.flex.wfull.flexcol.gap1.pt4.pb8.lgpb12.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.wfull.minw0.flexcol.gap2.overflowhidden.depth9:eq(0)>DIV.flex.shrink0.itemscenter.gapx3.leadingtight.depth10:eq(0)>DIV.textaccentforeground.flex.gap1.depth11:eq(0)>DIV.flex.gap1.depth12:eq(0)>TIME.depth13:eq(0)"
       ]
     },
     "url": "https://shotgun.live/fr/cities/saint-etienne",
@@ -1387,7 +1425,20 @@
     "baseURL": "https://shotgun.live/fr/cities/",
     "language": "french",
     "eventsDelimiterTag": "A.depth6",
-    "dateFormat": "dd-MM-HH:mm"
+    "dateFormat": {
+      "month": "short",
+      "order": [
+        "day",
+        "month"
+      ]
+    },
+    "alternateTags": {
+      "mainPage": {
+        "eventPlaceTags": [
+          "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.wfull.minw0.flexcol.gap2.overflowhidden.depth9:eq(0)>DIV.textmutedforeground.wfull.shrink.overflowhidden.textellipsis.whitespacenowrap.textsm.leadingtight.depth10:eq(0)"
+        ]
+      }
+    }
   },
   {
     "name": "Shotgun_grenoble",
@@ -1395,17 +1446,14 @@
     "country": "France",
     "mainPage": {
       "eventNameTags": [
-        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.mt2.flex.flexrow.itemscenter.gap2.depth9:eq(0)>P.lineclamp2.textlg.fontbold.leadingtight.depth10:eq(0)"
-      ],
-      "eventPlaceTags": [
-        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.wfull.minw0.flexcol.gap2.overflowhidden.depth9:eq(0)>DIV.textmutedforeground.wfull.shrink.overflowhidden.textellipsis.whitespacenowrap.textsm.leadingtight.depth10:eq(0)"
+        "DIV.group.flex.wfull.flexcol.gap1.pt4.pb8.lgpb12.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.mt2.flex.flexrow.itemscenter.gap2.depth9:eq(0)>P.lineclamp2.textlg.leadingtight.fontbold.depth10:eq(0)"
       ],
       "eventDateTags": [
-        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.wfull.minw0.flexcol.gap2.overflowhidden.depth9:eq(0)>DIV.flex.shrink0.itemscenter.gapx3.leadingtight.depth10:eq(0)>DIV.textaccentforeground.flex.gap1.depth11:eq(0)>TIME.depth12:eq(0)",
-        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.wfull.minw0.flexcol.gap2.overflowhidden.depth9:eq(0)>DIV.flex.shrink0.itemscenter.gapx3.leadingtight.depth10:eq(0)>DIV.textaccentforeground.flex.gap1.depth11:eq(0)>DIV.flex.gap1.depth12:eq(0)>TIME.depth13:eq(0)"
+        "DIV.group.flex.wfull.flexcol.gap1.pt4.pb8.lgpb12.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.wfull.minw0.flexcol.gap2.overflowhidden.depth9:eq(0)>DIV.flex.shrink0.itemscenter.gapx3.leadingtight.depth10:eq(0)>DIV.textaccentforeground.flex.gap1.depth11:eq(0)>TIME.depth12:eq(0)",
+        "DIV.group.flex.wfull.flexcol.gap1.pt4.pb8.lgpb12.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.wfull.minw0.flexcol.gap2.overflowhidden.depth9:eq(0)>DIV.flex.shrink0.itemscenter.gapx3.leadingtight.depth10:eq(0)>DIV.textaccentforeground.flex.gap1.depth11:eq(0)>DIV.flex.gap1.depth12:eq(0)>TIME.depth13:eq(0)"
       ],
       "eventStyleTags": [
-        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.maxh6.flexwrap.gap2.overflowhidden.depth9:eq(0)>DIV.inlineflex.itemscenter.whitespacenowrap.roundedfull.border.px25.py05.fontmedium.uppercase.trackingwider.textmutedforeground.borderborder.text2xs.h6.depth10"
+        "DIV.group.flex.wfull.flexcol.gap1.pt4.pb8.lgpb12.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.maxh6.flexwrap.gap2.overflowhidden.depth9:eq(0)>DIV.inlineflex.itemscenter.roundedfull.border.px25.py05.fontmedium.trackingwider.whitespacenowrap.uppercase.textmutedforeground.borderborder.text2xs.h6.depth10:eq(0)"
       ]
     },
     "url": "https://shotgun.live/fr/cities/grenoble",
@@ -1419,7 +1467,20 @@
     "baseURL": "https://shotgun.live/fr/cities/",
     "language": "french",
     "eventsDelimiterTag": "A.depth6",
-    "dateFormat": "dd-MM-HH:mm"
+    "dateFormat": {
+      "month": "short",
+      "order": [
+        "day",
+        "month"
+      ]
+    },
+    "alternateTags": {
+      "mainPage": {
+        "eventPlaceTags": [
+          "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.wfull.minw0.flexcol.gap2.overflowhidden.depth9:eq(0)>DIV.textmutedforeground.wfull.shrink.overflowhidden.textellipsis.whitespacenowrap.textsm.leadingtight.depth10:eq(0)"
+        ]
+      }
+    }
   },
   {
     "name": "CEPAC Silo",
@@ -1484,17 +1545,14 @@
     "country": "France",
     "mainPage": {
       "eventNameTags": [
-        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.mt2.flex.flexrow.itemscenter.gap2.depth9:eq(0)>P.lineclamp2.textlg.fontbold.leadingtight.depth10:eq(0)"
-      ],
-      "eventPlaceTags": [
-        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.wfull.minw0.flexcol.gap2.overflowhidden.depth9:eq(0)>DIV.textmutedforeground.wfull.shrink.overflowhidden.textellipsis.whitespacenowrap.textsm.leadingtight.depth10:eq(0)"
+        "DIV.group.flex.wfull.flexcol.gap1.pt4.pb8.lgpb12.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.mt2.flex.flexrow.itemscenter.gap2.depth9:eq(0)>P.lineclamp2.textlg.leadingtight.fontbold.depth10:eq(0)"
       ],
       "eventDateTags": [
-        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.wfull.minw0.flexcol.gap2.overflowhidden.depth9:eq(0)>DIV.flex.shrink0.itemscenter.gapx3.leadingtight.depth10:eq(0)>DIV.textaccentforeground.flex.gap1.depth11:eq(0)>TIME.depth12:eq(0)",
-        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.wfull.minw0.flexcol.gap2.overflowhidden.depth9:eq(0)>DIV.flex.shrink0.itemscenter.gapx3.leadingtight.depth10:eq(0)>DIV.textaccentforeground.flex.gap1.depth11:eq(0)>DIV.flex.gap1.depth12:eq(0)>TIME.depth13:eq(0)"
+        "DIV.group.flex.wfull.flexcol.gap1.pt4.pb8.lgpb12.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.wfull.minw0.flexcol.gap2.overflowhidden.depth9:eq(0)>DIV.flex.shrink0.itemscenter.gapx3.leadingtight.depth10:eq(0)>DIV.textaccentforeground.flex.gap1.depth11:eq(0)>TIME.depth12:eq(0)",
+        "DIV.group.flex.wfull.flexcol.gap1.pt4.pb8.lgpb12.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.wfull.minw0.flexcol.gap2.overflowhidden.depth9:eq(0)>DIV.flex.shrink0.itemscenter.gapx3.leadingtight.depth10:eq(0)>DIV.textaccentforeground.flex.gap1.depth11:eq(0)>DIV.flex.gap1.depth12:eq(0)>TIME.depth13:eq(0)"
       ],
       "eventStyleTags": [
-        "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.maxh6.flexwrap.gap2.overflowhidden.depth9:eq(0)>DIV.inlineflex.itemscenter.whitespacenowrap.roundedfull.border.px25.py05.fontmedium.uppercase.trackingwider.textmutedforeground.borderborder.text2xs.h6.depth10"
+        "DIV.group.flex.wfull.flexcol.gap1.pt4.pb8.lgpb12.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.maxh6.flexwrap.gap2.overflowhidden.depth9:eq(0)>DIV.inlineflex.itemscenter.roundedfull.border.px25.py05.fontmedium.trackingwider.whitespacenowrap.uppercase.textmutedforeground.borderborder.text2xs.h6.depth10"
       ]
     },
     "url": "https://shotgun.live/fr/cities/aix-marseille",
@@ -1507,7 +1565,20 @@
     "baseURL": "https://shotgun.live/fr/cities/",
     "language": "french",
     "eventsDelimiterTag": "A.depth6",
-    "dateFormat": "dd-MM-HH:mm"
+    "dateFormat": {
+      "month": "short",
+      "order": [
+        "day",
+        "month"
+      ]
+    },
+    "alternateTags": {
+      "mainPage": {
+        "eventPlaceTags": [
+          "DIV.pb8.pt4.lgpb12.group.flex.wfull.flexcol.gap1.depth7:eq(0)>DIV.flex.wfull.flexcol.itemsstart.justifycenter.gap2.overflowhidden.depth8:eq(0)>DIV.flex.wfull.minw0.flexcol.gap2.overflowhidden.depth9:eq(0)>DIV.textmutedforeground.wfull.shrink.overflowhidden.textellipsis.whitespacenowrap.textsm.leadingtight.depth10:eq(0)"
+        ]
+      }
+    }
   },
   {
     "name": "Le Cri du Port",
@@ -1540,7 +1611,13 @@
     "baseURL": "https://espace-julien.com/",
     "language": "french",
     "eventsDelimiterTag": "A.container.group.block.hfull.bgneutral0.textcontent.hoverscbasescbaseinvert.hoverscbasecontentscbasecontentinvert.depth17",
-    "dateFormat": "dd-MM-HH:mm"
+    "dateFormat": {
+      "month": "long",
+      "order": [
+        "day",
+        "month"
+      ]
+    }
   },
   {
     "name": "Le Dôme",
@@ -1562,7 +1639,15 @@
     "baseURL": "https://dome.marseille.fr/programmation/",
     "language": "french",
     "eventsDelimiterTag": "DIV.viewsviewresponsivegrid__iteminner.depth17",
-    "dateFormat": "dd-MM-yyyy-HH:mm"
+    "dateFormat": {
+      "month": "numeric",
+      "year": "long",
+      "order": [
+        "day",
+        "month",
+        "year"
+      ]
+    }
   },
   {
     "name": "⁠L'Affranchi",
@@ -1593,9 +1678,6 @@
     "city": "Marseille",
     "country": "France",
     "mainPage": {
-      "eventStyleTags": [
-        "A.elementorelement.elementorelement3ce456e2.econfull.bclprogctnimg.eflex.econ.echild.depth13:eq(0)>DIV.elementorelement.elementorelement8cc8910.econfull.eflex.econ.echild.depth14:eq(0)>DIV.elementorelement.elementorelement5fec6821.bclproggenre.elementorwidget.elementorwidgetpostinfo.depth15:eq(0)>DIV.elementorwidgetcontainer.depth16:eq(0)>UL.elementorinlineitems.elementoriconlistitems.elementorpostinfo.depth17:eq(0)>LI.elementoriconlistitem.elementorrepeateritem0720d7a.elementorinlineitem.depth18:eq(0)"
-      ],
       "eventNameTags": [
         "DIV.elementorelement.elementorelement59a61d14.econfull.eflex.econ.echild.depth13:eq(0)>DIV.elementorelement.elementorelement21874ee5.blcprogctntitreresa.eflex.econboxed.econ.echild.depth14:eq(0)>DIV.econinner.depth15:eq(0)>DIV.elementorelement.elementorelement1e3f771c.bclprogtitre.vingt_cinq_six.elementorwidget.elementorwidgetthemeposttitle.elementorpagetitle.elementorwidgetheading.depth16:eq(0)>DIV.elementorwidgetcontainer.depth17:eq(0)>H3.elementorheadingtitle.elementorsizedefault.depth18:eq(0)>A.depth19:eq(0)"
       ],
@@ -1617,7 +1699,13 @@
     "baseURL": "https://www.lilyade.fr/programmation/",
     "language": "french",
     "eventsDelimiterTag": "DIV.econinner.depth12",
-    "dateFormat": "dd-MM-yyyy-HH:mm"
+    "dateFormat": {
+      "month": "long",
+      "order": [
+        "day",
+        "month"
+      ]
+    }
   },
   {
     "name": "Zénith de Dijon",
@@ -1667,7 +1755,15 @@
     "baseURL": "https://www.olympiahall.com/agenda/",
     "language": "french",
     "eventsDelimiterTag": "A.ccard.event.depth9",
-    "dateFormat": "dd-MM-yyyy"
+    "dateFormat": {
+      "month": "short",
+      "year": "long",
+      "order": [
+        "day",
+        "month",
+        "year"
+      ]
+    }
   },
   {
     "name": "FIDUCIAL Astéria",
